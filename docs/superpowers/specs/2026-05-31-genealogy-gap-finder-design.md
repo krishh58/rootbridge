@@ -42,7 +42,54 @@ Build a web app that ingests whatever genealogical data a user has (as little as
 | FamilySearch (EU partition) | German/Italian/Irish/Polish church records | Same OAuth2 token |
 
 ### Payments
-- **Stripe** — subscription billing, webhooks update DB tier flag per user
+- **Stripe** — subscription billing + token top-up purchases, webhooks update DB tier and token balance per user
+
+---
+
+## Pricing Model — Hybrid Subscription + Token Top-Up
+
+Every paid tier includes a monthly token allotment. Tokens are consumed by AI operations: gap analysis runs, document translations, AI research suggestions, and deep search cascades. Basic FamilySearch record lookups do NOT consume tokens — only AI work does.
+
+### Monthly Token Allotments by Tier
+
+| Tier | Monthly Price | Included Tokens | Notes |
+|------|--------------|-----------------|-------|
+| Free | $0 | 100 tokens | 5 searches/day cap, no save |
+| US Records Only | $7.99/mo | 500 tokens | Covers ~25 full person research runs |
+| + European Roots | $12.99/mo | 1,000 tokens | More AI translation work needed |
+| African American Heritage | $12.99/mo | 1,000 tokens | Freedmen's Bureau + WPA synthesis |
+| Asian/Pacific Heritage | $12.99/mo | 1,000 tokens | Multi-language translation |
+| All Access | $19.99/mo | 2,500 tokens | Power users, all heritage cascades |
+
+Unused tokens expire at end of billing month — no rollover (keeps revenue predictable).
+
+### Token Top-Up Packs (Stripe one-time purchase)
+| Pack | Price | Tokens | Cost per token |
+|------|-------|--------|----------------|
+| Starter | $2.99 | 300 | $0.010 |
+| Standard | $7.99 | 1,000 | $0.008 |
+| Power | $14.99 | 2,500 | $0.006 |
+| Research Marathon | $24.99 | 5,000 | $0.005 |
+
+Top-up tokens do not expire until used.
+
+### Token Cost Per Operation (server-side)
+| Operation | Token Cost | Typical OpenRouter cost |
+|-----------|-----------|------------------------|
+| Full person research run (AI gap summary) | 20 tokens | ~$0.002 |
+| Document translation (per page) | 15 tokens | ~$0.001 |
+| Deep European cascade (ship manifest + EU church AI synthesis) | 40 tokens | ~$0.004 |
+| African American cascade (Freedmen's + WPA narrative AI synthesis) | 40 tokens | ~$0.004 |
+| AI research suggestion refresh | 5 tokens | <$0.001 |
+
+This ensures the AI cost is always covered by token consumption. Margin target: 5× markup on OpenRouter cost.
+
+### User Experience
+- Token balance visible in the nav bar at all times
+- Warning toast when balance drops below 100 tokens
+- "Top up" button in settings — opens Stripe checkout inline
+- Low-balance users see a soft prompt before running a deep cascade: "This will use ~40 tokens. You have 35 remaining. Top up?"
+- Free tier users see token counter clearly — creates natural upgrade pressure
 
 ---
 
