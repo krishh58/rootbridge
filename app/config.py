@@ -1,0 +1,19 @@
+import os
+
+class Config:
+    _raw_db_url = os.environ.get('DATABASE_URL', '')
+    SECRET_KEY = os.environ['SECRET_KEY']
+    SQLALCHEMY_DATABASE_URI = _raw_db_url.replace('postgres://', 'postgresql://', 1)
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+    OPENROUTER_API_KEY = os.environ.get('OPENROUTER_API_KEY', '')
+    FAMILYSEARCH_CLIENT_ID = os.environ.get('FAMILYSEARCH_CLIENT_ID', '')
+    FAMILYSEARCH_CLIENT_SECRET = os.environ.get('FAMILYSEARCH_CLIENT_SECRET', '')
+    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
+    STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+
+class TestConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+    SECRET_KEY = 'test-secret-key'
+    REDIS_URL = 'redis://localhost:6379/1'
