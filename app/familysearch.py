@@ -46,6 +46,8 @@ class FamilySearchClient:
     def search_records(self, collection_id: str, first: str = '', last: str = '',
                        birth_year: int = None) -> list:
         params = {'q': self._build_query(first, last, birth_year), 'count': 10}
+        if collection_id:
+            params['collectionId'] = collection_id
         resp = requests.get(
             f'{FAMILYSEARCH_BASE}/platform/records/search',
             headers=self._headers(), params=params,
@@ -98,10 +100,29 @@ class FamilySearchClient:
         for entry in data.get('entries', []):
             try:
                 record = entry.get('content', {}).get('gedcomx', {})
+                persons = record.get('persons', [])
+                name = ''
+                birth_year = None
+                fs_id = ''
+                if persons:
+                    p = persons[0]
+                    fs_id = p.get('id', '')
+                    if p.get('names'):
+                        forms = p['names'][0].get('nameForms', [])
+                        if forms:
+                            name = forms[0].get('fullText', '')
+                    for fact in p.get('facts', []):
+                        if 'Birth' in fact.get('type', ''):
+                            date_str = fact.get('date', {}).get('original', '')
+                            if date_str and date_str.isdigit():
+                                birth_year = int(date_str)
                 results.append({
+                    'name': name,
+                    'birth_year': birth_year,
+                    'fs_id': fs_id,
                     'source': 'familysearch_records',
-                    'raw': record,
                     'url': entry.get('links', {}).get('self', {}).get('href', ''),
+                    'raw': record,
                 })
             except (KeyError, IndexError):
                 continue

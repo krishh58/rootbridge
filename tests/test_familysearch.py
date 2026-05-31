@@ -41,3 +41,30 @@ def test_search_persons_returns_list(app):
         assert isinstance(results, list)
         assert len(results) == 1
         assert results[0]['name'] == 'Christopher Haines'
+
+def test_search_records_uses_collection_id(app):
+    with app.app_context():
+        client = FamilySearchClient()
+        mock_response = MagicMock()
+        mock_response.json.return_value = {
+            'entries': [{'content': {'gedcomx': {
+                'persons': [{'id': 'rec1',
+                             'names': [{'nameForms': [{'fullText': 'Johann Mueller'}]}],
+                             'facts': [{'type': 'http://gedcomx.org/Birth',
+                                        'date': {'original': '1842'}}]}]
+            }}, 'links': {'self': {'href': 'https://familysearch.org/ark:/rec1'}}}]
+        }
+        mock_response.raise_for_status = MagicMock()
+        captured_params = {}
+        def fake_get(url, headers=None, params=None, **kwargs):
+            captured_params.update(params or {})
+            return mock_response
+        with patch.object(client, 'get_token', return_value='tok'), \
+             patch('app.familysearch.requests.get', side_effect=fake_get):
+            results = client.search_records('1849782', first='Johann', last='Mueller')
+        assert isinstance(results, list)
+        assert len(results) == 1
+        assert results[0]['name'] == 'Johann Mueller'
+        assert results[0]['source'] == 'familysearch_records'
+        assert results[0]['birth_year'] == 1842
+        assert captured_params.get('collectionId') == '1849782'
