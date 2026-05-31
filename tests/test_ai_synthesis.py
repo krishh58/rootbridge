@@ -1,3 +1,4 @@
+import requests as requests_lib
 from unittest.mock import patch, MagicMock
 from app.ai_synthesis import synthesize_gaps
 
@@ -22,7 +23,7 @@ def test_synthesize_returns_summary(app):
 
 def test_synthesize_returns_empty_on_api_error(app):
     with app.app_context():
-        with patch('app.ai_synthesis.requests.post', side_effect=Exception('API down')):
+        with patch('app.ai_synthesis.requests.post', side_effect=requests_lib.RequestException('API down')):
             result = synthesize_gaps(
                 person={'first_name': 'Jane', 'last_name': 'Doe'},
                 results=[], gaps=[]

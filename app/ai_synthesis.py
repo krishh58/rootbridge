@@ -39,5 +39,5 @@ Write 2-3 plain English sentences: what was found, what is missing, and the sing
         resp.raise_for_status()
         summary = resp.json()['choices'][0]['message']['content'].strip()
         return {'summary': summary}
-    except Exception:
+    except (requests.RequestException, KeyError, IndexError, ValueError):
         return {'summary': ''}
