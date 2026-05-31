@@ -84,6 +84,7 @@ Top-up tokens do not expire until used.
 | Deep European cascade (ship manifest + EU church AI synthesis) | 40 tokens | ~$0.004 |
 | African American cascade (Freedmen's + WPA narrative AI synthesis) | 40 tokens | ~$0.004 |
 | AI research suggestion refresh | 5 tokens | <$0.001 |
+| Alfred — one chat message (with full person context) | 10 tokens | ~$0.001 |
 
 This ensures the AI cost is always covered by token consumption. Margin target: 5× markup on OpenRouter cost.
 
@@ -112,6 +113,10 @@ This ensures the AI cost is always covered by token consumption. Margin target: 
 
 ### `gaps`
 - id, person_id, gap_type (missing_parents/missing_birth/missing_death/etc), suggested_source, suggested_query, resolved (bool)
+
+### `alfred_messages`
+- id, person_id, tree_id, role (user/assistant), content (text), created_at
+- Stores Alfred's conversation history per person. Last 10 messages loaded as context on each new message.
 
 ---
 
@@ -196,6 +201,38 @@ Clicking any node opens a **Person Card** overlay with two panels:
 - Example: *"Your ancestor lived in rural County Cork during the height of the Great Famine (1845–1852). Most families in this region depended entirely on potato crops. An estimated 1 million people emigrated from Cork during this decade — your family was among them."*
 
 If no hometown photo is available (Wikimedia returns no results), the panel shows a regional landscape photo and flags the photo as approximate. If birth location is unknown entirely, the right panel is hidden.
+
+**Alfred panel — AI Concierge (below the two panels):**
+
+Alfred is the app's AI research assistant. He lives at the bottom of every person card and has full context on that specific person — every search result found, every gap identified, every source URL, the hometown photo on screen, and the full family tree structure.
+
+Alfred can answer questions like:
+- *"Where did you find the pension record?"* → "I found pension #5802 in FamilySearch's military records collection, filed August 1832 in Allen County, Kentucky. The record names his wife Sarah and lists service dates 1812–1815. [View original →]"
+- *"Why can't you find his parents?"* → Explains the 1870 wall, names the specific Freedmen's Bureau collections to check, links to them
+- *"Show me what this town looked like"* → Fetches and displays an additional Wikimedia or LoC image inline in the chat
+- *"What does Geburtsname mean?"* → Translates German/Italian/Polish/etc. terms found in records
+- *"Who else in my tree might connect to this person?"* → Cross-references the full tree, suggests likely relatives
+- *"What should I search next?"* → Generates a prioritized to-do list of next research steps based on current gaps
+
+**Alfred UI:**
+- Small avatar/icon labeled "Alfred" with a subtle British butler aesthetic (bowler hat icon)
+- Chat input at the bottom: *"Ask Alfred about [person name]..."*
+- Responses appear as chat bubbles, newest at top — scrollable history per person
+- Images requested by Alfred render inline in the chat bubble
+- Source links render as clickable chips, not raw URLs
+- Alfred's chat history is saved per person per tree (stored in DB)
+
+**Alfred token cost:** 10 tokens per message sent (covers OpenRouter + image fetch if requested). Token cost shown as a small label next to the send button: "10 tokens". If balance is below 10, the input is disabled with a "Top up to chat with Alfred" prompt.
+
+**Alfred's context window (sent with every message):**
+- Person's full data: name, dates, places, confidence score
+- All search results for that person (source, record type, URL, key fields)
+- All gaps for that person (type, suggested source, suggested query)
+- Current hometown photo URL and map URL
+- Brief tree summary: who the person's parents, children, and spouse are (names + dates only)
+- Last 10 messages of conversation history for continuity
+
+**Alfred model:** OpenRouter `anthropic/claude-3-haiku` — fast, cheap, accurate on genealogy tasks. Fallback to `openai/gpt-4o-mini` if Haiku unavailable.
 
 ### Input: Flexible Entry
 Users can start with as little as:
