@@ -222,7 +222,18 @@ Alfred can answer questions like:
 - Source links render as clickable chips, not raw URLs
 - Alfred's chat history is saved per person per tree (stored in DB)
 
-**Alfred token cost:** 10 tokens per message sent (covers OpenRouter + image fetch if requested). Token cost shown as a small label next to the send button: "10 tokens". If balance is below 10, the input is disabled with a "Top up to chat with Alfred" prompt.
+**Alfred Voice Input (Web Speech API — free, no tokens, no server):**
+- Microphone button sits to the left of the text input
+- Click mic → button pulses red, browser starts listening in real-time
+- Speech transcribes live into the input field as the user speaks
+- When speech pauses (silence detection), transcription finalizes and message auto-sends
+- User can also click mic again to stop and edit before sending
+- No API key, no cost, no server round-trip — 100% browser-native `SpeechRecognition` API
+- Works in Chrome, Edge, Chrome on Android (covers the majority of users)
+- Graceful degradation: if browser doesn't support Web Speech API, mic button is hidden and text input works alone — no error shown
+- Example: user says *"Alfred, show me what County Cork looked like in 1847"* → transcribes → sends → Alfred fetches and displays the image inline
+
+**Alfred token cost:** 10 tokens per message sent regardless of voice or text input (covers OpenRouter + image fetch if requested). Token cost shown as a small label next to the send button: "10 tokens". If balance is below 10, the input is disabled with a "Top up to chat with Alfred" prompt.
 
 **Alfred's context window (sent with every message):**
 - Person's full data: name, dates, places, confidence score
