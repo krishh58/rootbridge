@@ -17,6 +17,7 @@ def create_app(config=None):
     app.register_blueprint(routes_bp)
 
     with app.app_context():
+        from . import models  # noqa: register models with SQLAlchemy
         db.create_all()
 
     return app
