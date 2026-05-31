@@ -71,9 +71,15 @@ def run_us_cascade(first: str = '', last: str = '',
 
     fs = FamilySearchClient()
     results = []
-    results += fs.search_persons(first=first, last=last,
-                                  birth_year=birth_year, birth_place=birth_place)
-    results += fs.search_records('', first=first, last=last, birth_year=birth_year)
+    try:
+        results += fs.search_persons(first=first, last=last,
+                                      birth_year=birth_year, birth_place=birth_place)
+    except Exception:
+        pass
+    try:
+        results += fs.search_records('', first=first, last=last, birth_year=birth_year)
+    except Exception:
+        pass
     results += search_wikitree(first, last, birth_year)
     results += search_chronicling(first, last, birth_year)
 
@@ -86,6 +92,10 @@ def run_us_cascade(first: str = '', last: str = '',
     for r_item in results:
         if r_item.get('birth_year') and not person_snapshot['birth_year']:
             person_snapshot['birth_year'] = r_item['birth_year']
+        if r_item.get('death_year') and not person_snapshot['death_year']:
+            person_snapshot['death_year'] = r_item['death_year']
+        if r_item.get('death_place') and not person_snapshot['death_place']:
+            person_snapshot['death_place'] = r_item['death_place']
 
     gaps = classify_gaps(person_snapshot)
     score = confidence_score(person_snapshot)
