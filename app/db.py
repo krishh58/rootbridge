@@ -8,6 +8,7 @@ def get_redis():
     if 'redis_client' not in g:
         g.redis_client = redis_lib.from_url(
             current_app.config['REDIS_URL'],
-            decode_responses=True
+            decode_responses=True,
+            socket_connect_timeout=current_app.config.get('REDIS_SOCKET_CONNECT_TIMEOUT', 2),
         )
     return g.redis_client
