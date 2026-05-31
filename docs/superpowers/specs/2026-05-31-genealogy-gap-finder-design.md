@@ -367,7 +367,8 @@ This mirrors the session workflow used for the Henderson family PDFs.
 - Jewish heritage (JRI-Poland, Yad Vashem)
 - Collaborative family editing (multiple users on one tree)
 - DNA ethnicity hint integration
-- Mobile app (React Native) once web revenue established
+- Background research jobs (Celery + Redis) — Alfred researches while user is away, push notification when something is found
+- **Progressive Web App (PWA)** — `manifest.json` + `service-worker.js` added to the existing Flask app. Users on iPhone or Android tap "Add to Home Screen" — full-screen app icon, works offline, instant updates. Bypasses App Store entirely (no $99/year Apple fee, no 30% revenue cut, no review process). Estimated: ~2–3 hours of work after core app is stable.
 
 ---
 
