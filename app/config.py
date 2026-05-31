@@ -2,8 +2,8 @@ import os
 
 class Config:
     _raw_db_url = os.environ.get('DATABASE_URL', '')
-    SECRET_KEY = os.environ['SECRET_KEY']
-    SQLALCHEMY_DATABASE_URI = _raw_db_url.replace('postgres://', 'postgresql://', 1)
+    SECRET_KEY = os.environ.get('SECRET_KEY', '')
+    SQLALCHEMY_DATABASE_URI = _raw_db_url.replace('postgres://', 'postgresql://', 1) or 'sqlite:///:memory:'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
     OPENROUTER_API_KEY = os.environ.get('OPENROUTER_API_KEY', '')

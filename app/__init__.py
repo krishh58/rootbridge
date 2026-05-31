@@ -6,6 +6,9 @@ def create_app(config=None):
     app = Flask(__name__, static_folder='../static', static_url_path='/static')
     app.config.from_object(config or Config)
 
+    if not app.config.get('SECRET_KEY') and not app.config.get('TESTING'):
+        raise RuntimeError("SECRET_KEY environment variable is not set")
+
     db.init_app(app)
 
     from .auth import auth_bp
