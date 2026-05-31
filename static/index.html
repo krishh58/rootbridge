@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RootBridge — Find Your Family Gaps</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">RootBridge</a>
+  <div class="nav-links">
+    <a href="/pricing">Pricing</a>
+    <a href="#" id="loginLink">Sign In</a>
+    <a href="#" class="btn btn-primary" style="padding:8px 18px;font-size:0.85rem">Start Free</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Find Every Gap in Your <span>Family History</span></h1>
+  <p>RootBridge searches FamilySearch, ship manifests, Freedmen's Bureau records, and more — then tells you exactly what's missing and where to find it. Up to 87% cheaper than Ancestry.</p>
+  <a href="#search" class="btn btn-primary" style="margin-right:12px">Search Your Family Free</a>
+  <a href="/pricing" class="btn btn-ghost">See Pricing</a>
+</section>
+
+<section id="search" style="max-width:600px;margin:0 auto;padding:0 20px 60px">
+  <div style="background:#1e293b;border:1px solid #334155;border-radius:12px;padding:28px">
+    <h2 style="margin-bottom:20px;font-size:1.2rem">Start with what you know</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div>
+        <label style="font-size:0.8rem;color:#94a3b8;display:block;margin-bottom:4px">First Name</label>
+        <input id="firstName" type="text" placeholder="Christopher" style="width:100%;background:#0f172a;border:1px solid #334155;border-radius:6px;padding:8px 12px;color:#f1f5f9;font-size:0.9rem">
+      </div>
+      <div>
+        <label style="font-size:0.8rem;color:#94a3b8;display:block;margin-bottom:4px">Last Name *</label>
+        <input id="lastName" type="text" placeholder="Haines" style="width:100%;background:#0f172a;border:1px solid #334155;border-radius:6px;padding:8px 12px;color:#f1f5f9;font-size:0.9rem">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+      <div>
+        <label style="font-size:0.8rem;color:#94a3b8;display:block;margin-bottom:4px">Birth Year (approx)</label>
+        <input id="birthYear" type="number" placeholder="1760" style="width:100%;background:#0f172a;border:1px solid #334155;border-radius:6px;padding:8px 12px;color:#f1f5f9;font-size:0.9rem">
+      </div>
+      <div>
+        <label style="font-size:0.8rem;color:#94a3b8;display:block;margin-bottom:4px">Birth State / Country</label>
+        <input id="birthPlace" type="text" placeholder="Virginia" style="width:100%;background:#0f172a;border:1px solid #334155;border-radius:6px;padding:8px 12px;color:#f1f5f9;font-size:0.9rem">
+      </div>
+    </div>
+    <button class="btn btn-primary" style="width:100%" onclick="guestSearch()">Find Gaps →</button>
+    <p style="text-align:center;font-size:0.8rem;color:#64748b;margin-top:10px">Free · No account required · 5 searches/day</p>
+  </div>
+</section>
+
+<div class="features">
+  <div class="feature-card">
+    <h3>🔍 Gap Finder</h3>
+    <p>Searches FamilySearch, WikiTree, Census records, and more. Shows you exactly what's missing and where to look next.</p>
+  </div>
+  <div class="feature-card">
+    <h3>🌍 Crosses the Atlantic</h3>
+    <p>Ship manifests → origin village → European church records. German, Irish, Italian, Polish ancestry fully supported.</p>
+  </div>
+  <div class="feature-card">
+    <h3>✊ The 1870 Wall</h3>
+    <p>Specialized Freedmen's Bureau, slave schedule, and WPA narrative searches for African American genealogy.</p>
+  </div>
+  <div class="feature-card">
+    <h3>🏘️ See Where They Lived</h3>
+    <p>Photos of your ancestor's hometown, historical maps of their region, and AI context on what life was like when they were born.</p>
+  </div>
+</div>
+
+<footer>
+  © 2026 RootBridge &nbsp;·&nbsp; <a href="/pricing" style="color:#64748b">Pricing</a>
+</footer>
+
+<script>
+function guestSearch() {
+  const last = document.getElementById('lastName').value.trim();
+  if (!last) { alert('Last name is required'); return; }
+  const params = new URLSearchParams({
+    first: document.getElementById('firstName').value.trim(),
+    last,
+    birth_year: document.getElementById('birthYear').value.trim(),
+    birth_place: document.getElementById('birthPlace').value.trim(),
+  });
+  window.location.href = '/app?' + params.toString();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RootBridge</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">RootBridge</a>
+  <div class="nav-links">
+    <span class="token-badge" id="tokenBadge">⚡ — tokens</span>
+    <a href="/pricing">Top Up</a>
+    <a href="#" onclick="logout()">Sign Out</a>
+  </div>
+</nav>
+
+<div id="app" style="padding:40px 32px;text-align:center;color:#94a3b8">
+  <p>Loading your tree...</p>
+</div>
+
+<script>
+async function logout() {
+  await fetch('/auth/logout', { method: 'POST' });
+  window.location.href = '/';
+}
+
+async function loadMe() {
+  const r = await fetch('/api/me');
+  if (!r.ok) { window.location.href = '/'; return; }
+  const data = await r.json();
+  document.getElementById('tokenBadge').textContent = `⚡ ${data.tokens} tokens`;
+}
+
+loadMe();
+</script>
+</body>
+</html>
