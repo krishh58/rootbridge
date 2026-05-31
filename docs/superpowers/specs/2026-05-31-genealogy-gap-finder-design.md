@@ -40,6 +40,9 @@ Build a web app that ingests whatever genealogical data a user has (as little as
 | Riksarkivet (Sweden) | Swedish church records | Free API |
 | Ellis Island / NARA | Ship manifests → origin village | Public domain |
 | FamilySearch (EU partition) | German/Italian/Irish/Polish church records | Same OAuth2 token |
+| Wikimedia Commons API | Hometown photos — town/village/region images | No auth, free |
+| Library of Congress Prints & Photos | Historical US town and regional photos | No auth, public domain |
+| David Rumsey Map Collection API | Historical maps by region + time period | Free, no key required |
 
 ### Payments
 - **Stripe** — subscription billing + token top-up purchases, webhooks update DB tier and token balance per user
@@ -176,13 +179,23 @@ Built with D3.js. Renders as a top-down generational tree.
 - **Gray dashed** — Inferred (relationship suggested by AI, not confirmed)
 
 ### Click Interaction
-Clicking any node opens a **Person Card** overlay:
+Clicking any node opens a **Person Card** overlay with two panels:
+
+**Left panel — Research data:**
 - Name, birth/death dates and locations
 - Confidence percentage bar
 - Checklist: what's confirmed ✓ vs. what's missing ✗
 - Source links for each confirmed fact
 - "Search Now" button triggers a fresh gap-finder run for that person
 - "Add Parent" / "Add Spouse" buttons to manually expand the tree
+
+**Right panel — Hometown Visual:**
+- Photo of the town, village, or region where the person was born/lived (Wikimedia Commons API)
+- Historical map of the region at the approximate time period (Old Maps Online / David Rumsey collection)
+- AI-generated "life context" blurb — 2–3 sentences describing what daily life looked like in that place and era (OpenRouter, costs 5 tokens)
+- Example: *"Your ancestor lived in rural County Cork during the height of the Great Famine (1845–1852). Most families in this region depended entirely on potato crops. An estimated 1 million people emigrated from Cork during this decade — your family was among them."*
+
+If no hometown photo is available (Wikimedia returns no results), the panel shows a regional landscape photo and flags the photo as approximate. If birth location is unknown entirely, the right panel is hidden.
 
 ### Input: Flexible Entry
 Users can start with as little as:
