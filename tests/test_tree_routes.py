@@ -68,3 +68,26 @@ def test_delete_person(client):
     assert r2.status_code == 204
     r3 = client.get(f'/api/trees/{tree_id}')
     assert len(r3.get_json()['persons']) == 0
+
+def test_share_token_generated(client):
+    _register(client)
+    r = client.post('/api/persons',
+        data=json.dumps({'tree_name': 'Share Tree', 'first_name': 'A', 'last_name': 'B'}),
+        content_type='application/json')
+    tree_id = r.get_json()['tree_id']
+    r2 = client.post(f'/api/trees/{tree_id}/share')
+    assert r2.status_code == 200
+    data = r2.get_json()
+    assert 'share_url' in data
+    assert 'share_token' in data
+
+def test_public_tree_view(client):
+    _register(client)
+    r = client.post('/api/persons',
+        data=json.dumps({'tree_name': 'PT', 'first_name': 'X', 'last_name': 'Y'}),
+        content_type='application/json')
+    tree_id = r.get_json()['tree_id']
+    r2 = client.post(f'/api/trees/{tree_id}/share')
+    share_token = r2.get_json()['share_token']
+    r3 = client.get(f'/shared/{share_token}')
+    assert r3.status_code == 200
