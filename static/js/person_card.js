@@ -258,7 +258,7 @@ async function runFork(personId) {
   if (r.status === 201) {
     alert('New tree created! Redirecting...');
     window.location.href = '/';
-  } else if (r.status === 403) {
+  } else if (r.status === 404) {
     alert('Access denied.');
   } else {
     alert('Fork failed. Please try again.');

@@ -35,6 +35,10 @@ def fork_person(person_id):
         confidence=p.confidence,
     )
     db.session.add(new_person)
-    db.session.commit()
+    try:
+        db.session.commit()
+    except Exception:
+        db.session.rollback()
+        return jsonify({'error': 'Failed to create fork'}), 500
 
     return jsonify({'tree_id': new_tree.id, 'person_id': new_person.id}), 201
