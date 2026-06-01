@@ -17,7 +17,7 @@ async function openPersonCard(personId) {
 
   overlay.addEventListener('click', e => {
     if (e.target === overlay) closePersonCard();
-  });
+  }, { once: true });
 
   initVoiceInput(personId);
   scrollAlfredHistory();
@@ -45,11 +45,11 @@ function buildCardHTML(person, hometown, messages) {
   if ((person.spouse_ids || []).length > 0) confirmedFields.push('Spouse');
   else missingFields.push('Spouse');
 
-  const sourcesHTML = person.search_results.map(r =>
+  const sourcesHTML = (person.search_results || []).map(r =>
     `<a href="${escapeAttr(r.url)}" target="_blank" class="source-chip">${escapeHtml(r.source)}</a>`
   ).join('') || '<span class="no-data">No sources yet</span>';
 
-  const gapsHTML = person.gaps.filter(g => !g.resolved).map(g =>
+  const gapsHTML = (person.gaps || []).filter(g => !g.resolved).map(g =>
     `<div class="gap-item">✗ ${escapeHtml(g.gap_type.replace(/_/g,' '))} — <em>${escapeHtml(g.suggested_source)}</em></div>`
   ).join('') || '';
 
