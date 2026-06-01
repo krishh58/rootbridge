@@ -91,6 +91,7 @@ function buildCardHTML(person, hometown, messages) {
           <button class="btn-primary search-btn" onclick="runSearch(${person.id})">Search US Records</button>
           <button class="btn-secondary search-btn" onclick="runHeritageSearch(${person.id}, 'european')" title="Requires European Roots tier">Search European Records (40 tokens)</button>
           <button class="btn-secondary search-btn" onclick="runHeritageSearch(${person.id}, 'aa')" title="Requires AA Heritage tier">Search AA Records (40 tokens)</button>
+          <button class="btn-secondary search-btn" onclick="runFork(${person.id})">Start New Tree From Here</button>
         </div>
         <div class="card-right">
           <h4>Hometown: ${escapeHtml(person.birth_state || person.birth_country || 'Unknown')}</h4>
@@ -250,6 +251,18 @@ function stopListening() {
   const btn = document.getElementById('micBtn');
   if (btn) btn.classList.remove('listening');
   if (recognition) { try { recognition.stop(); } catch (e) {} }
+}
+
+async function runFork(personId) {
+  const r = await fetch(`/api/persons/${personId}/fork`, { method: 'POST' });
+  if (r.status === 200 || r.status === 201) {
+    alert('New tree created! Redirecting...');
+    window.location.href = '/';
+  } else if (r.status === 403) {
+    alert('Access denied.');
+  } else {
+    alert('Fork failed. Please try again.');
+  }
 }
 
 async function runHeritageSearch(personId, type) {
