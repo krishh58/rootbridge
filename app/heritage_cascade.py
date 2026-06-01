@@ -75,9 +75,15 @@ def search_familysearch_eu(first: str, last: str, birth_year: int = None,
         'Italy': ['1401494'],
         'Poland': ['2178993'],
         'Sweden': ['1554443'],
+        'England': ['1526539', '2285338'],
+        'Scotland': ['1551520', '1771076'],
+        'France': ['1403145'],
+        'Austria': ['1915777'],
     }
     results = []
-    collections = eu_collections.get(origin_country, list(eu_collections.values())[0])
+    collections = eu_collections.get(origin_country, [])
+    if not collections:
+        return results
     for cid in collections[:2]:
         try:
             records = fs.search_records(cid, first=first, last=last, birth_year=birth_year)
@@ -113,7 +119,8 @@ def run_european_cascade(first: str = '', last: str = '', birth_year: int = None
                     if country.lower() in village.lower():
                         detected_country = country
                         break
-                break
+                if detected_country:
+                    break
 
     eu_records = search_familysearch_eu(first, last, birth_year, detected_country)
     results.extend(eu_records)
@@ -258,7 +265,7 @@ def run_aa_cascade(first: str = '', last: str = '', birth_year: int = None,
     }
     gaps = classify_gaps(person_snapshot)
     score = confidence_score(person_snapshot)
-    wall = detect_1870_wall(birth_year, [])
+    wall = detect_1870_wall(birth_year, None)
 
     output = {
         'results': results, 'gaps': gaps, 'confidence': score,
