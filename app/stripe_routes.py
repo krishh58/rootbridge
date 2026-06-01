@@ -81,3 +81,49 @@ def subscription_status():
         'token_balance_topup': user.token_balance_topup,
         'total_tokens': user.total_tokens(),
     })
+
+
+@stripe_bp.post('/webhook/stripe')
+def stripe_webhook():
+    stripe.api_key = _stripe_key()
+    payload = request.get_data(as_text=True)
+    sig = request.headers.get('Stripe-Signature', '')
+    webhook_secret = current_app.config.get('STRIPE_WEBHOOK_SECRET', '')
+    try:
+        event = stripe.Webhook.construct_event(payload, sig, webhook_secret)
+    except Exception:
+        return jsonify({'error': 'Invalid signature'}), 400
+
+    if event.type == 'checkout.session.completed':
+        obj = event.data.object
+        meta = obj.metadata or {}
+        user_id = meta.get('user_id')
+        if not user_id:
+            return jsonify({'received': True})
+        user = User.query.get(int(user_id))
+        if not user:
+            return jsonify({'received': True})
+
+        if obj.mode == 'subscription' and meta.get('tier'):
+            new_tier = meta['tier']
+            user.tier = new_tier
+            user.token_balance = User.TIER_TOKENS.get(new_tier, 0)
+            user.stripe_customer_id = obj.customer
+            user.stripe_subscription_id = obj.subscription
+            db.session.commit()
+
+        elif obj.mode == 'payment' and meta.get('topup_tokens'):
+            tokens = TOPUP_AMOUNTS.get(str(meta['topup_tokens']), 0)
+            user.token_balance_topup += tokens
+            db.session.commit()
+
+    elif event.type == 'customer.subscription.deleted':
+        obj = event.data.object
+        user = User.query.filter_by(stripe_subscription_id=obj.id).first()
+        if user:
+            user.tier = 'free'
+            user.token_balance = User.TIER_TOKENS.get('free', 50)
+            user.stripe_subscription_id = None
+            db.session.commit()
+
+    return jsonify({'received': True})
