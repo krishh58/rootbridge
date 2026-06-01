@@ -3,37 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RootBridge</title>
+  <title>RootBridge — Your Family Tree</title>
   <link rel="stylesheet" href="/static/style.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-<nav>
-  <a href="/" class="logo">RootBridge</a>
-  <div class="nav-links">
-    <span class="token-badge" id="tokenBadge">⚡ — tokens</span>
-    <a href="/pricing">Top Up</a>
-    <a href="#" onclick="logout()">Sign Out</a>
+  <nav class="nav">
+    <a href="/" class="nav-brand">RootBridge</a>
+    <div class="nav-right">
+      <span class="token-badge" id="tokenBadge">— tokens</span>
+      <button class="btn-ghost" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="app-layout">
+    <aside class="sidebar">
+      <h2>My Trees</h2>
+      <div id="treeList"></div>
+      <button class="btn-primary" onclick="showAddPersonForm()">+ Add Person</button>
+    </aside>
+    <main class="tree-main">
+      <div id="treeContainer">
+        <p class="placeholder-text">Add a person to start building your family tree.</p>
+      </div>
+    </main>
   </div>
-</nav>
 
-<div id="app" style="padding:40px 32px;text-align:center;color:#94a3b8">
-  <p>Loading your tree...</p>
-</div>
+  <div id="addPersonModal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Add Person</h3>
+      <input id="apFirst" placeholder="First name" class="input-field">
+      <input id="apLast" placeholder="Last name *" class="input-field">
+      <input id="apBirthYear" placeholder="Birth year (e.g. 1820)" type="number" class="input-field">
+      <input id="apBirthPlace" placeholder="Birth state or country" class="input-field">
+      <div class="modal-actions">
+        <button class="btn-primary" onclick="addPerson()">Add</button>
+        <button class="btn-ghost" onclick="closeModal('addPersonModal')">Cancel</button>
+      </div>
+    </div>
+  </div>
 
-<script>
-async function logout() {
-  await fetch('/auth/logout', { method: 'POST' });
-  window.location.href = '/';
-}
+  <div id="personCardOverlay" class="person-card-overlay hidden"></div>
 
-async function loadMe() {
-  const r = await fetch('/api/me');
-  if (!r.ok) { window.location.href = '/'; return; }
-  const data = await r.json();
-  document.getElementById('tokenBadge').textContent = `⚡ ${data.tokens} tokens`;
-}
+  <script src="/static/js/tree.js"></script>
+  <script src="/static/js/person_card.js"></script>
+  <script>
+    let currentTreeId = null;
 
-loadMe();
-</script>
+    async function loadMe() {
+      const r = await fetch('/api/me');
+      if (r.status === 401) { window.location.href = '/'; return; }
+      const data = await r.json();
+      document.getElementById('tokenBadge').textContent = `${data.tokens} tokens`;
+      loadTrees();
+    }
+
+    async function loadTrees() {
+      const params = new URLSearchParams(window.location.search);
+      const treeId = params.get('tree') || localStorage.getItem('lastTreeId');
+      if (treeId) {
+        currentTreeId = parseInt(treeId);
+        loadTree(currentTreeId);
+      }
+    }
+
+    async function addPerson() {
+      const first = document.getElementById('apFirst').value.trim();
+      const last = document.getElementById('apLast').value.trim();
+      const birthYear = parseInt(document.getElementById('apBirthYear').value) || null;
+      const birthPlace = document.getElementById('apBirthPlace').value.trim();
+      if (!last) { alert('Last name is required'); return; }
+      const r = await fetch('/api/persons', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          tree_name: last + ' Family',
+          first_name: first, last_name: last,
+          birth_year: birthYear, birth_state: birthPlace,
+        })
+      });
+      const data = await r.json();
+      currentTreeId = data.tree_id;
+      localStorage.setItem('lastTreeId', currentTreeId);
+      closeModal('addPersonModal');
+      loadTree(currentTreeId);
+    }
+
+    function showAddPersonForm() { document.getElementById('addPersonModal').classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+    async function logout() {
+      await fetch('/auth/logout', {method: 'POST'});
+      window.location.href = '/';
+    }
+
+    loadMe();
+  </script>
 </body>
 </html>
