@@ -255,7 +255,7 @@ function stopListening() {
 
 async function runFork(personId) {
   const r = await fetch(`/api/persons/${personId}/fork`, { method: 'POST' });
-  if (r.status === 200 || r.status === 201) {
+  if (r.status === 201) {
     alert('New tree created! Redirecting...');
     window.location.href = '/';
   } else if (r.status === 403) {
