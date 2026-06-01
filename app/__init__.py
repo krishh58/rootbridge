@@ -31,6 +31,8 @@ def create_app(config=None):
     app.register_blueprint(collab_bp)
     from .fork_routes import fork_bp
     app.register_blueprint(fork_bp)
+    from .match_routes import match_bp
+    app.register_blueprint(match_bp)
 
     with app.app_context():
         from . import models  # noqa: register models with SQLAlchemy
