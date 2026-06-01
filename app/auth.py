@@ -1,3 +1,4 @@
+import re
 from flask import Blueprint, request, jsonify, make_response, g
 from functools import wraps
 import bcrypt
@@ -45,8 +46,8 @@ def register():
     user.referral_code = 'RB-' + secrets.token_hex(6).upper()
     db.session.add(user)
 
-    ref_code = request.cookies.get('ref', '')
-    if ref_code:
+    ref_code = (data.get('ref') or '').strip().upper()
+    if ref_code and re.fullmatch(r'RB-[0-9A-F]{12}', ref_code):
         referrer = User.query.filter_by(referral_code=ref_code).first()
         if referrer and referrer.email != data['email']:
             referrer.token_balance += 25

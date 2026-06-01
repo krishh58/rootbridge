@@ -7,13 +7,7 @@
   <link rel="stylesheet" href="/static/style.css">
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script>
-    (function() {
-      var params = new URLSearchParams(window.location.search);
-      var ref = params.get('ref');
-      if (ref) {
-        document.cookie = 'ref=' + encodeURIComponent(ref) + '; path=/; max-age=604800';
-      }
-    })();
+    const refCode = new URLSearchParams(window.location.search).get('ref') || '';
   </script>
 </head>
 <body>

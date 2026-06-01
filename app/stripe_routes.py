@@ -120,10 +120,11 @@ def stripe_webhook():
     elif event.type == 'customer.subscription.created':
         obj = event.data.object
         user = User.query.filter_by(stripe_customer_id=obj.customer).first()
-        if user and user.referred_by_user_id:
+        if user and user.referred_by_user_id and not user.referral_reward_paid:
             referrer = User.query.get(user.referred_by_user_id)
             if referrer:
                 referrer.token_balance += 150
+                user.referral_reward_paid = True
                 db.session.commit()
 
     elif event.type == 'customer.subscription.deleted':

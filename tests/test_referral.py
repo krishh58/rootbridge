@@ -5,13 +5,13 @@ from unittest.mock import patch
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
-def _register(client, email, password='pass', cookies=None):
-    if cookies:
-        for k, v in cookies.items():
-            client.set_cookie(k, v)
+def _register(client, email, password='pass', ref=None):
+    body = {'email': email, 'password': password}
+    if ref:
+        body['ref'] = ref
     return client.post(
         '/auth/register',
-        data=json.dumps({'email': email, 'password': password}),
+        data=json.dumps(body),
         content_type='application/json',
     )
 
@@ -70,8 +70,8 @@ def test_referral_signup_awards_tokens(client, app):
     ref_code = referrer.referral_code
     initial_balance = referrer.token_balance
 
-    # Register new user with the ref cookie
-    _register(client, 'newbie@test.com', cookies={'ref': ref_code})
+    # Register new user with the ref in body
+    _register(client, 'newbie@test.com', ref=ref_code)
 
     with app.app_context():
         from app.models import User
@@ -83,8 +83,8 @@ def test_referral_signup_awards_tokens(client, app):
 
 
 def test_referral_signup_no_award_invalid_code(client, app):
-    """Invalid ref cookie → no token award, new user still created."""
-    _register(client, 'solo@test.com', cookies={'ref': 'RB-INVALIDCODE'})
+    """Invalid ref in body → no token award, new user still created."""
+    _register(client, 'solo@test.com', ref='RB-INVALIDCODE')
     user = _get_user(app, 'solo@test.com')
     assert user is not None
     assert user.referred_by_user_id is None
@@ -105,7 +105,7 @@ def test_referral_self_referral_blocked(client, app):
     # IF referrer == new user (impossible since emails differ), but to test the
     # self-referral guard we need to register with the same cookie code and then
     # verify it doesn't award the *new* user themselves (referred_by != own id).
-    _register(client, 'selfref2@test.com', cookies={'ref': own_code})
+    _register(client, 'selfref2@test.com', ref=own_code)
 
     with app.app_context():
         from app.models import User
@@ -158,7 +158,7 @@ def test_stripe_subscription_awards_referrer(client, app):
     initial_balance = referrer.token_balance
 
     # Register referred user
-    _register(client, 'sub_user@test.com', cookies={'ref': ref_code})
+    _register(client, 'sub_user@test.com', ref=ref_code)
 
     with app.app_context():
         from app.models import User

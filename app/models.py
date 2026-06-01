@@ -14,6 +14,7 @@ class User(db.Model):
     stripe_subscription_id = db.Column(db.String(255))
     referral_code = db.Column(db.String(16), unique=True)
     referred_by_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+    referral_reward_paid = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     trees = db.relationship('Tree', backref='owner', lazy=True, cascade='all, delete-orphan')
 
