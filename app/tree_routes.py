@@ -7,6 +7,20 @@ from .db import db
 from .models import Tree, Person, SearchResult, Gap, AlfredMessage
 from .hometown import get_hometown_photo, get_historical_map, get_life_context
 
+def _can_access_tree(tree_id: int, user_id: int, require_editor: bool = False) -> bool:
+    from .models import TreeCollaborator
+    tree = Tree.query.get(tree_id)
+    if not tree:
+        return False
+    if tree.user_id == user_id:
+        return True
+    collab = TreeCollaborator.query.filter_by(tree_id=tree_id, user_id=user_id).first()
+    if not collab:
+        return False
+    if require_editor:
+        return collab.role == 'editor'
+    return True
+
 tree_bp = Blueprint('tree', __name__)
 
 def _person_to_dict(p):
@@ -37,7 +51,10 @@ def _person_detail(p):
 @tree_bp.get('/api/trees/<int:tree_id>')
 @require_auth
 def get_tree(tree_id):
-    tree = Tree.query.filter_by(id=tree_id, user_id=g.user_id).first_or_404()
+    if not _can_access_tree(tree_id, g.user_id):
+        from flask import abort
+        abort(404)
+    tree = Tree.query.get(tree_id)
     return jsonify({
         'id': tree.id, 'name': tree.name, 'share_token': tree.share_token,
         'persons': [_person_to_dict(p) for p in tree.persons],
@@ -56,9 +73,10 @@ def update_tree(tree_id):
 @tree_bp.get('/api/persons/<int:person_id>')
 @require_auth
 def get_person(person_id):
-    p = Person.query.join(Tree).filter(
-        Person.id == person_id, Tree.user_id == g.user_id
-    ).first_or_404()
+    p = Person.query.get_or_404(person_id)
+    if not _can_access_tree(p.tree_id, g.user_id):
+        from flask import abort
+        abort(404)
     return jsonify(_person_detail(p))
 
 @tree_bp.post('/api/persons')
@@ -124,9 +142,10 @@ def delete_person(person_id):
 @tree_bp.get('/api/persons/<int:person_id>/hometown')
 @require_auth
 def get_hometown(person_id):
-    p = Person.query.join(Tree).filter(
-        Person.id == person_id, Tree.user_id == g.user_id
-    ).first_or_404()
+    p = Person.query.get_or_404(person_id)
+    if not _can_access_tree(p.tree_id, g.user_id):
+        from flask import abort
+        abort(404)
     place = p.birth_state or p.birth_country or ''
     if not place:
         return jsonify({'available': False})
@@ -135,11 +154,8 @@ def get_hometown(person_id):
     historical_map = get_historical_map(place, p.birth_year)
     life_context = get_life_context(name, place, p.birth_year, p.death_year)
     return jsonify({
-        'available': True,
-        'place': place,
-        'photo': photo,
-        'map': historical_map,
-        'life_context': life_context,
+        'available': True, 'place': place,
+        'photo': photo, 'map': historical_map, 'life_context': life_context,
     })
 
 @tree_bp.post('/api/trees/<int:tree_id>/share')

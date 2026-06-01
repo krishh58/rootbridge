@@ -57,3 +57,50 @@ def test_user_has_referral_code(app):
         fetched = User.query.filter_by(email='ref@t.com').first()
         assert fetched.referral_code == 'RB-XYZ789'
         assert fetched.referred_by_user_id is None
+
+def _register(client, email, password='pass'):
+    return client.post('/auth/register',
+        data=json.dumps({'email': email, 'password': password}),
+        content_type='application/json')
+
+def _create_person_for_user(client):
+    r = client.post('/api/persons',
+        data=json.dumps({'tree_name': 'Test Tree', 'first_name': 'A', 'last_name': 'B'}),
+        content_type='application/json')
+    return r.get_json()
+
+def test_collaborator_can_read_tree(client, app):
+    _register(client, 'owner@t.com')
+    ids = _create_person_for_user(client)
+    tree_id = ids['tree_id']
+    with app.app_context():
+        from app.db import db
+        from app.models import User, TreeCollaborator
+        _register(client, 'collab@t.com')
+        collab = User.query.filter_by(email='collab@t.com').first()
+        db.session.add(TreeCollaborator(tree_id=tree_id, user_id=collab.id, role='viewer'))
+        db.session.commit()
+    r = client.get(f'/api/trees/{tree_id}')
+    assert r.status_code == 200
+
+def test_non_collaborator_cannot_read_tree(client, app):
+    _register(client, 'owner2@t.com')
+    ids = _create_person_for_user(client)
+    tree_id = ids['tree_id']
+    _register(client, 'stranger@t.com')
+    r = client.get(f'/api/trees/{tree_id}')
+    assert r.status_code == 404
+
+def test_viewer_cannot_delete_person(client, app):
+    _register(client, 'owner3@t.com')
+    ids = _create_person_for_user(client)
+    tree_id, person_id = ids['tree_id'], ids['person_id']
+    with app.app_context():
+        from app.db import db
+        from app.models import User, TreeCollaborator
+        _register(client, 'viewer@t.com')
+        viewer = User.query.filter_by(email='viewer@t.com').first()
+        db.session.add(TreeCollaborator(tree_id=tree_id, user_id=viewer.id, role='viewer'))
+        db.session.commit()
+    r = client.delete(f'/api/persons/{person_id}')
+    assert r.status_code == 404
