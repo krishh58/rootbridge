@@ -88,7 +88,9 @@ function buildCardHTML(person, hometown, messages) {
           ${gapsHTML ? `<h4>Research Gaps</h4>${gapsHTML}` : ''}
           <h4>Sources</h4>
           <div class="sources-row">${sourcesHTML}</div>
-          <button class="btn-primary search-btn" onclick="runSearch(${person.id})">Search Again</button>
+          <button class="btn-primary search-btn" onclick="runSearch(${person.id})">Search US Records</button>
+          <button class="btn-secondary search-btn" onclick="runHeritageSearch(${person.id}, 'european')" title="Requires European Roots tier">Search European Records (40 tokens)</button>
+          <button class="btn-secondary search-btn" onclick="runHeritageSearch(${person.id}, 'aa')" title="Requires AA Heritage tier">Search AA Records (40 tokens)</button>
         </div>
         <div class="card-right">
           <h4>Hometown: ${escapeHtml(person.birth_state || person.birth_country || 'Unknown')}</h4>
@@ -248,4 +250,55 @@ function stopListening() {
   const btn = document.getElementById('micBtn');
   if (btn) btn.classList.remove('listening');
   if (recognition) { try { recognition.stop(); } catch (e) {} }
+}
+
+async function runHeritageSearch(personId, type) {
+  const btn = event.currentTarget || event.target;
+  btn.disabled = true;
+  btn.textContent = 'Searching...';
+
+  const payload = {};
+  if (type === 'european') {
+    const country = prompt('Enter origin country (e.g. Germany, Ireland, Italy, Poland, Sweden):');
+    if (country) payload.origin_country = country;
+  }
+
+  const r = await fetch(`/api/heritage/${personId}/${type}`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload),
+  });
+
+  const label = type === 'european' ? 'Search European Records (40 tokens)' : 'Search AA Records (40 tokens)';
+  btn.disabled = false;
+  btn.textContent = label;
+
+  if (r.status === 403) {
+    const data = await r.json();
+    alert(`This feature requires an upgrade.\nCurrent tier: ${data.current_tier}\nVisit /pricing to upgrade.`);
+    return;
+  }
+  if (r.status === 402) {
+    alert('Insufficient tokens. Please top up to run a heritage search (40 tokens required).');
+    return;
+  }
+  if (!r.ok) {
+    alert('Search failed. Please try again.');
+    return;
+  }
+
+  const data = await r.json();
+
+  if (data.wall_1870) {
+    const wall = data.wall_1870;
+    const guidance = wall.guidance.map(g => `• ${g}`).join('\n');
+    alert(`⚠️ 1870 Wall Detected\n\n${wall.message}\n\nNext steps:\n${guidance}`);
+  }
+
+  openPersonCard(personId);
+
+  fetch('/api/me').then(r => r.json()).then(d => {
+    const badge = document.getElementById('tokenBadge');
+    if (badge) badge.textContent = `${d.tokens} tokens`;
+  }).catch(() => {});
 }
