@@ -110,6 +110,11 @@ def stripe_webhook():
             user.token_balance = User.TIER_TOKENS.get(new_tier, 0)
             user.stripe_customer_id = obj.customer
             user.stripe_subscription_id = obj.subscription
+            if user.referred_by_user_id and not user.referral_reward_paid:
+                referrer = User.query.get(user.referred_by_user_id)
+                if referrer:
+                    referrer.token_balance += 150
+                    user.referral_reward_paid = True
             db.session.commit()
 
         elif obj.mode == 'payment' and meta.get('topup_tokens'):

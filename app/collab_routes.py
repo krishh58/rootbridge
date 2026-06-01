@@ -23,9 +23,8 @@ def _assert_owner(tree_id: int):
 @require_auth
 def get_referral_info():
     user = User.query.get(g.user_id)
-    from .models import User as UserModel
-    referred_count = UserModel.query.filter_by(referred_by_user_id=g.user_id).count()
-    paid_subs = UserModel.query.filter_by(referred_by_user_id=g.user_id, referral_reward_paid=True).count()
+    referred_count = User.query.filter_by(referred_by_user_id=g.user_id).count()
+    paid_subs = User.query.filter_by(referred_by_user_id=g.user_id, referral_reward_paid=True).count()
     tokens_earned = (referred_count * 25) + (paid_subs * 150)
     return jsonify({
         'referral_code': user.referral_code,
