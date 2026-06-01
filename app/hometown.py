@@ -89,6 +89,8 @@ def get_life_context(name: str, birth_place: str, birth_year: int,
             timeout=10,
         )
         resp.raise_for_status()
-        return resp.json()['choices'][0]['message']['content'].strip()
+        data = resp.json()
+        choices = data.get('choices', [])
+        return choices[0]['message']['content'].strip() if choices else ''
     except Exception:
         return ''
