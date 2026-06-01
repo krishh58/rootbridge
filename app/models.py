@@ -15,6 +15,9 @@ class User(db.Model):
     referral_code = db.Column(db.String(16), unique=True)
     referred_by_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     referral_reward_paid = db.Column(db.Boolean, default=False, nullable=False)
+    discovery_enabled = db.Column(db.Boolean, default=True, nullable=False)
+    blocked_user_ids  = db.Column(db.JSON, default=list)
+    display_name      = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     trees = db.relationship('Tree', backref='owner', lazy=True, cascade='all, delete-orphan')
 
@@ -36,6 +39,12 @@ class User(db.Model):
             self.token_balance = 0
             self.token_balance_topup -= remainder
         return True
+
+    def get_display_name(self):
+        if self.display_name:
+            return self.display_name
+        prefix = self.email.split('@')[0]
+        return prefix[:20]
 
 class Tree(db.Model):
     __tablename__ = 'trees'
@@ -117,3 +126,30 @@ class TreeCollaborator(db.Model):
     role = db.Column(db.String(10), nullable=False)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     __table_args__ = (db.UniqueConstraint('tree_id', 'user_id', name='uq_tree_collaborator'),)
+
+
+class PersonMatch(db.Model):
+    __tablename__ = 'person_matches'
+    id          = db.Column(db.Integer, primary_key=True)
+    person_a_id = db.Column(db.Integer, db.ForeignKey('persons.id'), nullable=False)
+    person_b_id = db.Column(db.Integer, db.ForeignKey('persons.id'), nullable=False)
+    user_a_id   = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_b_id   = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    score       = db.Column(db.Integer, nullable=False)
+    notified_a  = db.Column(db.Boolean, default=False, nullable=False)
+    notified_b  = db.Column(db.Boolean, default=False, nullable=False)
+    created_at  = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    messages    = db.relationship('ResearchMessage', backref='match', lazy=True,
+                                  cascade='all, delete-orphan')
+    __table_args__ = (db.UniqueConstraint('person_a_id', 'person_b_id',
+                                          name='uq_person_match_pair'),)
+
+
+class ResearchMessage(db.Model):
+    __tablename__ = 'research_messages'
+    id         = db.Column(db.Integer, primary_key=True)
+    match_id   = db.Column(db.Integer, db.ForeignKey('person_matches.id'), nullable=False)
+    sender_id  = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    body       = db.Column(db.Text, nullable=False)
+    read       = db.Column(db.Boolean, default=False, nullable=False)
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
