@@ -39,8 +39,8 @@ def test_european_cascade_requires_tier(client, app):
         data=json.dumps({}), content_type='application/json')
     assert r.status_code == 403
 
-def test_european_cascade_allowed_for_european_tier(client, app):
-    _register_with_tier(client, app, 'eu_tier@test.com', 'european')
+def test_european_cascade_allowed_for_paid_tier(client, app):
+    _register_with_tier(client, app, 'eu_tier@test.com', 'us')
     person_id = _create_person(client)
     with patch('app.heritage_routes.run_european_cascade', return_value=MOCK_EU_CASCADE), \
          patch('app.heritage_routes.synthesize_gaps', return_value={'summary': 'Found records.'}):
@@ -50,15 +50,6 @@ def test_european_cascade_allowed_for_european_tier(client, app):
     assert r.status_code == 200
     assert r.get_json()['cascade_type'] == 'european'
     assert 'summary' in r.get_json()
-
-def test_european_cascade_allowed_for_all_tier(client, app):
-    _register_with_tier(client, app, 'all_eu@test.com', 'all')
-    person_id = _create_person(client)
-    with patch('app.heritage_routes.run_european_cascade', return_value=MOCK_EU_CASCADE), \
-         patch('app.heritage_routes.synthesize_gaps', return_value={'summary': 'Found.'}):
-        r = client.post(f'/api/heritage/{person_id}/european',
-            data=json.dumps({}), content_type='application/json')
-    assert r.status_code == 200
 
 def test_aa_cascade_requires_tier(client, app):
     client.post('/auth/register',
@@ -70,7 +61,7 @@ def test_aa_cascade_requires_tier(client, app):
     assert r.status_code == 403
 
 def test_aa_cascade_returns_wall_alert(client, app):
-    _register_with_tier(client, app, 'aa_tier@test.com', 'aa')
+    _register_with_tier(client, app, 'aa_tier@test.com', 'us')
     person_id = _create_person(client)
     wall_cascade = {**MOCK_AA_CASCADE, 'wall_1870': {
         'type': '1870_wall', 'message': 'Born before 1870.',

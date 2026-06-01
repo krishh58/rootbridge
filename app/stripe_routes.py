@@ -9,10 +9,6 @@ stripe_bp = Blueprint('stripe_routes', __name__)
 
 TIER_PRICE_ENVS = {
     'us': 'STRIPE_PRICE_US',
-    'european': 'STRIPE_PRICE_EUROPEAN',
-    'aa': 'STRIPE_PRICE_AA',
-    'asian': 'STRIPE_PRICE_ASIAN',
-    'all': 'STRIPE_PRICE_ALL',
 }
 
 TOPUP_PRICE_ENVS = {

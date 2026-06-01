@@ -9,8 +9,8 @@ from .ai_synthesis import synthesize_gaps
 
 heritage_bp = Blueprint('heritage', __name__)
 
-EUROPEAN_TIERS = {'european', 'all'}
-AA_TIERS = {'aa', 'all'}
+EUROPEAN_TIERS = {'us'}
+AA_TIERS = {'us'}
 
 
 def _require_tier(allowed_tiers: set):

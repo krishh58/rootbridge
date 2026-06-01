@@ -21,10 +21,6 @@ class User(db.Model):
     TIER_TOKENS = {
         'free': 100,
         'us': 500,
-        'european': 1000,
-        'aa': 1000,
-        'asian': 1000,
-        'all': 2500,
     }
 
     def total_tokens(self):

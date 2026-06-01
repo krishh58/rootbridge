@@ -15,10 +15,10 @@
   </div>
 </nav>
 
-<h2 class="section-title">Every Heritage Has a Different Research Challenge</h2>
-<p class="section-sub">Search cascade, databases, and difficulty vary by background. That drives our pricing.</p>
+<h2 class="section-title">Simple Pricing. Every Record. Every Heritage.</h2>
+<p class="section-sub">Harder searches use more tokens. That's it. No tiers by background — the research determines the cost.</p>
 
-<div class="pricing-grid">
+<div class="pricing-grid" style="max-width:700px;margin:0 auto 48px;grid-template-columns:1fr 1fr">
   <div class="price-card">
     <div style="color:#94a3b8;font-size:0.8rem;font-weight:600">FREE</div>
     <div class="price">$0</div>
@@ -28,66 +28,40 @@
       <li>View gap report</li>
       <li style="opacity:0.4">Save tree</li>
       <li style="opacity:0.4">PDF export</li>
+      <li style="opacity:0.4">All record databases</li>
     </ul>
     <a href="/" class="btn btn-ghost" style="width:100%;text-align:center;margin-top:16px;display:block">Start Free</a>
   </div>
   <div class="price-card featured">
-    <div style="color:#60a5fa;font-size:0.8rem;font-weight:600">🇺🇸 US RECORDS</div>
-    <div class="price">$7.99<span>/mo</span></div>
-    <div style="font-size:0.8rem;color:#64748b">500 tokens/mo · $63.99/yr</div>
+    <div style="color:#60a5fa;font-size:0.8rem;font-weight:600">EXPLORER</div>
+    <div class="price">$9.99<span>/mo</span></div>
+    <div style="font-size:0.8rem;color:#64748b">500 tokens/mo · $79.99/yr</div>
     <ul>
       <li>Unlimited searches</li>
       <li>Save &amp; return to tree</li>
       <li>PDF export</li>
+      <li>All record databases</li>
       <li>Census 1790–1950</li>
-      <li>Military pensions</li>
+      <li>Military &amp; pension records</li>
+      <li>Freedmen's Bureau records</li>
+      <li>Ship manifests → village</li>
+      <li>AI document translation</li>
       <li>AI gap analysis</li>
     </ul>
-    <a href="#" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px;display:block">Subscribe</a>
-  </div>
-  <div class="price-card">
-    <div style="color:#c084fc;font-size:0.8rem;font-weight:600">🌍 + EUROPEAN ROOTS</div>
-    <div class="price">$12.99<span>/mo</span></div>
-    <div style="font-size:0.8rem;color:#64748b">1,000 tokens/mo · $103.99/yr</div>
-    <ul>
-      <li>Everything in US tier</li>
-      <li>Ship manifests → village</li>
-      <li>German/Irish/Italian/Polish</li>
-      <li>AI document translation</li>
-      <li>Matricula, Riksarkivet</li>
-    </ul>
-    <a href="#" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px;display:block">Subscribe</a>
-  </div>
-  <div class="price-card">
-    <div style="color:#fbbf24;font-size:0.8rem;font-weight:600">✊ AFRICAN AMERICAN</div>
-    <div class="price">$12.99<span>/mo</span></div>
-    <div style="font-size:0.8rem;color:#64748b">1,000 tokens/mo · $103.99/yr</div>
-    <ul>
-      <li>Everything in US tier</li>
-      <li>Freedmen's Bureau records</li>
-      <li>Slave schedules 1850–1860</li>
-      <li>WPA Slave Narratives</li>
-      <li>1870 wall guidance</li>
-    </ul>
-    <a href="#" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px;display:block">Subscribe</a>
-  </div>
-  <div class="price-card" style="border:2px solid #f1f5f9">
-    <div style="color:#f1f5f9;font-size:0.8rem;font-weight:600">🌐 ALL ACCESS</div>
-    <div class="price">$19.99<span>/mo</span></div>
-    <div style="font-size:0.8rem;color:#4ade80">2,500 tokens/mo · $149/yr (save 38%)</div>
-    <ul>
-      <li>Every tier combined</li>
-      <li>Asian/Pacific records</li>
-      <li>All AI translation</li>
-      <li>All databases</li>
-      <li>67% cheaper than Ancestry</li>
-    </ul>
-    <a href="#" class="btn btn-primary" style="width:100%;text-align:center;margin-top:16px;display:block;background:#f1f5f9;color:#0f172a">Subscribe</a>
+    <a href="#" class="btn btn-primary" id="subscribeBtn" style="width:100%;text-align:center;margin-top:16px;display:block">Subscribe</a>
   </div>
 </div>
 
+<div style="max-width:700px;margin:0 auto 24px;padding:0 32px">
+  <h3 style="text-align:center;margin-bottom:8px">How tokens work</h3>
+  <p style="color:#94a3b8;font-size:0.9rem;text-align:center;margin-bottom:20px">
+    Simple US census lookups cost 5–10 tokens. Deep pre-1870 gap analysis or overseas record cascades cost 30–50.
+    The more records RootBridge has to search, the more tokens it uses — for everyone equally.
+  </p>
+</div>
+
 <div style="max-width:700px;margin:0 auto 60px;padding:0 32px;text-align:center">
-  <h3 style="margin-bottom:12px">Need more AI power?</h3>
+  <h3 style="margin-bottom:12px">Need more tokens?</h3>
   <p style="color:#94a3b8;font-size:0.9rem;margin-bottom:20px">Top-up packs never expire. Use them for deep research sessions, batch document translation, or a weekend family history dive.</p>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:0.85rem">
     <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px">
@@ -106,5 +80,24 @@
 </div>
 
 <footer>© 2026 RootBridge &nbsp;·&nbsp; <a href="/" style="color:#64748b">Home</a></footer>
+
+<script>
+  document.getElementById('subscribeBtn').addEventListener('click', async (e) => {
+    e.preventDefault();
+    const res = await fetch('/api/stripe/checkout', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({tier: 'us'}),
+      credentials: 'include',
+    });
+    if (res.status === 401) { window.location.href = '/'; return; }
+    const d = await res.json();
+    if (d.url) window.location.href = d.url;
+  });
+
+  fetch('/api/auth/me', {credentials: 'include'}).then(r => {
+    if (r.ok) document.getElementById('loginLink').textContent = 'My Account';
+  });
+</script>
 </body>
 </html>
