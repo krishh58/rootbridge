@@ -18,7 +18,8 @@ class FamilySearchClient:
                 'grant_type': 'client_credentials',
                 'client_id': current_app.config['FAMILYSEARCH_CLIENT_ID'],
                 'client_secret': current_app.config['FAMILYSEARCH_CLIENT_SECRET'],
-            }
+            },
+            timeout=10,
         )
         resp.raise_for_status()
         data = resp.json()
@@ -38,7 +39,7 @@ class FamilySearchClient:
         params = {'q': self._build_query(first, last, birth_year, birth_place), 'count': 10}
         resp = requests.get(
             f'{FAMILYSEARCH_BASE}/platform/tree/search',
-            headers=self._headers(), params=params
+            headers=self._headers(), params=params, timeout=10,
         )
         resp.raise_for_status()
         return self._parse_person_entries(resp.json())
@@ -50,7 +51,7 @@ class FamilySearchClient:
             params['collectionId'] = collection_id
         resp = requests.get(
             f'{FAMILYSEARCH_BASE}/platform/records/search',
-            headers=self._headers(), params=params,
+            headers=self._headers(), params=params, timeout=10,
         )
         resp.raise_for_status()
         return self._parse_record_entries(resp.json())

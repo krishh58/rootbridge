@@ -72,7 +72,7 @@ def guest_search():
         return jsonify({'error': 'Daily search limit reached. Create a free account to continue.'}), 429
     first = data.get('first', '')
     last = data['last']
-    birth_year = data.get('birth_year')
+    birth_year = int(data['birth_year']) if data.get('birth_year') else None
     birth_place = data.get('birth_place', '')
     cascade = run_us_cascade(first=first, last=last, birth_year=birth_year, birth_place=birth_place)
     synthesis = synthesize_gaps(
@@ -90,7 +90,7 @@ def authenticated_search():
         return jsonify({'error': 'Last name is required'}), 400
     first = data.get('first', '')
     last = data['last']
-    birth_year = data.get('birth_year')
+    birth_year = int(data['birth_year']) if data.get('birth_year') else None
     birth_place = data.get('birth_place', '')
     tree_name = data.get('tree_name', '')
     cascade = run_us_cascade(first=first, last=last, birth_year=birth_year, birth_place=birth_place)
