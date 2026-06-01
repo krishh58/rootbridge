@@ -4,6 +4,7 @@ from flask import Blueprint, request, jsonify, g, render_template_string
 from .auth import require_auth
 from .db import db
 from .models import User, Tree, TreeInvite, TreeCollaborator
+from .mailer import send_invite_email
 
 collab_bp = Blueprint('collab', __name__)
 
@@ -40,18 +41,14 @@ def create_invite(tree_id):
     invite_url = f'/invite/{token}'
     email = data.get('email')
     if email:
-        try:
-            from .mailer import send_invite_email
-            owner = User.query.get(g.user_id)
-            send_invite_email(
-                to_email=email,
-                inviter_name=owner.email,
-                tree_name=tree.name,
-                role=role,
-                invite_url=invite_url,
-            )
-        except ImportError:
-            pass
+        owner = User.query.get(g.user_id)
+        send_invite_email(
+            to_email=email,
+            inviter_name=owner.email,
+            tree_name=tree.name,
+            role=role,
+            invite_url=invite_url,
+        )
 
     return jsonify({'invite_url': invite_url, 'token': token,
                     'expires_at': expires_at.isoformat()}), 201

@@ -188,3 +188,17 @@ def test_list_and_remove_collaborator(client, app):
     assert any(c['user_id'] == collab_id for c in r2.get_json()['collaborators'])
     r3 = client.delete(f'/api/trees/{tree_id}/collaborators/{collab_id}')
     assert r3.status_code == 204
+
+def test_invite_with_email_calls_mailer(client, app):
+    _register(client, 'mail_owner@t.com')
+    ids = _create_person_for_user(client)
+    tree_id = ids['tree_id']
+    with unittest.mock.patch('app.collab_routes.send_invite_email') as mock_mail:
+        r = client.post(f'/api/trees/{tree_id}/invite',
+            data=json.dumps({'role': 'editor', 'email': 'cousin@family.com'}),
+            content_type='application/json')
+    assert r.status_code == 201
+    mock_mail.assert_called_once()
+    call_kwargs = mock_mail.call_args
+    called_email = call_kwargs[1].get('to_email') or call_kwargs[0][0]
+    assert called_email == 'cousin@family.com'
