@@ -16,7 +16,7 @@ class User(db.Model):
     referred_by_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     referral_reward_paid = db.Column(db.Boolean, default=False, nullable=False)
     discovery_enabled = db.Column(db.Boolean, default=True, nullable=False)
-    blocked_user_ids  = db.Column(db.JSON, default=list)
+    blocked_user_ids  = db.Column(db.JSON, nullable=False, default=list, server_default='[]')
     display_name      = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     trees = db.relationship('Tree', backref='owner', lazy=True, cascade='all, delete-orphan')
@@ -141,8 +141,10 @@ class PersonMatch(db.Model):
     created_at  = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     messages    = db.relationship('ResearchMessage', backref='match', lazy=True,
                                   cascade='all, delete-orphan')
-    __table_args__ = (db.UniqueConstraint('person_a_id', 'person_b_id',
-                                          name='uq_person_match_pair'),)
+    __table_args__ = (
+        db.UniqueConstraint('person_a_id', 'person_b_id', name='uq_person_match_pair'),
+        db.CheckConstraint('person_a_id < person_b_id', name='ck_person_match_order'),
+    )
 
 
 class ResearchMessage(db.Model):
