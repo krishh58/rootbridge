@@ -1,6 +1,7 @@
 import requests
 from flask import Blueprint, request, jsonify, g, current_app
 from .auth import require_auth
+from .token_middleware import require_tokens
 from .db import db
 from .models import Person, Tree, AlfredMessage
 
@@ -71,6 +72,7 @@ def get_history(person_id):
 
 @alfred_bp.post('/api/alfred/<int:person_id>/chat')
 @require_auth
+@require_tokens(10)
 def chat(person_id):
     person = Person.query.join(Tree).filter(
         Person.id == person_id, Tree.user_id == g.user_id

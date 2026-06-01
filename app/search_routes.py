@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, g
 from .auth import require_auth
+from .token_middleware import require_tokens
 from .db import db, get_redis
 from .models import User, Tree, Person, SearchResult, Gap
 from .search_cascade import run_us_cascade
@@ -84,6 +85,7 @@ def guest_search():
 
 @search_bp.post('/api/search')
 @require_auth
+@require_tokens(20)
 def authenticated_search():
     data = request.get_json() or {}
     if not data.get('last'):

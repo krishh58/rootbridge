@@ -55,7 +55,18 @@
       if (r.status === 401) { window.location.href = '/'; return; }
       const data = await r.json();
       document.getElementById('tokenBadge').textContent = `${data.tokens} tokens`;
+      if (data.tokens < 100) showLowBalanceToast(data.tokens);
       loadTrees();
+    }
+
+    function showLowBalanceToast(tokens) {
+      const existing = document.getElementById('lowBalanceToast');
+      if (existing) return;
+      const toast = document.createElement('div');
+      toast.id = 'lowBalanceToast';
+      toast.style.cssText = 'position:fixed;bottom:1.5rem;right:1.5rem;background:#7f1d1d;color:#fca5a5;padding:.75rem 1.25rem;border-radius:8px;font-size:.875rem;z-index:9999;display:flex;gap:1rem;align-items:center';
+      toast.innerHTML = `⚠️ ${tokens} tokens remaining. <a href="/pricing" style="color:#fca5a5;text-decoration:underline">Top up</a> <button onclick="this.parentElement.remove()" style="background:none;border:none;color:#fca5a5;cursor:pointer;font-size:1rem">✕</button>`;
+      document.body.appendChild(toast);
     }
 
     async function loadTrees() {
