@@ -173,10 +173,10 @@ footer{border-top:2px solid var(--border);padding:32px 48px;display:flex;justify
     </svg>
   </a>
   <div class="nav-links">
-    <a href="#">How It Works</a>
-    <a href="#">Features</a>
-    <a href="#">Pricing</a>
-    <a href="#" class="btn-nav">Start Free</a>
+    <a href="#how">How It Works</a>
+    <a href="#features">Features</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/app" class="btn-nav">Start Free</a>
   </div>
 </nav>
 
@@ -192,6 +192,7 @@ footer{border-top:2px solid var(--border);padding:32px 48px;display:flex;justify
     <a href="#search" class="btn-primary">Search Your Family Free →</a>
     <a href="#how" class="btn-ghost">See How It Works</a>
   </div>
+
   <p class="hero-note">No credit card · 5 free searches/day · Searches records Ancestry doesn't touch</p>
 </section>
 
@@ -256,14 +257,14 @@ footer{border-top:2px solid var(--border);padding:32px 48px;display:flex;justify
     <h2>Start Your Search</h2>
     <p>Free · No account required · Results in seconds</p>
     <div class="form-row">
-      <div><label>First Name</label><input type="text" placeholder="Margaret"></div>
-      <div><label>Last Name *</label><input type="text" placeholder="O'Brien"></div>
+      <div><label>First Name</label><input id="firstName" type="text" placeholder="Margaret"></div>
+      <div><label>Last Name *</label><input id="lastName" type="text" placeholder="O'Brien"></div>
     </div>
     <div class="form-row">
-      <div><label>Birth Year (approx)</label><input type="number" placeholder="1842"></div>
-      <div><label>Birth Place</label><input type="text" placeholder="County Cork, Ireland"></div>
+      <div><label>Birth Year (approx)</label><input id="birthYear" type="number" placeholder="1842"></div>
+      <div><label>Birth Place</label><input id="birthPlace" type="text" placeholder="County Cork, Ireland"></div>
     </div>
-    <button class="search-btn">Find Gaps →</button>
+    <button class="search-btn" onclick="guestSearch()">Find Gaps →</button>
     <p class="search-note">5 free searches per day · Sign up for unlimited</p>
   </div>
 </section>
@@ -371,6 +372,26 @@ footer{border-top:2px solid var(--border);padding:32px 48px;display:flex;justify
   <a href="#search" class="btn-cta">Search Your Family Free →</a>
   <p class="cta-note">Join thousands of families reconnecting with their past</p>
 </section>
+
+<script>
+function guestSearch() {
+  const last = document.getElementById('lastName').value.trim();
+  if (!last) { alert('Last name is required to search.'); return; }
+  const params = new URLSearchParams({
+    first: document.getElementById('firstName').value.trim(),
+    last,
+    birth_year: document.getElementById('birthYear').value.trim(),
+    birth_place: document.getElementById('birthPlace').value.trim(),
+  });
+  window.location.href = '/app?' + params.toString();
+}
+
+// capture ?ref= for referral tracking
+(function() {
+  const ref = new URLSearchParams(window.location.search).get('ref');
+  if (ref) sessionStorage.setItem('ref', ref);
+})();
+</script>
 
 <footer>
   <div class="footer-logo">RootBridge</div>
