@@ -117,6 +117,15 @@ def stripe_webhook():
             user.token_balance_topup += tokens
             db.session.commit()
 
+    elif event.type == 'customer.subscription.created':
+        obj = event.data.object
+        user = User.query.filter_by(stripe_customer_id=obj.customer).first()
+        if user and user.referred_by_user_id:
+            referrer = User.query.get(user.referred_by_user_id)
+            if referrer:
+                referrer.token_balance += 150
+                db.session.commit()
+
     elif event.type == 'customer.subscription.deleted':
         obj = event.data.object
         user = User.query.filter_by(stripe_subscription_id=obj.id).first()

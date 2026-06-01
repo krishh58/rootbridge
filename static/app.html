@@ -6,6 +6,15 @@
   <title>RootBridge — Your Family Tree</title>
   <link rel="stylesheet" href="/static/style.css">
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var ref = params.get('ref');
+      if (ref) {
+        document.cookie = 'ref=' + encodeURIComponent(ref) + '; path=/; max-age=604800';
+      }
+    })();
+  </script>
 </head>
 <body>
   <nav class="nav">
@@ -21,6 +30,17 @@
       <h2>My Trees</h2>
       <div id="treeList"></div>
       <button class="btn-primary" onclick="showAddPersonForm()">+ Add Person</button>
+
+      <div id="referralPanel" style="margin-top:2rem;padding:1rem;background:#1e293b;border-radius:8px;font-size:.85rem">
+        <h4 style="color:#f8fafc;margin:0 0 .5rem">Refer a Friend</h4>
+        <p style="color:#94a3b8;margin:0 0 .75rem">Earn 25 tokens when a friend signs up, 150 more when they subscribe.</p>
+        <div id="referralLinkBox" style="display:flex;gap:.5rem;align-items:center">
+          <input id="referralLinkInput" type="text" readonly
+            style="flex:1;background:#0f172a;color:#94a3b8;border:1px solid #334155;border-radius:6px;padding:.4rem .6rem;font-size:.8rem"
+            value="Loading...">
+          <button class="btn-ghost" style="font-size:.8rem;padding:.4rem .75rem" onclick="copyReferralLink()">Copy</button>
+        </div>
+      </div>
     </aside>
     <main class="tree-main">
       <div id="treeContainer">
@@ -108,7 +128,28 @@
       window.location.href = '/';
     }
 
+    async function loadReferralPanel() {
+      try {
+        const r = await fetch('/api/me/referral');
+        if (!r.ok) return;
+        const data = await r.json();
+        const link = 'https://rootbridge.app/register?ref=' + data.referral_code;
+        document.getElementById('referralLinkInput').value = link;
+      } catch (e) { /* silently ignore */ }
+    }
+
+    function copyReferralLink() {
+      const input = document.getElementById('referralLinkInput');
+      navigator.clipboard.writeText(input.value).then(function() {
+        const btn = input.nextElementSibling;
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = orig; }, 1500);
+      });
+    }
+
     loadMe();
+    loadReferralPanel();
   </script>
 </body>
 </html>

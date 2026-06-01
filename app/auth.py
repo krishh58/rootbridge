@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, make_response, g
 from functools import wraps
 import bcrypt
 import jwt
+import secrets
 from datetime import datetime, timedelta, timezone
 from .db import db
 from .models import User
@@ -41,7 +42,18 @@ def register():
         return jsonify({'error': 'Email already registered'}), 409
     password_hash = bcrypt.hashpw(data['password'].encode(), bcrypt.gensalt()).decode()
     user = User(email=data['email'], password_hash=password_hash)
+    user.referral_code = 'RB-' + secrets.token_hex(6).upper()
     db.session.add(user)
+
+    ref_code = request.cookies.get('ref', '')
+    if ref_code:
+        referrer = User.query.filter_by(referral_code=ref_code).first()
+        if referrer and referrer.email != data['email']:
+            referrer.token_balance += 25
+            # referred_by_user_id set after flush so new user has an id
+            db.session.flush()
+            user.referred_by_user_id = referrer.id
+
     db.session.commit()
     token = create_token(user.id)
     resp = make_response(jsonify({'id': user.id, 'email': user.email, 'tier': user.tier}), 201)

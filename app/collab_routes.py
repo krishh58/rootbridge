@@ -19,6 +19,17 @@ def _assert_owner(tree_id: int):
     return tree
 
 
+@collab_bp.get('/api/me/referral')
+@require_auth
+def get_referral_info():
+    user = User.query.get(g.user_id)
+    return jsonify({
+        'referral_code': user.referral_code,
+        'referral_url': f'/register?ref={user.referral_code}',
+        'tokens_earned': 0,
+    })
+
+
 @collab_bp.post('/api/trees/<int:tree_id>/invite')
 @require_auth
 def create_invite(tree_id):
