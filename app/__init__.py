@@ -27,6 +27,8 @@ def create_app(config=None):
     app.register_blueprint(gdpr_bp)
     from .heritage_routes import heritage_bp
     app.register_blueprint(heritage_bp)
+    from .collab_routes import collab_bp
+    app.register_blueprint(collab_bp)
 
     with app.app_context():
         from . import models  # noqa: register models with SQLAlchemy

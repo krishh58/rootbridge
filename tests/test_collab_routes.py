@@ -104,3 +104,87 @@ def test_viewer_cannot_delete_person(client, app):
         db.session.commit()
     r = client.delete(f'/api/persons/{person_id}')
     assert r.status_code == 404
+
+def test_create_invite_returns_url(client, app):
+    _register(client, 'inv_owner@t.com')
+    ids = _create_person_for_user(client)
+    tree_id = ids['tree_id']
+    r = client.post(f'/api/trees/{tree_id}/invite',
+        data=json.dumps({'role': 'editor'}),
+        content_type='application/json')
+    assert r.status_code == 201
+    data = r.get_json()
+    assert 'invite_url' in data
+    assert 'token' in data
+
+def test_invite_preview(client, app):
+    _register(client, 'prev_owner@t.com')
+    ids = _create_person_for_user(client)
+    tree_id = ids['tree_id']
+    r = client.post(f'/api/trees/{tree_id}/invite',
+        data=json.dumps({'role': 'viewer'}),
+        content_type='application/json')
+    token = r.get_json()['token']
+    client.post('/auth/logout')
+    r2 = client.get(f'/api/invite/{token}')
+    assert r2.status_code == 200
+    data = r2.get_json()
+    assert data['role'] == 'viewer'
+    assert 'tree_name' in data
+
+def test_accept_invite_creates_collaborator(client, app):
+    _register(client, 'acc_owner@t.com')
+    ids = _create_person_for_user(client)
+    tree_id = ids['tree_id']
+    r = client.post(f'/api/trees/{tree_id}/invite',
+        data=json.dumps({'role': 'editor'}),
+        content_type='application/json')
+    token = r.get_json()['token']
+    client.post('/auth/logout')
+    _register(client, 'accepter@t.com')
+    r2 = client.post(f'/api/invite/{token}/accept')
+    assert r2.status_code == 200
+    assert r2.get_json()['role'] == 'editor'
+
+def test_expired_invite_returns_410(client, app):
+    _register(client, 'exp_owner@t.com')
+    ids = _create_person_for_user(client)
+    tree_id = ids['tree_id']
+    r = client.post(f'/api/trees/{tree_id}/invite',
+        data=json.dumps({'role': 'viewer'}),
+        content_type='application/json')
+    token = r.get_json()['token']
+    with app.app_context():
+        from app.db import db
+        from app.models import TreeInvite
+        from datetime import datetime, timezone, timedelta
+        invite = TreeInvite.query.filter_by(invite_token=token).first()
+        invite.expires_at = datetime.now(timezone.utc) - timedelta(days=1)
+        db.session.commit()
+    _register(client, 'late@t.com')
+    r2 = client.post(f'/api/invite/{token}/accept')
+    assert r2.status_code == 410
+
+def test_list_and_remove_collaborator(client, app):
+    _register(client, 'mgr_owner@t.com')
+    ids = _create_person_for_user(client)
+    tree_id = ids['tree_id']
+    r = client.post(f'/api/trees/{tree_id}/invite',
+        data=json.dumps({'role': 'viewer'}),
+        content_type='application/json')
+    token = r.get_json()['token']
+    client.post('/auth/logout')
+    _register(client, 'to_remove@t.com')
+    client.post(f'/api/invite/{token}/accept')
+    with app.app_context():
+        from app.models import User
+        collab_id = User.query.filter_by(email='to_remove@t.com').first().id
+    client.post('/auth/logout')
+    client.post('/auth/login',
+        data=json.dumps({'email': 'mgr_owner@t.com', 'password': 'pass'}),
+        content_type='application/json')
+    r2 = client.get(f'/api/trees/{tree_id}/collaborators')
+    assert r2.status_code == 200
+    assert any(c['user_id'] == collab_id for c in r2.get_json()['collaborators'])
+    r3 = client.delete(f'/api/trees/{tree_id}/collaborators/{collab_id}')
+    assert r3.status_code == 204
