@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, g
 from .auth import require_auth
 from .db import db
 from .models import Tree, Person, SearchResult, Gap, AlfredMessage
+from .hometown import get_hometown_photo, get_historical_map, get_life_context
 
 tree_bp = Blueprint('tree', __name__)
 
@@ -116,3 +117,24 @@ def delete_person(person_id):
     db.session.delete(p)
     db.session.commit()
     return '', 204
+
+@tree_bp.get('/api/persons/<int:person_id>/hometown')
+@require_auth
+def get_hometown(person_id):
+    p = Person.query.join(Tree).filter(
+        Person.id == person_id, Tree.user_id == g.user_id
+    ).first_or_404()
+    place = p.birth_state or p.birth_country or ''
+    if not place:
+        return jsonify({'available': False})
+    name = f'{p.first_name or ""} {p.last_name or ""}'.strip()
+    photo = get_hometown_photo(place, p.birth_year)
+    historical_map = get_historical_map(place, p.birth_year)
+    life_context = get_life_context(name, place, p.birth_year, p.death_year)
+    return jsonify({
+        'available': True,
+        'place': place,
+        'photo': photo,
+        'map': historical_map,
+        'life_context': life_context,
+    })
