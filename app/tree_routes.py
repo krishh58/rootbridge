@@ -1,7 +1,8 @@
 import secrets
 import json as _json
 from markupsafe import escape as html_escape
-from flask import Blueprint, request, jsonify, g, make_response, render_template_string
+import threading
+from flask import Blueprint, request, jsonify, g, make_response, render_template_string, current_app
 from .auth import require_auth
 from .db import db
 from .models import Tree, Person, SearchResult, Gap, AlfredMessage
@@ -22,6 +23,13 @@ def _can_access_tree(tree_id: int, user_id: int, require_editor: bool = False) -
     return True
 
 tree_bp = Blueprint('tree', __name__)
+
+def _trigger_matcher_async(app, person_id: int):
+    def _run():
+        with app.app_context():
+            from .matcher import run_matcher
+            run_matcher(person_id=person_id)
+    threading.Thread(target=_run, daemon=True).start()
 
 def _person_to_dict(p):
     return {
@@ -103,6 +111,7 @@ def create_person():
     p.tree = tree
     db.session.add(p)
     db.session.commit()
+    _trigger_matcher_async(app=current_app._get_current_object(), person_id=p.id)
     return jsonify({'person_id': p.id, 'tree_id': tree.id}), 201
 
 @tree_bp.put('/api/persons/<int:person_id>')
@@ -127,6 +136,7 @@ def update_person(person_id):
                 return jsonify({'error': f'{field} must be a list'}), 400
         setattr(p, field, val)
     db.session.commit()
+    _trigger_matcher_async(app=current_app._get_current_object(), person_id=p.id)
     return jsonify(_person_to_dict(p))
 
 @tree_bp.delete('/api/persons/<int:person_id>')

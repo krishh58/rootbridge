@@ -40,4 +40,15 @@ def create_app(config=None):
         from . import models  # noqa: register models with SQLAlchemy
         db.create_all()
 
+    if not app.config.get('TESTING'):
+        from apscheduler.schedulers.background import BackgroundScheduler
+        from .matcher import run_matcher
+        scheduler = BackgroundScheduler(daemon=True)
+        def _nightly_match():
+            with app.app_context():
+                run_matcher()
+        scheduler.add_job(_nightly_match, 'cron', hour=3, max_instances=1)
+        if not scheduler.running:
+            scheduler.start()
+
     return app
