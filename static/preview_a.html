@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RootBridge — Option A: Dark Premium</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060d1a;
+  --surface:#0d1a2e;
+  --card:#112240;
+  --border:#1e3a5f;
+  --text:#e8f0fe;
+  --muted:#7a9cc4;
+  --gold:#c9a84c;
+  --gold-light:#f0c96a;
+  --blue:#4a90d9;
+}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 48px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(6,13,26,.95);backdrop-filter:blur(12px);z-index:100}
+.logo{font-size:1.3rem;font-weight:800;color:var(--gold);text-decoration:none;letter-spacing:.02em}
+.logo span{color:var(--text);font-weight:300}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.btn-nav{background:var(--gold);color:#060d1a;padding:8px 22px;border-radius:6px;font-weight:700;font-size:.85rem;text-decoration:none;transition:background .2s}
+.btn-nav:hover{background:var(--gold-light)}
+
+/* HERO */
+.hero{text-align:center;padding:100px 20px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(74,144,217,.12),transparent);pointer-events:none}
+.hero-tag{display:inline-block;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:6px 18px;border-radius:99px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px}
+.hero h1{font-size:3.4rem;font-weight:800;line-height:1.15;margin-bottom:20px;max-width:720px;margin-left:auto;margin-right:auto}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:560px;margin:0 auto 40px}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:#060d1a;padding:14px 32px;border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;border:none;cursor:pointer;transition:background .2s}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);padding:14px 32px;border-radius:8px;font-weight:600;font-size:1rem;text-decoration:none;transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-note{margin-top:16px;font-size:.85rem;color:var(--muted)}
+
+/* STATS BAR */
+.stats{display:flex;justify-content:center;gap:60px;padding:40px 20px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface)}
+.stat{text-align:center}
+.stat-num{font-size:2rem;font-weight:800;color:var(--gold)}
+.stat-label{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* HOW IT WORKS */
+.section{max-width:1100px;margin:0 auto;padding:80px 32px}
+.section-label{font-size:.8rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.section h2{font-size:2.2rem;font-weight:800;margin-bottom:12px}
+.section-sub{color:var(--muted);font-size:1.05rem;margin-bottom:48px;max-width:560px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:32px 28px;position:relative}
+.step-num{font-size:3rem;font-weight:900;color:rgba(201,168,76,.15);line-height:1;margin-bottom:16px}
+.step h3{font-size:1.05rem;font-weight:700;margin-bottom:8px;color:var(--gold)}
+.step p{font-size:.875rem;color:var(--muted)}
+
+/* HERITAGE */
+.heritage{background:var(--surface);padding:80px 0}
+.heritage-inner{max-width:1100px;margin:0 auto;padding:0 32px}
+.heritage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.h-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;transition:border-color .2s,transform .2s}
+.h-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.h-icon{font-size:2rem;margin-bottom:16px}
+.h-card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
+.h-card p{font-size:.875rem;color:var(--muted);line-height:1.7}
+
+/* SEARCH BOX */
+.search-section{max-width:640px;margin:0 auto;padding:80px 32px}
+.search-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px}
+.search-box h2{font-size:1.4rem;font-weight:700;margin-bottom:6px}
+.search-box p{color:var(--muted);font-size:.9rem;margin-bottom:24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+label{font-size:.78rem;color:var(--muted);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}
+input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);font-size:.9rem;transition:border-color .2s}
+input:focus{outline:none;border-color:var(--gold)}
+.search-btn{width:100%;background:var(--gold);color:#060d1a;border:none;padding:14px;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;margin-top:6px;transition:background .2s}
+.search-btn:hover{background:var(--gold-light)}
+.search-note{text-align:center;font-size:.78rem;color:var(--muted);margin-top:10px}
+
+/* TESTIMONIALS */
+.testimonials{max-width:1100px;margin:0 auto;padding:80px 32px}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.t-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px}
+.t-stars{color:var(--gold);margin-bottom:12px;font-size:1.1rem}
+.t-text{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:16px;font-style:italic}
+.t-author{font-size:.82rem;font-weight:700;color:var(--text)}
+.t-origin{font-size:.78rem;color:var(--muted)}
+
+/* PRICING */
+.pricing-section{background:var(--surface);padding:80px 0}
+.pricing-inner{max-width:1100px;margin:0 auto;padding:0 32px}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:48px}
+.p-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:border-color .2s}
+.p-card.featured{border-color:var(--gold);position:relative}
+.p-card.featured::before{content:'BEST VALUE';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:#060d1a;font-size:.65rem;font-weight:800;padding:3px 12px;border-radius:99px;letter-spacing:.08em}
+.p-tier{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.p-price{font-size:1.9rem;font-weight:800;color:var(--gold);margin-bottom:4px}
+.p-price span{font-size:.85rem;color:var(--muted);font-weight:400}
+.p-desc{font-size:.8rem;color:var(--muted);margin-bottom:16px;min-height:36px}
+.p-features{list-style:none}
+.p-features li{font-size:.8rem;color:var(--muted);padding:3px 0}
+.p-features li::before{content:'✓ ';color:var(--gold)}
+
+/* CTA */
+.cta-section{text-align:center;padding:100px 20px;background:linear-gradient(180deg,var(--bg) 0%,#0a1628 100%)}
+.cta-section h2{font-size:2.4rem;font-weight:800;margin-bottom:16px}
+.cta-section p{color:var(--muted);font-size:1.05rem;max-width:500px;margin:0 auto 36px}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.85rem}
+.footer-logo{color:var(--gold);font-weight:700;font-size:1.1rem}
+.footer-links{display:flex;gap:24px}
+.footer-links a{color:var(--muted);text-decoration:none}
+.footer-links a:hover{color:var(--text)}
+
+@media(max-width:768px){
+  .hero h1{font-size:2.2rem}
+  .steps,.heritage-grid,.t-grid{grid-template-columns:1fr}
+  .stats{gap:32px;flex-wrap:wrap}
+  nav{padding:16px 20px}
+  .hero{padding:60px 20px 60px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Root<span>Bridge</span></a>
+  <div class="nav-links">
+    <a href="#">How It Works</a>
+    <a href="#">Heritage</a>
+    <a href="#">Pricing</a>
+    <a href="#" class="btn-nav">Start Free</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Genealogy Gap Finder</div>
+  <h1>Find the Ancestors<br><em>No One Else Can Find</em></h1>
+  <p>RootBridge searches ship manifests, Freedmen's Bureau records, European church archives, and more — then tells you exactly what's missing and where to look.</p>
+  <div class="hero-btns">
+    <a href="#search" class="btn-primary">Search Your Family Free →</a>
+    <a href="#how" class="btn-ghost">See How It Works</a>
+  </div>
+  <p class="hero-note">No credit card · 5 free searches/day · Up to 87% cheaper than Ancestry</p>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">47M+</div><div class="stat-label">Records Searched</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Languages Translated</div></div>
+  <div class="stat"><div class="stat-num">87%</div><div class="stat-label">Cheaper Than Ancestry</div></div>
+  <div class="stat"><div class="stat-num">1870</div><div class="stat-label">Wall Broken Through</div></div>
+</div>
+
+<section class="section" id="how">
+  <div class="section-label">How It Works</div>
+  <h2>Three Steps to Breakthrough</h2>
+  <p class="section-sub">No genealogy experience needed. Just tell us what you know.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Enter What You Know</h3>
+      <p>Name, approximate birth year, and birth place. That's all we need to get started searching across dozens of record collections.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>We Find the Gaps</h3>
+      <p>RootBridge scores each ancestor's confidence level and identifies exactly what records are missing — birth, immigration, census, church records.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>We Tell You Where to Look</h3>
+      <p>Get specific archive names, collection IDs, and translated documents. No vague suggestions — exact next steps for your research.</p>
+    </div>
+  </div>
+</section>
+
+<div class="heritage">
+  <div class="heritage-inner">
+    <div class="section-label">Heritage Coverage</div>
+    <h2>Built for Every Background</h2>
+    <p class="section-sub">Most genealogy tools are built for one type of research. RootBridge covers them all.</p>
+    <div class="heritage-grid">
+      <div class="h-card">
+        <div class="h-icon">🇺🇸</div>
+        <h3>US Records</h3>
+        <p>Federal census, vital records, NARA military files, Social Security Death Index. Every major US genealogy collection searched automatically.</p>
+      </div>
+      <div class="h-card">
+        <div class="h-icon">⛵</div>
+        <h3>European Heritage</h3>
+        <p>Ellis Island manifests → origin village → European church records. German, Irish, Italian, Swedish, Polish ancestry. Foreign documents translated by AI.</p>
+      </div>
+      <div class="h-card">
+        <div class="h-icon">✊</div>
+        <h3>African American Heritage</h3>
+        <p>Freedmen's Bureau labor contracts, slave schedules, WPA narratives. We specialize in breaking through the 1870 wall that stops every other platform.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="search-section" id="search">
+  <div class="search-box">
+    <h2>Start Your Search</h2>
+    <p>Free · No account required · Results in seconds</p>
+    <div class="form-row">
+      <div><label>First Name</label><input type="text" placeholder="Margaret"></div>
+      <div><label>Last Name *</label><input type="text" placeholder="O'Brien"></div>
+    </div>
+    <div class="form-row">
+      <div><label>Birth Year (approx)</label><input type="number" placeholder="1842"></div>
+      <div><label>Birth Place</label><input type="text" placeholder="County Cork, Ireland"></div>
+    </div>
+    <button class="search-btn">Find Gaps →</button>
+    <p class="search-note">5 free searches per day · Sign up for unlimited</p>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-label">Real Stories</div>
+  <h2>What Researchers Are Saying</h2>
+  <p class="section-sub">From people who hit walls everywhere else.</p>
+  <div class="t-grid">
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"I'd been stuck on my great-great-grandmother for three years. RootBridge found her Freedmen's Bureau labor contract in 20 minutes. I cried."</p>
+      <div class="t-author">Denise W.</div>
+      <div class="t-origin">Atlanta, GA</div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"It found my grandfather's German church baptism record and translated it automatically. I didn't even know the village existed."</p>
+      <div class="t-author">Robert K.</div>
+      <div class="t-origin">Milwaukee, WI</div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Ancestry couldn't go past 1870 for my family. RootBridge explained exactly why and gave me three specific collections to try next. Game changer."</p>
+      <div class="t-author">Marcus T.</div>
+      <div class="t-origin">Memphis, TN</div>
+    </div>
+  </div>
+</section>
+
+<div class="pricing-section">
+  <div class="pricing-inner">
+    <div class="section-label">Pricing</div>
+    <h2>Start Free. Scale as You Dig.</h2>
+    <p class="section-sub">All plans include the gap finder and AI research assistant.</p>
+    <div class="pricing-grid">
+      <div class="p-card">
+        <div class="p-tier">Free</div>
+        <div class="p-price">$0<span>/mo</span></div>
+        <div class="p-desc">US records, 100 tokens/month</div>
+        <ul class="p-features">
+          <li>Gap finder</li>
+          <li>FamilySearch search</li>
+          <li>AI assistant</li>
+          <li>5 guest searches/day</li>
+        </ul>
+      </div>
+      <div class="p-card">
+        <div class="p-tier">US Heritage</div>
+        <div class="p-price">$7.99<span>/mo</span></div>
+        <div class="p-desc">Full US record cascade, 500 tokens/month</div>
+        <ul class="p-features">
+          <li>Everything in Free</li>
+          <li>NARA collections</li>
+          <li>Military records</li>
+          <li>500 tokens/mo</li>
+        </ul>
+      </div>
+      <div class="p-card">
+        <div class="p-tier">European</div>
+        <div class="p-price">$12.99<span>/mo</span></div>
+        <div class="p-desc">Ellis Island through European archives, 1,000 tokens/month</div>
+        <ul class="p-features">
+          <li>Everything in US</li>
+          <li>Ellis Island manifests</li>
+          <li>EU church records</li>
+          <li>AI translation</li>
+        </ul>
+      </div>
+      <div class="p-card">
+        <div class="p-tier">AA Heritage</div>
+        <div class="p-price">$12.99<span>/mo</span></div>
+        <div class="p-desc">Freedmen's Bureau, slave schedules, 1870 wall, 1,000 tokens/month</div>
+        <ul class="p-features">
+          <li>Everything in US</li>
+          <li>Freedmen's Bureau</li>
+          <li>Slave schedules</li>
+          <li>WPA narratives</li>
+        </ul>
+      </div>
+      <div class="p-card featured">
+        <div class="p-tier">All Heritage</div>
+        <div class="p-price">$19.99<span>/mo</span></div>
+        <div class="p-desc">Every collection, every heritage, 2,500 tokens/month</div>
+        <ul class="p-features">
+          <li>Every collection</li>
+          <li>All translations</li>
+          <li>2,500 tokens/mo</li>
+          <li>Family collaboration</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="cta-section">
+  <h2>Your Ancestors Are<br><em style="font-style:normal;color:#c9a84c">Waiting to Be Found</em></h2>
+  <p>Start with 5 free searches today. No credit card. No commitment.</p>
+  <a href="#search" class="btn-primary">Search Your Family Free →</a>
+</section>
+
+<footer>
+  <div class="footer-logo">RootBridge</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Pricing</a>
+    <a href="#">Contact</a>
+  </div>
+  <div>© 2026 RootBridge</div>
+</footer>
+
+</body>
+</html>
