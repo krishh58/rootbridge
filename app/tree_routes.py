@@ -66,9 +66,7 @@ def create_person():
     if not tree:
         tree = Tree(user_id=g.user_id, name=tree_name)
         db.session.add(tree)
-        db.session.flush()
     p = Person(
-        tree_id=tree.id,
         first_name=data.get('first_name', ''),
         last_name=data.get('last_name', ''),
         birth_year=data.get('birth_year'),
@@ -80,6 +78,7 @@ def create_person():
         spouse_ids=data.get('spouse_ids', []),
         confidence=data.get('confidence', 0),
     )
+    p.tree = tree
     db.session.add(p)
     db.session.commit()
     return jsonify({'person_id': p.id, 'tree_id': tree.id}), 201
@@ -91,11 +90,20 @@ def update_person(person_id):
         Person.id == person_id, Tree.user_id == g.user_id
     ).first_or_404()
     data = request.get_json() or {}
-    for field in ('first_name', 'last_name', 'birth_year', 'birth_state',
-                  'birth_country', 'death_year', 'death_place', 'notes',
-                  'confidence', 'parent_ids', 'spouse_ids'):
-        if field in data:
-            setattr(p, field, data[field])
+    int_fields = {'birth_year', 'death_year', 'confidence'}
+    list_fields = {'parent_ids', 'spouse_ids'}
+    str_fields = {'first_name', 'last_name', 'birth_state', 'birth_country', 'death_place', 'notes'}
+    for field in int_fields | list_fields | str_fields:
+        if field not in data:
+            continue
+        val = data[field]
+        if field in int_fields:
+            if val is not None and not isinstance(val, int):
+                return jsonify({'error': f'{field} must be an integer'}), 400
+        elif field in list_fields:
+            if not isinstance(val, list):
+                return jsonify({'error': f'{field} must be a list'}), 400
+        setattr(p, field, val)
     db.session.commit()
     return jsonify(_person_to_dict(p))
 

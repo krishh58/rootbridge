@@ -1,18 +1,18 @@
 import json
 
-def _register_and_login(client):
+def _register(client):
     client.post('/auth/register',
         data=json.dumps({'email': 't@test.com', 'password': 'pass'}),
         content_type='application/json')
     return client
 
 def test_get_tree_not_found(client):
-    _register_and_login(client)
+    _register(client)
     r = client.get('/api/trees/9999')
     assert r.status_code == 404
 
 def test_create_person_and_get_tree(client):
-    _register_and_login(client)
+    _register(client)
     r = client.post('/api/persons',
         data=json.dumps({'tree_name': 'My Tree', 'first_name': 'Jane',
                          'last_name': 'Doe', 'birth_year': 1820}),
@@ -30,7 +30,7 @@ def test_create_person_and_get_tree(client):
     assert tree_data['persons'][0]['id'] == person_id
 
 def test_get_person_detail(client):
-    _register_and_login(client)
+    _register(client)
     r = client.post('/api/persons',
         data=json.dumps({'tree_name': 'T', 'first_name': 'Bob', 'last_name': 'Smith'}),
         content_type='application/json')
@@ -43,7 +43,7 @@ def test_get_person_detail(client):
     assert 'search_results' in p
 
 def test_update_person(client):
-    _register_and_login(client)
+    _register(client)
     r = client.post('/api/persons',
         data=json.dumps({'tree_name': 'T', 'first_name': 'Bob', 'last_name': 'Smith'}),
         content_type='application/json')
@@ -54,9 +54,10 @@ def test_update_person(client):
     assert r2.status_code == 200
     p = r2.get_json()
     assert p['birth_year'] == 1850
+    assert p['birth_state'] == 'Ohio'
 
 def test_delete_person(client):
-    _register_and_login(client)
+    _register(client)
     r = client.post('/api/persons',
         data=json.dumps({'tree_name': 'T', 'first_name': 'Bob', 'last_name': 'Smith'}),
         content_type='application/json')
