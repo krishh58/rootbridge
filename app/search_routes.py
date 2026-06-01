@@ -66,7 +66,8 @@ def guest_search():
     data = request.get_json() or {}
     if not data.get('last'):
         return jsonify({'error': 'Last name is required'}), 400
-    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    forwarded = request.headers.get('X-Forwarded-For', '')
+    ip = forwarded.split(',')[0].strip() if forwarded else request.remote_addr
     if not _check_guest_rate_limit(ip):
         return jsonify({'error': 'Daily search limit reached. Create a free account to continue.'}), 429
     first = data.get('first', '')
