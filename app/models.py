@@ -12,6 +12,8 @@ class User(db.Model):
     token_reset_date = db.Column(db.DateTime)
     stripe_customer_id = db.Column(db.String(255))
     stripe_subscription_id = db.Column(db.String(255))
+    referral_code = db.Column(db.String(16), unique=True)
+    referred_by_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     trees = db.relationship('Tree', backref='owner', lazy=True, cascade='all, delete-orphan')
 
@@ -96,3 +98,25 @@ class AlfredMessage(db.Model):
     role = db.Column(db.String(20), nullable=False)  # 'user' or 'assistant'
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class TreeInvite(db.Model):
+    __tablename__ = 'tree_invites'
+    id = db.Column(db.Integer, primary_key=True)
+    tree_id = db.Column(db.Integer, db.ForeignKey('trees.id'), nullable=False)
+    role = db.Column(db.String(10), nullable=False)
+    invite_token = db.Column(db.String(64), unique=True, nullable=False)
+    email = db.Column(db.String(255))
+    claimed_by_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    expires_at = db.Column(db.DateTime, nullable=False)
+
+
+class TreeCollaborator(db.Model):
+    __tablename__ = 'tree_collaborators'
+    id = db.Column(db.Integer, primary_key=True)
+    tree_id = db.Column(db.Integer, db.ForeignKey('trees.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    role = db.Column(db.String(10), nullable=False)
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    __table_args__ = (db.UniqueConstraint('tree_id', 'user_id', name='uq_tree_collaborator'),)
