@@ -74,6 +74,11 @@ def get_person_matches(person_id):
             PersonMatch.person_a_id == person_id,
             PersonMatch.person_b_id == person_id,
         )
+    ).filter(
+        db.or_(
+            PersonMatch.user_a_id == g.user_id,
+            PersonMatch.user_b_id == g.user_id,
+        )
     ).all()
     user = User.query.get(g.user_id)
     blocked = user.blocked_user_ids or []
