@@ -21,6 +21,7 @@ async function openPersonCard(personId) {
 
   initVoiceInput(personId);
   scrollAlfredHistory();
+  loadPersonMatches(personId);
 }
 
 function closePersonCard() {
@@ -92,6 +93,7 @@ function buildCardHTML(person, hometown, messages) {
           <button class="btn-secondary search-btn" onclick="runHeritageSearch(${person.id}, 'european')" title="Requires European Roots tier">Search European Records (40 tokens)</button>
           <button class="btn-secondary search-btn" onclick="runHeritageSearch(${person.id}, 'aa')" title="Requires AA Heritage tier">Search AA Records (40 tokens)</button>
           <button class="btn-secondary search-btn" onclick="runFork(${person.id})">Start New Tree From Here</button>
+          <div id="match-badge-area" style="margin-top:12px"></div>
         </div>
         <div class="card-right">
           <h4>Hometown: ${escapeHtml(person.birth_state || person.birth_country || 'Unknown')}</h4>
@@ -314,4 +316,96 @@ async function runHeritageSearch(personId, type) {
     const badge = document.getElementById('tokenBadge');
     if (badge) badge.textContent = `${d.tokens} tokens`;
   }).catch(() => {});
+}
+
+async function loadPersonMatches(personId) {
+  const area = document.getElementById('match-badge-area');
+  if (!area) return;
+  try {
+    const r = await fetch(`/api/persons/${personId}/matches`, { credentials: 'include' });
+    if (!r.ok) return;
+    const matches = await r.json();
+    if (!matches.length) return;
+    area.innerHTML = `
+      <div style="background:#1a3d2b;border:1px solid #4a7c59;border-radius:8px;padding:10px 14px;cursor:pointer"
+           onclick="openMatchModal(${JSON.stringify(matches).replace(/"/g, '&quot;')})">
+        <span style="color:#4ade80;font-weight:600">&#x1f465; ${matches.length} researcher${matches.length > 1 ? 's' : ''} found</span>
+        <span style="color:#86efac;font-size:0.85em;margin-left:8px">Connect &#x2192;</span>
+      </div>`;
+  } catch (e) { /* silently ignore — don't break the card if matches fail to load */ }
+}
+
+function openMatchModal(matches) {
+  const existing = document.getElementById('match-modal');
+  if (existing) existing.remove();
+
+  const safeUrl = (u) => (u && /^https?:\/\//.test(u)) ? u : '#';
+
+  const modal = document.createElement('div');
+  modal.id = 'match-modal';
+  modal.style.cssText = `
+    position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;
+    display:flex;align-items:center;justify-content:center;padding:16px`;
+  modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+
+  const matchCards = matches.map(m => {
+    const theirNew = m.their_records.filter(r => r.you_dont_have).length;
+    const theirRows = m.their_records.map(r => `
+      <div style="padding:4px 0;border-bottom:1px solid #1e293b;${r.you_dont_have ? 'color:#4ade80' : 'color:#94a3b8'}">
+        ${r.you_dont_have ? '&#x2605; ' : ''}${escapeHtml(r.source)} &mdash; ${escapeHtml(r.record_type) || 'Record'}
+        ${r.url ? `<a href="${escapeAttr(safeUrl(r.url))}" target="_blank" style="color:#60a5fa;font-size:0.8em;margin-left:6px">view</a>` : ''}
+      </div>`).join('');
+    const yourRows = m.your_records.map(r => `
+      <div style="padding:4px 0;border-bottom:1px solid #1e293b;${m.your_records_they_dont_have.includes(r.url) ? 'color:#60a5fa' : 'color:#94a3b8'}">
+        ${m.your_records_they_dont_have.includes(r.url) ? '&#x2605; ' : ''}${escapeHtml(r.source)} &mdash; ${escapeHtml(r.record_type) || 'Record'}
+      </div>`).join('');
+    return `
+      <div style="background:#1e293b;border-radius:10px;padding:16px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div>
+            <span style="color:#f8fafc;font-weight:600">${escapeHtml(m.display_name)}</span>
+            <span style="color:#94a3b8;font-size:0.85em;margin-left:8px">${escapeHtml(m.ancestor_name)}</span>
+          </div>
+          <span style="color:#4ade80;font-size:0.8em">${theirNew} new records for you</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+          <div>
+            <div style="color:#60a5fa;font-size:0.75em;font-weight:600;margin-bottom:6px">YOUR RECORDS</div>
+            ${yourRows || '<div style="color:#64748b;font-size:0.85em">None yet</div>'}
+          </div>
+          <div>
+            <div style="color:#4ade80;font-size:0.75em;font-weight:600;margin-bottom:6px">${escapeHtml(m.display_name).toUpperCase()}&rsquo;S RECORDS</div>
+            ${theirRows || '<div style="color:#64748b;font-size:0.85em">None yet</div>'}
+          </div>
+        </div>
+        <button onclick="startConversation(${Number(m.match_id)}); document.getElementById('match-modal').remove();"
+                style="width:100%;background:#4a7c59;color:#fff;border:none;border-radius:6px;
+                       padding:10px;font-size:0.9em;cursor:pointer">
+          Start conversation with ${escapeHtml(m.display_name)} &#x2192;
+        </button>
+      </div>`;
+  }).join('');
+
+  modal.innerHTML = `
+    <div style="background:#0f172a;border-radius:12px;padding:20px;max-width:640px;width:100%;
+                max-height:80vh;overflow-y:auto;border:1px solid #334155">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <h3 style="color:#f8fafc;margin:0">Researchers on this ancestor</h3>
+        <button onclick="document.getElementById('match-modal').remove()"
+                style="background:none;border:none;color:#94a3b8;font-size:1.2em;cursor:pointer">&#x2715;</button>
+      </div>
+      <p style="color:#94a3b8;font-size:0.85em;margin-bottom:16px">
+        &#x2605; = records the other researcher has that you don&rsquo;t (green) or you have that they don&rsquo;t (blue)
+      </p>
+      ${matchCards}
+    </div>`;
+  document.body.appendChild(modal);
+}
+
+function startConversation(matchId) {
+  const tab = document.querySelector('[data-tab="connections"]');
+  if (tab) tab.click();
+  setTimeout(() => {
+    if (typeof openThread === 'function') openThread(matchId);
+  }, 100);
 }
