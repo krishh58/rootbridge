@@ -1,5 +1,6 @@
 import secrets
 import json as _json
+from markupsafe import escape as html_escape
 from flask import Blueprint, request, jsonify, g, make_response, render_template_string
 from .auth import require_auth
 from .db import db
@@ -166,8 +167,8 @@ def public_tree_view(share_token):
 <span style="color:#94a3b8;margin-left:1rem">Shared Tree: {{ tree_name }}</span></nav>
 <div id="treeContainer" style="width:100vw;height:calc(100vh - 64px)"></div>
 <script src="/static/js/tree.js"></script>
-<script>renderTree({{ persons_json | safe }}, null);</script>
-</body></html>""", tree_name=tree.name, persons_json=_json.dumps(persons))
+<script>renderTree({{ persons | tojson }}, null);</script>
+</body></html>""", tree_name=tree.name, persons=persons)
 
 @tree_bp.get('/api/trees/<int:tree_id>/export/pdf')
 @require_auth
@@ -175,8 +176,8 @@ def export_pdf(tree_id):
     from weasyprint import HTML as WPHtml
     tree = Tree.query.filter_by(id=tree_id, user_id=g.user_id).first_or_404()
     persons_rows = ''.join(
-        f"<tr><td>{p.first_name or ''} {p.last_name or ''}</td>"
-        f"<td>{p.birth_year or '?'}</td><td>{p.birth_state or p.birth_country or '?'}</td>"
+        f"<tr><td>{html_escape(f'{p.first_name or chr(32)}{p.last_name or chr(32)}'.strip())}</td>"
+        f"<td>{p.birth_year or '?'}</td><td>{html_escape(str(p.birth_state or p.birth_country or '?'))}</td>"
         f"<td>{p.death_year or '?'}</td><td>{p.confidence}%</td></tr>"
         for p in tree.persons
     )
@@ -185,12 +186,13 @@ body{{font-family:Arial,sans-serif;color:#111}}
 h1{{color:#1e40af}}table{{width:100%;border-collapse:collapse}}
 th,td{{border:1px solid #ccc;padding:6px;text-align:left}}
 th{{background:#dbeafe}}</style></head><body>
-<h1>{tree.name}</h1>
+<h1>{html_escape(tree.name)}</h1>
 <p>Exported from RootBridge — {len(tree.persons)} persons</p>
 <table><tr><th>Name</th><th>Born</th><th>Birth Place</th><th>Died</th><th>Confidence</th></tr>
 {persons_rows}</table></body></html>"""
     pdf = WPHtml(string=html).write_pdf()
     response = make_response(pdf)
     response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = f'attachment; filename="{tree.name}.pdf"'
+    safe_name = ''.join(c for c in tree.name if c.isalnum() or c in ' _-')
+    response.headers['Content-Disposition'] = f'attachment; filename="{safe_name}.pdf"'
     return response
