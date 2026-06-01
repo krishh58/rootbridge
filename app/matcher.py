@@ -1,5 +1,8 @@
+import logging
 from .db import db
 from .models import Person, Tree, User, PersonMatch
+
+logger = logging.getLogger(__name__)
 
 
 def _levenshtein(a: str, b: str) -> int:
@@ -77,7 +80,9 @@ def run_matcher(person_id: int = None):
     def _user_id_for_person(p):
         return p.tree.user_id
 
-    if person_id:
+    user_map = {u.id: u for u in User.query.all()}
+
+    if person_id is not None:
         targets = Person.query.filter_by(id=person_id).all()
         candidates = Person.query.filter(Person.id != person_id).all()
     else:
@@ -96,8 +101,8 @@ def run_matcher(person_id: int = None):
         uid_b = _user_id_for_person(pb)
         if uid_a == uid_b:
             return
-        user_a = User.query.get(uid_a)
-        user_b = User.query.get(uid_b)
+        user_a = user_map.get(uid_a)
+        user_b = user_map.get(uid_b)
         if not user_a or not user_b:
             return
         if not user_a.discovery_enabled or not user_b.discovery_enabled:
@@ -122,8 +127,9 @@ def run_matcher(person_id: int = None):
         existing_pairs.add((pa_id, pb_id))
         try:
             db.session.commit()
-        except Exception:
+        except Exception as exc:
             db.session.rollback()
+            logger.error('Failed to write PersonMatch (%s, %s): %s', pa_id, pb_id, exc)
 
     if person_id:
         for target in targets:

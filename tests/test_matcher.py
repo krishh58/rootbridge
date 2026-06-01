@@ -86,6 +86,14 @@ def test_score_year_gap_too_large():
     assert score == 0  # year gap > 5 — no year points, insufficient
 
 
+def test_score_country_fallback():
+    score = score_match(
+        ('James', 'Henderson', 1851, None, 'USA'),
+        ('James', 'Henderson', 1851, None, 'USA'),
+    )
+    assert score == 80  # 40 name + 30 exact year + 10 country
+
+
 # ── run_matcher ───────────────────────────────────────────────────────────────
 
 def test_run_matcher_creates_match(app):
