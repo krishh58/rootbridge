@@ -67,6 +67,7 @@ class Person(db.Model):
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     search_results = db.relationship('SearchResult', backref='person', lazy=True, cascade='all, delete-orphan')
     gaps = db.relationship('Gap', backref='person', lazy=True, cascade='all, delete-orphan')
+    alfred_messages = db.relationship('AlfredMessage', cascade='all, delete-orphan', backref='person', lazy=True)
 
 class SearchResult(db.Model):
     __tablename__ = 'search_results'
