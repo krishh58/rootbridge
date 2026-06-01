@@ -65,6 +65,8 @@ def send_message(match_id):
     body = (data.get('body') or '').strip()
     if not body:
         return jsonify({'error': 'body is required'}), 400
+    if len(body) > 5000:
+        return jsonify({'error': 'Message body too long (max 5000 characters)'}), 400
 
     is_first_unread = ResearchMessage.query.filter_by(
         match_id=match_id, read=False
