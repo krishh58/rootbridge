@@ -1,6 +1,7 @@
 import os
 import smtplib
 import logging
+from html import escape as html_escape
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -15,12 +16,15 @@ def send_invite_email(to_email: str, inviter_name: str, tree_name: str,
         logger.warning('GMAIL_USER or GMAIL_APP_PASSWORD not set — skipping invite email')
         return False
 
+    safe_name = html_escape(inviter_name)
+    safe_tree = html_escape(tree_name)
+    safe_role = html_escape(role)
     subject = f'{inviter_name} invited you to collaborate on RootBridge'
     body_html = f"""
 <div style="font-family:Arial,sans-serif;max-width:480px;margin:0 auto">
   <h2 style="color:#1e40af">You have a RootBridge invitation</h2>
-  <p><strong>{inviter_name}</strong> has invited you to collaborate on
-     <strong>{tree_name}</strong> as a <strong>{role}</strong>.</p>
+  <p><strong>{safe_name}</strong> has invited you to collaborate on
+     <strong>{safe_tree}</strong> as a <strong>{safe_role}</strong>.</p>
   <a href="https://rootbridge.app{invite_url}"
      style="display:inline-block;padding:.75rem 2rem;background:#2563eb;
             color:#fff;border-radius:8px;text-decoration:none;font-weight:600">
