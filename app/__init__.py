@@ -15,10 +15,12 @@ def create_app(config=None):
     from .routes import routes_bp
     from .search_routes import search_bp
     from .tree_routes import tree_bp
+    from .alfred_routes import alfred_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(routes_bp)
     app.register_blueprint(search_bp)
     app.register_blueprint(tree_bp)
+    app.register_blueprint(alfred_bp)
 
     with app.app_context():
         from . import models  # noqa: register models with SQLAlchemy
