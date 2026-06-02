@@ -143,9 +143,13 @@ def test_no_duplicate_email_on_second_message(client, app):
     uid_b = _get_user_id(app, 'dup_b@test.com')
     _set_tier(app, uid_a, 'us')
     mid = _make_match(app, uid_a, uid_b)
-    # inject existing unread message from a to b
+    # Set notified flag as if first message was already sent
     with app.app_context():
-        db.session.add(ResearchMessage(match_id=mid, sender_id=uid_a, body='prev', read=False))
+        m_obj = PersonMatch.query.get(mid)
+        if m_obj.user_a_id == uid_a:
+            m_obj.notified_b = True
+        else:
+            m_obj.notified_a = True
         db.session.commit()
     _login(client, 'dup_a@test.com')
     with patch('app.message_routes.send_match_email') as mock_email:

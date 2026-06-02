@@ -124,12 +124,12 @@ def run_matcher(person_id: int = None):
             score=s,
         )
         db.session.add(match)
-        existing_pairs.add((pa_id, pb_id))
         try:
             db.session.commit()
+            existing_pairs.add((pa_id, pb_id))
         except Exception as exc:
+            logger.error('Failed to commit match (%s, %s): %s', pa_id, pb_id, exc)
             db.session.rollback()
-            logger.error('Failed to write PersonMatch (%s, %s): %s', pa_id, pb_id, exc)
 
     if person_id:
         for target in targets:

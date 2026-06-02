@@ -68,15 +68,14 @@ def send_message(match_id):
     if len(body) > 5000:
         return jsonify({'error': 'Message body too long (max 5000 characters)'}), 400
 
-    is_first_unread = ResearchMessage.query.filter_by(
-        match_id=match_id, read=False
-    ).filter(ResearchMessage.sender_id == g.user_id).count() == 0
+    is_a = m.user_a_id == g.user_id
+    already_notified = m.notified_b if is_a else m.notified_a
 
     msg = ResearchMessage(match_id=match_id, sender_id=g.user_id, body=body)
     db.session.add(msg)
     db.session.commit()
 
-    if is_first_unread:
+    if not already_notified:
         other_user = User.query.get(other_user_id)
         their_person = Person.query.get(their_person_id)
         ancestor_name = ''
@@ -89,6 +88,11 @@ def send_message(match_id):
             sender_display=user.get_display_name(),
             ancestor_name=ancestor_name,
         )
+        if is_a:
+            m.notified_b = True
+        else:
+            m.notified_a = True
+        db.session.commit()
 
     return jsonify({
         'id': msg.id,

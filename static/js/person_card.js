@@ -318,6 +318,8 @@ async function runHeritageSearch(personId, type) {
   }).catch(() => {});
 }
 
+const _personMatchCache = {};
+
 async function loadPersonMatches(personId) {
   const area = document.getElementById('match-badge-area');
   if (!area) return;
@@ -326,9 +328,10 @@ async function loadPersonMatches(personId) {
     if (!r.ok) return;
     const matches = await r.json();
     if (!matches.length) return;
+    _personMatchCache[personId] = matches;
     area.innerHTML = `
       <div style="background:#1a3d2b;border:1px solid #4a7c59;border-radius:8px;padding:10px 14px;cursor:pointer"
-           onclick="openMatchModal(${JSON.stringify(matches).replace(/"/g, '&quot;')})">
+           onclick="openMatchModal(_personMatchCache[${parseInt(personId, 10)}])">
         <span style="color:#4ade80;font-weight:600">&#x1f465; ${matches.length} researcher${matches.length > 1 ? 's' : ''} found</span>
         <span style="color:#86efac;font-size:0.85em;margin-left:8px">Connect &#x2192;</span>
       </div>`;
