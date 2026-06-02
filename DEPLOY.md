@@ -49,17 +49,13 @@ Set these in the Railway dashboard under **Variables**:
 
 | Variable | Description |
 |---|---|
-| `STRIPE_PRICE_US` | Price ID for US Heritage tier ($7.99/mo) |
-| `STRIPE_PRICE_EUROPEAN` | Price ID for European Heritage tier ($12.99/mo) |
-| `STRIPE_PRICE_AA` | Price ID for AA Heritage tier ($12.99/mo) |
-| `STRIPE_PRICE_ASIAN` | Price ID for Asian Heritage tier ($12.99/mo) |
-| `STRIPE_PRICE_ALL` | Price ID for All Heritage tier ($19.99/mo) |
-| `STRIPE_PRICE_TOPUP_300` | Price ID for 300-token top-up |
-| `STRIPE_PRICE_TOPUP_1000` | Price ID for 1000-token top-up |
-| `STRIPE_PRICE_TOPUP_2500` | Price ID for 2500-token top-up |
-| `STRIPE_PRICE_TOPUP_5000` | Price ID for 5000-token top-up |
+| `STRIPE_PRICE_US` | Price ID for Explorer tier ($9.99/mo recurring) — the only subscription tier |
+| `STRIPE_PRICE_TOPUP_300` | Price ID for 300-token top-up (one-time) |
+| `STRIPE_PRICE_TOPUP_1000` | Price ID for 1000-token top-up (one-time) |
+| `STRIPE_PRICE_TOPUP_2500` | Price ID for 2500-token top-up (one-time) |
+| `STRIPE_PRICE_TOPUP_5000` | Price ID for 5000-token top-up (one-time) |
 
-Create these as recurring (subscription) and one-time prices in the Stripe dashboard.
+Create `STRIPE_PRICE_US` as a recurring monthly subscription at $9.99. Create top-up prices as one-time payments in the Stripe dashboard.
 
 ## Stripe Webhook Setup
 
