@@ -269,6 +269,7 @@
                 ${m.unread_count ? `<span style="background:#4a7c59;color:#fff;border-radius:10px;padding:0 8px;font-size:0.75em">${m.unread_count} new</span>` : ''}
               </div>
               <div style="color:#94a3b8;font-size:0.85em;margin-top:2px">${escapeHtml(m.ancestor_name)}</div>
+              ${m.last_message ? `<div style="color:#64748b;font-size:0.8em;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escapeHtml(m.last_message)}</div>` : ''}
             </div>`).join('');
         }
 
@@ -364,7 +365,7 @@
       const thread = document.getElementById('connections-thread');
       if (thread) thread.style.display = 'none';
       const list = document.getElementById('connections-list');
-      if (list) list.style.display = 'block';
+      if (list) list.style.display = 'flex';
     }
 
     async function toggleDiscovery(enabled) {
@@ -376,10 +377,23 @@
       });
     }
 
+    async function refreshBadge() {
+      try {
+        const r = await fetch('/api/matches', { credentials: 'include' });
+        if (!r.ok) return;
+        const { total_unread } = await r.json();
+        const badge = document.getElementById('connections-badge');
+        if (badge) {
+          badge.textContent = total_unread > 0 ? total_unread : '';
+          badge.style.display = total_unread > 0 ? 'inline' : 'none';
+        }
+      } catch (e) {}
+    }
+
     // Load badge on page load, refresh every 60s
     document.addEventListener('DOMContentLoaded', () => {
-      loadConnections();
-      setInterval(loadConnections, 60000);
+      refreshBadge();
+      setInterval(refreshBadge, 60000);
     });
   </script>
 </body>

@@ -43,12 +43,18 @@ def _match_for_user(match: PersonMatch, user_id: int) -> dict:
         if their_person.birth_year:
             ancestor_name += f" ~{their_person.birth_year}"
 
+    last_msg = ResearchMessage.query.filter_by(match_id=match.id).order_by(
+        ResearchMessage.created_at.desc()
+    ).first()
+    last_message = (last_msg.body[:60] + '…') if last_msg and len(last_msg.body) > 60 else (last_msg.body if last_msg else '')
+
     return {
         'match_id': match.id,
         'score': match.score,
         'display_name': display,
         'ancestor_name': ancestor_name,
         'unread_count': unread_count,
+        'last_message': last_message,
         'your_records': [
             {'source': r.source, 'record_type': r.record_type, 'url': r.url}
             for r in my_records
