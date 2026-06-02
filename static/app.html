@@ -19,28 +19,90 @@
     </div>
   </nav>
 
-  <div class="app-layout">
-    <aside class="sidebar">
-      <h2>My Trees</h2>
-      <div id="treeList"></div>
-      <button class="btn-primary" onclick="showAddPersonForm()">+ Add Person</button>
+  <!-- Tab bar -->
+  <div class="tab-bar" style="display:flex;gap:4px;padding:0 16px;background:#0f172a;border-bottom:1px solid #1e293b">
+    <button class="tab-btn" data-tab="tree" onclick="switchTab('tree')"
+            style="background:none;border:none;border-bottom:2px solid #4a7c59;color:#f8fafc;padding:10px 16px;cursor:pointer;font-size:0.9em">
+      Family Tree
+    </button>
+    <button class="tab-btn" data-tab="connections" onclick="switchTab('connections')"
+            style="background:none;border:none;border-bottom:2px solid transparent;color:#94a3b8;padding:10px 16px;cursor:pointer;font-size:0.9em">
+      Connections <span id="connections-badge" style="display:none;background:#ef4444;color:#fff;border-radius:10px;padding:0 6px;font-size:0.75em;margin-left:4px"></span>
+    </button>
+  </div>
 
-      <div id="referralPanel" style="margin-top:2rem;padding:1rem;background:#1e293b;border-radius:8px;font-size:.85rem">
-        <h4 style="color:#f8fafc;margin:0 0 .5rem">Refer a Friend</h4>
-        <p style="color:#94a3b8;margin:0 0 .75rem">Earn 25 tokens when a friend signs up, 150 more when they subscribe.</p>
-        <div id="referralLinkBox" style="display:flex;gap:.5rem;align-items:center">
-          <input id="referralLinkInput" type="text" readonly
-            style="flex:1;background:#0f172a;color:#94a3b8;border:1px solid #334155;border-radius:6px;padding:.4rem .6rem;font-size:.8rem"
-            value="Loading...">
-          <button class="btn-ghost" style="font-size:.8rem;padding:.4rem .75rem" onclick="copyReferralLink()">Copy</button>
+  <!-- Tree tab panel -->
+  <div id="tab-tree" class="tab-panel" style="display:flex">
+    <div class="app-layout" style="flex:1;display:flex">
+      <aside class="sidebar">
+        <h2>My Trees</h2>
+        <div id="treeList"></div>
+        <button class="btn-primary" onclick="showAddPersonForm()">+ Add Person</button>
+
+        <div id="referralPanel" style="margin-top:2rem;padding:1rem;background:#1e293b;border-radius:8px;font-size:.85rem">
+          <h4 style="color:#f8fafc;margin:0 0 .5rem">Refer a Friend</h4>
+          <p style="color:#94a3b8;margin:0 0 .75rem">Earn 25 tokens when a friend signs up, 150 more when they subscribe.</p>
+          <div id="referralLinkBox" style="display:flex;gap:.5rem;align-items:center">
+            <input id="referralLinkInput" type="text" readonly
+              style="flex:1;background:#0f172a;color:#94a3b8;border:1px solid #334155;border-radius:6px;padding:.4rem .6rem;font-size:.8rem"
+              value="Loading...">
+            <button class="btn-ghost" style="font-size:.8rem;padding:.4rem .75rem" onclick="copyReferralLink()">Copy</button>
+          </div>
+        </div>
+      </aside>
+      <main class="tree-main">
+        <div id="treeContainer">
+          <p class="placeholder-text">Add a person to start building your family tree.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Connections tab panel -->
+  <div id="tab-connections" class="tab-panel" style="display:none;height:100%;flex-direction:column">
+
+    <!-- Conversation list -->
+    <div id="connections-list" style="flex:1;overflow-y:auto;padding:16px">
+      <h3 style="color:#f8fafc;margin:0 0 16px">Research Connections</h3>
+      <div id="connections-list-items">
+        <p style="color:#64748b">Loading...</p>
+      </div>
+      <div style="margin-top:24px;padding-top:16px;border-top:1px solid #1e293b">
+        <label style="display:flex;align-items:center;gap:10px;color:#94a3b8;font-size:0.9em;cursor:pointer">
+          <input type="checkbox" id="discovery-toggle" onchange="toggleDiscovery(this.checked)"
+                 style="width:16px;height:16px">
+          Show my ancestors to other researchers (discovery)
+        </label>
+      </div>
+    </div>
+
+    <!-- Conversation thread view -->
+    <div id="connections-thread" style="display:none;flex:1;flex-direction:column;height:100%">
+      <div style="padding:12px 16px;border-bottom:1px solid #1e293b;display:flex;align-items:center;gap:12px">
+        <button onclick="closeThread()"
+                style="background:none;border:none;color:#94a3b8;cursor:pointer;font-size:1.1em">←</button>
+        <div>
+          <div id="thread-title" style="color:#f8fafc;font-weight:600"></div>
+          <div id="thread-ancestor" style="color:#94a3b8;font-size:0.85em"></div>
         </div>
       </div>
-    </aside>
-    <main class="tree-main">
-      <div id="treeContainer">
-        <p class="placeholder-text">Add a person to start building your family tree.</p>
+      <div id="thread-records" style="padding:10px 16px;background:#0a1628;border-bottom:1px solid #1e293b;
+           overflow-x:auto;white-space:nowrap;min-height:44px"></div>
+      <div id="thread-messages" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:8px">
       </div>
-    </main>
+      <div style="padding:12px 16px;border-top:1px solid #1e293b;display:flex;gap:8px">
+        <textarea id="thread-input" rows="2"
+          style="flex:1;background:#1e293b;border:1px solid #334155;border-radius:8px;color:#f8fafc;
+                 padding:8px 12px;font-size:0.9em;resize:none"
+          placeholder="Type a message..."
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendThreadMessage();}">
+        </textarea>
+        <button onclick="sendThreadMessage()"
+                style="background:#4a7c59;color:#fff;border:none;border-radius:8px;
+                       padding:0 20px;font-size:0.9em;cursor:pointer">Send</button>
+      </div>
+    </div>
+
   </div>
 
   <div id="addPersonModal" class="modal hidden">
@@ -144,6 +206,181 @@
 
     loadMe();
     loadReferralPanel();
+
+    // ── Tab switching ──────────────────────────────────────────────────────
+    function switchTab(name) {
+      document.querySelectorAll('.tab-panel').forEach(function(p) {
+        p.style.display = 'none';
+      });
+      document.querySelectorAll('.tab-btn').forEach(function(b) {
+        b.style.borderBottomColor = 'transparent';
+        b.style.color = '#94a3b8';
+      });
+      var panel = document.getElementById('tab-' + name);
+      if (panel) {
+        panel.style.display = (name === 'tree') ? 'flex' : 'flex';
+        panel.style.flexDirection = (name === 'tree') ? '' : 'column';
+      }
+      var btn = document.querySelector('[data-tab="' + name + '"]');
+      if (btn) {
+        btn.style.borderBottomColor = '#4a7c59';
+        btn.style.color = '#f8fafc';
+      }
+      if (name === 'connections') loadConnections();
+    }
+  </script>
+
+  <script>
+    // ── Connections tab ────────────────────────────────────────────────────
+
+    function escapeHtml(s) {
+      return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    let _currentMatchId = null;
+
+    async function loadConnections() {
+      try {
+        const r = await fetch('/api/matches', { credentials: 'include' });
+        if (!r.ok) return;
+        const { matches, total_unread } = await r.json();
+
+        const badge = document.getElementById('connections-badge');
+        if (badge) {
+          if (total_unread > 0) {
+            badge.textContent = total_unread;
+            badge.style.display = 'inline';
+          } else {
+            badge.style.display = 'none';
+          }
+        }
+
+        const list = document.getElementById('connections-list-items');
+        if (!list) return;
+        if (!matches.length) {
+          list.innerHTML = '<p style="color:#64748b">No research connections yet. As more people join RootBridge and build their trees, you\'ll see matches here.</p>';
+        } else {
+          list.innerHTML = matches.map(m => `
+            <div onclick="openThread(${m.match_id})"
+                 style="background:#1e293b;border-radius:8px;padding:12px 14px;margin-bottom:8px;
+                        cursor:pointer;border-left:3px solid ${m.unread_count ? '#4a7c59' : '#334155'}">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="color:#f8fafc;font-weight:600">${escapeHtml(m.display_name)}</span>
+                ${m.unread_count ? `<span style="background:#4a7c59;color:#fff;border-radius:10px;padding:0 8px;font-size:0.75em">${m.unread_count} new</span>` : ''}
+              </div>
+              <div style="color:#94a3b8;font-size:0.85em;margin-top:2px">${escapeHtml(m.ancestor_name)}</div>
+            </div>`).join('');
+        }
+
+        // Load discovery toggle state
+        const meR = await fetch('/api/me', { credentials: 'include' });
+        if (meR.ok) {
+          const me = await meR.json();
+          const toggle = document.getElementById('discovery-toggle');
+          if (toggle && me.discovery_enabled !== undefined) {
+            toggle.checked = me.discovery_enabled;
+          }
+        }
+      } catch (e) { /* silently ignore */ }
+    }
+
+    async function openThread(matchId) {
+      _currentMatchId = matchId;
+      document.getElementById('connections-list').style.display = 'none';
+      const thread = document.getElementById('connections-thread');
+      thread.style.display = 'flex';
+      thread.style.flexDirection = 'column';
+
+      const r = await fetch('/api/matches', { credentials: 'include' });
+      if (!r.ok) return;
+      const { matches } = await r.json();
+      const match = matches.find(m => m.match_id === matchId);
+      if (match) {
+        document.getElementById('thread-title').textContent = match.display_name;
+        document.getElementById('thread-ancestor').textContent = match.ancestor_name;
+
+        const strip = document.getElementById('thread-records');
+        const allRecords = [
+          ...match.your_records.map(r2 => ({ ...r2, mine: true })),
+          ...match.their_records.map(r2 => ({ ...r2, mine: false })),
+        ];
+        const safeUrl = (u) => (u && /^https?:\/\//.test(u)) ? u : '#';
+        strip.innerHTML = allRecords.length ? allRecords.map(r2 => `
+          <a href="${safeUrl(r2.url)}" target="_blank"
+             style="display:inline-block;background:${r2.mine ? '#1e3a5f' : '#1a3d2b'};
+                    border-radius:6px;padding:4px 10px;margin-right:6px;font-size:0.8em;
+                    color:${r2.mine ? '#60a5fa' : '#4ade80'};text-decoration:none;white-space:nowrap">
+            ${escapeHtml(r2.source)} — ${escapeHtml(r2.record_type) || 'Record'}
+          </a>`).join('') : '<span style="color:#64748b;font-size:0.85em">No records shared yet</span>';
+      }
+
+      await fetchThreadMessages(matchId);
+      fetch(`/api/matches/${matchId}/seen`, { method: 'POST', credentials: 'include' });
+      loadConnections();
+    }
+
+    async function fetchThreadMessages(matchId) {
+      const r = await fetch(`/api/matches/${matchId}/messages`, { credentials: 'include' });
+      if (!r.ok) return;
+      const messages = await r.json();
+      const container = document.getElementById('thread-messages');
+      if (!container) return;
+      container.innerHTML = messages.map(msg => `
+        <div style="display:flex;flex-direction:column;align-items:${msg.is_mine ? 'flex-end' : 'flex-start'}">
+          <div style="max-width:70%;background:${msg.is_mine ? '#1a3d2b' : '#1e293b'};
+                      border-radius:${msg.is_mine ? '12px 12px 2px 12px' : '12px 12px 12px 2px'};
+                      padding:10px 14px;color:${msg.is_mine ? '#d1fae5' : '#f8fafc'};font-size:0.9em">
+            ${escapeHtml(msg.body)}
+          </div>
+          <div style="color:#475569;font-size:0.75em;margin-top:2px">
+            ${new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          </div>
+        </div>`).join('');
+      container.scrollTop = container.scrollHeight;
+    }
+
+    async function sendThreadMessage() {
+      if (!_currentMatchId) return;
+      const input = document.getElementById('thread-input');
+      const body = (input.value || '').trim();
+      if (!body) return;
+      input.value = '';
+      const r = await fetch(`/api/matches/${_currentMatchId}/messages`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ body }),
+      });
+      if (r.status === 403) {
+        const d = await r.json();
+        alert(d.error + '\n\nUpgrade at /pricing');
+        return;
+      }
+      if (r.ok) await fetchThreadMessages(_currentMatchId);
+    }
+
+    function closeThread() {
+      _currentMatchId = null;
+      const thread = document.getElementById('connections-thread');
+      if (thread) thread.style.display = 'none';
+      const list = document.getElementById('connections-list');
+      if (list) list.style.display = 'block';
+    }
+
+    async function toggleDiscovery(enabled) {
+      await fetch('/api/auth/discovery', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ discovery_enabled: enabled }),
+      });
+    }
+
+    // Load badge on page load, refresh every 60s
+    document.addEventListener('DOMContentLoaded', () => {
+      loadConnections();
+      setInterval(loadConnections, 60000);
+    });
   </script>
 </body>
 </html>

@@ -79,3 +79,12 @@ def logout():
     resp = make_response(jsonify({'ok': True}))
     resp.set_cookie('auth_token', '', httponly=True, expires=0)
     return resp
+
+@auth_bp.post('/api/auth/discovery')
+@require_auth
+def set_discovery():
+    data = request.get_json() or {}
+    user = db.session.get(User, g.user_id)
+    user.discovery_enabled = bool(data.get('discovery_enabled', True))
+    db.session.commit()
+    return jsonify({'discovery_enabled': user.discovery_enabled})

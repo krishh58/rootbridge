@@ -21,6 +21,7 @@ def me():
         'email': user.email,
         'tier': user.tier,
         'tokens': user.total_tokens(),
+        'discovery_enabled': user.discovery_enabled,
     })
 
 @routes_bp.get('/')
