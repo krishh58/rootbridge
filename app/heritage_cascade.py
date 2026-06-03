@@ -1,8 +1,12 @@
+import os
 import requests as req_lib
-from .familysearch import FamilySearchClient
 from .gap_classifier import classify_gaps, confidence_score
 from .db import get_redis
+from .search_cascade import search_dpla
 import hashlib, json
+
+DPLA_KEY = os.environ.get('DPLA_API_KEY', '')
+DPLA_URL = 'https://api.dp.la/v2/items'
 
 CACHE_TTL = 86400
 
@@ -13,15 +17,34 @@ def _cache_key(prefix, first, last, birth_year):
 # --- ELLIS ISLAND / NARA ---
 
 def search_ellis_island(first: str, last: str, birth_year: int = None) -> list:
-    fs = FamilySearchClient()
-    collection_ids = ['1849782', '1923067']
-    results = []
-    for cid in collection_ids:
-        try:
-            records = fs.search_records(cid, first=first, last=last, birth_year=birth_year)
-            results.extend(records)
-        except Exception:
-            continue
+    """Search DPLA for immigration/passenger records as Ellis Island replacement."""
+    results = search_dpla(first, last, birth_year, subject='passenger lists', page_size=6)
+    for r in results:
+        r['source'] = 'ellis_island'
+        r['record_type'] = 'immigration'
+    # Also try direct Statue of Liberty Foundation search
+    try:
+        params = {
+            'q': f'{last},{first}',
+            'type': 'person',
+            'fmt': 'json',
+        }
+        resp = req_lib.get(
+            'https://heritage.statueofliberty.org/passenger-details/',
+            params=params, timeout=5
+        )
+        if resp.ok:
+            for item in resp.json().get('results', [])[:3]:
+                results.append({
+                    'source': 'ellis_island',
+                    'record_type': 'immigration',
+                    'name': item.get('name', ''),
+                    'birth_year': item.get('birth_year'),
+                    'origin': item.get('origin', ''),
+                    'url': item.get('url', 'https://heritage.statueofliberty.org/'),
+                })
+    except Exception:
+        pass
     return results
 
 def extract_origin_village(manifest_raw: dict) -> str:
@@ -66,32 +89,20 @@ def search_riksarkivet(first: str, last: str, birth_year: int = None) -> list:
     except Exception:
         return []
 
-def search_familysearch_eu(first: str, last: str, birth_year: int = None,
-                            origin_country: str = '') -> list:
-    fs = FamilySearchClient()
-    eu_collections = {
-        'Germany': ['2177832', '2178574'],
-        'Ireland': ['1408347', '1923321'],
-        'Italy': ['1401494'],
-        'Poland': ['2178993'],
-        'Sweden': ['1554443'],
-        'England': ['1526539', '2285338'],
-        'Scotland': ['1551520', '1771076'],
-        'France': ['1403145'],
-        'Austria': ['1915777'],
-    }
-    results = []
-    collections = eu_collections.get(origin_country, [])
-    if not collections:
-        return results
-    for cid in collections[:2]:
-        try:
-            records = fs.search_records(cid, first=first, last=last, birth_year=birth_year)
-            for r in records:
-                r['source'] = f'familysearch_eu_{origin_country.lower()}'
-            results.extend(records)
-        except Exception:
-            continue
+def search_dpla_eu(first: str, last: str, birth_year: int = None,
+                   origin_country: str = '') -> list:
+    """Search DPLA for European immigration and vital records."""
+    subject = 'immigration'
+    if origin_country:
+        results = search_dpla(first, last, birth_year,
+                              subject=f'{origin_country.lower()} immigration', page_size=5)
+        if not results:
+            results = search_dpla(first, last, birth_year, subject='immigration', page_size=5)
+    else:
+        results = search_dpla(first, last, birth_year, subject='immigration', page_size=5)
+    for r in results:
+        r['source'] = f'dpla_eu_{origin_country.lower()}' if origin_country else 'dpla_eu'
+        r['record_type'] = 'european_immigration'
     return results
 
 def run_european_cascade(first: str = '', last: str = '', birth_year: int = None,
@@ -122,7 +133,7 @@ def run_european_cascade(first: str = '', last: str = '', birth_year: int = None
                 if detected_country:
                     break
 
-    eu_records = search_familysearch_eu(first, last, birth_year, detected_country)
+    eu_records = search_dpla_eu(first, last, birth_year, detected_country)
     results.extend(eu_records)
 
     if detected_country in ('Sweden', '') or 'sweden' in birth_place.lower():
@@ -185,35 +196,40 @@ def detect_1870_wall(birth_year: int = None, parent_ids: list = None) -> dict | 
     return None
 
 def search_freedmens_bureau(first: str, last: str, birth_year: int = None) -> list:
-    fs = FamilySearchClient()
-    bureau_collections = ['1596973', '1989505']
-    results = []
-    for cid in bureau_collections:
-        try:
-            records = fs.search_records(cid, first=first, last=last, birth_year=birth_year)
-            for r in records:
-                r['source'] = 'freedmens_bureau'
-                r['record_type'] = 'freedmens_bureau'
-            results.extend(records)
-        except Exception:
-            continue
+    """Search DPLA for Freedmen's Bureau records."""
+    results = search_dpla(first, last, birth_year, subject="freedmen's bureau", page_size=6)
+    for r in results:
+        r['source'] = 'freedmens_bureau'
+        r['record_type'] = 'freedmens_bureau'
+    # Also search LOC directly
+    try:
+        params = {
+            'q': f'"{first} {last}" freedmen',
+            'fo': 'json',
+            'at': 'results',
+        }
+        resp = req_lib.get('https://www.loc.gov/search/', params=params, timeout=5)
+        if resp.ok:
+            for item in resp.json().get('results', [])[:3]:
+                results.append({
+                    'source': 'freedmens_bureau',
+                    'record_type': 'freedmens_bureau',
+                    'title': item.get('title', ''),
+                    'url': f"https://www.loc.gov{item.get('id', '')}",
+                })
+    except Exception:
+        pass
     return results
 
+
 def search_slave_schedules(last: str, birth_year: int = None) -> list:
-    fs = FamilySearchClient()
-    schedule_collections = ['1420440', '1420441']
-    results = []
-    for cid in schedule_collections:
-        try:
-            records = fs.search_records(cid, first='', last=last, birth_year=birth_year)
-            for r in records:
-                r['source'] = 'slave_schedule'
-                r['record_type'] = 'slave_schedule'
-                r['note'] = ('Slave schedules list age/sex only, not names. '
-                             'This record is for the slaveholder with this surname.')
-            results.extend(records)
-        except Exception:
-            continue
+    """Search DPLA for slave schedule records (by slaveholder surname)."""
+    results = search_dpla('', last, birth_year, subject='slave schedules', page_size=5)
+    for r in results:
+        r['source'] = 'slave_schedule'
+        r['record_type'] = 'slave_schedule'
+        r['note'] = ('Slave schedules list age/sex only, not names. '
+                     'This record is for the slaveholder with this surname.')
     return results
 
 def search_wpa_narratives(first: str, last: str, birth_state: str = '') -> list:
