@@ -35,6 +35,8 @@ def create_app(config=None):
     app.register_blueprint(match_bp)
     from .message_routes import message_bp
     app.register_blueprint(message_bp)
+    from .document_routes import document_bp
+    app.register_blueprint(document_bp)
 
     with app.app_context():
         from . import models  # noqa: register models with SQLAlchemy

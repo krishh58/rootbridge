@@ -3,17 +3,19 @@ async function openPersonCard(personId) {
   overlay.innerHTML = '<div class="card-loading">Loading...</div>';
   overlay.classList.remove('hidden');
 
-  const [personResp, hometownResp, historyResp] = await Promise.all([
+  const [personResp, hometownResp, historyResp, docsResp] = await Promise.all([
     fetch(`/api/persons/${personId}`),
     fetch(`/api/persons/${personId}/hometown`),
     fetch(`/api/alfred/${personId}/history`),
+    fetch(`/api/persons/${personId}/documents`),
   ]);
 
   const person = await personResp.json();
   const hometown = hometownResp.ok ? await hometownResp.json() : { available: false };
   const history = historyResp.ok ? await historyResp.json() : { messages: [] };
+  const documents = docsResp.ok ? await docsResp.json() : [];
 
-  overlay.innerHTML = buildCardHTML(person, hometown, history.messages);
+  overlay.innerHTML = buildCardHTML(person, hometown, history.messages, documents);
 
   overlay.addEventListener('click', e => {
     if (e.target === overlay) closePersonCard();
@@ -28,7 +30,7 @@ function closePersonCard() {
   document.getElementById('personCardOverlay').classList.add('hidden');
 }
 
-function buildCardHTML(person, hometown, messages) {
+function buildCardHTML(person, hometown, messages, documents) {
   const name = `${person.first_name || ''} ${person.last_name || ''}`.trim();
   const dates = [person.birth_year, person.death_year].filter(Boolean).join(' – ');
   const confidenceColor = person.confidence >= 80 ? '#3b82f6' : person.confidence >= 40 ? '#f59e0b' : '#ef4444';
@@ -100,6 +102,19 @@ function buildCardHTML(person, hometown, messages) {
           ${hometownHTML}
         </div>
       </div>
+      <div class="docs-panel">
+        <h4 style="color:#94a3b8;font-size:.8rem;text-transform:uppercase;margin:0 0 .5rem">Documents</h4>
+        <div class="docs-list" id="docsList-${person.id}">${renderDocsList(documents, person.id)}</div>
+        <div style="display:flex;align-items:center;gap:.75rem;margin-top:.75rem">
+          <label class="btn-secondary doc-upload-label">
+            Upload Document
+            <input type="file" style="display:none"
+                   accept=".jpg,.jpeg,.png,.tiff,.tif,.webp,.gif,.heic,.heif,.pdf,.txt"
+                   onchange="uploadDocument(${person.id}, this)">
+          </label>
+          <span class="doc-upload-status" id="docUploadStatus-${person.id}"></span>
+        </div>
+      </div>
       <div class="alfred-panel">
         <div class="alfred-header"><span class="alfred-avatar">🎩</span><strong>Alfred</strong> — Research Concierge</div>
         <div class="alfred-history" id="alfredHistory">${messagesHTML}</div>
@@ -135,6 +150,17 @@ function buildCardHTML(person, hometown, messages) {
       .approx-note{font-size:.75rem;color:#94a3b8;margin:.25rem 0}
       .map-info{font-size:.85rem;line-height:1.6}
       .life-context{font-size:.85rem;color:#cbd5e1;font-style:italic;border-left:3px solid var(--blue);padding-left:.75rem;margin-top:.5rem}
+      .docs-panel{border-top:1px solid #334155;padding-top:1.25rem}
+      .doc-item{background:#0f172a;border-radius:6px;padding:.6rem .75rem;margin-bottom:.5rem}
+      .doc-meta{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+      .doc-name{color:#60a5fa;font-size:.85rem;text-decoration:none;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+      .doc-name:hover{text-decoration:underline}
+      .doc-size{color:#64748b;font-size:.78rem;white-space:nowrap}
+      .doc-delete{background:none;border:none;color:#64748b;cursor:pointer;font-size:.85rem;padding:0 .25rem;flex-shrink:0}
+      .doc-delete:hover{color:#f87171}
+      .doc-summary{font-size:.8rem;color:#94a3b8;margin-top:.35rem;line-height:1.5;border-left:2px solid #334155;padding-left:.5rem}
+      .doc-upload-label{cursor:pointer;font-size:.82rem;padding:.35rem .75rem}
+      .doc-upload-status{font-size:.82rem;color:#fbbf24}
       .alfred-panel{border-top:1px solid #334155;padding-top:1.5rem}
       .alfred-header{display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;font-size:.9rem}
       .alfred-avatar{font-size:1.2rem}
@@ -403,6 +429,61 @@ function openMatchModal(matches) {
       ${matchCards}
     </div>`;
   document.body.appendChild(modal);
+}
+
+function renderDocsList(docs, personId) {
+  if (!docs || !docs.length) return '<p class="no-data" style="font-size:.85rem">No documents uploaded yet.</p>';
+  return docs.map(doc => `
+    <div class="doc-item">
+      <div class="doc-meta">
+        <a href="/api/documents/${doc.id}" target="_blank" class="doc-name" title="${escapeAttr(doc.filename)}">${escapeHtml(doc.filename)}</a>
+        <span class="doc-size">${formatBytes(doc.file_size)}</span>
+        <button class="doc-delete" onclick="deleteDocument(${doc.id}, ${personId})" title="Delete document">✕</button>
+      </div>
+      ${doc.ai_summary ? `<div class="doc-summary">${escapeHtml(doc.ai_summary)}</div>` : ''}
+    </div>`).join('');
+}
+
+function formatBytes(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1048576) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / 1048576).toFixed(1)} MB`;
+}
+
+async function uploadDocument(personId, input) {
+  const file = input.files[0];
+  if (!file) return;
+  const status = document.getElementById(`docUploadStatus-${personId}`);
+  status.textContent = 'Uploading & analyzing…';
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const r = await fetch(`/api/persons/${personId}/documents`, { method: 'POST', body: formData });
+    const data = await r.json();
+    if (r.status === 201) {
+      status.textContent = '';
+      const docsResp = await fetch(`/api/persons/${personId}/documents`);
+      const docs = docsResp.ok ? await docsResp.json() : [];
+      document.getElementById(`docsList-${personId}`).innerHTML = renderDocsList(docs, personId);
+    } else {
+      status.textContent = data.error || 'Upload failed.';
+    }
+  } catch (e) {
+    status.textContent = 'Upload failed — check connection.';
+  }
+  input.value = '';
+}
+
+async function deleteDocument(docId, personId) {
+  if (!confirm('Delete this document?')) return;
+  const r = await fetch(`/api/documents/${docId}`, { method: 'DELETE' });
+  if (r.ok) {
+    const docsResp = await fetch(`/api/persons/${personId}/documents`);
+    const docs = docsResp.ok ? await docsResp.json() : [];
+    document.getElementById(`docsList-${personId}`).innerHTML = renderDocsList(docs, personId);
+  }
 }
 
 function startConversation(matchId) {

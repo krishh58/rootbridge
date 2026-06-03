@@ -77,6 +77,20 @@ class Person(db.Model):
     gaps = db.relationship('Gap', backref='person', lazy=True, cascade='all, delete-orphan')
     alfred_messages = db.relationship('AlfredMessage', cascade='all, delete-orphan', backref='person', lazy=True)
 
+class Document(db.Model):
+    __tablename__ = 'documents'
+    id = db.Column(db.Integer, primary_key=True)
+    person_id = db.Column(db.Integer, db.ForeignKey('persons.id'), nullable=False)
+    tree_id = db.Column(db.Integer, db.ForeignKey('trees.id'), nullable=False)
+    filename = db.Column(db.String(255), nullable=False)
+    mime_type = db.Column(db.String(100), nullable=False)
+    file_data = db.Column(db.LargeBinary, nullable=False)
+    file_size = db.Column(db.Integer, nullable=False)
+    extracted_text = db.Column(db.Text)
+    ai_summary = db.Column(db.Text)
+    uploaded_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+
+
 class SearchResult(db.Model):
     __tablename__ = 'search_results'
     id = db.Column(db.Integer, primary_key=True)
