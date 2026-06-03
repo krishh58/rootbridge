@@ -15,35 +15,77 @@ def _cache_key(first, last, birth_year, birth_place) -> str:
     return f'search:{hashlib.md5(raw.encode()).hexdigest()}'
 
 
+def _dpla_date(sr: dict) -> str:
+    date = sr.get('date')
+    if isinstance(date, dict):
+        return date.get('displayDate', '')
+    if isinstance(date, list) and date:
+        d = date[0]
+        return d.get('displayDate', '') if isinstance(d, dict) else ''
+    return ''
+
+
+def _dpla_title(sr: dict) -> str:
+    titles = sr.get('title', [])
+    if isinstance(titles, list):
+        return titles[0] if titles else ''
+    return str(titles)
+
+
 def search_dpla(first: str, last: str, birth_year: int = None,
                 subject: str = '', page_size: int = 5) -> list:
     if not DPLA_KEY:
         return []
     try:
-        q = f'"{first} {last}"' if first else f'"{last}"'
+        q = f'{first} {last}'.strip() if first else last
         params = {'q': q, 'api_key': DPLA_KEY, 'page_size': page_size}
         if subject:
             params['sourceResource.subject.name'] = subject
-        if birth_year:
-            params['sourceResource.date.begin'] = birth_year - 5
-            params['sourceResource.date.end'] = birth_year + 5
         resp = req_lib.get(DPLA_URL, params=params, timeout=8)
         resp.raise_for_status()
         docs = resp.json().get('docs', [])
         results = []
         for doc in docs:
             sr = doc.get('sourceResource', {})
-            titles = sr.get('title', [])
-            title = titles[0] if titles else ''
-            date = sr.get('date', {})
-            display_date = date.get('displayDate', '') if isinstance(date, dict) else ''
+            dp = doc.get('dataProvider', '')
+            if isinstance(dp, dict):
+                dp = dp.get('name', '')
             results.append({
                 'source': 'dpla',
                 'record_type': subject or 'general',
-                'title': title,
-                'date': display_date,
+                'title': _dpla_title(sr),
+                'date': _dpla_date(sr),
                 'provider': doc.get('provider', {}).get('name', ''),
-                'data_provider': doc.get('dataProvider', ''),
+                'data_provider': dp,
+                'url': doc.get('isShownAt', ''),
+            })
+        return results
+    except Exception:
+        return []
+
+
+def _dpla_search(q: str, record_type: str, page_size: int = 6) -> list:
+    """Core DPLA fetch — q already includes record type keywords."""
+    if not DPLA_KEY:
+        return []
+    try:
+        params = {'q': q, 'api_key': DPLA_KEY, 'page_size': page_size}
+        resp = req_lib.get(DPLA_URL, params=params, timeout=8)
+        resp.raise_for_status()
+        docs = resp.json().get('docs', [])
+        results = []
+        for doc in docs:
+            sr = doc.get('sourceResource', {})
+            dp = doc.get('dataProvider', '')
+            if isinstance(dp, dict):
+                dp = dp.get('name', '')
+            results.append({
+                'source': f'dpla_{record_type}',
+                'record_type': record_type,
+                'title': _dpla_title(sr),
+                'date': _dpla_date(sr),
+                'provider': doc.get('provider', {}).get('name', ''),
+                'data_provider': dp,
                 'url': doc.get('isShownAt', ''),
             })
         return results
@@ -53,84 +95,39 @@ def search_dpla(first: str, last: str, birth_year: int = None,
 
 def search_dpla_census(first: str, last: str, birth_year: int = None,
                        birth_place: str = '') -> list:
-    if not DPLA_KEY:
-        return []
-    try:
-        q = f'"{first} {last}"' if first else f'"{last}"'
-        if birth_place:
-            q += f' {birth_place}'
-        params = {
-            'q': q,
-            'api_key': DPLA_KEY,
-            'page_size': 8,
-            'sourceResource.subject.name': 'census',
-        }
-        resp = req_lib.get(DPLA_URL, params=params, timeout=8)
-        resp.raise_for_status()
-        docs = resp.json().get('docs', [])
-        results = []
-        for doc in docs:
-            sr = doc.get('sourceResource', {})
-            titles = sr.get('title', [])
-            results.append({
-                'source': 'dpla_census',
-                'record_type': 'census',
-                'title': titles[0] if titles else '',
-                'provider': doc.get('provider', {}).get('name', ''),
-                'data_provider': doc.get('dataProvider', ''),
-                'url': doc.get('isShownAt', ''),
-            })
-        return results
-    except Exception:
-        return []
+    name = f'{first} {last}'.strip() if first else last
+    parts = ['census', name]
+    if birth_place:
+        parts.append(birth_place)
+    return _dpla_search(' '.join(parts), 'census', page_size=6)
 
 
 def search_dpla_military(first: str, last: str, birth_year: int = None) -> list:
-    if not DPLA_KEY:
-        return []
-    try:
-        q = f'"{first} {last}"' if first else f'"{last}"'
-        params = {
-            'q': q,
-            'api_key': DPLA_KEY,
-            'page_size': 5,
-            'sourceResource.subject.name': 'military records',
-        }
-        resp = req_lib.get(DPLA_URL, params=params, timeout=8)
-        resp.raise_for_status()
-        docs = resp.json().get('docs', [])
-        results = []
-        for doc in docs:
-            sr = doc.get('sourceResource', {})
-            titles = sr.get('title', [])
-            results.append({
-                'source': 'dpla_military',
-                'record_type': 'military',
-                'title': titles[0] if titles else '',
-                'provider': doc.get('provider', {}).get('name', ''),
-                'data_provider': doc.get('dataProvider', ''),
-                'url': doc.get('isShownAt', ''),
-            })
-        return results
-    except Exception:
-        return []
+    name = f'{first} {last}'.strip() if first else last
+    return _dpla_search(f'military records {name}', 'military', page_size=5)
 
 
 def search_wikitree(first: str, last: str, birth_year: int = None) -> list:
     try:
-        params = {'action': 'searchPerson', 'first_name': first,
-                  'last_name': last, 'format': 'json'}
-        if birth_year:
-            params['birth_year'] = birth_year
+        params = {'action': 'searchPerson', 'firstName': first,
+                  'lastName': last, 'format': 'json'}
         resp = req_lib.get('https://api.wikitree.com/api.php',
                            params=params, timeout=5)
         resp.raise_for_status()
         data = resp.json()
+        matches = []
+        if isinstance(data, list) and data:
+            matches = data[0].get('matches', [])
+        elif isinstance(data, dict):
+            matches = data.get('0', {}).get('matches', [])
         results = []
-        for item in data.get('0', {}).get('matches', []):
+        for item in matches[:5]:
+            item_birth = item.get('BirthYear')
+            if birth_year and item_birth and abs(int(item_birth) - birth_year) > 15:
+                continue
             results.append({
                 'name': item.get('LongName', ''),
-                'birth_year': item.get('BirthYear'),
+                'birth_year': item_birth,
                 'source': 'wikitree',
                 'record_type': 'family_tree',
                 'url': f"https://www.wikitree.com/wiki/{item.get('Name', '')}",
