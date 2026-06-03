@@ -7,23 +7,23 @@ from .search_cascade import run_us_cascade
 from .ai_synthesis import synthesize_gaps
 
 search_bp = Blueprint('search', __name__)
-GUEST_RATE_LIMIT = 5
+FREE_SEARCH_LIMIT = 5
+_ONE_YEAR = 365 * 24 * 3600
 
 
-def _check_guest_rate_limit(ip: str) -> bool:
+def _check_search_limit(key: str) -> bool:
+    """Return True if the caller is under the lifetime limit, False if blocked."""
     try:
         r = get_redis()
-        key = f'guest_rate:{ip}'
         count = r.get(key)
-        if count and int(count) >= GUEST_RATE_LIMIT:
+        if count and int(count) >= FREE_SEARCH_LIMIT:
             return False
         pipe = r.pipeline()
         pipe.incr(key)
-        pipe.expire(key, 86400)
+        pipe.expire(key, _ONE_YEAR)
         pipe.execute()
         return True
     except Exception:
-        # Redis unavailable — allow the request rather than blocking guests
         return True
 
 
@@ -69,8 +69,8 @@ def guest_search():
         return jsonify({'error': 'Last name is required'}), 400
     forwarded = request.headers.get('X-Forwarded-For', '')
     ip = forwarded.split(',')[0].strip() if forwarded else request.remote_addr
-    if not _check_guest_rate_limit(ip):
-        return jsonify({'error': 'Daily search limit reached. Create a free account to continue.'}), 429
+    if not _check_search_limit(f'guest_searches:{ip}'):
+        return jsonify({'error': 'Free search limit reached. Subscribe to continue researching.'}), 429
     first = data.get('first', '')
     last = data['last']
     birth_year = int(data['birth_year']) if data.get('birth_year') else None
@@ -90,6 +90,10 @@ def authenticated_search():
     data = request.get_json() or {}
     if not data.get('last'):
         return jsonify({'error': 'Last name is required'}), 400
+    user = User.query.get(g.user_id)
+    if user and user.tier == 'free':
+        if not _check_search_limit(f'free_user_searches:{g.user_id}'):
+            return jsonify({'error': 'Free search limit reached. Subscribe to continue researching.'}), 429
     first = data.get('first', '')
     last = data['last']
     birth_year = int(data['birth_year']) if data.get('birth_year') else None
