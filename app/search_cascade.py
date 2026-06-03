@@ -156,6 +156,43 @@ def search_chronicling(first: str, last: str, birth_year: int = None) -> list:
         return []
 
 
+NARA_URL = 'https://catalog.archives.gov/proxy/records/search'
+
+
+def search_nara(first: str, last: str, birth_year: int = None,
+                birth_place: str = '') -> list:
+    try:
+        parts = [first, last]
+        if birth_year:
+            parts.append(str(birth_year))
+        if birth_place:
+            parts.append(birth_place)
+        q = ' '.join(p for p in parts if p)
+        resp = req_lib.get(NARA_URL, params={'q': q, 'rows': 6}, timeout=8)
+        resp.raise_for_status()
+        hits = resp.json().get('body', {}).get('hits', {}).get('hits', [])
+        results = []
+        last_lower = last.lower()
+        for h in hits:
+            rec = h['_source'].get('record', {})
+            title = rec.get('title', '')
+            if last_lower not in title.lower():
+                continue
+            resources = rec.get('onlineResources', [])
+            url = (resources[0].get('url', '') if resources
+                   else f'https://catalog.archives.gov/id/{h["_id"]}')
+            results.append({
+                'source': 'nara',
+                'record_type': 'federal_record',
+                'title': title,
+                'date': '',
+                'url': url,
+            })
+        return results[:4]
+    except Exception:
+        return []
+
+
 def _name_tokens(s: str) -> set:
     return set(s.lower().split()) if s else set()
 
@@ -234,6 +271,7 @@ def run_us_cascade(first: str = '', last: str = '',
     raw_results += search_dpla_census(first, last, birth_year, birth_place)
     raw_results += search_dpla_military(first, last, birth_year)
     raw_results += search_dpla(first, last, birth_year, page_size=5)
+    raw_results += search_nara(first, last, birth_year, birth_place)
 
     results = cross_reference(raw_results, first, last, birth_year, birth_place)
 
