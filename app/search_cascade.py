@@ -96,15 +96,13 @@ def _dpla_search(q: str, record_type: str, page_size: int = 6) -> list:
 def search_dpla_census(first: str, last: str, birth_year: int = None,
                        birth_place: str = '') -> list:
     name = f'{first} {last}'.strip() if first else last
-    parts = ['census', name]
-    if birth_place:
-        parts.append(birth_place)
-    return _dpla_search(' '.join(parts), 'census', page_size=6)
+    q = f'{name} born {birth_place}' if birth_place else f'{name} born'
+    return _dpla_search(q, 'census', page_size=6)
 
 
 def search_dpla_military(first: str, last: str, birth_year: int = None) -> list:
     name = f'{first} {last}'.strip() if first else last
-    return _dpla_search(f'military records {name}', 'military', page_size=5)
+    return _dpla_search(f'{name} military service soldier', 'military', page_size=5)
 
 
 def search_wikitree(first: str, last: str, birth_year: int = None) -> list:
