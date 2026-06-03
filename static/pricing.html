@@ -14,7 +14,7 @@
     }
     body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.7;overflow-x:hidden}
     nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:2px solid var(--border);position:sticky;top:0;background:rgba(253,248,240,.97);backdrop-filter:blur(8px);z-index:100}
-    .logo{font-size:1.3rem;font-weight:700;color:var(--amber);text-decoration:none;font-family:Georgia,serif}
+    .logo{display:flex;align-items:center;text-decoration:none}
     .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;font-family:'Segoe UI',sans-serif;margin-left:24px;transition:color .2s}
     .nav-links a:hover{color:var(--amber)}
     .btn-nav{background:var(--amber);color:#fff;padding:9px 24px;border-radius:4px;font-weight:600;font-size:.85rem;text-decoration:none;font-family:'Segoe UI',sans-serif;transition:background .2s}
@@ -66,7 +66,26 @@
 </head>
 <body>
 <nav>
-  <a href="/" class="logo">RootBridge</a>
+  <a href="/" class="logo">
+    <svg width="160" height="72" viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg">
+      <text x="140" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#4a7c59" letter-spacing="2">ROOT</text>
+      <text x="140" y="72" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#1a3d2b" letter-spacing="4">BRIDGE</text>
+      <line x1="80" y1="52" x2="200" y2="52" stroke="#4a7c59" stroke-width=".6" opacity=".3"/>
+      <path d="M133,76 C131,82 130,88 130,94 C130,100 131,106 131,112" stroke="#3b2a1a" stroke-width="14" fill="none" stroke-linecap="butt"/>
+      <path d="M133,76 C131,82 130,88 130,94 C130,100 131,106 131,112" stroke="#5a3a22" stroke-width="9" fill="none" stroke-linecap="butt" opacity=".35"/>
+      <path d="M131,110 C131,113 132,116 133,118" stroke="#3b2a1a" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M133,118 C133,120 134,122 134,124" stroke="#3b2a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M131,114 C122,116 112,113 102,119 C90,126 78,122 62,128" stroke="#3b2a1a" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+      <path d="M102,119 C97,124 94,129 88,133 C82,137 74,135 66,138" stroke="#3b2a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M88,133 C83,135 78,134 73,137" stroke="#3b2a1a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M78,122 C74,126 70,125 64,129 C59,132 54,131 48,134" stroke="#3b2a1a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+      <path d="M132,114 C140,116 150,112 160,118 C170,124 180,121 194,127 C206,132 218,129 230,133" stroke="#3b2a1a" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      <path d="M160,118 C162,124 160,129 162,134 C164,138 167,140 170,142" stroke="#3b2a1a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <path d="M194,127 C198,131 202,129 206,135 C209,139 212,140 218,142" stroke="#3b2a1a" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M214,129 C220,132 224,131 230,135" stroke="#3b2a1a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M132,122 C130,127 131,132 129,137 C127,141 125,142 123,145" stroke="#3b2a1a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    </svg>
+  </a>
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="#" id="loginLink">Sign In</a>
