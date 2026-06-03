@@ -152,11 +152,12 @@
 
     async function loadMe() {
       const r = await fetch('/api/me');
-      if (r.status === 401) { window.location.href = '/'; return; }
+      if (r.status === 401) { showAuthOverlay(); return; }
       const data = await r.json();
       document.getElementById('tokenBadge').textContent = `${data.tokens} tokens`;
       if (data.tokens < 100) showLowBalanceToast(data.tokens);
       loadTrees();
+      checkVerificationBanner();
     }
 
     function showLowBalanceToast(tokens) {
@@ -364,6 +365,218 @@
         btn.style.color = '#f8fafc';
       }
       if (name === 'connections') loadConnections();
+    }
+
+    // ── Auth overlay (login / register / 2FA) ──────────────────────────────
+    function showAuthOverlay() {
+      const existing = document.getElementById('authOverlay');
+      if (existing) return;
+      const overlay = document.createElement('div');
+      overlay.id = 'authOverlay';
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,.97);z-index:10000;display:flex;align-items:center;justify-content:center;padding:1rem';
+      overlay.innerHTML = `
+        <div style="background:#1e293b;border-radius:12px;padding:2.5rem 2rem;width:100%;max-width:400px;border:1px solid #334155">
+          <div style="font-size:1.3rem;font-weight:700;color:#e2d9c4;margin-bottom:.25rem">🌿 RootBridge</div>
+          <div id="authTitle" style="color:#94a3b8;font-size:.875rem;margin-bottom:1.5rem">Sign in to continue</div>
+          <!-- Login form -->
+          <div id="loginForm">
+            <input id="authEmail" type="email" placeholder="Email address" autocomplete="email"
+              style="width:100%;background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.65rem .8rem;border-radius:6px;font-size:.9rem;margin-bottom:.75rem">
+            <input id="authPassword" type="password" placeholder="Password" autocomplete="current-password"
+              style="width:100%;background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.65rem .8rem;border-radius:6px;font-size:.9rem;margin-bottom:.5rem">
+            <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+              <a href="/reset-password" style="color:#60a5fa;font-size:.8rem;text-decoration:none">Forgot password?</a>
+            </div>
+            <button onclick="submitLogin()" style="width:100%;background:#2563eb;color:#fff;border:none;border-radius:6px;padding:.75rem;font-size:.9rem;cursor:pointer;font-weight:600;margin-bottom:.75rem">Sign In</button>
+            <div style="text-align:center;font-size:.85rem;color:#64748b">
+              No account? <a href="#" onclick="showRegisterForm();return false" style="color:#60a5fa">Create one free →</a>
+            </div>
+            <div id="authError" style="display:none;margin-top:.75rem;background:#7f1d1d;color:#fca5a5;padding:.6rem .8rem;border-radius:6px;font-size:.85rem"></div>
+          </div>
+          <!-- Register form -->
+          <div id="registerForm" style="display:none">
+            <input id="regEmail" type="email" placeholder="Email address" autocomplete="email"
+              style="width:100%;background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.65rem .8rem;border-radius:6px;font-size:.9rem;margin-bottom:.75rem">
+            <input id="regPassword" type="password" placeholder="Password (8+ characters)" autocomplete="new-password"
+              style="width:100%;background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.65rem .8rem;border-radius:6px;font-size:.9rem;margin-bottom:.75rem">
+            <button onclick="submitRegister()" style="width:100%;background:#2563eb;color:#fff;border:none;border-radius:6px;padding:.75rem;font-size:.9rem;cursor:pointer;font-weight:600;margin-bottom:.75rem">Create Free Account</button>
+            <div style="text-align:center;font-size:.85rem;color:#64748b">
+              Already have an account? <a href="#" onclick="showLoginForm();return false" style="color:#60a5fa">Sign in →</a>
+            </div>
+            <div style="font-size:.73rem;color:#475569;text-align:center;margin-top:.75rem">
+              By registering you agree to our <a href="/terms" style="color:#60a5fa" target="_blank">Terms</a> and <a href="/privacy" style="color:#60a5fa" target="_blank">Privacy Policy</a>
+            </div>
+            <div id="regError" style="display:none;margin-top:.75rem;background:#7f1d1d;color:#fca5a5;padding:.6rem .8rem;border-radius:6px;font-size:.85rem"></div>
+          </div>
+          <!-- 2FA form -->
+          <div id="twoFaForm" style="display:none">
+            <p style="color:#94a3b8;font-size:.875rem;margin-bottom:1rem">A 6-digit code was sent to your email. Enter it below.</p>
+            <input id="tfaCode" type="text" placeholder="000000" maxlength="6" inputmode="numeric"
+              style="width:100%;background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.65rem .8rem;border-radius:6px;font-size:1.4rem;letter-spacing:.4rem;text-align:center;margin-bottom:.75rem">
+            <button onclick="submit2fa()" style="width:100%;background:#2563eb;color:#fff;border:none;border-radius:6px;padding:.75rem;font-size:.9rem;cursor:pointer;font-weight:600">Verify Code</button>
+            <div id="tfaError" style="display:none;margin-top:.75rem;background:#7f1d1d;color:#fca5a5;padding:.6rem .8rem;border-radius:6px;font-size:.85rem"></div>
+          </div>
+        </div>`;
+      document.body.appendChild(overlay);
+      document.getElementById('authEmail').focus();
+    }
+
+    function showRegisterForm() {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('registerForm').style.display = 'block';
+      document.getElementById('authTitle').textContent = 'Create your free account';
+      document.getElementById('regEmail').focus();
+    }
+
+    function showLoginForm() {
+      document.getElementById('registerForm').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('authTitle').textContent = 'Sign in to continue';
+      document.getElementById('authEmail').focus();
+    }
+
+    let _tfaTempToken = null;
+
+    async function submitLogin() {
+      const email = document.getElementById('authEmail').value.trim();
+      const password = document.getElementById('authPassword').value;
+      const errEl = document.getElementById('authError');
+      errEl.style.display = 'none';
+      if (!email || !password) { showAuthErr(errEl, 'Email and password required.'); return; }
+      const r = await fetch('/auth/login', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({email, password}),
+      });
+      const data = await r.json();
+      if (r.status === 202 && data.requires_2fa) {
+        _tfaTempToken = data.temp_token;
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('twoFaForm').style.display = 'block';
+        document.getElementById('authTitle').textContent = 'Two-factor verification';
+        document.getElementById('tfaCode').focus();
+        return;
+      }
+      if (!r.ok) { showAuthErr(errEl, data.error || 'Login failed.'); return; }
+      document.getElementById('authOverlay').remove();
+      loadMe();
+    }
+
+    async function submit2fa() {
+      const code = document.getElementById('tfaCode').value.trim();
+      const errEl = document.getElementById('tfaError');
+      errEl.style.display = 'none';
+      const r = await fetch('/api/auth/verify-2fa', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({temp_token: _tfaTempToken, code}),
+      });
+      const data = await r.json();
+      if (!r.ok) { showAuthErr(errEl, data.error || 'Invalid code.'); return; }
+      document.getElementById('authOverlay').remove();
+      loadMe();
+    }
+
+    async function submitRegister() {
+      const email = document.getElementById('regEmail').value.trim();
+      const password = document.getElementById('regPassword').value;
+      const errEl = document.getElementById('regError');
+      errEl.style.display = 'none';
+      if (!email || !password) { showAuthErr(errEl, 'Email and password required.'); return; }
+      if (password.length < 8) { showAuthErr(errEl, 'Password must be at least 8 characters.'); return; }
+      const ref = sessionStorage.getItem('ref') || refCode || '';
+      const r = await fetch('/auth/register', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({email, password, ref}),
+      });
+      const data = await r.json();
+      if (!r.ok) { showAuthErr(errEl, data.error || 'Registration failed.'); return; }
+      document.getElementById('authOverlay').remove();
+      loadMe();
+    }
+
+    function showAuthErr(el, msg) {
+      el.textContent = msg; el.style.display = 'block';
+    }
+
+    // ── Email verification banner ──────────────────────────────────────────
+    async function checkVerificationBanner() {
+      const r = await fetch('/api/auth/me');
+      if (!r.ok) return;
+      const data = await r.json();
+      if (data.email_verified) return;
+      const existing = document.getElementById('verifyBanner');
+      if (existing) return;
+      const banner = document.createElement('div');
+      banner.id = 'verifyBanner';
+      banner.style.cssText = 'background:#78350f;color:#fde68a;padding:.6rem 1rem;font-size:.82rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap';
+      banner.innerHTML = `<span>📧 Please verify your email address to enable match notifications and collaboration features.</span>
+        <div style="display:flex;gap:.75rem;align-items:center">
+          <button onclick="resendVerification(this)" style="background:#92400e;color:#fde68a;border:none;border-radius:4px;padding:.3rem .75rem;cursor:pointer;font-size:.82rem">Resend Email</button>
+          <button onclick="this.parentElement.parentElement.remove()" style="background:none;border:none;color:#fde68a;cursor:pointer;font-size:1.1rem">✕</button>
+        </div>`;
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+
+    async function resendVerification(btn) {
+      btn.disabled = true; btn.textContent = 'Sent!';
+      await fetch('/api/auth/resend-verification', {method: 'POST'});
+    }
+
+    // ── Edit person ────────────────────────────────────────────────────────
+    function showEditPerson(personId, p) {
+      const overlay = document.getElementById('personCardOverlay');
+      overlay.innerHTML = `
+        <div class="person-card">
+          <button class="card-close" onclick="closePersonCard()">✕</button>
+          <h3 style="color:#e2d9c4;margin-bottom:1.25rem">Edit Person</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">First Name</label>
+              <input id="ep_first" value="${escHtml(p.first_name||'')}" class="input-field" style="width:100%"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Last Name</label>
+              <input id="ep_last" value="${escHtml(p.last_name||'')}" class="input-field" style="width:100%"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Birth Year</label>
+              <input id="ep_by" type="number" value="${p.birth_year||''}" class="input-field" style="width:100%" placeholder="e.g. 1842"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Birth State / Country</label>
+              <input id="ep_bplace" value="${escHtml(p.birth_state||p.birth_country||'')}" class="input-field" style="width:100%"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Death Year</label>
+              <input id="ep_dy" type="number" value="${p.death_year||''}" class="input-field" style="width:100%" placeholder="leave blank if living"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Death Place</label>
+              <input id="ep_dplace" value="${escHtml(p.death_place||'')}" class="input-field" style="width:100%"></div>
+          </div>
+          <div style="margin-top:.75rem"><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Notes</label>
+            <textarea id="ep_notes" class="input-field" style="width:100%;height:80px;resize:vertical">${escHtml(p.notes||'')}</textarea></div>
+          <div id="ep_err" style="display:none;color:#f87171;font-size:.82rem;margin-top:.5rem"></div>
+          <div style="display:flex;gap:.75rem;margin-top:1rem">
+            <button class="btn-primary" onclick="saveEditPerson(${personId})">Save Changes</button>
+            <button class="btn-ghost" onclick="openPersonCard(${personId})">Cancel</button>
+          </div>
+          <style>.input-field{background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.55rem .75rem;border-radius:6px;font-size:.9rem}.input-field:focus{outline:2px solid #2563eb;border-color:transparent}</style>
+        </div>`;
+    }
+
+    async function saveEditPerson(personId) {
+      const by = document.getElementById('ep_by').value;
+      const dy = document.getElementById('ep_dy').value;
+      const bplace = document.getElementById('ep_bplace').value.trim();
+      const payload = {
+        first_name: document.getElementById('ep_first').value.trim(),
+        last_name: document.getElementById('ep_last').value.trim(),
+        birth_year: by ? parseInt(by) : null,
+        birth_state: bplace,
+        birth_country: null,
+        death_year: dy ? parseInt(dy) : null,
+        death_place: document.getElementById('ep_dplace').value.trim(),
+        notes: document.getElementById('ep_notes').value.trim(),
+      };
+      const r = await fetch('/api/persons/' + personId, {
+        method: 'PUT', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload),
+      });
+      if (r.ok) { openPersonCard(personId); }
+      else {
+        const errEl = document.getElementById('ep_err');
+        const d = await r.json().catch(() => ({}));
+        errEl.textContent = d.error || 'Save failed.'; errEl.style.display = 'block';
+      }
     }
   </script>
 

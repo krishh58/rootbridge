@@ -74,6 +74,7 @@ function buildCardHTML(person, hometown, messages, documents) {
   return `
     <div class="person-card">
       <button class="card-close" onclick="closePersonCard()">✕</button>
+      <button class="card-edit-btn" onclick="showEditPerson(${person.id}, ${JSON.stringify(person).replace(/</g,'\\u003c')})" title="Edit person">✏️ Edit</button>
       <div class="card-header">
         <h2>${escapeHtml(name)}</h2>
         <span class="card-dates">${escapeHtml(dates)}</span>
@@ -129,6 +130,8 @@ function buildCardHTML(person, hometown, messages, documents) {
     <style>
       .person-card{background:#1e293b;border-radius:12px;width:min(900px,95vw);max-height:90vh;overflow-y:auto;padding:2rem;position:relative;display:flex;flex-direction:column;gap:1.5rem}
       .card-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:#94a3b8;font-size:1.2rem;cursor:pointer}
+      .card-edit-btn{position:absolute;top:1rem;right:3.5rem;background:none;border:1px solid #334155;color:#94a3b8;font-size:.78rem;padding:.25rem .6rem;border-radius:6px;cursor:pointer}
+      .card-edit-btn:hover{border-color:#60a5fa;color:#60a5fa}
       .card-header h2{margin:0;font-size:1.4rem}
       .card-dates{color:#94a3b8;font-size:.9rem}
       .confidence-bar{background:#334155;border-radius:4px;height:6px;margin-top:.5rem;position:relative}

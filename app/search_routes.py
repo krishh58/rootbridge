@@ -5,6 +5,7 @@ from .db import db, get_redis
 from .models import User, Tree, Person, SearchResult, Gap
 from .search_cascade import run_us_cascade
 from .ai_synthesis import synthesize_gaps
+from . import limiter
 
 search_bp = Blueprint('search', __name__)
 FREE_SEARCH_LIMIT = 5
@@ -63,6 +64,7 @@ def _save_search_to_db(user_id: int, tree_name: str, first: str, last: str,
 
 
 @search_bp.post('/search')
+@limiter.limit('30 per hour')
 def guest_search():
     data = request.get_json() or {}
     if not data.get('last'):
@@ -84,6 +86,7 @@ def guest_search():
 
 
 @search_bp.post('/api/search')
+@limiter.limit('60 per hour')
 @require_auth
 @require_tokens(20)
 def authenticated_search():

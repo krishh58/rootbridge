@@ -5,7 +5,8 @@ from flask import Blueprint, request, jsonify, g, make_response, current_app
 import requests as req_lib
 from .auth import require_auth
 from .db import db
-from .models import Document, Person, Tree
+from .models import Document, Person, Tree, User
+from . import limiter
 
 document_bp = Blueprint('documents', __name__)
 
@@ -137,10 +138,15 @@ def _ai_read_document(mime_type: str, file_data: bytes,
 
 @document_bp.post('/api/persons/<int:person_id>/documents')
 @require_auth
+@limiter.limit('30 per hour')
 def upload_document(person_id):
     person = _person_owned(person_id)
     if not person:
         return jsonify({'error': 'Person not found'}), 404
+
+    user = db.session.get(User, g.user_id)
+    if user.total_tokens() < 5:
+        return jsonify({'error': 'Insufficient tokens. Document analysis costs 5 tokens.'}), 402
 
     if 'file' not in request.files:
         return jsonify({'error': 'No file provided'}), 400
@@ -165,6 +171,10 @@ def upload_document(person_id):
     # Sanitise filename
     safe_name = re.sub(r'[^\w.\-]', '_', f.filename)[:200]
     person_name = f'{person.first_name or ""} {person.last_name or ""}'.strip() or 'this person'
+
+    # Deduct tokens before the AI call
+    user.deduct_tokens(5)
+    db.session.commit()
 
     # AI reads the document
     extraction = _ai_read_document(mime, data, safe_name, person_name)

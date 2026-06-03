@@ -16,6 +16,8 @@ class User(db.Model):
     referred_by_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     referral_reward_paid = db.Column(db.Boolean, default=False, nullable=False)
     discovery_enabled = db.Column(db.Boolean, default=True, nullable=False)
+    two_factor_enabled = db.Column(db.Boolean, default=False, nullable=False)
+    email_verified = db.Column(db.Boolean, default=False, nullable=False)
     blocked_user_ids  = db.Column(db.JSON, nullable=False, default=list, server_default='[]')
     display_name      = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
@@ -23,7 +25,7 @@ class User(db.Model):
 
     TIER_TOKENS = {
         'free': 100,
-        'us': 500,
+        'us': 1500,
     }
 
     def total_tokens(self):
@@ -169,3 +171,33 @@ class ResearchMessage(db.Model):
     body       = db.Column(db.Text, nullable=False)
     read       = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+
+
+class PasswordResetToken(db.Model):
+    __tablename__ = 'password_reset_tokens'
+    id         = db.Column(db.Integer, primary_key=True)
+    user_id    = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    token      = db.Column(db.String(64), unique=True, nullable=False)
+    used       = db.Column(db.Boolean, default=False, nullable=False)
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    expires_at = db.Column(db.DateTime, nullable=False)
+
+
+class TwoFactorCode(db.Model):
+    __tablename__ = 'two_factor_codes'
+    id         = db.Column(db.Integer, primary_key=True)
+    user_id    = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    code       = db.Column(db.String(6), nullable=False)
+    temp_token = db.Column(db.String(64), unique=True, nullable=False)
+    used       = db.Column(db.Boolean, default=False, nullable=False)
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    expires_at = db.Column(db.DateTime, nullable=False)
+
+
+class EmailVerification(db.Model):
+    __tablename__ = 'email_verifications'
+    id         = db.Column(db.Integer, primary_key=True)
+    user_id    = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    token      = db.Column(db.String(64), unique=True, nullable=False)
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
+    expires_at = db.Column(db.DateTime, nullable=False)

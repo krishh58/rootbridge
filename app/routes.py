@@ -33,11 +33,25 @@ def pricing():
     return send_from_directory(os.path.join(current_app.root_path, '..', 'static'), 'pricing.html')
 
 @routes_bp.get('/app')
-@require_auth
 def app_shell():
     return send_from_directory(os.path.join(current_app.root_path, '..', 'static'), 'app.html')
 
 @routes_bp.get('/account')
-@require_auth
 def account():
     return send_from_directory(os.path.join(current_app.root_path, '..', 'static'), 'account.html')
+
+@routes_bp.get('/reset-password')
+def reset_password_page():
+    return send_from_directory(os.path.join(current_app.root_path, '..', 'static'), 'reset-password.html')
+
+@routes_bp.get('/verify-email')
+def verify_email_page():
+    return send_from_directory(os.path.join(current_app.root_path, '..', 'static'), 'verify-email.html')
+
+@routes_bp.get('/terms')
+def terms():
+    return send_from_directory(os.path.join(current_app.root_path, '..', 'static'), 'terms.html')
+
+@routes_bp.get('/privacy')
+def privacy():
+    return send_from_directory(os.path.join(current_app.root_path, '..', 'static'), 'privacy.html')

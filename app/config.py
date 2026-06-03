@@ -11,6 +11,7 @@ class Config:
     FAMILYSEARCH_CLIENT_SECRET = os.environ.get('FAMILYSEARCH_CLIENT_SECRET', '')
     STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
     STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+    BASE_URL = os.environ.get('BASE_URL', 'https://rootbridge.app')
 
 class TestConfig(Config):
     TESTING = True

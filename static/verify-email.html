@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify Email — RootBridge</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Georgia',serif;background:#0f172a;color:#f1f5f9;min-height:100vh;
+       display:flex;align-items:center;justify-content:center;padding:1.5rem}
+  .card{background:#1e293b;border-radius:12px;padding:2.5rem 2rem;width:100%;max-width:400px;
+        border:1px solid #334155;text-align:center}
+  h1{font-size:1.5rem;color:#e2d9c4;margin-bottom:.75rem}
+  .icon{font-size:3rem;margin-bottom:1rem}
+  p{color:#94a3b8;font-size:.9rem;line-height:1.6;margin-bottom:1.5rem}
+  a.btn{display:inline-block;background:#2563eb;color:#fff;border-radius:6px;
+        padding:.7rem 2rem;text-decoration:none;font-weight:600;font-size:.9rem}
+  a.btn:hover{background:#1d4ed8}
+  .error-icon{color:#f87171}
+  .success-icon{color:#4ade80}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>🌿 RootBridge</h1>
+  <div id="content"></div>
+</div>
+<script>
+  const success = new URLSearchParams(window.location.search).get('success');
+  const el = document.getElementById('content');
+  if (success === '1') {
+    el.innerHTML = `
+      <div class="icon success-icon">✓</div>
+      <p>Your email address has been verified. Your account is fully activated.</p>
+      <a href="/app" class="btn">Go to My Tree →</a>`;
+  } else {
+    el.innerHTML = `
+      <div class="icon error-icon">✗</div>
+      <p>This verification link has expired or is invalid.<br>
+         You can request a new one from your account settings.</p>
+      <a href="/account" class="btn">Go to Account</a>`;
+  }
+</script>
+</body>
+</html>

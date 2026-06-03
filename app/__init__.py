@@ -1,10 +1,15 @@
 from flask import Flask
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from .config import Config
 from .db import db
+
+limiter = Limiter(key_func=get_remote_address, default_limits=[])
 
 def create_app(config=None):
     app = Flask(__name__, static_folder='../static', static_url_path='/static')
     app.config.from_object(config or Config)
+    limiter.init_app(app)
 
     if not app.config.get('SECRET_KEY') and not app.config.get('TESTING'):
         raise RuntimeError("SECRET_KEY environment variable is not set")

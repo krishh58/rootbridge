@@ -104,7 +104,7 @@
       <div class="token-bar-wrap" style="width:100%">
         <div class="token-bar" id="tokenBar" style="width:0%"></div>
       </div>
-      <span style="color:var(--muted);font-size:.78rem">Explorer plan: 500 tokens/mo. Top-ups never expire.</span>
+      <span style="color:var(--muted);font-size:.78rem">Explorer plan: 1,500 tokens/mo. Top-ups never expire.</span>
     </div>
   </div>
 
@@ -129,6 +129,34 @@
     <button class="btn-primary" onclick="saveEmail()">Save email</button>
     <div class="success-msg" id="emailSuccess">Email updated successfully.</div>
     <div class="error-msg" id="emailErr"></div>
+  </div>
+
+  <!-- Email verification -->
+  <div class="card" id="verifyCard">
+    <h2>Email Verification</h2>
+    <div id="verifyStatus" style="font-family:'Segoe UI',sans-serif;font-size:.875rem;margin-bottom:14px;color:var(--muted)">Checking…</div>
+    <button class="btn-secondary" id="resendVerifyBtn" onclick="resendVerify()" style="display:none">Resend verification email</button>
+    <div class="success-msg" id="verifyMsg"></div>
+  </div>
+
+  <!-- Two-factor authentication -->
+  <div class="card">
+    <h2>Two-Factor Authentication</h2>
+    <p style="font-family:'Segoe UI',sans-serif;font-size:.875rem;color:var(--muted);margin-bottom:14px">
+      Add a second layer of security. When enabled, signing in will require a 6-digit code sent to your email.
+      <strong style="color:var(--amber)">Recommended for all accounts.</strong>
+    </p>
+    <div id="twoFaStatus" style="font-family:'Segoe UI',sans-serif;font-size:.875rem;margin-bottom:14px;color:var(--muted)">Loading…</div>
+    <button class="btn-primary" id="enable2faBtn" onclick="enable2fa()" style="display:none">Enable Two-Factor Auth</button>
+    <div id="disable2faSection" style="display:none">
+      <div class="field">
+        <label>Confirm your password to disable 2FA</label>
+        <input type="password" id="disable2faPassword" placeholder="Current password" autocomplete="current-password">
+        <div class="field-error" id="disable2faErr"></div>
+      </div>
+      <button class="btn-secondary" onclick="disable2fa()">Disable Two-Factor Auth</button>
+    </div>
+    <div class="success-msg" id="twoFaMsg"></div>
   </div>
 
   <!-- Change password -->
@@ -157,7 +185,7 @@
 
 </div>
 
-<footer>© 2026 RootBridge &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="/pricing">Pricing</a></footer>
+<footer>© 2026 RootBridge &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="/pricing">Pricing</a> &nbsp;·&nbsp; <a href="/terms">Terms</a> &nbsp;·&nbsp; <a href="/privacy">Privacy</a></footer>
 
 <script>
   let userEmail = '';
@@ -171,9 +199,31 @@
     document.getElementById('tierBadge').textContent = d.tier === 'explorer' ? 'Explorer' : 'Free';
     document.getElementById('tierBadge').className = 'badge badge-' + d.tier;
     document.getElementById('tokenCount').textContent = d.token_balance.toLocaleString();
-    const pct = Math.min(100, Math.round((d.token_balance / 500) * 100));
+    const pct = Math.min(100, Math.round((d.token_balance / 1500) * 100));
     document.getElementById('tokenBar').style.width = pct + '%';
     document.getElementById('referralCode').textContent = d.referral_code;
+
+    // Email verification status
+    const vs = document.getElementById('verifyStatus');
+    const resendBtn = document.getElementById('resendVerifyBtn');
+    if (d.email_verified) {
+      vs.innerHTML = '<span style="color:#4ade80">✓ Email verified</span>';
+    } else {
+      vs.innerHTML = '<span style="color:#fbbf24">⚠ Email not verified — some features are limited.</span>';
+      resendBtn.style.display = 'inline-block';
+    }
+
+    // 2FA status
+    const twoFaStatus = document.getElementById('twoFaStatus');
+    const enable2faBtn = document.getElementById('enable2faBtn');
+    const disable2faSection = document.getElementById('disable2faSection');
+    if (d.two_factor_enabled) {
+      twoFaStatus.innerHTML = '<span style="color:#4ade80">✓ Two-factor authentication is ON — your account is protected.</span>';
+      disable2faSection.style.display = 'block';
+    } else {
+      twoFaStatus.innerHTML = '<span style="color:#fbbf24">⚠ Two-factor authentication is OFF.</span>';
+      enable2faBtn.style.display = 'inline-block';
+    }
   }
 
   function copyReferral() {
@@ -280,6 +330,45 @@
   async function logout() {
     await fetch('/auth/logout', {method: 'POST', credentials: 'include'});
     window.location.href = '/';
+  }
+
+  async function resendVerify() {
+    const btn = document.getElementById('resendVerifyBtn');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    await fetch('/api/auth/resend-verification', {method: 'POST', credentials: 'include'});
+    const msg = document.getElementById('verifyMsg');
+    msg.textContent = 'Verification email sent. Check your inbox.';
+    msg.style.display = 'block';
+    btn.textContent = 'Sent!';
+  }
+
+  async function enable2fa() {
+    const r = await fetch('/api/auth/2fa/enable', {method: 'POST', credentials: 'include'});
+    if (r.ok) {
+      document.getElementById('twoFaMsg').textContent = '✓ Two-factor authentication enabled.';
+      document.getElementById('twoFaMsg').style.display = 'block';
+      document.getElementById('enable2faBtn').style.display = 'none';
+      document.getElementById('twoFaStatus').innerHTML = '<span style="color:#4ade80">✓ Two-factor authentication is ON.</span>';
+      document.getElementById('disable2faSection').style.display = 'block';
+    }
+  }
+
+  async function disable2fa() {
+    const password = document.getElementById('disable2faPassword').value;
+    const errEl = document.getElementById('disable2faErr');
+    errEl.textContent = '';
+    const r = await fetch('/api/auth/2fa/disable', {
+      method: 'POST', credentials: 'include',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({password}),
+    });
+    const data = await r.json();
+    if (!r.ok) { errEl.textContent = data.error || 'Failed to disable.'; return; }
+    document.getElementById('twoFaMsg').textContent = 'Two-factor authentication disabled.';
+    document.getElementById('twoFaMsg').style.display = 'block';
+    document.getElementById('disable2faSection').style.display = 'none';
+    document.getElementById('twoFaStatus').innerHTML = '<span style="color:#fbbf24">⚠ Two-factor authentication is OFF.</span>';
+    document.getElementById('enable2faBtn').style.display = 'inline-block';
   }
 
   loadAccount();
