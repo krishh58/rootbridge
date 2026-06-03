@@ -97,3 +97,6 @@ footer { text-align: center; padding: 32px; color: var(--muted); font-size: 0.85
 .link { fill: none; stroke: #334155; stroke-width: 1.5; }
 .person-card-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 200; display: flex; align-items: center; justify-content: center; }
 .person-card-overlay.hidden { display: none; }
+.form-field { display: flex; flex-direction: column; gap: 2px; }
+.form-error { font-size: .78rem; color: #f87171; font-family: 'Segoe UI', sans-serif; min-height: 1em; }
+.input-field.input-error { border-color: #ef4444; }

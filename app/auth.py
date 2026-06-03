@@ -88,3 +88,54 @@ def set_discovery():
     user.discovery_enabled = bool(data.get('discovery_enabled', True))
     db.session.commit()
     return jsonify({'discovery_enabled': user.discovery_enabled})
+
+
+@auth_bp.get('/api/auth/me')
+@require_auth
+def get_me():
+    user = db.session.get(User, g.user_id)
+    return jsonify({
+        'id': user.id,
+        'email': user.email,
+        'tier': user.tier,
+        'token_balance': user.token_balance,
+        'discovery_enabled': user.discovery_enabled,
+        'referral_code': user.referral_code,
+    })
+
+
+@auth_bp.patch('/api/auth/me')
+@require_auth
+def update_me():
+    data = request.get_json() or {}
+    user = db.session.get(User, g.user_id)
+    errors = {}
+
+    new_email = data.get('email', '').strip().lower()
+    if new_email and new_email != user.email:
+        if not re.fullmatch(r'[^@\s]+@[^@\s]+\.[^@\s]+', new_email):
+            errors['email'] = 'Enter a valid email address.'
+        elif User.query.filter_by(email=new_email).first():
+            errors['email'] = 'That email is already in use.'
+        else:
+            user.email = new_email
+
+    new_password = data.get('password', '')
+    if new_password:
+        if len(new_password) < 8:
+            errors['password'] = 'Password must be at least 8 characters.'
+        else:
+            current_password = data.get('current_password', '')
+            if not current_password:
+                errors['password'] = 'Enter your current password to set a new one.'
+            elif not bcrypt.checkpw(current_password.encode(), user.password_hash.encode()):
+                errors['current_password'] = 'Current password is incorrect.'
+            else:
+                user.password_hash = bcrypt.hashpw(
+                    new_password.encode(), bcrypt.gensalt()).decode()
+
+    if errors:
+        return jsonify({'errors': errors}), 422
+
+    db.session.commit()
+    return jsonify({'ok': True, 'email': user.email})

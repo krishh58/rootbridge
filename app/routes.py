@@ -36,3 +36,8 @@ def pricing():
 @require_auth
 def app_shell():
     return send_from_directory(os.path.join(current_app.root_path, '..', 'static'), 'app.html')
+
+@routes_bp.get('/account')
+@require_auth
+def account():
+    return send_from_directory(os.path.join(current_app.root_path, '..', 'static'), 'account.html')

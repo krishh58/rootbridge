@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account — RootBridge</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#fdf8f0;--bg2:#f7f0e4;--surface:#fff;--card:#fffdf8;
+      --border:#e8d9c0;--text:#2c1a0e;--muted:#7a6248;
+      --amber:#b5681e;--amber-light:#d4832e;--amber-pale:#fef3e2;
+      --green:#2d6a4f;--red:#b91c1c;--ink:#1a0f06;
+    }
+    body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.7}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:2px solid var(--border);background:rgba(253,248,240,.97);position:sticky;top:0;z-index:100}
+    .logo{display:flex;align-items:center;text-decoration:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;font-family:'Segoe UI',sans-serif;margin-left:24px}
+    .nav-links a:hover{color:var(--amber)}
+    .btn-nav{background:var(--amber);color:#fff;padding:9px 24px;border-radius:4px;font-weight:600;font-size:.85rem;text-decoration:none;font-family:'Segoe UI',sans-serif;cursor:pointer;border:none}
+    .btn-nav:hover{background:var(--amber-light)}
+
+    .page-hero{text-align:center;padding:40px 20px 32px;border-bottom:1px solid var(--border)}
+    .page-hero h1{font-size:2rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+    .page-hero p{font-size:.9rem;color:var(--muted);font-family:'Segoe UI',sans-serif}
+
+    .section{max-width:580px;margin:0 auto;padding:40px 24px}
+
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:28px 24px;margin-bottom:24px}
+    .card h2{font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+
+    .field{margin-bottom:16px}
+    .field label{display:block;font-size:.8rem;font-weight:600;color:var(--muted);font-family:'Segoe UI',sans-serif;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+    .field input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:4px;font-size:.9rem;font-family:'Segoe UI',sans-serif;background:var(--bg);color:var(--text);transition:border-color .15s}
+    .field input:focus{outline:none;border-color:var(--amber)}
+    .field input.error{border-color:var(--red)}
+    .field-error{font-size:.8rem;color:var(--red);font-family:'Segoe UI',sans-serif;margin-top:4px}
+    .field-hint{font-size:.78rem;color:var(--muted);font-family:'Segoe UI',sans-serif;margin-top:4px}
+
+    .btn-primary{background:var(--amber);color:#fff;padding:11px 24px;border-radius:4px;font-weight:700;font-size:.9rem;border:none;cursor:pointer;font-family:'Segoe UI',sans-serif;transition:background .2s}
+    .btn-primary:hover{background:var(--amber-light)}
+    .btn-primary:disabled{opacity:.5;cursor:not-allowed}
+
+    .status-row{display:flex;align-items:center;gap:10px;font-family:'Segoe UI',sans-serif;font-size:.85rem;margin-bottom:14px}
+    .badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+    .badge-free{background:#f1f5f9;color:#475569}
+    .badge-explorer{background:#fef3e2;color:var(--amber)}
+
+    .token-bar-wrap{background:#f1f5f9;border-radius:4px;height:8px;margin-bottom:6px}
+    .token-bar{background:var(--amber);border-radius:4px;height:8px;transition:width .4s}
+
+    .referral-box{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:14px 16px;display:flex;align-items:center;gap:10px;font-family:'Segoe UI',sans-serif}
+    .referral-code{flex:1;font-size:.9rem;font-weight:700;color:var(--ink);letter-spacing:.05em}
+    .btn-copy{background:none;border:1px solid var(--border);border-radius:4px;padding:6px 12px;font-size:.8rem;cursor:pointer;color:var(--muted);font-family:'Segoe UI',sans-serif}
+    .btn-copy:hover{border-color:var(--amber);color:var(--amber)}
+
+    .success-msg{background:#dcfce7;border:1px solid #86efac;border-radius:4px;padding:10px 14px;color:#166534;font-family:'Segoe UI',sans-serif;font-size:.85rem;margin-top:12px;display:none}
+    .error-msg{background:#fee2e2;border:1px solid #fca5a5;border-radius:4px;padding:10px 14px;color:var(--red);font-family:'Segoe UI',sans-serif;font-size:.85rem;margin-top:12px;display:none}
+
+    footer{text-align:center;padding:32px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);font-family:'Segoe UI',sans-serif}
+    footer a{color:var(--muted);text-decoration:none}
+    footer a:hover{color:var(--amber)}
+
+    @media(max-width:600px){nav{padding:14px 20px}.section{padding:24px 16px}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">
+    <svg width="140" height="60" viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg">
+      <text x="140" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#4a7c59" letter-spacing="2">ROOT</text>
+      <text x="140" y="72" text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#1a3d2b" letter-spacing="4">BRIDGE</text>
+      <line x1="80" y1="52" x2="200" y2="52" stroke="#4a7c59" stroke-width=".6" opacity=".3"/>
+      <path d="M133,76 C131,82 130,88 130,94 C130,100 131,106 131,112" stroke="#3b2a1a" stroke-width="14" fill="none" stroke-linecap="butt"/>
+      <path d="M131,110 C131,113 132,116 133,118" stroke="#3b2a1a" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M131,114 C122,116 112,113 102,119 C90,126 78,122 62,128" stroke="#3b2a1a" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+      <path d="M132,114 C140,116 150,112 160,118 C170,124 180,121 194,127" stroke="#3b2a1a" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="/app">My Tree</a>
+    <a href="/pricing">Pricing</a>
+    <button class="btn-nav" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>My Account</h1>
+  <p id="heroEmail" style="font-family:'Segoe UI',sans-serif"></p>
+</div>
+
+<div class="section">
+
+  <!-- Plan & tokens -->
+  <div class="card">
+    <h2>Plan &amp; Tokens</h2>
+    <div class="status-row">
+      <span>Current plan:</span>
+      <span class="badge" id="tierBadge">—</span>
+      <a href="/pricing" style="margin-left:auto;color:var(--amber);text-decoration:none;font-family:'Segoe UI',sans-serif;font-size:.85rem">Upgrade →</a>
+    </div>
+    <div class="status-row" style="flex-direction:column;align-items:flex-start;gap:4px">
+      <span>Token balance: <strong id="tokenCount">—</strong></span>
+      <div class="token-bar-wrap" style="width:100%">
+        <div class="token-bar" id="tokenBar" style="width:0%"></div>
+      </div>
+      <span style="color:var(--muted);font-size:.78rem">Explorer plan: 500 tokens/mo. Top-ups never expire.</span>
+    </div>
+  </div>
+
+  <!-- Referral -->
+  <div class="card">
+    <h2>Referral Code</h2>
+    <p style="font-family:'Segoe UI',sans-serif;font-size:.875rem;color:var(--muted);margin-bottom:14px">Share your code. When someone signs up with it, you both get 25 bonus tokens.</p>
+    <div class="referral-box">
+      <span class="referral-code" id="referralCode">—</span>
+      <button class="btn-copy" onclick="copyReferral()">Copy link</button>
+    </div>
+  </div>
+
+  <!-- Update email -->
+  <div class="card">
+    <h2>Update Email</h2>
+    <div class="field">
+      <label>New email address</label>
+      <input type="email" id="newEmail" placeholder="you@example.com" autocomplete="email">
+      <div class="field-error" id="emailError"></div>
+    </div>
+    <button class="btn-primary" onclick="saveEmail()">Save email</button>
+    <div class="success-msg" id="emailSuccess">Email updated successfully.</div>
+    <div class="error-msg" id="emailErr"></div>
+  </div>
+
+  <!-- Change password -->
+  <div class="card">
+    <h2>Change Password</h2>
+    <div class="field">
+      <label>Current password</label>
+      <input type="password" id="currentPassword" placeholder="Enter current password" autocomplete="current-password">
+      <div class="field-error" id="currentPasswordError"></div>
+    </div>
+    <div class="field">
+      <label>New password</label>
+      <input type="password" id="newPassword" placeholder="At least 8 characters" autocomplete="new-password">
+      <div class="field-error" id="passwordError"></div>
+      <div class="field-hint">Minimum 8 characters.</div>
+    </div>
+    <div class="field">
+      <label>Confirm new password</label>
+      <input type="password" id="confirmPassword" placeholder="Repeat new password" autocomplete="new-password">
+      <div class="field-error" id="confirmPasswordError"></div>
+    </div>
+    <button class="btn-primary" onclick="savePassword()">Change password</button>
+    <div class="success-msg" id="passwordSuccess">Password changed successfully.</div>
+    <div class="error-msg" id="passwordErr"></div>
+  </div>
+
+</div>
+
+<footer>© 2026 RootBridge &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="/pricing">Pricing</a></footer>
+
+<script>
+  let userEmail = '';
+
+  async function loadAccount() {
+    const r = await fetch('/api/auth/me', {credentials: 'include'});
+    if (!r.ok) { window.location.href = '/'; return; }
+    const d = await r.json();
+    userEmail = d.email;
+    document.getElementById('heroEmail').textContent = d.email;
+    document.getElementById('tierBadge').textContent = d.tier === 'explorer' ? 'Explorer' : 'Free';
+    document.getElementById('tierBadge').className = 'badge badge-' + d.tier;
+    document.getElementById('tokenCount').textContent = d.token_balance.toLocaleString();
+    const pct = Math.min(100, Math.round((d.token_balance / 500) * 100));
+    document.getElementById('tokenBar').style.width = pct + '%';
+    document.getElementById('referralCode').textContent = d.referral_code;
+  }
+
+  function copyReferral() {
+    const code = document.getElementById('referralCode').textContent;
+    const url = window.location.origin + '/?ref=' + code;
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = document.querySelector('.btn-copy');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy link'; }, 2000);
+    });
+  }
+
+  function clearFieldErrors() {
+    document.querySelectorAll('.field-error').forEach(el => { el.textContent = ''; });
+    document.querySelectorAll('.field input').forEach(el => { el.classList.remove('error'); });
+  }
+
+  function showFieldError(fieldId, errorId, msg) {
+    document.getElementById(fieldId).classList.add('error');
+    document.getElementById(errorId).textContent = msg;
+  }
+
+  async function saveEmail() {
+    clearFieldErrors();
+    document.getElementById('emailSuccess').style.display = 'none';
+    document.getElementById('emailErr').style.display = 'none';
+
+    const newEmail = document.getElementById('newEmail').value.trim();
+    if (!newEmail) { showFieldError('newEmail', 'emailError', 'Enter a new email address.'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newEmail)) {
+      showFieldError('newEmail', 'emailError', 'Enter a valid email address.'); return;
+    }
+    if (newEmail === userEmail) {
+      showFieldError('newEmail', 'emailError', 'That is already your current email address.'); return;
+    }
+
+    const btn = event.target;
+    btn.disabled = true;
+    const r = await fetch('/api/auth/me', {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      credentials: 'include',
+      body: JSON.stringify({email: newEmail}),
+    });
+    const d = await r.json();
+    btn.disabled = false;
+
+    if (d.errors && d.errors.email) {
+      showFieldError('newEmail', 'emailError', d.errors.email);
+    } else if (!r.ok) {
+      const el = document.getElementById('emailErr');
+      el.textContent = 'Something went wrong. Please try again.';
+      el.style.display = 'block';
+    } else {
+      userEmail = d.email;
+      document.getElementById('heroEmail').textContent = d.email;
+      document.getElementById('newEmail').value = '';
+      document.getElementById('emailSuccess').style.display = 'block';
+    }
+  }
+
+  async function savePassword() {
+    clearFieldErrors();
+    document.getElementById('passwordSuccess').style.display = 'none';
+    document.getElementById('passwordErr').style.display = 'none';
+
+    const current = document.getElementById('currentPassword').value;
+    const newPw = document.getElementById('newPassword').value;
+    const confirm = document.getElementById('confirmPassword').value;
+    let valid = true;
+
+    if (!current) { showFieldError('currentPassword', 'currentPasswordError', 'Enter your current password.'); valid = false; }
+    if (!newPw) { showFieldError('newPassword', 'passwordError', 'Enter a new password.'); valid = false; }
+    else if (newPw.length < 8) { showFieldError('newPassword', 'passwordError', 'Password must be at least 8 characters.'); valid = false; }
+    if (newPw && confirm !== newPw) { showFieldError('confirmPassword', 'confirmPasswordError', 'Passwords do not match.'); valid = false; }
+    if (!valid) return;
+
+    const btn = event.target;
+    btn.disabled = true;
+    const r = await fetch('/api/auth/me', {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json'},
+      credentials: 'include',
+      body: JSON.stringify({current_password: current, password: newPw}),
+    });
+    const d = await r.json();
+    btn.disabled = false;
+
+    if (d.errors) {
+      if (d.errors.current_password) showFieldError('currentPassword', 'currentPasswordError', d.errors.current_password);
+      if (d.errors.password) showFieldError('newPassword', 'passwordError', d.errors.password);
+    } else if (!r.ok) {
+      const el = document.getElementById('passwordErr');
+      el.textContent = 'Something went wrong. Please try again.';
+      el.style.display = 'block';
+    } else {
+      document.getElementById('currentPassword').value = '';
+      document.getElementById('newPassword').value = '';
+      document.getElementById('confirmPassword').value = '';
+      document.getElementById('passwordSuccess').style.display = 'block';
+    }
+  }
+
+  async function logout() {
+    await fetch('/auth/logout', {method: 'POST', credentials: 'include'});
+    window.location.href = '/';
+  }
+
+  loadAccount();
+</script>
+</body>
+</html>

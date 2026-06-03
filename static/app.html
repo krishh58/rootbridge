@@ -15,6 +15,7 @@
     <a href="/" class="nav-brand">RootBridge</a>
     <div class="nav-right">
       <span class="token-badge" id="tokenBadge">— tokens</span>
+      <a href="/account" class="btn-ghost" style="text-decoration:none;margin-right:8px">My Account</a>
       <button class="btn-ghost" onclick="logout()">Logout</button>
     </div>
   </nav>
@@ -107,13 +108,25 @@
 
   <div id="addPersonModal" class="modal hidden">
     <div class="modal-content">
-      <h3>Add Person</h3>
-      <input id="apFirst" placeholder="First name" class="input-field">
-      <input id="apLast" placeholder="Last name *" class="input-field">
-      <input id="apBirthYear" placeholder="Birth year (e.g. 1820)" type="number" class="input-field">
-      <input id="apBirthPlace" placeholder="Birth state or country" class="input-field">
+      <h3>Add Person to Search</h3>
+      <div class="form-field">
+        <input id="apFirst" placeholder="First name" class="input-field" autocomplete="off">
+        <span class="form-error" id="apFirstErr"></span>
+      </div>
+      <div class="form-field">
+        <input id="apLast" placeholder="Last name *" class="input-field" autocomplete="off">
+        <span class="form-error" id="apLastErr"></span>
+      </div>
+      <div class="form-field">
+        <input id="apBirthYear" placeholder="Birth year (e.g. 1820)" type="number" min="1600" max="1990" class="input-field">
+        <span class="form-error" id="apBirthYearErr"></span>
+      </div>
+      <div class="form-field">
+        <input id="apBirthPlace" placeholder="Birth state or country (e.g. Kentucky)" class="input-field" autocomplete="off">
+        <span class="form-error" id="apBirthPlaceErr"></span>
+      </div>
       <div class="modal-actions">
-        <button class="btn-primary" onclick="addPerson()">Add</button>
+        <button class="btn-primary" id="addPersonBtn" onclick="addPerson()">Search &amp; Add</button>
         <button class="btn-ghost" onclick="closeModal('addPersonModal')">Cancel</button>
       </div>
     </div>
@@ -154,12 +167,47 @@
       }
     }
 
+    function clearFormErrors() {
+      ['apFirst','apLast','apBirthYear','apBirthPlace'].forEach(id => {
+        document.getElementById(id).classList.remove('input-error');
+        document.getElementById(id + 'Err').textContent = '';
+      });
+    }
+
+    function setFieldError(id, msg) {
+      document.getElementById(id).classList.add('input-error');
+      document.getElementById(id + 'Err').textContent = msg;
+    }
+
     async function addPerson() {
+      clearFormErrors();
       const first = document.getElementById('apFirst').value.trim();
       const last = document.getElementById('apLast').value.trim();
-      const birthYear = parseInt(document.getElementById('apBirthYear').value) || null;
+      const birthYearRaw = document.getElementById('apBirthYear').value.trim();
       const birthPlace = document.getElementById('apBirthPlace').value.trim();
-      if (!last) { alert('Last name is required'); return; }
+      let valid = true;
+
+      if (!last) { setFieldError('apLast', 'Last name is required.'); valid = false; }
+      else if (!/^[A-Za-z\s'\-\.]+$/.test(last)) { setFieldError('apLast', 'Last name should contain only letters, spaces, hyphens, or apostrophes.'); valid = false; }
+
+      if (first && !/^[A-Za-z\s'\-\.]+$/.test(first)) { setFieldError('apFirst', 'First name should contain only letters, spaces, hyphens, or apostrophes.'); valid = false; }
+
+      let birthYear = null;
+      if (birthYearRaw) {
+        birthYear = parseInt(birthYearRaw);
+        if (isNaN(birthYear) || birthYear < 1600 || birthYear > 1990) {
+          setFieldError('apBirthYear', 'Enter a year between 1600 and 1990.'); valid = false;
+        }
+      }
+
+      if (birthPlace && birthPlace.length > 100) { setFieldError('apBirthPlace', 'Keep the birth place under 100 characters.'); valid = false; }
+
+      if (!valid) return;
+
+      const btn = document.getElementById('addPersonBtn');
+      btn.disabled = true;
+      btn.textContent = 'Searching…';
+
       const r = await fetch('/api/persons', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -170,13 +218,19 @@
         })
       });
       const data = await r.json();
+      btn.disabled = false;
+      btn.textContent = 'Search & Add';
+      if (!r.ok) { alert(data.error || 'Something went wrong. Please try again.'); return; }
       currentTreeId = data.tree_id;
       localStorage.setItem('lastTreeId', currentTreeId);
       closeModal('addPersonModal');
       loadTree(currentTreeId);
     }
 
-    function showAddPersonForm() { document.getElementById('addPersonModal').classList.remove('hidden'); }
+    function showAddPersonForm() {
+      clearFormErrors();
+      document.getElementById('addPersonModal').classList.remove('hidden');
+    }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
     async function logout() {
