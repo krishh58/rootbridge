@@ -93,7 +93,7 @@ def _ai_read_document(mime_type: str, file_data: bytes,
                 },
             ],
         }]
-        model = 'anthropic/claude-3.5-sonnet'
+        model = 'anthropic/claude-3.5-haiku'
     else:
         # Text model for PDFs and plain text
         if mime_type == 'application/pdf':
