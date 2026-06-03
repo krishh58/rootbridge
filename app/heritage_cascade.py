@@ -147,7 +147,7 @@ def run_european_cascade(first: str = '', last: str = '', birth_year: int = None
         'death_year': None, 'death_place': None,
         'parent_ids': [], 'spouse_ids': [],
     }
-    gaps = classify_gaps(person_snapshot)
+    gaps = classify_gaps(person_snapshot, results)
     score = confidence_score(person_snapshot)
 
     output = {
@@ -279,7 +279,7 @@ def run_aa_cascade(first: str = '', last: str = '', birth_year: int = None,
         'death_year': None, 'death_place': None,
         'parent_ids': [], 'spouse_ids': [],
     }
-    gaps = classify_gaps(person_snapshot)
+    gaps = classify_gaps(person_snapshot, results)
     score = confidence_score(person_snapshot)
     wall = detect_1870_wall(birth_year, None)
 

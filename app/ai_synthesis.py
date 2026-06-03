@@ -9,21 +9,34 @@ def synthesize_gaps(person: dict, results: list, gaps: list) -> dict:
     name = f"{person.get('first_name', '')} {person.get('last_name', '')}".strip()
     birth = f"{person.get('birth_year', 'unknown')} {person.get('birth_state', '')}".strip()
 
-    found_summary = f"{len(results)} records found" if results else "No records found"
+    sources = list({r.get('source', '') for r in results if r.get('source')})
+    corroborated = [r for r in results if r.get('corroboration_score', 0) > 0]
+
+    found_summary = (
+        f"{len(results)} records found across {len(sources)} sources"
+        if results else "No records found"
+    )
+    corroboration_note = (
+        f"{len(corroborated)} of those records were corroborated by multiple independent sources."
+        if corroborated else "No cross-source corroboration found."
+    )
+
     gap_list = '\n'.join(
-        f"- {g['gap_type']}: try {g['suggested_source']} — search: {g['suggested_query']}"
+        f"- {g['label']}: {g['detail']}"
         for g in gaps
-    ) or "No gaps — record appears complete."
+    ) or "All key fields are populated."
 
-    prompt = f"""You are a genealogy research assistant. Summarize findings for {name} (born ~{birth}).
+    prompt = f"""You are a genealogy research assistant for RootBridge, a service that searches archives on behalf of users.
 
-Records found: {found_summary}
-Sources: {', '.join(set(r.get('source', '') for r in results)) or 'none'}
+We searched for {name} (born ~{birth}) across these archives: {', '.join(sources) or 'none'}.
 
-Research gaps:
+Results: {found_summary}. {corroboration_note}
+
+Research gaps we identified after searching:
 {gap_list}
 
-Write 2-3 plain English sentences: what was found, what is missing, and the single most important next step. Be specific and helpful."""
+Write 2-3 plain English sentences summarizing: what we found, what is still missing, and what that means for the research.
+Do NOT tell the user to go search somewhere themselves — RootBridge does the searching. Be specific and helpful."""
 
     try:
         resp = requests.post(
@@ -33,7 +46,7 @@ Write 2-3 plain English sentences: what was found, what is missing, and the sing
                 'Content-Type': 'application/json',
             },
             json={'model': MODEL, 'messages': [{'role': 'user', 'content': prompt}],
-                  'max_tokens': 150},
+                  'max_tokens': 180},
             timeout=10,
         )
         resp.raise_for_status()

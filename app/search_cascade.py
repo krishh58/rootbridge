@@ -273,6 +273,14 @@ def run_us_cascade(first: str = '', last: str = '',
     raw_results += search_dpla(first, last, birth_year, page_size=5)
     raw_results += search_nara(first, last, birth_year, birth_place)
 
+    # Targeted gap searches — obituaries and marriage records
+    obit_results = _dpla_search(
+        f'{first} {last} obituary death'.strip(), 'dpla_obituary', page_size=3)
+    marriage_results = _dpla_search(
+        f'{first} {last} marriage'.strip(), 'dpla_marriage', page_size=3)
+    raw_results += obit_results
+    raw_results += marriage_results
+
     results = cross_reference(raw_results, first, last, birth_year, birth_place)
 
     person_snapshot = {
@@ -291,7 +299,7 @@ def run_us_cascade(first: str = '', last: str = '',
 
     # Boost confidence when multiple sources corroborate
     corroborated_count = sum(1 for r in results if r.get('corroboration_score', 0) > 0)
-    gaps = classify_gaps(person_snapshot)
+    gaps = classify_gaps(person_snapshot, results)
     score = confidence_score(person_snapshot)
     if corroborated_count >= 2:
         score = min(score + 15, 95)
