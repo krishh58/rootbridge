@@ -201,3 +201,78 @@ def send_verification_email(to_email: str, verify_url: str) -> bool:
     except Exception as exc:
         logger.error('Failed to send verification email to %s: %s', to_email, exc)
         return False
+
+
+def send_rescan_email(to_email: str, findings: list) -> bool:
+    """
+    findings: list of {person_name: str, items: [{source, record_type, url, title?}]}
+    """
+    gmail_user = os.environ.get('GMAIL_USER', '')
+    gmail_password = os.environ.get('GMAIL_APP_PASSWORD', '')
+    if not gmail_user or not gmail_password:
+        logger.warning('GMAIL credentials not set — skipping rescan email')
+        return False
+
+    total_new = sum(len(f['items']) for f in findings)
+    people_count = len(findings)
+
+    rows_html = ''
+    for f in findings:
+        name = html_escape(f['person_name'])
+        rows_html += f'<tr><td colspan="2" style="padding:10px 0 4px;font-weight:700;color:#1e293b;font-size:.9rem">{name}</td></tr>'
+        for item in f['items']:
+            source = html_escape(item.get('source', '').replace('_', ' ').title())
+            rtype  = html_escape(item.get('record_type', '').replace('_', ' ').title())
+            url    = item.get('url', '#')
+            title  = html_escape(item.get('title', '') or rtype or source)
+            safe_url = url if url.startswith('http') else '#'
+            rows_html += f'''<tr>
+              <td style="padding:3px 0;font-size:.85rem;color:#334155">{source}</td>
+              <td style="padding:3px 0;font-size:.85rem">
+                <a href="{html_escape(safe_url)}" style="color:#2563eb">{title[:80]}</a>
+              </td>
+            </tr>'''
+
+    body_html = f"""
+<div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;color:#1e293b">
+  <div style="background:#1e293b;padding:20px 24px;border-radius:8px 8px 0 0">
+    <span style="color:#e2d9c4;font-size:1.2rem;font-weight:700">🌿 RootBridge</span>
+    <span style="color:#94a3b8;font-size:.85rem;margin-left:12px">Monthly Research Update</span>
+  </div>
+  <div style="background:#faf7f2;padding:24px;border:1px solid #e2d8cc;border-top:none;border-radius:0 0 8px 8px">
+    <h2 style="margin:0 0 8px;font-size:1.2rem">
+      We found {total_new} new record{'s' if total_new != 1 else ''} across {people_count} ancestor{'s' if people_count != 1 else ''} in your tree
+    </h2>
+    <p style="color:#64748b;font-size:.875rem;margin:0 0 20px">
+      RootBridge automatically re-scanned your family tree this month against updated archives.
+      Here's what's new:
+    </p>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:20px">
+      {rows_html}
+    </table>
+    <a href="https://rootbridge.app/app"
+       style="display:inline-block;padding:.7rem 2rem;background:#2563eb;color:#fff;
+              border-radius:6px;text-decoration:none;font-weight:600;font-size:.9rem">
+      View in RootBridge →
+    </a>
+    <p style="color:#94a3b8;font-size:.78rem;margin-top:20px">
+      You're receiving this because you have a RootBridge account.
+      Manage notification preferences in <a href="https://rootbridge.app/account" style="color:#2563eb">account settings</a>.
+    </p>
+  </div>
+</div>"""
+
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = f'RootBridge found {total_new} new record{"s" if total_new != 1 else ""} in your family tree'
+    msg['From'] = gmail_user
+    msg['To'] = to_email
+    msg.attach(MIMEText(body_html, 'html'))
+
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+            server.login(gmail_user, gmail_password)
+            server.sendmail(gmail_user, to_email, msg.as_string())
+        return True
+    except Exception as exc:
+        logger.error('Failed to send rescan email to %s: %s', to_email, exc)
+        return False

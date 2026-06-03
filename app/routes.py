@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, g, send_from_directory, current_app
+from flask import Blueprint, jsonify, g, send_from_directory, current_app, request
 import os
 from .auth import require_auth
 from .db import db
@@ -9,6 +9,15 @@ routes_bp = Blueprint('routes', __name__)
 @routes_bp.get('/health')
 def health():
     return jsonify({'status': 'ok'})
+
+@routes_bp.post('/api/admin/rescan')
+def trigger_rescan():
+    secret = os.environ.get('ADMIN_SECRET', '')
+    if not secret or request.headers.get('X-Admin-Secret') != secret:
+        return jsonify({'error': 'Forbidden'}), 403
+    from .rescan import run_monthly_rescan
+    run_monthly_rescan()
+    return jsonify({'ok': True})
 
 @routes_bp.get('/api/me')
 @require_auth

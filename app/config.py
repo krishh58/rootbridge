@@ -12,6 +12,7 @@ class Config:
     STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
     STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
     BASE_URL = os.environ.get('BASE_URL', 'https://rootbridge.app')
+    ADMIN_SECRET = os.environ.get('ADMIN_SECRET', '')
 
 class TestConfig(Config):
     TESTING = True

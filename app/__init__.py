@@ -50,11 +50,16 @@ def create_app(config=None):
     if not app.config.get('TESTING'):
         from apscheduler.schedulers.background import BackgroundScheduler
         from .matcher import run_matcher
+        from .rescan import run_monthly_rescan
         scheduler = BackgroundScheduler(daemon=True)
         def _nightly_match():
             with app.app_context():
                 run_matcher()
+        def _monthly_rescan():
+            with app.app_context():
+                run_monthly_rescan()
         scheduler.add_job(_nightly_match, 'cron', hour=3, max_instances=1)
+        scheduler.add_job(_monthly_rescan, 'cron', day=1, hour=7, max_instances=1)
         if not scheduler.running:
             scheduler.start()
 
