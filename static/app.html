@@ -37,6 +37,7 @@
     <div class="app-layout" style="flex:1;display:flex">
       <aside class="sidebar">
         <h2>My Trees</h2>
+        <div id="savedTreesList" style="margin-bottom:.75rem"></div>
         <div id="treeList"></div>
         <button class="btn-primary" onclick="showAddPersonForm()">+ Add Person</button>
 
@@ -159,12 +160,50 @@
     }
 
     async function loadTrees() {
+      // Always fetch the user's tree list from the server — don't rely on localStorage alone
       const params = new URLSearchParams(window.location.search);
-      const treeId = params.get('tree') || localStorage.getItem('lastTreeId');
-      if (treeId) {
-        currentTreeId = parseInt(treeId);
+      const urlTreeId = params.get('tree');
+
+      const resp = await fetch('/api/trees', {credentials: 'include'});
+      if (!resp.ok) return;
+      const data = await resp.json();
+      const allTrees = [...(data.trees || []), ...(data.shared || [])];
+
+      renderSavedTrees(allTrees);
+
+      // Determine which tree to load: URL param → localStorage → most recently updated
+      const localId = localStorage.getItem('lastTreeId');
+      const targetId = urlTreeId || localId || (allTrees.length ? String(allTrees[0].id) : null);
+      if (targetId) {
+        currentTreeId = parseInt(targetId);
+        localStorage.setItem('lastTreeId', currentTreeId);
         loadTree(currentTreeId);
       }
+    }
+
+    function renderSavedTrees(trees) {
+      const container = document.getElementById('savedTreesList');
+      if (!trees.length) { container.innerHTML = ''; return; }
+      container.innerHTML = trees.map(t => `
+        <div onclick="switchToTree(${t.id})" style="cursor:pointer;padding:6px 10px;border-radius:6px;margin-bottom:4px;background:${currentTreeId===t.id?'#1e40af':'#1e293b'};border:1px solid #334155" id="tree-item-${t.id}">
+          <div style="font-size:.85rem;font-weight:600;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${escHtml(t.name)}</div>
+          <div style="font-size:.72rem;color:#64748b">${t.person_count} ${t.person_count===1?'person':'people'}${t.owned?'':' · shared'}</div>
+        </div>
+      `).join('');
+    }
+
+    function escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    async function switchToTree(treeId) {
+      currentTreeId = treeId;
+      localStorage.setItem('lastTreeId', treeId);
+      // Update active highlight
+      document.querySelectorAll('[id^="tree-item-"]').forEach(el => {
+        el.style.background = el.id === 'tree-item-' + treeId ? '#1e40af' : '#1e293b';
+      });
+      loadTree(treeId);
     }
 
     function clearFormErrors() {
@@ -224,7 +263,7 @@
       currentTreeId = data.tree_id;
       localStorage.setItem('lastTreeId', currentTreeId);
       closeModal('addPersonModal');
-      loadTree(currentTreeId);
+      loadTrees();
     }
 
     function showAddPersonForm() {

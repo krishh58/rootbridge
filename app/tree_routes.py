@@ -5,7 +5,7 @@ import threading
 from flask import Blueprint, request, jsonify, g, make_response, render_template_string, current_app
 from .auth import require_auth
 from .db import db
-from .models import Tree, Person, SearchResult, Gap, AlfredMessage
+from .models import Tree, Person, SearchResult, Gap, AlfredMessage, TreeCollaborator
 from .hometown import get_hometown_photo, get_historical_map, get_life_context
 
 def _can_access_tree(tree_id: int, user_id: int, require_editor: bool = False) -> bool:
@@ -55,6 +55,27 @@ def _person_detail(p):
         for gap in p.gaps
     ]
     return d
+
+@tree_bp.get('/api/trees')
+@require_auth
+def list_trees():
+    owned = Tree.query.filter_by(user_id=g.user_id).order_by(Tree.updated_at.desc()).all()
+    collab_ids = [
+        c.tree_id for c in TreeCollaborator.query.filter_by(user_id=g.user_id).all()
+    ]
+    collab = Tree.query.filter(Tree.id.in_(collab_ids)).order_by(Tree.updated_at.desc()).all() if collab_ids else []
+    def _summary(t):
+        return {
+            'id': t.id, 'name': t.name,
+            'person_count': len(t.persons),
+            'updated_at': t.updated_at.isoformat() if t.updated_at else None,
+            'owned': t.user_id == g.user_id,
+        }
+    return jsonify({
+        'trees': [_summary(t) for t in owned],
+        'shared': [_summary(t) for t in collab],
+    })
+
 
 @tree_bp.get('/api/trees/<int:tree_id>')
 @require_auth
