@@ -5,6 +5,7 @@ async function loadTree(treeId) {
   if (!r.ok) return;
   const tree = await r.json();
   renderTree(tree.persons, treeId);
+  if (typeof showExportButtons === 'function') showExportButtons(tree.persons && tree.persons.length > 0);
 }
 
 function renderTree(persons, treeId) {

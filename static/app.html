@@ -40,6 +40,16 @@
         <div id="savedTreesList" style="margin-bottom:.75rem"></div>
         <div id="treeList"></div>
         <button class="btn-primary" onclick="showAddPersonForm()">+ Add Person</button>
+        <div id="exportButtons" style="display:none;margin-top:.75rem;flex-direction:column;gap:.5rem">
+          <button class="btn-ghost" style="font-size:.8rem;padding:.4rem .75rem" onclick="downloadGedcom()">⬇ Download GEDCOM</button>
+          <button class="btn-ghost" style="font-size:.8rem;padding:.4rem .75rem" onclick="downloadPdf()">⬇ Download PDF</button>
+        </div>
+        <div style="margin-top:.5rem">
+          <label style="font-size:.78rem;color:#64748b;cursor:pointer;display:flex;align-items:center;gap:.4rem">
+            <input type="file" id="gedcomImport" accept=".ged,.gedcom" style="display:none" onchange="importGedcom(this)">
+            ↑ Import GEDCOM file
+          </label>
+        </div>
 
         <div id="referralPanel" style="margin-top:2rem;padding:1rem;background:#1e293b;border-radius:8px;font-size:.85rem">
           <h4 style="color:#f8fafc;margin:0 0 .5rem">Refer a Friend</h4>
@@ -269,6 +279,40 @@
     function showAddPersonForm() {
       clearFormErrors();
       document.getElementById('addPersonModal').classList.remove('hidden');
+    }
+
+    function downloadGedcom() {
+      if (!currentTreeId) return;
+      window.location.href = `/api/trees/${currentTreeId}/export/gedcom`;
+    }
+
+    function downloadPdf() {
+      if (!currentTreeId) return;
+      window.location.href = `/api/trees/${currentTreeId}/export/pdf`;
+    }
+
+    function showExportButtons(show) {
+      const el = document.getElementById('exportButtons');
+      el.style.display = show ? 'flex' : 'none';
+    }
+
+    async function importGedcom(input) {
+      const file = input.files[0];
+      if (!file) return;
+      const text = await file.text();
+      const label = input.parentElement;
+      label.textContent = 'Importing…';
+      const r = await fetch('/api/gedcom/import', {
+        method: 'POST',
+        headers: {'Content-Type': 'text/plain'},
+        credentials: 'include',
+        body: text,
+      });
+      const d = await r.json();
+      label.innerHTML = `<input type="file" id="gedcomImport" accept=".ged,.gedcom" style="display:none" onchange="importGedcom(this)">↑ Import GEDCOM file`;
+      if (!r.ok) { alert(d.error || 'Import failed.'); return; }
+      alert(`Imported ${d.imported} person(s) from ${file.name}.`);
+      loadTrees();
     }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
