@@ -4,7 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pricing — RootBridge</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#fdf8f0;--bg2:#f7f0e4;--surface:#fff;--card:#fffdf8;
+      --border:#e8d9c0;--text:#2c1a0e;--muted:#7a6248;
+      --amber:#b5681e;--amber-light:#d4832e;--amber-pale:#fef3e2;
+      --green:#2d6a4f;--ink:#1a0f06;
+    }
+    body{background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;line-height:1.7;overflow-x:hidden}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:2px solid var(--border);position:sticky;top:0;background:rgba(253,248,240,.97);backdrop-filter:blur(8px);z-index:100}
+    .logo{font-size:1.3rem;font-weight:700;color:var(--amber);text-decoration:none;font-family:Georgia,serif}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;font-family:'Segoe UI',sans-serif;margin-left:24px;transition:color .2s}
+    .nav-links a:hover{color:var(--amber)}
+    .btn-nav{background:var(--amber);color:#fff;padding:9px 24px;border-radius:4px;font-weight:600;font-size:.85rem;text-decoration:none;font-family:'Segoe UI',sans-serif;transition:background .2s}
+    .btn-nav:hover{background:var(--amber-light)}
+
+    .page-hero{text-align:center;padding:56px 20px 48px;border-bottom:1px solid var(--border)}
+    .page-hero h1{font-size:2.6rem;font-weight:700;color:var(--ink);margin-bottom:14px}
+    .page-hero p{font-size:1rem;color:var(--muted);max-width:520px;margin:0 auto;font-family:'Segoe UI',sans-serif}
+
+    .section{max-width:760px;margin:0 auto;padding:48px 24px}
+
+    .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:48px}
+    .price-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:28px 24px}
+    .price-card.featured{border:2px solid var(--amber);background:var(--card)}
+    .tier-label{font-family:'Segoe UI',sans-serif;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px}
+    .price-card.featured .tier-label{color:var(--amber)}
+    .price{font-size:2.4rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+    .price span{font-size:.85rem;font-weight:400;color:var(--muted)}
+    .token-note{font-size:.8rem;color:var(--muted);font-family:'Segoe UI',sans-serif;margin-bottom:18px}
+    .price-card ul{list-style:none;margin-bottom:24px}
+    .price-card ul li{font-size:.875rem;color:var(--muted);padding:4px 0;font-family:'Segoe UI',sans-serif}
+    .price-card ul li::before{content:'✓ ';color:var(--green);font-weight:700}
+    .price-card ul li.dim{opacity:.4}
+    .price-card ul li.dim::before{color:var(--muted)}
+    .btn-primary{display:block;background:var(--amber);color:#fff;padding:12px 24px;border-radius:4px;font-weight:700;font-size:.9rem;text-align:center;text-decoration:none;border:none;cursor:pointer;font-family:'Segoe UI',sans-serif;transition:background .2s;width:100%}
+    .btn-primary:hover{background:var(--amber-light)}
+    .btn-ghost{display:block;background:transparent;color:var(--amber);border:2px solid var(--amber);padding:11px 24px;border-radius:4px;font-weight:600;font-size:.9rem;text-align:center;text-decoration:none;font-family:'Segoe UI',sans-serif;transition:all .2s;width:100%}
+    .btn-ghost:hover{background:var(--amber-pale)}
+
+    .tokens-section{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:32px 28px;margin-bottom:48px}
+    .tokens-section h2{font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:10px;text-align:center}
+    .tokens-section p{font-size:.9rem;color:var(--muted);font-family:'Segoe UI',sans-serif;text-align:center;max-width:480px;margin:0 auto 24px}
+
+    .topup-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:.85rem}
+    .topup-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 10px;text-align:center}
+    .topup-price{font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:2px}
+    .topup-tokens{font-size:.8rem;color:var(--muted);font-family:'Segoe UI',sans-serif}
+
+    footer{text-align:center;padding:32px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);font-family:'Segoe UI',sans-serif}
+    footer a{color:var(--muted);text-decoration:none}
+    footer a:hover{color:var(--amber)}
+
+    @media(max-width:600px){
+      nav{padding:14px 20px}
+      .pricing-grid{grid-template-columns:1fr}
+      .topup-grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
 </head>
 <body>
 <nav>
@@ -15,75 +73,63 @@
   </div>
 </nav>
 
-<h2 class="section-title">Simple Pricing. Every Record. Every Heritage.</h2>
-<p class="section-sub">Harder searches use more tokens. That's it. No tiers by background — the research determines the cost.</p>
-
-<div class="pricing-grid" style="max-width:700px;margin:0 auto 48px;grid-template-columns:1fr 1fr">
-  <div class="price-card">
-    <div style="color:#94a3b8;font-size:0.8rem;font-weight:600">FREE</div>
-    <div class="price">$0</div>
-    <div style="font-size:0.8rem;color:#64748b">100 tokens/mo</div>
-    <ul>
-      <li>5 searches per day</li>
-      <li>View gap report</li>
-      <li style="opacity:0.4">Save tree</li>
-      <li style="opacity:0.4">PDF export</li>
-      <li style="opacity:0.4">All record databases</li>
-    </ul>
-    <a href="/" class="btn btn-ghost" style="width:100%;text-align:center;margin-top:16px;display:block">Start Free</a>
-  </div>
-  <div class="price-card featured">
-    <div style="color:#60a5fa;font-size:0.8rem;font-weight:600">EXPLORER</div>
-    <div class="price">$9.99<span>/mo</span></div>
-    <div style="font-size:0.8rem;color:#64748b">500 tokens/mo · $79.99/yr</div>
-    <ul>
-      <li>Unlimited searches</li>
-      <li>Save &amp; return to tree</li>
-      <li>PDF export</li>
-      <li>All record databases</li>
-      <li>Census 1790–1950</li>
-      <li>Military &amp; pension records</li>
-      <li>Freedmen's Bureau records</li>
-      <li>Ship manifests → village</li>
-      <li>AI document translation</li>
-      <li>AI gap analysis</li>
-    </ul>
-    <a href="#" class="btn btn-primary" id="subscribeBtn" style="width:100%;text-align:center;margin-top:16px;display:block">Subscribe</a>
-  </div>
+<div class="page-hero">
+  <h1>Simple Pricing</h1>
+  <p>Harder searches use more tokens. That's it. No tiers by background — the research determines the cost.</p>
 </div>
 
-<div style="max-width:700px;margin:0 auto 24px;padding:0 32px">
-  <h3 style="text-align:center;margin-bottom:8px">How tokens work</h3>
-  <p style="color:#94a3b8;font-size:0.9rem;text-align:center;margin-bottom:20px">
-    Simple US census lookups cost 5–10 tokens. Deep pre-1870 gap analysis or overseas record cascades cost 30–50.
-    The more records RootBridge has to search, the more tokens it uses — for everyone equally.
-  </p>
-</div>
+<div class="section">
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="tier-label">Free</div>
+      <div class="price">$0</div>
+      <div class="token-note">100 tokens/mo</div>
+      <ul>
+        <li>5 searches per day</li>
+        <li>View gap report</li>
+        <li class="dim">Save tree</li>
+        <li class="dim">PDF export</li>
+        <li class="dim">All record databases</li>
+      </ul>
+      <a href="/" class="btn-ghost">Start Free</a>
+    </div>
+    <div class="price-card featured">
+      <div class="tier-label">Explorer</div>
+      <div class="price">$9.99<span>/mo</span></div>
+      <div class="token-note">500 tokens/mo &nbsp;·&nbsp; $79.99/yr</div>
+      <ul>
+        <li>Unlimited searches</li>
+        <li>Save &amp; return to tree</li>
+        <li>PDF export</li>
+        <li>All record databases</li>
+        <li>Census 1790–1950</li>
+        <li>Military &amp; pension records</li>
+        <li>Freedmen's Bureau records</li>
+        <li>Ship manifests → village</li>
+        <li>AI document translation</li>
+        <li>AI gap analysis</li>
+      </ul>
+      <button class="btn-primary" id="subscribeBtn">Subscribe</button>
+    </div>
+  </div>
 
-<div style="max-width:700px;margin:0 auto 60px;padding:0 32px;text-align:center">
-  <h3 style="margin-bottom:12px">Need more tokens?</h3>
-  <p style="color:#94a3b8;font-size:0.9rem;margin-bottom:20px">Top-up packs never expire. Use them for deep research sessions, batch document translation, or a weekend family history dive.</p>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:0.85rem">
-    <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px">
-      <div style="font-weight:700">$2.99</div><div style="color:#94a3b8">300 tokens</div>
-    </div>
-    <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px">
-      <div style="font-weight:700">$7.99</div><div style="color:#94a3b8">1,000 tokens</div>
-    </div>
-    <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px">
-      <div style="font-weight:700">$14.99</div><div style="color:#94a3b8">2,500 tokens</div>
-    </div>
-    <div style="background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px">
-      <div style="font-weight:700">$24.99</div><div style="color:#94a3b8">5,000 tokens</div>
+  <div class="tokens-section">
+    <h2>How tokens work</h2>
+    <p>Simple US census lookups cost 5–10 tokens. Deep pre-1870 gap analysis or overseas record cascades cost 30–50. The more records RootBridge has to search, the more tokens it uses — for everyone equally.</p>
+    <h3 style="text-align:center;font-size:1rem;color:var(--ink);margin-bottom:14px;font-family:'Segoe UI',sans-serif;font-weight:600">Need more tokens? Top-up packs never expire.</h3>
+    <div class="topup-grid">
+      <div class="topup-card"><div class="topup-price">$2.99</div><div class="topup-tokens">300 tokens</div></div>
+      <div class="topup-card"><div class="topup-price">$7.99</div><div class="topup-tokens">1,000 tokens</div></div>
+      <div class="topup-card"><div class="topup-price">$14.99</div><div class="topup-tokens">2,500 tokens</div></div>
+      <div class="topup-card"><div class="topup-price">$24.99</div><div class="topup-tokens">5,000 tokens</div></div>
     </div>
   </div>
 </div>
 
-<footer>© 2026 RootBridge &nbsp;·&nbsp; <a href="/" style="color:#64748b">Home</a></footer>
+<footer>© 2026 RootBridge &nbsp;·&nbsp; <a href="/">Home</a></footer>
 
 <script>
-  document.getElementById('subscribeBtn').addEventListener('click', async (e) => {
-    e.preventDefault();
+  document.getElementById('subscribeBtn').addEventListener('click', async () => {
     const res = await fetch('/api/stripe/checkout', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
