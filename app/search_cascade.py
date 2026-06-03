@@ -156,6 +156,66 @@ def search_chronicling(first: str, last: str, birth_year: int = None) -> list:
         return []
 
 
+def _name_tokens(s: str) -> set:
+    return set(s.lower().split()) if s else set()
+
+
+def _year_close(a, b, window: int = 10) -> bool:
+    try:
+        return abs(int(a) - int(b)) <= window
+    except (TypeError, ValueError):
+        return False
+
+
+def cross_reference(results: list, first: str, last: str,
+                    birth_year: int = None, birth_place: str = '') -> list:
+    """
+    Score each result by how many other sources corroborate it.
+    A result is corroborated when another result from a different source
+    contains the search name tokens AND is within the birth year window.
+    Adds 'corroborated_by' (list of sources) and 'corroboration_score' to each result.
+    Sorts corroborated results to the top.
+    """
+    target_tokens = _name_tokens(f'{first} {last}')
+    state_token = birth_place.lower() if birth_place else ''
+
+    def _relevance(r: dict) -> dict:
+        title = (r.get('title') or r.get('name') or '').lower()
+        title_tokens = set(title.split())
+        name_match = len(target_tokens & title_tokens) / max(len(target_tokens), 1)
+        year_match = _year_close(r.get('birth_year'), birth_year) if birth_year else False
+        place_match = state_token and state_token in title
+        return {
+            'name_match': name_match,
+            'year_match': year_match,
+            'place_match': place_match,
+            'relevant': name_match >= 0.5,
+        }
+
+    scored = []
+    for i, r in enumerate(results):
+        rel = _relevance(r)
+        corroborated_by = []
+        for j, other in enumerate(results):
+            if i == j:
+                continue
+            if other.get('source') == r.get('source'):
+                continue
+            other_rel = _relevance(other)
+            if other_rel['relevant'] and rel['relevant']:
+                corroborated_by.append(other['source'])
+        r = dict(r)
+        r['corroborated_by'] = list(set(corroborated_by))
+        r['corroboration_score'] = len(r['corroborated_by'])
+        r['name_match_score'] = round(rel['name_match'], 2)
+        r['place_match'] = rel['place_match']
+        scored.append(r)
+
+    # Sort: corroborated first, then by name match score
+    scored.sort(key=lambda x: (x['corroboration_score'], x['name_match_score']), reverse=True)
+    return scored
+
+
 def run_us_cascade(first: str = '', last: str = '',
                    birth_year: int = None, birth_place: str = '') -> dict:
     key = _cache_key(first, last, birth_year, birth_place)
@@ -168,12 +228,14 @@ def run_us_cascade(first: str = '', last: str = '',
     except Exception:
         r = None
 
-    results = []
-    results += search_wikitree(first, last, birth_year)
-    results += search_chronicling(first, last, birth_year)
-    results += search_dpla_census(first, last, birth_year, birth_place)
-    results += search_dpla_military(first, last, birth_year)
-    results += search_dpla(first, last, birth_year, page_size=5)
+    raw_results = []
+    raw_results += search_wikitree(first, last, birth_year)
+    raw_results += search_chronicling(first, last, birth_year)
+    raw_results += search_dpla_census(first, last, birth_year, birth_place)
+    raw_results += search_dpla_military(first, last, birth_year)
+    raw_results += search_dpla(first, last, birth_year, page_size=5)
+
+    results = cross_reference(raw_results, first, last, birth_year, birth_place)
 
     person_snapshot = {
         'first_name': first, 'last_name': last,
@@ -189,10 +251,21 @@ def run_us_cascade(first: str = '', last: str = '',
         if r_item.get('death_place') and not person_snapshot['death_place']:
             person_snapshot['death_place'] = r_item['death_place']
 
+    # Boost confidence when multiple sources corroborate
+    corroborated_count = sum(1 for r in results if r.get('corroboration_score', 0) > 0)
     gaps = classify_gaps(person_snapshot)
     score = confidence_score(person_snapshot)
+    if corroborated_count >= 2:
+        score = min(score + 15, 95)
+    elif corroborated_count == 1:
+        score = min(score + 7, 95)
 
-    output = {'results': results, 'gaps': gaps, 'confidence': score}
+    output = {
+        'results': results,
+        'gaps': gaps,
+        'confidence': score,
+        'corroborated_count': corroborated_count,
+    }
     if r is not None:
         try:
             r.setex(key, CACHE_TTL, json.dumps(output))
