@@ -1017,9 +1017,22 @@
     }
 
     // Load badge on page load, refresh every 60s
+    // Also auto-trigger search if landing page passed name params in the URL
     document.addEventListener('DOMContentLoaded', () => {
       refreshBadge();
       setInterval(refreshBadge, 60000);
+
+      const sp = new URLSearchParams(window.location.search);
+      const autoFirst = sp.get('first') || '';
+      const autoLast  = sp.get('last')  || '';
+      if (autoLast) {
+        document.getElementById('apFirst').value     = autoFirst;
+        document.getElementById('apLast').value      = autoLast;
+        document.getElementById('apBirthYear').value = sp.get('birth_year') || '';
+        document.getElementById('apBirthPlace').value= sp.get('birth_place') || '';
+        // Wait for loadTrees() to finish so we have a tree context, then fire
+        setTimeout(() => addPerson(), 1200);
+      }
     });
 
     // ── Search progress overlay ──────────────────────────────────────────────
