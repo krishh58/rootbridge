@@ -3,6 +3,10 @@ AI-driven genealogy research agent.
 
 Uses Claude via OpenRouter (OpenAI-compatible tool_calls format).
 Streams findings back as SSE events as they are discovered.
+
+For living people (no death year, born >= 1930) a separate lightweight
+path scrapes Spokeo + Radaris people-search directories instead of
+FindAGrave/BillionGraves which only cover the deceased.
 """
 import json
 import logging
@@ -16,6 +20,7 @@ OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 AGENT_MODEL    = 'anthropic/claude-3-haiku'
 MAX_TURNS      = 14
 MAX_PAGE_CHARS = 4000
+LIVING_BIRTH_YEAR_THRESHOLD = 1930  # born after this → try living-person path first
 
 
 SYSTEM_PROMPT = """You are a genealogy research agent. You have tools to browse the web.
@@ -343,3 +348,157 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
                 break
 
         browser.close()
+
+
+# ---------------------------------------------------------------------------
+# Living-person research path (Spokeo + Radaris)
+# ---------------------------------------------------------------------------
+
+def _parse_spokeo_relatives(text: str, birth_year) -> list:
+    """
+    Extract relative names and ages from a Spokeo search results page.
+    Returns list of dicts: {name, age, location, relation_hint}
+    """
+    relatives = []
+    # Pattern: "Related To Firstname Lastname, Age N" (Spokeo format)
+    for m in re.finditer(r'Related To\s+(.*?)(?=\n|Includes|Also known)', text, re.IGNORECASE | re.DOTALL):
+        block = m.group(1)
+        for rel in re.finditer(r'([A-Z][a-z]+(?: [A-Z][a-z]+)+),?\s+(?:Age\s+)?(\d+)', block):
+            name = rel.group(1).strip()
+            age  = int(rel.group(2))
+            relatives.append({'name': name, 'age': age})
+    # Also known as / alternate names block
+    also = re.search(r'Also known as\s+(.*?)(?=\n\n|Includes)', text, re.IGNORECASE | re.DOTALL)
+    # Extract main subject's location
+    loc_m = re.search(r'RESIDES IN\s+([A-Z][A-Z ,]+)', text)
+    location = loc_m.group(1).strip().title() if loc_m else ''
+    return relatives, location
+
+
+def _parse_radaris_relatives(text: str) -> list:
+    """Extract relatives and lived-in locations from a Radaris page."""
+    relatives = []
+    # Pattern: name then age on nearby line
+    for m in re.finditer(
+        r'RELATED TO\s*((?:[A-Z][a-z]+(?: [A-Z][a-z.]+)+,?\s+\d+\s*\n?)+)',
+        text, re.IGNORECASE
+    ):
+        block = m.group(1)
+        for rel in re.finditer(r'([A-Z][a-z]+(?: [A-Z][a-z.]+)+),?\s+(\d+)', block):
+            name = rel.group(1).strip()
+            age  = int(rel.group(2))
+            relatives.append({'name': name, 'age': age})
+    locations = re.findall(r'HAS LIVED IN\s*((?:[A-Z][a-z ,]+\n?)+)', text, re.IGNORECASE)
+    lived_in = []
+    if locations:
+        lived_in = [l.strip() for l in re.split(r'\n', locations[0]) if l.strip()]
+    return relatives, lived_in
+
+
+def _likely_parent(rel_age: int, subject_birth_year: int) -> bool:
+    """True if the relative's age is consistent with being a parent (22-55 yrs older)."""
+    if not subject_birth_year:
+        return False
+    import datetime
+    current_year = datetime.datetime.now().year
+    rel_birth_approx = current_year - rel_age
+    age_diff = rel_birth_approx - subject_birth_year
+    return 22 <= age_diff <= 55
+
+
+def run_living_research(first: str, last: str, birth_year, birth_state: str,
+                        stream_fn, middle: str = ''):
+    """
+    Research a likely-living person using Spokeo + Radaris people-search directories.
+    Streams the same event types as run_research_agent so the caller doesn't need
+    to treat it differently.
+
+    Emits:
+      status   — progress messages
+      browsing — URL being visited
+      finding  — confirmed relative (parent/spouse) or location
+      done     — summary + findings list
+      error    — if Playwright unavailable
+    """
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        stream_fn({'type': 'error', 'message': 'Playwright not installed on this server.'})
+        return
+
+    full_name  = f'{first} {middle} {last}'.strip() if middle else f'{first} {last}'.strip()
+    state_abbr = birth_state[:2].upper() if birth_state else ''
+    findings   = []
+
+    def _report(field, value, source_url, confidence='medium'):
+        f = {'field': field, 'value': value, 'source_url': source_url, 'confidence': confidence}
+        findings.append(f)
+        stream_fn({'type': 'finding', **f})
+
+    stream_fn({'type': 'status', 'message': f'Searching people directories for {full_name} (living person path)…'})
+
+    with sync_playwright() as pw:
+        browser = pw.chromium.launch(headless=True)
+        page    = browser.new_page()
+        page.set_extra_http_headers({'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+            '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'})
+
+        # --- Spokeo ---
+        import urllib.parse
+        spokeo_name = f'{first}-{last}'
+        spokeo_url  = (f'https://www.spokeo.com/{spokeo_name}/{birth_state}'
+                       if birth_state else f'https://www.spokeo.com/{spokeo_name}')
+        stream_fn({'type': 'browsing', 'url': spokeo_url, 'note': 'Spokeo people search'})
+        try:
+            page.goto(spokeo_url, timeout=20000, wait_until='domcontentloaded')
+            text = page.inner_text('body')
+            text = re.sub(r'\n{3,}', '\n\n', text).strip()
+
+            spokeo_rels, location = _parse_spokeo_relatives(text, birth_year)
+            if location:
+                _report('birth_place', location, spokeo_url, 'medium')
+
+            for rel in spokeo_rels:
+                field = 'parent' if _likely_parent(rel['age'], birth_year) else 'other'
+                _report(field, rel['name'], spokeo_url, 'low')
+                logger.info('Spokeo relative: %s age %d → field=%s', rel['name'], rel['age'], field)
+        except Exception as e:
+            logger.warning('Spokeo scrape failed: %s', e)
+
+        # --- Radaris ---
+        radaris_url = f'https://radaris.com/p/{urllib.parse.quote(first)}/{urllib.parse.quote(last)}/'
+        stream_fn({'type': 'browsing', 'url': radaris_url, 'note': 'Radaris people search'})
+        try:
+            page.goto(radaris_url, timeout=20000, wait_until='domcontentloaded')
+            text = page.inner_text('body')
+            text = re.sub(r'\n{3,}', '\n\n', text).strip()
+
+            radaris_rels, lived_in = _parse_radaris_relatives(text)
+
+            # Confirm or add location from lived-in list
+            if lived_in and not any(f['field'] == 'birth_place' for f in findings):
+                # First lived-in entry is usually current/recent; look for birth state match
+                for loc in lived_in:
+                    if birth_state and birth_state[:2].lower() in loc.lower():
+                        _report('birth_place', loc, radaris_url, 'medium')
+                        break
+
+            for rel in radaris_rels:
+                already = any(f['value'].lower() == rel['name'].lower() for f in findings)
+                if not already:
+                    field = 'parent' if _likely_parent(rel['age'], birth_year) else 'other'
+                    _report(field, rel['name'], radaris_url, 'low')
+                    logger.info('Radaris relative: %s age %d → field=%s', rel['name'], rel['age'], field)
+        except Exception as e:
+            logger.warning('Radaris scrape failed: %s', e)
+
+        browser.close()
+
+    parent_count = sum(1 for f in findings if f['field'] == 'parent')
+    summary = (
+        f'Living-person search for {full_name} complete. '
+        f'Found {len(findings)} data point(s) including {parent_count} likely parent(s). '
+        f'Results are from public people-search directories — confirm details before adding to tree.'
+    )
+    stream_fn({'type': 'done', 'summary': summary, 'findings': findings})

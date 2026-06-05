@@ -395,11 +395,17 @@ def deep_research(person_id):
         q = queue.Queue()
 
         def agent_thread():
-            from .research_agent import run_research_agent
+            from .research_agent import run_research_agent, run_living_research, LIVING_BIRTH_YEAR_THRESHOLD
             def put(event):
                 q.put(event)
             try:
-                run_research_agent(first, last, birth_year, birth_place, put, api_key, middle, death_place)
+                is_living = (not person.death_year
+                             and birth_year
+                             and int(birth_year) >= LIVING_BIRTH_YEAR_THRESHOLD)
+                if is_living:
+                    run_living_research(first, last, birth_year, birth_place, put, middle)
+                else:
+                    run_research_agent(first, last, birth_year, birth_place, put, api_key, middle, death_place)
             except Exception as e:
                 q.put({'type': 'error', 'message': str(e)})
             finally:
