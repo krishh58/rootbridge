@@ -1,5 +1,5 @@
 import re
-from flask import Blueprint, request, jsonify, g, Response, stream_with_context
+from flask import Blueprint, request, jsonify, g, Response, stream_with_context, current_app
 from .auth import require_auth
 from .token_middleware import require_tokens
 from .db import db, get_redis
@@ -377,14 +377,12 @@ def deep_research(person_id):
     birth_year  = person.birth_year
     birth_place = person.birth_state or person.birth_country or ''
     user_id     = g.user_id
+    # Capture API key here — current_app not available inside thread
+    api_key     = current_app.config.get('OPENROUTER_API_KEY', '')
 
     import json as _json
 
     def generate():
-        def stream_fn(event: dict):
-            yield 'data: ' + _json.dumps(event) + '\n\n'
-
-        # Collect generator output from stream_fn — run agent in thread
         import queue, threading
 
         q = queue.Queue()
@@ -394,7 +392,7 @@ def deep_research(person_id):
             def put(event):
                 q.put(event)
             try:
-                run_research_agent(first, last, birth_year, birth_place, put)
+                run_research_agent(first, last, birth_year, birth_place, put, api_key)
             except Exception as e:
                 q.put({'type': 'error', 'message': str(e)})
             finally:
