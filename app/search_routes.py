@@ -213,6 +213,71 @@ def search_stream():
     )
 
 
+@search_bp.get('/api/persons/<int:person_id>/research')
+@limiter.limit('30 per hour')
+@require_auth
+@require_tokens(20)
+def research_person(person_id):
+    """Re-run the search cascade for an existing person, merging new results in."""
+    from .models import Person as PersonModel
+    person = PersonModel.query.get(person_id)
+    if not person:
+        return jsonify({'error': 'Person not found'}), 404
+
+    first       = person.first_name or ''
+    last        = person.last_name  or ''
+    birth_year  = person.birth_year
+    birth_place = person.birth_state or person.birth_country or ''
+    tree_id     = person.tree_id
+    user_id     = g.user_id
+    community   = _fetch_community_results(first, last, birth_year)
+
+    def generate():
+        import json as _json
+        final_event = None
+
+        for event_str in run_us_cascade_stream(
+            first, last, birth_year, birth_place,
+            community_results=community
+        ):
+            yield event_str
+            try:
+                ev = _json.loads(event_str.replace('data: ', '', 1).strip())
+                if ev.get('done'):
+                    final_event = ev
+            except Exception:
+                pass
+
+        if final_event:
+            try:
+                # Merge new results into existing person rather than creating a new one
+                existing_urls = {sr.url for sr in person.search_results}
+                new_count = 0
+                for r in final_event.get('results', []):
+                    if r.get('url') not in existing_urls:
+                        db.session.add(SearchResult(
+                            person_id=person_id,
+                            source=r.get('source', ''),
+                            record_type=r.get('record_type', ''),
+                            url=r.get('url', ''),
+                            raw_data=r,
+                        ))
+                        new_count += 1
+                # Update confidence and death info if improved
+                if final_event.get('confidence', 0) > (person.confidence or 0):
+                    person.confidence = final_event['confidence']
+                db.session.commit()
+                yield 'data: ' + _json.dumps({'saved': True, 'person_id': person_id, 'tree_id': tree_id, 'new_results': new_count}) + '\n\n'
+            except Exception:
+                pass
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype='text/event-stream',
+        headers={'X-Accel-Buffering': 'no', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive'},
+    )
+
+
 @search_bp.post('/api/reverse-search')
 @limiter.limit('20 per hour')
 @require_auth

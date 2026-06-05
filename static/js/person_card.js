@@ -94,6 +94,7 @@ function buildCardHTML(person, hometown, messages, documents) {
     <div class="person-card">
       <button class="card-close" onclick="closePersonCard()">✕</button>
       <button class="card-edit-btn" onclick="showEditPerson(${person.id}, ${JSON.stringify(person).replace(/</g,'\\u003c')})" title="Edit person">✏️ Edit</button>
+      <button class="card-edit-btn" style="right:7rem" onclick="reSearchPerson(${person.id})" title="Re-search archives">🔍 Re-search</button>
       <div class="card-header">
         <h2>${escapeHtml(name)}</h2>
         <span class="card-dates">${escapeHtml(dates)}</span>
@@ -520,4 +521,48 @@ function startConversation(matchId) {
   setTimeout(() => {
     if (typeof openThread === 'function') openThread(matchId);
   }, 100);
+}
+
+async function reSearchPerson(personId) {
+  const r = await fetch(`/api/persons/${personId}`);
+  if (!r.ok) return;
+  const p = await r.json();
+
+  closePersonCard();
+  showSearchProgress();
+
+  const params = new URLSearchParams({
+    first:       p.first_name || '',
+    last:        p.last_name  || '',
+    birth_year:  p.birth_year || '',
+    birth_place: p.birth_state || p.birth_country || '',
+    tree_name:   (p.last_name || 'Family') + ' Family',
+  });
+
+  const btn = document.getElementById('addPersonBtn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Searching…'; }
+
+  const es = new EventSource(`/api/persons/${personId}/research`);
+  let totalFound = 0;
+
+  es.onmessage = evt => {
+    try {
+      const data = JSON.parse(evt.data);
+      if (data.source && data.count > 0) {
+        totalFound += data.count;
+        document.getElementById('spCount').textContent = `${totalFound} record${totalFound !== 1 ? 's' : ''} found so far…`;
+      }
+      if (data.done) {
+        document.getElementById('spHeading').textContent = totalFound > 0 ? `Found ${totalFound} records` : 'Search complete';
+        document.getElementById('spDetail').textContent = data.summary || 'All sources searched.';
+        document.getElementById('spCount').textContent = '';
+        setTimeout(() => { hideSearchProgress(); if (btn) { btn.disabled = false; btn.textContent = '🔍 Search the Archives'; } }, 2200);
+      }
+      if (data.saved) {
+        es.close();
+        loadTree(currentTreeId);
+      }
+    } catch(e) {}
+  };
+  es.onerror = () => { es.close(); hideSearchProgress(); if (btn) { btn.disabled = false; btn.textContent = '🔍 Search the Archives'; } };
 }
