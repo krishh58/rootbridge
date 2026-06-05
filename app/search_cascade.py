@@ -273,7 +273,8 @@ def _playwright_available() -> bool:
 
 
 def _build_tasks(first: str, last: str, birth_year: int,
-                 birth_place: str, country_hint: str) -> dict:
+                 birth_place: str, country_hint: str,
+                 community_results: list = None) -> dict:
     """Return {label: callable} for every applicable source."""
     tasks = {
         'wikitree':      lambda: search_wikitree(first, last, birth_year),
@@ -319,6 +320,10 @@ def _build_tasks(first: str, last: str, birth_year: int,
         if 'uk' in origins or 'british' in origins:
             tasks['freebmd']      = lambda: search_freebmd(first, last, birth_year, 'All')
 
+    if community_results:
+        _cr = list(community_results)
+        tasks['rootbridge_community'] = lambda: _cr
+
     return tasks
 
 
@@ -346,7 +351,8 @@ def _run_parallel(tasks: dict) -> list:
 # ---------------------------------------------------------------------------
 
 def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = None,
-                          birth_place: str = '', country_hint: str = ''):
+                          birth_place: str = '', country_hint: str = '',
+                          community_results: list = None):
     """
     Generator yielding SSE-formatted strings.
     Each source sends an event as it completes.
@@ -355,7 +361,8 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     from .ai_synthesis import synthesize_gaps
 
     all_results = []
-    tasks = _build_tasks(first, last, birth_year or 0, birth_place, country_hint)
+    tasks = _build_tasks(first, last, birth_year or 0, birth_place, country_hint,
+                         community_results=community_results)
 
     with ThreadPoolExecutor(max_workers=min(len(tasks), 16)) as executor:
         futures = {executor.submit(fn): name for name, fn in tasks.items()}
@@ -406,7 +413,8 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
 # ---------------------------------------------------------------------------
 
 def run_us_cascade(first: str = '', last: str = '', birth_year: int = None,
-                   birth_place: str = '', country_hint: str = '') -> dict:
+                   birth_place: str = '', country_hint: str = '',
+                   community_results: list = None) -> dict:
     key = _cache_key(first, last, birth_year, birth_place)
     try:
         r = get_redis()
@@ -416,7 +424,8 @@ def run_us_cascade(first: str = '', last: str = '', birth_year: int = None,
     except Exception:
         r = None
 
-    tasks       = _build_tasks(first, last, birth_year or 0, birth_place, country_hint)
+    tasks       = _build_tasks(first, last, birth_year or 0, birth_place, country_hint,
+                               community_results=community_results)
     raw_results = _run_parallel(tasks)
     results     = cross_reference(raw_results, first, last, birth_year, birth_place)
     snapshot    = _build_person_snapshot(first, last, birth_year, birth_place, results)

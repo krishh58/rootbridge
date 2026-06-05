@@ -11,6 +11,29 @@ search_bp = Blueprint('search', __name__)
 FREE_SEARCH_LIMIT = 5
 
 
+def _fetch_community_results(first: str, last: str, birth_year: int) -> list:
+    """Return SearchResult records from other users who already found this person."""
+    from sqlalchemy import func
+    try:
+        q = Person.query.filter(func.lower(Person.last_name) == last.lower())
+        if first:
+            q = q.filter(func.lower(Person.first_name).like(f'{first[:3].lower()}%'))
+        if birth_year:
+            q = q.filter(Person.birth_year.between(birth_year - 10, birth_year + 10))
+        persons = q.limit(15).all()
+        results = []
+        for person in persons:
+            for sr in person.search_results:
+                if sr.raw_data:
+                    r = dict(sr.raw_data)
+                    r['source'] = 'rootbridge_community'
+                    r['community_source'] = sr.source
+                    results.append(r)
+        return results[:40]
+    except Exception:
+        return []
+
+
 def _check_search_limit(key: str) -> bool:
     """Return True if the caller is under the lifetime limit (5 searches, never resets)."""
     try:
@@ -75,7 +98,9 @@ def guest_search():
     last = data['last']
     birth_year = int(data['birth_year']) if data.get('birth_year') else None
     birth_place = data.get('birth_place', '')
-    cascade = run_us_cascade(first=full_first, last=last, birth_year=birth_year, birth_place=birth_place)
+    community = _fetch_community_results(full_first, last, birth_year)
+    cascade = run_us_cascade(first=full_first, last=last, birth_year=birth_year,
+                             birth_place=birth_place, community_results=community)
     synthesis = synthesize_gaps(
         person={'first_name': full_first, 'last_name': last, 'birth_year': birth_year, 'birth_state': birth_place},
         results=cascade['results'], gaps=cascade['gaps']
@@ -102,7 +127,9 @@ def authenticated_search():
     birth_year = int(data['birth_year']) if data.get('birth_year') else None
     birth_place = data.get('birth_place', '')
     tree_name = data.get('tree_name', '')
-    cascade = run_us_cascade(first=full_first, last=last, birth_year=birth_year, birth_place=birth_place)
+    community = _fetch_community_results(full_first, last, birth_year)
+    cascade = run_us_cascade(first=full_first, last=last, birth_year=birth_year,
+                             birth_place=birth_place, community_results=community)
     synthesis = synthesize_gaps(
         person={'first_name': full_first, 'last_name': last, 'birth_year': birth_year, 'birth_state': birth_place},
         results=cascade['results'], gaps=cascade['gaps']
@@ -137,13 +164,15 @@ def search_stream():
     birth_place= data.get('birth_place', '')
     tree_name  = data.get('tree_name', '')
     user_id    = g.user_id
+    community  = _fetch_community_results(full_first, last, birth_year)
 
     def generate():
         all_results = []
         final_event = None
 
         for event_str in run_us_cascade_stream(
-            full_first, last, birth_year, birth_place
+            full_first, last, birth_year, birth_place,
+            community_results=community
         ):
             yield event_str
             # Track the last event so we can save after stream ends
