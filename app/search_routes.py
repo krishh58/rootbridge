@@ -450,6 +450,14 @@ def deep_research(person_id):
                         # Bump confidence for each newly filled field
                         if filled:
                             p.confidence = min(95, (p.confidence or 0) + filled * 10)
+                        # Save parent/spouse findings so expand-tree can use them
+                        ancestor_findings = [
+                            f for f in findings
+                            if f.get('field') in ('parent', 'spouse')
+                            and f.get('value', '').strip()
+                        ]
+                        if ancestor_findings:
+                            p.research_findings = ancestor_findings
                         db.session.commit()
                     yield 'data: ' + _json.dumps({'type': 'saved', 'person_id': person_id}) + '\n\n'
                 except Exception as _e:
@@ -461,3 +469,81 @@ def deep_research(person_id):
         mimetype='text/event-stream',
         headers={'X-Accel-Buffering': 'no', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive'},
     )
+
+
+def _parse_full_name(raw: str):
+    """Parse 'George L. Henderson' → (first, middle, last)."""
+    raw = re.sub(r'^(father|mother|parent|spouse|wife|husband)\s*[:\-]\s*', '', raw, flags=re.IGNORECASE).strip()
+    raw = re.sub(r'\(.*?\)', '', raw).strip()
+    parts = raw.split()
+    if not parts:
+        return '', '', ''
+    if len(parts) == 1:
+        return parts[0], '', ''
+    if len(parts) == 2:
+        return parts[0], '', parts[1]
+    return parts[0], ' '.join(parts[1:-1]), parts[-1]
+
+
+@search_bp.post('/api/persons/<int:person_id>/expand')
+@require_auth
+def expand_tree(person_id):
+    """Create parent/spouse persons from research_findings and link them to this person."""
+    from .models import Person as _P
+
+    child = _P.query.get(person_id)
+    if not child:
+        return jsonify({'error': 'Person not found'}), 404
+
+    data = request.get_json(silent=True) or {}
+    findings = data.get('findings') or child.research_findings or []
+
+    created = []
+    new_parent_ids = list(child.parent_ids or [])
+    new_spouse_ids = list(child.spouse_ids or [])
+
+    for f in findings:
+        field = f.get('field', '')
+        if field not in ('parent', 'spouse'):
+            continue
+        raw_name = (f.get('value') or '').strip()
+        if not raw_name:
+            continue
+
+        first, middle, last = _parse_full_name(raw_name)
+        if not last:
+            continue
+
+        already = any(p.get('first_name') == first and p.get('last_name') == last for p in created)
+        if already:
+            continue
+
+        exists = _P.query.filter_by(tree_id=child.tree_id, first_name=first, last_name=last).first()
+        if exists:
+            new_id = exists.id
+        else:
+            new_person = _P(
+                tree_id=child.tree_id,
+                first_name=first,
+                middle_name=middle or None,
+                last_name=last,
+                confidence=20,
+            )
+            db.session.add(new_person)
+            db.session.flush()
+            new_id = new_person.id
+
+        if field == 'parent' and new_id not in new_parent_ids:
+            new_parent_ids.append(new_id)
+        elif field == 'spouse' and new_id not in new_spouse_ids:
+            new_spouse_ids.append(new_id)
+
+        created.append({'id': new_id, 'field': field,
+                        'first_name': first, 'middle_name': middle, 'last_name': last})
+
+    child.parent_ids = new_parent_ids
+    child.spouse_ids = new_spouse_ids
+    child.research_findings = []
+    db.session.commit()
+
+    return jsonify({'created': created, 'person_id': person_id})

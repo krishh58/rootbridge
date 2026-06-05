@@ -49,6 +49,72 @@ function closePersonCard() {
   document.getElementById('personCardOverlay').classList.add('hidden');
 }
 
+function buildGrowTreeHTML(person) {
+  const findings = person.research_findings || [];
+  const parents  = findings.filter(f => f.field === 'parent');
+  const spouses  = findings.filter(f => f.field === 'spouse');
+  const renderGroup = (items, label) => items.length === 0 ? '' : `
+    <div style="margin-bottom:10px">
+      <div style="color:#94a3b8;font-size:.78rem;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em">${label}</div>
+      ${items.map((f, i) => `
+        <label style="display:flex;align-items:center;gap:8px;padding:5px 0;cursor:pointer">
+          <input type="checkbox" checked data-grow-idx="${findings.indexOf(f)}"
+            style="width:15px;height:15px;accent-color:#4ade80">
+          <span style="color:#f8fafc;font-size:.88rem">${escapeHtml(f.value)}</span>
+          <span style="color:#64748b;font-size:.75rem">(${escapeHtml(f.confidence)})</span>
+        </label>`).join('')}
+    </div>`;
+  const findingsJson = escapeAttr(JSON.stringify(findings));
+  return `
+    <div class="grow-tree-panel" style="background:#0f2318;border:1px solid #166534;border-radius:10px;padding:16px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+        <span style="font-size:1.2rem">🌱</span>
+        <strong style="color:#4ade80;font-size:.95rem">Ancestors found — add them to your tree?</strong>
+      </div>
+      ${renderGroup(parents, 'Parents')}
+      ${renderGroup(spouses, 'Spouses')}
+      <button id="growTreeBtn" onclick="addAncestorsFromCard(${person.id})"
+        style="margin-top:8px;background:#166534;color:#4ade80;border:1px solid #4ade80;border-radius:6px;padding:.45rem 1.1rem;cursor:pointer;font-size:.86rem;font-weight:600">
+        Add Selected to Tree
+      </button>
+      <span id="growTreeStatus" style="color:#64748b;font-size:.82rem;margin-left:10px"></span>
+    </div>`;
+}
+
+async function addAncestorsFromCard(personId) {
+  const panel = document.querySelector('.grow-tree-panel');
+  if (!panel) return;
+  const person = await fetch(`/api/persons/${personId}`).then(r => r.json());
+  const allFindings = person.research_findings || [];
+  const checkboxes = panel.querySelectorAll('input[type=checkbox]:checked');
+  const selectedFindings = Array.from(checkboxes).map(cb => allFindings[parseInt(cb.dataset.growIdx)]).filter(Boolean);
+  if (!selectedFindings.length) return;
+  const btn = document.getElementById('growTreeBtn');
+  const status = document.getElementById('growTreeStatus');
+  if (btn) { btn.disabled = true; btn.textContent = 'Adding…'; }
+  try {
+    const r = await fetch(`/api/persons/${personId}/expand`, {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, credentials: 'include',
+      body: JSON.stringify({ findings: selectedFindings }),
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Failed');
+    await loadTree(currentTreeId);
+    panel.innerHTML = `
+      <div style="color:#4ade80;font-size:.9rem;margin-bottom:10px">✓ ${data.created.length} ancestor${data.created.length!==1?'s':''} added</div>
+      ${data.created.map(p => {
+        const fullName = [p.first_name, p.middle_name, p.last_name].filter(Boolean).join(' ');
+        return `<div style="display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid #1e3a2f">
+          <span style="color:#f8fafc;font-size:.88rem">${escapeHtml(fullName)}</span>
+          <button onclick="deepResearch(${p.id})" style="background:#1e3a2f;color:#4ade80;border:1px solid #4ade80;border-radius:4px;padding:.2rem .65rem;cursor:pointer;font-size:.76rem">🧠 Research</button>
+        </div>`;
+      }).join('')}`;
+  } catch(e) {
+    if (status) status.textContent = e.message;
+    if (btn) { btn.disabled = false; btn.textContent = 'Add Selected to Tree'; }
+  }
+}
+
 function buildCardHTML(person, hometown, messages, documents) {
   const name = `${person.first_name || ''} ${person.last_name || ''}`.trim();
   const dates = [person.birth_year, person.death_year].filter(Boolean).join(' – ');
@@ -147,6 +213,7 @@ function buildCardHTML(person, hometown, messages, documents) {
           <button class="btn-primary" onclick="sendAlfred(${person.id})">Send <span class="token-cost">10</span></button>
         </div>
       </div>
+      ${(person.research_findings || []).length > 0 ? buildGrowTreeHTML(person) : ''}
     </div>
     <style>
       .person-card{background:#1e293b;border-radius:12px;width:min(900px,95vw);max-height:90vh;overflow-y:auto;padding:2rem;position:relative;display:flex;flex-direction:column;gap:1.5rem}
@@ -579,6 +646,7 @@ async function deepResearch(personId) {
   if (btn) { btn.disabled = true; btn.textContent = 'Researching…'; }
 
   const es = new EventSource(`/api/persons/${personId}/deep-research`);
+  const ancestorFindings = [];
 
   es.onmessage = evt => {
     try {
@@ -593,6 +661,9 @@ async function deepResearch(personId) {
         document.getElementById('spCount').textContent  = data.note || '';
       }
       if (data.type === 'finding') {
+        if (data.field === 'parent' || data.field === 'spouse') {
+          ancestorFindings.push(data);
+        }
         const label = {
           birth_year:'Birth year', birth_place:'Birth place',
           death_year:'Death year', death_place:'Death place',
@@ -610,7 +681,12 @@ async function deepResearch(personId) {
       if (data.type === 'saved') {
         es.close();
         loadTree(currentTreeId);
-        openPersonCard(personId);
+        // If ancestors were found, show the grow-tree panel inside the person card
+        if (ancestorFindings.length > 0) {
+          openPersonCardWithGrowPanel(personId, ancestorFindings);
+        } else {
+          openPersonCard(personId);
+        }
       }
       if (data.type === 'error') {
         es.close();
@@ -630,4 +706,112 @@ async function deepResearch(personId) {
     hideSearchProgress();
     if (btn) { btn.disabled = false; btn.textContent = '🔍 Search the Archives'; }
   };
+}
+
+async function openPersonCardWithGrowPanel(personId, ancestorFindings) {
+  // Open normal person card first, then inject grow-tree section
+  await openPersonCard(personId);
+
+  const card = document.getElementById('personCardOverlay');
+  if (!card) return;
+
+  // Remove any existing grow panel
+  const existing = card.querySelector('.grow-tree-panel');
+  if (existing) existing.remove();
+
+  const parents  = ancestorFindings.filter(f => f.field === 'parent');
+  const spouses  = ancestorFindings.filter(f => f.field === 'spouse');
+
+  const renderGroup = (items, label) => items.length === 0 ? '' : `
+    <div style="margin-bottom:10px">
+      <div style="color:#94a3b8;font-size:.78rem;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em">${label}</div>
+      ${items.map((f, i) => `
+        <label style="display:flex;align-items:center;gap:8px;padding:6px 0;cursor:pointer">
+          <input type="checkbox" checked data-idx="${ancestorFindings.indexOf(f)}"
+            style="width:16px;height:16px;accent-color:#4ade80">
+          <span style="color:#f8fafc;font-size:.9rem">${f.value}</span>
+          <span style="color:#64748b;font-size:.75rem">(${f.confidence})</span>
+        </label>
+      `).join('')}
+    </div>`;
+
+  const panel = document.createElement('div');
+  panel.className = 'grow-tree-panel';
+  panel.style.cssText = 'background:#0f2318;border:1px solid #166534;border-radius:10px;padding:16px;margin-top:18px';
+  panel.innerHTML = `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <span style="font-size:1.2rem">🌱</span>
+      <strong style="color:#4ade80;font-size:.95rem">Ancestors found — add them to your tree?</strong>
+    </div>
+    ${renderGroup(parents, 'Parents')}
+    ${renderGroup(spouses, 'Spouses')}
+    <button id="growTreeBtn" onclick="addAncestorsToTree(${personId})"
+      style="margin-top:10px;background:#166534;color:#4ade80;border:1px solid #4ade80;border-radius:6px;padding:.5rem 1.25rem;cursor:pointer;font-size:.88rem;font-weight:600">
+      Add Selected to Tree
+    </button>
+    <span id="growTreeStatus" style="color:#64748b;font-size:.82rem;margin-left:12px"></span>`;
+
+  // Store findings on panel for use by addAncestorsToTree
+  panel._findings = ancestorFindings;
+
+  // Append inside the card container
+  const personCard = card.querySelector('.person-card') || card;
+  personCard.appendChild(panel);
+}
+
+async function addAncestorsToTree(personId) {
+  const panel = document.querySelector('.grow-tree-panel');
+  if (!panel) return;
+
+  const checkboxes = panel.querySelectorAll('input[type=checkbox]:checked');
+  const selectedFindings = Array.from(checkboxes).map(cb => {
+    const idx = parseInt(cb.dataset.idx);
+    return panel._findings[idx];
+  }).filter(Boolean);
+
+  if (!selectedFindings.length) return;
+
+  const btn = document.getElementById('growTreeBtn');
+  const status = document.getElementById('growTreeStatus');
+  if (btn) { btn.disabled = true; btn.textContent = 'Adding…'; }
+
+  try {
+    const r = await fetch(`/api/persons/${personId}/expand`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      credentials: 'include',
+      body: JSON.stringify({ findings: selectedFindings }),
+    });
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.error || 'Failed');
+
+    const names = data.created.map(p => `${p.first_name} ${p.last_name}`.trim()).join(', ');
+    if (status) status.textContent = `Added: ${names || 'done'}`;
+    if (btn) btn.textContent = '✓ Added';
+
+    // Refresh tree so new nodes appear
+    await loadTree(currentTreeId);
+
+    // Show research buttons for each new person
+    setTimeout(() => {
+      if (panel) {
+        panel.innerHTML = `
+          <div style="color:#4ade80;font-size:.9rem;margin-bottom:12px">✓ ${data.created.length} ancestor${data.created.length !== 1 ? 's' : ''} added to your tree</div>
+          ${data.created.map(p => {
+            const fullName = [p.first_name, p.middle_name, p.last_name].filter(Boolean).join(' ');
+            return `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e3a2f">
+              <span style="color:#f8fafc">${fullName}</span>
+              <button onclick="deepResearch(${p.id})"
+                style="background:#1e3a2f;color:#4ade80;border:1px solid #4ade80;border-radius:4px;padding:.25rem .75rem;cursor:pointer;font-size:.78rem">
+                🧠 Research
+              </button>
+            </div>`;
+          }).join('')}
+        `;
+      }
+    }, 800);
+  } catch(e) {
+    if (status) status.textContent = e.message;
+    if (btn) { btn.disabled = false; btn.textContent = 'Add Selected to Tree'; }
+  }
 }

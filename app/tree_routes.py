@@ -34,12 +34,14 @@ def _trigger_matcher_async(app, person_id: int):
 def _person_to_dict(p):
     return {
         'id': p.id, 'tree_id': p.tree_id,
-        'first_name': p.first_name, 'last_name': p.last_name,
+        'first_name': p.first_name, 'middle_name': p.middle_name,
+        'last_name': p.last_name,
         'birth_year': p.birth_year, 'birth_state': p.birth_state,
         'birth_country': p.birth_country, 'death_year': p.death_year,
         'death_place': p.death_place, 'confidence': p.confidence,
         'parent_ids': p.parent_ids or [], 'spouse_ids': p.spouse_ids or [],
         'notes': p.notes,
+        'research_findings': p.research_findings or [],
     }
 
 def _person_detail(p):

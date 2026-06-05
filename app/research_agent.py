@@ -23,6 +23,7 @@ Given a person's details, research them thoroughly.
 
 IMPORTANT — always use full URLs, never plain text queries.
 DO NOT use Google — it blocks bots. Use DuckDuckGo instead.
+CRITICAL — birth year validation: If the target person has a known birth year, SKIP any memorial or record where the birth year differs by more than 20 years. Report ONLY the person who matches. A birth year of 1879 is NOT a match for a target born in 1865.
 
 URL formats to use:
 - DuckDuckGo search: https://duckduckgo.com/html/?q=Orville+Cleckner+Henderson+genealogy
@@ -188,6 +189,7 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
                 f'Research: {full_name}, {birth_str} {place_str}'
                 + (f', {death_str}' if death_str else '') + '. '
                 + (f'Middle name "{middle}" is distinctive — use it in searches to narrow results. ' if middle else '')
+                + (f'IMPORTANT: Known birth year is {birth_year} — reject ANY record where birth year differs by more than 20 years. ' if birth_year else '')
                 + location_hint
                 + '\nFind birth year, birth place, death year, death place, parents, spouse. '
                 f'Use browse_url with real https:// URLs only. '
@@ -230,6 +232,11 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
                                 'el => el.parentElement?.parentElement?.parentElement?.innerText || ""'
                             )
                             if dp_lower in container.lower():
+                                # Birth year guard: skip cards where birth year is off by >20 years
+                                if birth_year:
+                                    yr_m = re.search(r'\b(1[5-9]\d\d|20[0-2]\d)\b', container)
+                                    if yr_m and abs(int(yr_m.group()) - int(birth_year)) > 20:
+                                        continue
                                 full_url = ('https://www.findagrave.com' + href if href.startswith('/') else href)
                                 if full_url not in targeted_links:
                                     targeted_links.append(full_url)
