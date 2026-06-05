@@ -68,3 +68,70 @@ Be specific — name the sources and what they returned. Do NOT tell the user to
         return {'summary': summary}
     except (requests.RequestException, KeyError, IndexError, ValueError):
         return {'summary': ''}
+
+
+def extract_ancestor_from_obit(obit_text: str, known_person: str,
+                                relationship: str, source_url: str) -> dict:
+    """
+    Given obituary text, extract the ancestor (relationship to known_person).
+    Returns structured dict: first_name, last_name, birth_year, death_year,
+    death_place, burial_place, spouse, confidence, summary.
+    """
+    rel_label = {
+        'father': 'father', 'mother': 'mother',
+        'grandfather': 'paternal or maternal grandfather',
+        'grandmother': 'paternal or maternal grandmother',
+        'great-grandfather': 'great-grandfather',
+        'great-grandmother': 'great-grandmother',
+        'uncle': 'uncle', 'aunt': 'aunt',
+    }.get(relationship, relationship)
+
+    prompt = f"""You are a genealogy extraction assistant. Read the obituary text below and extract information about the {rel_label} of {known_person}.
+
+OBITUARY TEXT:
+{obit_text[:3000]}
+
+Extract and return ONLY a JSON object with these fields (use null for unknown):
+{{
+  "first_name": "...",
+  "last_name": "...",
+  "nickname": "...",
+  "birth_year": null,
+  "death_year": null,
+  "death_place": "...",
+  "burial_place": "...",
+  "spouse": "...",
+  "children": ["..."],
+  "siblings": ["..."],
+  "confidence": "high|medium|low",
+  "summary": "one sentence describing what was found"
+}}
+
+If this obituary is NOT about the {rel_label} of {known_person}, return {{"confidence": "none", "summary": "This obituary does not match."}}
+Return ONLY the JSON, no other text."""
+
+    try:
+        resp = requests.post(
+            OPENROUTER_URL,
+            headers={
+                'Authorization': f"Bearer {current_app.config['OPENROUTER_API_KEY']}",
+                'Content-Type': 'application/json',
+            },
+            json={'model': MODEL, 'messages': [{'role': 'user', 'content': prompt}],
+                  'max_tokens': 400},
+            timeout=15,
+        )
+        resp.raise_for_status()
+        import json as jsonlib
+        raw = resp.json()['choices'][0]['message']['content'].strip()
+        # Strip markdown code fences if present
+        if raw.startswith('```'):
+            raw = raw.split('```')[1]
+            if raw.startswith('json'):
+                raw = raw[4:]
+        result = jsonlib.loads(raw)
+        result['source_url'] = source_url
+        return result
+    except Exception:
+        return {'confidence': 'none', 'summary': 'Could not extract information from this obituary.',
+                'source_url': source_url}

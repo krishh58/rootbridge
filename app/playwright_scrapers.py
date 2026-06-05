@@ -561,6 +561,101 @@ def search_obituaries(first: str, last: str, birth_year: int = None,
 
 
 # ---------------------------------------------------------------------------
+# Reverse search — find an ancestor by searching for a known family member
+# ---------------------------------------------------------------------------
+
+def search_by_descendant(known_first: str, known_last: str,
+                         known_location: str = '', relationship: str = 'father') -> list:
+    """
+    Find an ancestor by searching for a known living/recent family member.
+    Strategy: obituaries always list survivors — search for the known person
+    as a survivor to find their parent's/grandparent's obituary.
+
+    relationship: 'father', 'mother', 'grandfather', 'grandmother',
+                  'great-grandfather', 'great-grandmother', 'uncle', 'aunt'
+    """
+    try:
+        import urllib.parse
+        pw, browser = _make_browser()
+        try:
+            page = _make_page(browser)
+
+            # Build query — search for known person as a survivor in obituaries
+            name_q = f'"{known_first} {known_last}"'
+            parts = [name_q, 'obituary', 'survived']
+            if known_location:
+                parts.append(known_location)
+            query = ' '.join(parts)
+
+            url = f'https://html.duckduckgo.com/html/?q={urllib.parse.quote(query)}'
+            page.goto(url, timeout=30000, wait_until='domcontentloaded')
+            time.sleep(3)
+
+            result_els = page.query_selector_all('.result')
+            candidates = []
+
+            for el in result_els[:6]:
+                try:
+                    title_el = el.query_selector('.result__title')
+                    url_el = el.query_selector('.result__url')
+                    snip_el = el.query_selector('.result__snippet')
+                    if not (title_el and url_el):
+                        continue
+                    title = title_el.inner_text().strip()
+                    result_url = 'https://' + url_el.inner_text().strip()
+                    snippet = snip_el.inner_text().strip() if snip_el else ''
+                    combined = (title + ' ' + snippet).lower()
+
+                    # Must look like an obituary
+                    has_signal = any(s in combined for s in _OBIT_SIGNALS)
+                    has_domain = any(d in result_url.lower() for d in _OBIT_DOMAINS)
+                    if not (has_signal or has_domain):
+                        continue
+
+                    # Known person's last name should appear
+                    if known_last.lower() not in combined:
+                        continue
+
+                    candidates.append({
+                        'title': title,
+                        'url': result_url,
+                        'snippet': snippet,
+                    })
+                except Exception:
+                    continue
+
+            if not candidates:
+                return []
+
+            # Scrape the top candidate obituary for full text
+            best = candidates[0]
+            try:
+                page.goto(best['url'], timeout=30000, wait_until='domcontentloaded')
+                time.sleep(3)
+                full_text = _safe_text(page)[:4000]
+            except Exception:
+                full_text = best['snippet']
+
+            return [{
+                'source': 'reverse_search',
+                'record_type': 'obituary',
+                'title': best['title'],
+                'url': best['url'],
+                'snippet': best['snippet'],
+                'full_text': full_text,
+                'relationship': relationship,
+                'known_person': f'{known_first} {known_last}',
+            }]
+
+        finally:
+            browser.close()
+            pw.stop()
+    except Exception as e:
+        logger.debug('Reverse search failed: %s', e)
+        return []
+
+
+# ---------------------------------------------------------------------------
 # Smart router — picks sources based on name origin hints
 # ---------------------------------------------------------------------------
 

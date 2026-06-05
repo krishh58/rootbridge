@@ -148,6 +148,61 @@
         <button class="btn-primary" id="addPersonBtn" onclick="addPerson()">🔍 Search the Archives</button>
         <button class="btn-ghost" onclick="closeModal('addPersonModal')">Cancel</button>
       </div>
+
+      <!-- Reverse search divider -->
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid #1e293b;text-align:center">
+        <p style="color:#64748b;font-size:.82rem;margin-bottom:10px">Don't know their name?</p>
+        <button class="btn-ghost" style="font-size:.85rem;padding:8px 18px" onclick="toggleReverseSearch()">
+          🔁 Search by someone you DO know
+        </button>
+      </div>
+
+      <!-- Reverse search form (hidden by default) -->
+      <div id="reverseSearchPanel" style="display:none;margin-top:20px;padding:18px;background:#0f172a;border-radius:8px;border:1px solid #1e293b">
+        <p style="color:#f8fafc;font-size:.95rem;font-weight:700;margin-bottom:4px">Find them through someone you know</p>
+        <p style="color:#94a3b8;font-size:.82rem;margin-bottom:16px;line-height:1.5">Enter a family member you DO know — their parent, child, or sibling. We'll search obituaries to find the person you're looking for.</p>
+
+        <div class="form-field">
+          <label style="color:#64748b;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px">I'm looking for their…</label>
+          <select id="rsRelationship" class="input-field" style="width:100%">
+            <option value="father">Father</option>
+            <option value="mother">Mother</option>
+            <option value="grandfather">Grandfather</option>
+            <option value="grandmother">Grandmother</option>
+            <option value="great-grandfather">Great-grandfather</option>
+            <option value="great-grandmother">Great-grandmother</option>
+            <option value="uncle">Uncle</option>
+            <option value="aunt">Aunt</option>
+          </select>
+        </div>
+        <div class="form-field" style="margin-top:10px">
+          <input id="rsKnownFirst" placeholder="First name of the person you know (e.g. Lauranie)" class="input-field" autocomplete="off">
+        </div>
+        <div class="form-field" style="margin-top:10px">
+          <input id="rsKnownLast" placeholder="Their last name * (e.g. Anderson)" class="input-field" autocomplete="off">
+        </div>
+        <div class="form-field" style="margin-top:10px">
+          <input id="rsKnownLocation" placeholder="Where they're from — state or city (e.g. Louisiana)" class="input-field" autocomplete="off">
+        </div>
+        <div style="margin-top:14px;display:flex;gap:10px">
+          <button class="btn-primary" id="rsSearchBtn" onclick="runReverseSearch()" style="flex:1">🔍 Find the Ancestor</button>
+        </div>
+
+        <!-- Confirm card (hidden until result) -->
+        <div id="rsConfirmCard" style="display:none;margin-top:16px;padding:16px;background:#0a0f1c;border:1px solid #334155;border-radius:8px">
+          <p style="color:#22c55e;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">✓ We Found Someone</p>
+          <div id="rsFoundName" style="color:#f8fafc;font-size:1.1rem;font-weight:700;margin-bottom:4px"></div>
+          <div id="rsFoundDetails" style="color:#94a3b8;font-size:.85rem;line-height:1.6;margin-bottom:10px"></div>
+          <div id="rsFoundSource" style="color:#64748b;font-size:.75rem;margin-bottom:14px"></div>
+          <p style="color:#f8fafc;font-size:.85rem;margin-bottom:12px;font-weight:600">Is this the person you're looking for?</p>
+          <div style="display:flex;gap:10px">
+            <button class="btn-primary" onclick="confirmAncestor()" style="flex:1">Yes, add to my tree</button>
+            <button class="btn-ghost" onclick="clearReverseResult()" style="flex:1">No, try again</button>
+          </div>
+        </div>
+
+        <div id="rsNotFound" style="display:none;margin-top:12px;color:#f87171;font-size:.85rem;line-height:1.5"></div>
+      </div>
     </div>
   </div>
 
@@ -354,6 +409,104 @@
       loadTrees();
     }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+    // ── Reverse search (find ancestor by known family member) ────────────────
+    let _rsFoundAncestor = null;
+
+    function toggleReverseSearch() {
+      const panel = document.getElementById('reverseSearchPanel');
+      panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function clearReverseResult() {
+      document.getElementById('rsConfirmCard').style.display = 'none';
+      document.getElementById('rsNotFound').style.display = 'none';
+      _rsFoundAncestor = null;
+    }
+
+    async function runReverseSearch() {
+      const knownFirst = document.getElementById('rsKnownFirst').value.trim();
+      const knownLast = document.getElementById('rsKnownLast').value.trim();
+      const knownLocation = document.getElementById('rsKnownLocation').value.trim();
+      const relationship = document.getElementById('rsRelationship').value;
+      if (!knownLast) { alert('Please enter the last name of the family member you know.'); return; }
+
+      const btn = document.getElementById('rsSearchBtn');
+      btn.disabled = true;
+      btn.textContent = 'Searching obituaries…';
+      showSearchProgress();
+      document.getElementById('rsConfirmCard').style.display = 'none';
+      document.getElementById('rsNotFound').style.display = 'none';
+
+      try {
+        const r = await fetch('/api/reverse-search', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ known_first: knownFirst, known_last: knownLast,
+                                  known_location: knownLocation, relationship })
+        });
+        const data = await r.json();
+
+        if (!r.ok || !data.found) {
+          document.getElementById('rsNotFound').style.display = 'block';
+          document.getElementById('rsNotFound').textContent =
+            data.message || 'No matching obituary found. Try a different spelling or add a location.';
+          return;
+        }
+
+        _rsFoundAncestor = data;
+        const a = data.ancestor;
+        const name = [a.first_name, a.nickname ? `"${a.nickname}"` : null, a.last_name]
+          .filter(Boolean).join(' ');
+        const details = [
+          a.birth_year ? `Born ~${a.birth_year}` : null,
+          a.death_year ? `Died ${a.death_year}` : null,
+          a.death_place || a.burial_place || null,
+          a.spouse ? `Spouse: ${a.spouse}` : null,
+        ].filter(Boolean).join(' · ');
+
+        document.getElementById('rsFoundName').textContent = name || 'Name found in obituary';
+        document.getElementById('rsFoundDetails').textContent = details || a.summary || '';
+        document.getElementById('rsFoundSource').textContent = `Source: ${data.source_title}`;
+        document.getElementById('rsConfirmCard').style.display = 'block';
+
+      } catch(e) {
+        document.getElementById('rsNotFound').style.display = 'block';
+        document.getElementById('rsNotFound').textContent = 'Something went wrong. Please try again.';
+      } finally {
+        hideSearchProgress();
+        btn.disabled = false;
+        btn.textContent = '🔍 Find the Ancestor';
+      }
+    }
+
+    async function confirmAncestor() {
+      if (!_rsFoundAncestor) return;
+      const a = _rsFoundAncestor.ancestor;
+      const last = a.last_name || document.getElementById('rsKnownLast').value.trim();
+      const r = await fetch('/api/persons', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          tree_name: last + ' Family',
+          first_name: a.first_name || '',
+          last_name: last,
+          birth_year: a.birth_year || null,
+          death_year: a.death_year || null,
+          death_place: a.death_place || a.burial_place || '',
+          notes: `Found via reverse search. Source: ${_rsFoundAncestor.source_url}. ${a.summary || ''}`,
+        })
+      });
+      const data = await r.json();
+      if (r.ok) {
+        currentTreeId = data.tree_id;
+        localStorage.setItem('lastTreeId', currentTreeId);
+        closeModal('addPersonModal');
+        loadTrees();
+      } else {
+        alert(data.error || 'Could not add person. Please try again.');
+      }
+    }
 
     async function logout() {
       await fetch('/auth/logout', {method: 'POST'});

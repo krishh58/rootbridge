@@ -4,7 +4,7 @@ from .token_middleware import require_tokens
 from .db import db, get_redis
 from .models import User, Tree, Person, SearchResult, Gap
 from .search_cascade import run_us_cascade
-from .ai_synthesis import synthesize_gaps
+from .ai_synthesis import synthesize_gaps, extract_ancestor_from_obit
 from . import limiter
 
 search_bp = Blueprint('search', __name__)
@@ -109,3 +109,58 @@ def authenticated_search():
     )
     ids = _save_search_to_db(g.user_id, tree_name, full_first, last, birth_year, birth_place, cascade, synthesis['summary'])
     return jsonify({**cascade, 'summary': synthesis['summary'], **ids})
+
+
+@search_bp.post('/api/reverse-search')
+@limiter.limit('20 per hour')
+@require_auth
+@require_tokens(25)
+def reverse_search():
+    """
+    Find an ancestor by searching for a known family member.
+    Searches obituaries for the known person as a survivor, then extracts
+    the ancestor's details using AI.
+    """
+    data = request.get_json() or {}
+    known_first = data.get('known_first', '').strip()
+    known_last = data.get('known_last', '').strip()
+    known_location = data.get('known_location', '').strip()
+    relationship = data.get('relationship', 'father').strip()
+
+    if not known_last:
+        return jsonify({'error': 'Last name of the known family member is required.'}), 400
+
+    try:
+        from .playwright_scrapers import search_by_descendant
+        results = search_by_descendant(known_first, known_last, known_location, relationship)
+    except Exception:
+        results = []
+
+    if not results:
+        return jsonify({
+            'found': False,
+            'message': f"We couldn't find an obituary mentioning {known_first} {known_last} as a survivor. Try adding a location or checking the spelling."
+        })
+
+    best = results[0]
+    ancestor = extract_ancestor_from_obit(
+        obit_text=best.get('full_text', best.get('snippet', '')),
+        known_person=f'{known_first} {known_last}',
+        relationship=relationship,
+        source_url=best['url'],
+    )
+
+    if ancestor.get('confidence') == 'none':
+        return jsonify({
+            'found': False,
+            'message': ancestor.get('summary', 'No matching ancestor found in this obituary.')
+        })
+
+    return jsonify({
+        'found': True,
+        'ancestor': ancestor,
+        'source_title': best['title'],
+        'source_url': best['url'],
+        'relationship': relationship,
+        'known_person': f'{known_first} {known_last}',
+    })
