@@ -255,8 +255,16 @@ def _build_person_snapshot(first, last, birth_year, birth_place, results) -> dic
             snap['birth_year'] = r['birth_year']
         if r.get('death_year') and not snap['death_year']:
             snap['death_year'] = r['death_year']
+        # VA gravesite returns death_date as "MM/DD/YYYY" — extract year from it
+        if r.get('death_date') and not snap['death_year']:
+            try:
+                snap['death_year'] = int(r['death_date'].split('/')[-1])
+            except (ValueError, IndexError):
+                pass
         if r.get('death_place') and not snap['death_place']:
             snap['death_place'] = r['death_place']
+        if r.get('cemetery') and not snap['death_place']:
+            snap['death_place'] = r['cemetery']
     return snap
 
 
