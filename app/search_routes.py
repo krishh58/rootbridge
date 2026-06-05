@@ -378,6 +378,7 @@ def deep_research(person_id):
     last        = person.last_name  or ''
     birth_year  = person.birth_year
     birth_place = person.birth_state or person.birth_country or ''
+    death_place = person.death_place or ''
     user_id     = g.user_id
     # Capture API key here — current_app not available inside thread
     api_key     = current_app.config.get('OPENROUTER_API_KEY', '')
@@ -394,7 +395,7 @@ def deep_research(person_id):
             def put(event):
                 q.put(event)
             try:
-                run_research_agent(first, last, birth_year, birth_place, put, api_key, middle)
+                run_research_agent(first, last, birth_year, birth_place, put, api_key, middle, death_place)
             except Exception as e:
                 q.put({'type': 'error', 'message': str(e)})
             finally:
@@ -423,6 +424,7 @@ def deep_research(person_id):
                             'death_year':  'death_year',
                             'death_place': 'death_place',
                         }
+                        filled = 0
                         for f in findings:
                             col = field_map.get(f['field'])
                             if not col:
@@ -440,6 +442,10 @@ def deep_research(person_id):
                             # Only fill in missing fields
                             if not getattr(p, col):
                                 setattr(p, col, val)
+                                filled += 1
+                        # Bump confidence for each newly filled field
+                        if filled:
+                            p.confidence = min(95, (p.confidence or 0) + filled * 10)
                         db.session.commit()
                     yield 'data: ' + _json.dumps({'type': 'saved', 'person_id': person_id}) + '\n\n'
                 except Exception as _e:

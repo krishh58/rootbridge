@@ -29,23 +29,27 @@ URL formats to use:
 - DuckDuckGo obituary: https://duckduckgo.com/html/?q=%22Orville+Cleckner+Henderson%22+obituary
 - FindAGrave with middle name: https://www.findagrave.com/memorial/search?firstname=Orville+Cleckner&lastname=Henderson
 - FindAGrave first name only: https://www.findagrave.com/memorial/search?firstname=Orville&lastname=Henderson
+- FindAGrave individual memorial: use the real URL extracted from [MEMORIAL LINKS ON THIS PAGE]
 - BillionGraves: https://billiongraves.com/search/results?firstname=Orville&lastname=Henderson
 - Ancestry public: https://www.ancestry.com/search/?name=Orville_Henderson
 
 Strategy:
-1. Search FindAGrave with full name including middle name — browse the results page and click the most promising individual memorial URLs
+1. Search FindAGrave with full name including middle name
+   - The results page shows a list. Read it carefully for memorial URLs like /memorial/123456/name
+   - At the bottom of the page text you will see [MEMORIAL LINKS ON THIS PAGE] — pick the URL matching the right person and browse it to get birth year, parents, spouse
 2. DuckDuckGo search with full name
 3. DuckDuckGo obituary search with name in quotes
 4. BillionGraves search
-5. Follow any memorial pages that look like a match — read them for birth year, death year, parents, spouse
+5. Follow any memorial or obituary pages that look like a match
 
 Rules:
 - ALWAYS use real https:// URLs — never plain text
 - Include middle name in searches — it dramatically narrows results
-- When FindAGrave returns a list, visit individual memorial pages to get full details
+- CRITICAL: FindAGrave search pages only show partial data. You MUST follow individual /memorial/ links to get birth year and parents
+- Look for patterns like "findagrave.com/memorial/123456" in the text and browse those URLs
 - Use report_finding for each confirmed fact with the source URL
-- Only report facts you actually read on a page
-- Stop after 10 sources or when you have birth year + death year + parents
+- Only report facts you actually read on a page — do not guess
+- Stop after 12 sources or when you have birth year + death year + parents
 - End by calling research_complete"""
 
 
@@ -54,13 +58,25 @@ def _browse(url: str, page) -> str:
         page.goto(url, timeout=18000, wait_until='domcontentloaded')
         text = page.inner_text('body')
         text = re.sub(r'\n{3,}', '\n\n', text).strip()
+        # For FindAGrave pages, inject full memorial URLs so the agent can follow them
+        if 'findagrave.com' in url:
+            links = page.query_selector_all('a[href*="/memorial/"]')
+            if links:
+                hrefs = []
+                for a in links[:15]:
+                    href = a.get_attribute('href') or ''
+                    if '/memorial/' in href and href not in hrefs:
+                        hrefs.append(href)
+                if hrefs:
+                    full_urls = ['https://www.findagrave.com' + h if h.startswith('/') else h for h in hrefs]
+                    text += '\n\n[MEMORIAL LINKS ON THIS PAGE]\n' + '\n'.join(full_urls)
         return text[:MAX_PAGE_CHARS]
     except Exception as e:
         return f'[Failed to load: {e}]'
 
 
 def run_research_agent(first: str, last: str, birth_year, birth_place: str,
-                       stream_fn, api_key: str, middle: str = ''):
+                       stream_fn, api_key: str, middle: str = '', death_place: str = ''):
     """
     api_key must be passed in — cannot use current_app inside a thread.
 
@@ -131,14 +147,17 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
     full_name = f'{first} {middle} {last}'.strip() if middle else f'{first} {last}'.strip()
     birth_str = f'born approximately {birth_year}' if birth_year else 'birth year unknown'
     place_str = f'from {birth_place}' if birth_place else ''
+    death_str = f'died in {death_place}' if death_place else ''
 
     messages = [
         {'role': 'system', 'content': SYSTEM_PROMPT},
         {
             'role': 'user',
             'content': (
-                f'Research: {full_name}, {birth_str} {place_str}. '
+                f'Research: {full_name}, {birth_str} {place_str}'
+                + (f', {death_str}' if death_str else '') + '. '
                 + (f'Middle name "{middle}" is distinctive — use it in searches to narrow results. ' if middle else '')
+                + (f'Focus searches on {death_place} — that is where they died. ' if death_place else '')
                 + 'Find birth year, birth place, death year, death place, parents, spouse. '
                 f'Use browse_url with real https:// URLs only. '
                 f'Call report_finding for each confirmed fact, research_complete when done.'
