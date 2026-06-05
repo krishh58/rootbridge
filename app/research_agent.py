@@ -21,28 +21,31 @@ MAX_PAGE_CHARS = 4000
 SYSTEM_PROMPT = """You are a genealogy research agent. You have tools to browse the web.
 Given a person's details, research them thoroughly.
 
-IMPORTANT — always use full URLs, never plain text queries:
-- Google search: https://www.google.com/search?q=Orville+Cleckner+Henderson+genealogy
-- FindAGrave search: https://www.findagrave.com/memorial/search?firstname=Orville&lastname=Henderson
-- Ancestry public: https://www.ancestry.com/search/?name=Orville_Henderson
+IMPORTANT — always use full URLs, never plain text queries.
+DO NOT use Google — it blocks bots. Use DuckDuckGo instead.
+
+URL formats to use:
+- DuckDuckGo search: https://duckduckgo.com/html/?q=Orville+Cleckner+Henderson+genealogy
+- DuckDuckGo obituary: https://duckduckgo.com/html/?q=%22Orville+Cleckner+Henderson%22+obituary
+- FindAGrave with middle name: https://www.findagrave.com/memorial/search?firstname=Orville+Cleckner&lastname=Henderson
+- FindAGrave first name only: https://www.findagrave.com/memorial/search?firstname=Orville&lastname=Henderson
 - BillionGraves: https://billiongraves.com/search/results?firstname=Orville&lastname=Henderson
-- Obituary search: https://www.google.com/search?q=%22Orville+Henderson%22+obituary
+- Ancestry public: https://www.ancestry.com/search/?name=Orville_Henderson
 
 Strategy:
-1. Google search using full name including middle name if known
-2. Check FindAGrave results — read each promising memorial page
-3. Google obituary search
-4. Check Ancestry.com public previews
-5. Try BillionGraves
-6. Follow any leads that mention parents, spouse, or specific dates
+1. Search FindAGrave with full name including middle name — browse the results page and click the most promising individual memorial URLs
+2. DuckDuckGo search with full name
+3. DuckDuckGo obituary search with name in quotes
+4. BillionGraves search
+5. Follow any memorial pages that look like a match — read them for birth year, death year, parents, spouse
 
 Rules:
-- ALWAYS construct a real https:// URL — never pass plain text as a URL
-- Include the middle name in searches when known (it narrows results dramatically)
-- Use report_finding each time you confirm a fact from a page
-- Only report what you actually read — no guessing
-- If a page needs login, note what the preview showed and move on
-- Stop after 8 sources or when you have birth year + death year + at least one parent
+- ALWAYS use real https:// URLs — never plain text
+- Include middle name in searches — it dramatically narrows results
+- When FindAGrave returns a list, visit individual memorial pages to get full details
+- Use report_finding for each confirmed fact with the source URL
+- Only report facts you actually read on a page
+- Stop after 10 sources or when you have birth year + death year + parents
 - End by calling research_complete"""
 
 
@@ -144,7 +147,7 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
     ]
 
     findings = []
-    stream_fn({'type': 'status', 'message': f'Starting deep research on {name}…'})
+    stream_fn({'type': 'status', 'message': f'Starting deep research on {full_name}…'})
 
     with sync_playwright() as pw:
         browser = pw.chromium.launch(headless=True)
