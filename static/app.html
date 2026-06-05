@@ -862,12 +862,91 @@
           <div style="margin-top:.75rem"><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Notes</label>
             <textarea id="ep_notes" class="input-field" style="width:100%;height:80px;resize:vertical">${escHtml(p.notes||'')}</textarea></div>
           <div id="ep_err" style="display:none;color:#f87171;font-size:.82rem;margin-top:.5rem"></div>
-          <div style="display:flex;gap:.75rem;margin-top:1rem">
+          <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap">
             <button class="btn-primary" onclick="saveEditPerson(${personId})">Save Changes</button>
             <button class="btn-ghost" onclick="openPersonCard(${personId})">Cancel</button>
           </div>
+          <div style="margin-top:1.25rem;border-top:1px solid #334155;padding-top:1rem">
+            <div style="font-size:.78rem;color:#94a3b8;margin-bottom:.6rem">Add a parent to this person</div>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+              <button class="btn-ghost" onclick="showAddParentForm(${personId},'Father')" style="font-size:.82rem">+ Add Father</button>
+              <button class="btn-ghost" onclick="showAddParentForm(${personId},'Mother')" style="font-size:.82rem">+ Add Mother</button>
+            </div>
+          </div>
           <style>.input-field{background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.55rem .75rem;border-radius:6px;font-size:.9rem}.input-field:focus{outline:2px solid #2563eb;border-color:transparent}</style>
         </div>`;
+    }
+
+    function showAddParentForm(childId, role) {
+      const overlay = document.getElementById('personCardOverlay');
+      overlay.innerHTML = `
+        <div class="person-card">
+          <button class="card-close" onclick="closePersonCard()">✕</button>
+          <h3 style="color:#e2d9c4;margin-bottom:.25rem">Add ${role}</h3>
+          <p style="color:#94a3b8;font-size:.82rem;margin-bottom:1.25rem">Enter what you know — we'll search the archives for the rest.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">First Name</label>
+              <input id="par_first" class="input-field" style="width:100%" placeholder="e.g. Orville"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Last Name</label>
+              <input id="par_last" class="input-field" style="width:100%" placeholder="e.g. Henderson"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Birth Year (approx)</label>
+              <input id="par_by" type="number" class="input-field" style="width:100%" placeholder="e.g. 1900"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Birth Place</label>
+              <input id="par_bp" class="input-field" style="width:100%" placeholder="e.g. Michigan"></div>
+          </div>
+          <div id="par_err" style="display:none;color:#f87171;font-size:.82rem;margin-top:.5rem"></div>
+          <div style="display:flex;gap:.75rem;margin-top:1rem">
+            <button class="btn-primary" id="par_save_btn" onclick="saveAddParent(${childId})">Search &amp; Add ${role}</button>
+            <button class="btn-ghost" onclick="closePersonCard()">Cancel</button>
+          </div>
+          <style>.input-field{background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.55rem .75rem;border-radius:6px;font-size:.9rem}.input-field:focus{outline:2px solid #2563eb;border-color:transparent}</style>
+        </div>`;
+    }
+
+    async function saveAddParent(childId) {
+      const first = document.getElementById('par_first').value.trim();
+      const last  = document.getElementById('par_last').value.trim();
+      const by    = document.getElementById('par_by').value;
+      const bp    = document.getElementById('par_bp').value.trim();
+      if (!last) { document.getElementById('par_err').textContent = 'Last name is required.'; document.getElementById('par_err').style.display='block'; return; }
+      const btn = document.getElementById('par_save_btn');
+      btn.disabled = true; btn.textContent = 'Searching…';
+      // Create the parent person via the search stream, then link them
+      const params = new URLSearchParams({ first, last, birth_year: by||'', birth_place: bp, tree_name: last + ' Family' });
+      let parentId = null;
+      await new Promise(resolve => {
+        const es = new EventSource('/api/search/stream?' + params.toString());
+        es.onmessage = evt => {
+          try {
+            const d = JSON.parse(evt.data);
+            if (d.saved) { parentId = d.person_id; es.close(); resolve(); }
+            if (d.done && !d.saved) { setTimeout(resolve, 3000); } // fallback
+          } catch(e) {}
+        };
+        es.onerror = () => { es.close(); resolve(); };
+        setTimeout(() => { es.close(); resolve(); }, 35000);
+      });
+      if (!parentId) {
+        // Fallback: create person directly without search
+        const r = await fetch('/api/persons', { method:'POST', headers:{'Content-Type':'application/json'}, credentials:'include',
+          body: JSON.stringify({ first_name:first, last_name:last, birth_year:by?parseInt(by):null, birth_state:bp, tree_id:currentTreeId }) });
+        if (r.ok) { const d = await r.json(); parentId = d.id; }
+      }
+      if (parentId) {
+        // Link parent → child
+        const childResp = await fetch(`/api/persons/${childId}`);
+        const child = await childResp.json();
+        const parentIds = [...(child.parent_ids||[])];
+        if (!parentIds.includes(parentId)) parentIds.push(parentId);
+        await fetch(`/api/persons/${childId}`, { method:'PUT', headers:{'Content-Type':'application/json'}, credentials:'include',
+          body: JSON.stringify({ ...child, parent_ids: parentIds }) });
+        await loadTree(currentTreeId);
+        closePersonCard();
+      } else {
+        document.getElementById('par_err').textContent = 'Could not create parent. Try again.';
+        document.getElementById('par_err').style.display = 'block';
+        btn.disabled = false; btn.textContent = 'Search & Add';
+      }
     }
 
     async function saveEditPerson(personId) {
