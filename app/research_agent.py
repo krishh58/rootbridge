@@ -59,18 +59,20 @@ def _browse(url: str, page) -> str:
         text = page.inner_text('body')
         text = re.sub(r'\n{3,}', '\n\n', text).strip()
         # For FindAGrave pages, inject full memorial URLs so the agent can follow them
+        # Links are appended AFTER the body trim so they're never cut off
+        links_section = ''
         if 'findagrave.com' in url:
             links = page.query_selector_all('a[href*="/memorial/"]')
             if links:
                 hrefs = []
-                for a in links[:15]:
+                for a in links[:20]:
                     href = a.get_attribute('href') or ''
-                    if '/memorial/' in href and href not in hrefs:
+                    if '/memorial/' in href and '/memorial/search' not in href and href not in hrefs:
                         hrefs.append(href)
                 if hrefs:
                     full_urls = ['https://www.findagrave.com' + h if h.startswith('/') else h for h in hrefs]
-                    text += '\n\n[MEMORIAL LINKS ON THIS PAGE]\n' + '\n'.join(full_urls)
-        return text[:MAX_PAGE_CHARS]
+                    links_section = '\n\n[MEMORIAL LINKS ON THIS PAGE]\n' + '\n'.join(full_urls)
+        return text[:MAX_PAGE_CHARS] + links_section
     except Exception as e:
         return f'[Failed to load: {e}]'
 
@@ -149,6 +151,35 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
     place_str = f'from {birth_place}' if birth_place else ''
     death_str = f'died in {death_place}' if death_place else ''
 
+    # Build location-aware FindAGrave URLs — search multiple pages when death_place is known
+    import urllib.parse
+    fn_enc = urllib.parse.quote_plus(f'{first} {middle}'.strip() if middle else first)
+    ln_enc = urllib.parse.quote_plus(last)
+    dp_enc = urllib.parse.quote_plus(death_place) if death_place else ''
+    fg_base = f'https://www.findagrave.com/memorial/search?firstname={fn_enc}&lastname={ln_enc}'
+    fg_p2   = f'https://www.findagrave.com/memorial/search?firstname={urllib.parse.quote_plus(first)}&lastname={ln_enc}&page=2'
+    fg_p3   = f'https://www.findagrave.com/memorial/search?firstname={urllib.parse.quote_plus(first)}&lastname={ln_enc}&page=3'
+    ddg_loc = (f'https://duckduckgo.com/html/?q=%22{urllib.parse.quote_plus(full_name)}%22+{dp_enc}' if death_place
+               else f'https://duckduckgo.com/html/?q={urllib.parse.quote_plus(full_name)}+genealogy')
+    ddg_obit= f'https://duckduckgo.com/html/?q=%22{urllib.parse.quote_plus(full_name)}%22+obituary' + (f'+{dp_enc}' if death_place else '')
+
+    location_hint = ''
+    if death_place:
+        location_hint = (
+            f'\nIMPORTANT: This person died in {death_place}. '
+            f'SKIP any record with a death location that is NOT {death_place}.\n'
+            f'Middle names are often abbreviated to initials in old records — '
+            f'"Orville C. Henderson" could be "Orville Cleckner Henderson". '
+            f'If the initial matches the first letter of the middle name AND the location is {death_place}, treat it as a likely match and browse that memorial page.\n'
+            f'Browse these URLs in order:\n'
+            f'1. {fg_base}\n'
+            f'2. {fg_p2}\n'
+            f'3. {fg_p3}\n'
+            f'4. {ddg_loc}\n'
+            f'5. {ddg_obit}\n'
+            f'From [MEMORIAL LINKS ON THIS PAGE], pick any link whose cemetery is in {death_place} and browse it.'
+        )
+
     messages = [
         {'role': 'system', 'content': SYSTEM_PROMPT},
         {
@@ -157,8 +188,8 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
                 f'Research: {full_name}, {birth_str} {place_str}'
                 + (f', {death_str}' if death_str else '') + '. '
                 + (f'Middle name "{middle}" is distinctive — use it in searches to narrow results. ' if middle else '')
-                + (f'Focus searches on {death_place} — that is where they died. ' if death_place else '')
-                + 'Find birth year, birth place, death year, death place, parents, spouse. '
+                + location_hint
+                + '\nFind birth year, birth place, death year, death place, parents, spouse. '
                 f'Use browse_url with real https:// URLs only. '
                 f'Call report_finding for each confirmed fact, research_complete when done.'
             ),
@@ -174,6 +205,46 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
         page.set_extra_http_headers({'User-Agent':
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
             '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'})
+
+        # Pre-search: when death_place is known, find matching memorial links
+        # using DOM structure so each card's location is checked in isolation
+        targeted_links = []
+        if death_place:
+            stream_fn({'type': 'status', 'message': f'Pre-scanning FindAGrave for {last} in {death_place}…'})
+            dp_lower = death_place.lower()
+            for pg in range(1, 5):
+                try:
+                    scan_url = (f'https://www.findagrave.com/memorial/search?'
+                                f'firstname={urllib.parse.quote_plus(first)}&lastname={urllib.parse.quote_plus(last)}&page={pg}')
+                    page.goto(scan_url, timeout=18000, wait_until='domcontentloaded')
+                    # Each result card wraps the link + location text
+                    # Find all cards that contain both a memorial link AND the death_place
+                    # Use evaluate() to get each anchor's card container text — most reliable
+                    anchors = page.query_selector_all('a[href*="/memorial/"]')
+                    for a in anchors:
+                        href = a.get_attribute('href') or ''
+                        if '/memorial/search' in href or '/memorial/' not in href:
+                            continue
+                        try:
+                            container = a.evaluate(
+                                'el => el.parentElement?.parentElement?.parentElement?.innerText || ""'
+                            )
+                            if dp_lower in container.lower():
+                                full_url = ('https://www.findagrave.com' + href if href.startswith('/') else href)
+                                if full_url not in targeted_links:
+                                    targeted_links.append(full_url)
+                                    logger.info('Pre-search hit: %s | %s', full_url, container[:80].replace(chr(10),' '))
+                        except Exception:
+                            pass
+                except Exception as _e:
+                    logger.warning('Pre-search page %d failed: %s', pg, _e)
+
+            if targeted_links:
+                links_str = '\n'.join(f'  - {u}' for u in targeted_links[:6])
+                messages[1]['content'] += (
+                    f'\n\nPre-scan found these {death_place} candidates on FindAGrave — browse each one:\n'
+                    + links_str
+                )
 
         for turn in range(MAX_TURNS):
             try:
@@ -237,8 +308,12 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
                         'source_url': fn_args.get('source_url', ''),
                         'confidence': fn_args.get('confidence', 'medium'),
                     }
-                    findings.append(finding)
-                    stream_fn({'type': 'finding', **finding})
+                    # If we know the death_place, silently skip contradicting death_place findings
+                    skip = (death_place and finding['field'] == 'death_place'
+                            and death_place.lower() not in finding['value'].lower())
+                    if not skip:
+                        findings.append(finding)
+                        stream_fn({'type': 'finding', **finding})
                     tool_results.append({
                         'role':         'tool',
                         'tool_call_id': tc_id,
