@@ -424,7 +424,6 @@
         }
 
         if (data.done) {
-          es.close();
           document.getElementById('spHeading').textContent = totalFound > 0 ? `Found ${totalFound} records` : 'Search complete';
           document.getElementById('spDetail').textContent = data.summary || 'All sources searched.';
           document.getElementById('spCount').textContent = '';
@@ -433,9 +432,11 @@
             btn.disabled = false;
             btn.textContent = '🔍 Search the Archives';
           }, 2200);
+          // Don't close yet — wait for the saved event which arrives right after
         }
 
         if (data.saved) {
+          es.close();
           currentTreeId = data.tree_id;
           localStorage.setItem('lastTreeId', currentTreeId);
           loadTrees();

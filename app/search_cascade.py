@@ -297,12 +297,26 @@ def _build_tasks(first: str, last: str, birth_year: int,
             search_matricula, _guess_origins,
         )
         # Always-on US sources
+        _first_only = first.split()[0] if first else first  # strip middle initial for name-exact sources
         tasks['findagrave']   = lambda: search_findagrave(first, last, birth_year)
         tasks['obituaries']   = lambda: search_obituaries(first, last, birth_year, birth_place)
-        tasks['va_gravesite'] = lambda: search_va_gravesite(first, last, birth_year)
+        tasks['va_gravesite'] = lambda: search_va_gravesite(_first_only, last, birth_year)
 
-        # Origin-specific European sources
-        origins = [country_hint.lower()] if country_hint else _guess_origins(last)
+        # Origin-specific European sources — skip entirely if birth place is clearly US
+        _us_states = {
+            'alabama','alaska','arizona','arkansas','california','colorado','connecticut',
+            'delaware','florida','georgia','hawaii','idaho','illinois','indiana','iowa',
+            'kansas','kentucky','louisiana','maine','maryland','massachusetts','michigan',
+            'minnesota','mississippi','missouri','montana','nebraska','nevada',
+            'new hampshire','new jersey','new mexico','new york','north carolina',
+            'north dakota','ohio','oklahoma','oregon','pennsylvania','rhode island',
+            'south carolina','south dakota','tennessee','texas','utah','vermont',
+            'virginia','washington','west virginia','wisconsin','wyoming',
+            'usa','united states','u.s.','u.s.a.',
+        }
+        _bp_lower = birth_place.lower()
+        _is_us = any(s in _bp_lower for s in _us_states)
+        origins = [] if _is_us else ([country_hint.lower()] if country_hint else _guess_origins(last))
 
         if 'ireland' in origins or 'irish' in origins:
             tasks['irish_birth']  = lambda: search_irish_genealogy(first, last, birth_year, 'B')
