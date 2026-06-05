@@ -13,7 +13,7 @@ import requests as req_lib
 logger = logging.getLogger(__name__)
 
 OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
-AGENT_MODEL    = 'anthropic/claude-3.5-sonnet'
+AGENT_MODEL    = 'anthropic/claude-3-haiku'
 MAX_TURNS      = 14
 MAX_PAGE_CHARS = 4000
 

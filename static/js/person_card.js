@@ -614,9 +614,13 @@ async function deepResearch(personId) {
       }
       if (data.type === 'error') {
         es.close();
-        hideSearchProgress();
-        if (btn) { btn.disabled = false; btn.textContent = '🔍 Search the Archives'; }
-        alert('Deep research error: ' + data.message);
+        document.getElementById('spHeading').textContent = 'Research failed';
+        document.getElementById('spDetail').textContent  = data.message;
+        document.getElementById('spCount').textContent   = '';
+        setTimeout(() => {
+          hideSearchProgress();
+          if (btn) { btn.disabled = false; btn.textContent = '🔍 Search the Archives'; }
+        }, 4000);
       }
     } catch(e) {}
   };
