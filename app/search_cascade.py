@@ -284,17 +284,22 @@ def _build_tasks(first: str, last: str, birth_year: int,
                  birth_place: str, country_hint: str,
                  community_results: list = None) -> dict:
     """Return {label: callable} for every applicable source."""
+    # For name-exact database searches, use only the given name (first word).
+    # Middle names appended to first cause zero matches in indexed archives.
+    # Keep the full "first middle" form only for free-text/keyword searches.
+    _first_only = first.split()[0] if first else first
+
     tasks = {
-        'wikitree':      lambda: search_wikitree(first, last, birth_year),
+        'wikitree':      lambda: search_wikitree(_first_only, last, birth_year),
         'chronicling':   lambda: search_chronicling(first, last, birth_year),
-        'dpla_census':   lambda: search_dpla_census(first, last, birth_year, birth_place),
-        'dpla_military': lambda: search_dpla_military(first, last, birth_year),
-        'dpla_general':  lambda: search_dpla(first, last, birth_year),
+        'dpla_census':   lambda: search_dpla_census(_first_only, last, birth_year, birth_place),
+        'dpla_military': lambda: search_dpla_military(_first_only, last, birth_year),
+        'dpla_general':  lambda: search_dpla(_first_only, last, birth_year),
         'dpla_obituary': lambda: _dpla_search(
             f'{first} {last} obituary death'.strip(), 'dpla_obituary', 3),
         'dpla_marriage': lambda: _dpla_search(
             f'{first} {last} marriage'.strip(), 'dpla_marriage', 3),
-        'nara':          lambda: search_nara(first, last, birth_year, birth_place),
+        'nara':          lambda: search_nara(_first_only, last, birth_year, birth_place),
     }
 
     if _playwright_available():
@@ -305,8 +310,7 @@ def _build_tasks(first: str, last: str, birth_year: int,
             search_matricula, _guess_origins,
         )
         # Always-on US sources
-        _first_only = first.split()[0] if first else first  # strip middle initial for name-exact sources
-        tasks['findagrave']   = lambda: search_findagrave(first, last, birth_year)
+        tasks['findagrave']   = lambda: search_findagrave(_first_only, last, birth_year)
         tasks['obituaries']   = lambda: search_obituaries(first, last, birth_year, birth_place)
         tasks['va_gravesite'] = lambda: search_va_gravesite(_first_only, last, birth_year)
 
