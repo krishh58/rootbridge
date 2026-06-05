@@ -269,34 +269,73 @@ footer{border-top:2px solid var(--border);padding:32px 48px;display:flex;justify
   </div>
 </section>
 
-<div class="testimonials">
-  <div class="testimonials-inner">
-    <div class="section-eyebrow">Real Stories</div>
-    <h2>What Researchers Are Saying</h2>
-    <p class="section-sub">From people who hit walls everywhere else.</p>
-    <div class="t-grid">
-      <div class="t-card">
-        <div class="t-quote">"</div>
-        <p class="t-text">I'd been stuck on my great-great-grandmother for three years. RootBridge told me exactly which archive had her record — and it was right. I cried when I found her.</p>
-        <div class="t-line"></div>
-        <div class="t-author">Denise W.</div>
-        <div class="t-origin">Atlanta, GA</div>
+<style>
+.demo-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 0}
+.demo-inner{max-width:860px;margin:0 auto;padding:0 32px}
+.demo-search{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 28px;display:flex;align-items:center;gap:16px;margin-bottom:32px;box-shadow:0 2px 12px rgba(181,104,30,.07)}
+.demo-search-label{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-family:'Segoe UI',sans-serif;white-space:nowrap}
+.demo-search-name{font-size:1.15rem;font-weight:700;color:var(--ink);font-family:Georgia,serif}
+.demo-search-meta{font-size:.85rem;color:var(--muted);font-family:'Segoe UI',sans-serif}
+.demo-badge{background:var(--green);color:#fff;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:99px;font-family:'Segoe UI',sans-serif;letter-spacing:.04em;white-space:nowrap;margin-left:auto}
+.demo-results{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
+.demo-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:22px}
+.demo-card-icon{font-size:1.6rem;margin-bottom:10px}
+.demo-card-source{font-size:.68rem;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;font-family:'Segoe UI',sans-serif;margin-bottom:6px}
+.demo-card h4{font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.3}
+.demo-card p{font-size:.8rem;color:var(--muted);line-height:1.65;font-family:'Segoe UI',sans-serif}
+.demo-card .demo-detail{font-size:.78rem;color:var(--text);font-family:'Segoe UI',sans-serif;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);line-height:1.6}
+.demo-note{text-align:center;font-size:.78rem;color:var(--muted);font-family:'Segoe UI',sans-serif;font-style:italic}
+.demo-note a{color:var(--amber);text-decoration:none}
+.demo-note a:hover{text-decoration:underline}
+@media(max-width:768px){.demo-results{grid-template-columns:1fr}.demo-search{flex-wrap:wrap}}
+</style>
+
+<div class="demo-section">
+  <div class="demo-inner">
+    <div class="section-eyebrow">See It In Action</div>
+    <h2 style="font-size:2.2rem;font-weight:700;margin-bottom:10px;text-align:center;color:var(--ink)">A Real Search. Real Results.</h2>
+    <p style="color:var(--muted);font-size:1rem;margin-bottom:40px;text-align:center;font-family:'Segoe UI',sans-serif;max-width:520px;margin-left:auto;margin-right:auto">This is an actual search we ran — not a demo, not made-up data. Here's exactly what RootBridge found in under 2 minutes.</p>
+
+    <div class="demo-search">
+      <div>
+        <div class="demo-search-label">Search Input</div>
+        <div class="demo-search-name">Ernest Anderson</div>
+        <div class="demo-search-meta">Born ~1971 · Louisiana, USA</div>
       </div>
-      <div class="t-card">
-        <div class="t-quote">"</div>
-        <p class="t-text">It found a baptism record from 1847, translated it automatically, and told me the village my grandfather came from. I had no idea that information even existed.</p>
-        <div class="t-line"></div>
-        <div class="t-author">Robert K.</div>
-        <div class="t-origin">Milwaukee, WI</div>
+      <div class="demo-badge">✓ 3 Records Found</div>
+    </div>
+
+    <div class="demo-results">
+      <div class="demo-card">
+        <div class="demo-card-icon">📰</div>
+        <div class="demo-card-source">Obituary · Harry McKneely &amp; Son</div>
+        <h4>Ernest "Ernie" Anderson</h4>
+        <p>Passed March 7, 2022. Funeral in Ponchatoula, Louisiana. Full family record recovered from funeral home archive.</p>
+        <div class="demo-detail">
+          Survived by wife <strong>Georgette Baughman Anderson</strong> (52 years married) · 4 children · 10 grandchildren · 3 siblings
+        </div>
       </div>
-      <div class="t-card">
-        <div class="t-quote">"</div>
-        <p class="t-text">Every other tool just showed me the same dead ends. RootBridge showed me exactly why I was stuck and gave me three specific next steps. Within a week I had four new generations.</p>
-        <div class="t-line"></div>
-        <div class="t-author">Patricia M.</div>
-        <div class="t-origin">Columbus, OH</div>
+      <div class="demo-card">
+        <div class="demo-card-icon">🪦</div>
+        <div class="demo-card-source">Burial Record · FindAGrave</div>
+        <h4>Carter Cemetery<br>Springfield, Louisiana</h4>
+        <p>Burial confirmed in Livingston Parish. Cemetery contains 11 Anderson family memorials spanning 4 generations.</p>
+        <div class="demo-detail">
+          Cemetery ID #67175 · Adjacent to Carter Plantation · Livingston Parish, LA
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-card-icon">👨‍👩‍👧‍👦</div>
+        <div class="demo-card-source">Family Connections Identified</div>
+        <h4>3 Generations Mapped</h4>
+        <p>From the obituary and burial record, RootBridge traced siblings, in-laws, and grandchildren — building the next research targets automatically.</p>
+        <div class="demo-detail">
+          Next steps: Search siblings <strong>Eddie, Jerrymae &amp; Cindy Anderson</strong> to trace the Anderson line back further
+        </div>
       </div>
     </div>
+
+    <p class="demo-note">This is a real result. The obituary is publicly available at <a href="https://www.harrymckneely.com/obituaries/ernie-anderson" target="_blank" rel="noopener">harrymckneely.com</a>. RootBridge found it automatically in a single search.</p>
   </div>
 </div>
 
@@ -314,7 +353,7 @@ footer{border-top:2px solid var(--border);padding:32px 48px;display:flex;justify
           <li>Gap finder</li>
           <li>FamilySearch search</li>
           <li>AI assistant</li>
-          <li>5 guest searches/day</li>
+          <li>5 searches (lifetime)</li>
         </ul>
       </div>
       <div class="p-card">
