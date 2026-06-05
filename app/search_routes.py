@@ -47,6 +47,30 @@ def _check_search_limit(key: str) -> bool:
         return True
 
 
+def _enrich_person_from_results(person, results: list) -> None:
+    """Backfill birth/death year and place from scraped records into the Person row."""
+    for r in results:
+        if not person.birth_year:
+            if r.get('birth_year'):
+                try: person.birth_year = int(r['birth_year'])
+                except (ValueError, TypeError): pass
+        if not person.birth_state and not person.birth_country:
+            if r.get('birth_place'):
+                person.birth_state = r['birth_place']
+        if not person.death_year:
+            if r.get('death_year'):
+                try: person.death_year = int(r['death_year'])
+                except (ValueError, TypeError): pass
+            elif r.get('death_date'):
+                try: person.death_year = int(str(r['death_date']).split('/')[-1])
+                except (ValueError, IndexError): pass
+        if not person.death_place:
+            if r.get('death_place'):
+                person.death_place = r['death_place']
+            elif r.get('cemetery'):
+                person.death_place = r['cemetery']
+
+
 def _save_search_to_db(user_id: int, tree_name: str, first: str, last: str,
                        birth_year: int, birth_place: str, cascade: dict,
                        summary: str) -> dict:
@@ -70,6 +94,8 @@ def _save_search_to_db(user_id: int, tree_name: str, first: str, last: str,
             record_type=r.get('record_type', ''), url=r.get('url', ''),
             raw_data=r,
         ))
+
+    _enrich_person_from_results(person, cascade['results'])
 
     for gap in cascade['gaps']:
         db.session.add(Gap(
@@ -263,7 +289,8 @@ def research_person(person_id):
                             raw_data=r,
                         ))
                         new_count += 1
-                # Update confidence and death info if improved
+                # Backfill any fields that were missing
+                _enrich_person_from_results(person, final_event.get('results', []))
                 if final_event.get('confidence', 0) > (person.confidence or 0):
                     person.confidence = final_event['confidence']
                 db.session.commit()
