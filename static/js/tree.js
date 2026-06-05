@@ -1,4 +1,6 @@
-const NODE_RADIUS = 28;
+const NODE_W = 110;
+const NODE_H = 48;
+const NODE_RX = 16;
 
 async function loadTree(treeId) {
   const r = await fetch(`/api/trees/${treeId}`);
@@ -71,10 +73,13 @@ function renderTree(persons, treeId) {
     .style('cursor', 'pointer')
     .on('click', (event, d) => openPersonCard(d.data.data.id));
 
-  node.append('circle').attr('r', NODE_RADIUS);
-  node.append('text').attr('dy', 4).attr('text-anchor', 'middle')
+  node.append('rect')
+    .attr('x', -NODE_W / 2).attr('y', -NODE_H / 2)
+    .attr('width', NODE_W).attr('height', NODE_H)
+    .attr('rx', NODE_RX).attr('ry', NODE_RX);
+  node.append('text').attr('dy', -4).attr('text-anchor', 'middle')
     .text(d => shortName(d.data.data));
-  node.append('text').attr('dy', 18).attr('text-anchor', 'middle')
+  node.append('text').attr('dy', 13).attr('text-anchor', 'middle')
     .style('font-size', '9px').style('fill', '#94a3b8')
     .text(d => d.data.data.birth_year || '?');
 
@@ -86,8 +91,14 @@ function renderTree(persons, treeId) {
       .attr('transform', `translate(${fx},${fy})`)
       .style('cursor', 'pointer')
       .on('click', () => openPersonCard(p.id));
-    fn.append('circle').attr('r', NODE_RADIUS);
-    fn.append('text').attr('dy', 4).attr('text-anchor', 'middle').text(shortName(p));
+    fn.append('rect')
+      .attr('x', -NODE_W / 2).attr('y', -NODE_H / 2)
+      .attr('width', NODE_W).attr('height', NODE_H)
+      .attr('rx', NODE_RX).attr('ry', NODE_RX);
+    fn.append('text').attr('dy', -4).attr('text-anchor', 'middle').text(shortName(p));
+    fn.append('text').attr('dy', 13).attr('text-anchor', 'middle')
+      .style('font-size', '9px').style('fill', '#94a3b8')
+      .text(p.birth_year || '?');
   });
 
   svg.call(d3.zoom().scaleExtent([0.3, 2]).on('zoom', e => g.attr('transform', e.transform)));

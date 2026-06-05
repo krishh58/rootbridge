@@ -89,9 +89,9 @@ footer { text-align: center; padding: 32px; color: var(--muted); font-size: 0.85
 .modal-actions { display: flex; gap: .75rem; justify-content: flex-end; }
 .input-field { background: #0f172a; border: 1px solid #334155; color: #f1f5f9; padding: .5rem .75rem; border-radius: 6px; font-size: .9rem; width: 100%; box-sizing: border-box; }
 .input-field:focus { outline: 2px solid var(--blue); }
-.node-confirmed circle { fill: #1e40af; stroke: var(--blue); stroke-width: 2; }
-.node-partial circle { fill: #78350f; stroke: #f59e0b; stroke-width: 2; stroke-dasharray: 6,3; }
-.node-gap circle { fill: #7f1d1d; stroke: #ef4444; stroke-width: 2; stroke-dasharray: 6,3; }
+.node-confirmed circle, .node-confirmed rect { fill: #1e40af; stroke: var(--blue); stroke-width: 2; }
+.node-partial circle, .node-partial rect { fill: #78350f; stroke: #f59e0b; stroke-width: 2; stroke-dasharray: 6,3; }
+.node-gap circle, .node-gap rect { fill: #7f1d1d; stroke: #ef4444; stroke-width: 2; stroke-dasharray: 6,3; }
 .node-inferred circle { fill: #1e293b; stroke: #64748b; stroke-width: 1.5; stroke-dasharray: 4,4; }
 .node text { fill: #f1f5f9; font-size: 11px; pointer-events: none; }
 .link { fill: none; stroke: #334155; stroke-width: 1.5; }
