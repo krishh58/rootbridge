@@ -695,8 +695,10 @@
           <!-- Login form -->
           <div id="loginForm">
             <input id="authEmail" type="email" placeholder="Email address" autocomplete="email"
+              onkeydown="if(event.key==='Enter')submitLogin()"
               style="width:100%;background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.65rem .8rem;border-radius:6px;font-size:.9rem;margin-bottom:.75rem">
             <input id="authPassword" type="password" placeholder="Password" autocomplete="current-password"
+              onkeydown="if(event.key==='Enter')submitLogin()"
               style="width:100%;background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.65rem .8rem;border-radius:6px;font-size:.9rem;margin-bottom:.5rem">
             <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
               <a href="/reset-password" style="color:#60a5fa;font-size:.8rem;text-decoration:none">Forgot password?</a>
