@@ -862,10 +862,11 @@
           <div style="margin-top:.75rem"><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Notes</label>
             <textarea id="ep_notes" class="input-field" style="width:100%;height:80px;resize:vertical">${escHtml(p.notes||'')}</textarea></div>
           <div id="ep_err" style="display:none;color:#f87171;font-size:.82rem;margin-top:.5rem"></div>
-          <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap">
+          <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap;align-items:center">
             <button class="btn-primary" onclick="saveEditPerson(${personId})">Save Changes</button>
             <button class="btn-primary" style="background:#1d4ed8" onclick="saveEditPerson(${personId}, true)">Save &amp; Re-search</button>
             <button class="btn-ghost" onclick="openPersonCard(${personId})">Cancel</button>
+            <button style="margin-left:auto;background:none;border:1px solid #7f1d1d;color:#f87171;padding:.3rem .75rem;border-radius:6px;cursor:pointer;font-size:.82rem" onclick="deletePerson(${personId})">🗑 Delete</button>
           </div>
           <div style="margin-top:1.25rem;border-top:1px solid #334155;padding-top:1rem">
             <div style="font-size:.78rem;color:#94a3b8;margin-bottom:.6rem">Add a parent to this person</div>
@@ -876,6 +877,13 @@
           </div>
           <style>.input-field{background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.55rem .75rem;border-radius:6px;font-size:.9rem}.input-field:focus{outline:2px solid #2563eb;border-color:transparent}</style>
         </div>`;
+    }
+
+    async function deletePerson(personId) {
+      if (!confirm('Remove this person from the tree? This cannot be undone.')) return;
+      const r = await fetch('/api/persons/' + personId, { method: 'DELETE' });
+      if (r.ok) { closePersonCard(); loadTree(currentTreeId); }
+      else { alert('Delete failed. Please try again.'); }
     }
 
     function showAddParentForm(childId, role) {
