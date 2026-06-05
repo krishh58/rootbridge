@@ -93,7 +93,7 @@ function buildCardHTML(person, hometown, messages, documents) {
   return `
     <div class="person-card">
       <button class="card-close" onclick="closePersonCard()">✕</button>
-      <button class="card-edit-btn" onclick="showEditPerson(${person.id}, ${JSON.stringify(person).replace(/</g,'\\u003c')})" title="Edit person">✏️ Edit</button>
+      <button class="card-edit-btn" onclick="showEditPerson(${person.id}, ${JSON.stringify(person).replace(/</g,'\\u003c').replace(/"/g,'&quot;')})" title="Edit person">✏️ Edit</button>
       <button class="card-edit-btn" style="right:7rem" onclick="reSearchPerson(${person.id})" title="Re-search archives">🔍 Re-search</button>
       <div class="card-header">
         <h2>${escapeHtml(name)}</h2>
