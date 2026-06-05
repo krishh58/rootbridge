@@ -21,18 +21,27 @@ MAX_PAGE_CHARS = 4000
 SYSTEM_PROMPT = """You are a genealogy research agent. You have tools to browse the web.
 Given a person's details, research them thoroughly.
 
+IMPORTANT — always use full URLs, never plain text queries:
+- Google search: https://www.google.com/search?q=Orville+Cleckner+Henderson+genealogy
+- FindAGrave search: https://www.findagrave.com/memorial/search?firstname=Orville&lastname=Henderson
+- Ancestry public: https://www.ancestry.com/search/?name=Orville_Henderson
+- BillionGraves: https://billiongraves.com/search/results?firstname=Orville&lastname=Henderson
+- Obituary search: https://www.google.com/search?q=%22Orville+Henderson%22+obituary
+
 Strategy:
-1. Google search: "FIRSTNAME LASTNAME" birth death genealogy
-2. Check findagrave.com results
-3. Search Google for "FIRSTNAME LASTNAME obituary"
-4. Check ancestry.com public search results (no login needed for previews)
-5. Try billiongraves.com
-6. Follow any promising leads you find
+1. Google search using full name including middle name if known
+2. Check FindAGrave results — read each promising memorial page
+3. Google obituary search
+4. Check Ancestry.com public previews
+5. Try BillionGraves
+6. Follow any leads that mention parents, spouse, or specific dates
 
 Rules:
-- Use report_finding each time you confirm a real fact from a page
+- ALWAYS construct a real https:// URL — never pass plain text as a URL
+- Include the middle name in searches when known (it narrows results dramatically)
+- Use report_finding each time you confirm a fact from a page
 - Only report what you actually read — no guessing
-- If a page needs login, note the preview info and move on
+- If a page needs login, note what the preview showed and move on
 - Stop after 8 sources or when you have birth year + death year + at least one parent
 - End by calling research_complete"""
 
@@ -48,7 +57,7 @@ def _browse(url: str, page) -> str:
 
 
 def run_research_agent(first: str, last: str, birth_year, birth_place: str,
-                       stream_fn, api_key: str):
+                       stream_fn, api_key: str, middle: str = ''):
     """
     api_key must be passed in — cannot use current_app inside a thread.
 
@@ -116,7 +125,7 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
         },
     ]
 
-    name      = f'{first} {last}'.strip()
+    full_name = f'{first} {middle} {last}'.strip() if middle else f'{first} {last}'.strip()
     birth_str = f'born approximately {birth_year}' if birth_year else 'birth year unknown'
     place_str = f'from {birth_place}' if birth_place else ''
 
@@ -125,10 +134,11 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
         {
             'role': 'user',
             'content': (
-                f'Research: {name}, {birth_str} {place_str}. '
-                f'Find birth year, birth place, death year, death place, parents, spouse. '
-                f'Use browse_url to search, report_finding for each confirmed fact, '
-                f'research_complete when done.'
+                f'Research: {full_name}, {birth_str} {place_str}. '
+                + (f'Middle name "{middle}" is distinctive — use it in searches to narrow results. ' if middle else '')
+                + 'Find birth year, birth place, death year, death place, parents, spouse. '
+                f'Use browse_url with real https:// URLs only. '
+                f'Call report_finding for each confirmed fact, research_complete when done.'
             ),
         },
     ]

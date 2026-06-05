@@ -372,7 +372,9 @@ def deep_research(person_id):
     if not person:
         return jsonify({'error': 'Person not found'}), 404
 
-    first       = person.first_name or ''
+    name_parts  = (person.first_name or '').split()
+    first       = name_parts[0] if name_parts else ''
+    middle      = ' '.join(name_parts[1:]) if len(name_parts) > 1 else ''
     last        = person.last_name  or ''
     birth_year  = person.birth_year
     birth_place = person.birth_state or person.birth_country or ''
@@ -392,7 +394,7 @@ def deep_research(person_id):
             def put(event):
                 q.put(event)
             try:
-                run_research_agent(first, last, birth_year, birth_place, put, api_key)
+                run_research_agent(first, last, birth_year, birth_place, put, api_key, middle)
             except Exception as e:
                 q.put({'type': 'error', 'message': str(e)})
             finally:
