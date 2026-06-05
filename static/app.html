@@ -864,6 +864,7 @@
           <div id="ep_err" style="display:none;color:#f87171;font-size:.82rem;margin-top:.5rem"></div>
           <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap">
             <button class="btn-primary" onclick="saveEditPerson(${personId})">Save Changes</button>
+            <button class="btn-primary" style="background:#1d4ed8" onclick="saveEditPerson(${personId}, true)">Save &amp; Re-search</button>
             <button class="btn-ghost" onclick="openPersonCard(${personId})">Cancel</button>
           </div>
           <div style="margin-top:1.25rem;border-top:1px solid #334155;padding-top:1rem">
@@ -949,7 +950,7 @@
       }
     }
 
-    async function saveEditPerson(personId) {
+    async function saveEditPerson(personId, andSearch = false) {
       const by = document.getElementById('ep_by').value;
       const dy = document.getElementById('ep_dy').value;
       const bplace = document.getElementById('ep_bplace').value.trim();
@@ -967,8 +968,10 @@
         method: 'PUT', headers: {'Content-Type':'application/json'},
         body: JSON.stringify(payload),
       });
-      if (r.ok) { openPersonCard(personId); }
-      else {
+      if (r.ok) {
+        if (andSearch) { reSearchPerson(personId); }
+        else { openPersonCard(personId); }
+      } else {
         const errEl = document.getElementById('ep_err');
         const d = await r.json().catch(() => ({}));
         errEl.textContent = d.error || 'Save failed.'; errEl.style.display = 'block';
