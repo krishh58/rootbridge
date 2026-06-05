@@ -1,6 +1,6 @@
-const NODE_W = 110;
 const NODE_H = 48;
 const NODE_RX = 16;
+const NODE_PAD = 18; // horizontal padding inside oval
 
 async function loadTree(treeId) {
   const r = await fetch(`/api/trees/${treeId}`);
@@ -73,15 +73,19 @@ function renderTree(persons, treeId) {
     .style('cursor', 'pointer')
     .on('click', (event, d) => openPersonCard(d.data.data.id));
 
-  node.append('rect')
-    .attr('x', -NODE_W / 2).attr('y', -NODE_H / 2)
-    .attr('width', NODE_W).attr('height', NODE_H)
-    .attr('rx', NODE_RX).attr('ry', NODE_RX);
-  node.append('text').attr('dy', -4).attr('text-anchor', 'middle')
-    .text(d => shortName(d.data.data));
+  node.append('text').attr('class', 'node-label').attr('dy', -4).attr('text-anchor', 'middle')
+    .text(d => fullName(d.data.data));
   node.append('text').attr('dy', 13).attr('text-anchor', 'middle')
     .style('font-size', '9px').style('fill', '#94a3b8')
     .text(d => d.data.data.birth_year || '?');
+  node.each(function() {
+    const bbox = d3.select(this).select('.node-label').node().getBBox();
+    const w = Math.max(bbox.width + NODE_PAD * 2, 80);
+    d3.select(this).insert('rect', '.node-label')
+      .attr('x', -w / 2).attr('y', -NODE_H / 2)
+      .attr('width', w).attr('height', NODE_H)
+      .attr('rx', NODE_RX).attr('ry', NODE_RX);
+  });
 
   floating.forEach((p, i) => {
     const fx = 60 + (i * 80) % (width - 100);
@@ -91,14 +95,16 @@ function renderTree(persons, treeId) {
       .attr('transform', `translate(${fx},${fy})`)
       .style('cursor', 'pointer')
       .on('click', () => openPersonCard(p.id));
-    fn.append('rect')
-      .attr('x', -NODE_W / 2).attr('y', -NODE_H / 2)
-      .attr('width', NODE_W).attr('height', NODE_H)
-      .attr('rx', NODE_RX).attr('ry', NODE_RX);
-    fn.append('text').attr('dy', -4).attr('text-anchor', 'middle').text(shortName(p));
+    fn.append('text').attr('class', 'node-label').attr('dy', -4).attr('text-anchor', 'middle').text(fullName(p));
     fn.append('text').attr('dy', 13).attr('text-anchor', 'middle')
       .style('font-size', '9px').style('fill', '#94a3b8')
       .text(p.birth_year || '?');
+    const bbox = fn.select('.node-label').node().getBBox();
+    const w = Math.max(bbox.width + NODE_PAD * 2, 80);
+    fn.insert('rect', '.node-label')
+      .attr('x', -w / 2).attr('y', -NODE_H / 2)
+      .attr('width', w).attr('height', NODE_H)
+      .attr('rx', NODE_RX).attr('ry', NODE_RX);
   });
 
   svg.call(d3.zoom().scaleExtent([0.3, 2]).on('zoom', e => g.attr('transform', e.transform)));
@@ -110,8 +116,8 @@ function nodeClass(confidence) {
   return 'node-gap';
 }
 
-function shortName(p) {
-  const first = (p.first_name || '').charAt(0);
-  const last = (p.last_name || '').slice(0, 8);
-  return first ? `${first}. ${last}` : last;
+function fullName(p) {
+  const first = (p.first_name || '').trim();
+  const last = (p.last_name || '').trim();
+  return [first, last].filter(Boolean).join(' ') || '?';
 }
