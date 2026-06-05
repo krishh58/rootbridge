@@ -888,6 +888,8 @@
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
             <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">First Name</label>
               <input id="par_first" class="input-field" style="width:100%" placeholder="e.g. Orville"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Middle Name</label>
+              <input id="par_middle" class="input-field" style="width:100%" placeholder="e.g. Cleckner"></div>
             <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Last Name</label>
               <input id="par_last" class="input-field" style="width:100%" placeholder="e.g. Henderson"></div>
             <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Birth Year (approx)</label>
@@ -905,15 +907,16 @@
     }
 
     async function saveAddParent(childId) {
-      const first = document.getElementById('par_first').value.trim();
-      const last  = document.getElementById('par_last').value.trim();
-      const by    = document.getElementById('par_by').value;
-      const bp    = document.getElementById('par_bp').value.trim();
+      const first  = document.getElementById('par_first').value.trim();
+      const middle = document.getElementById('par_middle').value.trim();
+      const last   = document.getElementById('par_last').value.trim();
+      const by     = document.getElementById('par_by').value;
+      const bp     = document.getElementById('par_bp').value.trim();
       if (!last) { document.getElementById('par_err').textContent = 'Last name is required.'; document.getElementById('par_err').style.display='block'; return; }
       const btn = document.getElementById('par_save_btn');
       btn.disabled = true; btn.textContent = 'Searching…';
       // Create the parent person via the search stream, then link them
-      const params = new URLSearchParams({ first, last, birth_year: by||'', birth_place: bp, tree_name: last + ' Family' });
+      const params = new URLSearchParams({ first, middle, last, birth_year: by||'', birth_place: bp, tree_name: last + ' Family' });
       let parentId = null;
       await new Promise(resolve => {
         const es = new EventSource('/api/search/stream?' + params.toString());

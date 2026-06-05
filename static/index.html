@@ -258,6 +258,7 @@ footer{border-top:2px solid var(--border);padding:32px 48px;display:flex;justify
     <p>Free · No account required · Results in seconds</p>
     <div class="form-row">
       <div><label>First Name</label><input id="firstName" type="text" placeholder="Margaret"></div>
+      <div><label>Middle Name</label><input id="middleName" type="text" placeholder="Cleckner"></div>
       <div><label>Last Name *</label><input id="lastName" type="text" placeholder="O'Brien"></div>
     </div>
     <div class="form-row">
@@ -418,6 +419,7 @@ function guestSearch() {
   if (!last) { alert('Last name is required to search.'); return; }
   const params = new URLSearchParams({
     first: document.getElementById('firstName').value.trim(),
+    middle: document.getElementById('middleName').value.trim(),
     last,
     birth_year: document.getElementById('birthYear').value.trim(),
     birth_place: document.getElementById('birthPlace').value.trim(),
