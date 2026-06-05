@@ -300,6 +300,7 @@ async function runHeritageSearch(personId, type) {
   const btn = event.currentTarget || event.target;
   btn.disabled = true;
   btn.textContent = 'Searching...';
+  if (typeof showSearchProgress === 'function') showSearchProgress();
 
   const payload = {};
   if (type === 'european') {
@@ -307,11 +308,16 @@ async function runHeritageSearch(personId, type) {
     if (country) payload.origin_country = country;
   }
 
-  const r = await fetch(`/api/heritage/${personId}/${type}`, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(payload),
-  });
+  let r;
+  try {
+    r = await fetch(`/api/heritage/${personId}/${type}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload),
+    });
+  } finally {
+    if (typeof hideSearchProgress === 'function') hideSearchProgress();
+  }
 
   const label = type === 'european' ? 'Search European Records (40 tokens)' : 'Search AA Records (40 tokens)';
   btn.disabled = false;

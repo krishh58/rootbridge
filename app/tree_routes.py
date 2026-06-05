@@ -117,8 +117,10 @@ def create_person():
     if not tree:
         tree = Tree(user_id=g.user_id, name=tree_name)
         db.session.add(tree)
+    middle = data.get('middle_name', '')
+    first_full = f"{data.get('first_name', '')} {middle}".strip() if middle else data.get('first_name', '')
     p = Person(
-        first_name=data.get('first_name', ''),
+        first_name=first_full,
         last_name=data.get('last_name', ''),
         birth_year=data.get('birth_year'),
         birth_state=data.get('birth_state', ''),

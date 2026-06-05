@@ -64,7 +64,7 @@
       </aside>
       <main class="tree-main">
         <div id="treeContainer">
-          <p class="placeholder-text">Add a person to start building your family tree.</p>
+          <p class="placeholder-text">👆 Click <strong>+ Add Person</strong> above to get started.<br><span style="font-size:.9em;opacity:.7">Think of a grandparent or great-grandparent — someone in your family whose story you'd love to know more about.</span></p>
         </div>
       </main>
     </div>
@@ -119,31 +119,59 @@
 
   <div id="addPersonModal" class="modal hidden">
     <div class="modal-content">
-      <h3>Add Person to Search</h3>
+      <h3>Who do you want to research?</h3>
+      <p style="color:#94a3b8;font-size:.9rem;margin:-8px 0 16px;line-height:1.5">
+        Enter a family member from the past — a grandparent, great-grandparent, or anyone whose history you'd like to uncover. We'll search real archives to find birth records, burial records, obituaries, and more.
+      </p>
       <div class="form-field">
-        <input id="apFirst" placeholder="First name" class="input-field" autocomplete="off">
+        <input id="apFirst" placeholder="Their first name (e.g. Ernest)" class="input-field" autocomplete="off">
         <span class="form-error" id="apFirstErr"></span>
       </div>
       <div class="form-field">
-        <input id="apLast" placeholder="Last name *" class="input-field" autocomplete="off">
+        <input id="apMiddle" placeholder="Middle name or initial — optional (e.g. James or J)" class="input-field" autocomplete="off">
+      </div>
+      <div class="form-field">
+        <input id="apLast" placeholder="Their last name * (e.g. Anderson)" class="input-field" autocomplete="off">
         <span class="form-error" id="apLastErr"></span>
       </div>
       <div class="form-field">
-        <input id="apBirthYear" placeholder="Birth year (e.g. 1820)" type="number" min="1600" max="1990" class="input-field">
+        <input id="apBirthYear" placeholder="Approx. birth year — even a guess helps (e.g. 1920)" type="number" min="1600" max="1990" class="input-field">
         <span class="form-error" id="apBirthYearErr"></span>
       </div>
       <div class="form-field">
-        <input id="apBirthPlace" placeholder="Birth state or country (e.g. Kentucky)" class="input-field" autocomplete="off">
+        <input id="apBirthPlace" placeholder="Where were they from? State or country (e.g. Louisiana)" class="input-field" autocomplete="off">
         <span class="form-error" id="apBirthPlaceErr"></span>
       </div>
       <div class="modal-actions">
-        <button class="btn-primary" id="addPersonBtn" onclick="addPerson()">Search &amp; Add</button>
+        <button class="btn-primary" id="addPersonBtn" onclick="addPerson()">🔍 Search the Archives</button>
         <button class="btn-ghost" onclick="closeModal('addPersonModal')">Cancel</button>
       </div>
     </div>
   </div>
 
   <div id="personCardOverlay" class="person-card-overlay hidden"></div>
+
+  <!-- Search progress overlay -->
+  <div id="searchProgressOverlay" style="display:none;position:fixed;inset:0;background:rgba(10,15,28,.88);z-index:9999;
+       align-items:center;justify-content:center;flex-direction:column;gap:20px;padding:32px;text-align:center">
+    <div style="font-size:2.5rem" id="spIcon">🔍</div>
+    <div style="color:#f8fafc;font-size:1.15rem;font-weight:700;max-width:500px" id="spHeading">Searching the archives…</div>
+    <div style="color:#94a3b8;font-size:.9rem;max-width:480px;line-height:1.6" id="spDetail">Opening FindAGrave — 200 million burial records worldwide…</div>
+    <div style="display:flex;gap:6px;align-items:center;margin-top:4px">
+      <span style="width:8px;height:8px;background:#4a7c59;border-radius:50%;animation:spPulse 1s ease-in-out infinite"></span>
+      <span style="width:8px;height:8px;background:#4a7c59;border-radius:50%;animation:spPulse 1s ease-in-out .33s infinite"></span>
+      <span style="width:8px;height:8px;background:#4a7c59;border-radius:50%;animation:spPulse 1s ease-in-out .66s infinite"></span>
+    </div>
+    <div style="color:#475569;font-size:.78rem;margin-top:8px;max-width:400px">
+      Each search checks real archives across multiple countries — this costs tokens because it costs real compute.
+    </div>
+  </div>
+  <style>
+    @keyframes spPulse {
+      0%,100%{opacity:.3;transform:scale(.8)}
+      50%{opacity:1;transform:scale(1.2)}
+    }
+  </style>
 
   <script src="/static/js/tree.js"></script>
   <script src="/static/js/person_card.js"></script>
@@ -220,7 +248,8 @@
     function clearFormErrors() {
       ['apFirst','apLast','apBirthYear','apBirthPlace'].forEach(id => {
         document.getElementById(id).classList.remove('input-error');
-        document.getElementById(id + 'Err').textContent = '';
+        const errEl = document.getElementById(id + 'Err');
+        if (errEl) errEl.textContent = '';
       });
     }
 
@@ -232,6 +261,7 @@
     async function addPerson() {
       clearFormErrors();
       const first = document.getElementById('apFirst').value.trim();
+      const middle = document.getElementById('apMiddle').value.trim();
       const last = document.getElementById('apLast').value.trim();
       const birthYearRaw = document.getElementById('apBirthYear').value.trim();
       const birthPlace = document.getElementById('apBirthPlace').value.trim();
@@ -257,19 +287,25 @@
       const btn = document.getElementById('addPersonBtn');
       btn.disabled = true;
       btn.textContent = 'Searching…';
+      showSearchProgress();
 
-      const r = await fetch('/api/persons', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          tree_name: last + ' Family',
-          first_name: first, last_name: last,
-          birth_year: birthYear, birth_state: birthPlace,
-        })
-      });
-      const data = await r.json();
-      btn.disabled = false;
-      btn.textContent = 'Search & Add';
+      let r, data;
+      try {
+        r = await fetch('/api/persons', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            tree_name: last + ' Family',
+            first_name: first, middle_name: middle, last_name: last,
+            birth_year: birthYear, birth_state: birthPlace,
+          })
+        });
+        data = await r.json();
+      } finally {
+        hideSearchProgress();
+        btn.disabled = false;
+        btn.textContent = 'Search & Add';
+      }
       if (!r.ok) { alert(data.error || 'Something went wrong. Please try again.'); return; }
       currentTreeId = data.tree_id;
       localStorage.setItem('lastTreeId', currentTreeId);
@@ -745,6 +781,49 @@
       refreshBadge();
       setInterval(refreshBadge, 60000);
     });
+
+    // ── Search progress overlay ──────────────────────────────────────────────
+    const _SP_STEPS = [
+      { icon: '🔍', heading: 'Opening the archives…',          detail: 'Connecting to FindAGrave — 200 million burial records worldwide.' },
+      { icon: '📜', heading: 'Checking UK civil records…',     detail: 'FreeBMD — every birth, marriage, and death in England & Wales since 1837.' },
+      { icon: '🇮🇪', heading: 'Searching Ireland…',            detail: 'IrishGenealogy.ie — civil registration and Catholic church records from 1845.' },
+      { icon: '⛪', heading: 'Diving into Polish records…',    detail: 'Geneteka — 66 million parish records from Poland, Lithuania, Belarus, Ukraine.' },
+      { icon: '🇮🇹', heading: 'Checking Italian archives…',   detail: 'Antenati (Italian National Archives) — vital records 1800–1940.' },
+      { icon: '🇩🇪', heading: 'Searching German records…',    detail: 'Archion (Protestant) and Matricula Online (Catholic) — church registers going back centuries.' },
+      { icon: '🇳🇴', heading: 'Scanning Norway…',             detail: 'Digitalarkivet — Norwegian census records and church books.' },
+      { icon: '📰', heading: 'Reading old newspapers…',       detail: 'Chronicling America — digitized US newspapers 1770–1963. Obituaries, birth notices, marriage announcements.' },
+      { icon: '🏛️', heading: 'Consulting federal records…',   detail: 'NARA — US National Archives. Military, immigration, naturalization, and census files.' },
+      { icon: '🗞️', heading: 'Searching for obituaries…',    detail: 'Scanning funeral home sites, Legacy.com, and local newspapers for recent death notices — often the richest source for family connections.' },
+      { icon: '🌍', heading: 'Cross-referencing sources…',    detail: 'Comparing results across archives to find corroborated records. Two independent sources = solid lead.' },
+      { icon: '🤖', heading: 'Alfred is reading the results…', detail: 'Our AI is reviewing what was found and identifying the remaining gaps in your family history.' },
+      { icon: '💡', heading: 'Almost done…',                  detail: 'Each archive query costs real compute — that\'s why this uses tokens. We\'re spending them carefully.' },
+    ];
+    let _spTimer = null;
+    let _spStep = 0;
+
+    function showSearchProgress() {
+      const overlay = document.getElementById('searchProgressOverlay');
+      overlay.style.display = 'flex';
+      _spStep = 0;
+      _updateSpStep();
+      _spTimer = setInterval(() => {
+        _spStep = (_spStep + 1) % _SP_STEPS.length;
+        _updateSpStep();
+      }, 2800);
+    }
+
+    function _updateSpStep() {
+      const s = _SP_STEPS[_spStep];
+      document.getElementById('spIcon').textContent = s.icon;
+      document.getElementById('spHeading').textContent = s.heading;
+      document.getElementById('spDetail').textContent = s.detail;
+    }
+
+    function hideSearchProgress() {
+      clearInterval(_spTimer);
+      _spTimer = null;
+      document.getElementById('searchProgressOverlay').style.display = 'none';
+    }
   </script>
 </body>
 </html>

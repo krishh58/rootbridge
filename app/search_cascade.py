@@ -193,6 +193,7 @@ def search_nara(first: str, last: str, birth_year: int = None,
         return []
 
 
+
 def _name_tokens(s: str) -> set:
     return set(s.lower().split()) if s else set()
 
@@ -253,8 +254,17 @@ def cross_reference(results: list, first: str, last: str,
     return scored
 
 
+def _playwright_available() -> bool:
+    try:
+        from playwright.sync_api import sync_playwright  # noqa
+        return True
+    except ImportError:
+        return False
+
+
 def run_us_cascade(first: str = '', last: str = '',
-                   birth_year: int = None, birth_place: str = '') -> dict:
+                   birth_year: int = None, birth_place: str = '',
+                   country_hint: str = '') -> dict:
     key = _cache_key(first, last, birth_year, birth_place)
 
     try:
@@ -266,6 +276,19 @@ def run_us_cascade(first: str = '', last: str = '',
         r = None
 
     raw_results = []
+
+    # --- Primary layer: Playwright scrapers (real browser, bypasses bot protection) ---
+    if _playwright_available():
+        try:
+            from .playwright_scrapers import search_all_playwright
+            raw_results += search_all_playwright(
+                first, last, birth_year, birth_place, country_hint
+            )
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).warning('Playwright cascade failed: %s', e)
+
+    # --- Fallback / supplemental layer: HTTP-based sources ---
     raw_results += search_wikitree(first, last, birth_year)
     raw_results += search_chronicling(first, last, birth_year)
     raw_results += search_dpla_census(first, last, birth_year, birth_place)
@@ -273,13 +296,11 @@ def run_us_cascade(first: str = '', last: str = '',
     raw_results += search_dpla(first, last, birth_year, page_size=5)
     raw_results += search_nara(first, last, birth_year, birth_place)
 
-    # Targeted gap searches — obituaries and marriage records
-    obit_results = _dpla_search(
+    # Targeted gap searches — DPLA obituaries + marriage records (older historical sources)
+    raw_results += _dpla_search(
         f'{first} {last} obituary death'.strip(), 'dpla_obituary', page_size=3)
-    marriage_results = _dpla_search(
+    raw_results += _dpla_search(
         f'{first} {last} marriage'.strip(), 'dpla_marriage', page_size=3)
-    raw_results += obit_results
-    raw_results += marriage_results
 
     results = cross_reference(raw_results, first, last, birth_year, birth_place)
 

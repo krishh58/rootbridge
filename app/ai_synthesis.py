@@ -26,17 +26,31 @@ def synthesize_gaps(person: dict, results: list, gaps: list) -> dict:
         for g in gaps
     ) or "All key fields are populated."
 
-    prompt = f"""You are a genealogy research assistant for RootBridge, a service that searches archives on behalf of users.
+    prompt = f"""You are a genealogy research assistant for RootBridge. You searched real archives on the user's behalf.
 
-We searched for {name} (born ~{birth}) across these archives: {', '.join(sources) or 'none'}.
+SOURCES YOU SEARCHED AND WHAT THEY CONTAIN:
+- findagrave: FindAGrave — 200M+ burial memorials worldwide. Returns name, birth/death dates, cemetery, plot. Best for confirming death and burial location.
+- freebmd: FreeBMD — ALL UK births, marriages, deaths 1837–2006. Civil registration index. Covers England, Wales, Scotland.
+- irish_genealogy: IrishGenealogy.ie — Irish civil registration records. Births from 1864, marriages from 1845, deaths from 1864. Catholic + Protestant church records.
+- antenati: Antenati (Italian National Archives) — Italian vital records 1800–1940. Births, marriages, deaths from Italian communes.
+- geneteka: Geneteka — 66 million+ Catholic parish records from Poland, Lithuania, Belarus, Ukraine. Baptisms, marriages, burials going back to 1600s.
+- digitalarkivet: Digitalarkivet — Norwegian census records and church books. Baptisms, confirmations, marriages, burials.
+- archion: Archion — German Protestant (Evangelical) church records. Baptisms, marriages, burials from German parishes.
+- matricula: Matricula Online — Catholic church records from Germany, Austria, and Poland. Parish registers going back centuries.
+- wikitree: WikiTree — collaborative genealogy tree. User-contributed profiles. Good for connecting family lines.
+- chronicling_america: Chronicling America — digitized US newspapers 1770–1963. Birth announcements, obituaries, marriage notices.
+- dpla: DPLA — Digital Public Library of America. Digitized books, photos, documents from US libraries and archives.
+- nara: NARA — US National Archives catalog. Military records, immigration, naturalization, federal records.
 
-Results: {found_summary}. {corroboration_note}
+SEARCH RESULTS FOR {name} (born ~{birth}):
+Sources that returned data: {', '.join(sources) or 'none'}
+{found_summary}. {corroboration_note}
 
-Research gaps we identified after searching:
+Research gaps identified:
 {gap_list}
 
-Write 2-3 plain English sentences summarizing: what we found, what is still missing, and what that means for the research.
-Do NOT tell the user to go search somewhere themselves — RootBridge does the searching. Be specific and helpful."""
+Write 2-3 plain English sentences: what was found, what is still missing, and what it means for the research.
+Be specific — name the sources and what they returned. Do NOT tell the user to search elsewhere — RootBridge does the searching."""
 
     try:
         resp = requests.post(

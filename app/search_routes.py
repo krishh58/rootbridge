@@ -9,20 +9,16 @@ from . import limiter
 
 search_bp = Blueprint('search', __name__)
 FREE_SEARCH_LIMIT = 5
-_ONE_YEAR = 365 * 24 * 3600
 
 
 def _check_search_limit(key: str) -> bool:
-    """Return True if the caller is under the lifetime limit, False if blocked."""
+    """Return True if the caller is under the lifetime limit (5 searches, never resets)."""
     try:
         r = get_redis()
         count = r.get(key)
         if count and int(count) >= FREE_SEARCH_LIMIT:
             return False
-        pipe = r.pipeline()
-        pipe.incr(key)
-        pipe.expire(key, _ONE_YEAR)
-        pipe.execute()
+        r.incr(key)  # no expiry — counter is permanent
         return True
     except Exception:
         return True
@@ -74,12 +70,14 @@ def guest_search():
     if not _check_search_limit(f'guest_searches:{ip}'):
         return jsonify({'error': 'Free search limit reached. Subscribe to continue researching.'}), 429
     first = data.get('first', '')
+    middle = data.get('middle', '')
+    full_first = f'{first} {middle}'.strip() if middle else first
     last = data['last']
     birth_year = int(data['birth_year']) if data.get('birth_year') else None
     birth_place = data.get('birth_place', '')
-    cascade = run_us_cascade(first=first, last=last, birth_year=birth_year, birth_place=birth_place)
+    cascade = run_us_cascade(first=full_first, last=last, birth_year=birth_year, birth_place=birth_place)
     synthesis = synthesize_gaps(
-        person={'first_name': first, 'last_name': last, 'birth_year': birth_year, 'birth_state': birth_place},
+        person={'first_name': full_first, 'last_name': last, 'birth_year': birth_year, 'birth_state': birth_place},
         results=cascade['results'], gaps=cascade['gaps']
     )
     return jsonify({**cascade, 'summary': synthesis['summary']})
@@ -98,14 +96,16 @@ def authenticated_search():
         if not _check_search_limit(f'free_user_searches:{g.user_id}'):
             return jsonify({'error': 'Free search limit reached. Subscribe to continue researching.'}), 429
     first = data.get('first', '')
+    middle = data.get('middle', '')
+    full_first = f'{first} {middle}'.strip() if middle else first
     last = data['last']
     birth_year = int(data['birth_year']) if data.get('birth_year') else None
     birth_place = data.get('birth_place', '')
     tree_name = data.get('tree_name', '')
-    cascade = run_us_cascade(first=first, last=last, birth_year=birth_year, birth_place=birth_place)
+    cascade = run_us_cascade(first=full_first, last=last, birth_year=birth_year, birth_place=birth_place)
     synthesis = synthesize_gaps(
-        person={'first_name': first, 'last_name': last, 'birth_year': birth_year, 'birth_state': birth_place},
+        person={'first_name': full_first, 'last_name': last, 'birth_year': birth_year, 'birth_state': birth_place},
         results=cascade['results'], gaps=cascade['gaps']
     )
-    ids = _save_search_to_db(g.user_id, tree_name, first, last, birth_year, birth_place, cascade, synthesis['summary'])
+    ids = _save_search_to_db(g.user_id, tree_name, full_first, last, birth_year, birth_place, cascade, synthesis['summary'])
     return jsonify({**cascade, 'summary': synthesis['summary'], **ids})
