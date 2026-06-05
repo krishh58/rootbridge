@@ -561,6 +561,85 @@ def search_obituaries(first: str, last: str, birth_year: int = None,
 
 
 # ---------------------------------------------------------------------------
+# VA Nationwide Gravesite Locator — all US military burials (free federal data)
+# ---------------------------------------------------------------------------
+
+def search_va_gravesite(first: str, last: str, birth_year: int = None) -> list:
+    """
+    Search the VA Nationwide Gravesite Locator for US military burials.
+    Returns name, branch, war period, birth/death dates, cemetery, address.
+    Covers all national cemeteries and many state veterans cemeteries.
+    """
+    try:
+        pw, browser = _make_browser()
+        try:
+            page = _make_page(browser)
+            page.goto('https://gravelocator.cem.va.gov/', timeout=30000,
+                      wait_until='domcontentloaded')
+            time.sleep(3)
+
+            page.fill('input#lname', last)
+            page.fill('input#fname', first)
+            if birth_year:
+                page.fill('input#birth_yy', str(birth_year))
+            time.sleep(0.5)
+
+            page.click('button:has-text("Search")')
+            time.sleep(5)
+            text = _safe_text(page)
+
+            if last.upper() not in text.upper():
+                return []
+
+            results = []
+            # Parse one or more result blocks — each block has fixed label:value lines
+            blocks = re.split(r'Result Number', text)
+            for block in blocks[1:]:  # skip header before first result
+                name_m   = re.search(r'Name:\s*([^\n]+)', block)
+                branch_m = re.search(r'Rank[^\n]*:\s*([^\n]+)', block)
+                war_m    = re.search(r'War Period:\s*([^\n]+)', block)
+                dob_m    = re.search(r'Date of Birth:\s*([\d/]+)', block)
+                dod_m    = re.search(r'Date of Death:\s*([\d/]+)', block)
+                cem_m    = re.search(r'Cemetery:\s*([^\n]+)', block)
+                addr_m   = re.search(r'Cemetery Address:\s*([^\n]+)', block)
+
+                if not name_m:
+                    continue
+                name     = name_m.group(1).strip()
+                if last.upper() not in name.upper():
+                    continue
+
+                branch  = branch_m.group(1).strip()  if branch_m  else ''
+                war     = war_m.group(1).strip()      if war_m     else ''
+                dob     = dob_m.group(1).strip()      if dob_m     else ''
+                dod     = dod_m.group(1).strip()      if dod_m     else ''
+                cemetery= cem_m.group(1).strip()      if cem_m     else 'US National Cemetery'
+                address = addr_m.group(1).strip()     if addr_m    else ''
+
+                results.append({
+                    'source':      'va_gravesite',
+                    'record_type': 'military_burial',
+                    'name':        name,
+                    'birth_date':  dob,
+                    'death_date':  dod,
+                    'cemetery':    cemetery,
+                    'address':     address,
+                    'branch':      branch,
+                    'war':         war,
+                    'title':       f'{name} — {cemetery} · {branch} · {war}',
+                    'url':         'https://gravelocator.cem.va.gov/',
+                })
+
+            return results
+        finally:
+            browser.close()
+            pw.stop()
+    except Exception as e:
+        logger.debug('VA Gravesite search failed: %s', e)
+        return []
+
+
+# ---------------------------------------------------------------------------
 # Reverse search — find an ancestor by searching for a known family member
 # ---------------------------------------------------------------------------
 

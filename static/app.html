@@ -209,18 +209,22 @@
   <div id="personCardOverlay" class="person-card-overlay hidden"></div>
 
   <!-- Search progress overlay -->
-  <div id="searchProgressOverlay" style="display:none;position:fixed;inset:0;background:rgba(10,15,28,.88);z-index:9999;
-       align-items:center;justify-content:center;flex-direction:column;gap:20px;padding:32px;text-align:center">
-    <div style="font-size:2.5rem" id="spIcon">🔍</div>
-    <div style="color:#f8fafc;font-size:1.15rem;font-weight:700;max-width:500px" id="spHeading">Searching the archives…</div>
-    <div style="color:#94a3b8;font-size:.9rem;max-width:480px;line-height:1.6" id="spDetail">Opening FindAGrave — 200 million burial records worldwide…</div>
-    <div style="display:flex;gap:6px;align-items:center;margin-top:4px">
+  <div id="searchProgressOverlay" style="display:none;position:fixed;inset:0;background:rgba(10,15,28,.92);z-index:9999;
+       align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:32px;text-align:center">
+    <div style="font-size:2.2rem" id="spIcon">🔍</div>
+    <div style="color:#f8fafc;font-size:1.1rem;font-weight:700;max-width:500px" id="spHeading">Searching the archives…</div>
+    <div style="color:#94a3b8;font-size:.88rem;max-width:480px;line-height:1.5" id="spDetail">Firing up all sources in parallel…</div>
+    <!-- Live source badges appear here as each source completes -->
+    <div id="spBadges" style="display:flex;flex-wrap:wrap;gap:7px;max-width:520px;justify-content:center;min-height:28px"></div>
+    <!-- Running total -->
+    <div id="spCount" style="color:#4a7c59;font-size:.92rem;font-weight:600;min-height:20px"></div>
+    <div style="display:flex;gap:6px;align-items:center">
       <span style="width:8px;height:8px;background:#4a7c59;border-radius:50%;animation:spPulse 1s ease-in-out infinite"></span>
       <span style="width:8px;height:8px;background:#4a7c59;border-radius:50%;animation:spPulse 1s ease-in-out .33s infinite"></span>
       <span style="width:8px;height:8px;background:#4a7c59;border-radius:50%;animation:spPulse 1s ease-in-out .66s infinite"></span>
     </div>
-    <div style="color:#475569;font-size:.78rem;margin-top:8px;max-width:400px">
-      Each search checks real archives across multiple countries — this costs tokens because it costs real compute.
+    <div style="color:#475569;font-size:.76rem;max-width:400px">
+      All sources run simultaneously — results appear as each archive responds.
     </div>
   </div>
   <style>
@@ -317,17 +321,16 @@
 
     async function addPerson() {
       clearFormErrors();
-      const first = document.getElementById('apFirst').value.trim();
-      const middle = document.getElementById('apMiddle').value.trim();
-      const last = document.getElementById('apLast').value.trim();
+      const first      = document.getElementById('apFirst').value.trim();
+      const middle     = document.getElementById('apMiddle').value.trim();
+      const last       = document.getElementById('apLast').value.trim();
       const birthYearRaw = document.getElementById('apBirthYear').value.trim();
       const birthPlace = document.getElementById('apBirthPlace').value.trim();
       let valid = true;
 
       if (!last) { setFieldError('apLast', 'Last name is required.'); valid = false; }
-      else if (!/^[A-Za-z\s'\-\.]+$/.test(last)) { setFieldError('apLast', 'Last name should contain only letters, spaces, hyphens, or apostrophes.'); valid = false; }
-
-      if (first && !/^[A-Za-z\s'\-\.]+$/.test(first)) { setFieldError('apFirst', 'First name should contain only letters, spaces, hyphens, or apostrophes.'); valid = false; }
+      else if (!/^[A-Za-z\s'\-\.]+$/.test(last)) { setFieldError('apLast', 'Last name should only contain letters, spaces, hyphens, or apostrophes.'); valid = false; }
+      if (first && !/^[A-Za-z\s'\-\.]+$/.test(first)) { setFieldError('apFirst', 'First name should only contain letters, spaces, hyphens, or apostrophes.'); valid = false; }
 
       let birthYear = null;
       if (birthYearRaw) {
@@ -336,38 +339,119 @@
           setFieldError('apBirthYear', 'Enter a year between 1600 and 1990.'); valid = false;
         }
       }
-
       if (birthPlace && birthPlace.length > 100) { setFieldError('apBirthPlace', 'Keep the birth place under 100 characters.'); valid = false; }
-
       if (!valid) return;
 
       const btn = document.getElementById('addPersonBtn');
       btn.disabled = true;
       btn.textContent = 'Searching…';
+      closeModal('addPersonModal');
       showSearchProgress();
 
-      let r, data;
-      try {
-        r = await fetch('/api/persons', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            tree_name: last + ' Family',
-            first_name: first, middle_name: middle, last_name: last,
-            birth_year: birthYear, birth_state: birthPlace,
-          })
-        });
-        data = await r.json();
-      } finally {
+      // Build SSE URL
+      const params = new URLSearchParams({
+        first, middle, last,
+        birth_year:  birthYear  || '',
+        birth_place: birthPlace || '',
+        tree_name:   last + ' Family',
+      });
+      const es = new EventSource('/api/search/stream?' + params.toString());
+      let totalFound = 0;
+
+      const _SOURCE_LABELS = {
+        findagrave:   '🪦 FindAGrave',
+        obituaries:   '📰 Obituaries',
+        va_gravesite: '🎖️ VA Military',
+        wikitree:     '🌳 WikiTree',
+        chronicling:  '📜 Newspapers',
+        nara:         '🏛️ NARA',
+        dpla_census:  '📋 Census',
+        dpla_military:'⚔️ Military Rec',
+        dpla_general: '📚 DPLA',
+        dpla_obituary:'🗞️ DPLA Obits',
+        dpla_marriage:'💍 Marriage',
+        freebmd:      '🇬🇧 FreeBMD',
+        irish_birth:  '🇮🇪 Irish Rec',
+        irish_death:  '🇮🇪 Irish Rec',
+        antenati:     '🇮🇹 Antenati',
+        geneteka:     '🇵🇱 Geneteka',
+        digitalarkivet:'🇳🇴 Norway',
+        archion:      '🇩🇪 Archion',
+        matricula:    '🇩🇪 Matricula',
+      };
+
+      es.onmessage = (evt) => {
+        let data;
+        try { data = JSON.parse(evt.data); } catch { return; }
+
+        if (data.source && data.results && data.count > 0) {
+          // A source returned results — add a badge
+          totalFound += data.count;
+          const badge = document.createElement('span');
+          badge.style.cssText = 'background:#1e3a2f;color:#4ade80;padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:600;animation:fadein .4s ease';
+          badge.textContent = (_SOURCE_LABELS[data.source] || data.source) + ' +' + data.count;
+          document.getElementById('spBadges').appendChild(badge);
+          document.getElementById('spCount').textContent = `${totalFound} record${totalFound !== 1 ? 's' : ''} found so far…`;
+          document.getElementById('spDetail').textContent = 'Sources are reporting in — ' + Object.keys(_SOURCE_LABELS).length + ' searched in parallel.';
+        }
+
+        if (data.source && !data.count) {
+          // Source finished but found nothing — show grey badge
+          const badge = document.createElement('span');
+          badge.style.cssText = 'background:#1e293b;color:#475569;padding:3px 10px;border-radius:20px;font-size:.78rem';
+          badge.textContent = (_SOURCE_LABELS[data.source] || data.source) + ' ✗';
+          document.getElementById('spBadges').appendChild(badge);
+        }
+
+        if (data.done) {
+          es.close();
+          document.getElementById('spHeading').textContent = totalFound > 0 ? `Found ${totalFound} records` : 'Search complete';
+          document.getElementById('spDetail').textContent = data.summary || 'All sources searched.';
+          document.getElementById('spCount').textContent = '';
+          setTimeout(() => {
+            hideSearchProgress();
+            btn.disabled = false;
+            btn.textContent = '🔍 Search the Archives';
+          }, 2200);
+        }
+
+        if (data.saved) {
+          currentTreeId = data.tree_id;
+          localStorage.setItem('lastTreeId', currentTreeId);
+          loadTrees();
+        }
+
+        if (data.error) {
+          es.close();
+          hideSearchProgress();
+          btn.disabled = false;
+          btn.textContent = '🔍 Search the Archives';
+          alert(data.error);
+        }
+      };
+
+      es.onerror = async () => {
+        es.close();
+        // Fallback: create person without search results
         hideSearchProgress();
+        try {
+          const r = await fetch('/api/persons', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              tree_name: last + ' Family',
+              first_name: first, middle_name: middle, last_name: last,
+              birth_year: birthYear, birth_state: birthPlace,
+            }),
+            credentials: 'include',
+          });
+          const data = await r.json();
+          if (r.ok) { currentTreeId = data.tree_id; localStorage.setItem('lastTreeId', currentTreeId); loadTrees(); }
+          else alert(data.error || 'Search failed. Please try again.');
+        } catch { alert('Connection error. Please try again.'); }
         btn.disabled = false;
-        btn.textContent = 'Search & Add';
-      }
-      if (!r.ok) { alert(data.error || 'Something went wrong. Please try again.'); return; }
-      currentTreeId = data.tree_id;
-      localStorage.setItem('lastTreeId', currentTreeId);
-      closeModal('addPersonModal');
-      loadTrees();
+        btn.textContent = '🔍 Search the Archives';
+      };
     }
 
     function showAddPersonForm() {

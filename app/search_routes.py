@@ -1,9 +1,9 @@
-from flask import Blueprint, request, jsonify, g
+from flask import Blueprint, request, jsonify, g, Response, stream_with_context
 from .auth import require_auth
 from .token_middleware import require_tokens
 from .db import db, get_redis
 from .models import User, Tree, Person, SearchResult, Gap
-from .search_cascade import run_us_cascade
+from .search_cascade import run_us_cascade, run_us_cascade_stream
 from .ai_synthesis import synthesize_gaps, extract_ancestor_from_obit
 from . import limiter
 
@@ -109,6 +109,79 @@ def authenticated_search():
     )
     ids = _save_search_to_db(g.user_id, tree_name, full_first, last, birth_year, birth_place, cascade, synthesis['summary'])
     return jsonify({**cascade, 'summary': synthesis['summary'], **ids})
+
+
+@search_bp.get('/api/search/stream')
+@limiter.limit('60 per hour')
+@require_auth
+@require_tokens(20)
+def search_stream():
+    """
+    SSE endpoint — streams results as each source completes.
+    Events: {source, results, count, total}  then final {done:true, results, gaps, summary, ...}
+    """
+    data = request.args
+    if not data.get('last'):
+        return jsonify({'error': 'Last name is required'}), 400
+
+    user = User.query.get(g.user_id)
+    if user and user.tier == 'free':
+        if not _check_search_limit(f'free_user_searches:{g.user_id}'):
+            return jsonify({'error': 'Free search limit reached. Subscribe to continue.'}), 429
+
+    first      = data.get('first', '')
+    middle     = data.get('middle', '')
+    full_first = f'{first} {middle}'.strip() if middle else first
+    last       = data['last']
+    birth_year = int(data['birth_year']) if data.get('birth_year') else None
+    birth_place= data.get('birth_place', '')
+    tree_name  = data.get('tree_name', '')
+    user_id    = g.user_id
+
+    def generate():
+        all_results = []
+        final_event = None
+
+        for event_str in run_us_cascade_stream(
+            full_first, last, birth_year, birth_place
+        ):
+            yield event_str
+            # Track the last event so we can save after stream ends
+            import json as _json
+            try:
+                ev = _json.loads(event_str.replace('data: ', '', 1).strip())
+                if ev.get('done'):
+                    final_event = ev
+                elif ev.get('results'):
+                    all_results.extend(ev['results'])
+            except Exception:
+                pass
+
+        # Save to DB after stream completes
+        if final_event:
+            try:
+                from .search_cascade import run_us_cascade  # noqa (for _save_search_to_db context)
+                ids = _save_search_to_db(
+                    user_id, tree_name, full_first, last, birth_year, birth_place,
+                    {'results': final_event.get('results', []),
+                     'gaps':    final_event.get('gaps', []),
+                     'confidence': final_event.get('confidence', 0)},
+                    final_event.get('summary', ''),
+                )
+                import json as _json
+                yield 'data: ' + _json.dumps({'saved': True, **ids}) + '\n\n'
+            except Exception:
+                pass
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype='text/event-stream',
+        headers={
+            'X-Accel-Buffering': 'no',
+            'Cache-Control':     'no-cache',
+            'Connection':        'keep-alive',
+        },
+    )
 
 
 @search_bp.post('/api/reverse-search')
