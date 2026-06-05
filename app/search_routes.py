@@ -74,7 +74,7 @@ def _enrich_person_from_results(person, results: list) -> None:
 
 def _save_search_to_db(user_id: int, tree_name: str, first: str, last: str,
                        birth_year: int, birth_place: str, cascade: dict,
-                       summary: str) -> dict:
+                       summary: str, death_year: int = None, death_place: str = '') -> dict:
     tree = Tree.query.filter_by(user_id=user_id, name=tree_name).first()
     if not tree:
         tree = Tree(user_id=user_id, name=tree_name or f'{first} {last} Family')
@@ -84,6 +84,7 @@ def _save_search_to_db(user_id: int, tree_name: str, first: str, last: str,
     person = Person(
         tree_id=tree.id, first_name=first, last_name=last,
         birth_year=birth_year, birth_state=birth_place,
+        death_year=death_year, death_place=death_place or '',
         confidence=cascade['confidence'],
     )
     db.session.add(person)
@@ -188,7 +189,9 @@ def search_stream():
     full_first = f'{first} {middle}'.strip() if middle else first
     last       = data['last']
     birth_year = int(data['birth_year']) if data.get('birth_year') else None
+    death_year = int(data['death_year']) if data.get('death_year') else None
     birth_place= data.get('birth_place', '')
+    death_place= data.get('death_place', '')
     tree_name  = data.get('tree_name', '')
     user_id    = g.user_id
     community  = _fetch_community_results(full_first, last, birth_year)
@@ -223,6 +226,7 @@ def search_stream():
                      'gaps':    final_event.get('gaps', []),
                      'confidence': final_event.get('confidence', 0)},
                     final_event.get('summary', ''),
+                    death_year=death_year, death_place=death_place,
                 )
                 import json as _json
                 yield 'data: ' + _json.dumps({'saved': True, **ids}) + '\n\n'

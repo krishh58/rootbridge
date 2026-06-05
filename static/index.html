@@ -262,8 +262,12 @@ footer{border-top:2px solid var(--border);padding:32px 48px;display:flex;justify
       <div><label>Last Name *</label><input id="lastName" type="text" placeholder="O'Brien"></div>
     </div>
     <div class="form-row">
-      <div><label>Birth Year (approx)</label><input id="birthYear" type="number" placeholder="1842"></div>
+      <div><label>Birth Year</label><input id="birthYear" type="number" placeholder="1842"></div>
+      <div><label>Death Year</label><input id="deathYear" type="number" placeholder="1918"></div>
+    </div>
+    <div class="form-row">
       <div><label>Birth Place</label><input id="birthPlace" type="text" placeholder="County Cork, Ireland"></div>
+      <div><label>Death Place</label><input id="deathPlace" type="text" placeholder="Chicago, Illinois"></div>
     </div>
     <button class="search-btn" onclick="guestSearch()">Find Gaps →</button>
     <p class="search-note">5 free searches to start · Sign up for unlimited</p>
@@ -421,8 +425,10 @@ function guestSearch() {
     first: document.getElementById('firstName').value.trim(),
     middle: document.getElementById('middleName').value.trim(),
     last,
-    birth_year: document.getElementById('birthYear').value.trim(),
+    birth_year:  document.getElementById('birthYear').value.trim(),
+    death_year:  document.getElementById('deathYear').value.trim(),
     birth_place: document.getElementById('birthPlace').value.trim(),
+    death_place: document.getElementById('deathPlace').value.trim(),
   });
   window.location.href = '/app?' + params.toString();
 }

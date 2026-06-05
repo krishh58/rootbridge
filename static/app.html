@@ -142,27 +142,45 @@
       <p style="color:#94a3b8;font-size:.9rem;margin:-8px 0 16px;line-height:1.5">
         Enter a family member from the past — a grandparent, great-grandparent, or anyone whose history you'd like to uncover. We'll search real archives to find birth records, burial records, obituaries, and more.
       </p>
-      <div class="form-field">
-        <input id="apFirst" placeholder="Their first name (e.g. Ernest)" class="input-field" autocomplete="off">
-        <span class="form-error" id="apFirstErr"></span>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:4px">
+        <div class="form-field" style="margin-bottom:0">
+          <label style="font-size:.75rem;color:#94a3b8;display:block;margin-bottom:4px">First Name</label>
+          <input id="apFirst" placeholder="e.g. Orville" class="input-field" autocomplete="off" style="width:100%">
+          <span class="form-error" id="apFirstErr"></span>
+        </div>
+        <div class="form-field" style="margin-bottom:0">
+          <label style="font-size:.75rem;color:#94a3b8;display:block;margin-bottom:4px">Middle Name</label>
+          <input id="apMiddle" placeholder="e.g. Cleckner" class="input-field" autocomplete="off" style="width:100%">
+        </div>
+        <div class="form-field" style="margin-bottom:0">
+          <label style="font-size:.75rem;color:#94a3b8;display:block;margin-bottom:4px">Last Name *</label>
+          <input id="apLast" placeholder="e.g. Henderson" class="input-field" autocomplete="off" style="width:100%">
+          <span class="form-error" id="apLastErr"></span>
+        </div>
       </div>
-      <div class="form-field">
-        <input id="apMiddle" placeholder="Middle name or initial — optional (e.g. James or J)" class="input-field" autocomplete="off">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px">
+        <div class="form-field" style="margin-bottom:0">
+          <label style="font-size:.75rem;color:#94a3b8;display:block;margin-bottom:4px">Birth Year</label>
+          <input id="apBirthYear" placeholder="e.g. 1892" type="number" min="1600" max="1990" class="input-field" style="width:100%">
+          <span class="form-error" id="apBirthYearErr"></span>
+        </div>
+        <div class="form-field" style="margin-bottom:0">
+          <label style="font-size:.75rem;color:#94a3b8;display:block;margin-bottom:4px">Death Year</label>
+          <input id="apDeathYear" placeholder="e.g. 1965" type="number" min="1600" max="2020" class="input-field" style="width:100%">
+        </div>
       </div>
-      <div class="form-field">
-        <input id="apLast" placeholder="Their last name * (e.g. Anderson)" class="input-field" autocomplete="off">
-        <span class="form-error" id="apLastErr"></span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px">
+        <div class="form-field" style="margin-bottom:0">
+          <label style="font-size:.75rem;color:#94a3b8;display:block;margin-bottom:4px">Birth Place</label>
+          <input id="apBirthPlace" placeholder="State or country, e.g. Oklahoma" class="input-field" autocomplete="off" style="width:100%">
+          <span class="form-error" id="apBirthPlaceErr"></span>
+        </div>
+        <div class="form-field" style="margin-bottom:0">
+          <label style="font-size:.75rem;color:#94a3b8;display:block;margin-bottom:4px">Death Place</label>
+          <input id="apDeathPlace" placeholder="State or city, e.g. California" class="input-field" autocomplete="off" style="width:100%">
+        </div>
       </div>
-      <div class="form-field">
-        <input id="apBirthYear" placeholder="Birth year — optional, even a rough guess helps (e.g. 1920)" type="number" min="1600" max="1990" class="input-field">
-        <span style="font-size:.75rem;color:#64748b;margin-top:4px;display:block">Don't know it? Leave it blank — the search still works.</span>
-        <span class="form-error" id="apBirthYearErr"></span>
-      </div>
-      <div class="form-field">
-        <input id="apBirthPlace" placeholder="State or country is fine — even just &quot;Louisiana&quot; or &quot;Ireland&quot;" class="input-field" autocomplete="off">
-        <span style="font-size:.75rem;color:#64748b;margin-top:4px;display:block">Don't know? Leave it blank or just put the country. A little helps narrow it down.</span>
-        <span class="form-error" id="apBirthPlaceErr"></span>
-      </div>
+      <div style="font-size:.75rem;color:#64748b;margin:-2px 0 12px">Fill in what you know — blank fields are fine. More info = better results.</div>
       <div class="modal-actions">
         <button class="btn-primary" id="addPersonBtn" onclick="addPerson()">🔍 Search the Archives</button>
         <button class="btn-ghost" onclick="closeModal('addPersonModal')">Cancel</button>
@@ -340,11 +358,13 @@
 
     async function addPerson() {
       clearFormErrors();
-      const first      = document.getElementById('apFirst').value.trim();
-      const middle     = document.getElementById('apMiddle').value.trim();
-      const last       = document.getElementById('apLast').value.trim();
+      const first        = document.getElementById('apFirst').value.trim();
+      const middle       = document.getElementById('apMiddle').value.trim();
+      const last         = document.getElementById('apLast').value.trim();
       const birthYearRaw = document.getElementById('apBirthYear').value.trim();
-      const birthPlace = document.getElementById('apBirthPlace').value.trim();
+      const deathYearRaw = document.getElementById('apDeathYear').value.trim();
+      const birthPlace   = document.getElementById('apBirthPlace').value.trim();
+      const deathPlace   = document.getElementById('apDeathPlace').value.trim();
       let valid = true;
 
       if (!last) { setFieldError('apLast', 'Last name is required.'); valid = false; }
@@ -357,6 +377,11 @@
         if (isNaN(birthYear) || birthYear < 1600 || birthYear > 1990) {
           setFieldError('apBirthYear', 'Enter a year between 1600 and 1990.'); valid = false;
         }
+      }
+      let deathYear = null;
+      if (deathYearRaw) {
+        deathYear = parseInt(deathYearRaw);
+        if (isNaN(deathYear) || deathYear < 1600 || deathYear > 2020) deathYear = null;
       }
       if (birthPlace && birthPlace.length > 100) { setFieldError('apBirthPlace', 'Keep the birth place under 100 characters.'); valid = false; }
       if (!valid) return;
@@ -371,7 +396,9 @@
       const params = new URLSearchParams({
         first, middle, last,
         birth_year:  birthYear  || '',
+        death_year:  deathYear  || '',
         birth_place: birthPlace || '',
+        death_place: deathPlace || '',
         tree_name:   last + ' Family',
       });
       const es = new EventSource('/api/search/stream?' + params.toString());
@@ -893,17 +920,25 @@
           <button class="card-close" onclick="closePersonCard()">✕</button>
           <h3 style="color:#e2d9c4;margin-bottom:.25rem">Add ${role}</h3>
           <p style="color:#94a3b8;font-size:.82rem;margin-bottom:1.25rem">Enter what you know — we'll search the archives for the rest.</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:.5rem">
             <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">First Name</label>
               <input id="par_first" class="input-field" style="width:100%" placeholder="e.g. Orville"></div>
             <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Middle Name</label>
               <input id="par_middle" class="input-field" style="width:100%" placeholder="e.g. Cleckner"></div>
             <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Last Name</label>
               <input id="par_last" class="input-field" style="width:100%" placeholder="e.g. Henderson"></div>
-            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Birth Year (approx)</label>
-              <input id="par_by" type="number" class="input-field" style="width:100%" placeholder="e.g. 1900"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:.5rem">
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Birth Year</label>
+              <input id="par_by" type="number" class="input-field" style="width:100%" placeholder="e.g. 1892"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Death Year</label>
+              <input id="par_dy" type="number" class="input-field" style="width:100%" placeholder="e.g. 1965"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem">
             <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Birth Place</label>
-              <input id="par_bp" class="input-field" style="width:100%" placeholder="e.g. Michigan"></div>
+              <input id="par_bp" class="input-field" style="width:100%" placeholder="e.g. Oklahoma"></div>
+            <div><label style="font-size:.78rem;color:#94a3b8;display:block;margin-bottom:.25rem">Death Place</label>
+              <input id="par_dp" class="input-field" style="width:100%" placeholder="e.g. California"></div>
           </div>
           <div id="par_err" style="display:none;color:#f87171;font-size:.82rem;margin-top:.5rem"></div>
           <div style="display:flex;gap:.75rem;margin-top:1rem">
@@ -919,12 +954,14 @@
       const middle = document.getElementById('par_middle').value.trim();
       const last   = document.getElementById('par_last').value.trim();
       const by     = document.getElementById('par_by').value;
+      const dy     = document.getElementById('par_dy').value;
       const bp     = document.getElementById('par_bp').value.trim();
+      const dp     = document.getElementById('par_dp').value.trim();
       if (!last) { document.getElementById('par_err').textContent = 'Last name is required.'; document.getElementById('par_err').style.display='block'; return; }
       const btn = document.getElementById('par_save_btn');
       btn.disabled = true; btn.textContent = 'Searching…';
       // Create the parent person via the search stream, then link them
-      const params = new URLSearchParams({ first, middle, last, birth_year: by||'', birth_place: bp, tree_name: last + ' Family' });
+      const params = new URLSearchParams({ first, middle, last, birth_year: by||'', death_year: dy||'', birth_place: bp, death_place: dp, tree_name: last + ' Family' });
       let parentId = null;
       await new Promise(resolve => {
         const es = new EventSource('/api/search/stream?' + params.toString());
@@ -941,7 +978,7 @@
       if (!parentId) {
         // Fallback: create person directly without search
         const r = await fetch('/api/persons', { method:'POST', headers:{'Content-Type':'application/json'}, credentials:'include',
-          body: JSON.stringify({ first_name:first, last_name:last, birth_year:by?parseInt(by):null, birth_state:bp, tree_id:currentTreeId }) });
+          body: JSON.stringify({ first_name:first+(middle?' '+middle:''), last_name:last, birth_year:by?parseInt(by):null, death_year:dy?parseInt(dy):null, birth_state:bp, death_place:dp, tree_id:currentTreeId }) });
         if (r.ok) { const d = await r.json(); parentId = d.id; }
       }
       if (parentId) {
@@ -1160,10 +1197,13 @@
       const autoFirst = sp.get('first') || '';
       const autoLast  = sp.get('last')  || '';
       if (autoLast) {
-        document.getElementById('apFirst').value     = autoFirst;
-        document.getElementById('apLast').value      = autoLast;
-        document.getElementById('apBirthYear').value = sp.get('birth_year') || '';
-        document.getElementById('apBirthPlace').value= sp.get('birth_place') || '';
+        document.getElementById('apFirst').value      = autoFirst;
+        document.getElementById('apMiddle').value     = sp.get('middle') || '';
+        document.getElementById('apLast').value       = autoLast;
+        document.getElementById('apBirthYear').value  = sp.get('birth_year')  || '';
+        document.getElementById('apDeathYear').value  = sp.get('death_year')  || '';
+        document.getElementById('apBirthPlace').value = sp.get('birth_place') || '';
+        document.getElementById('apDeathPlace').value = sp.get('death_place') || '';
         // Wait for loadTrees() to finish so we have a tree context, then fire
         setTimeout(() => addPerson(), 1200);
       }
