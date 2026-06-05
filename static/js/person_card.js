@@ -95,6 +95,7 @@ function buildCardHTML(person, hometown, messages, documents) {
       <button class="card-close" onclick="closePersonCard()">✕</button>
       <button class="card-edit-btn" onclick="showEditPerson(${person.id}, ${JSON.stringify(person).replace(/</g,'\\u003c').replace(/"/g,'&quot;')})" title="Edit person">✏️ Edit</button>
       <button class="card-edit-btn" style="right:7rem" onclick="reSearchPerson(${person.id})" title="Re-search archives">🔍 Re-search</button>
+      <button class="card-edit-btn" style="right:12rem;border-color:#4a7c59;color:#4ade80" onclick="deepResearch(${person.id})" title="AI agent browses the web to find this person (50 tokens)">🧠 Deep Research</button>
       <div class="card-header">
         <h2>${escapeHtml(name)}</h2>
         <span class="card-dates">${escapeHtml(dates)}</span>
@@ -565,4 +566,64 @@ async function reSearchPerson(personId) {
     } catch(e) {}
   };
   es.onerror = () => { es.close(); hideSearchProgress(); if (btn) { btn.disabled = false; btn.textContent = '🔍 Search the Archives'; } };
+}
+
+async function deepResearch(personId) {
+  closePersonCard();
+  showSearchProgress();
+  document.getElementById('spHeading').textContent = '🧠 AI Agent Researching…';
+  document.getElementById('spDetail').textContent  = 'Browsing genealogy sites like a human researcher…';
+  document.getElementById('spCount').textContent   = '';
+
+  const btn = document.getElementById('addPersonBtn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Researching…'; }
+
+  const es = new EventSource(`/api/persons/${personId}/deep-research`);
+
+  es.onmessage = evt => {
+    try {
+      const data = JSON.parse(evt.data);
+
+      if (data.type === 'status') {
+        document.getElementById('spDetail').textContent = data.message;
+      }
+      if (data.type === 'browsing') {
+        const host = (() => { try { return new URL(data.url).hostname.replace('www.',''); } catch(e) { return data.url; } })();
+        document.getElementById('spDetail').textContent = `Checking ${host}…`;
+        document.getElementById('spCount').textContent  = data.note || '';
+      }
+      if (data.type === 'finding') {
+        const label = {
+          birth_year:'Birth year', birth_place:'Birth place',
+          death_year:'Death year', death_place:'Death place',
+          parent:'Parent', spouse:'Spouse', other:'Detail'
+        }[data.field] || data.field;
+        document.getElementById('spHeading').textContent = `Found: ${label}`;
+        document.getElementById('spDetail').textContent  = data.value;
+      }
+      if (data.type === 'done') {
+        document.getElementById('spHeading').textContent = 'Research complete';
+        document.getElementById('spDetail').textContent  = data.summary || '';
+        document.getElementById('spCount').textContent   = `${(data.findings||[]).length} facts found`;
+        setTimeout(() => { hideSearchProgress(); if (btn) { btn.disabled = false; btn.textContent = '🔍 Search the Archives'; } }, 2500);
+      }
+      if (data.type === 'saved') {
+        es.close();
+        loadTree(currentTreeId);
+        openPersonCard(personId);
+      }
+      if (data.type === 'error') {
+        es.close();
+        hideSearchProgress();
+        if (btn) { btn.disabled = false; btn.textContent = '🔍 Search the Archives'; }
+        alert('Deep research error: ' + data.message);
+      }
+    } catch(e) {}
+  };
+
+  es.onerror = () => {
+    es.close();
+    hideSearchProgress();
+    if (btn) { btn.disabled = false; btn.textContent = '🔍 Search the Archives'; }
+  };
 }

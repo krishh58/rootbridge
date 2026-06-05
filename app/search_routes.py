@@ -1,3 +1,4 @@
+import re
 from flask import Blueprint, request, jsonify, g, Response, stream_with_context
 from .auth import require_auth
 from .token_middleware import require_tokens
@@ -358,3 +359,83 @@ def reverse_search():
         'relationship': relationship,
         'known_person': f'{known_first} {known_last}',
     })
+
+
+@search_bp.get('/api/persons/<int:person_id>/deep-research')
+@limiter.limit('10 per hour')
+@require_auth
+@require_tokens(50)
+def deep_research(person_id):
+    """AI agent research — browses the web like a human genealogist."""
+    from .models import Person as PersonModel
+    person = PersonModel.query.get(person_id)
+    if not person:
+        return jsonify({'error': 'Person not found'}), 404
+
+    first       = person.first_name or ''
+    last        = person.last_name  or ''
+    birth_year  = person.birth_year
+    birth_place = person.birth_state or person.birth_country or ''
+    user_id     = g.user_id
+
+    import json as _json
+
+    def generate():
+        def stream_fn(event: dict):
+            yield 'data: ' + _json.dumps(event) + '\n\n'
+
+        # Collect generator output from stream_fn — run agent in thread
+        import queue, threading
+
+        q = queue.Queue()
+
+        def agent_thread():
+            from .research_agent import run_research_agent
+            def put(event):
+                q.put(event)
+            try:
+                run_research_agent(first, last, birth_year, birth_place, put)
+            except Exception as e:
+                q.put({'type': 'error', 'message': str(e)})
+            finally:
+                q.put(None)  # sentinel
+
+        t = threading.Thread(target=agent_thread, daemon=True)
+        t.start()
+
+        findings = []
+        while True:
+            event = q.get()
+            if event is None:
+                break
+            yield 'data: ' + _json.dumps(event) + '\n\n'
+            if event.get('type') == 'finding':
+                findings.append(event)
+            if event.get('type') == 'done':
+                # Write findings back to person record
+                try:
+                    field_map = {
+                        'birth_year':  'birth_year',
+                        'birth_place': 'birth_state',
+                        'death_year':  'death_year',
+                        'death_place': 'death_place',
+                    }
+                    for f in findings:
+                        col = field_map.get(f['field'])
+                        if col and not getattr(person, col):
+                            val = f['value']
+                            if col in ('birth_year', 'death_year'):
+                                m = re.search(r'\d{4}', str(val))
+                                if m: val = int(m.group())
+                                else: continue
+                            setattr(person, col, val)
+                    db.session.commit()
+                    yield 'data: ' + _json.dumps({'type': 'saved', 'person_id': person_id}) + '\n\n'
+                except Exception:
+                    pass
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype='text/event-stream',
+        headers={'X-Accel-Buffering': 'no', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive'},
+    )
