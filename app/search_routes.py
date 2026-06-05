@@ -378,10 +378,26 @@ def deep_research(person_id):
 
     name_parts  = (person.first_name or '').split()
     first       = name_parts[0] if name_parts else ''
-    middle      = ' '.join(name_parts[1:]) if len(name_parts) > 1 else ''
+    # Use dedicated middle_name column if present, else fall back to splitting first_name
+    middle      = person.middle_name or (' '.join(name_parts[1:]) if len(name_parts) > 1 else '')
     last        = person.last_name  or ''
     birth_year  = person.birth_year
-    birth_place = person.birth_state or person.birth_country or ''
+    # Expand 2-letter state abbreviations to full names so the agent can search effectively
+    _STATE_NAMES = {
+        'AL':'Alabama','AK':'Alaska','AZ':'Arizona','AR':'Arkansas','CA':'California',
+        'CO':'Colorado','CT':'Connecticut','DE':'Delaware','FL':'Florida','GA':'Georgia',
+        'HI':'Hawaii','ID':'Idaho','IL':'Illinois','IN':'Indiana','IA':'Iowa',
+        'KS':'Kansas','KY':'Kentucky','LA':'Louisiana','ME':'Maine','MD':'Maryland',
+        'MA':'Massachusetts','MI':'Michigan','MN':'Minnesota','MS':'Mississippi',
+        'MO':'Missouri','MT':'Montana','NE':'Nebraska','NV':'Nevada','NH':'New Hampshire',
+        'NJ':'New Jersey','NM':'New Mexico','NY':'New York','NC':'North Carolina',
+        'ND':'North Dakota','OH':'Ohio','OK':'Oklahoma','OR':'Oregon','PA':'Pennsylvania',
+        'RI':'Rhode Island','SC':'South Carolina','SD':'South Dakota','TN':'Tennessee',
+        'TX':'Texas','UT':'Utah','VT':'Vermont','VA':'Virginia','WA':'Washington',
+        'WV':'West Virginia','WI':'Wisconsin','WY':'Wyoming',
+    }
+    raw_place   = person.birth_state or person.birth_country or ''
+    birth_place = _STATE_NAMES.get(raw_place.upper().strip(), raw_place)
     death_place = person.death_place or ''
     user_id     = g.user_id
     # Capture API key here — current_app not available inside thread

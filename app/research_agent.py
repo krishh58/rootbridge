@@ -213,20 +213,19 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
             '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'})
 
-        # Pre-search: when death_place is known, find matching memorial links
-        # using DOM structure so each card's location is checked in isolation
+        # Pre-search: find matching memorial links on FindAGrave.
+        # Primary mode: filter by death_place (most precise).
+        # Fallback mode: filter by birth_year range when no death_place known.
         targeted_links = []
-        if death_place:
-            stream_fn({'type': 'status', 'message': f'Pre-scanning FindAGrave for {last} in {death_place}…'})
-            dp_lower = death_place.lower()
+        if death_place or birth_year:
+            dp_lower = death_place.lower() if death_place else ''
+            scan_label = death_place if death_place else f'birth year ~{birth_year}'
+            stream_fn({'type': 'status', 'message': f'Pre-scanning FindAGrave for {last} ({scan_label})…'})
             for pg in range(1, 5):
                 try:
                     scan_url = (f'https://www.findagrave.com/memorial/search?'
                                 f'firstname={urllib.parse.quote_plus(first)}&lastname={urllib.parse.quote_plus(last)}&page={pg}')
                     page.goto(scan_url, timeout=18000, wait_until='domcontentloaded')
-                    # Each result card wraps the link + location text
-                    # Find all cards that contain both a memorial link AND the death_place
-                    # Use evaluate() to get each anchor's card container text — most reliable
                     anchors = page.query_selector_all('a[href*="/memorial/"]')
                     for a in anchors:
                         href = a.get_attribute('href') or ''
@@ -236,16 +235,21 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
                             container = a.evaluate(
                                 'el => el.parentElement?.parentElement?.parentElement?.innerText || ""'
                             )
-                            if dp_lower in container.lower():
-                                # Birth year guard: skip cards where birth year is off by >20 years
-                                if birth_year:
-                                    yr_m = re.search(r'\b(1[5-9]\d\d|20[0-2]\d)\b', container)
-                                    if yr_m and abs(int(yr_m.group()) - int(birth_year)) > 20:
-                                        continue
-                                full_url = ('https://www.findagrave.com' + href if href.startswith('/') else href)
-                                if full_url not in targeted_links:
-                                    targeted_links.append(full_url)
-                                    logger.info('Pre-search hit: %s | %s', full_url, container[:80].replace(chr(10),' '))
+                            # Location filter when death_place is known
+                            if dp_lower and dp_lower not in container.lower():
+                                continue
+                            # Birth year guard — ±10 years
+                            if birth_year:
+                                yr_m = re.search(r'\b(1[5-9]\d\d|20[0-2]\d)\b', container)
+                                if yr_m and abs(int(yr_m.group()) - int(birth_year)) > 10:
+                                    continue
+                                # When no death_place, require a year match to avoid noise
+                                if not dp_lower and not yr_m:
+                                    continue
+                            full_url = ('https://www.findagrave.com' + href if href.startswith('/') else href)
+                            if full_url not in targeted_links:
+                                targeted_links.append(full_url)
+                                logger.info('Pre-search hit: %s | %s', full_url, container[:80].replace(chr(10),' '))
                         except Exception:
                             pass
                 except Exception as _e:
@@ -253,12 +257,16 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
 
             if targeted_links:
                 links_str = '\n'.join(f'  - {u}' for u in targeted_links[:6])
+                label = f'in {death_place}' if death_place else f'matching birth year ~{birth_year}'
                 messages[1]['content'] += (
-                    f'\n\nPre-scan found these {death_place} candidates on FindAGrave — browse each one:\n'
+                    f'\n\nPre-scan found these candidates {label} on FindAGrave — browse each one:\n'
                     + links_str
                 )
 
         for turn in range(MAX_TURNS):
+            # Force tool use on early turns; allow free choice on last 2 turns so
+            # the model can call research_complete naturally to wrap up.
+            tc = 'required' if turn < MAX_TURNS - 2 else 'auto'
             try:
                 resp = req_lib.post(
                     OPENROUTER_URL,
@@ -270,7 +278,7 @@ def run_research_agent(first: str, last: str, birth_year, birth_place: str,
                         'model':    AGENT_MODEL,
                         'messages': messages,
                         'tools':    tools,
-                        'tool_choice': 'auto',
+                        'tool_choice': tc,
                     },
                     timeout=45,
                 )
