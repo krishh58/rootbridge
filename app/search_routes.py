@@ -412,27 +412,39 @@ def deep_research(person_id):
             if event.get('type') == 'finding':
                 findings.append(event)
             if event.get('type') == 'done':
-                # Write findings back to person record
+                # Re-fetch person — original object may be detached after long agent run
                 try:
-                    field_map = {
-                        'birth_year':  'birth_year',
-                        'birth_place': 'birth_state',
-                        'death_year':  'death_year',
-                        'death_place': 'death_place',
-                    }
-                    for f in findings:
-                        col = field_map.get(f['field'])
-                        if col and not getattr(person, col):
+                    from .models import Person as _P
+                    p = _P.query.get(person_id)
+                    if p:
+                        field_map = {
+                            'birth_year':  'birth_year',
+                            'birth_place': 'birth_state',
+                            'death_year':  'death_year',
+                            'death_place': 'death_place',
+                        }
+                        for f in findings:
+                            col = field_map.get(f['field'])
+                            if not col:
+                                continue
                             val = f['value']
+                            # Skip non-values
+                            if not val or str(val).lower() in ('unknown', 'none', 'n/a', ''):
+                                continue
                             if col in ('birth_year', 'death_year'):
                                 m = re.search(r'\d{4}', str(val))
-                                if m: val = int(m.group())
-                                else: continue
-                            setattr(person, col, val)
-                    db.session.commit()
+                                if m:
+                                    val = int(m.group())
+                                else:
+                                    continue
+                            # Only fill in missing fields
+                            if not getattr(p, col):
+                                setattr(p, col, val)
+                        db.session.commit()
                     yield 'data: ' + _json.dumps({'type': 'saved', 'person_id': person_id}) + '\n\n'
-                except Exception:
-                    pass
+                except Exception as _e:
+                    logger.error('deep-research save failed: %s', _e)
+                    yield 'data: ' + _json.dumps({'type': 'saved', 'person_id': person_id}) + '\n\n'
 
     return Response(
         stream_with_context(generate()),
