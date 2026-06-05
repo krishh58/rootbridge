@@ -321,9 +321,16 @@ def _build_tasks(first: str, last: str, birth_year: int,
             'south carolina','south dakota','tennessee','texas','utah','vermont',
             'virginia','washington','west virginia','wisconsin','wyoming',
             'usa','united states','u.s.','u.s.a.',
+            # two-letter abbreviations
+            'al','ak','az','ar','ca','co','ct','de','fl','ga','hi','id','il','in',
+            'ia','ks','ky','la','me','md','ma','mi','mn','ms','mo','mt','ne','nv',
+            'nh','nj','nm','ny','nc','nd','oh','ok','or','pa','ri','sc','sd','tn',
+            'tx','ut','vt','va','wa','wv','wi','wy',
         }
+        import re as _re
         _bp_lower = birth_place.lower()
-        _is_us = any(s in _bp_lower for s in _us_states)
+        _bp_tokens = set(_re.split(r'[\s,]+', _bp_lower))
+        _is_us = bool(_bp_tokens & _us_states)
         origins = [] if _is_us else ([country_hint.lower()] if country_hint else _guess_origins(last))
 
         if 'ireland' in origins or 'irish' in origins:
