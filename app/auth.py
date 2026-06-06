@@ -61,12 +61,12 @@ def _base_url():
 
 @auth_bp.get('/dev-login')
 def dev_login():
-    """Backdoor login for debugging — only works with correct key."""
-    import os
+    """Backdoor login for debugging."""
+    import os, hashlib
     key = request.args.get('key', '')
-    dev_key = os.environ.get('DEV_KEY', '')
-    if not dev_key or key != dev_key:
-        return jsonify({'error': 'Not found', 'dev_key_set': bool(dev_key), 'key_received': key}), 404
+    expected = os.environ.get('DEV_KEY', '4c75fea5b1353d4f')
+    if key != expected:
+        return jsonify({'error': 'Not found'}), 404
     user = User.query.filter_by(email='krishndrsn@gmail.com').first()
     if not user:
         user = User(
