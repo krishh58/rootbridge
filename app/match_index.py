@@ -73,27 +73,35 @@ def _ensure_columns(engine) -> None:
 
 
 def _populate_columns(engine) -> int:
-    """Compute and store soundex_key + birth_decade for rows where they're NULL."""
-    with engine.connect() as conn:
-        rows = conn.execute(
-            text('SELECT id, last_name, birth_year FROM persons WHERE soundex_key IS NULL')
-        ).fetchall()
-        if not rows:
-            return 0
-        updates = []
-        for row_id, last_name, birth_year in rows:
-            sk = soundex(last_name)
-            bd = _decade(birth_year)
-            if sk:
-                updates.append({'id': row_id, 'sk': sk, 'bd': bd})
-        if updates:
-            conn.execute(
-                text('UPDATE persons SET soundex_key = :sk, birth_decade = :bd WHERE id = :id'),
-                updates,
-            )
-            conn.commit()
-        logger.info('Populated soundex/decade for %d persons', len(updates))
-        return len(updates)
+    """Compute and store soundex_key + birth_decade for rows where they're NULL.
+    Runs in small batches so the table lock is released between commits."""
+    import time
+    BATCH = 5000
+    total = 0
+    while True:
+        with engine.connect() as conn:
+            rows = conn.execute(
+                text('SELECT id, last_name, birth_year FROM persons WHERE soundex_key IS NULL LIMIT :n'),
+                {'n': BATCH},
+            ).fetchall()
+            if not rows:
+                break
+            updates = []
+            for row_id, last_name, birth_year in rows:
+                sk = soundex(last_name)
+                bd = _decade(birth_year)
+                if sk:
+                    updates.append({'id': row_id, 'sk': sk, 'bd': bd})
+            if updates:
+                conn.execute(
+                    text('UPDATE persons SET soundex_key = :sk, birth_decade = :bd WHERE id = :id'),
+                    updates,
+                )
+                conn.commit()
+            total += len(rows)
+            logger.info('Populated soundex/decade: %d done so far', total)
+        time.sleep(0.1)  # yield between batches so web requests can get DB connections
+    return total
 
 
 # ── Index build ───────────────────────────────────────────────────────────────
