@@ -490,6 +490,8 @@
 
       // Save the person immediately — use "Search US Records" on the person card to search later
       try {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 15000);
         const r = await fetch('/api/persons', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -500,18 +502,22 @@
             death_year: deathYear, death_place: deathPlace,
           }),
           credentials: 'include',
+          signal: ctrl.signal,
         });
+        clearTimeout(timer);
         const data = await r.json();
         if (r.ok) {
           currentTreeId = data.tree_id;
           localStorage.setItem('lastTreeId', currentTreeId);
           loadTrees();
-        } else if (r.status === 401 && data.needs_auth) {
+        } else if (r.status === 401) {
           showAuthOverlay();
         } else {
           alert(data.error || 'Could not save person. Please try again.');
         }
-      } catch { alert('Connection error. Please try again.'); }
+      } catch (e) {
+        alert(e.name === 'AbortError' ? 'Request timed out. Check your connection and try again.' : 'Connection error. Please try again.');
+      }
       btn.disabled = false;
       btn.textContent = '+ Add Person';
     }
