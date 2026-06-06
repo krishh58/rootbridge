@@ -8,3 +8,8 @@ __pycache__/
 .pytest_cache/
 .superpowers/
 .venv/
+
+# Local GEDCOM files — stored on H drive, not in git
+data/ged_files/
+instance/
+*.db
