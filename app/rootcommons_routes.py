@@ -10,6 +10,12 @@ from .match_index import search_vault, index_stats
 rootcommons_bp = Blueprint('rootcommons', __name__)
 
 
+@rootcommons_bp.get('/api/admin/count')
+def person_count():
+    count = db.session.execute(text('SELECT COUNT(*) FROM persons')).scalar()
+    return jsonify(count=count)
+
+
 @rootcommons_bp.get('/api/rootcommons/search')
 @require_auth
 def vault_search():
