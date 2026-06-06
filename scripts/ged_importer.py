@@ -193,9 +193,22 @@ def import_to_db(persons_data, families, source_file, tree_id, db_session,
 
     ged_to_db_id = {}  # ged_id → db Person.id
 
+    from datetime import datetime
+    CURRENT_YEAR = datetime.now().year
+    LIVING_CUTOFF = CURRENT_YEAR - 100  # born after this with no death year = skip
+
+    skipped_living = 0
+
     # First pass: create all Person records
     for p in persons_data:
         if not p['first_name'] and not p['last_name']:
+            continue
+
+        # Skip likely-living persons: no death year and born within last 100 years
+        birth_yr = p.get('birth_year')
+        death_yr = p.get('death_year')
+        if not death_yr and birth_yr and birth_yr > LIVING_CUTOFF:
+            skipped_living += 1
             continue
 
         # Parse birth_state from birth_place

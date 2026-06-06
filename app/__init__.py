@@ -46,6 +46,8 @@ def create_app(config=None):
     app.register_blueprint(rootcommons_bp)
     from .vault_import_routes import vault_import_bp
     app.register_blueprint(vault_import_bp)
+    from .ged_export_routes import ged_export_bp
+    app.register_blueprint(ged_export_bp)
 
     with app.app_context():
         from . import models  # noqa: register models with SQLAlchemy
@@ -98,9 +100,16 @@ def create_app(config=None):
                     with urllib.request.urlopen(req) as r:
                         data = r.read()
                     app.logger.info(f'Downloaded {len(data):,} bytes. Importing...')
-                    batch, total = [], 0
+                    import datetime as _dt
+                    LIVING_CUTOFF = _dt.datetime.now().year - 100
+                    batch, total, skipped = [], 0, 0
                     for line in gzip.decompress(data).decode().splitlines():
                         row = json.loads(line)
+                        by = row.get('birth_year')
+                        dy = row.get('death_year')
+                        if not dy and by and by > LIVING_CUTOFF:
+                            skipped += 1
+                            continue
                         batch.append(Person(
                             tree_id=tree_id,
                             first_name=row.get('first_name'), last_name=row.get('last_name'),
@@ -120,7 +129,7 @@ def create_app(config=None):
                         db.session.bulk_save_objects(batch)
                         db.session.commit()
                         total += len(batch)
-                    app.logger.info(f'Vault seed complete: {total:,} persons.')
+                    app.logger.info(f'Vault seed complete: {total:,} persons imported, {skipped:,} likely-living skipped.')
                 except Exception as e:
                     app.logger.error(f'Vault seed failed: {e}')
         threading.Thread(target=_seed_vault, daemon=True, name='vault-seeder').start()
