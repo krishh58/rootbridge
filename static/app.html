@@ -513,7 +513,7 @@
         } else if (r.status === 401) {
           showAuthOverlay();
         } else {
-          alert(data.error || 'Could not save person. Please try again.');
+          alert('Error ' + r.status + ': ' + (data.error || 'Could not save person. Please try again.'));
         }
       } catch (e) {
         alert(e.name === 'AbortError' ? 'Request timed out. Check your connection and try again.' : 'Connection error. Please try again.');
