@@ -102,7 +102,7 @@ def create_app(config=None):
                     for line in gzip.decompress(data).decode().splitlines():
                         row = json.loads(line)
                         batch.append(Person(
-                            tree_id=tree_id, user_id=vault_user.id,
+                            tree_id=tree_id,
                             first_name=row.get('first_name'), last_name=row.get('last_name'),
                             middle_name=row.get('middle_name'), birth_year=row.get('birth_year'),
                             birth_state=row.get('birth_state'), birth_country=row.get('birth_country'),
