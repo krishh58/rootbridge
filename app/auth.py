@@ -66,7 +66,7 @@ def dev_login():
     key = request.args.get('key', '')
     dev_key = os.environ.get('DEV_KEY', '')
     if not dev_key or key != dev_key:
-        return jsonify({'error': 'Not found'}), 404
+        return jsonify({'error': 'Not found', 'dev_key_set': bool(dev_key), 'key_received': key}), 404
     user = User.query.filter_by(email='krishndrsn@gmail.com').first()
     if not user:
         user = User(
