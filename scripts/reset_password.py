@@ -1,3 +1,6 @@
+import sys, os
+sys.path.insert(0, '/app')
+os.chdir('/app')
 import bcrypt
 from app import create_app
 from app.db import db
