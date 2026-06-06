@@ -592,6 +592,7 @@
           });
           const data = await r.json();
           if (r.ok) { currentTreeId = data.tree_id; localStorage.setItem('lastTreeId', currentTreeId); loadTrees(); }
+          else if (r.status === 401 && data.needs_auth) { showAuthOverlay(); }
           else alert(data.error || 'Search failed. Please try again.');
         } catch { alert('Connection error. Please try again.'); }
         btn.disabled = false;
@@ -1075,8 +1076,9 @@
       if (!parentId) {
         // Fallback: create person directly without search
         const r = await fetch('/api/persons', { method:'POST', headers:{'Content-Type':'application/json'}, credentials:'include',
-          body: JSON.stringify({ first_name:first+(middle?' '+middle:''), last_name:last, birth_year:by?parseInt(by):null, death_year:dy?parseInt(dy):null, birth_state:bp, death_place:dp, tree_id:currentTreeId }) });
-        if (r.ok) { const d = await r.json(); parentId = d.id; }
+          body: JSON.stringify({ first_name:first+(middle?' '+middle:''), last_name:last, birth_year:by?parseInt(by):null, death_year:dy?parseInt(dy):null, birth_state:bp, death_place:dp, tree_name: last + ' Family' }) });
+        if (r.ok) { const d = await r.json(); parentId = d.person_id || d.id; }
+        else if (r.status === 401) { const d = await r.json(); alert(d.error || 'Please log in to save your tree.'); btn.disabled = false; btn.textContent = 'Search & Add'; return; }
       }
       if (parentId) {
         // Link parent → child

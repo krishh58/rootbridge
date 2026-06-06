@@ -113,9 +113,16 @@ def get_person(person_id):
 @tree_bp.post('/api/persons')
 @require_auth
 def create_person():
+    if not g.user_id:
+        return jsonify({'error': 'Please register to save your family tree.', 'needs_auth': True}), 401
     data = request.get_json() or {}
     tree_name = data.get('tree_name') or f"{data.get('last_name', 'My')} Family"
-    tree = Tree.query.filter_by(user_id=g.user_id, name=tree_name).first()
+    # Also accept tree_id to look up an existing tree directly
+    tree = None
+    if data.get('tree_id'):
+        tree = Tree.query.filter_by(id=data['tree_id'], user_id=g.user_id).first()
+    if not tree:
+        tree = Tree.query.filter_by(user_id=g.user_id, name=tree_name).first()
     if not tree:
         tree = Tree(user_id=g.user_id, name=tree_name)
         db.session.add(tree)
@@ -137,7 +144,7 @@ def create_person():
     db.session.add(p)
     db.session.commit()
     _trigger_matcher_async(app=current_app._get_current_object(), person_id=p.id)
-    return jsonify({'person_id': p.id, 'tree_id': tree.id}), 201
+    return jsonify({'id': p.id, 'person_id': p.id, 'tree_id': tree.id}), 201
 
 @tree_bp.put('/api/persons/<int:person_id>')
 @require_auth
