@@ -687,6 +687,7 @@
 
     loadMe();
     loadReferralPanel();
+    checkGuestBanner();
 
     // ── Tab switching ──────────────────────────────────────────────────────
     function switchTab(name) {
@@ -859,6 +860,29 @@
 
     function showAuthErr(el, msg) {
       el.textContent = msg; el.style.display = 'block';
+    }
+
+    // ── Guest search count banner ──────────────────────────────────────────
+    function checkGuestBanner() {
+      // Only show when not logged in
+      fetch('/api/auth/me', {credentials:'include'}).then(r => {
+        if (r.ok) return; // logged in — no banner
+        const used = parseInt(document.cookie.match(/guest_searches=(\d+)/)?.[1] || '0');
+        const remaining = Math.max(0, 5 - used);
+        if (document.getElementById('guestBanner')) return;
+        const banner = document.createElement('div');
+        banner.id = 'guestBanner';
+        const color = remaining <= 1 ? '#7f1d1d' : '#1e3a2f';
+        const textColor = remaining <= 1 ? '#fca5a5' : '#4ade80';
+        const urgency = remaining === 0 ? 'You\'ve used all your free searches.' : `${remaining} free search${remaining !== 1 ? 'es' : ''} remaining.`;
+        banner.style.cssText = `background:${color};color:${textColor};padding:.55rem 1rem;font-size:.82rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-family:'Segoe UI',sans-serif`;
+        banner.innerHTML = `<span>🔍 ${urgency} <strong>Register free</strong> to keep searching — no credit card needed.</span>
+          <div style="display:flex;gap:.75rem;align-items:center">
+            <button onclick="showAuthOverlay()" style="background:${textColor};color:#0f172a;border:none;border-radius:4px;padding:.3rem .9rem;cursor:pointer;font-size:.82rem;font-weight:700">Create Free Account</button>
+            <button onclick="this.parentElement.parentElement.remove()" style="background:none;border:none;color:${textColor};cursor:pointer;font-size:1.1rem">✕</button>
+          </div>`;
+        document.body.insertBefore(banner, document.body.firstChild);
+      });
     }
 
     // ── Email verification banner ──────────────────────────────────────────
