@@ -364,39 +364,69 @@ def ia_familysearch(limit: int = 500, dry_run: bool = False) -> int:
 
 # ─── main ─────────────────────────────────────────────────────────────────────
 
+PROGRESS_PATH = Path(__file__).parent.parent / 'data' / 'ged_scrape_progress.json'
+
+def load_progress():
+    if PROGRESS_PATH.exists():
+        try:
+            return json.loads(PROGRESS_PATH.read_text())
+        except Exception:
+            pass
+    return {'next_index': 0}
+
+def save_progress(idx):
+    PROGRESS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    PROGRESS_PATH.write_text(json.dumps({'next_index': idx}))
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--limit',    type=int, default=2000, help='CDX results per query')
+    ap.add_argument('--limit',    type=int, default=500,  help='CDX results per query (default 500 for burst mode)')
     ap.add_argument('--dry-run',  action='store_true',    help='Count only, no writes')
     ap.add_argument('--source',   default='',             help='Filter to specific source label')
+    ap.add_argument('--burst',    type=int, default=0,    help='Run only N queries then stop (0=all). Resumes from last position next run.')
+    ap.add_argument('--pause',    type=float, default=3.0, help='Seconds between queries in burst mode (default 3)')
     args = ap.parse_args()
 
     queries = build_queries()
     if args.source:
         queries = [(p, s) for p, s in queries if args.source in s]
 
+    progress = load_progress() if args.burst > 0 else {'next_index': 0}
+    start_idx = progress['next_index'] % max(len(queries), 1)
+
     print('=' * 65)
     print('  RootBridge Wayback Pre-Lockdown GEDCOM Scraper')
-    print(f'  {len(queries)} CDX queries | limit={args.limit} per query')
-    print(f'  Starting with {len(found)} known URLs')
+    mode = f'burst={args.burst} queries' if args.burst else 'full run'
+    print(f'  {len(queries)} CDX queries | limit={args.limit} | {mode}')
+    print(f'  Starting at query #{start_idx} | {len(found)} known URLs')
     print('=' * 65)
 
     total_new = 0
 
     # Internet Archive FamilySearch/Ancestral File search first (no rate limit issues)
-    if not args.source or 'familysearch' in args.source or 'ia' in args.source:
+    if not args.burst and (not args.source or 'familysearch' in args.source or 'ia' in args.source):
         n = ia_familysearch(limit=args.limit, dry_run=args.dry_run)
         total_new += n
         if n > 0 and not args.dry_run:
             save()
 
-    # Wayback CDX queries
-    for pattern, source in queries:
+    # Wayback CDX queries — burst mode resumes from last position
+    ran = 0
+    ordered = queries[start_idx:] + queries[:start_idx]  # rotate to start position
+    for i, (pattern, source) in enumerate(ordered):
+        if args.burst and ran >= args.burst:
+            next_idx = (start_idx + ran) % len(queries)
+            save_progress(next_idx)
+            print(f'\n[burst] Ran {ran} queries. Next run resumes at query #{next_idx}.')
+            break
         n = cdx_query(pattern, source, limit=args.limit, dry_run=args.dry_run)
         total_new += n
+        ran += 1
         if n > 0 and not args.dry_run:
             save()
-        time.sleep(0.8)  # be polite to Wayback
+        pause = args.pause if args.burst else 0.8
+        time.sleep(pause)
 
     if not args.dry_run:
         save()
