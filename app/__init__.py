@@ -101,14 +101,13 @@ def create_app(config=None):
                         db.session.execute(db.text('DELETE FROM persons WHERE tree_id = :tid'), {'tid': tree_id})
                         db.session.commit()
                         print(f'Cleared {count:,} partial records. Starting fresh import...')
-                    import os as _os
-                    gh_token = _os.environ.get('GITHUB_TOKEN', '')
-                    req = urllib.request.Request(
-                        'https://api.github.com/repos/krishh58/rootbridge/releases/assets/440261710',
-                        headers={'Authorization': f'token {gh_token}',
-                                 'Accept': 'application/octet-stream'}
+                    import urllib.request as _req
+                    opener = _req.build_opener(_req.HTTPRedirectHandler())
+                    req = _req.Request(
+                        'https://github.com/krishh58/rootbridge/releases/download/vault-seed-v1/vault_export.jsonl.gz',
+                        headers={'User-Agent': 'Mozilla/5.0'}
                     )
-                    with urllib.request.urlopen(req) as r:
+                    with opener.open(req, timeout=120) as r:
                         data = r.read()
                     print(f'Downloaded {len(data):,} bytes. Importing...')
                     import datetime as _dt
