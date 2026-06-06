@@ -1,10 +1,16 @@
+import os
 from flask import Flask
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from .config import Config
 from .db import db
 
-limiter = Limiter(key_func=get_remote_address, default_limits=[])
+_redis_url = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+limiter = Limiter(
+    key_func=get_remote_address,
+    default_limits=[],
+    storage_uri=_redis_url,
+)
 
 def create_app(config=None):
     app = Flask(__name__, static_folder='../static', static_url_path='/static')
@@ -15,6 +21,8 @@ def create_app(config=None):
         raise RuntimeError("SECRET_KEY environment variable is not set")
 
     db.init_app(app)
+    from flask_migrate import Migrate
+    Migrate(app, db)
 
     from .auth import auth_bp
     from .routes import routes_bp
@@ -68,7 +76,7 @@ def create_app(config=None):
             with app.app_context():
                 from .models import Person
                 from .db import db
-                VAULT_EXPECTED_MIN = 770_000
+                VAULT_EXPECTED_MIN = 750_000
                 count = db.session.execute(db.text('SELECT COUNT(*) FROM persons')).scalar()
                 if count and count >= VAULT_EXPECTED_MIN:
                     print(f'Vault already seeded ({count:,} persons), skipping.')

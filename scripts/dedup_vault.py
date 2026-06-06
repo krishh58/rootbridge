@@ -23,4 +23,9 @@ cur.execute("SELECT COUNT(*) FROM persons")
 after = cur.fetchone()[0]
 print(f'After: {after:,} persons')
 print(f'Removed: {before - after:,} duplicates')
+
+print('Running VACUUM ANALYZE to reclaim space...')
+conn.autocommit = True
+cur.execute('VACUUM ANALYZE persons')
+print('Done.')
 conn.close()
