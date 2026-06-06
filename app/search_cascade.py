@@ -465,7 +465,47 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     all_results = []
     _first_only = first.split()[0] if first else first
 
-    # ── Phase 1: fast reliable sources ──────────────────────────────────────
+    # ── Phase 0: vault search (internal, instant) ────────────────────────────
+    yield 'data: ' + json.dumps({'agent_status': 'vault', 'message': 'Searching RootBridge vault (776k records)…'}) + '\n\n'
+
+    vault_hits = []
+    try:
+        from .match_index import search_vault
+        vault_hits = search_vault(last, first, birth_year, limit=20)
+        if vault_hits:
+            vault_results = [{
+                'source': 'rootbridge_vault',
+                'record_type': 'vault',
+                'title': f"{h.get('first_name', '')} {h.get('last_name', '')}".strip(),
+                'date': str(h.get('birth_year', '')) if h.get('birth_year') else '',
+                'location': f"{h.get('birth_state', '')} {h.get('birth_country', '')}".strip(),
+                'url': '',
+                'vault_score': h.get('score', 0),
+            } for h in vault_hits]
+            all_results.extend(vault_results)
+            yield 'data: ' + json.dumps({
+                'source': 'rootbridge_vault',
+                'results': vault_results,
+                'count': len(vault_results),
+                'total': len(all_results),
+            }) + '\n\n'
+        else:
+            yield 'data: ' + json.dumps({'source': 'rootbridge_vault', 'count': 0}) + '\n\n'
+    except Exception as e:
+        logger.debug('Vault search failed: %s', e)
+        yield 'data: ' + json.dumps({'source': 'rootbridge_vault', 'count': 0}) + '\n\n'
+
+    if community_results:
+        _cr = list(community_results)
+        all_results.extend(_cr)
+        yield 'data: ' + json.dumps({
+            'source': 'rootbridge_community',
+            'results': _cr,
+            'count': len(_cr),
+            'total': len(all_results),
+        }) + '\n\n'
+
+    # ── Phase 1: fast reliable external sources ───────────────────────────────
     phase1_tasks = {
         'wikitree':    lambda: search_wikitree(_first_only, last, birth_year),
         'dpla_census': lambda: search_dpla_census(_first_only, last, birth_year, birth_place),
@@ -475,11 +515,7 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
         from .playwright_scrapers import search_findagrave
         phase1_tasks['findagrave'] = lambda: search_findagrave(_first_only, last, birth_year)
 
-    if community_results:
-        _cr = list(community_results)
-        phase1_tasks['rootbridge_community'] = lambda: _cr
-
-    yield 'data: ' + json.dumps({'agent_status': 'phase1', 'message': 'Searching core archives…'}) + '\n\n'
+    yield 'data: ' + json.dumps({'agent_status': 'phase1', 'message': 'Searching core external archives…'}) + '\n\n'
 
     yield from _run_phase(phase1_tasks, all_results, timeout=12)
 

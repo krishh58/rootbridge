@@ -1260,13 +1260,14 @@
 
     // ── Agentic search runner (called from person card "Search US Records") ────
     const _SOURCE_LABELS = {
+      rootbridge_vault:'🏛️ RootBridge Vault', rootbridge_community:'🤝 RootBridge',
       findagrave:'🪦 FindAGrave', obituaries:'📰 Obituaries', va_gravesite:'🎖️ VA Military',
       wikitree:'🌳 WikiTree', chronicling:'📜 Newspapers', nara:'🏛️ NARA',
       dpla_census:'📋 Census', dpla_military:'⚔️ Military', dpla_general:'📚 DPLA',
       dpla_obituary:'🗞️ DPLA Obits', dpla_marriage:'💍 Marriage', freebmd:'🇬🇧 FreeBMD',
       irish_birth:'🇮🇪 Irish Rec', irish_death:'🇮🇪 Irish Rec', antenati:'🇮🇹 Antenati',
       geneteka:'🇵🇱 Geneteka', digitalarkivet:'🇳🇴 Norway', archion:'🇩🇪 Archion',
-      matricula:'🇩🇪 Matricula', rootbridge_community:'🤝 RootBridge',
+      matricula:'🇩🇪 Matricula',
     };
 
     window.runPersonSearch = async function(personId) {
@@ -1287,9 +1288,14 @@
         let data;
         try { data = JSON.parse(evt.data); } catch { return; }
 
+        if (data.agent_status === 'vault') {
+          document.getElementById('spIcon').textContent = '🏛️';
+          document.getElementById('spHeading').textContent = 'Searching RootBridge Vault first…';
+          document.getElementById('spDetail').textContent = '776,000 genealogy records — checking our archive before any external searches.';
+        }
         if (data.agent_status === 'phase1') {
           document.getElementById('spIcon').textContent = '🔍';
-          document.getElementById('spHeading').textContent = 'Phase 1 — Core Archives';
+          document.getElementById('spHeading').textContent = 'Phase 1 — Core External Archives';
           document.getElementById('spDetail').textContent = data.message;
         }
         if (data.agent_status === 'thinking') {
