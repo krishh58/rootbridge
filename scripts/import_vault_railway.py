@@ -8,8 +8,10 @@ URL = "https://github.com/krishh58/rootbridge/releases/download/vault-seed-v1/va
 DEST = "/tmp/vault.jsonl.gz"
 
 print("Downloading vault export...")
-import subprocess
-subprocess.run(["curl", "-L", "-o", DEST, URL], check=True)
+import urllib.request
+opener = urllib.request.build_opener(urllib.request.HTTPRedirectHandler())
+with opener.open(URL) as r, open(DEST, "wb") as f:
+    f.write(r.read())
 print("Downloaded. Starting import...")
 
 from app import create_app
