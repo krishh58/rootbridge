@@ -68,11 +68,15 @@ def create_app(config=None):
             with app.app_context():
                 from .models import Person
                 from .db import db
+                VAULT_EXPECTED_MIN = 770_000
                 count = db.session.execute(db.text('SELECT COUNT(*) FROM persons')).scalar()
-                if count and count > 0:
+                if count and count >= VAULT_EXPECTED_MIN:
                     print(f'Vault already seeded ({count:,} persons), skipping.')
                     return
-                print('Vault empty — downloading seed data...')
+                if count and count > 0:
+                    print(f'Vault incomplete ({count:,} persons, expected {VAULT_EXPECTED_MIN:,}+). Clearing and re-seeding...')
+                else:
+                    print('Vault empty — downloading seed data...')
                 try:
                     from .models import Tree, User
                     # Create system vault user + tree if needed
@@ -92,6 +96,11 @@ def create_app(config=None):
                         db.session.add(vault_tree)
                         db.session.flush()
                     tree_id = vault_tree.id
+                    # Clear any partial seed before re-importing
+                    if count and count > 0:
+                        db.session.execute(db.text('DELETE FROM persons WHERE tree_id = :tid'), {'tid': tree_id})
+                        db.session.commit()
+                        print(f'Cleared {count:,} partial records. Starting fresh import...')
                     import os as _os
                     gh_token = _os.environ.get('GITHUB_TOKEN', '')
                     req = urllib.request.Request(
