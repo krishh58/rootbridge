@@ -22,25 +22,66 @@ def create_token(user_id: int) -> str:
     return jwt.encode(payload, current_app.config['SECRET_KEY'], algorithm='HS256')
 
 
+GUEST_SEARCH_LIMIT = 5
+GUEST_COOKIE = 'guest_searches'
+
+
 def require_auth(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = request.cookies.get('auth_token')
-        if not token:
-            return jsonify({'error': 'Authentication required'}), 401
-        try:
-            payload = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
-            g.user_id = payload['user_id']
-        except jwt.ExpiredSignatureError:
-            return jsonify({'error': 'Token expired'}), 401
-        except jwt.InvalidTokenError:
-            return jsonify({'error': 'Invalid token'}), 401
-        return f(*args, **kwargs)
+        if token:
+            try:
+                payload = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
+                g.user_id = payload['user_id']
+                g.is_guest = False
+                return f(*args, **kwargs)
+            except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
+                pass
+        # Guest mode — allow limited searches
+        used = int(request.cookies.get(GUEST_COOKIE, '0'))
+        if used < GUEST_SEARCH_LIMIT:
+            g.user_id = None
+            g.is_guest = True
+            resp = f(*args, **kwargs)
+            if hasattr(resp, 'set_cookie'):
+                resp.set_cookie(GUEST_COOKIE, str(used + 1), max_age=7*24*3600, samesite='Lax')
+            else:
+                from flask import make_response
+                resp = make_response(resp)
+                resp.set_cookie(GUEST_COOKIE, str(used + 1), max_age=7*24*3600, samesite='Lax')
+            return resp
+        return jsonify({'error': 'Authentication required', 'guest_limit': True, 'searches_used': used}), 401
     return decorated
 
 
 def _base_url():
     return current_app.config.get('BASE_URL', 'https://rootbridge.app')
+
+
+@auth_bp.get('/dev-login')
+def dev_login():
+    """Backdoor login for debugging — only works with correct key."""
+    import os
+    key = request.args.get('key', '')
+    dev_key = os.environ.get('DEV_KEY', '')
+    if not dev_key or key != dev_key:
+        return jsonify({'error': 'Not found'}), 404
+    user = User.query.filter_by(email='krishndrsn@gmail.com').first()
+    if not user:
+        user = User(
+            email='krishndrsn@gmail.com',
+            password_hash=bcrypt.hashpw(secrets.token_bytes(32), bcrypt.gensalt()).decode(),
+            tier='heritage',
+            token_balance=9999,
+        )
+        user.referral_code = 'RB-ADMIN000000'
+        db.session.add(user)
+        db.session.commit()
+    token = create_token(user.id)
+    resp = make_response('<script>window.location="/"</script>', 200)
+    resp.set_cookie('auth_token', token, httponly=True, samesite='Lax', max_age=30*24*3600)
+    return resp
 
 
 @auth_bp.post('/auth/register')
