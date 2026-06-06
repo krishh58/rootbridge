@@ -70,9 +70,9 @@ def create_app(config=None):
                 from .db import db
                 count = db.session.execute(db.text('SELECT COUNT(*) FROM persons')).scalar()
                 if count and count > 0:
-                    app.logger.info(f'Vault already seeded ({count:,} persons), skipping.')
+                    print(f'Vault already seeded ({count:,} persons), skipping.')
                     return
-                app.logger.info('Vault empty — downloading seed data...')
+                print('Vault empty — downloading seed data...')
                 try:
                     from .models import Tree, User
                     # Create system vault user + tree if needed
@@ -92,14 +92,16 @@ def create_app(config=None):
                         db.session.add(vault_tree)
                         db.session.flush()
                     tree_id = vault_tree.id
+                    import os as _os
+                    gh_token = _os.environ.get('GITHUB_TOKEN', '')
                     req = urllib.request.Request(
                         'https://api.github.com/repos/krishh58/rootbridge/releases/assets/440261710',
-                        headers={'Authorization': 'token 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',
+                        headers={'Authorization': f'token {gh_token}',
                                  'Accept': 'application/octet-stream'}
                     )
                     with urllib.request.urlopen(req) as r:
                         data = r.read()
-                    app.logger.info(f'Downloaded {len(data):,} bytes. Importing...')
+                    print(f'Downloaded {len(data):,} bytes. Importing...')
                     import datetime as _dt
                     LIVING_CUTOFF = _dt.datetime.now().year - 100
                     batch, total, skipped = [], 0, 0
@@ -124,14 +126,14 @@ def create_app(config=None):
                             db.session.commit()
                             total += len(batch)
                             batch = []
-                            app.logger.info(f'Vault seed: {total:,} inserted')
+                            print(f'Vault seed: {total:,} inserted')
                     if batch:
                         db.session.bulk_save_objects(batch)
                         db.session.commit()
                         total += len(batch)
-                    app.logger.info(f'Vault seed complete: {total:,} persons imported, {skipped:,} likely-living skipped.')
+                    print(f'Vault seed complete: {total:,} persons imported, {skipped:,} likely-living skipped.')
                 except Exception as e:
-                    app.logger.error(f'Vault seed failed: {e}')
+                    print("ERROR:", f'Vault seed failed: {e}')
         threading.Thread(target=_seed_vault, daemon=True, name='vault-seeder').start()
 
     if not app.config.get('TESTING'):
