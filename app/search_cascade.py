@@ -2,6 +2,7 @@ import json
 import hashlib
 import os
 import logging
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed, TimeoutError as FuturesTimeout
 import requests as req_lib
 from .gap_classifier import classify_gaps, confidence_score
@@ -469,9 +470,11 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     yield 'data: ' + json.dumps({'agent_status': 'vault', 'message': 'Searching RootBridge vault (776k records)…'}) + '\n\n'
 
     vault_hits = []
+    _vault_t0 = time.time()
     try:
         from .match_index import search_vault
         vault_hits = search_vault(last, first, birth_year, limit=20)
+        vault_ms = round((time.time() - _vault_t0) * 1000)
         if vault_hits:
             vault_results = [{
                 'source': 'rootbridge_vault',
@@ -488,12 +491,14 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
                 'results': vault_results,
                 'count': len(vault_results),
                 'total': len(all_results),
+                'vault_ms': vault_ms,
             }) + '\n\n'
         else:
-            yield 'data: ' + json.dumps({'source': 'rootbridge_vault', 'count': 0}) + '\n\n'
+            yield 'data: ' + json.dumps({'source': 'rootbridge_vault', 'count': 0, 'vault_ms': vault_ms}) + '\n\n'
     except Exception as e:
+        vault_ms = round((time.time() - _vault_t0) * 1000)
         logger.debug('Vault search failed: %s', e)
-        yield 'data: ' + json.dumps({'source': 'rootbridge_vault', 'count': 0}) + '\n\n'
+        yield 'data: ' + json.dumps({'source': 'rootbridge_vault', 'count': 0, 'vault_ms': vault_ms}) + '\n\n'
 
     if community_results:
         _cr = list(community_results)
