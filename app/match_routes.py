@@ -87,7 +87,7 @@ def get_person_matches(person_id):
         )
     ).all()
     user = User.query.get(g.user_id)
-    blocked = user.blocked_user_ids or []
+    blocked = user.blocked_user_ids if user else []
     result = []
     for m in matches:
         other_uid = m.user_b_id if m.user_a_id == g.user_id else m.user_a_id
@@ -100,6 +100,8 @@ def get_person_matches(person_id):
 @match_bp.get('/api/matches')
 @require_auth
 def get_all_matches():
+    if not g.user_id:
+        return jsonify({'matches': [], 'total_unread': 0})
     matches = PersonMatch.query.filter(
         db.or_(
             PersonMatch.user_a_id == g.user_id,
@@ -107,7 +109,7 @@ def get_all_matches():
         )
     ).order_by(PersonMatch.created_at.desc()).all()
     user = User.query.get(g.user_id)
-    blocked = user.blocked_user_ids or []
+    blocked = user.blocked_user_ids if user else []
     result = []
     total_unread = 0
     for m in matches:
