@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM mcr.microsoft.com/playwright/python:v1.44.0-jammy
 
 # WeasyPrint runtime dependencies (PDF export)
 RUN apt-get update && apt-get install -y --no-install-recommends \
