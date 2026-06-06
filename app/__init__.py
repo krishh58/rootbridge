@@ -44,6 +44,8 @@ def create_app(config=None):
     app.register_blueprint(document_bp)
     from .rootcommons_routes import rootcommons_bp
     app.register_blueprint(rootcommons_bp)
+    from .vault_import_routes import vault_import_bp
+    app.register_blueprint(vault_import_bp)
 
     with app.app_context():
         from . import models  # noqa: register models with SQLAlchemy
