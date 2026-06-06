@@ -4,13 +4,17 @@ import gzip
 import json
 import sys
 
-URL = "https://github.com/krishh58/rootbridge/releases/download/vault-seed-v1/vault_export.jsonl.gz"
+ASSET_API = "https://api.github.com/repos/krishh58/rootbridge/releases/assets/440261710"
+GH_TOKEN  = "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"
 DEST = "/tmp/vault.jsonl.gz"
 
 print("Downloading vault export...")
 import urllib.request
-opener = urllib.request.build_opener(urllib.request.HTTPRedirectHandler())
-with opener.open(URL) as r, open(DEST, "wb") as f:
+req = urllib.request.Request(ASSET_API, headers={
+    "Authorization": f"token {GH_TOKEN}",
+    "Accept": "application/octet-stream",
+})
+with urllib.request.urlopen(req) as r, open(DEST, "wb") as f:
     f.write(r.read())
 print("Downloaded. Starting import...")
 
