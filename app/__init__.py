@@ -61,12 +61,13 @@ def create_app(config=None):
         from . import models  # noqa: register models with SQLAlchemy
         db.create_all()
 
-    if not app.config.get('TESTING'):
-        import threading
-        from .match_index import build_hot_index
-        def _build_index():
-            build_hot_index(app)
-        threading.Thread(target=_build_index, daemon=True, name='index-builder').start()
+    # Index builder disabled — was locking persons table on startup and blocking inserts
+    # if not app.config.get('TESTING'):
+    #     import threading
+    #     from .match_index import build_hot_index
+    #     def _build_index():
+    #         build_hot_index(app)
+    #     threading.Thread(target=_build_index, daemon=True, name='index-builder').start()
 
     if not app.config.get('TESTING'):
         import threading
