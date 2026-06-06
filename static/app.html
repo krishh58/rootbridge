@@ -1258,6 +1258,79 @@
       document.getElementById('searchProgressOverlay').style.display = 'none';
     }
 
+    // ── Agentic search runner (called from person card "Search US Records") ────
+    const _SOURCE_LABELS = {
+      findagrave:'🪦 FindAGrave', obituaries:'📰 Obituaries', va_gravesite:'🎖️ VA Military',
+      wikitree:'🌳 WikiTree', chronicling:'📜 Newspapers', nara:'🏛️ NARA',
+      dpla_census:'📋 Census', dpla_military:'⚔️ Military', dpla_general:'📚 DPLA',
+      dpla_obituary:'🗞️ DPLA Obits', dpla_marriage:'💍 Marriage', freebmd:'🇬🇧 FreeBMD',
+      irish_birth:'🇮🇪 Irish Rec', irish_death:'🇮🇪 Irish Rec', antenati:'🇮🇹 Antenati',
+      geneteka:'🇵🇱 Geneteka', digitalarkivet:'🇳🇴 Norway', archion:'🇩🇪 Archion',
+      matricula:'🇩🇪 Matricula', rootbridge_community:'🤝 RootBridge',
+    };
+
+    window.runPersonSearch = async function(personId) {
+      const p = await fetch(`/api/persons/${personId}`).then(r => r.json());
+      const params = new URLSearchParams({
+        last: p.last_name || '', first: p.first_name || '',
+        birth_year: p.birth_year || '', birth_place: p.birth_state || '',
+        tree_name: (p.last_name || 'My') + ' Family',
+      });
+
+      closePersonCard();
+      showSearchProgress();
+      let totalFound = 0;
+
+      const es = new EventSource('/api/search/stream?' + params.toString());
+
+      es.onmessage = evt => {
+        let data;
+        try { data = JSON.parse(evt.data); } catch { return; }
+
+        if (data.agent_status === 'phase1') {
+          document.getElementById('spIcon').textContent = '🔍';
+          document.getElementById('spHeading').textContent = 'Phase 1 — Core Archives';
+          document.getElementById('spDetail').textContent = data.message;
+        }
+        if (data.agent_status === 'thinking') {
+          document.getElementById('spIcon').textContent = '🤖';
+          document.getElementById('spHeading').textContent = 'Alfred is choosing what to search next…';
+          document.getElementById('spDetail').textContent = 'Reading Phase 1 clues to pick the best follow-up sources.';
+        }
+        if (data.agent_status === 'phase2') {
+          const labels = (data.picks || []).map(k => _SOURCE_LABELS[k] || k).join(', ');
+          document.getElementById('spIcon').textContent = '🎯';
+          document.getElementById('spHeading').textContent = 'Phase 2 — Targeted Search';
+          document.getElementById('spDetail').textContent = 'Alfred chose: ' + labels;
+        }
+
+        if (data.source && data.count > 0) {
+          totalFound += data.count;
+          const badge = document.createElement('span');
+          badge.style.cssText = 'background:#1e3a2f;color:#4ade80;padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:600;animation:fadein .4s ease';
+          badge.textContent = (_SOURCE_LABELS[data.source] || data.source) + ' +' + data.count;
+          document.getElementById('spBadges').appendChild(badge);
+          document.getElementById('spCount').textContent = `${totalFound} record${totalFound !== 1 ? 's' : ''} found so far…`;
+        } else if (data.source && !data.agent_status) {
+          const badge = document.createElement('span');
+          badge.style.cssText = 'background:#1e293b;color:#475569;padding:3px 10px;border-radius:20px;font-size:.78rem';
+          badge.textContent = (_SOURCE_LABELS[data.source] || data.source) + ' ✗';
+          document.getElementById('spBadges').appendChild(badge);
+        }
+
+        if (data.done) {
+          es.close();
+          document.getElementById('spHeading').textContent = totalFound > 0 ? `Found ${totalFound} records` : 'Search complete';
+          document.getElementById('spDetail').textContent = data.summary || 'All sources searched.';
+          document.getElementById('spCount').textContent = '';
+          setTimeout(() => { hideSearchProgress(); loadTrees(); openPersonCard(personId); }, 2200);
+        }
+        if (data.error) { es.close(); hideSearchProgress(); alert(data.error); }
+      };
+
+      es.onerror = () => { es.close(); hideSearchProgress(); loadTrees(); openPersonCard(personId); };
+    };
+
     // ── Curator tab ────────────────────────────────────────────────────────────
 
     async function refreshCuratorStats() {

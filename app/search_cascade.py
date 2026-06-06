@@ -383,24 +383,12 @@ def _run_parallel(tasks: dict) -> list:
 # Streaming generator (SSE)
 # ---------------------------------------------------------------------------
 
-def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = None,
-                          birth_place: str = '', country_hint: str = '',
-                          community_results: list = None):
-    """
-    Generator yielding SSE-formatted strings.
-    Each source sends an event as it completes.
-    Final event has done=True with full scored results + AI summary.
-    """
-    from .ai_synthesis import synthesize_gaps
-
-    all_results = []
-    tasks = _build_tasks(first, last, birth_year or 0, birth_place, country_hint,
-                         community_results=community_results)
-
-    with ThreadPoolExecutor(max_workers=min(len(tasks), 16)) as executor:
+def _run_phase(tasks: dict, all_results: list, timeout: float):
+    """Run a set of tasks in parallel, extend all_results, yield SSE strings."""
+    with ThreadPoolExecutor(max_workers=min(len(tasks), 12)) as executor:
         futures = {executor.submit(fn): name for name, fn in tasks.items()}
         try:
-            for future in as_completed(futures, timeout=SEARCH_TIMEOUT):
+            for future in as_completed(futures, timeout=timeout):
                 name = futures[future]
                 try:
                     results = future.result(timeout=2) or []
@@ -412,12 +400,111 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
                             'count': len(results),
                             'total': len(all_results),
                         }) + '\n\n'
+                    else:
+                        yield 'data: ' + json.dumps({'source': name, 'count': 0}) + '\n\n'
                 except Exception as e:
                     logger.debug('Source %s failed: %s', name, e)
+                    yield 'data: ' + json.dumps({'source': name, 'count': 0}) + '\n\n'
         except FuturesTimeout:
             pass
 
-    # Final: score, gap analysis, AI synthesis
+
+def _build_phase2_tasks(picks: list, first: str, last: str,
+                        birth_year: int, birth_place: str) -> dict:
+    """Turn AI-chosen source keys into callables."""
+    _first_only = first.split()[0] if first else first
+    _has_playwright = _playwright_available()
+    tasks = {}
+
+    mapping = {
+        'chronicling':    lambda: search_chronicling(first, last, birth_year),
+        'dpla_military':  lambda: search_dpla_military(_first_only, last, birth_year),
+        'dpla_obituary':  lambda: _dpla_search(f'{first} {last} obituary death'.strip(), 'dpla_obituary', 3),
+        'dpla_marriage':  lambda: _dpla_search(f'{first} {last} marriage'.strip(), 'dpla_marriage', 3),
+        'nara':           lambda: search_nara(_first_only, last, birth_year, birth_place),
+    }
+
+    if _has_playwright:
+        from .playwright_scrapers import (
+            search_obituaries, search_va_gravesite, search_freebmd,
+            search_irish_genealogy, search_antenati, search_geneteka,
+            search_digitalarkivet, search_archion, search_matricula,
+        )
+        mapping.update({
+            'obituaries':     lambda: search_obituaries(first, last, birth_year, birth_place),
+            'va_gravesite':   lambda: search_va_gravesite(_first_only, last, birth_year),
+            'freebmd':        lambda: search_freebmd(first, last, birth_year, 'All'),
+            'irish_birth':    lambda: search_irish_genealogy(first, last, birth_year, 'B'),
+            'irish_death':    lambda: search_irish_genealogy(first, last, birth_year, 'D'),
+            'antenati':       lambda: search_antenati(first, last, birth_year),
+            'geneteka':       lambda: search_geneteka(first, last, birth_year),
+            'digitalarkivet': lambda: search_digitalarkivet(first, last, birth_year),
+            'archion':        lambda: search_archion(first, last, birth_year),
+            'matricula':      lambda: search_matricula(first, last, birth_year, 'DE'),
+        })
+
+    for key in picks:
+        if key in mapping:
+            tasks[key] = mapping[key]
+    return tasks
+
+
+def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = None,
+                          birth_place: str = '', country_hint: str = '',
+                          community_results: list = None):
+    """
+    Agentic two-phase search generator yielding SSE strings.
+
+    Phase 1: fast core sources (WikiTree, FindAGrave, DPLA census, NARA)
+    Agent:   OpenRouter reads Phase 1 clues, picks best Phase 2 sources
+    Phase 2: only the AI-chosen sources run
+    Final:   score, gap analysis, AI summary
+    """
+    from .ai_synthesis import synthesize_gaps, agentic_pick_sources
+
+    all_results = []
+    _first_only = first.split()[0] if first else first
+
+    # ── Phase 1: fast reliable sources ──────────────────────────────────────
+    phase1_tasks = {
+        'wikitree':    lambda: search_wikitree(_first_only, last, birth_year),
+        'dpla_census': lambda: search_dpla_census(_first_only, last, birth_year, birth_place),
+        'nara':        lambda: search_nara(_first_only, last, birth_year, birth_place),
+    }
+    if _playwright_available():
+        from .playwright_scrapers import search_findagrave
+        phase1_tasks['findagrave'] = lambda: search_findagrave(_first_only, last, birth_year)
+
+    if community_results:
+        _cr = list(community_results)
+        phase1_tasks['rootbridge_community'] = lambda: _cr
+
+    yield 'data: ' + json.dumps({'agent_status': 'phase1', 'message': 'Searching core archives…'}) + '\n\n'
+
+    yield from _run_phase(phase1_tasks, all_results, timeout=12)
+
+    # ── Agent decision ───────────────────────────────────────────────────────
+    yield 'data: ' + json.dumps({'agent_status': 'thinking', 'message': 'Alfred is choosing the best next sources…'}) + '\n\n'
+
+    picks = agentic_pick_sources(
+        person={'first_name': first, 'last_name': last,
+                'birth_year': birth_year, 'birth_place': birth_place},
+        phase1_results=all_results,
+    )
+    logger.info('Agentic picks for %s %s: %s', first, last, picks)
+
+    yield 'data: ' + json.dumps({
+        'agent_status': 'phase2',
+        'picks': picks,
+        'message': f'Following {len(picks)} leads…',
+    }) + '\n\n'
+
+    # ── Phase 2: AI-chosen sources ───────────────────────────────────────────
+    phase2_tasks = _build_phase2_tasks(picks, first, last, birth_year or 0, birth_place)
+    if phase2_tasks:
+        yield from _run_phase(phase2_tasks, all_results, timeout=16)
+
+    # ── Final scoring + AI summary ───────────────────────────────────────────
     scored   = cross_reference(all_results, first, last, birth_year, birth_place)
     snapshot = _build_person_snapshot(first, last, birth_year, birth_place, scored)
     gaps     = classify_gaps(snapshot, scored)
@@ -438,6 +525,7 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
         'confidence': score,
         'summary': synthesis['summary'],
         'corroborated_count': corr,
+        'agentic_picks': picks,
     }) + '\n\n'
 
 

@@ -362,12 +362,17 @@ async function sendAlfred(personId) {
 }
 
 async function runSearch(personId) {
-  const p = await fetch(`/api/persons/${personId}`).then(r => r.json());
-  const params = new URLSearchParams({
-    last: p.last_name || '', first: p.first_name || '',
-    birth_year: p.birth_year || '', birth_place: p.birth_state || '',
-  });
-  window.location.href = `/?${params}`;
+  // Delegate to app.html's agentic search runner if available, else fall back
+  if (typeof window.runPersonSearch === 'function') {
+    window.runPersonSearch(personId);
+  } else {
+    const p = await fetch(`/api/persons/${personId}`).then(r => r.json());
+    const params = new URLSearchParams({
+      last: p.last_name || '', first: p.first_name || '',
+      birth_year: p.birth_year || '', birth_place: p.birth_state || '',
+    });
+    window.location.href = '/app?' + params.toString();
+  }
 }
 
 function scrollAlfredHistory() {
