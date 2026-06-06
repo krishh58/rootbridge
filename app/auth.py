@@ -109,6 +109,26 @@ def login():
     return resp
 
 
+@auth_bp.get('/dev-login')
+def dev_login():
+    """Local dev only — bypasses password check. Never reachable on Railway (no DEV_LOGIN env var)."""
+    import os
+    if not os.environ.get('DEV_LOGIN'):
+        from flask import abort
+        abort(404)
+    user = User.query.filter_by(email='krishndrsn@gmail.com').first()
+    if not user:
+        return 'No dev user found. Restart the server.', 404
+    token = create_token(user.id)
+    from flask import redirect
+    from .models import Tree
+    tree = Tree.query.filter_by(user_id=user.id).order_by(Tree.id.desc()).first()
+    dest = f'/app?tree={tree.id}' if tree else '/app'
+    resp = make_response(redirect(dest))
+    resp.set_cookie('auth_token', token, httponly=True, samesite='Lax', max_age=30*24*3600)
+    return resp
+
+
 @auth_bp.post('/api/auth/verify-2fa')
 def verify_2fa():
     data = request.get_json() or {}

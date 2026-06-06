@@ -81,6 +81,56 @@ function buildGrowTreeHTML(person) {
     </div>`;
 }
 
+function buildResearchHistoryHTML(person) {
+  const findings = person.research_findings || [];
+  if (findings.length === 0) return '';
+
+  const summary = findings.find(f => f.type === 'run_summary');
+  const facts    = findings.filter(f => f.type === 'finding' && f.field && !['parent','spouse'].includes(f.field));
+  const ancs     = findings.filter(f => f.type === 'finding' && ['parent','spouse'].includes(f.field));
+
+  const fieldLabel = {
+    birth_year:'Birth year', birth_place:'Birth place',
+    death_year:'Death year', death_place:'Death place', other:'Detail'
+  };
+
+  let ranAt = '';
+  if (summary?.ran_at) {
+    try { ranAt = new Date(summary.ran_at + 'Z').toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}); } catch(e) {}
+  }
+
+  const summaryText = summary?.text || '';
+  const noRecord = !facts.length && !ancs.length;
+
+  const factsHTML = facts.map(f =>
+    `<div class="rh-row">
+       <span class="rh-field">${escapeHtml(fieldLabel[f.field] || f.field)}</span>
+       <span class="rh-value">${escapeHtml(f.value)}</span>
+       <span class="rh-conf">${escapeHtml(f.confidence || '')}</span>
+     </div>`
+  ).join('');
+
+  const ancsNote = ancs.length
+    ? `<div class="rh-ancs">${ancs.length} ancestor${ancs.length > 1 ? 's' : ''} found — see "Add to Tree" below</div>`
+    : '';
+
+  const noRecordHTML = noRecord
+    ? `<div class="rh-norecord">No records located for this person — no matching entries found across searched sources.</div>`
+    : '';
+
+  return `
+    <div class="rh-panel">
+      <div class="rh-header">
+        <span class="rh-title">Last Research Run</span>
+        ${ranAt ? `<span class="rh-date">${escapeHtml(ranAt)}</span>` : ''}
+      </div>
+      ${summaryText ? `<div class="rh-summary">${escapeHtml(summaryText.substring(0, 300))}${summaryText.length > 300 ? '…' : ''}</div>` : ''}
+      ${factsHTML}
+      ${ancsNote}
+      ${noRecordHTML}
+    </div>`;
+}
+
 async function addAncestorsFromCard(personId) {
   const panel = document.querySelector('.grow-tree-panel');
   if (!panel) return;
@@ -203,6 +253,7 @@ function buildCardHTML(person, hometown, messages, documents) {
           <span class="doc-upload-status" id="docUploadStatus-${person.id}"></span>
         </div>
       </div>
+      ${buildResearchHistoryHTML(person)}
       <div class="alfred-panel">
         <div class="alfred-header"><span class="alfred-avatar">🎩</span><strong>Alfred</strong> — Research Concierge</div>
         <div class="alfred-history" id="alfredHistory">${messagesHTML}</div>
@@ -213,7 +264,7 @@ function buildCardHTML(person, hometown, messages, documents) {
           <button class="btn-primary" onclick="sendAlfred(${person.id})">Send <span class="token-cost">10</span></button>
         </div>
       </div>
-      ${(person.research_findings || []).length > 0 ? buildGrowTreeHTML(person) : ''}
+      ${(person.research_findings || []).some(f => ['parent','spouse'].includes(f.field)) ? buildGrowTreeHTML(person) : ''}
     </div>
     <style>
       .person-card{background:#1e293b;border-radius:12px;width:min(900px,95vw);max-height:90vh;overflow-y:auto;padding:2rem;position:relative;display:flex;flex-direction:column;gap:1.5rem}
@@ -267,6 +318,17 @@ function buildCardHTML(person, hometown, messages, documents) {
       @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
       .token-cost{font-size:.75rem;background:#334155;padding:.1rem .3rem;border-radius:4px}
       .hometown-panel{display:flex;flex-direction:column;gap:.75rem}
+      .rh-panel{border-top:1px solid #334155;padding-top:1.25rem}
+      .rh-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
+      .rh-title{color:#94a3b8;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+      .rh-date{color:#475569;font-size:.75rem}
+      .rh-summary{color:#cbd5e1;font-size:.83rem;line-height:1.55;margin-bottom:.75rem;font-style:italic}
+      .rh-row{display:flex;gap:.5rem;align-items:baseline;padding:.25rem 0;border-bottom:1px solid #1e293b}
+      .rh-field{color:#94a3b8;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;min-width:90px;flex-shrink:0}
+      .rh-value{color:#f1f5f9;font-size:.88rem;flex:1}
+      .rh-conf{color:#64748b;font-size:.75rem;white-space:nowrap}
+      .rh-ancs{color:#4ade80;font-size:.78rem;margin-top:.5rem;padding:.35rem .5rem;background:#0f2318;border-radius:5px}
+      .rh-norecord{color:#94a3b8;font-size:.83rem;font-style:italic;padding:.5rem;background:#0f172a;border-radius:5px;border-left:3px solid #475569}
       @media(max-width:640px){.card-panels{grid-template-columns:1fr}}
     </style>`;
 }

@@ -1,0 +1,191 @@
+0 NOTE GIT Repo: myStevens.git, https://github.com/vijaytewari/myStevens.git
+0 NOTE Created by Zachary Ankuda
+0 NOTE Group Members: Dan, Rob, Vijay
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE My Family
+1 DATE 31 JAN 2016
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME John Smith
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME John /Smith/
+2 GIVN John
+2 SURN Smith
+2 _MARNM Smith
+1 SEX M
+1 BIRT
+2 DATE 12 JUN 1937
+1 DEAT Y
+2 DATE 18 AUG 2007
+1 FAMS @F1@
+0 @I2@ INDI
+1 NAME Jane /Smith/
+2 GIVN Jane
+2 SURN Smith
+2 _MARNM Smith
+1 SEX F
+1 BIRT
+2 DATE 13 JUN 1940
+1 DEAT Y
+2 DATE 10 DEC 2000
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Abigail /Smith/
+2 GIVN Abigail
+2 SURN Smith
+2 _MARNM Honest
+1 SEX F
+1 BIRT
+2 DATE 23 AUG 1965
+1 FAMS @F2@
+1 FAMC @F1@
+0 @I4@ INDI
+1 NAME John /Smith/
+2 GIVN John
+2 SURN Smith
+2 _MARNM Smith
+1 SEX M
+1 BIRT
+2 DATE 2 APR 1963
+1 FAMS @F3@
+1 FAMS @F4@
+1 FAMC @F1@
+0 @I5@ INDI
+1 NAME Jacob Smith /Smith/
+2 GIVN Jacob Smith
+2 SURN Smith
+2 _MARNM Smith
+1 SEX M
+1 BIRT
+2 DATE 17 SEP 1967
+1 FAMS @F5@
+1 FAMC @F1@
+0 @I6@ INDI
+1 NAME Abe /Honest/
+2 GIVN Abe
+2 SURN Honest
+2 _MARNM Honest
+1 SEX M
+1 BIRT
+2 DATE 13 JUN 1965
+1 FAMS @F2@
+0 @I7@ INDI
+1 NAME Jimmy /Honest/
+2 GIVN Jimmy
+2 SURN Honest
+2 _MARNM Honest
+1 SEX M
+1 BIRT
+2 DATE 17 MAR 2000
+1 FAMC @F2@
+0 @I8@ INDI
+1 NAME Judy /Honest/
+2 GIVN Judy
+2 SURN Honest
+2 _MARNM Honest
+1 SEX F
+1 BIRT
+2 DATE 3 SEP 2002
+1 FAMC @F2@
+0 @I9@ INDI
+1 NAME Mary /Overhill/
+2 GIVN Mary
+2 SURN Overhill
+2 _MARNM Smith
+1 SEX F
+1 BIRT
+2 DATE 5 JAN 1966
+1 DEAT Y
+2 DATE 3 AUG 1990
+1 FAMS @F4@
+0 @I10@ INDI
+1 NAME Barbara /Keen/
+2 GIVN Barbara
+2 SURN Keen
+2 _MARNM Smith
+1 SEX F
+1 BIRT
+2 DATE 5 JUL 1964
+1 FAMS @F3@
+0 @I11@ INDI
+1 NAME Justin /Smith/
+2 GIVN Justin
+2 SURN Smith
+2 _MARNM Smith
+1 SEX M
+1 BIRT
+2 DATE 20 DEC 1988
+1 FAMC @F4@
+0 @I12@ INDI
+1 NAME Michael /Smith/
+2 GIVN Michael
+2 SURN Smith
+2 _MARNM Smith
+1 SEX M
+1 BIRT
+2 DATE 3 AUG 1990
+1 FAMC @F4@
+0 @I13@ INDI
+1 NAME Gertrude /Smith/
+2 GIVN Gertrude
+2 SURN Smith
+2 _MARNM Smith
+1 SEX F
+1 BIRT
+2 DATE 13 SEP 1995
+1 FAMC @F3@
+0 @I14@ INDI
+1 NAME Marsha /Smith/
+2 GIVN Marsha
+2 SURN Smith
+2 _MARNM Smith
+1 SEX F
+1 BIRT
+2 DATE 16 NOV 1996
+1 FAMC @F3@
+0 @I15@ INDI
+1 NAME Christina /Hall/
+2 GIVN Christina
+2 SURN Hall
+2 _MARNM Hall
+1 SEX F
+1 BIRT
+2 DATE 26 JUN 1970
+1 FAMS @F5@
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 CHIL @I3@
+1 CHIL @I4@
+1 CHIL @I5@
+1 _CURRENT Y
+0 @F2@ FAM
+1 HUSB @I6@
+1 WIFE @I3@
+1 CHIL @I7@
+1 CHIL @I8@
+1 _CURRENT Y
+0 @F3@ FAM
+1 HUSB @I4@
+1 WIFE @I10@
+1 CHIL @I13@
+1 CHIL @I14@
+1 _CURRENT Y
+0 @F4@ FAM
+1 HUSB @I4@
+1 WIFE @I9@
+1 CHIL @I11@
+1 CHIL @I12@
+1 _CURRENT N
+0 @F5@ FAM
+1 HUSB @I5@
+1 WIFE @I15@
+1 _CURRENT N
+0 TRLR

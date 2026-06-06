@@ -1,0 +1,49 @@
+0 HEAD
+1 SOUR MultiAgentGenealogyTrapCases
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 NOTE Tier 2 plausible-but-wrong trap: father (Jonathan, b.1830) was 85
+2 CONT years old when child (Edward, b.1915) was born. All Tier 1 checks
+2 CONT pass — 85y is at the biological limit but not past it. The
+2 CONT Hypothesizer's _compute_prior_evidence flags age_delta > 60 as
+2 CONT "unusually large" but does not auto-reject. The LLM should treat
+2 CONT this as a likely data-entry error (generation confusion — probably
+2 CONT the grandfather recorded as father) and return flag_uncertain or
+2 CONT reject with moderate confidence.
+0 @I1@ INDI
+1 NAME Edward /Longgap/
+1 SEX M
+1 BIRT
+2 DATE 15 MAR 1915
+2 PLAC New York, New York
+1 DEAT
+2 DATE 1 JAN 1985
+2 PLAC New York, New York
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Jonathan /Longgap/
+1 SEX M
+1 BIRT
+2 DATE 5 MAY 1830
+2 PLAC New York, New York
+1 DEAT
+2 DATE 20 JUN 1918
+2 PLAC New York, New York
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Catherine /Reed/
+1 SEX F
+1 BIRT
+2 DATE 10 JUN 1880
+2 PLAC New York, New York
+1 DEAT
+2 DATE 4 APR 1950
+2 PLAC New York, New York
+1 FAMS @F1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+0 TRLR

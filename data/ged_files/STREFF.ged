@@ -1,0 +1,71 @@
+0 HEAD
+1 SOUR CN
+2 VERS 1.0
+2 NAME Census
+2 CORP The Church of Jesus Christ of Latter-day Saints
+3 ADDR 50 East North Temple Street
+4 CONT Salt Lake City, Utah 84150
+2 DATA Census
+3 DATE 6 January 2004
+3 COPR Copyright (c) 2000, 2002 by Intellectual Reserve, Inc.  All rights reserved.
+1 DEST PAF
+1 DATE 6 January 2004
+2 TIME 12:09:04
+1 FILE STREFF
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 CHAR ANSEL
+1 SUBM @SUB01@
+1 SUBN @N01@
+0 @SUB01@ SUBM
+1 NAME Created by FamilySearch (TM) Internet Genealogy Service
+1 ADDR 50 East North Temple Street
+2 CONT Salt Lake City, Utah 84150
+0 @N01@ SUBN
+1 DESC 1
+1 ORDI N
+0 @I1880US_7946320_0@ INDI
+1 NAME Nicolas /STREFF/
+1 SEX Male
+1 BIRT
+2 DATE <1850>
+2 PLAC IA
+2 SOUR @S01@
+3 PAGE FHL Film 1254364; National Archives Film T9-0364; Page 201C
+1 CENS
+2 DATE 1880
+2 PLAC East Orange, Sioux, Iowa
+2 SOUR @S01@
+3 PAGE FHL Film 1254364; National Archives Film T9-0364; Page 201C
+3 DATA
+4 TEXT Extract: 1880 United States Census
+5 CONT Census Place: East Orange, Sioux, Iowa
+5 CONT Source: FHL Film 1254364; National Archives Film T9-0364; Page 201C
+5 CONT Household:
+5 CONT             Rel      Sex    Marr Race Age Birthplace
+5 CONT Nicolas STREFF
+5 CONT             Self     Male   M    W    30  IA
+5 CONT       Occ: Farmer                                        Fa: LUXEMBURG Mo: LUXEMBURG
+5 CONT Susan STREFF
+5 CONT             Wife     Female M    W    25  IA
+5 CONT       Occ: Keeping House                                 Fa: PRUSSIA Mo: PRUSSIA
+5 CONT Clara STREFF
+5 CONT             Dau      Female S    W    2M  IA
+5 CONT                                                          Fa: IA Mo: IA
+5 CONT Mathias TRIRZ
+5 CONT             Other    Male   S    W    21  IA
+5 CONT       Occ: Dist. School Teacher                          Fa: PRUSSIA Mo: LUXEMBURG
+5 CONT Nicolas TRITZ
+5 CONT             Other    Male   S    W    17  IA
+5 CONT       Occ: Farm Laborer                                  Fa: PRUSSIA Mo: LUXEMBURG
+0 @S01@ SOUR
+1 AUTH The Church of Jesus Christ of Latter-day Saints
+1 TITL 1880 United States Census
+1 PUBL Copyright (c) 2000, 2002 FamilySearch (TM) Internet Genealogy Service, January 6, 2004
+1 REPO @R01@
+0 @R01@ REPO
+1 NAME Family History Library
+1 ADDR 35 N West Temple Street
+2 CONT Salt Lake City, Utah 84150  USA
+0 TRLR

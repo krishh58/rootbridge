@@ -1,0 +1,2421 @@
+0 HEAD
+1 SOUR The Next Generation of Genealogy Sitebuilding
+2 VERS 12.0.2
+2 NAME The Next Generation of Genealogy Sitebuilding (R)
+2 CORP Next Generation Software, LLC
+3 ADDR Sandy, UT
+1 FILE Eugeniusz Tomasz Bystram, h.Tarnawa.ged
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 SUBM @SUB1@
+0 @SUB1@ SUBM
+1 NAME Jan
+1 EMAIL no-reply@bystram.be
+1 DEST Gedcom55
+0 @I285@ INDI
+1 NAME Eugeniusz Tomasz /Bystram/ h.Tarnawa
+2 GIVN Eugeniusz Tomasz
+2 SURN Bystram
+2 NOTE Powstaniec Warszawski, mgr ekonomii,
+3 CONT urzednik Ministerstwa Handlu i Przemyslu w Kanadzie,Prezes Kanadyjskiej Rady Europejskich Narodów Ujarzmionych, Prezes Kongresu Polsko-Kanadyjskiego Oddzial Ottawa,
+3 CONT Kawaler Honoru i Dewocji Suwerennego Rycerskiego Zakonu Szpitalników Sw.Jana Jerozolimskiego (Zakon Maltanski),
+3 CONT Kawaler Polonia Restituta, odznaczony Krzyzem Walecznych z Okuciem - z nekrologu w moim posiadaniu (KB)
+2 NSFX h.Tarnawa
+2 NICK Genek
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 4 Jul 1929
+2 PLAC Vilnius, Lithuania
+1 DEAT
+2 DATE 11 Nov 1995
+2 PLAC Ottawa, Canada
+2 NOTE z nekrologu w moim posiadaniu (KB)
+1 BURI
+2 DATE 15 Nov 1995
+2 PLAC Ottawa, Canada
+2 NOTE z nekrologu w moim posiadaniu (KB)
+1 CHAN
+2 DATE 09 Oct 2021
+1 FAMS @F99@
+1 FAMS @F132@
+1 FAMC @F98@
+0 @I286@ INDI
+1 NAME Agota Maria Maia /Pethö/
+2 GIVN Agota Maria Maia
+2 SURN Pethö
+2 NOTE e-mail dd Oct 9 2021 from Catherine Plowright to me (KB).
+1 SEX F
+1 BIRT
+2 DATE 2 Feb 1934
+2 PLAC Nagykanizsa, Hungary
+2 NOTE e-mail dd Oct 9 and 11, 2021 from Catherine Plowright to me (KB).
+1 DEAT
+2 DATE 14 Jan 1994
+2 PLAC Gatineau, Canada
+2 NOTE e-mail dd Oct 9 and 11, 2021 from Catherine Plowright to me (KB).
+1 NOTE zasłuzona dla bibliotekarstwa kanadyjskiego. Jest ufundowana coroczna nagroda jej imieniem.
+1 CHAN
+2 DATE 12 Oct 2021
+1 FAMS @F99@
+0 @I358@ INDI
+1 NAME Irena Antonina /Ronikier-Dolańska/
+2 GIVN Irena Antonina
+2 SURN Ronikier-Dolańska
+1 TITL Hrabianka
+1 SEX F
+1 BIRT
+2 DATE 13 Jun 1941
+2 PLAC Grebów, Poland
+1 DEAT
+2 DATE 24 Oct 2006
+2 PLAC Ottawa, Canada
+1 BURI
+2 PLAC Ottawa, Canada
+2 NOTE pochowana razem z mezem
+1 CHAN
+2 DATE 09 Oct 2021
+1 FAMS @F132@
+0 @I116@ INDI
+1 NAME Tadeusz /Bystram/ h.Tarnawa
+2 GIVN Tadeusz
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 22 Jan 1886
+2 PLAC Bistrampolis, Lithuania
+2 NOTE Bystrampol (pol.)
+1 DEAT
+2 DATE 18 Nov 1935
+2 PLAC Vilnius, Lithuania
+1 BURI
+2 PLAC Vilnius, Lithuania
+2 NOTE pochowany na cm.Bernardynskim w Wilnie
+1 NOTE własciciel dóbr Bystrampol z przyległosciami (Litwa od 1919r.);
+2 CONT uczen gimnazjum w Carskim Siole, student Wydziału Rolniczego na 1905-1909 i Chemicznego 1909-1911 na Politechnice Ryskiej (Archiwum Korporacyjne).
+2 CONT zolnierz Polskiej Organizacji Wojskowej (POW), litewski wiezien stanu, Krzyz Walecznych, Medal Niepodległosci.
+1 CHAN
+2 DATE 12 May 2020
+1 FAMC @F40@
+1 FAMS @F98@
+0 @I109@ INDI
+1 NAME Władysław Kazimierz Józef Tomasz /Bystram z Radlina/ h.Tarnawa
+2 GIVN Władysław Kazimierz Józef Tomasz
+2 SURN Bystram z Radlina
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 14 May 1839
+2 PLAC Bystrampol, Lithuania
+2 NOTE Bystrampol (pol.)
+1 CHR
+2 DATE 4 Jun 1839
+2 PLAC Ramygola, Lithuania
+1 DEAT
+2 DATE 13 Nov 1918
+1 BURI
+2 DATE 16 Nov 1918
+2 PLAC Bystrampol (cm.rodzinny), Lithuania
+1 NOTE urodzony 14/26 maja 1839.Dwie daty ze wzgledu na 2 kalendarze: julianski i gregorianski;
+2 CONT własciciel dóbr Bystrampol z przyległosciami, Karlów, Upita powiat Poniewwiez, Wolin powiat Ukmerge (Wiłkomierz);
+2 CONT powstaniec 1863r, adjutant ks.A.Mackiewicza,brał udział w bitwie pod Bystrampolem 16.11.1863r.
+1 CHAN
+2 DATE 03 Aug 2020
+1 FAMC @F45@
+1 FAMS @F40@
+0 @I130@ INDI
+1 NAME Karol Kazimierz Adolf /Bystram/ h.Tarnawa
+2 GIVN Karol Kazimierz Adolf
+2 SURN Bystram
+2 NOTE urodzony w Karolowie; wiosce kolo Bystrampola. Dworu w Bystrampolu jeszcze nie bylo, bo Karol Kazimierz go pobudował; budowa zaczela sie w 1844r;
+3 CONT Własciciel dóbr Borklany, Bystrampol z przyległosciami (powiat Poniewiez-Panevezys), Nidoki (Ludokiai) z przyległosciami (powiat Wiłkomierz-Ukmerge);
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 15 Apr 1812
+2 PLAC Karolów, Lithuania
+1 CHR
+2 DATE 22 Apr 1812
+2 PLAC Ramygola, Lithuania
+1 DEAT
+2 DATE 16 Jun 1887
+2 PLAC Żmujdki, Lithuania
+1 BURI
+2 PLAC Nidoki (Ludokiai) pow.Wiłkomierz(Ukmerge)
+1 OCCU Marszałek szlachty powiatu poniewieskiego.
+2 DATE 1852-1858
+1 EVEN wiezien carski za uczestnictwo w Powstaniu Styczniowym
+2 TYPE Mentioned
+2 DATE 1863-1866
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F46@
+1 FAMS @F45@
+0 @I135@ INDI
+1 NAME Karol Marcin /Bystram/ h.Tarnawa
+2 GIVN Karol Marcin
+2 SURN Bystram
+2 NOTE Za Lenczewskim ( i nie tylko):
+3 CONT Własciciel dóbr Bartłomiejewo (Karolów) i Bystrampol z przyległosciami, Sutkuny (powiat Upita-Poniewiez) i Branice (Branczyce) gubernia minska.
+3 CONT Wlasciciel Borklojn i Karolowa  - za A.Bonieckim.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 1776
+2 PLAC Kursze (Karolów)
+1 CHR
+2 DATE 8 Nov 1777
+2 PLAC Ramygola
+1 DEAT
+2 DATE 1 May 1853
+1 BURI
+2 PLAC Bystrampol (cm.rodzinny), Lithuania
+1 OCCU Sędzia graniczny Upita
+2 PLAC Upytė, Lithuania
+1 EVEN rozpoczal budowe dworu w Bystrampolu
+2 TYPE Mentioned
+2 DATE 1844
+1 GRAD otrzymał rosyjskie potwierdzenie szwedzkiego tytułu barona. Zawiadomienie przyszlo po jego smierci - za Lenczewskim (i nie tylko):
+2 DATE 21 Sep 1853
+1 OCCU Wicemarszałek szlachty powiatu upickiego (poniewieskiego).
+1 EVEN za tablica genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1790
+1 EVEN bracia (Franciszek, Tomasz i Karol)dopelnili podzialu dóbr z odbioru posagu przez Stanislawa i Józefate Bobanów z 1793r - za A.Bonieckim.
+2 TYPE Mentioned
+2 DATE 1796
+1 CHAN
+2 DATE 08 Oct 2021
+1 FAMC @F47@
+1 FAMS @F46@
+0 @I137@ INDI
+1 NAME Bartłomiej Józef /Bystram/ h.Tarnawa
+2 GIVN Bartłomiej Józef
+2 SURN Bystram
+2 NOTE Wzmiankowany 1758-1795; własciciel dóbr Borkłojnie (Bartłomiejewo), Golminiany, Józefów, Kursze i Sutkuny - powiat Upita. Rotmistrz upicki - 1764, sedzia ziemski upicki - 1765. W 1758r. w Sadzie Grodzkim Upickim kwitował Andrzeja, Antoniego i Jó
+3 CONC zefa (synów Aleksandra, a wnuków Bogusława).
+3 CONT
+3 CONT Co do matki Bartlomieja - za Minakowskim - slub Boguslawa i N.Korsakówny mial miejsce w ca.1720r. A Boguslawa i Thekli przed 13.6.1726 i musial miec miejsce po smierci Korsakówny. Poniewaz Bartlomiej urodzil sie w ca.1730, to prawdopodbnie rodzi
+3 CONC l sie z Thekli, ale .... nosi imie Bartlomiej. Polskie imie, podczas gdy jezykiem ojczystym Thekli byl niemiecki i  prawdopodobnie czula sie Niemka. Podczas gdy N.Korsakówna prawdopodobnie czula sie Polka i dalaby synowi polskie imie. Zatem do w
+3 CONC yjasnienia - kto byl matka Bartlomieja Józefa.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1730
+2 NOTE za Minakowskim
+1 DEAT
+2 DATE 9 Aug 1795
+2 PLAC Ramygala, Lithuania
+2 NOTE Ksiega zgonów - LVIA, 669-1-41, k. 201.
+1 BURI
+2 PLAC kolo kosciola w Ramygole (prawdopodobnie)
+1 OCCU Sędzia ziemski upicki - za A.Bonieckim (judge)
+2 DATE 1765
+2 PLAC Upytė, Lithuania
+1 EVEN za tablica genealog. Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1764-1788
+1 EVEN za ?
+2 TYPE Mentioned
+2 DATE 1758-1795
+1 GRAD rotmistrz upicki (za A.Bonieckim)
+2 DATE 1764
+1 EVEN
+2 TYPE Mentioned
+2 DATE 1782-1821
+2 NOTE wzmiankowany 1782-1821 w Archiwum Glówne Akt Dawnych (Warszawa)-Jedn.Aktowa 1/383/0/-/605; 1782-1821 i b.d. korespondencja Bartlomieja z róznymi osobami
+1 EVEN
+2 TYPE Mentioned
+2 NOTE własciciel dóbr Borkłojnie (Bartłomiejewo), Golminiany, Józefów, Kursze i Sutkuny - powiat Upita. W 1758r. w Sadzie Grodzkim Upickim kwitował Andrzeja, Antoniego i Józefa (synów Aleksandra, a wnuków Bogusława).
+1 EVEN w Sadzie Grodzkim Upickim kwitował Andrzeja, Antoniego i Józefa (synów Aleksandra, a wnuków Bogusława)-za A.Bonieckim.
+2 TYPE Mentioned
+2 DATE 1758
+1 CHAN
+2 DATE 02 Sep 2021
+1 FAMC @F56@
+1 FAMS @F47@
+1 FAMS @F445@
+0 @I177@ INDI
+1 NAME Bogusław Kazimierz /Bystram/ h.Tarnawa
+2 GIVN Bogusław Kazimierz
+2 SURN Bystram
+2 NOTE własciciel dóbr Gieguzyn z przyległosciami-powiat Wilkomierz(Ukmerge), wojski smolenski (za MJ Minakowskim ca.1700-1737/1746)
+3 CONT https://www.familysearch.org/ark:/61903/2:2:3P79-P62
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1690
+2 NOTE za A. Bonieckim (...najmlodszy syn Jana...), 1690-przypuszczenie moje (KB); ca.1700-za MJ Minakowskim
+1 DEAT
+2 DATE 29 Jan 1746
+2 NOTE zmarł miedzy 18.4.1737 a 29.1.1746 za Lenczewskim 'Genealogie Rodów Utytulowanych w Polsce' str242
+3 CONT
+3 CONT 1741r. - za https://www.familysearch.org/ark:/61903/2:2:3P79-P62
+1 EVEN za drzewem genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1725-1746
+1 OCCU wojski smolenski - za A.Bonieckim i Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F57@
+1 FAMS @F56@
+1 FAMS @F144@
+0 @I179@ INDI
+1 NAME Jan Ewald /Bystram/ h.Tarnawa
+2 GIVN Jan Ewald
+2 SURN Bystram
+2 NOTE wzmiankowany 1672-1725;
+3 CONT własciciel dóbr Borkłojnie (od 1695r.) i Zwirblany powiat Upita; To prawdopodobnie on kupil Borklojnie, które przemianowal na Bystrampol.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1640
+2 NOTE za MJ Minakowskim
+1 DEAT Y
+2 NOTE A.Boniecki podaje "...Synom, córkom i wnukowi Krzysztofowi, synowi Stanislawa zapisal Jan wszystkie swoje majatki w 1725r.(Zs Upickie).
+1 EVEN za drzewem genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1672-1725
+1 OCCU czesnik inflandzki za MJ Minakowskim i Lenczewskim
+1 EVEN wlasciciel Zwirblan i Borklojni (Akta Tryb. Lit. i ZS Upickie)
+2 TYPE Mentioned
+2 DATE 1695, 1701
+1 CHAN
+2 DATE 14 Jan 2021
+1 FAMS @F141@
+1 FAMS @F57@
+1 FAMS @F143@
+1 FAMS @F453@
+0 @I377@ INDI
+1 NAME Katharina Gertrude /von Bistram/ h.Tarnawa
+2 GIVN Katharina Gertrude
+2 SURN von Bistram
+2 NSFX h.Tarnawa
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE ca.1640
+2 NOTE przypuszczenie moje (KB), 1630-za MJ Minakowskim
+1 NOTE wystepuje równiez pod nazwiskiem van der Ley.
+1 CHAN
+2 DATE 14 Jan 2021
+1 FAMS @F141@
+0 @I379@ INDI
+1 NAME No Name /Hoffmann/
+2 GIVN No Name
+2 SURN Hoffmann
+2 NOTE za Minakowskim
+1 SEX F
+1 BIRT
+2 DATE ca.1650
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F143@
+0 @I1081@ INDI
+1 NAME N. /N./
+2 GIVN N.
+2 SURN N.
+2 NOTE za Minakowskim
+1 SEX F
+1 BIRT
+2 DATE ca1650
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F453@
+0 @I180@ INDI
+1 NAME Anna /Święcicka/ h.Jastrzebiec
+2 GIVN Anna
+2 SURN Święcicka
+2 NSFX h.Jastrzebiec
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE ca.1650
+2 NOTE przyblizenie moje (KB), Minakowski podaje ca.1660, ale podaje tez przyblizony rok slubu z Janem Ewaldem 1670. Wówczas mialaby 10 lat. To tylko przyblizenia.
+1 DEAT
+2 DATE ca.1670
+1 CHAN
+2 DATE 14 Jul 2020
+1 FAMS @F57@
+0 @I181@ INDI
+1 NAME Mikołaj /Bystram/ h.Tarnawa
+2 GIVN Mikołaj
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1670
+2 NOTE za MJ Minakowskim
+1 EVEN za drzewem genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1725
+1 CHAN
+2 DATE 10 Dec 2020
+1 FAMS @F95@
+1 FAMC @F57@
+0 @I274@ INDI
+1 NAME No Name //
+2 GIVN No Name
+1 SEX F
+1 CHAN
+2 DATE 06 Oct 2018
+1 FAMS @F95@
+0 @I183@ INDI
+1 NAME Aleksander /Bystram/ h.Tarnawa
+2 GIVN Aleksander
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1695
+2 NOTE ca.1690-za MJ Minakowskim; A.Boniecki podaje '...Aleksander, najmlodszy syn Jana...), bral slub w 1705r. stad ca.1685 - przypuszczenie moje (KB).
+1 EVEN za drzewem genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1704-1740
+1 EVEN akt sprzedazy Polawien, Borklojn i Sutkun (Akta Tryb.Lit.)
+2 TYPE Mentioned
+2 DATE 1754
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F88@
+1 FAMC @F57@
+0 @I2218@ INDI
+1 NAME Anna /von der Ropp/
+2 GIVN Anna
+2 SURN von der Ropp
+2 NOTE https://www.epaveldas.lt/recordImageSmall/ARCH/669/1/10?exld=289168&seqNr=200 oraz LVIA Wilno 669-1-10
+1 SEX F
+1 CHAN
+2 DATE 29 Oct 2021
+1 FAMS @F88@
+0 @I392@ INDI
+1 NAME Thekla Katharina /von Bistram z Radlina/ h.Tarnawa
+2 GIVN Thekla Katharina
+2 SURN von Bistram z Radlina
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE ca. 1710
+2 NOTE za Minakowskim
+1 DEAT
+2 DATE 24 Feb 1735
+2 NOTE zmarła miedzy 13.6.1726 a 24.2.1735 - za Lenczewskim i MInakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F144@
+0 @I178@ INDI
+1 NAME N. /Korsak/ h.Kotwica
+2 GIVN N.
+2 SURN Korsak
+2 NSFX h.Kotwica
+1 SEX F
+1 BIRT
+2 DATE ca.1700
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 08 Jul 2020
+1 FAMS @F56@
+0 @I1068@ INDI
+1 NAME N. /N./
+2 GIVN N.
+2 SURN N.
+1 SEX F
+1 CHAN
+2 DATE 08 Jul 2020
+1 FAMS @F445@
+0 @I138@ INDI
+1 NAME Rozalia Anna /Antonowicz/ h.Hełm
+2 GIVN Rozalia Anna
+2 SURN Antonowicz
+2 NOTE Lenczewski w "Genealogie Utytułowanych Rodów w Polsce" podaje Antonowicz h.Hełm
+3 CONT z Dwojniszek w parafii Pokroje - za A.Pszczólkowskim
+3 CONT
+3 CONT GENI podaje Rozalia Anna Antoniewicz ( https://www.geni.com/people/Rozalia-Bystram/6000000105368582821 )
+2 NSFX h.Hełm
+1 SEX F
+1 BIRT
+2 DATE ca1750
+2 NOTE przypuszczenie moje (KB) i za Minakowskim
+1 EVEN skarbnikówna zmudzka, za A.Pszczólkowskim
+2 TYPE Mentioned
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F47@
+0 @I139@ INDI
+1 NAME Zofia /Bystram/ h.Tarnawa
+2 GIVN Zofia
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1773
+2 NOTE ? Geni?
+1 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F150@
+1 FAMC @F47@
+0 @I396@ INDI
+1 NAME Jan /Burniewicz/
+2 GIVN Jan
+2 SURN Burniewicz
+1 SEX M
+1 BIRT Y
+2 NOTE za Minakowskim
+1 OCCU pisarz ziemski Upita - za A.Bonieckim.
+1 CHAN
+2 DATE 28 Jul 2020
+1 FAMS @F150@
+0 @I1788@ INDI
+1 NAME Wiktoria Franciszka /Bystram/ h.Tarnawa
+2 GIVN Wiktoria Franciszka
+2 SURN Bystram
+2 NOTE https://www.geni.com/people/Wiktoria-Bystram-h-Tarnawa/6000000105454573860
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1773
+2 PLAC Kursze (Karolów),
+2 NOTE https://www.geni.com/people/Wiktoria-Bystram-h-Tarnawa/6000000105454573860
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F47@
+0 @I1789@ INDI
+1 NAME Jozefata Teodora /Bystram/ h.Tarnawa
+2 GIVN Jozefata Teodora
+2 SURN Bystram
+2 NOTE https://www.geni.com/people/Jozefata-Bystram-h-Tarnawa/6000000105455113821
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1774
+2 PLAC Kursze (Karolów),
+2 NOTE https://www.geni.com/people/Jozefata-Bystram-h-Tarnawa/6000000105455113821
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F47@
+0 @I1790@ INDI
+1 NAME Jozefata Brigyda /Bystram/ h.Tarnawa
+2 GIVN Jozefata Brigyda
+2 SURN Bystram
+2 NOTE https://www.geni.com/people/Jozefata-Bystram-h-Tarnawa/6000000105378786833
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 26 Aug 1776
+2 PLAC Kursze (Karolów),
+2 NOTE https://www.geni.com/people/Jozefata-Bystram-h-Tarnawa/6000000105378786833
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F47@
+0 @I136@ INDI
+1 NAME Franciszka Anna /Monwiłł-Białłozor/ h.Wieniawa
+2 GIVN Franciszka Anna
+2 SURN Monwiłł-Białłozor
+2 NOTE https://www.geni.com/people/Franciszka-Bystram/6000000002026325327
+3 CONT córka Jana Białłozora h.Wieniawa - starosty kojranskiego, wlasciciela dóbr Hrynkiszki pow Szawle, pisarza ziemskiego powiatu szawelskiego i Anny Lopacinskiej h.Lubicz
+2 NSFX h.Wieniawa
+1 SEX F
+1 BIRT
+2 DATE 4 Jun 1789
+2 NOTE https://www.geni.com/people/Franciszka-Bystram/6000000002026325327
+1 DEAT
+2 DATE 14 May 1823
+2 NOTE https://www.geni.com/people/Franciszka-Bystram/6000000002026325327
+1 BURI
+2 PLAC Bystrampol (cm.rodzinny), Lithuania
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F49@
+1 FAMS @F46@
+0 @I141@ INDI
+1 NAME Jan /Monwiłł-Białłozor/ h.Wieniawa
+2 GIVN Jan
+2 SURN Monwiłł-Białłozor
+2 NSFX h.Wieniawa
+1 SEX M
+1 BIRT
+2 DATE 1770
+1 NOTE starosta kojranski;
+2 CONT własciciel dóbr Hrynkiszki (powiat Szawle);
+2 CONT pisarz powiatu szawelskiego.
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMS @F49@
+0 @I142@ INDI
+1 NAME Antonina Maria Urszula /Łopacińska/ h.Lubicz
+2 GIVN Antonina Maria Urszula
+2 SURN Łopacińska
+2 NSFX h.Lubicz
+1 SEX F
+1 BIRT
+2 DATE 26 Jan 1772
+2 PLAC Sharkawshchyna, Belarus
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F50@
+1 FAMS @F49@
+0 @I145@ INDI
+1 NAME Jan Nikodem /Łopaciński/ h.Lubicz
+2 GIVN Jan Nikodem
+2 SURN Łopaciński
+2 NSFX h.Lubicz
+1 SEX M
+1 BIRT
+2 DATE 15/0/1747
+2 PLAC Saria, Greece
+1 DEAT
+2 DATE 13 Oct 1810
+2 PLAC Sharkawshchyna, Belarus
+1 BURI
+2 PLAC Sharkawshchyna, Belarus
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F51@
+1 FAMS @F50@
+1 FAMS @F52@
+0 @I152@ INDI
+1 NAME Mikołaj Tadeusz Bernard /Łopaciński/ h.Lubicz
+2 GIVN Mikołaj Tadeusz Bernard
+2 SURN Łopaciński
+2 NSFX h.Lubicz
+1 SEX M
+1 BIRT
+2 DATE 20 May 1715
+2 PLAC Łopacin, Poland
+1 DEAT
+2 DATE 4 Jan 1778
+2 PLAC Leonpol, Belarus
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMS @F51@
+0 @I153@ INDI
+1 NAME Barbara /Kopeć/
+2 GIVN Barbara
+2 SURN Kopeć
+1 SEX F
+1 BIRT
+2 DATE 1727
+1 DEAT
+2 DATE 14 Dec 1799
+2 PLAC Vilnius, Lithuania
+1 CHAN
+2 DATE 06 Oct 2018
+1 FAMS @F51@
+0 @I154@ INDI
+1 NAME No Name /Łopacińska/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopacińska
+2 NSFX h.Lubicz
+1 SEX F
+1 BIRT
+2 DATE 1743
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F51@
+0 @I155@ INDI
+1 NAME No Name /Łopaciński/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopaciński
+2 NSFX h.Lubicz
+1 SEX M
+1 BIRT
+2 DATE 1744
+1 DEAT
+2 DATE 1750
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F51@
+0 @I156@ INDI
+1 NAME Kazimiera Barbara /Łopacińska/ h.Lubicz
+2 GIVN Kazimiera Barbara
+2 SURN Łopacińska
+2 NSFX h.Lubicz
+1 SEX F
+1 BIRT
+2 DATE 1746
+1 DEAT
+2 DATE 1773
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F51@
+0 @I157@ INDI
+1 NAME No Name /Łopacińska/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopacińska
+2 NSFX h.Lubicz
+1 SEX F
+1 BIRT
+2 DATE 1750
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F51@
+0 @I158@ INDI
+1 NAME No Name /Łopaciński/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopaciński
+2 NSFX h.Lubicz
+1 SEX M
+1 BIRT
+2 DATE 1751
+1 DEAT
+2 DATE 1803
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F51@
+0 @I159@ INDI
+1 NAME No Name /Łopaciński/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopaciński
+2 NSFX h.Lubicz
+1 SEX M
+1 BIRT
+2 DATE 1752
+1 DEAT
+2 DATE 1775
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F51@
+0 @I160@ INDI
+1 NAME No Name /Łopaciński/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopaciński
+2 NSFX h.Lubicz
+1 SEX M
+1 BIRT
+2 DATE 1753
+1 DEAT
+2 DATE 1817
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F51@
+0 @I161@ INDI
+1 NAME No Name /Łopacińska/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopacińska
+2 NSFX h.Lubicz
+1 SEX F
+1 BIRT
+2 DATE 1755
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F51@
+0 @I162@ INDI
+1 NAME No Name /Łopacińska/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopacińska
+2 NSFX h.Lubicz
+1 SEX F
+1 BIRT
+2 DATE 1759
+1 DEAT
+2 DATE 1814
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F51@
+0 @I163@ INDI
+1 NAME Józefa Zofia /Ogińska/
+2 GIVN Józefa Zofia
+2 SURN Ogińska
+1 SEX F
+1 BIRT
+2 DATE 1760
+1 DEAT
+2 DATE 1846
+1 CHAN
+2 DATE 06 Oct 2018
+1 FAMS @F52@
+0 @I146@ INDI
+1 NAME Helena Wiktoria /Ogińska/
+2 GIVN Helena Wiktoria
+2 SURN Ogińska
+1 SEX F
+1 BIRT
+2 DATE 7 Sep 1752
+1 DEAT
+2 DATE 25 Dec 1788
+1 CHAN
+2 DATE 06 Oct 2018
+1 FAMS @F50@
+0 @I147@ INDI
+1 NAME Barbara Tekla Kunegunda /Łopacińska/ h.Lubicz
+2 GIVN Barbara Tekla Kunegunda
+2 SURN Łopacińska
+2 NSFX h.Lubicz
+1 SEX F
+1 BIRT
+2 DATE 1771
+1 DEAT
+2 DATE 1828
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F50@
+0 @I148@ INDI
+1 NAME No Name /Łopaciński/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopaciński
+2 NSFX h.Lubicz
+1 SEX M
+1 BIRT
+2 DATE 1775
+1 DEAT
+2 DATE 1832
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F50@
+0 @I149@ INDI
+1 NAME No Name /Łopacińska/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopacińska
+2 NSFX h.Lubicz
+1 SEX F
+1 BIRT
+2 DATE 1782
+1 DEAT
+2 DATE 1851
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F50@
+0 @I150@ INDI
+1 NAME No Name /Łopaciński/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopaciński
+2 NSFX h.Lubicz
+1 SEX M
+1 BIRT
+2 DATE 1783
+1 DEAT
+2 DATE 1856
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F50@
+0 @I151@ INDI
+1 NAME No Name /Łopacińska/ h.Lubicz
+2 GIVN No Name
+2 SURN Łopacińska
+2 NSFX h.Lubicz
+1 SEX F
+1 BIRT
+2 DATE 1784
+1 DEAT
+2 DATE 1842
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F50@
+0 @I143@ INDI
+1 NAME Regina /Monwiłł-Białłozor/ h.Wieniawa
+2 GIVN Regina
+2 SURN Monwiłł-Białłozor
+2 NSFX h.Wieniawa
+1 SEX F
+1 BIRT
+2 DATE 1790
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F49@
+0 @I144@ INDI
+1 NAME Tekla /Monwiłł-Białłozor/ h.Wieniawa
+2 GIVN Tekla
+2 SURN Monwiłł-Białłozor
+2 NSFX h.Wieniawa
+1 SEX F
+1 BIRT
+2 DATE 1790
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F49@
+0 @I1791@ INDI
+1 NAME Maryanna /Bystram/ h.Tarnawa
+2 GIVN Maryanna
+2 SURN Bystram
+2 NOTE https://www.geni.com/people/Maryanna-Bystram-h-Tarnawa/6000000105291072857
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 12 Feb 1810
+2 PLAC Bystrampol
+2 NOTE https://www.geni.com/people/Maryanna-Bystram-h-Tarnawa/6000000105291072857
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F46@
+0 @I131@ INDI
+1 NAME Zofia Dominika Teresa /Mineyko/ h.Gozdawa
+2 GIVN Zofia Dominika Teresa
+2 SURN Mineyko
+2 NSFX h.Gozdawa
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE 7 Jun 1819
+2 PLAC Worniany, Belarus
+1 DEAT
+2 DATE 10 Feb 1875
+1 BURI
+2 PLAC Lyduokiai, Lithuania
+1 NOTE Zofia was a cousin of the Famous Polish writer Henryk Sienkiewicz. She was the sister of the Grandfather of the spouse of the writer. Henryk Sienkiewicz was regulary a guest at the Bystrampol estate.
+2 CONT https://en.wikipedia.org/wiki/Henryk_Sienkiewicz
+2 SOUR @S4@
+3 DATA
+4 DATE 8 Oct 2018
+4 TEXT Związki z Henrykiem Sienkiewiczem
+5 CONT Zofia Mineykówna była kuzynką Henryka Sienkiewicza (była siostrą dziadka żony pisarza). Sienkiewicz gościł wielokrotnie w rezydencji, w Bystrampolu zbierał materiały do swojej trylogii. Pisarz spędził tu lato, wtedy też poznał miejscową szlacht
+5 CONC ę i miejscowości, które uwiecznił później w trylogii – Laudę, Wodokty, Pacunele. 26 listopada 2016 roku, w setną rocznicę śmierci pisarza, na ścianie pałacu umieszczono dwujęzyczną tablicę upamiętniającą litewskie ścieżki Sienkiewicza[7][8].
+5 CONC
+3 PAGE https://pl.wikipedia.org/wiki/Ku%C4%8Diai#Zwi%C4%85zki_z_Henrykiem_Sienkiewiczem
+3 QUAY 3
+3 NOTE [7] http://www.wilno.msz.gov.pl/resource/5bfefd80-a926-4216-b07e-ed8513e844bf:JCR
+4 CONT [8] http://dzieje.pl/ochrona-zabytkow/litwa-obchody-roku-sienkiewicza-w-bystrampolu-k-poniewieza
+1 CHAN
+2 DATE 09 Oct 2021
+1 FAMC @F154@
+1 FAMS @F45@
+0 @I400@ INDI
+1 NAME Michał /Mineyko/ h.Gozdawa
+2 GIVN Michał
+2 SURN Mineyko
+2 NSFX h.Gozdawa
+1 SEX M
+1 BIRT
+2 DATE 1791
+1 DEAT
+2 DATE 1825
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMC @F251@
+1 FAMS @F154@
+0 @I611@ INDI
+1 NAME Tomasz /Mineyko/ h.Gozdawa
+2 GIVN Tomasz
+2 SURN Mineyko
+2 NSFX h.Gozdawa
+1 SEX M
+1 BIRT
+2 DATE 1730
+1 DEAT
+2 DATE 1834
+2 PLAC Dubniki, Lithuania
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMC @F252@
+1 FAMS @F251@
+0 @I613@ INDI
+1 NAME Franciszek /Mineyko/ h.Gozdawa
+2 GIVN Franciszek
+2 SURN Mineyko
+2 NSFX h.Gozdawa
+1 SEX M
+1 _LIVING Y
+1 BIRT
+2 DATE 1700
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMS @F252@
+0 @I614@ INDI
+1 NAME No Name /No Name/
+2 GIVN No Name
+2 SURN No Name
+1 SEX F
+1 _LIVING Y
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMS @F252@
+0 @I615@ INDI
+1 NAME Rafał /Mineyko/ h.Gozdawa
+2 GIVN Rafał
+2 SURN Mineyko
+2 NSFX h.Gozdawa
+1 SEX M
+1 _LIVING Y
+1 BIRT
+2 DATE 1730
+2 NOTE około 1730
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMS @F253@
+1 FAMC @F252@
+0 @I616@ INDI
+1 NAME No Name /Poniatowska/
+2 GIVN No Name
+2 SURN Poniatowska
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1740
+2 NOTE około 1740
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMS @F253@
+0 @I612@ INDI
+1 NAME Antonina /Przesmycka/
+2 GIVN Antonina
+2 SURN Przesmycka
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1752
+1 DEAT
+2 DATE 1782
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMS @F251@
+0 @I401@ INDI
+1 NAME Brygida /Szabuniewicz/ h.Slepowron
+2 GIVN Brygida
+2 SURN Szabuniewicz
+2 NSFX h.Slepowron
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1780
+2 NOTE około 1780
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMC @F248@
+1 FAMS @F154@
+0 @I603@ INDI
+1 NAME Michał /Szabuniewicz/ h.Slepowron
+2 GIVN Michał
+2 SURN Szabuniewicz
+2 NSFX h.Slepowron
+1 SEX M
+1 _LIVING Y
+1 BIRT
+2 DATE 1745
+2 NOTE prawdopodobna data urodzenia
+1 DEAT
+2 DATE 21 Jul 1813
+2 PLAC Hanuszyszki, Lithuania
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMS @F248@
+1 FAMS @F249@
+0 @I604@ INDI
+1 NAME Wiktoria /No Name/
+2 GIVN Wiktoria
+2 SURN No Name
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1750
+2 NOTE prawdopodobna data urodzenia
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMS @F248@
+1 FAMS @F249@
+0 @I606@ INDI
+1 NAME No Name /Szabuniewicz/ h.Slepowron
+2 GIVN No Name
+2 SURN Szabuniewicz
+2 NSFX h.Slepowron
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1780
+2 NOTE około 1780
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMC @F248@
+0 @I607@ INDI
+1 NAME No Name /Szabuniewicz/ h.Slepowron
+2 GIVN No Name
+2 SURN Szabuniewicz
+2 NSFX h.Slepowron
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1780
+2 NOTE około 1780
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMC @F248@
+0 @I608@ INDI
+1 NAME No Name /Szabuniewicz/ h.Slepowron
+2 GIVN No Name
+2 SURN Szabuniewicz
+2 NSFX h.Slepowron
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1790
+2 NOTE około 1790
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMC @F248@
+0 @I605@ INDI
+1 NAME Stanisław /Szabuniewicz/ h.Slepowron
+2 GIVN Stanisław
+2 SURN Szabuniewicz
+2 NSFX h.Slepowron
+1 SEX M
+1 _LIVING Y
+1 BIRT
+2 DATE 1790
+1 CHAN
+2 DATE 13 Nov 2018
+1 FAMS @F254@
+1 FAMC @F248@
+0 @I618@ INDI
+1 NAME Antonina /Szukszta/
+2 GIVN Antonina
+2 SURN Szukszta
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1790
+1 CHAN
+2 DATE 13 Nov 2018
+1 FAMS @F254@
+0 @I609@ INDI
+1 NAME No Name /Szabuniewicz/ h.Slepowron
+2 GIVN No Name
+2 SURN Szabuniewicz
+2 NSFX h.Slepowron
+1 SEX F
+1 BIRT
+2 DATE 1800
+2 NOTE około 1800
+1 DEAT
+2 DATE 1871
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMC @F248@
+0 @I610@ INDI
+1 NAME No Name /Szabuniewicz/ h.Slepowron
+2 GIVN No Name
+2 SURN Szabuniewicz
+2 NSFX h.Slepowron
+1 SEX F
+1 BIRT
+2 DATE 1800
+1 DEAT
+2 DATE 1860
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMC @F248@
+0 @I602@ INDI
+1 NAME Dominika /Szabuniewicz/ h.Slepowron
+2 GIVN Dominika
+2 SURN Szabuniewicz
+2 NSFX h.Slepowron
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1800
+2 NOTE około 1800
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMS @F247@
+1 FAMC @F248@
+0 @I601@ INDI
+1 NAME Józef /Szetkiewicz/
+2 GIVN Józef
+2 SURN Szetkiewicz
+1 SEX M
+1 _LIVING Y
+1 BIRT
+2 DATE 1770
+1 DEAT
+2 DATE 13 Jan 1858
+2 PLAC Hanuszyszki, Lithuania
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMS @F247@
+0 @I577@ INDI
+1 NAME Tomasz /Mineyko/ h.Gozdawa
+2 GIVN Tomasz
+2 SURN Mineyko
+2 NSFX h.Gozdawa
+1 SEX M
+1 BIRT
+2 DATE 28 Aug 1808
+2 PLAC Stokliszki, Lithuania
+1 DEAT
+2 DATE 31 Jul 1856
+2 PLAC Dubniki, Lithuania
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMS @F239@
+1 FAMC @F154@
+0 @I578@ INDI
+1 NAME Emilia /Wawrzecka/ h.Rola
+2 GIVN Emilia
+2 SURN Wawrzecka
+2 NSFX h.Rola
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1812
+1 DEAT
+2 DATE 1878
+1 CHAN
+2 DATE 10 Nov 2018
+1 FAMS @F239@
+0 @I617@ INDI
+1 NAME Ludwika /Mineyko/ h.Gozdawa
+2 GIVN Ludwika
+2 SURN Mineyko
+2 NSFX h.Gozdawa
+1 SEX F
+1 _LIVING Y
+1 BIRT
+2 DATE 1812
+1 CHAN
+2 DATE 12 Nov 2018
+1 FAMC @F154@
+0 @I132@ INDI
+1 NAME Celestyna /Bystram z Radlina/ h.Tarnawa
+2 GIVN Celestyna
+2 SURN Bystram z Radlina
+2 NSFX h.Tarnawa
+2 NICK Celina
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1843
+2 NOTE za Minakowskim
+1 DEAT
+2 DATE 1867
+2 NOTE za Minakowskim
+1 BURI
+2 PLAC Vilnius (cm. Na Rossie), Lithuania
+2 NOTE pochowana na cmentarzu Na Rossie w Wilnie.
+1 CHAN
+2 DATE 08 Jan 2021
+1 FAMS @F110@
+1 FAMC @F45@
+0 @I316@ INDI
+1 NAME Henryk /Wojnicki/
+2 GIVN Henryk
+2 SURN Wojnicki
+2 NOTE za Wikipedia - https://ru.wikipedia.org/wiki/%D0%92%D0%BE%D0%B9%D0%BD%D0%B8%D1%86%D0%BA%D0%B8%D0%B9,_%D0%93%D0%B5%D0%BD%D1%80%D0%B8%D1%85_%D0%A1%D1%82%D0%B0%D0%BD%D0%B8%D1%81%D0%BB%D0%B0%D0%B2%D0%BE%D0%B2%D0%B8%D1%87?fbclid=IwAR2bgk3Bao3ToRwOM9A
+3 CONC ECGcU3yrsut_YnCLVKEXrN37Hi5C8T2mbIoC_Gjs#cite_note-6
+3 CONT https://commons.wikimedia.org/wiki/File:Genrik_Stanislawovitch_Woynizky_by_Konstantin_Gorsky_-_Lithuanium_Art_Museum.jpg
+1 SEX M
+1 BIRT
+2 DATE 15 Nov 1832
+2 NOTE za Wikipedia - https://ru.wikipedia.org/wiki/%D0%92%D0%BE%D0%B9%D0%BD%D0%B8%D1%86%D0%BA%D0%B8%D0%B9,_%D0%93%D0%B5%D0%BD%D1%80%D0%B8%D1%85_%D0%A1%D1%82%D0%B0%D0%BD%D0%B8%D1%81%D0%BB%D0%B0%D0%B2%D0%BE%D0%B2%D0%B8%D1%87?fbclid=IwAR2bgk3Bao3ToRwOM9A
+3 CONC ECGcU3yrsut_YnCLVKEXrN37Hi5C8T2mbIoC_Gjs#cite_note-6
+1 DEAT
+2 DATE 15 Aug 1915
+2 NOTE za Wikipedia - https://ru.wikipedia.org/wiki/%D0%92%D0%BE%D0%B9%D0%BD%D0%B8%D1%86%D0%BA%D0%B8%D0%B9,_%D0%93%D0%B5%D0%BD%D1%80%D0%B8%D1%85_%D0%A1%D1%82%D0%B0%D0%BD%D0%B8%D1%81%D0%BB%D0%B0%D0%B2%D0%BE%D0%B2%D0%B8%D1%87?fbclid=IwAR2bgk3Bao3ToRwOM9A
+3 CONC ECGcU3yrsut_YnCLVKEXrN37Hi5C8T2mbIoC_Gjs#cite_note-6
+1 BURI
+2 PLAC cm.Rossa Vilnius (Wilno)
+2 NOTE za Wikipedia - https://ru.wikipedia.org/wiki/%D0%92%D0%BE%D0%B9%D0%BD%D0%B8%D1%86%D0%BA%D0%B8%D0%B9,_%D0%93%D0%B5%D0%BD%D1%80%D0%B8%D1%85_%D0%A1%D1%82%D0%B0%D0%BD%D0%B8%D1%81%D0%BB%D0%B0%D0%B2%D0%BE%D0%B2%D0%B8%D1%87?fbclid=IwAR2bgk3Bao3ToRwOM9A
+3 CONC ECGcU3yrsut_YnCLVKEXrN37Hi5C8T2mbIoC_Gjs#cite_note-6
+1 NOTE https://commons.wikimedia.org/wiki/File:Genrik_Stanislawovitch_Woynizky_by_Konstantin_Gorsky_-_Lithuanium_Art_Museum.jpg.
+1 CHAN
+2 DATE 11 Aug 2021
+1 FAMS @F110@
+0 @I133@ INDI
+1 NAME Melania /Bystram z Radlina/ h.Tarnawa
+2 GIVN Melania
+2 SURN Bystram z Radlina
+2 NOTE https://www.geni.com/people/Melania-Hoppen/6000000029045423568
+3 CONT za Minakowskim
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1848
+1 DEAT
+2 DATE 12 May 1884
+1 BURI
+2 PLAC Vilnius, Lithuania
+1 CHAN
+2 DATE 17 Jan 2021
+1 FAMS @F111@
+1 FAMC @F45@
+0 @I317@ INDI
+1 NAME Jozef /Hoppen/
+2 GIVN Jozef
+2 SURN Hoppen
+2 NOTE za Minakowskim oraz
+3 CONT https://www.geni.com/people/J%C3%B3zef-Hoppen-h-Nabram-II/6000000029045011465
+1 SEX M
+1 BIRT
+2 DATE 1843
+2 NOTE za Minakowskim oraz
+3 CONT https://www.geni.com/people/J%C3%B3zef-Hoppen-h-Nabram-II/6000000029045011465
+1 DEAT
+2 DATE 15 Feb 1900
+2 PLAC Vilnius
+2 NOTE za Minakowskim oraz
+3 CONT https://www.geni.com/people/J%C3%B3zef-Hoppen-h-Nabram-II/6000000029045011465
+1 CHAN
+2 DATE 17 Jan 2021
+1 FAMS @F111@
+0 @I134@ INDI
+1 NAME Kazimierz /Bystram z Radlina/ h.Tarnawa
+2 GIVN Kazimierz
+2 SURN Bystram z Radlina
+2 NOTE własciciel dóbr Zmujdki (sprzedał) powiat Wiłkomierz (Ukmerge) oraz dóbr Gize (sprzedał) powiat Mariampol
+3 CONT za Lenczewskim str.245
+3 CONT https://www.geni.com/people/baron-Kazimierz-Bystram-h-Tarnawa/6000000029047003748
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 1859
+2 PLAC Bistrampolis, Lithuania
+2 NOTE Bistrampolis (lit.)
+3 CONT w Panevezys - za GENI - https://www.geni.com/people/baron-Kazimierz-Bystram-h-Tarnawa/6000000029047003748
+1 DEAT
+2 DATE 28 Jul 1923
+2 PLAC Vyazyn, Belarus
+2 NOTE za Lenczewskim str.245
+3 CONT https://www.geni.com/people/baron-Kazimierz-Bystram-h-Tarnawa/6000000029047003748
+1 BURI
+2 PLAC Gize
+1 CHAN
+2 DATE 11 Aug 2021
+1 FAMS @F91@
+1 FAMC @F45@
+0 @I265@ INDI
+1 NAME Anna /Szabuniewicz/ h.Slepowron
+2 GIVN Anna
+2 SURN Szabuniewicz
+2 NOTE https://www.geni.com/people/Anna-Bystram/6000000029049279870,
+3 CONT za Minakowskim
+3 CONT za Lenczewskim
+2 NSFX h.Slepowron
+1 SEX F
+1 BIRT
+2 DATE 1863
+2 PLAC Antonów, Poland
+2 NOTE https://www.geni.com/people/Anna-Bystram/6000000029049279870
+1 DEAT
+2 DATE Oct 1931
+2 PLAC Vilnius, Lithuania
+2 NOTE https://www.geni.com/people/Anna-Bystram/6000000029049279870
+1 CHAN
+2 DATE 17 Jan 2021
+1 FAMS @F91@
+0 @I473@ INDI
+1 NAME Emilia /Bystram z Radlina/ h.Tarnawa
+2 GIVN Emilia
+2 SURN Bystram z Radlina
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F190@
+1 FAMC @F45@
+0 @I474@ INDI
+1 NAME Władysław /Hoppen/ h.Nabram
+2 GIVN Władysław
+2 SURN Hoppen
+2 NSFX h.Nabram
+1 SEX M
+1 _LIVING Y
+1 CHAN
+2 DATE 19 Oct 2018
+1 FAMS @F190@
+0 @I110@ INDI
+1 NAME Michalina /Kamieńska/ h.Slepowron
+2 GIVN Michalina
+2 SURN Kamieńska
+2 NSFX h.Slepowron
+1 SEX F
+1 BIRT
+2 DATE 1850
+2 NOTE urodzona po 21.11.1850
+1 DEAT
+2 DATE 5 Oct 1934
+2 PLAC Vilnius, Lithuania
+1 BURI
+2 DATE 8 Nov 1934
+2 PLAC Vilnius (cm.Bernardyński), Lithuania
+1 NOTE urodzona po 21.11.1850włascicielka dóbr Kurkle i Wielka Wies powiat Wiłkomierz (Ukmerge)
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMC @F147@
+1 FAMS @F40@
+0 @I381@ INDI
+1 NAME Kazimierz /Kamieński/ h.Slepowron
+2 GIVN Kazimierz
+2 SURN Kamieński
+2 NSFX h.Slepowron
+1 SEX M
+1 NOTE h.Slepowron
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMS @F147@
+0 @I382@ INDI
+1 NAME Malwina /Strawińska/ h.Sulima
+2 GIVN Malwina
+2 SURN Strawińska
+2 NSFX h.Sulima
+1 SEX F
+1 _LIVING Y
+1 NOTE h.Sulima
+1 CHAN
+2 DATE 12 Oct 2018
+1 FAMS @F147@
+0 @I562@ INDI
+1 NAME Kazimiera /Kamieńska/ h.Slepowron
+2 GIVN Kazimiera
+2 SURN Kamieńska
+2 NSFX h.Slepowron
+1 SEX F
+1 _LIVING Y
+1 CHAN
+2 DATE 10 Nov 2018
+1 FAMS @F234@
+1 FAMC @F147@
+0 @I563@ INDI
+1 NAME No Name /Szachno/
+2 GIVN No Name
+2 SURN Szachno
+1 SEX M
+1 _LIVING Y
+1 CHAN
+2 DATE 10 Nov 2018
+1 FAMS @F234@
+0 @I111@ INDI
+1 NAME Władysław Karol Kazimierz Felicjan /Bystram/ h.Tarnawa
+2 GIVN Władysław Karol Kazimierz Felicjan
+2 SURN Bystram
+2 NOTE własciciel dóbr Wielka Wies i Wolin powiat Ukmerge (Wiłkomierz) - sprzedano po 1924r.
+3 CONT inzynier rolnik;
+3 CONT zołnierz POW.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 9 Jun 1874
+2 PLAC Bystrampol, Lithuania
+2 NOTE 9/21 Jun 1874
+1 DEAT
+2 DATE 1926
+2 PLAC Ukmerge, Lithuania
+2 NOTE Ukmerge (Wiłkomierz)
+1 BURI
+2 DATE 1926
+2 PLAC Ukmerge, Lithuania
+2 NOTE Wilkomierz (pol)
+1 CHAN
+2 DATE 09 Jan 2021
+1 FAMS @F102@
+1 FAMC @F40@
+0 @I298@ INDI
+1 NAME Waleria /Kontowt/ h.Pomian
+2 GIVN Waleria
+2 SURN Kontowt
+2 NOTE za Lenczewskim str 243
+2 NSFX h.Pomian
+1 SEX F
+1 BIRT
+2 DATE 23 Mar 1879
+2 NOTE za Lenczewskim str 243
+1 DEAT
+2 DATE 27 Sep 1955
+2 PLAC Torun, Poland
+2 NOTE za Lenczewskim str 243
+1 BURI
+2 PLAC Toruń (cm ul.Gałczynskiego), Poland
+1 CHAN
+2 DATE 07 Jan 2021
+1 FAMS @F102@
+0 @I112@ INDI
+1 NAME Karol /Bystram/ h.Tarnawa
+2 GIVN Karol
+2 SURN Bystram
+2 NOTE własciciel dóbr Upyté (Upita) z przyległosciami powiat Panevezys (Poniewiez);
+3 CONT prawnik
+3 CONT zabity przez komisarzy bolszewickich na ganku dworu w Upicie
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 17 Feb 1876
+2 PLAC Bistrampolis, Lithuania
+2 NOTE Bystrampol(pol.)
+3 CONT 17/29.2.1876
+1 CHR
+2 DATE 4 Mar 1876
+2 PLAC Ramygola, Lithuania
+2 NOTE Ramygoła (pol.)
+1 DEAT
+2 DATE 5 Apr 1919
+2 PLAC Upité, Lithuania
+2 NOTE Upita (pol.) z nekrologu w moim posiadaniu (KB)
+1 BURI
+2 DATE Apr 1919
+2 PLAC Upité, Lithuania
+2 NOTE Upita (pol.)
+3 CONT z nekrologu w moim posiadaniu (KB)
+1 CHAN
+2 DATE 08 Jan 2021
+1 FAMS @F100@
+1 FAMC @F40@
+0 @I291@ INDI
+1 NAME Jozefina /Puzynianka/ h.Oginiec
+2 GIVN Jozefina
+2 SURN Puzynianka
+2 NSFX h.Oginiec
+1 TITL Ksiezniczka
+1 SEX F
+1 BIRT
+2 DATE 17 Apr 1889
+2 PLAC Wolmar, Lithuania
+2 NOTE 17/29 April 1889
+1 DEAT
+2 DATE 24 Jan 1927
+2 PLAC Upité, Lithuania
+2 NOTE z nekrologu w moim posiadaniu (KB)
+1 BURI
+2 DATE 26 Jun 1927
+2 PLAC Upité, Lithuania
+2 NOTE z nekrologu w moim posiadaniu (KB)
+1 CHAN
+2 DATE 08 Jan 2021
+1 FAMS @F100@
+0 @I100@ INDI
+1 NAME Kazimierz Eugeniusz Tomasz /Bystram/ h.Tarnawa
+2 GIVN Kazimierz Eugeniusz Tomasz
+2 SURN Bystram
+2 NOTE uczen szkoly realnej w Lipawie (Liepaja, Libau);
+3 CONT student Wydzialu Handlowego Politechniki Ryskiej (1897-1900)- tamze czlonek korporacji Arkonia (nr 665 od roku 1897) i Lauda;
+3 CONT wlasciciel dóbr Kurkle (Kurkliai) pow. Wilkomierz (Ukmerge), (Litwa od 1919r), zarzadzal majatkiem od 1902r.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 13 Jul 1877
+2 PLAC Bistrampolis, Lithuania
+2 NOTE Bystrampol (pol.)
+1 CHR
+2 DATE 8 Aug 1877
+2 PLAC Ramygola, Lithuania
+2 NOTE Ramygoła (pol.)
+1 DEAT
+2 DATE 21 Feb 1941
+2 PLAC Vilnius, Lithuania
+1 BURI
+2 DATE Feb 1941
+2 PLAC Vilnius (cm.Bernardynski), Lithuabia
+1 CHAN
+2 DATE 07 Jan 2021
+1 FAMS @F37@
+1 FAMC @F40@
+0 @I101@ INDI
+1 NAME Karolina Wiktoria /Bogdanowicz/ h.Lada
+2 GIVN Karolina Wiktoria
+2 SURN Bogdanowicz
+2 NOTE https://www.sejm-wielki.pl/b/ut.48.4.59 oraz za
+3 CONT https://www.geni.com/people/Karolina-Bystram/6000000079624387030
+3 CONT włascicielka dóbr Rozalimas (Rozalin-pol.), powiat Panevezys (Poniewiez-pol.) Litwa od 1919r.
+2 NSFX h.Lada
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE 12 Jul 1879
+2 PLAC Jamontany, Lithuania
+2 NOTE https://www.sejm-wielki.pl/b/ut.48.4.59 oraz za
+3 CONT https://www.geni.com/people/Karolina-Bystram/6000000079624387030
+1 CHR
+2 DATE 18 Aug 1879
+2 PLAC Rozalimas, Lithuania
+2 NOTE Rozalin (pol.)
+3 CONT https://www.sejm-wielki.pl/b/ut.48.4.59 oraz za
+3 CONT https://www.geni.com/people/Karolina-Bystram/6000000079624387030
+1 DEAT
+2 DATE 27 Dec 1944
+2 PLAC Vilnius, Lithuania
+2 NOTE https://www.sejm-wielki.pl/b/ut.48.4.59 oraz za
+3 CONT https://www.geni.com/people/Karolina-Bystram/6000000079624387030
+1 BURI
+2 PLAC Vilnius (cm.Bernardyński), Lithuania
+2 NOTE informacja moja (KB)
+1 CHAN
+2 DATE 28 Jan 2021
+1 FAMS @F37@
+0 @I290@ INDI
+1 NAME Witold Michal /Bystram/ h.Tarnawa
+2 GIVN Witold Michal
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE Mar 1879
+2 PLAC Bystrampol, Lithuania
+1 DEAT
+2 DATE 22 May 1879
+2 PLAC Bystrampol, Lithuania
+1 BURI
+2 PLAC Bystrampol (cm.rodzinny), Lithuania
+1 CHAN
+2 DATE 10 Aug 2020
+1 FAMC @F40@
+0 @I113@ INDI
+1 NAME Gabriela /Bystram/ h.Tarnawa
+2 GIVN Gabriela
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 10 Apr 1880
+2 PLAC Bystrampol, Lithuania
+2 NOTE z e-kartoteka.net/en/search?signature=14713#show
+1 DEAT
+2 DATE Dec 1948
+2 PLAC Bydgoszcz, Poland
+1 CHAN
+2 DATE 27 Jul 2020
+1 FAMS @F123@
+1 FAMC @F40@
+0 @I343@ INDI
+1 NAME Tadeusz /Łańcucki/ h.Strzemie
+2 GIVN Tadeusz
+2 SURN Łańcucki
+2 NSFX h.Strzemie
+1 SEX M
+1 BIRT
+2 DATE 1861
+2 NOTE znalezienie moje, ale gdzie? (KB)
+1 DEAT
+2 DATE 1955
+2 PLAC Bydgoszcz, Poland
+1 NOTE rolnik dyplomowany
+1 CHAN
+2 DATE 27 Jul 2020
+1 FAMS @F123@
+0 @I114@ INDI
+1 NAME Jadwiga /Bystram/ h.Tarnawa
+2 GIVN Jadwiga
+2 SURN Bystram
+2 NOTE zolnierz AK ps.Babcia - za Lenczewskim str.244
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1880
+2 NOTE Bystrampol (pol)
+1 DEAT
+2 DATE 25 May 1975
+2 PLAC Gdansk
+2 NOTE za Lenczewskim str.244
+1 CHAN
+2 DATE 09 Jan 2021
+1 FAMS @F124@
+1 FAMC @F40@
+0 @I344@ INDI
+1 NAME Edmund /Rymwid-Mickiewicz/ h.Lis
+2 GIVN Edmund
+2 SURN Rymwid-Mickiewicz
+2 NSFX h.Lis
+1 SEX M
+1 BIRT
+2 DATE 1875
+2 PLAC Antonów, Lithuania
+2 NOTE z aktu slubu - w dniu slubu tj 27.6.1912 mial 37 lat;
+1 DEAT
+2 DATE 1 Apr 1938
+2 PLAC Warsaw, Poland
+2 NOTE Dyrektor Lasów Panstwowych w Radomiu, pózniej w Warszawie;
+3 CONT pochowany na cmentarzu dawnym wojskowym na Powazkach, Warszawa
+1 CHAN
+2 DATE 09 Jan 2021
+1 FAMS @F124@
+0 @I115@ INDI
+1 NAME Michalina /Bystram/ h.Tarnawa
+2 GIVN Michalina
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1882
+2 PLAC Bystrampol, Lithuania
+2 NOTE Bystrampol (pol.)
+1 DEAT
+2 DATE 3 Dec 1977
+2 PLAC Radom, Poland
+1 BURI Y
+2 NOTE Pochowana na cmentarzu dawnym wojskowym na Powazkach w Warszawie razem z mezem Michałem baronem von Kleist kwatera A19, rzad 6, grób 30.
+1 CHAN
+2 DATE 12 May 2020
+1 FAMS @F109@
+1 FAMC @F40@
+0 @I315@ INDI
+1 NAME Michał Rudolf /von Kleist/
+2 GIVN Michał Rudolf
+2 SURN von Kleist
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 18 Aug 1883
+2 PLAC Warsaw, Poland
+2 NOTE za Lenczewskim 'Genealogie Rodów Utytulowanych w Polsce' str 244 - 18/30.8.1883.
+3 CONT za MJ Minakowskim.
+1 DEAT
+2 DATE 6 Dec 1936
+2 PLAC Warsaw, Poland
+2 NOTE data smierci za MJ Minakowskim i Lenczewskim (Genealogie Rodów Utytulowanych w Polsce str 244),
+3 CONT Zginal tragicznie; rodzina twierdzi ze w pojedynku.
+1 BURI Y
+2 NOTE uzywał równiez nazwiska de Kleist:
+3 CONT mjr intendent. WP (d.Abgulden, Inflanty) - Lenczewski, Genealogie Rodów Utytułowanych w Polsce;
+3 CONT Pochowany na cmentarzu dawnym wojskowym na Powazkach w Warszawie razem z zona Michalina z Bystramów baronowa von Kleist kwatera A19, rzad 6, grób 30.
+1 NOTE za MJ Minakowskim
+1 CHAN
+2 DATE 07 Jul 2020
+1 FAMS @F109@
+0 @I117@ INDI
+1 NAME Irena /Bystram/ h.Tarnawa
+2 GIVN Irena
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 19 Aug 1895
+2 PLAC Bystrampolis, Lithuania
+2 NOTE Bystrampol (pol.)
+1 DEAT
+2 DATE 15 Feb 1960
+2 PLAC Warsaw, Poland
+1 BURI
+2 PLAC Warsaw, Poland
+2 NOTE Pochowana na Powazkach, dawny cmentarz Wojskowy, Warszawa, cm. Wojskowy na Powązkach, kwatera II B 28, rząd 6, miejsce 14
+1 NOTE ppor AK ps "Misia", uczestnik Powstania Warszawskiego
+1 CHAN
+2 DATE 12 May 2020
+1 FAMS @F133@
+1 FAMC @F40@
+0 @I359@ INDI
+1 NAME Witold /Swacinski/
+2 GIVN Witold
+2 SURN Swacinski
+1 SEX M
+1 BIRT
+2 DATE 1890
+1 DEAT
+2 DATE 1943
+2 PLAC Auschwitz
+2 NOTE zginał w obozie koncentracyjnym w Auschwitz
+1 NOTE adwokat
+1 CHAN
+2 DATE 19 Oct 2018
+1 FAMS @F133@
+0 @I282@ INDI
+1 NAME Maria Aleksandra /Meysztowicz/ h.Rawicz
+2 GIVN Maria Aleksandra
+2 SURN Meysztowicz
+2 NSFX h.Rawicz
+1 SEX F
+1 BIRT
+2 DATE 22 Dec 1896
+2 PLAC Pojoscie, Lithuania
+1 DEAT
+2 DATE 22 Jan 1989
+2 PLAC Montréal, Canada
+1 CHAN
+2 DATE 16 Oct 2018
+1 FAMC @F165@
+1 FAMS @F98@
+0 @I438@ INDI
+1 NAME Aleksander Michal Marian /Meysztowicz/ h.Rawicz
+2 GIVN Aleksander Michal Marian
+2 SURN Meysztowicz
+2 NOTE https://wielcy.pl/wgm/?m=NG&t=PN&n=11.434.201 oraz za https://www.geni.com/people/Aleksander-Meysztowicz-h-Rawicz/6000000011033427869
+2 NSFX h.Rawicz
+1 SEX M
+1 BIRT
+2 DATE 20 Dec 1864
+2 PLAC Pojoscie, Litwa
+2 NOTE e-mail dd Oct 9 2021 from Catherine Plowright to me (KB), faire-part o smierci.
+3 CONT za geni - https://www.geni.com/people/Aleksander-Meysztowicz-h-Rawicz/6000000011033427869.
+3 CONT Geni podaje 8.12. - prawdopodobnie na skutek przesunieccia dat w kalendarzu gregorianskim i julianskim (KB)
+1 DEAT
+2 DATE 14 Feb 1943
+2 PLAC Rzym, Italia
+2 NOTE za https://www.geni.com/people/Aleksander-Meysztowicz-h-Rawicz/6000000011033427869.
+3 CONT e-mail dd Oct 9 2021 from Catherine Plowright to me (KB).
+1 NOTE Prezes Wilenskiego Banku Ziemskiego;
+2 CONT Minister Sprawiedliwosci RP 1926-1928;
+2 CONT tajny szambelan papieski
+2 CONT https://wielcy.pl/wgm/?m=NG&t=PN&n=11.434.201
+2 CONT Polski Słownik Biograficzny t. 20 s. 486 MEYSZTOWICZ Aleksander Michał (1864-1943) członek rosyjskiej Rady Państwa, minister sprawiedliwości RP, emigrant
+2 CONT https://pl.wikipedia.org/wiki/Aleksander_Meysztowicz
+1 CHAN
+2 DATE 12 Oct 2021
+1 FAMC @F903@
+1 FAMS @F165@
+0 @I2216@ INDI
+1 NAME Edward /Meysztowicz z Pojoscia/ h.Rawicz
+2 GIVN Edward
+2 SURN Meysztowicz z Pojoscia
+2 NOTE http://wielcy.pl/wgm/?m=NG&t=PN&n=11.45.102 oraz za https://www.geni.com/people/Edward-Meysztowicz-h-Rawicz/6000000037803002883
+3 CONT Pajuostis, Anykščiai municipality, Utena County, Lithuania
+2 NSFX h.Rawicz
+1 SEX M
+1 BIRT
+2 DATE 13 Mar 1821
+2 PLAC Pojoscie, Litwa
+2 NOTE http://wielcy.pl/wgm/?m=NG&t=PN&n=11.45.102 oraz za https://www.geni.com/people/Edward-Meysztowicz-h-Rawicz/6000000037803002883
+3 CONT Pajuostis, Anykščiai municipality, Utena County, Lithuania
+1 DEAT
+2 DATE 25 May 1889
+2 PLAC Pojoscie, Litwa
+2 NOTE http://wielcy.pl/wgm/?m=NG&t=PN&n=11.45.102 oraz za https://www.geni.com/people/Edward-Meysztowicz-h-Rawicz/6000000037803002883
+3 CONT Pajuostis, Anykščiai municipality, Utena County, Lithuania
+1 BURI
+2 PLAC Pojoście-krypta rodzinna przy dworze w Pojościu
+2 NOTE za http://wielcy.pl/wgm/?m=NG&t=PN&n=11.45.102 oraz za https://www.geni.com/people/Edward-Meysztowicz-h-Rawicz/6000000037803002883
+3 CONT Pajuostis, Anykščiai municipality, Utena County, Lithuania
+1 CHAN
+2 DATE 12 Oct 2021
+1 FAMS @F903@
+0 @I2217@ INDI
+1 NAME Maria /Szyryn/ h.wlasnego
+2 GIVN Maria
+2 SURN Szyryn
+2 NOTE http://wielcy.pl/wgm/?m=NG&t=PN&n=11.45.103 oraz za https://www.geni.com/people/Maria-Meysztowicz/6000000037802724138
+2 NSFX h.wlasnego
+1 SEX F
+1 BIRT
+2 DATE 22 Oct 1841
+2 NOTE http://wielcy.pl/wgm/?m=NG&t=PN&n=11.45.103 oraz za https://www.geni.com/people/Maria-Meysztowicz/6000000037802724138
+1 DEAT
+2 DATE 15 Jul 1912
+2 PLAC Pojoscie, Litwa
+2 NOTE http://wielcy.pl/wgm/?m=NG&t=PN&n=11.45.103 oraz za https://www.geni.com/people/Maria-Meysztowicz/6000000037802724138
+1 CHAN
+2 DATE 12 Oct 2021
+1 FAMS @F903@
+0 @I423@ INDI
+1 NAME Zofia Pelagia Aleksandra /Korwin-Kossakowska z Wojtkuszek/ h.Slepowron
+2 GIVN Zofia Pelagia Aleksandra
+2 SURN Korwin-Kossakowska z Wojtkuszek
+2 NOTE za http://wielcy.pl/wgm/?m=NG&t=PN&n=11.434.200 oraz za https://www.geni.com/people/Zofia-Meysztowicz/6000000011033427029
+2 NSFX h.Slepowron
+1 TITL Hrabianka
+1 SEX F
+1 BIRT
+2 DATE 23 Sep 1868
+2 PLAC Warszawa
+2 NOTE za http://wielcy.pl/wgm/?m=NG&t=PN&n=11.434.200 oraz za https://www.geni.com/people/Zofia-Meysztowicz/6000000011033427029
+3 CONT
+1 CHR
+2 DATE 1868
+2 PLAC parafia Sw. Krzyza Warszawa
+2 NOTE za http://wielcy.pl/wgm/?m=NG&t=PN&n=11.434.200
+1 DEAT
+2 DATE 7 Nov 1932
+2 NOTE za http://wielcy.pl/wgm/?m=NG&t=PN&n=11.434.200 oraz za https://www.geni.com/people/Zofia-Meysztowicz/6000000011033427029
+1 NOTE wLascicielka dóbr Wojtkuszki powiat Wiłkomierz (Ukmerge).
+1 CHAN
+2 DATE 12 Oct 2021
+1 FAMS @F165@
+0 @I283@ INDI
+1 NAME Maria Aleksandra /Bystram/ h.Tarnawa
+2 GIVN Maria Aleksandra
+2 SURN Bystram
+2 NSFX h.Tarnawa
+2 NICK Mariolka
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1922
+1 DEAT
+2 DATE 1928
+1 BURI
+2 PLAC Vilnius (cm.Bernardyński), Lithuania
+1 CHAN
+2 DATE 08 Jan 2021
+1 FAMC @F98@
+0 @I284@ INDI
+1 NAME Aleksander Tadeusz Dominik /Bystram/ h.Tarnawa
+2 GIVN Aleksander Tadeusz Dominik
+2 SURN Bystram
+2 NOTE obronca Wilna w 1939r.
+3 CONT porucznik 9 Pulku Ulanów Malopolskich; w 1945r rotmistrz w stanie spoczynku Polskich Sił Zbrojnych;
+3 CONT Kawaler Honoru i Dewocji Suwerennego Rycerskiego Zakonu Szpitalników Sw.Jana Jerozolimskiego (Zakon Maltanski),
+3 CONT odznaczony Krzyzem Oficerskim Orderu Odrodzenia Polski (Polonia Restituta) 4kl, Zlotym Krzyzem Zaslugi i Medalem Wojska,
+3 CONT były współwłasciciel biura porózy "TAZAB Travel Ltd" w Londynie;
+3 CONT były Prezes Zarzadu Fundacji z Brzezia Lanckoronskich w Londynie;
+3 CONT autor prac genealogicznych o Bystramach;
+3 CONT
+3 CONT z nekrologu w moim posiadaniu (KB)
+2 NSFX h.Tarnawa
+2 NICK Lech
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 8 May 1923
+2 PLAC Bistrampolis, Lithuania
+2 NOTE Bystrampol (pol.)
+1 DEAT
+2 DATE 2 Jul 2001
+2 PLAC London, UK
+2 NOTE z nekrologu w moim posiadaniu (KB)
+1 CREM
+2 DATE 12 Jul 2001
+2 PLAC London, UK (St Andrew Bobola's Church
+2 NOTE z nekrologu w moim posiadaniu (KB)
+3 CONT Kosciól pw Sw Andrzeja Boboli 1, Leysfield Rd, London W12 9JF
+1 CHAN
+2 DATE 08 Jan 2021
+1 FAMS @F130@
+1 FAMC @F98@
+0 @I356@ INDI
+1 NAME Micheline /Cuypers/
+2 GIVN Micheline
+2 SURN Cuypers
+2 NICK Micky
+1 TITL baronowa
+1 SEX F
+1 BIRT
+2 DATE 23 Nov 1918
+2 PLAC Amsterdam, Holland
+1 DEAT
+2 DATE 21 Jan 2014
+2 PLAC London, UK
+1 BURI
+2 PLAC London, UK (St Andrew Bobola's Church)
+2 NOTE Kosciól pw Sw Andrzeja Boboli 1, Leysfield Rd, London W12 9JF
+1 CHAN
+2 DATE 20 Oct 2018
+1 FAMS @F130@
+0 @F99@ FAM
+1 HUSB @I285@
+1 WIFE @I286@
+1 MARR
+2 DATE 10 Oct 1959
+2 PLAC Montreal, Canada
+1 DIV Y
+2 NOTE marriage canceled in.....
+1 CHAN
+2 DATE 09 Oct 2021
+0 @F132@ FAM
+1 HUSB @I285@
+1 WIFE @I358@
+1 MARR
+2 DATE 10 Sep 1983
+2 PLAC Montreal, Canada
+1 CHAN
+2 DATE 09 Oct 2021
+0 @F98@ FAM
+1 HUSB @I116@
+1 WIFE @I282@
+1 MARR
+2 DATE 11 Apr 1921
+2 PLAC Kaunas, Lithuania
+1 CHAN
+2 DATE 17 Oct 2018
+1 CHIL @I283@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I284@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I285@
+2 _FREL Birth
+2 _MREL Birth
+0 @F40@ FAM
+1 HUSB @I109@
+1 WIFE @I110@
+1 MARR
+2 DATE 21 Nov 1872
+2 PLAC Kurkle, Lithuania
+1 CHAN
+2 DATE 16 Jan 2021
+1 CHIL @I111@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I112@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I100@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I290@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I113@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I114@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I115@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I116@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I117@
+2 _FREL Birth
+2 _MREL Birth
+0 @F45@ FAM
+1 HUSB @I130@
+1 WIFE @I131@
+1 MARR
+2 DATE 1838
+1 CHAN
+2 DATE 11 Aug 2021
+1 CHIL @I109@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I132@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I133@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I134@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I473@
+2 _FREL Birth
+2 _MREL Birth
+0 @F46@ FAM
+1 HUSB @I135@
+1 WIFE @I136@
+1 MARR
+2 DATE 1810
+1 CHAN
+2 DATE 16 Jan 2021
+1 CHIL @I1791@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I130@
+2 _FREL Birth
+2 _MREL Birth
+0 @F47@ FAM
+1 HUSB @I137@
+1 WIFE @I138@
+1 MARR
+2 DATE 1770
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 CHIL @I139@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I1788@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I1789@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I1790@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I135@
+2 _FREL Birth
+2 _MREL Birth
+0 @F56@ FAM
+1 HUSB @I177@
+1 WIFE @I178@
+1 MARR
+2 DATE ca.1720
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 01 Aug 2020
+1 CHIL @I137@
+2 _FREL Birth
+2 _MREL Birth
+0 @F57@ FAM
+1 HUSB @I179@
+1 WIFE @I180@
+1 MARR
+2 DATE ca1670
+2 NOTE przypuszczenie moje (KB)
+1 CHAN
+2 DATE 28 Jul 2020
+1 CHIL @I181@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I177@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I183@
+2 _FREL Birth
+2 _MREL Birth
+0 @F141@ FAM
+1 HUSB @I179@
+1 WIFE @I377@
+1 MARR
+2 DATE po 20 Jul 1672
+2 NOTE za Lenczewskim
+1 CHAN
+2 DATE 16 Jan 2021
+0 @F143@ FAM
+1 HUSB @I179@
+1 WIFE @I379@
+1 CHAN
+2 DATE 11 Oct 2018
+0 @F453@ FAM
+1 HUSB @I179@
+1 WIFE @I1081@
+1 MARR
+2 DATE ca.1670
+2 NOTE jedynie Minakowski podaje, ze Jan Ewald byl zonaty 4 razy.
+3 CONT
+3 CONT o tym malzenstwie Jana Ewalda A.Boniecki nie wspomina (KB)
+1 CHAN
+2 DATE 16 Jan 2021
+0 @F95@ FAM
+1 HUSB @I181@
+1 WIFE @I274@
+1 CHAN
+2 DATE 06 Oct 2018
+0 @F88@ FAM
+1 HUSB @I183@
+1 WIFE @I2218@
+1 MARR Y
+2 NOTE https://www.epaveldas.lt/recordImageSmall/ARCH/669/1/10?exld=289168&seqNr=200 oraz LVIA Wilno 669-1-10
+1 CHAN
+2 DATE 29 Oct 2021
+0 @F144@ FAM
+1 HUSB @I177@
+1 WIFE @I392@
+1 MARR
+2 DATE 23 Jun 1726
+2 NOTE https://www.familysearch.org/ark:/61903/2:2:3FH5-2LY#
+3 CONT
+3 CONT a za MJ Minakowskim - przed 23.6.1726
+1 CHAN
+2 DATE 16 Jan 2021
+0 @F445@ FAM
+1 HUSB @I137@
+1 WIFE @I1068@
+1 CHAN
+2 DATE 08 Jul 2020
+0 @F150@ FAM
+1 HUSB @I396@
+1 WIFE @I139@
+1 MARR
+2 DATE ca.1790
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 08 Jul 2020
+0 @F49@ FAM
+1 HUSB @I141@
+1 WIFE @I142@
+1 MARR
+2 DATE 1780
+1 CHAN
+2 DATE 06 Oct 2018
+1 CHIL @I136@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I143@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I144@
+2 _FREL Birth
+2 _MREL Birth
+0 @F50@ FAM
+1 HUSB @I145@
+1 WIFE @I146@
+1 MARR
+2 DATE 24 Aug 1770
+1 CHAN
+2 DATE 06 Oct 2018
+1 CHIL @I147@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I142@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I148@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I149@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I150@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I151@
+2 _FREL Birth
+2 _MREL Birth
+0 @F51@ FAM
+1 HUSB @I152@
+1 WIFE @I153@
+1 MARR
+2 DATE 1743
+1 CHAN
+2 DATE 06 Oct 2018
+1 CHIL @I154@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I155@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I156@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I145@
+1 CHIL @I157@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I158@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I159@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I160@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I161@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I162@
+2 _FREL Birth
+2 _MREL Birth
+0 @F52@ FAM
+1 HUSB @I145@
+1 WIFE @I163@
+1 MARR
+2 DATE 1789
+1 CHAN
+2 DATE 06 Oct 2018
+0 @F154@ FAM
+1 HUSB @I400@
+1 WIFE @I401@
+1 MARR
+2 DATE 25 Oct 1807
+2 PLAC Hanuszyszki, Lithuania
+1 CHAN
+2 DATE 13 Nov 2018
+1 CHIL @I577@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I617@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I131@
+2 _FREL Birth
+2 _MREL Birth
+0 @F251@ FAM
+1 HUSB @I611@
+1 WIFE @I612@
+1 MARR
+2 DATE 23 Jan 1776
+2 PLAC Stokliszki, Lithuania
+1 CHAN
+2 DATE 12 Nov 2018
+1 CHIL @I400@
+0 @F252@ FAM
+1 HUSB @I613@
+1 WIFE @I614@
+1 CHAN
+2 DATE 12 Nov 2018
+1 CHIL @I611@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I615@
+2 _FREL Birth
+2 _MREL Birth
+0 @F253@ FAM
+1 HUSB @I615@
+1 WIFE @I616@
+1 CHAN
+2 DATE 12 Nov 2018
+0 @F248@ FAM
+1 HUSB @I603@
+1 WIFE @I604@
+1 CHAN
+2 DATE 12 Nov 2018
+1 CHIL @I606@
+1 CHIL @I607@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I401@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I608@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I605@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I609@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I610@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I602@
+2 _FREL Birth
+2 _MREL Birth
+0 @F254@ FAM
+1 HUSB @I605@
+1 WIFE @I618@
+1 MARR
+2 DATE ca.1820
+2 NOTE prazypuszczenie moje (KB)
+1 CHAN
+2 DATE 03 Aug 2020
+0 @F247@ FAM
+1 HUSB @I601@
+1 WIFE @I602@
+1 CHAN
+2 DATE 12 Nov 2018
+0 @F239@ FAM
+1 HUSB @I577@
+1 WIFE @I578@
+1 CHAN
+2 DATE 12 Nov 2018
+0 @F110@ FAM
+1 HUSB @I316@
+1 WIFE @I132@
+1 MARR
+2 DATE ca.1860
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 11 Aug 2021
+0 @F111@ FAM
+1 HUSB @I317@
+1 WIFE @I133@
+1 MARR
+2 DATE ca.1860
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 28 Jul 2020
+0 @F91@ FAM
+1 HUSB @I134@
+1 WIFE @I265@
+1 MARR
+2 DATE 1883
+2 PLAC Antonów
+2 TYPE Church
+2 NOTE za Lenczewskim str.245
+1 CHAN
+2 DATE 08 Jan 2021
+0 @F190@ FAM
+1 HUSB @I474@
+1 WIFE @I473@
+1 CHAN
+2 DATE 19 Oct 2018
+0 @F147@ FAM
+1 HUSB @I381@
+1 WIFE @I382@
+1 CHAN
+2 DATE 10 Nov 2018
+1 CHIL @I110@
+2 _FREL Birth
+2 _MREL Birth
+1 CHIL @I562@
+2 _FREL Birth
+2 _MREL Birth
+0 @F234@ FAM
+1 HUSB @I562@
+1 WIFE @I563@
+1 CHAN
+2 DATE 10 Nov 2018
+0 @F102@ FAM
+1 HUSB @I111@
+1 WIFE @I298@
+1 MARR
+2 DATE 1906
+2 PLAC Szowków, Lithuania
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 09 Jan 2021
+0 @F100@ FAM
+1 HUSB @I112@
+1 WIFE @I291@
+1 CHAN
+2 DATE 06 Oct 2018
+0 @F37@ FAM
+1 HUSB @I100@
+1 WIFE @I101@
+1 MARR
+2 DATE 29 Apr 1909
+2 PLAC Rozalimas, Lithuania
+2 NOTE 29.4.1909 (12.5.1909) za Lenczewskim str.244
+1 CHAN
+2 DATE 09 Jan 2021
+0 @F123@ FAM
+1 HUSB @I343@
+1 WIFE @I113@
+1 MARR
+2 DATE 7 Jan 1912
+2 PLAC Bistrampolis, Lithuania
+2 NOTE Bystrampol (pol)
+1 CHAN
+2 DATE 16 Oct 2018
+0 @F124@ FAM
+1 HUSB @I344@
+1 WIFE @I114@
+1 MARR
+2 DATE 1910
+2 PLAC Bistrampolis, Lithuania
+2 TYPE Church
+2 NOTE slub w Bystrampolu (pol);
+3 CONT z aktu slubu - w dniu slubu tj 27.6.1912 miala 30lat.
+1 CHAN
+2 DATE 09 Jan 2021
+0 @F109@ FAM
+1 HUSB @I315@
+1 WIFE @I115@
+1 MARR
+2 DATE 29 Sep 1923
+2 PLAC Warsaw, Poland
+1 CHAN
+2 DATE 16 Oct 2018
+0 @F133@ FAM
+1 HUSB @I359@
+1 WIFE @I117@
+1 MARR
+2 DATE 1922
+2 PLAC Warsaw, Poland
+2 NOTE Parafia Wszystkich Swietych w Warszawie
+1 CHAN
+2 DATE 19 Oct 2018
+0 @F165@ FAM
+1 HUSB @I438@
+1 WIFE @I423@
+1 CHAN
+2 DATE 12 Oct 2021
+1 CHIL @I282@
+0 @F903@ FAM
+1 HUSB @I2216@
+1 WIFE @I2217@
+1 MARR
+2 DATE ok. 1860
+2 NOTE przypuszczenie moje (KB)
+1 CHAN
+2 DATE 12 Oct 2021
+1 CHIL @I438@
+0 @F130@ FAM
+1 HUSB @I284@
+1 WIFE @I356@
+1 MARR
+2 DATE 30 Oct 1963
+2 PLAC London, Great Britain
+1 CHAN
+2 DATE 09 Oct 2021
+0 @S4@ SOUR
+1 ABBR wikipedia.org
+0 TRLR

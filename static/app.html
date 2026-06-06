@@ -49,6 +49,14 @@
             style="background:none;border:none;border-bottom:2px solid transparent;color:#94a3b8;padding:10px 16px;cursor:pointer;font-size:0.9em">
       Connections <span id="connections-badge" style="display:none;background:#ef4444;color:#fff;border-radius:10px;padding:0 6px;font-size:0.75em;margin-left:4px"></span>
     </button>
+    <button class="tab-btn" data-tab="rootcommons" onclick="switchTab('rootcommons')"
+            style="background:none;border:none;border-bottom:2px solid transparent;color:#94a3b8;padding:10px 16px;cursor:pointer;font-size:0.9em">
+      🌿 RootCommons
+    </button>
+    <button class="tab-btn" data-tab="curator" onclick="switchTab('curator')"
+            style="background:none;border:none;border-bottom:2px solid transparent;color:#94a3b8;padding:10px 16px;cursor:pointer;font-size:0.9em">
+      ⚙ Curator
+    </button>
   </div>
 
   <!-- Tree tab panel -->
@@ -86,6 +94,95 @@
           <p class="placeholder-text">👆 Click <strong>+ Add Person</strong> above to get started.<br><span style="font-size:.9em;opacity:.7">Think of a grandparent or great-grandparent — someone in your family whose story you'd love to know more about.</span></p>
         </div>
       </main>
+    </div>
+  </div>
+
+  <!-- RootCommons tab panel -->
+  <div id="tab-rootcommons" class="tab-panel" style="display:none;height:100%;overflow-y:auto;background:#0f172a">
+
+    <!-- Header bar -->
+    <div style="background:#111827;border-bottom:1px solid #1e293b;padding:20px 24px">
+      <div style="max-width:900px;margin:0 auto">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:4px">
+          <h2 style="color:#f8fafc;margin:0;font-size:1.4em">🌿 RootCommons</h2>
+          <span id="rc-vault-badge" style="background:#14532d;color:#86efac;font-size:0.72em;padding:2px 8px;border-radius:12px;font-weight:600">Loading vault...</span>
+        </div>
+        <p style="color:#64748b;margin:0;font-size:0.82em">Pre-lockdown community genealogy vault — ancestors donated before the paywalls went up.</p>
+      </div>
+    </div>
+
+    <!-- Search bar -->
+    <div style="background:#0f172a;padding:20px 24px 0;position:sticky;top:0;z-index:10;border-bottom:1px solid #1e293b">
+      <div style="max-width:900px;margin:0 auto;display:flex;gap:10px;align-items:center;padding-bottom:16px">
+        <div style="flex:2;position:relative">
+          <input id="rc-search-name" type="text" placeholder="Name — e.g. John Smith or just Smith"
+            style="width:100%;box-sizing:border-box;background:#1e293b;color:#f8fafc;border:1px solid #334155;border-radius:8px;padding:10px 14px;font-size:0.95em;outline:none"
+            oninput="rcSearchDebounced()" onkeydown="if(event.key==='Enter')rcSearch()">
+        </div>
+        <div style="flex:0 0 110px">
+          <input id="rc-search-year" type="number" placeholder="Birth year"
+            style="width:100%;box-sizing:border-box;background:#1e293b;color:#f8fafc;border:1px solid #334155;border-radius:8px;padding:10px 14px;font-size:0.95em;outline:none"
+            oninput="rcSearchDebounced()" onkeydown="if(event.key==='Enter')rcSearch()">
+        </div>
+        <button onclick="rcSearch()" style="background:#4a7c59;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:0.9em;cursor:pointer;white-space:nowrap;flex-shrink:0">Search</button>
+      </div>
+    </div>
+
+    <!-- Results area -->
+    <div style="max-width:900px;margin:0 auto;padding:20px 24px">
+      <div id="rc-status" style="color:#64748b;font-size:0.85em;margin-bottom:12px"></div>
+      <div id="rc-results"></div>
+    </div>
+
+    <!-- Person detail modal -->
+    <div id="rc-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:center;justify-content:center">
+      <div style="background:#1e293b;border-radius:12px;padding:28px;max-width:520px;width:90%;max-height:80vh;overflow-y:auto;position:relative">
+        <button onclick="rcCloseModal()" style="position:absolute;top:12px;right:14px;background:none;border:none;color:#94a3b8;font-size:1.3em;cursor:pointer">✕</button>
+        <div id="rc-modal-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Curator tab panel -->
+  <div id="tab-curator" class="tab-panel" style="display:none;height:100%;overflow-y:auto;padding:24px;max-width:800px;margin:0 auto">
+    <h2 style="color:#f8fafc;margin:0 0 8px">Alfred — GEDCOM Curator</h2>
+    <p style="color:#94a3b8;margin:0 0 24px;font-size:0.9em">
+      Alfred uses AI + live web search to find and validate new public genealogy data sources.
+      Two models cross-check each other — only URLs both models agree on are added to the index.
+    </p>
+
+    <div style="background:#1e293b;border-radius:8px;padding:20px;margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <div>
+          <div style="color:#f8fafc;font-weight:600">Current Seed Index</div>
+          <div id="curator-index-count" style="color:#4a7c59;font-size:1.4em;font-weight:700">— URLs</div>
+        </div>
+        <button onclick="refreshCuratorStats()"
+                style="margin-left:auto;background:#334155;color:#94a3b8;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.85em">
+          Refresh
+        </button>
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button id="curator-run-btn" onclick="runCurator(false)"
+                style="background:#4a7c59;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-weight:600">
+          Run Full Curation (2-model)
+        </button>
+        <button id="curator-fast-btn" onclick="runCurator(true)"
+                style="background:#334155;color:#94a3b8;border:none;padding:10px 20px;border-radius:6px;cursor:pointer">
+          Quick Run (1-model, faster)
+        </button>
+      </div>
+    </div>
+
+    <div id="curator-status" style="display:none;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:16px;margin-bottom:20px">
+      <div style="color:#94a3b8;font-size:0.85em;margin-bottom:8px" id="curator-status-label">Running...</div>
+      <div id="curator-log" style="font-family:monospace;font-size:0.8em;color:#64748b;max-height:300px;overflow-y:auto;white-space:pre-wrap"></div>
+    </div>
+
+    <div id="curator-results" style="display:none;background:#1e293b;border-radius:8px;padding:16px">
+      <div style="color:#f8fafc;font-weight:600;margin-bottom:12px">New URLs Found</div>
+      <div id="curator-results-list" style="font-family:monospace;font-size:0.8em;color:#4a7c59;white-space:pre-wrap"></div>
     </div>
   </div>
 
@@ -1251,6 +1348,229 @@
       _spTimer = null;
       document.getElementById('searchProgressOverlay').style.display = 'none';
     }
+
+    // ── Curator tab ────────────────────────────────────────────────────────────
+
+    async function refreshCuratorStats() {
+      try {
+        const r = await fetch('/api/seed/stats');
+        if (!r.ok) return;
+        const d = await r.json();
+        document.getElementById('curator-index-count').textContent =
+          (d.index_count || 0).toLocaleString() + ' URLs indexed · ' +
+          (d.seed_persons || 0).toLocaleString() + ' persons seeded';
+      } catch(e) {}
+    }
+
+    async function runCurator(skipCrosscheck) {
+      const runBtn  = document.getElementById('curator-run-btn');
+      const fastBtn = document.getElementById('curator-fast-btn');
+      const status  = document.getElementById('curator-status');
+      const label   = document.getElementById('curator-status-label');
+      const logEl   = document.getElementById('curator-log');
+      const results = document.getElementById('curator-results');
+
+      runBtn.disabled = true;
+      fastBtn.disabled = true;
+      runBtn.textContent = 'Running…';
+      status.style.display = 'block';
+      results.style.display = 'none';
+      label.textContent = skipCrosscheck
+        ? 'Quick run — 1 model searching…'
+        : 'Full run — 2 models cross-checking… (this takes 2–5 minutes)';
+      logEl.textContent = '';
+
+      try {
+        const r = await fetch('/api/alfred/curate-gedcom', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({skip_crosscheck: skipCrosscheck}),
+        });
+        const d = await r.json();
+
+        if (d.error) {
+          label.textContent = 'Error: ' + d.error;
+          label.style.color = '#ef4444';
+        } else {
+          label.textContent = `Done — ${d.new_count} new URLs added (index total: ${d.total_count})`;
+          label.style.color = '#4a7c59';
+          logEl.textContent = (d.log || []).join('\n');
+
+          if (d.new_urls && d.new_urls.length > 0) {
+            results.style.display = 'block';
+            document.getElementById('curator-results-list').textContent =
+              d.new_urls.join('\n');
+          }
+          refreshCuratorStats();
+        }
+      } catch(e) {
+        label.textContent = 'Request failed: ' + e.message;
+        label.style.color = '#ef4444';
+      } finally {
+        runBtn.disabled = false;
+        fastBtn.disabled = false;
+        runBtn.textContent = 'Run Full Curation (2-model)';
+      }
+    }
+
+    // Load curator stats when tab opens
+    const _origSwitchTab = switchTab;
+    switchTab = function(name) {
+      _origSwitchTab(name);
+      if (name === 'curator')     refreshCuratorStats();
+      if (name === 'rootcommons') rcInit();
+    };
+  </script>
+
+  <!-- ── RootCommons search ────────────────────────────────────────────── -->
+  <script>
+    let _rcDebounceTimer = null;
+    let _rcInitDone = false;
+
+    function rcInit() {
+      if (_rcInitDone) return;
+      _rcInitDone = true;
+      // Load vault stats
+      fetch('/api/rootcommons/stats', { headers: { Authorization: 'Bearer ' + getToken() } })
+        .then(r => r.json())
+        .then(d => {
+          const badge = document.getElementById('rc-vault-badge');
+          if (d.index_ready) {
+            badge.textContent = d.vault_size.toLocaleString() + ' ancestors indexed';
+            badge.style.background = '#14532d';
+            badge.style.color = '#86efac';
+          } else {
+            badge.textContent = 'Index building…';
+            badge.style.background = '#78350f';
+            badge.style.color = '#fde68a';
+          }
+        })
+        .catch(() => {});
+    }
+
+    function rcSearchDebounced() {
+      clearTimeout(_rcDebounceTimer);
+      _rcDebounceTimer = setTimeout(rcSearch, 320);
+    }
+
+    function rcSearch() {
+      clearTimeout(_rcDebounceTimer);
+      const name = document.getElementById('rc-search-name').value.trim();
+      const year = document.getElementById('rc-search-year').value.trim();
+      if (!name) {
+        document.getElementById('rc-results').innerHTML = '';
+        document.getElementById('rc-status').textContent = '';
+        return;
+      }
+      document.getElementById('rc-status').textContent = 'Searching…';
+      document.getElementById('rc-results').innerHTML = '';
+
+      let url = '/api/rootcommons/search?q=' + encodeURIComponent(name);
+      if (year) url += '&year=' + encodeURIComponent(year);
+
+      fetch(url, { headers: { Authorization: 'Bearer ' + getToken() } })
+        .then(r => r.json())
+        .then(d => rcRenderResults(d))
+        .catch(e => {
+          document.getElementById('rc-status').textContent = 'Search error — ' + e.message;
+        });
+    }
+
+    function rcRenderResults(data) {
+      const status = document.getElementById('rc-status');
+      const results = document.getElementById('rc-results');
+
+      if (!data.index_ready) {
+        status.innerHTML = '⏳ Vault index is still building. Try again in a moment.';
+        return;
+      }
+      if (!data.results || data.results.length === 0) {
+        status.textContent = 'No matches found.';
+        results.innerHTML = '';
+        return;
+      }
+
+      status.textContent = data.total + ' result' + (data.total === 1 ? '' : 's');
+
+      results.innerHTML = data.results.map(function(p) {
+        const place = [p.birth_state, p.birth_country].filter(Boolean).join(', ');
+        const year  = p.birth_year ? 'b. ' + p.birth_year : '';
+        const loc   = place ? ' · ' + place : '';
+        const name  = [p.first_name, p.last_name].filter(Boolean).join(' ') || '(unknown)';
+        return `<div onclick="rcShowPerson(${p.id})" style="
+          background:#1e293b;border:1px solid #334155;border-radius:10px;
+          padding:14px 18px;margin-bottom:10px;cursor:pointer;
+          display:flex;justify-content:space-between;align-items:center;
+          transition:border-color .15s" onmouseover="this.style.borderColor='#4a7c59'"
+          onmouseout="this.style.borderColor='#334155'">
+          <div>
+            <div style="color:#f8fafc;font-weight:600;font-size:1em">${_rcEsc(name)}</div>
+            <div style="color:#64748b;font-size:0.82em;margin-top:3px">${_rcEsc(year + loc)}</div>
+          </div>
+          <div style="color:#4a7c59;font-size:1.2em">›</div>
+        </div>`;
+      }).join('');
+    }
+
+    function rcShowPerson(id) {
+      const modal = document.getElementById('rc-modal');
+      const body  = document.getElementById('rc-modal-body');
+      modal.style.display = 'flex';
+      body.innerHTML = '<p style="color:#94a3b8">Loading…</p>';
+
+      fetch('/api/rootcommons/person/' + id, { headers: { Authorization: 'Bearer ' + getToken() } })
+        .then(r => r.json())
+        .then(p => {
+          const name   = [p.first_name, p.middle_name, p.last_name].filter(Boolean).join(' ');
+          const born   = [p.birth_year, p.birth_state, p.birth_country].filter(Boolean).join(' · ');
+          const died   = [p.death_year, p.death_place].filter(Boolean).join(' · ');
+
+          const relGroups = { parent: [], child: [], spouse: [] };
+          (p.relations || []).forEach(r => {
+            const rname = [r.first_name, r.last_name].filter(Boolean).join(' ');
+            const ryear = r.birth_year ? ' (b. ' + r.birth_year + ')' : '';
+            const link  = `<a href="#" onclick="rcShowPerson(${r.id});return false;"
+              style="color:#60a5fa;text-decoration:none">${_rcEsc(rname)}${ryear}</a>`;
+            if (relGroups[r.rel_type] !== undefined) relGroups[r.rel_type].push(link);
+          });
+
+          const sections = [
+            ['Parents',  relGroups.parent],
+            ['Children', relGroups.child],
+            ['Spouses',  relGroups.spouse],
+          ].filter(([, arr]) => arr.length)
+           .map(([label, arr]) => `
+            <div style="margin-top:14px">
+              <div style="color:#64748b;font-size:0.78em;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">${label}</div>
+              <div style="color:#f8fafc;font-size:0.9em">${arr.join('<br>')}</div>
+            </div>`).join('');
+
+          body.innerHTML = `
+            <div style="margin-bottom:4px">
+              <span style="background:#14532d;color:#86efac;font-size:0.7em;padding:2px 8px;border-radius:10px;font-weight:600">🌿 RootCommons</span>
+            </div>
+            <h3 style="color:#f8fafc;margin:10px 0 4px;font-size:1.2em">${_rcEsc(name)}</h3>
+            ${born ? `<div style="color:#94a3b8;font-size:0.85em">Born: ${_rcEsc(born)}</div>` : ''}
+            ${died ? `<div style="color:#94a3b8;font-size:0.85em">Died: ${_rcEsc(died)}</div>` : ''}
+            ${sections}
+            ${p.notes ? `<div style="margin-top:16px;color:#64748b;font-size:0.8em;border-top:1px solid #334155;padding-top:12px">${_rcEsc(p.notes).substring(0,300)}${p.notes.length>300?'…':''}</div>` : ''}
+          `;
+        })
+        .catch(() => { body.innerHTML = '<p style="color:#ef4444">Failed to load.</p>'; });
+    }
+
+    function rcCloseModal() {
+      document.getElementById('rc-modal').style.display = 'none';
+    }
+
+    function _rcEsc(s) {
+      return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // Close modal on backdrop click
+    document.getElementById('rc-modal').addEventListener('click', function(e) {
+      if (e.target === this) rcCloseModal();
+    });
   </script>
 </body>
 </html>

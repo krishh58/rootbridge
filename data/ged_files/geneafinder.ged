@@ -1,0 +1,4479 @@
+0 HEAD
+1 SOUR geneafinder
+2 VERS 1
+2 NAME geneafinder.ged
+2 CORP doptim SAS
+3 ADDR www.geneafinder.com
+1 DATE 09-07-2022
+2 TIME 12:40:47
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 LANG French
+1 PLAC
+2 FORM ADDR,CITY,POST,CO,STAE,CTRY
+0 @I1@ INDI 
+1 NAME Luc Etienne/MARVEL/
+2 GIVN Luc Etienne
+2 SURN MARVEL
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-24T12:26:24.532Z
+1 BIRT
+2 DATE 11 NOV 1967
+2 PLAC ,Maubeuge,59,Nord,Hauts-de-France,France
+0 @I2@ INDI 
+1 NAME Marcel Louis/MARVEL/
+2 GIVN Marcel Louis
+2 SURN MARVEL
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T07:22:27.865Z
+1 OCCU Mécanicien
+1 FAMS @F1@
+1 BIRT
+2 DATE 13 MAY 1913
+2 PLAC ,Maubeuge,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 15 OCT 1972
+2 PLAC ,Lille,59,Nord,Hauts-de-France,France
+0 @I3@ INDI 
+1 NAME Marcelle Marie/STARQUE/
+2 GIVN Marcelle Marie
+2 SURN STARQUE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-23T14:49:59.312Z
+1 OCCU Coiffeuse
+1 FAMS @F1@
+1 BIRT
+2 DATE 15 JUN 1919
+2 PLAC ,Haumont,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 13 MAR 2017
+2 PLAC ,Lille,59,Nord,Hauts-de-France,France
+0 @I6@ INDI 
+1 NAME Pierre Edouard/MARVEL/
+2 GIVN Pierre Edouard
+2 SURN MARVEL
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-25T07:17:55.244Z
+1 OCCU Journalier
+1 FAMS @F53@
+1 FAMC @F54@
+1 DEAT
+2 DATE 10 MAR 1916
+2 PLAC Bois des Corbeaux,Verdun,55,Meuse,Grand Est,France
+1 BIRT
+2 DATE 13 MAR 1884
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I7@ INDI 
+1 NAME Eugénie Henriette/BANNER/
+2 GIVN Eugénie Henriette
+2 SURN BANNER 
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:21:16.662Z
+1 OCCU Ponseuse
+1 FAMS @F53@
+1 FAMC @F60@
+1 BIRT
+2 DATE 18 OCT 1883
+2 PLAC ,Montreuil,93,Seine-Saint-denis,Ile-de-France,France
+0 @I8@ INDI 
+1 NAME Jean/MARVEL/
+2 GIVN Jean
+2 SURN MARVEL
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:04:01.494Z
+1 OCCU Cultivateur
+1 FAMS @F54@
+1 FAMC @F6@
+1 FAMC @F139@
+1 DEAT
+2 DATE 5 AUG 1883
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 BIRT
+2 DATE 24 JAN 1861
+2 PLAC ,Aurillac,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I9@ INDI 
+1 NAME Anna/LESCURE/
+2 GIVN Anna
+2 SURN LESCURE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T08:09:52.808Z
+1 OCCU Sans profession
+1 FAMS @F54@
+1 FAMS @F78@
+1 BIRT
+2 DATE 30 OCT 1857
+2 PLAC ,Maurs,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I11@ INDI 
+1 NAME Marie/MARVEL/
+2 GIVN Marie
+2 SURN MARVEL
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-24T14:57:53.296Z
+1 OCCU Tisserand
+1 FAMS @F6@
+1 BIRT
+2 DATE 29 SEP 1838
+2 PLAC ,Marmanhac,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I12@ INDI 
+1 NAME Jean/MARVEL/
+2 GIVN Jean
+2 SURN MARVEL
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-24T15:18:34.939Z
+1 OCCU Tisserand
+1 FAMS @F55@
+1 BIRT
+2 DATE 21 DEC 1804
+2 PLAC ,Quézac,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I13@ INDI 
+1 NAME Anne/ANGELVY/
+2 GIVN Anne
+2 SURN ANGELVY
+1 SEX F
+1 CHAN 
+2 DATE  2022-07-21T14:53:21.099Z
+1 FAMS @F55@
+1 FAMC @F77@
+1 BIRT
+2 DATE 6 FEB 1809
+2 PLAC ,Marmanhac,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I14@ INDI 
+1 NAME Jacques/MARVEL (MARBEL)/
+2 GIVN Jacques
+2 SURN MARVEL (MARBEL)
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T15:24:03.916Z
+1 OCCU Brassier
+1 FAMS @F56@
+1 DEAT
+2 DATE 14 NOV 1810
+2 PLAC ,Quézac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 BIRT
+2 DATE 18 JUN 1776
+2 PLAC ,Maurs,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I15@ INDI 
+1 NAME Catherine/BRASQUIES/
+2 GIVN Catherine
+2 SURN BRASQUIES
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-24T15:18:40.467Z
+1 OCCU Servante
+1 FAMS @F56@
+1 FAMC @F58@
+1 BIRT
+2 DATE 28 JAN 1770
+2 PLAC ,Maurs,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I16@ INDI 
+1 NAME Jacques/MARBEL/
+2 GIVN Jacques
+2 SURN MARBEL
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T15:16:35.496Z
+1 FAMS @F57@
+0 @I17@ INDI 
+1 NAME Marie/LAVERGNE/
+2 GIVN Marie
+2 SURN LAVERGNE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T15:19:22.421Z
+1 FAMS @F57@
+1 BIRT
+2 PLAC ,Quézac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 NOTE  Née - Lagarouste
+0 @I18@ INDI 
+1 NAME Jean/BRASQUIES/
+2 GIVN Jean
+2 SURN BRASQUIES
+1 SEX M
+1 CHAN 
+2 DATE  2022-07-21T13:59:23.568Z
+1 FAMS @F58@
+0 @I19@ INDI 
+1 NAME Jeanne/SERRES/
+2 GIVN Jeanne
+2 SURN SERRES
+1 SEX F
+1 CHAN 
+2 DATE  2022-07-21T13:59:19.996Z
+1 FAMS @F58@
+0 @I20@ INDI 
+1 NAME Pierre/LESCURE/
+2 GIVN Pierre
+2 SURN LESCURE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:10:58.368Z
+1 OCCU Cordonnier
+1 FAMS @F59@
+1 FAMC @F99@
+1 BIRT
+2 DATE 13 AUG 1830
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 DEAT
+2 DATE 6 MAY 1892
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I21@ INDI 
+1 NAME Hélix/LEROU/
+2 GIVN Hélix
+2 SURN LEROU
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T09:05:46.043Z
+1 FAMS @F59@
+1 FAMC @F90@
+1 DEAT
+2 DATE 3 MAR 1889
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 BIRT
+2 DATE 29 OCT 1829
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I22@ INDI 
+1 NAME Pierre/ANGELVY/
+2 GIVN Pierre
+2 SURN ANGELVY
+1 SEX M
+1 CHAN 
+2 DATE  2022-07-21T14:53:30.158Z
+1 FAMS @F77@
+0 @I23@ INDI 
+1 NAME Françoise/BOSSES/
+2 GIVN Françoise
+2 SURN BOSSES
+1 SEX F
+1 CHAN 
+2 DATE  2022-07-21T14:53:21.120Z
+1 FAMS @F77@
+0 @I24@ INDI 
+1 NAME Eugène Arthur/BANNER/
+2 GIVN Eugène Arthur
+2 SURN BANNER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T07:24:03.653Z
+1 OCCU Chaisier
+1 FAMS @F60@
+1 BIRT
+2 DATE 18 OCT 1853
+2 PLAC , Paris, 75, Paris, Ile-de-France, France
+0 @I25@ INDI 
+1 NAME Marie Louise Françoise/GAECHNER/
+2 GIVN Marie Louise Françoise
+2 SURN GAECHNER
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T09:02:17.155Z
+1 OCCU Blanchisseuse
+1 FAMS @F60@
+1 BIRT
+2 DATE 30 JUN 1860
+2 PLAC ,Paris,75,Paris,Ile-de-France,France
+0 @I26@ INDI 
+1 NAME Louis/GAECHNER/
+2 GIVN Louis
+2 SURN GAECHNER
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T09:46:30.250Z
+1 OCCU Fileur
+1 FAMS @F61@
+1 FAMC @F410@
+1 BIRT
+2 DATE ABT 1830
+2 PLAC ,Paris,75,Paris,Ile-de-France,France
+0 @I27@ INDI 
+1 NAME Eugénie Herminie/MIGNOT/
+2 GIVN Eugénie Herminie
+2 SURN MIGNOT
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T09:01:30.598Z
+1 OCCU Journalière
+1 FAMS @F61@
+1 BIRT
+2 DATE ABT 1833
+0 @I28@ INDI 
+1 NAME Marcel Henri/STARQUE/
+2 GIVN Marcel Henri
+2 SURN STARQUE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-25T13:42:06.199Z
+1 OCCU Cheminot
+1 FAMS @F69@
+1 DEAT
+2 DATE 17 AUG 1968
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+1 BIRT
+2 DATE 17 MAR 1894
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+0 @I29@ INDI 
+1 NAME Philomène Marine/ROGERS/
+2 GIVN Philomène Marine
+2 SURN ROGERS
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T08:14:06.323Z
+1 OCCU Soigneuse
+1 FAMS @F69@
+1 FAMC @F70@
+1 BIRT
+2 DATE 16 OCT 1897
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 14 FEB 1984
+2 PLAC ,Roubaix,59,Nord,Hauts-de-France,France
+0 @I30@ INDI 
+1 NAME Achille/STARQUE/
+2 GIVN Achille
+2 SURN STARQUE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:51:23.549Z
+1 OCCU Journalier
+1 FAMS @F65@
+1 BIRT
+2 DATE 26 MAR 1864
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 24 AUG 1905
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+0 @I31@ INDI 
+1 NAME Léopold Joseph/STARQUE/
+2 GIVN Léopold Joseph
+2 SURN STARQUE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:52:37.291Z
+1 OCCU Journalier
+1 FAMS @F63@
+1 FAMC @F62@
+1 DEAT
+2 DATE 19 DEC 1911
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+1 BIRT
+2 DATE 19 JAN 1828
+2 PLAC ,Mainvault,7812,Hainaut,Wallonie,Belgique
+0 @I32@ INDI 
+1 NAME Marie Désirée/PAULET/
+2 GIVN Marie Désirée
+2 SURN PAULET
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T09:21:42.998Z
+1 OCCU Servante
+1 FAMS @F63@
+1 BIRT
+2 DATE 9 MAR 1824
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I33@ INDI 
+1 NAME Martin Joseph/STARQUE (STARQ)/
+2 GIVN Martin Joseph
+2 SURN STARQUE (STARQ)
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T08:09:59.221Z
+1 OCCU Journalier
+1 FAMS @F62@
+1 DEAT
+2 DATE 6 JUL 1839
+2 PLAC ,Lahamaide,7890,Hainaut,Wallonie,Belgique
+1 BIRT
+2 DATE ABT 1803
+2 PLAC ,Bouvignies,7803,Hainaut,Wallonie,Belgique
+0 @I34@ INDI 
+1 NAME Marie Thérèse/RICHEZ/
+2 GIVN Marie Thérèse
+2 SURN RICHEZ
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:33:39.856Z
+1 OCCU Fileuse
+1 FAMS @F62@
+0 @I35@ INDI 
+1 NAME Emmanuel/PAULET/
+2 GIVN Emmanuel
+2 SURN PAULET
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T11:55:24.296Z
+1 OCCU Tisserand
+1 FAMS @F64@
+1 FAMC @F149@
+1 BIRT
+2 DATE ABT 8 OCT 1798
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 17 NOV 1847
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I36@ INDI 
+1 NAME Désirée Joseph/DELAGACHE/
+2 GIVN Désirée Joseph
+2 SURN DELAGACHE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T16:20:10.110Z
+1 OCCU Journalière
+1 OCCU Fileuse de coton
+1 FAMS @F64@
+1 FAMC @F146@
+1 BIRT
+2 DATE 2 APR 1799
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 8 JUN 1866
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I37@ INDI 
+1 NAME Rosine Joséphine/PREVOST/
+2 GIVN Rosine Joséphine
+2 SURN PREVOST
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:32:02.002Z
+1 OCCU Ménagère
+2 DATE  1894
+1 OCCU Soigneuse
+2 DATE  1893
+1 OCCU Journalière
+2 DATE  1889
+1 FAMS @F65@
+1 BIRT
+2 DATE 16 MAY 1866
+2 PLAC ,Bollezeele,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 9 SEP 1924
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+0 @I38@ INDI 
+1 NAME Louis Joseph/PREVOST/
+2 GIVN Louis Joseph
+2 SURN PREVOST
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:21:08.582Z
+1 OCCU Cheminot
+1 FAMS @F66@
+1 FAMC @F67@
+1 DEAT
+2 DATE 8 MAR 1905
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+1 BIRT
+2 DATE 25 JUL 1831
+2 PLAC ,Bollezeele,59,Nord,Hauts-de-France,France
+0 @I39@ INDI 
+1 NAME Joséphine/DESQUIENS/
+2 GIVN Joséphine
+2 SURN DESQUIENS
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:29:42.426Z
+1 OCCU Ménagère
+1 FAMS @F66@
+1 FAMC @F68@
+1 BIRT
+2 DATE 5 FEB 1829
+2 PLAC , Bollezeele, 59, Nord, Hauts-de-France, France
+0 @I40@ INDI 
+1 NAME Pierre Joseph/PREVOST/
+2 GIVN Pierre Joseph
+2 SURN PREVOST
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-24T15:13:43.902Z
+1 OCCU Tisserand
+1 FAMS @F67@
+1 BIRT
+2 DATE ABT 1790
+0 @I41@ INDI 
+1 NAME Adélaïde/MARTIN/
+2 GIVN Adélaïde
+2 SURN MARTIN
+1 SEX F
+1 CHAN 
+2 DATE  2022-07-21T14:33:05.552Z
+1 FAMS @F67@
+0 @I42@ INDI 
+1 NAME Boniface Joseph/DESQUIENS/
+2 GIVN Boniface Joseph
+2 SURN DESQUIENS
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T07:27:43.223Z
+1 OCCU Journalier
+1 FAMS @F68@
+1 BIRT
+2 DATE ABT 1793
+2 PLAC ,Quesnoy-sur-deûle,59,Nord,Hauts-de-France,France
+0 @I43@ INDI 
+1 NAME Isabelle Joseph/DUTHOIT/
+2 GIVN Isabelle Joseph
+2 SURN DUTHOIT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:27:36.944Z
+1 FAMS @F68@
+1 DEAT
+2 DATE 6 OCT 1854
+2 PLAC ,Cassel,59,Nord,Hauts-de-France,France
+1 BIRT
+2 PLAC , Cassel, 59, Nord, Hauts-de-France, France
+0 @I44@ INDI 
+1 NAME Richard Auguste Joseph/ROGERS/
+2 GIVN Richard Auguste Joseph
+2 SURN ROGERS
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-24T15:26:28.762Z
+1 OCCU Cordonnier
+1 FAMS @F70@
+1 FAMC @F71@
+1 BIRT
+2 DATE 15 JUN 1868
+2 PLAC ,Estaires,59,Nord,Hauts-de-France,France
+0 @I45@ INDI 
+1 NAME Maria Léonie/LORIDAN/
+2 GIVN Maria Léonie
+2 SURN LORIDAN
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-24T15:27:01.268Z
+1 OCCU Couturière
+1 FAMS @F70@
+1 FAMC @F73@
+1 BIRT
+2 DATE 11 AUG 1868
+2 PLAC ,Merville,59,Nord,Hauts-de-France,France
+0 @I46@ INDI 
+1 NAME Désiré Auguste/ROGERS/
+2 GIVN Désiré Auguste
+2 SURN ROGERS
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-25T14:19:11.550Z
+1 OCCU Charpentier
+1 FAMS @F71@
+1 BIRT
+2 DATE 18 AUG 1835
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+0 @I47@ INDI 
+1 NAME Marine Avelaine/DESHAINES/
+2 GIVN Marine Avelaine
+2 SURN DESHAINES
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-24T15:23:34.537Z
+1 OCCU Ménagère
+1 FAMS @F71@
+1 BIRT
+2 DATE ABT 1835
+0 @I48@ INDI 
+1 NAME Louis Auguste Joseph/ROGERS/
+2 GIVN Louis Auguste Joseph
+2 SURN ROGERS
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:17:39.617Z
+1 OCCU Journalier
+1 OCCU Tisserand
+1 FAMS @F72@
+1 FAMC @F142@
+1 BIRT
+2 DATE 6 SEP 1779
+2 PLAC ,Borre,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 13 NOV 1850
+2 PLAC ,Borre,59,Nord,Hauts-de-France,France
+0 @I49@ INDI 
+1 NAME Amélie Victoire/COUSIN/
+2 GIVN Amélie Victoire
+2 SURN COUSIN
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:43:32.617Z
+1 OCCU Ménagère
+1 FAMS @F72@
+1 FAMC @F119@
+1 BIRT
+2 DATE 28 MAR 1802
+2 PLAC ,Borre,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 9 NOV 1878
+2 PLAC ,La Gorgue,59,Nord,Hauts-de-France,France
+0 @I50@ INDI 
+1 NAME Fidèle François Joseph/LORIDAN/
+2 GIVN Fidèle François Joseph
+2 SURN LORIDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-24T15:16:08.673Z
+1 OCCU Charpentier
+1 FAMS @F73@
+1 FAMC @F74@
+1 DEAT
+2 DATE 25 OCT 1912
+2 PLAC ,Merville,59,Nord,Hauts-de-France,France
+1 BIRT
+2 DATE 2 JAN 1841
+2 PLAC ,Merville,59,Nord,Hauts-de-France,France
+0 @I51@ INDI 
+1 NAME Alexis François/LORIDAN/
+2 GIVN Alexis François
+2 SURN LORIDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:12:09.155Z
+1 OCCU Cultivateur
+1 FAMS @F74@
+1 DEAT
+2 DATE 5 AUG 1868
+2 PLAC ,Merville,59,Nord,Hauts-de-France,France
+1 BIRT
+2 DATE 7 MAR 1802
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+0 @I52@ INDI 
+1 NAME Rosalie Alexandrine/DELANNOY/
+2 GIVN Rosalie Alexandrine
+2 SURN DELANNOY
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-24T09:06:56.369Z
+1 FAMS @F74@
+1 BIRT
+2 DATE 18 AUG 1815
+2 PLAC ,Lestrem,62,Pas-de-Calais,Hauts-de-France,France
+1 DEAT
+2 DATE 24 JUN 1875
+2 PLAC ,Merville,59,Nord,Hauts-de-France,France
+0 @I53@ INDI 
+1 NAME Philomène Lucie/PETILLON/
+2 GIVN Philomène Lucie
+2 SURN PETILLON
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-24T15:16:44.526Z
+1 OCCU Brodeuse
+1 FAMS @F73@
+1 FAMC @F75@
+1 BIRT
+2 DATE 2 APR 1843
+2 PLAC ,Borre,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 8 FEB 1871
+2 PLAC ,Merville,59,Nord,Hauts-de-France,France
+0 @I54@ INDI 
+1 NAME Henry Joseph/PETILLON/
+2 GIVN Henry Joseph
+2 SURN PETILLON
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-24T15:21:18.839Z
+1 OCCU Journalier
+1 FAMS @F75@
+1 FAMC @F76@
+1 BIRT
+2 DATE 12 MAR 1810
+2 PLAC ,Steenwerck,59,Nord,Hauts-de-France,France
+0 @I55@ INDI 
+1 NAME Louis Joseph/PETILLON/
+2 GIVN Louis Joseph
+2 SURN PETILLON
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-24T15:08:35.688Z
+1 OCCU Journalier
+1 FAMS @F76@
+1 BIRT
+2 DATE ABT 1748
+2 PLAC ,Sailly-sur-la-Lys,62,Pas-de-Calais,Hauts-de-France,France
+0 @I56@ INDI 
+1 NAME Marie Catherine/DELANGUE/
+2 GIVN Marie Catherine
+2 SURN DELANGUE
+1 SEX F
+1 CHAN 
+2 DATE  2022-07-21T14:37:21.929Z
+1 FAMS @F76@
+1 BIRT
+2 PLAC ,Steenwerck,59,Nord,Hauts-de-France,France
+0 @I57@ INDI 
+1 NAME Julie Adelaïde Joseph/BEGHIN/
+2 GIVN  Julie Adelaïde Joseph
+2 SURN BEGHIN
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-24T15:21:51.632Z
+1 OCCU Couturière
+1 FAMS @F75@
+1 DEAT
+2 DATE 26 DEC 1858
+2 PLAC ,Borre,59,Nord,Hauts-de-France,France
+1 BIRT
+2 DATE ABT 1810
+2 PLAC ,Gonnehem,62,Pas-de-Calais,Hauts-de-France,France
+0 @I58@ INDI 
+1 NAME Mireille Suzanne/STARQUE/
+2 GIVN Mireille Suzanne
+2 SURN STARQUE
+1 SEX F
+1 CHAN 
+2 DATE  2022-07-22T14:59:06.208Z
+1 FAMC @F69@
+1 DEAT
+2 DATE 30 JAN 2021
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+1 BIRT
+2 DATE 21 FEB 1919
+2 PLAC , Dunkerque, 59, Nord, Hauts-de-France, France
+0 @I59@ INDI 
+1 NAME Yvonne Emilienne/MARVEL/
+2 GIVN Yvonne Emilienne
+2 SURN MARVEL
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:23:15.146Z
+1 FAMC @F53@
+1 BIRT
+2 DATE 28 JAN 1912
+2 PLAC , Bagnolet, 93, Seine-Saint-denis, Ile-de-France, France
+1 DEAT
+2 DATE 28 OCT 1985
+2 PLAC ,Salviac,46,Lot,Occitanie,France
+0 @I61@ INDI 
+1 NAME Marie/MARVEL/
+2 GIVN Marie
+2 SURN MARVEL
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-23T15:41:29.917Z
+1 OCCU Sans profession
+1 FAMS @F79@
+1 FAMC @F54@
+1 BIRT
+2 DATE 3 NOV 1882
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I62@ INDI 
+1 NAME Jean/PRUNET/
+2 GIVN Jean
+2 SURN PRUNET
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-23T15:43:42.291Z
+1 OCCU Domestique
+1 FAMS @F79@
+1 BIRT
+2 DATE 17 MAR 1880
+2 PLAC ,Saint-Cernin,15175,Cantal,Auvergne-Rhône-Alpes,France
+0 @I63@ INDI 
+1 NAME Suzanne Philomène/ROGERS/
+2 GIVN Suzanne Philomène
+2 SURN ROGERS
+1 SEX F
+1 CHAN 
+2 DATE  2022-07-22T13:41:49.397Z
+1 FAMC @F70@
+1 DEAT
+2 DATE 1 OCT 1976
+2 PLAC , Tourcoing, 59, Nord, Hauts-de-France, France
+1 BIRT
+2 DATE 7 AUG 1896
+2 PLAC ,Borre,59,Nord,Hauts-de-France,France
+0 @I64@ INDI 
+1 NAME Jean Joseph/LORIDAN/
+2 GIVN Jean Joseph
+2 SURN LORIDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T07:13:12.930Z
+1 FAMS @F80@
+1 BIRT
+2 DATE 19 AUG 1765
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 12 MAY 1816
+2 PLAC ,Merville,59,Nord,Hauts-de-France,France
+0 @I65@ INDI 
+1 NAME Victoire Regina Rosalie/LEMAIRE/
+2 GIVN Victoire Regina Rosalie
+2 SURN LEMAIRE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-24T08:56:08.308Z
+1 OCCU Fileuse
+1 FAMS @F80@
+1 BIRT
+2 DATE 29 OCT 1767
+2 PLAC ,Strazeele,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 5 NOV 1845
+2 PLAC ,La Gorgue,59,Nord,Hauts-de-France,France
+0 @I66@ INDI 
+1 NAME Antoine Albert/LORIDAN/
+2 GIVN Antoine Albert
+2 SURN LORIDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T07:52:36.907Z
+1 OCCU Laboureur
+1 FAMS @F81@
+1 FAMC @F138@
+1 BIRT
+2 DATE ABT 1720
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 12 SEP 1799
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+0 @I67@ INDI 
+1 NAME Marie Jacqueline Augustine/DAVID/
+2 GIVN Marie Jacqueline Augustine
+2 SURN DAVID
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:13:16.836Z
+1 OCCU Fileuse
+1 FAMS @F81@
+1 BIRT
+2 DATE 12 SEP 1731
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 24 NOV 1797
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+0 @I72@ INDI 
+1 NAME Louis/LORIDAN/
+2 GIVN Louis
+2 SURN LORIDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:13:22.034Z
+1 OCCU Censier de la Cense du Seclin
+1 FAMS @F138@
+1 FAMC @F135@
+1 BIRT
+2 DATE ABT 1677
+1 DEAT
+2 DATE ABT 1752
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+0 @I73@ INDI 
+1 NAME Marie Marguerite/DU CORNETZ/
+2 GIVN Marie Marguerite
+2 SURN DU CORNETZ
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:52:36.927Z
+1 FAMS @F138@
+1 BIRT
+2 DATE ABT 1687
+0 @I74@ INDI 
+1 NAME Antoine/LORIDAN/
+2 GIVN Antoine
+2 SURN LORIDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:12:32.258Z
+1 OCCU Laboureur
+1 FAMS @F135@
+1 FAMC @F136@
+1 BIRT
+2 DATE 11 NOV 1636
+2 PLAC ,Nieppe,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 23 JUL 1688
+2 PLAC ,Steenwerck,59,Nord,Hauts-de-France,France
+0 @I75@ INDI 
+1 NAME Jeanne/CHIEUX/
+2 GIVN Jeanne
+2 SURN CHIEUX
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:41:02.355Z
+1 FAMS @F135@
+0 @I76@ INDI 
+1 NAME Louis/LORIDAN/
+2 GIVN Louis
+2 SURN LORIDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T07:42:50.050Z
+1 FAMS @F136@
+1 FAMC @F133@
+1 BIRT
+2 DATE ABT 1608
+2 PLAC ,Frelinghien,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE BEF 1680
+2 PLAC ,Nieppe,59,Nord,Hauts-de-France,France
+0 @I77@ INDI 
+1 NAME Peronne/COISNE/
+2 GIVN Peronne
+2 SURN COISNE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:42:52.460Z
+1 FAMS @F136@
+1 BAPM
+2 DATE ABT 1614
+2 PLAC ,Deulemont,59890,Nord,Hauts-de-France,France
+0 @I78@ INDI 
+1 NAME Louis/LEURIDAN/
+2 GIVN Louis
+2 SURN LEURIDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T07:02:28.995Z
+1 FAMS @F133@
+1 BIRT
+2 DATE ABT 1575
+2 PLAC ,Armentières,59,Nord,Hauts-de-France,France
+0 @I79@ INDI 
+1 NAME Marie Catherine/LAMERANT/
+2 GIVN Marie Catherine
+2 SURN LAMERANT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:02:39.222Z
+1 FAMS @F133@
+1 BIRT
+2 DATE ABT 1580
+0 @I80@ INDI 
+1 NAME Jean/LEROU/
+2 GIVN Jean
+2 SURN LEROU
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-25T09:33:40.390Z
+1 FAMS @F90@
+0 @I81@ INDI 
+1 NAME Catherine/LATOURNERIE/
+2 GIVN Catherine
+2 SURN LATOURNERIE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-25T09:34:33.148Z
+1 FAMS @F90@
+0 @I85@ INDI 
+1 NAME Jean/LESCURE/
+2 GIVN Jean
+2 SURN LESCURE
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T09:07:17.739Z
+1 OCCU Cordonnier
+1 FAMS @F99@
+1 FAMC @F98@
+1 BIRT
+2 DATE 2 SEP 1794
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I86@ INDI 
+1 NAME Marie/CANNES/
+2 GIVN Marie
+2 SURN CANNES
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:39:04.363Z
+1 FAMS @F99@
+1 FAMC @F134@
+1 BIRT
+2 DATE 9 SEP 1797
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I87@ INDI 
+1 NAME Géraud/CANNES/
+2 GIVN Géraud
+2 SURN CANNES
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T07:39:04.382Z
+1 FAMS @F134@
+1 DEAT
+2 DATE 22 MAR 1830
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I88@ INDI 
+1 NAME Thérèse/DAMON/
+2 GIVN Thérèse
+2 SURN DAMON
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:39:12.139Z
+1 FAMS @F134@
+1 DEAT
+2 DATE 20 FEB 1829
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I89@ INDI 
+1 NAME Antoine/LESCURE/
+2 GIVN Antoine
+2 SURN LESCURE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-25T12:33:01.904Z
+1 OCCU Journalier
+1 FAMS @F98@
+1 BIRT
+2 DATE ABT 1748
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+1 DEAT
+2 DATE 1 SEP 1818
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I90@ INDI 
+1 NAME Catherine/LABROUSSE/
+2 GIVN Catherine
+2 SURN LABROUSSE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-25T12:51:14.772Z
+1 FAMS @F98@
+1 FAMC @F102@
+1 BIRT
+2 DATE 29 DEC 1764
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+1 DEAT
+2 DATE AFT 1818
+0 @I91@ INDI 
+1 NAME Géraud/LABROUSSE/
+2 GIVN Géraud
+2 SURN LABROUSSE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-25T12:57:17.638Z
+1 FAMS @F102@
+1 FAMC @F105@
+1 BIRT
+2 DATE 11 FEB 1731
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I93@ INDI 
+1 NAME Anne/PERTHUS/
+2 GIVN Anne
+2 SURN PERTHUS
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-25T12:51:17.488Z
+1 FAMS @F102@
+1 DEAT
+2 DATE AFT JUN 1782
+1 BIRT
+2 DATE ABT 1736
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I94@ INDI 
+1 NAME François/LABROUSSE/
+2 GIVN François
+2 SURN LABROUSSE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-25T13:06:27.533Z
+1 FAMS @F105@
+1 FAMC @F108@
+1 BIRT
+2 DATE 25 APR 1701
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+1 DEAT
+2 DATE 21 MAY 1772
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I95@ INDI 
+1 NAME Jeanne/ROUSSINHOL/
+2 GIVN Jeanne
+2 SURN ROUSSINHOL
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-25T12:57:17.656Z
+1 FAMS @F105@
+1 BIRT
+2 DATE ABT 1702
+1 DEAT
+2 DATE 17 FEB 1778
+2 PLAC , Laroquevieille, 15, Cantal, Auvergne-Rhône-Alpes, France
+0 @I96@ INDI 
+1 NAME François/LABROUSSE/
+2 GIVN François
+2 SURN LABROUSSE
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T09:08:53.549Z
+1 OCCU Marchand chaudronnier
+1 FAMS @F108@
+1 DEAT
+2 DATE 21 JAN 1744
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+1 BIRT
+2 DATE BEF 1675
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I97@ INDI 
+1 NAME Marie/LAPORTE/
+2 GIVN Marie
+2 SURN LAPORTE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-25T13:13:26.835Z
+1 FAMS @F108@
+1 FAMC @F111@
+1 BIRT
+2 DATE 29 DEC 1681
+2 PLAC ,Lascelle,15,Cantal,Auvergne-Rhône-Alpes,France
+1 DEAT
+2 DATE 2 APR 1722
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I98@ INDI 
+1 NAME Géraud/LAPORTE/
+2 GIVN Géraud
+2 SURN LAPORTE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-25T13:13:30.736Z
+1 OCCU Chaudronnier
+1 FAMS @F111@
+1 BIRT
+2 DATE ABT 1650
+2 PLAC ,Marmanhac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 DEAT
+2 DATE 8 DEC 1736
+2 PLAC ,Lascelle,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I99@ INDI 
+1 NAME Jeanne/BROUSSOUS/
+2 GIVN Jeanne
+2 SURN BROUSSOUS
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-25T13:20:02.986Z
+1 FAMS @F111@
+1 FAMC @F114@
+1 BIRT
+2 DATE ABT 1652
+2 PLAC ,Lascelle,15,Cantal,Auvergne-Rhône-Alpes,France
+1 DEAT
+2 DATE 28 MAR 1717
+2 PLAC , Lascelle, 15, Cantal, Auvergne-Rhône-Alpes, France
+0 @I100@ INDI 
+1 NAME Bertrand/BROUSSOUS/
+2 GIVN Bertrand
+2 SURN BROUSSOUS
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-25T13:20:03.006Z
+1 FAMS @F114@
+1 BIRT
+2 DATE ABT 1620
+2 PLAC ,Lascelle,15,Cantal,Auvergne-Rhône-Alpes,France
+1 DEAT
+2 DATE BEF JUN 1673
+0 @I101@ INDI 
+1 NAME Antoinette/BROUSSOUS/
+2 GIVN Antoinette
+2 SURN BROUSSOUS
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-25T13:20:05.760Z
+1 FAMS @F114@
+1 BIRT
+2 DATE ABT 1620
+1 DEAT
+2 DATE BEF JUN 1673
+2 PLAC ,Lascelle,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I102@ INDI 
+1 NAME Louis Joseph/ROGERS/
+2 GIVN Louis Joseph
+2 SURN ROGERS
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:17:52.205Z
+1 FAMS @F142@
+1 DEAT
+2 DATE 26 JAN 1824
+2 PLAC ,Merville,59,Nord,Hauts-de-France,France
+0 @I103@ INDI 
+1 NAME Jeanne Thérèse Agathe/MAES/
+2 GIVN Jeanne Thérèse Agathe
+2 SURN MAES
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T08:17:39.636Z
+1 FAMS @F142@
+1 DEAT
+2 DATE 7 APR 1806
+2 PLAC ,Borre,59,Nord,Hauts-de-France,France
+0 @I104@ INDI 
+1 NAME François Joseph/COUSIN/
+2 GIVN François Joseph
+2 SURN COUSIN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T07:45:08.936Z
+1 FAMS @F119@
+1 FAMC @F137@
+1 BIRT
+2 DATE 12 NOV 1739
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+1 BAPM
+2 DATE 12 NOV 1739
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 28 APR 1817
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+0 @I105@ INDI 
+1 NAME Amélie Victoire/LEMAITRE/
+2 GIVN Amélie Victoire
+2 SURN LEMAITRE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T08:01:50.752Z
+1 OCCU Fileuse de lin
+1 FAMS @F119@
+1 FAMC @F124@
+1 DEAT
+2 DATE 16 JAN 1849
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+1 BIRT
+2 DATE 25 MAY 1778
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+0 @I106@ INDI 
+1 NAME Pierre Antoine Joseph/LEMAITRE/
+2 GIVN Pierre Antoine Joseph
+2 SURN LEMAITRE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:02:46.565Z
+1 FAMS @F124@
+1 FAMC @F140@
+1 BIRT
+2 DATE 11 APR 1744
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 16 APR 1796
+2 PLAC , Hazebrouck, 59, Nord, Hauts-de-France, France
+0 @I107@ INDI 
+1 NAME Isabelle Joseph/PECKELAERT/
+2 GIVN Isabelle Joseph
+2 SURN PECKELAERT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T08:16:11.151Z
+1 FAMS @F124@
+1 FAMC @F141@
+1 BIRT
+2 DATE 6 NOV 1746
+2 PLAC ,Caëstre,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 19 JAN 1795
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+0 @I108@ INDI 
+1 NAME Jean Baptiste/COUSIN/
+2 GIVN Jean Baptiste
+2 SURN COUSIN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T07:45:46.842Z
+1 OCCU Cultivateur
+1 FAMS @F137@
+1 DEAT
+2 DATE 1 FEB 1780
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+1 BIRT
+2 DATE ABT 1700
+0 @I109@ INDI 
+1 NAME Marie Claire/COUSIN/
+2 GIVN Marie Claire
+2 SURN COUSIN
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T07:45:08.955Z
+1 FAMS @F137@
+1 BIRT
+2 DATE ABT 1702
+1 DEAT
+2 DATE 16 APR 1782
+2 PLAC , Hazebrouck, 59, Nord, Hauts-de-France, France
+0 @I110@ INDI 
+1 NAME Philippe/PECKELAERT/
+2 GIVN Philippe
+2 SURN PECKELAERT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:16:14.686Z
+1 FAMS @F141@
+1 BIRT
+2 DATE ABT 1720
+2 PLAC ,Flêtre,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 26 MAY 1783
+2 PLAC ,Flêtre,59,Nord,Hauts-de-France,France
+0 @I111@ INDI 
+1 NAME Jacqueline/MAES/
+2 GIVN Jacqueline
+2 SURN MAES
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-30T08:21:29.514Z
+1 FAMS @F141@
+1 DEAT
+2 DATE 10 FEB 1757
+2 PLAC ,Caëstre,59,Nord,Hauts-de-France,France
+0 @I112@ INDI 
+1 NAME Pierre Philippe/LEMAITRE/
+2 GIVN Pierre Philippe
+2 SURN LEMAITRE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T08:02:49.216Z
+1 FAMS @F140@
+1 BIRT
+2 DATE ABT 1708
+2 PLAC ,Steenbecque,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 17 OCT 1783
+2 PLAC ,Merville,59,Nord,Hauts-de-France,France
+0 @I113@ INDI 
+1 NAME Thérèse/SMACQ/
+2 GIVN Thérèse
+2 SURN SMACQ
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T08:03:00.457Z
+1 FAMS @F140@
+1 BIRT
+2 DATE ABT 1711
+2 PLAC ,Bailleul,59,Nord,Hauts-de-France,France
+1 DEAT
+2 DATE 10 JAN 1791
+2 PLAC ,Merville,59,Nord,Hauts-de-France,France
+0 @I114@ INDI 
+1 NAME Jean/MARBEL/
+2 GIVN Jean
+2 SURN MARBEL
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T15:16:38.674Z
+1 OCCU Laboureur
+1 FAMS @F309@
+1 BIRT
+2 DATE ABT 1702
+1 DEAT
+2 DATE 26 APR 1748
+2 PLAC ,Maurs,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I115@ INDI 
+1 NAME Jeanne Dite Anne/ROUMEGOUX/
+2 GIVN Jeanne Dite Anne
+2 SURN ROUMEGOUX
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T16:33:02.919Z
+1 FAMS @F309@
+1 FAMC @F143@
+1 BIRT
+2 DATE 14 JAN 1703
+2 PLAC ,Maurs,15,Cantal,Auvergne-Rhône-Alpes,France
+1 DEAT
+2 DATE 21 OCT 1769
+2 PLAC ,Maurs,15,Cantal,Auvergne-Rhône-Alpes,France
+0 @I116@ INDI 
+1 NAME Pierre/ROUMEGOUX/
+2 GIVN Pierre
+2 SURN ROUMEGOUX
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T15:30:01.677Z
+1 FAMS @F143@
+1 NOTE  Habite à St Etienne de Maurs le 22/05/1738 car un acte à été rédigé chez 
+2 CONC un notaire à Maurs entre ROUMEGOUX Pierre et GERBAUD Jean époux d'Anne ROU
+2 CONC MEGOUX
+0 @I117@ INDI 
+1 NAME Jeanne/ROCHE/
+2 GIVN Jeanne
+2 SURN ROCHE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T08:22:55.440Z
+1 FAMS @F143@
+0 @I118@ INDI 
+1 NAME ?/?/
+2 GIVN ?
+2 SURN ?
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T09:34:54.777Z
+1 FAMS @F139@
+1 NOTE  Père inconnu
+0 @I119@ INDI 
+1 NAME Noel/DELAGACHE/
+2 GIVN Noel
+2 SURN DELAGACHE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T13:22:56.825Z
+1 FAMS @F146@
+1 FAMC @F186@
+1 BIRT
+2 DATE 8 FEB 1776
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 21 SEP 1807
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I120@ INDI 
+1 NAME Marie Thérèse/CARLIER/
+2 GIVN Marie Thérèse
+2 SURN CARLIER
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T15:16:42.193Z
+1 FAMS @F146@
+1 FAMC @F284@
+1 BIRT
+2 DATE 23 JUN 1777
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 14 AUG 1818
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I121@ INDI 
+1 NAME Léopold/PAULET/
+2 GIVN Léopold
+2 SURN PAULET
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T09:30:12.632Z
+1 FAMS @F149@
+1 FAMC @F152@
+1 BIRT
+2 DATE 11 AUG 1737
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 14 JAN 1799
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I122@ INDI 
+1 NAME Marie Anne Joseph/FIEVET/
+2 GIVN Marie Anne Joseph
+2 SURN FIEVET
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-30T08:14:41.525Z
+1 FAMS @F149@
+1 FAMC @F162@
+1 DEAT
+2 DATE 26 OCT 1801
+2 PLAC , Frasnes-lez-Anvaing, 7910, Hainaut, Wallonie, Belgique
+1 BIRT
+2 DATE 14 FEB 1762
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+0 @I123@ INDI 
+1 NAME Jean Philippe/PAULET/
+2 GIVN Jean Philippe
+2 SURN PAULET
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T09:37:12.072Z
+1 FAMS @F152@
+1 FAMC @F159@
+1 BIRT
+2 DATE 1 JUN 1712
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 27 OCT 1766
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I124@ INDI 
+1 NAME Marie Elisabeth/JOURET/
+2 GIVN Marie Elisabeth
+2 SURN JOURET
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T09:36:49.179Z
+1 FAMS @F152@
+1 FAMC @F155@
+1 FAMC @F158@
+1 BIRT
+2 DATE 16 NOV 1712
+2 PLAC ,Flobecq,7880,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 4 JAN 1791
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I125@ INDI 
+1 NAME Philippe/PAULET/
+2 GIVN Philippe
+2 SURN PAULET
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T09:37:13.570Z
+1 FAMS @F159@
+0 @I126@ INDI 
+1 NAME Marie Marguerite/DEMARET/
+2 GIVN Marie Marguerite
+2 SURN DEMARET
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T09:37:12.092Z
+1 FAMS @F159@
+0 @I128@ INDI 
+1 NAME Joseph/JOURET/
+2 GIVN Joseph
+2 SURN JOURET
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T09:36:49.197Z
+1 FAMS @F158@
+1 BAPM
+2 DATE 22 AUG 1688
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I129@ INDI 
+1 NAME Marie Anne/GALLAND/
+2 GIVN Marie Anne
+2 SURN GALLAND
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T09:36:56.281Z
+1 FAMS @F158@
+0 @I130@ INDI 
+1 NAME Georges François/FIEVET/
+2 GIVN Georges François
+2 SURN FIEVET
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-30T08:10:01.379Z
+1 FAMS @F162@
+1 FAMC @F165@
+1 BIRT
+2 DATE 21 APR 1733
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+0 @I131@ INDI 
+1 NAME Catherine Thérèse/RAMUT/
+2 GIVN Catherine Thérèse
+2 SURN RAMUT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-30T08:11:08.492Z
+1 FAMS @F162@
+1 FAMC @F168@
+1 BIRT
+2 DATE 18 APR 1739
+2 PLAC , Frasnes-lez-Anvaing, 7910, Hainaut, Wallonie, Belgique
+0 @I132@ INDI 
+1 NAME Jean Jacques/FIEVET/
+2 GIVN Jean Jacques
+2 SURN FIEVET
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-30T08:05:37.268Z
+1 FAMS @F165@
+1 FAMC @F171@
+1 BAPM
+2 DATE 23 MAY 1701
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 7 APR 1770
+2 PLAC , Frasnes-lez-Anvaing, 7910, Hainaut, Wallonie, Belgique
+0 @I133@ INDI 
+1 NAME Marie Joseph/SOUDAN/
+2 GIVN Marie Joseph
+2 SURN SOUDAN
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-30T08:06:24.508Z
+1 FAMS @F165@
+1 FAMC @F174@
+1 BAPM
+2 DATE 4 MAR 1702
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 31 MAY 1778
+2 PLAC , Frasnes-lez-Anvaing, 7910, Hainaut, Wallonie, Belgique
+0 @I134@ INDI 
+1 NAME Hubert François/RAMUT (RAMU)/
+2 GIVN Hubert François
+2 SURN RAMUT (RAMU)
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-30T08:07:48.666Z
+1 FAMS @F168@
+1 FAMC @F180@
+1 BAPM
+2 DATE 3 AUG 1713
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+0 @I135@ INDI 
+1 NAME Marie Anne Joseph/SOUDAN/
+2 GIVN Marie Anne Joseph
+2 SURN SOUDAN
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-30T07:59:55.715Z
+1 FAMS @F168@
+1 FAMC @F183@
+1 BAPM
+2 DATE 30 APR 1715
+2 PLAC , Frasnes-lez-Anvaing, 7910, Hainaut, Wallonie, Belgique
+0 @I136@ INDI 
+1 NAME Jean/FIEVET/
+2 GIVN Jean
+2 SURN FIEVET
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-30T08:01:01.688Z
+1 FAMS @F171@
+1 BIRT
+2 DATE 2 DEC 1653
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 29 JAN 1738
+2 PLAC , Frasnes-lez-Anvaing, 7910, Hainaut, Wallonie, Belgique
+0 @I137@ INDI 
+1 NAME Hermine/VOISIN/
+2 GIVN Hermine
+2 SURN VOISIN
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-30T08:11:46.217Z
+1 FAMS @F171@
+1 DEAT
+2 DATE 21 NOV 1744
+2 PLAC , Frasnes-lez-Anvaing, 7910, Hainaut, Wallonie, Belgique
+0 @I138@ INDI 
+1 NAME Georges/SOUDAN/
+2 GIVN Georges
+2 SURN SOUDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-30T08:02:19.596Z
+1 FAMS @F174@
+1 FAMC @F177@
+1 DEAT
+2 DATE 12 JAN 1707
+2 PLAC , Frasnes-lez-Anvaing, 7910, Hainaut, Wallonie, Belgique
+1 BAPM
+2 DATE 12 OCT 1657
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+0 @I139@ INDI 
+1 NAME Catherine/RAMU/
+2 GIVN Catherine
+2 SURN RAMU
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T12:07:04.219Z
+1 FAMS @F174@
+0 @I140@ INDI 
+1 NAME Gilles/SOUDAN/
+2 GIVN Gilles
+2 SURN SOUDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T12:12:18.583Z
+1 FAMS @F177@
+0 @I141@ INDI 
+1 NAME Jeanne/GORHON/
+2 GIVN Jeanne
+2 SURN GORHON
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T12:12:23.391Z
+1 FAMS @F177@
+0 @I142@ INDI 
+1 NAME Louis/RAMU/
+2 GIVN Louis
+2 SURN RAMU
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-30T08:04:38.827Z
+1 FAMS @F180@
+1 BIRT
+2 DATE ABT 1680
+1 DEAT
+2 DATE 19 SEP 1740
+2 PLAC , Frasnes-lez-Anvaing, 7910, Hainaut, Wallonie, Belgique
+0 @I143@ INDI 
+1 NAME Marie Catherine/FOUCARD/
+2 GIVN Marie Catherine
+2 SURN FOUCARD
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-30T08:03:50.501Z
+1 FAMS @F180@
+1 BIRT
+2 DATE ABT 1672
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 27 DEC 1737
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+0 @I144@ INDI 
+1 NAME Jean Baptiste/SOUDAN/
+2 GIVN Jean Baptiste
+2 SURN SOUDAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-30T08:06:56.763Z
+1 FAMS @F183@
+0 @I145@ INDI 
+1 NAME Marie Thérèse/DUHAUT (DUHAU)/
+2 GIVN Marie Thérèse
+2 SURN DUHAUT (DUHAU)
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T12:23:50.943Z
+1 FAMS @F183@
+0 @I146@ INDI 
+1 NAME Pierre François/DELAGACHE/
+2 GIVN Pierre François
+2 SURN DELAGACHE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T12:42:35.870Z
+1 FAMS @F186@
+1 FAMC @F189@
+1 BIRT
+2 DATE 20 JUL 1746
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 23 MAR 1783
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I147@ INDI 
+1 NAME Marie Catherine/CORNIL/
+2 GIVN Marie Catherine
+2 SURN CORNIL
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T12:36:54.349Z
+1 FAMS @F186@
+1 BIRT
+2 DATE 30 MAR 1750
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 19 APR 1783
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I148@ INDI 
+1 NAME Joseph/DELAGACHE/
+2 GIVN Joseph
+2 SURN DELAGACHE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T12:46:45.167Z
+1 FAMS @F189@
+1 FAMC @F192@
+1 BIRT
+2 DATE 17 MAR 1703
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I149@ INDI 
+1 NAME Marie Jeanne/SADOINE/
+2 GIVN Marie Jeanne
+2 SURN SADOINE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T12:53:50.513Z
+1 FAMS @F189@
+1 FAMC @F195@
+1 BIRT
+2 DATE 9 JUL 1719
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 3 APR 1795
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I150@ INDI 
+1 NAME Jean/DELAGACHE/
+2 GIVN Jean
+2 SURN DELAGACHE
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-07T06:39:39.565Z
+1 FAMS @F192@
+1 FAMS @F296@
+1 BIRT
+2 DATE ABT 1663
+1 DEAT
+2 DATE 25 MAR 1740
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I151@ INDI 
+1 NAME Marie Jeanne/FLAMENG/
+2 GIVN Marie Jeanne
+2 SURN FLAMENG
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-07T06:42:14.507Z
+1 FAMS @F192@
+1 DEAT
+2 DATE 3 SEP 1745
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I152@ INDI 
+1 NAME Michel/SADOINE/
+2 GIVN Michel
+2 SURN SADOINE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T13:00:19.227Z
+1 FAMS @F195@
+1 FAMC @F198@
+1 BIRT
+2 DATE 29 SEP 1695
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 2 MAY 1775
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I153@ INDI 
+1 NAME Marie Catherine/MAUROIT/
+2 GIVN Marie Catherine
+2 SURN MAUROIT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T13:21:51.497Z
+1 FAMS @F195@
+1 FAMC @F238@
+1 BIRT
+2 DATE 1 FEB 1692
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+1 DEAT
+2 DATE 2 JAN 1759
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I154@ INDI 
+1 NAME Jacques/SADOINE/
+2 GIVN Jacques
+2 SURN SADOINE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T13:09:35.620Z
+1 FAMS @F198@
+1 FAMC @F201@
+1 BIRT
+2 DATE 24 OCT 1658
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 9 NOV 1742
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I155@ INDI 
+1 NAME Marie/DEKONINCK (KEUNINCQ)/
+2 GIVN Marie
+2 SURN DEKONINCK (KEUNINCQ)
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T13:36:01.062Z
+1 FAMS @F198@
+1 FAMC @F217@
+1 FAMC @F215@
+1 BIRT
+2 DATE 2 JUL 1664
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 2 JUL 1720
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I156@ INDI 
+1 NAME Pierre/SADOINE/
+2 GIVN Pierre
+2 SURN SADOINE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T13:14:46.161Z
+1 FAMS @F201@
+1 FAMC @F204@
+1 BIRT
+2 DATE 4 MAR 1615
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 18 APR 1705
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I157@ INDI 
+1 NAME Catherine/DUTHY/
+2 GIVN Catherine
+2 SURN DUTHY
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-07T12:33:34.433Z
+1 FAMS @F201@
+1 FAMC @F210@
+1 BIRT
+2 DATE ABT 1632
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 25 FEB 1692
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I158@ INDI 
+1 NAME Jean/SADOINE/
+2 GIVN Jean
+2 SURN SADOINE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T13:17:03.229Z
+1 FAMS @F204@
+1 FAMC @F207@
+1 BIRT
+2 DATE ABT 1592
+0 @I159@ INDI 
+1 NAME Marie/DUTRASNOIT/
+2 GIVN Marie
+2 SURN DUTRASNOIT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T13:14:49.568Z
+1 FAMS @F204@
+1 BIRT
+2 DATE ABT 1592
+0 @I160@ INDI 
+1 NAME Antoine/SADOINE/
+2 GIVN Antoine
+2 SURN SADOINE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T13:17:03.247Z
+1 FAMS @F207@
+1 BIRT
+2 DATE ABT 1560
+0 @I161@ INDI 
+1 NAME Georgette/WINDAL/
+2 GIVN Georgette
+2 SURN WINDAL
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T13:17:05.851Z
+1 FAMS @F207@
+1 BIRT
+2 DATE ABT 1560
+0 @I162@ INDI 
+1 NAME Balthazar/DUTHY/
+2 GIVN Balthazar
+2 SURN DUTHY
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-07T12:35:35.495Z
+1 FAMS @F210@
+0 @I163@ INDI 
+1 NAME Thomasse/DES MAREZ/
+2 GIVN Thomasse
+2 SURN DES MAREZ
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-07T12:35:13.121Z
+1 FAMS @F210@
+1 FAMC @F213@
+1 DEAT
+2 DATE 25 MAR 1690
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 BIRT
+2 DATE ABT 1612
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I164@ INDI 
+1 NAME Firmin/DES MAREZ/
+2 GIVN Firmin
+2 SURN DES MAREZ
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-07T12:37:52.158Z
+1 FAMS @F213@
+0 @I165@ INDI 
+1 NAME Antoinette/POINDEUR/
+2 GIVN Antoinette
+2 SURN POINDEUR
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T13:21:36.679Z
+1 FAMS @F213@
+0 @I166@ INDI 
+1 NAME Egidius/DE CONINCK (DE KEUNNINCK)/
+2 GIVN Egidius
+2 SURN DE CONINCK (DE KEUNNINCK)
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T12:17:19.191Z
+1 FAMS @F217@
+1 FAMC @F220@
+1 BIRT
+2 DATE 30 MAR 1636
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+1 DEAT
+2 DATE 3 DEC 1693
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+0 @I169@ INDI 
+1 NAME Martine/ROLAND/
+2 GIVN Martine
+2 SURN ROLAND
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T13:21:22.189Z
+1 FAMS @F217@
+1 BIRT
+2 DATE ABT 1630
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 22 MAY 1688
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+0 @I170@ INDI 
+1 NAME Ludovicus/DE CONINCK/
+2 GIVN Ludovicus
+2 SURN DE CONINCK
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T12:09:09.739Z
+1 FAMS @F220@
+1 FAMC @F223@
+1 BIRT
+2 DATE 17 OCT 1593
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+1 DEAT
+2 DATE 31 DEC 1642
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+0 @I171@ INDI 
+1 NAME Balduina (Bauduine)/OOREMAN/
+2 GIVN Balduina (Bauduine)
+2 SURN OOREMAN
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T13:41:27.734Z
+1 FAMS @F220@
+1 DEAT
+2 DATE 14 NOV 1668
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+1 BIRT
+2 DATE 12 FEB 1595
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+0 @I173@ INDI 
+1 NAME Ludovicus/DE CONINCK/
+2 GIVN Ludovicus
+2 SURN DE CONINCK
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T13:44:27.959Z
+1 FAMS @F223@
+1 BIRT
+2 DATE ABT 1560
+0 @I174@ INDI 
+1 NAME Catherina/WYERNS (ENGELBERT)/
+2 GIVN Catherina
+2 SURN WYERNS (ENGELBERT)
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T13:46:56.580Z
+1 FAMS @F223@
+1 BIRT
+2 DATE ABT 1560
+1 DEAT
+2 DATE 26 DEC 1634
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+0 @I175@ INDI 
+1 NAME Joannes/OORMAN/
+2 GIVN Joannes
+2 SURN OORMAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T13:48:20.914Z
+1 FAMS @F226@
+1 FAMC @F229@
+1 BIRT
+2 DATE ABT 1560
+1 DEAT
+2 DATE ABT 1603
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+0 @I176@ INDI 
+1 NAME Pétronille/DEWEVER/
+2 GIVN Pétronille
+2 SURN DEWEVER
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T12:02:59.063Z
+1 FAMS @F226@
+1 BIRT
+2 DATE ABT 1560
+2 PLAC ,,,,,
+0 @I177@ INDI 
+1 NAME Egide/OORMAN/
+2 GIVN Egide
+2 SURN OORMAN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T13:50:10.239Z
+1 FAMS @F229@
+0 @I178@ INDI 
+1 NAME Bauduine/SOMOENS/
+2 GIVN Bauduine
+2 SURN SOMOENS
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T13:50:15.295Z
+1 FAMS @F229@
+0 @I179@ INDI 
+1 NAME Martin/ROLAND/
+2 GIVN Martin
+2 SURN ROLAND
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T13:21:25.797Z
+1 FAMS @F232@
+1 BIRT
+2 DATE ABT 1580
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I180@ INDI 
+1 NAME Marie/ROUSSEAU/
+2 GIVN Marie
+2 SURN ROUSSEAU
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T13:20:50.462Z
+1 FAMS @F232@
+1 FAMC @F235@
+1 BIRT
+2 DATE ABT 1590
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 18 SEP 1684
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I181@ INDI 
+1 NAME Pierre/ROUSSEAU/
+2 GIVN Pierre
+2 SURN ROUSSEAU
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T13:26:38.697Z
+1 FAMS @F235@
+1 FAMC @F413@
+1 BIRT
+2 DATE ABT 1565
+0 @I182@ INDI 
+1 NAME Josine/LEMEY/
+2 GIVN Josine
+2 SURN LEMEY
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T13:31:38.354Z
+1 FAMS @F235@
+1 FAMC @F416@
+1 BIRT
+2 DATE ABT 1565
+0 @I183@ INDI 
+1 NAME Jacques/MAUROIT/
+2 GIVN Jacques
+2 SURN MAUROIT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T14:12:45.718Z
+1 FAMS @F238@
+1 FAMC @F241@
+1 BIRT
+2 DATE 15 JUN 1655
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 2 DEC 1708
+2 PLAC , Ellezelles, 7890, Hainaut , Wallonie, Belgique
+0 @I184@ INDI 
+1 NAME Marie Madeleine/WALLEMACQ/
+2 GIVN Marie Madeleine
+2 SURN WALLEMACQ
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T14:29:15.765Z
+1 FAMS @F238@
+1 FAMC @F253@
+1 DEAT
+2 DATE 13 OCT 1761
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 BIRT
+2 DATE ABT 1664
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I185@ INDI 
+1 NAME Grégoire/MAUROIT/
+2 GIVN Grégoire
+2 SURN MAUROIT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T14:14:28.794Z
+1 FAMS @F241@
+1 FAMC @F244@
+1 BIRT
+2 DATE ABT 1615
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I186@ INDI 
+1 NAME Jeanne/DUBRULLE/
+2 GIVN Jeanne
+2 SURN DUBRULLE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T14:18:15.411Z
+1 FAMS @F241@
+1 FAMC @F247@
+0 @I187@ INDI 
+1 NAME Jean/MAUROIT/
+2 GIVN Jean
+2 SURN MAUROIT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T14:14:28.813Z
+1 FAMS @F244@
+0 @I188@ INDI 
+1 NAME Marguerite/BOURGEOIS/
+2 GIVN Marguerite
+2 SURN BOURGEOIS
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T14:14:30.730Z
+1 FAMS @F244@
+0 @I189@ INDI 
+1 NAME Louis/DUBRULLE/
+2 GIVN Louis
+2 SURN DUBRULLE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T14:21:21.900Z
+1 FAMS @F247@
+1 FAMC @F250@
+1 BIRT
+2 DATE ABT 1590
+0 @I190@ INDI 
+1 NAME Marie/DERUSTER/
+2 GIVN Marie
+2 SURN DERUSTER
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T14:18:30.861Z
+1 FAMS @F247@
+1 BIRT
+2 DATE ABT 1590
+0 @I191@ INDI 
+1 NAME Antoine/DUBRULLE/
+2 GIVN Antoine
+2 SURN DUBRULLE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T14:21:21.917Z
+1 FAMS @F250@
+1 BIRT
+2 DATE ABT 1560
+1 NOTE  filiation à prouver
+0 @I192@ INDI 
+1 NAME Anne/CARNAIL/
+2 GIVN Anne
+2 SURN CARNAIL
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T14:21:24.091Z
+1 FAMS @F250@
+1 BIRT
+2 DATE ABT 1560
+0 @I193@ INDI 
+1 NAME Jean/WALLEMACQ/
+2 GIVN Jean
+2 SURN WALLEMACQ
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T14:34:34.183Z
+1 FAMS @F253@
+1 FAMC @F256@
+1 BIRT
+2 DATE 16 APR 1637
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 30 SEP 1694
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I194@ INDI 
+1 NAME Marie Madeleine/DE BILLOEZ/
+2 GIVN Marie Madeleine
+2 SURN DE BILLOEZ
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T14:29:20.647Z
+1 FAMS @F253@
+1 BIRT
+2 DATE ABT 1641
+2 PLAC ,Flobecq,7880,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 7 DEC 1703
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I195@ INDI 
+1 NAME Guillaume/WALLEMACQ/
+2 GIVN Guillaume
+2 SURN WALLEMACQ
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T14:37:19.049Z
+1 FAMS @F256@
+1 FAMC @F260@
+1 BIRT
+2 DATE 5 MAY 1602
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I196@ INDI 
+1 NAME Catherine/HANTON/
+2 GIVN Catherine
+2 SURN HANTON
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T14:41:35.609Z
+1 FAMS @F256@
+1 FAMC @F263@
+0 @I197@ INDI 
+1 NAME Jacques/WALLEMACQ/
+2 GIVN Jacques
+2 SURN WALLEMACQ
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T14:37:19.067Z
+1 FAMS @F260@
+1 BIRT
+2 DATE ABT 1585
+0 @I198@ INDI 
+1 NAME Marie/DUTRASNOIT/
+2 GIVN Marie
+2 SURN DUTRASNOIT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T14:37:21.825Z
+1 FAMS @F259@
+1 FAMS @F260@
+1 BIRT
+2 DATE ABT 1585
+0 @I199@ INDI 
+1 NAME Jacques/HANTON/
+2 GIVN Jacques
+2 SURN HANTON
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T14:41:11.877Z
+1 FAMS @F263@
+1 BIRT
+2 DATE ABT 1565
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I200@ INDI 
+1 NAME Isabeau/DUTRASNOIT/
+2 GIVN Isabeau
+2 SURN DUTRASNOIT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T14:46:37.631Z
+1 FAMS @F263@
+1 FAMC @F266@
+1 BIRT
+2 DATE ABT 1565
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I201@ INDI 
+1 NAME Jacques/DUTRASNOIT/
+2 GIVN Jacques
+2 SURN DUTRASNOIT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T14:46:37.649Z
+1 FAMS @F266@
+1 BIRT
+2 DATE ABT 1540
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 NOTE  Bourgeois et rentier du domaine royal
+0 @I202@ INDI 
+1 NAME Françoise/DE BILLEMONT/
+2 GIVN Françoise
+2 SURN DE BILLEMONT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T14:50:02.437Z
+1 FAMS @F266@
+1 FAMC @F269@
+1 BIRT
+2 DATE BEF 1547
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I203@ INDI 
+1 NAME Arnould/DE BILLEMONT/
+2 GIVN Arnould
+2 SURN DE BILLEMONT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T08:08:04.442Z
+1 FAMS @F269@
+1 FAMC @F272@
+1 BIRT
+2 DATE ABT 1510
+1 NOTE  de Builemont
+2 CONT Mayeur de Moustiers 1539-1544
+0 @I204@ INDI 
+1 NAME Antoinette/DELEUX (DE LEUZE)/
+2 GIVN Antoinette
+2 SURN DELEUX (DE LEUZE)
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T08:10:37.685Z
+1 FAMS @F269@
+1 BIRT
+2 DATE ABT 1518
+0 @I205@ INDI 
+1 NAME Pierre Jean/DE BILLEMONT/
+2 GIVN Pierre Jean
+2 SURN DE BILLEMONT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T12:22:56.031Z
+1 FAMS @F272@
+1 FAMC @F275@
+1 DEAT
+2 DATE 10 MAR 1561
+1 BIRT
+2 DATE ABT 1480
+2 PLAC ,Moustier,7911,Hainaut,Wallonie,Belgique
+1 NOTE  Bailli de Thumaide en 1555
+0 @I206@ INDI 
+1 NAME Françoise/DE LA WARDE/
+2 GIVN Françoise
+2 SURN DE LA WARDE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T08:19:09.603Z
+1 FAMS @F272@
+1 FAMC @F354@
+1 BIRT
+2 DATE BEF 1500
+0 @I207@ INDI 
+1 NAME Arnould/DE BILLEMONT/
+2 GIVN Arnould
+2 SURN DE BILLEMONT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T14:41:07.592Z
+1 FAMS @F275@
+1 FAMC @F278@
+1 BIRT
+2 DATE ABT 1410
+0 @I208@ INDI 
+1 NAME Catherine Angelique/DE LEUZE/
+2 GIVN Catherine Angelique
+2 SURN DE LEUZE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T14:42:02.760Z
+1 FAMS @F275@
+1 BIRT
+2 DATE ABT 1455
+0 @I209@ INDI 
+1 NAME Jean/DE BILLEMONT/
+2 GIVN Jean
+2 SURN DE BILLEMONT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T08:25:00.157Z
+1 FAMS @F278@
+1 FAMC @F355@
+1 FAMC @F356@
+1 NOTE  Ecuyer
+0 @I210@ INDI 
+1 NAME Isabelle/DU CHASTELER/
+2 GIVN Isabelle
+2 SURN DU CHASTELER
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T13:52:22.247Z
+1 FAMS @F278@
+0 @I211@ INDI 
+1 NAME Arnould/DU CHASTELER/
+2 GIVN Arnould
+2 SURN DU CHASTELER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T12:43:37.528Z
+1 FAMS @F281@
+1 FAMC @F389@
+1 BIRT
+2 DATE ABT 1335
+2 PLAC ,Moulbaix,7812,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE BEF 6 MAY 1403
+1 NOTE  Seigneur de Moulbaix (7812) et d'Hélesmes (59171 hérité à la mort de son 
+2 CONC oncle Thierry, avec la châtellenie de Leuze). Grand Maître du palais comta
+2 CONC l de Mons en 1362 et 1380.
+0 @I212@ INDI 
+1 NAME Jeanne/DE POTTES DE THIEULAINE/
+2 GIVN Jeanne
+2 SURN DE POTTES DE THIEULAINE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T12:32:32.761Z
+1 FAMS @F281@
+1 FAMC @F359@
+1 DEAT
+2 DATE ABT 1403
+0 @I213@ INDI 
+1 NAME Jean Baptiste/CARLIER/
+2 GIVN Jean Baptiste
+2 SURN CARLIER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T15:25:49.501Z
+1 OCCU Cordonnier
+1 FAMS @F284@
+1 FAMC @F287@
+1 BIRT
+2 DATE 12 JUN 1745
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 26 APR 1788
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I214@ INDI 
+1 NAME Jeanne Catherine/FENAUX/
+2 GIVN Jeanne Catherine
+2 SURN FENAUX
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T15:31:54.134Z
+1 OCCU Fileuse de lin
+1 FAMS @F284@
+1 FAMC @F290@
+1 BIRT
+2 DATE 3 JUL 1747
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 1 JUL 1809
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I215@ INDI 
+1 NAME Pierre/CARLIER/
+2 GIVN Pierre
+2 SURN CARLIER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T16:00:01.173Z
+1 OCCU Cordonnier
+1 FAMS @F287@
+1 FAMC @F299@
+1 BIRT
+2 DATE 2 JUL 1701
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 10 JAN 1762
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I216@ INDI 
+1 NAME Marguerite/HANSELIN/
+2 GIVN Marguerite
+2 SURN HANSELIN
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T16:04:00.939Z
+1 FAMS @F287@
+1 FAMC @F302@
+1 BIRT
+2 DATE 3 MAY 1703
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 21 JAN 1755
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I217@ INDI 
+1 NAME Jean Baptiste/FENAUX/
+2 GIVN Jean Baptiste
+2 SURN FENAUX
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T15:37:25.134Z
+1 FAMS @F290@
+1 FAMC @F293@
+1 BIRT
+2 DATE 10 APR 1716
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 7 MAY 1792
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I218@ INDI 
+1 NAME Marie Adrienne/DELAGACHE/
+2 GIVN Marie Adrienne
+2 SURN DELAGACHE
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-07T06:42:41.303Z
+1 FAMS @F290@
+1 FAMC @F294@
+1 FAMC @F192@
+1 FAMC @F420@
+1 DEAT
+2 DATE 7 MAY 1785
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 BIRT
+2 DATE 21 MAY 1716
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I219@ INDI 
+1 NAME Nicolas/FENAUX/
+2 GIVN Nicolas
+2 SURN FENAUX
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T06:50:57.592Z
+1 FAMS @F293@
+1 BIRT
+2 DATE 25 AUG 1684
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 27 FEB 1768
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I220@ INDI 
+1 NAME Catherine/WATTIER/
+2 GIVN Catherine
+2 SURN WATTIER
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:03:01.183Z
+1 FAMS @F293@
+1 FAMC @F321@
+1 BIRT
+2 DATE 24 NOV 1683
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 11 FEB 1768
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I223@ INDI 
+1 NAME François/CARLIER/
+2 GIVN François
+2 SURN CARLIER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T16:08:55.915Z
+1 FAMS @F299@
+1 FAMC @F305@
+1 BIRT
+2 DATE ABT 1661
+1 DEAT
+2 DATE 11 OCT 1708
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I224@ INDI 
+1 NAME Péronne/HANSELIN/
+2 GIVN Péronne
+2 SURN HANSELIN
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T16:14:38.697Z
+1 FAMS @F299@
+1 FAMC @F308@
+1 BIRT
+2 DATE ABT 1657
+1 DEAT
+2 DATE 16 SEP 1748
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I225@ INDI 
+1 NAME Liévin/HANSELIN/
+2 GIVN Liévin
+2 SURN HANSELIN
+1 CHAN 
+2 DATE  2022-08-26T16:04:00.958Z
+1 FAMS @F302@
+1 DEAT
+2 DATE BEF 9 APR 1738
+0 @I226@ INDI 
+1 NAME Jeanne/FONTAINE/
+2 GIVN Jeanne
+2 SURN FONTAINE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T16:04:07.675Z
+1 FAMS @F302@
+1 BIRT
+2 DATE ABT 1678
+1 DEAT
+2 DATE 9 APR 1738
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I227@ INDI 
+1 NAME Jean/CARLIER/
+2 GIVN Jean
+2 SURN CARLIER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-26T16:08:55.934Z
+1 FAMS @F305@
+1 BIRT
+2 DATE 26 OCT 1615
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE BEF 1683
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I228@ INDI 
+1 NAME Marie/ROOST/
+2 GIVN Marie
+2 SURN ROOST
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T16:09:00.264Z
+1 FAMS @F305@
+1 BIRT
+2 DATE ABT 1615
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+0 @I229@ INDI 
+1 NAME Félix/HANSELIN/
+2 GIVN Félix
+2 SURN HANSELIN
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T13:21:00.191Z
+1 FAMS @F308@
+1 DEAT
+2 DATE 26 JUL 1695
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 BIRT
+2 DATE 10 JUN 1637
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I230@ INDI 
+1 NAME Cécile/DUQUESNE/
+2 GIVN Cécile
+2 SURN DUQUESNE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-26T16:14:43.093Z
+1 FAMS @F308@
+1 BIRT
+2 DATE 3 FEB 1636
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 9 SEP 1715
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I231@ INDI 
+1 NAME Barbe/POTTEAU/
+2 GIVN Barbe
+2 SURN POTTEAU
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T06:56:15.091Z
+1 FAMS @F312@
+1 FAMC @F318@
+1 BIRT
+2 DATE 6 FEB 1640
+2 PLAC ,Cordes,7910,Hainaut,Wallonie,Belgique
+0 @I232@ INDI 
+1 NAME Nicolas/FENAUX/
+2 GIVN Nicolas
+2 SURN FENAUX
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T06:52:37.814Z
+1 FAMS @F312@
+1 FAMC @F315@
+1 BIRT
+2 DATE 8 DEC 1638
+2 PLAC ,Arc-Ainières,7910,Hainaut,Wallonie,Belgique
+0 @I233@ INDI 
+1 NAME Jean/FENAUX/
+2 GIVN Jean
+2 SURN FENAUX
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T06:52:37.832Z
+1 FAMS @F315@
+0 @I234@ INDI 
+1 NAME Marie/DE LA HAYE/
+2 GIVN Marie
+2 SURN DE LA HAYE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T06:52:49.013Z
+1 FAMS @F315@
+0 @I235@ INDI 
+1 NAME Jean/POTTEAU/
+2 GIVN Jean
+2 SURN POTTEAU
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T06:56:15.119Z
+1 FAMS @F318@
+1 BIRT
+2 DATE ABT 1610
+2 PLAC , Cordes, 7910, Hainaut, Wallonie, Belgique
+0 @I236@ INDI 
+1 NAME Magdeleine/DU JONCQUOY/
+2 GIVN Magdeleine
+2 SURN DU JONCQUOY
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T06:56:17.182Z
+1 FAMS @F318@
+0 @I237@ INDI 
+1 NAME Nicaise/WATTIER/
+2 GIVN Nicaise
+2 SURN WATTIER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:08:46.010Z
+1 FAMS @F321@
+1 FAMC @F324@
+1 BIRT
+2 DATE 21 FEB 1652
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 22 FEB 1699
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I238@ INDI 
+1 NAME Jeanne/VAN ERPE/
+2 GIVN Jeanne
+2 SURN VAN ERPE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:29:36.039Z
+1 FAMS @F321@
+1 FAMC @F336@
+1 BIRT
+2 DATE ABT 1662
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 14 FEB 1727
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I239@ INDI 
+1 NAME Gérard/WATTIER/
+2 GIVN Gérard
+2 SURN WATTIER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:10:57.959Z
+1 FAMS @F324@
+1 FAMC @F327@
+1 BIRT
+2 DATE ABT 1625
+1 DEAT
+2 DATE 5 SEP 1693
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I240@ INDI 
+1 NAME Marie/DUTRASNOIT/
+2 GIVN Marie
+2 SURN DUTRASNOIT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:15:38.354Z
+1 FAMS @F324@
+1 FAMC @F330@
+1 DEAT
+2 DATE 13 OCT 1689
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 BIRT
+2 DATE 8 MAR 1623
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I241@ INDI 
+1 NAME Nicolas/WATTIER/
+2 GIVN Nicolas
+2 SURN WATTIER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:10:57.976Z
+1 FAMS @F327@
+0 @I242@ INDI 
+1 NAME Jeanne/HENSINE/
+2 GIVN Jeanne
+2 SURN HENSINE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:11:00.702Z
+1 FAMS @F327@
+0 @I243@ INDI 
+1 NAME Adrien/DUTRASNOIT/
+2 GIVN Adrien
+2 SURN DUTRASNOIT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:19:59.752Z
+1 FAMS @F330@
+1 FAMC @F266@
+1 BIRT
+2 DATE ABT 1570
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I244@ INDI 
+1 NAME Barbe/FONTAINE/
+2 GIVN Barbe
+2 SURN FONTAINE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:22:52.329Z
+1 FAMS @F330@
+1 FAMC @F333@
+1 BIRT
+2 DATE 20 DEC 1593
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I245@ INDI 
+1 NAME Jean/FONTAINE/
+2 GIVN Jean
+2 SURN FONTAINE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:22:52.348Z
+1 FAMS @F333@
+0 @I246@ INDI 
+1 NAME Marguerite Barbe/DUMOULIN/
+2 GIVN Marguerite Barbe
+2 SURN DUMOULIN
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:22:54.611Z
+1 FAMS @F333@
+0 @I247@ INDI 
+1 NAME Sébastien/VAN ERPE/
+2 GIVN Sébastien
+2 SURN VAN ERPE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:33:39.069Z
+1 FAMS @F336@
+1 FAMC @F339@
+1 DEAT
+2 DATE 13 NOV 1703
+2 PLAC , Ellezelles, 7890, Hainaut, Wallonie, Belgique
+0 @I248@ INDI 
+1 NAME Anne/DUPRIEZ/
+2 GIVN Anne
+2 SURN DUPRIEZ
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:43:50.798Z
+1 FAMS @F336@
+1 FAMC @F348@
+1 BIRT
+2 DATE 16 JUL 1628
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I249@ INDI 
+1 NAME Jean/VAN ERPE/
+2 GIVN Jean
+2 SURN VAN ERPE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:33:39.087Z
+1 FAMS @F339@
+1 DEAT
+2 DATE 26 APR 1684
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I250@ INDI 
+1 NAME Marie/LE LATTEUR/
+2 GIVN Marie
+2 SURN LE LATTEUR
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:37:44.237Z
+1 FAMS @F339@
+1 FAMC @F342@
+0 @I251@ INDI 
+1 NAME Jean/LE LATTEUR/
+2 GIVN Jean
+2 SURN LE LATTEUR
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:40:09.019Z
+1 FAMS @F342@
+1 FAMC @F345@
+1 BIRT
+2 DATE 9 OCT 1587
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I252@ INDI 
+1 NAME Barbe/CRETTEUR/
+2 GIVN Barbe
+2 SURN CRETTEUR
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:37:56.950Z
+1 FAMS @F342@
+1 BIRT
+2 DATE ABT 1587
+0 @I253@ INDI 
+1 NAME Nicolas/LE LATTEUR/
+2 GIVN Nicolas
+2 SURN LE LATTEUR
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:40:09.038Z
+1 FAMS @F345@
+1 BIRT
+2 DATE ABT 1570
+0 @I254@ INDI 
+1 NAME Françoise/LELOUCHE/
+2 GIVN Françoise
+2 SURN LELOUCHE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:40:12.165Z
+1 FAMS @F345@
+0 @I255@ INDI 
+1 NAME Thomas/DUPRIEZ/
+2 GIVN Thomas
+2 SURN DUPRIEZ
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:43:50.819Z
+1 FAMS @F348@
+0 @I256@ INDI 
+1 NAME Jeanne/CARLIER/
+2 GIVN Jeanne
+2 SURN CARLIER
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:45:48.308Z
+1 FAMS @F348@
+1 FAMC @F351@
+1 BIRT
+2 DATE 19 JAN 1600
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I257@ INDI 
+1 NAME Pierre/CARLIER/
+2 GIVN Pierre
+2 SURN CARLIER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T07:45:48.325Z
+1 FAMS @F351@
+0 @I258@ INDI 
+1 NAME Jacqueline/CAMBRESIENNE/
+2 GIVN Jacqueline
+2 SURN CAMBRESIENNE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T07:45:50.857Z
+1 FAMS @F351@
+0 @I259@ INDI 
+1 NAME Pierre/DE LA WARDE/
+2 GIVN Pierre
+2 SURN DE LA WARDE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T08:19:09.622Z
+1 FAMS @F354@
+1 DEAT
+2 DATE 28 FEB 1561
+1 BIRT
+2 DATE ABT 1485
+1 NOTE  Brasseur à Cambrai
+0 @I260@ INDI 
+1 NAME Pasques/AULENT/
+2 GIVN Pasques
+2 SURN AULENT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T08:19:13.828Z
+1 FAMS @F354@
+1 BIRT
+2 DATE ABT 1485
+1 DEAT
+2 DATE ABT 1580
+0 @I261@ INDI 
+1 NAME Louis/DE BILLEMONT/
+2 GIVN Louis
+2 SURN DE BILLEMONT
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T08:24:37.841Z
+1 FAMS @F355@
+1 NOTE  Ecuyer, Seigneur de Buillemont, Monsonville
+0 @I262@ INDI 
+1 NAME Marie Madeleine/DE LANNOY/
+2 GIVN Marie Madeleine
+2 SURN DE LANNOY
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T08:25:44.871Z
+1 FAMS @F356@
+0 @I263@ INDI 
+1 NAME Arnould/DE POTTES DE THIEULAINE/
+2 GIVN Arnould
+2 SURN DE POTTES DE THIEULAINE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T07:06:23.959Z
+1 FAMS @F359@
+1 FAMC @F362@
+1 BIRT
+2 DATE ABT 1286
+2 PLAC ,Lille,59,Nord,Hauts-de-France,France
+1 NOTE  Chevalier, co-seigneur de Thieulain
+0 @I264@ INDI 
+1 NAME Anne/DE SAINT SIMON/
+2 GIVN Anne
+2 SURN DE SAINT SIMON
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T08:39:16.987Z
+1 FAMS @F359@
+1 BIRT
+2 DATE ABT 1290
+0 @I265@ INDI 
+1 NAME Pierre/DE POTTES DE THIEULAINE/
+2 GIVN Pierre
+2 SURN DE POTTES DE THIEULAINE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T07:00:05.961Z
+1 FAMS @F362@
+1 DEAT
+2 DATE BEF 1300
+2 PLAC ,Thieulain,7901,Hainaut,Wallonie,Belgique
+1 BIRT
+2 DATE ABT 1247
+2 PLAC ,Lille,59,Nord,Hauts-de-France,France
+1 NOTE  Chevalier, Seigneur de Thieulain, Bourgeois de Lille, Mayeur de Lille en 
+2 CONC 1289.
+0 @I266@ INDI 
+1 NAME Marie/DE LA MOTTE/
+2 GIVN Marie
+2 SURN DE LA MOTTE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T07:03:51.505Z
+1 FAMS @F362@
+1 DEAT
+2 DATE ABT 1297
+2 PLAC ,Thieulain,7901,Hainaut,Wallonie,Belgique
+1 BIRT
+2 DATE ABT 1248
+2 PLAC ,Lille,59,Nord,Hauts-de-France,France
+0 @I267@ INDI 
+1 NAME Gérard/DE POTTES DE THIEULAINE/
+2 GIVN Gérard
+2 SURN DE POTTES DE THIEULAINE
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T06:56:00.479Z
+1 FAMS @F365@
+1 FAMC @F368@
+1 BIRT
+2 DATE ABT 1216
+2 PLAC ,Pottes,7760,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE ABT 1257
+2 PLAC ,Lille,59,Nord,Hauts-de-France,France
+1 NOTE  Chevalier, Bailli de Lille, Bourgeois de Lille, Seigneur de Thieulain du 
+2 CONC chef de sa mère.
+0 @I268@ INDI 
+1 NAME Yvette/DE BONDUES/
+2 GIVN Yvette
+2 SURN DE BONDUES
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T06:57:32.682Z
+1 FAMS @F365@
+1 BIRT
+2 DATE ABT 1224
+2 PLAC ,Bondues,59,Nord,Hauts-de-France,France
+0 @I269@ INDI 
+1 NAME Gérard II/DE POTTES/
+2 GIVN Gérard II
+2 SURN DE POTTES
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T09:20:14.515Z
+1 FAMS @F368@
+1 FAMC @F371@
+1 BIRT
+2 DATE ABT 1190
+1 NOTE  Sieur de Pottes et Lambersart
+0 @I270@ INDI 
+1 NAME Josine/DE THIEULAINE/
+2 GIVN Josine
+2 SURN DE THIEULAINE
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T14:04:58.424Z
+1 FAMS @F368@
+1 BIRT
+2 DATE ABT 1195
+2 PLAC ,Thieulain,7901,Hainaut,Wallonie,Belgique
+1 NOTE  Dame héritière de Thieulain-en-Hainaut
+0 @I271@ INDI 
+1 NAME Thierry II/DE POTTES/
+2 GIVN Thierry II
+2 SURN DE POTTES
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T06:48:12.309Z
+1 FAMS @F371@
+1 FAMC @F377@
+1 BIRT
+2 DATE ABT 1160
+2 PLAC ,Pottes,7760,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE 14 APR 1205
+2 PLAC ,Edirne,22100,Edirne,,Turquie
+1 NOTE  Chevalier - Croisé - Seigneur de Pottes puis de Lambersart. Participe à l
+2 CONC a 4° Croisade dite de Constantinople à la suite de Baudoin Comte de Hainau
+2 CONC t et de Flandres. Meurt au combat à la 1° bataille d'Andrinople 14 avril 1
+2 CONC 205.
+0 @I272@ INDI 
+1 NAME Berthe/DE LAMBERSART/
+2 GIVN Berthe
+2 SURN DE LAMBERSART
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T09:23:34.958Z
+1 FAMS @F371@
+1 FAMC @F374@
+1 BIRT
+2 DATE ABT 1165
+2 PLAC ,Lambersart,59,Nord,Hauts-de-France,France
+0 @I273@ INDI 
+1 NAME Guyon/DE LAMBERSART/
+2 GIVN Guyon
+2 SURN DE LAMBERSART
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-29T09:23:34.977Z
+1 FAMS @F374@
+1 BIRT
+2 DATE ABT 1140
+2 PLAC ,Lambersart,59,Nord,Hauts-de-France,France
+1 NOTE  Ecuyer - Seigneur de Lambersart
+0 @I274@ INDI 
+1 NAME ?/?/
+2 GIVN ?
+2 SURN ?
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T09:23:37.072Z
+1 FAMS @F374@
+0 @I275@ INDI 
+1 NAME Gérard I/DE POTTES/
+2 GIVN Gérard I
+2 SURN DE POTTES
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T06:45:44.813Z
+1 FAMS @F377@
+1 FAMC @F380@
+1 BIRT
+2 DATE ABT 1135
+2 PLAC ,Pottes,7760,Hainaut,Wallonie,Belgique
+1 DEAT
+2 DATE AFT 1170
+1 NOTE  Chevalier. Homme de fief du comte de Hainaut. Seigneur de Pottes.
+0 @I276@ INDI 
+1 NAME ?/?/
+2 GIVN ?
+2 SURN ?
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T09:27:16.427Z
+1 FAMS @F377@
+0 @I277@ INDI 
+1 NAME Robert II/DE POTTES/
+2 GIVN Robert II
+2 SURN DE POTTES
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-30T07:45:33.587Z
+1 FAMS @F380@
+1 BIRT
+2 DATE ABT 1104
+2 PLAC ,Pottes,7760,Hainaut,Wallonie,Belgique
+1 NOTE  Chevalier. Homme de fief du comte de Hainaut. Seigneur de Pottes.
+0 @I278@ INDI 
+1 NAME Loyse/DE BLEHARIES/
+2 GIVN Loyse
+2 SURN DE BLEHARIES
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-29T09:31:44.095Z
+1 FAMS @F380@
+1 BIRT
+2 DATE ABT 1110
+2 PLAC ,Bléharies,7620,Hainaut,Wallonie,Belgique
+0 @I279@ INDI 
+1 NAME Robert I/DE POTTES/
+2 GIVN Robert I
+2 SURN DE POTTES
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-30T07:46:29.873Z
+1 FAMS @F385@
+1 FAMC @F386@
+1 BIRT
+2 DATE ABT 1076
+2 PLAC ,Pottes,7760,Hainaut,Wallonie,Belgique
+1 NOTE  Chevalier ; cité comme 'Robiert, fits Théodoric, vir nobilis e Germinia P
+2 CONC ostis' ..../.... Il participera à la première croisade (1096-1100) et en r
+2 CONC eviendra vers 1101 (vr .. Galerie des croisades à Versailles)
+2 CONC
+0 @I280@ INDI 
+1 NAME Adelaïde/?/
+2 GIVN Adelaïde
+2 SURN ?
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-30T07:45:36.373Z
+1 FAMS @F385@
+0 @I281@ INDI 
+1 NAME Thierry I/DE POTTES/
+2 GIVN Thierry I
+2 SURN DE POTTES
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T06:41:09.481Z
+1 FAMS @F386@
+1 DEAT
+2 DATE AFT 1101
+1 BIRT
+2 DATE BEF 1076
+1 NOTE  Il était encore en vie lors du retour de croisade de son fils Robert 1er.
+0 @I282@ INDI 
+1 NAME ?/?/
+2 GIVN ?
+2 SURN ?
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-30T07:46:50.613Z
+1 FAMS @F386@
+0 @I283@ INDI 
+1 NAME Jean II/DU CHASTELER/
+2 GIVN Jean II
+2 SURN DU CHASTELER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T12:50:55.697Z
+1 FAMS @F389@
+1 FAMC @F392@
+1 NOTE  Seigneur de Moulbaix, Beaulain, Lessines, Frasnes, gouverneur d'Ath
+0 @I284@ INDI 
+1 NAME Jeanne/DE SEMOUSIE/
+2 GIVN Jeanne
+2 SURN DE SEMOUSIE
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T12:43:43.628Z
+1 FAMS @F389@
+0 @I285@ INDI 
+1 NAME Guillaume Le Sarazin/DU CHASTELER/
+2 GIVN Guillaume Le Sarazin
+2 SURN DU CHASTELER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T12:54:30.971Z
+1 FAMS @F392@
+1 FAMC @F395@
+1 DEAT
+2 DATE ABT 1345
+1 NOTE  Seigneur de Moulbaix et Frasnes, gouverneur d'Ath
+0 @I286@ INDI 
+1 NAME Marguerite/DE LOOZ/
+2 GIVN Marguerite
+2 SURN DE LOOZ
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T12:46:56.104Z
+1 FAMS @F392@
+0 @I287@ INDI 
+1 NAME Thierry II/DU CHASTELER/
+2 GIVN Thierry II
+2 SURN DU CHASTELER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T12:59:38.209Z
+1 FAMS @F395@
+1 FAMC @F398@
+1 BIRT
+2 DATE ABT 1318
+2 PLAC ,Moulbaix,7812,Hainaut,Wallonie,Belgique
+1 NOTE  Seigneur de Moulbaix, Blehain, Wambrechies, chatelain d'Ath, Bailli de Ha
+2 CONC inaut
+0 @I288@ INDI 
+1 NAME Beatrix/DE BOUCHAIN/
+2 GIVN Beatrix
+2 SURN DE BOUCHAIN
+1 CHAN 
+2 DATE  2022-08-31T12:54:32.728Z
+1 FAMS @F395@
+0 @I289@ INDI 
+1 NAME Thierry I/DU CHASTELER/
+2 GIVN Thierry I
+2 SURN DU CHASTELER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T13:07:27.174Z
+1 FAMS @F398@
+1 FAMC @F401@
+1 DEAT
+2 DATE ABT 1334
+1 NOTE  Seigneur de Moulbaix, Grand Bailly de Hainaut
+0 @I290@ INDI 
+1 NAME Isabelle/DE MARSAY/
+2 GIVN Isabelle
+2 SURN DE MARSAY
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T12:59:56.340Z
+1 FAMS @F398@
+0 @I291@ INDI 
+1 NAME Jean I/DU CHASTELER/
+2 GIVN Jean I
+2 SURN DU CHASTELER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T13:10:30.056Z
+1 FAMS @F401@
+1 FAMC @F404@
+1 BIRT
+2 DATE ABT 1265
+1 DEAT
+2 DATE ABT 1305
+1 NOTE  Seigneur de Moulbaix
+0 @I292@ INDI 
+1 NAME Gillette/DE PASSAVANT/
+2 GIVN Gillette
+2 SURN DE PASSAVANT
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T13:04:31.208Z
+1 FAMS @F401@
+1 BIRT
+2 DATE ABT 1260
+1 DEAT
+2 DATE ABT 1297
+0 @I293@ INDI 
+1 NAME Armand/DU CHASTELER/
+2 GIVN Armand
+2 SURN DU CHASTELER
+1 SEX M
+1 CHAN 
+2 DATE  2022-08-31T13:20:32.188Z
+1 FAMS @F404@
+1 FAMC @F407@
+1 BIRT
+2 DATE ABT 1231
+0 @I294@ INDI 
+1 NAME Isabeau/DE JOINVILLE/
+2 GIVN Isabeau
+2 SURN DE JOINVILLE
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-06T13:09:43.993Z
+1 FAMS @F404@
+0 @I295@ INDI 
+1 NAME Hugues/DU CHASTELER/
+2 GIVN Hugues
+2 SURN DU CHASTELER
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T14:18:09.289Z
+1 FAMS @F407@
+1 BIRT
+2 DATE ABT 1182
+1 NOTE  Chevalier, seigneur de Moulbaix du chef de son épouse. Il participe à la 
+2 CONC 4eme croisade à Constantinople et en revient vers 1207
+2 CONC
+0 @I296@ INDI 
+1 NAME Geneviève/DE MOULBAIX/
+2 GIVN Geneviève
+2 SURN DE MOULBAIX
+1 SEX F
+1 CHAN 
+2 DATE  2022-08-31T13:21:42.612Z
+1 FAMS @F407@
+1 BIRT
+2 DATE ABT 1210
+1 NOTE  Dame héritière de Moulbaix
+0 @I297@ INDI 
+1 NAME Marie/GAECHNER/
+2 GIVN Marie
+2 SURN GAECHNER
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T08:49:34.724Z
+1 FAMS @F410@
+0 @I298@ INDI 
+1 NAME SCHMITT/MARGUERITE/
+2 GIVN SCHMITT
+2 SURN MARGUERITE
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T08:49:41.302Z
+1 FAMS @F410@
+0 @I299@ INDI 
+1 NAME Jean/ROUSSEAU/
+2 GIVN Jean
+2 SURN ROUSSEAU
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T13:28:05.600Z
+1 FAMS @F413@
+1 BIRT
+2 DATE ABT 1545
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+0 @I300@ INDI 
+1 NAME Gisselaine/?/
+2 GIVN Gisselaine
+2 SURN ?
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T13:28:18.602Z
+1 FAMS @F413@
+1 BIRT
+2 DATE ABT 1545
+0 @I301@ INDI 
+1 NAME ?/LEMEY/
+2 GIVN ?
+2 SURN LEMEY
+1 SEX M
+1 CHAN 
+2 DATE  2022-09-05T14:26:31.185Z
+1 FAMS @F416@
+1 FAMC @F419@
+1 BIRT
+2 DATE ABT 1530
+2 PLAC ,Lessines,7860,Hainaut,Wallonie,Belgique
+0 @I302@ INDI 
+1 NAME ?/?/
+2 GIVN ?
+2 SURN ?
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T13:31:39.901Z
+1 FAMS @F416@
+0 @I303@ INDI 
+1 NAME Nicaise/LEMEY/
+2 GIVN Nicaise
+2 SURN LEMEY
+1 CHAN 
+2 DATE  2022-09-07T12:40:38.936Z
+1 FAMS @F419@
+1 BIRT
+2 DATE ABT 1483
+2 PLAC ,Lessines,7860,Hainaut,Wallonie,Belgique
+0 @I304@ INDI 
+1 NAME ?/?/
+2 GIVN ?
+2 SURN ?
+1 SEX F
+1 CHAN 
+2 DATE  2022-09-05T13:33:48.851Z
+1 FAMS @F419@
+0 @F80@ FAM
+1 HUSB @I64@
+1 MARR
+2 DATE 26 OCT 1795
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+1 CHIL @I51@
+1 WIFE @I65@
+0 @F81@ FAM
+1 WIFE @I67@
+1 MARR
+2 DATE 16 NOV 1757
+2 WIFE
+3 AGE 
+2 PLAC ,Hazebrouck,59,Nord,Hauts-de-France,France
+1 CHIL @I64@
+1 HUSB @I66@
+0 @F59@ FAM
+1 HUSB @I20@
+1 MARR
+2 DATE 12 MAR 1852
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 CHIL @I9@
+1 WIFE @I21@
+0 @F111@ FAM
+1 HUSB @I98@
+1 MARR
+2 DATE ABT 1674
+2 HUSB
+3 AGE 
+1 CHIL @I97@
+1 WIFE @I99@
+0 @F124@ FAM
+1 WIFE @I107@
+1 MARR
+2 DATE 11 MAY 1768
+2 WIFE
+3 AGE 
+2 PLAC ,Steenwerck,59,Nord,Hauts-de-France,France
+1 CHIL @I105@
+1 HUSB @I106@
+0 @F165@ FAM
+1 WIFE @I133@
+1 MARR
+2 DATE 21 AUG 1726
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+1 CHIL @I130@
+1 HUSB @I132@
+0 @F189@ FAM
+1 WIFE @I149@
+1 MARR
+2 DATE 6 JUN 1743
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I146@
+1 HUSB @I148@
+0 @F195@ FAM
+1 WIFE @I153@
+1 MARR
+2 DATE 28 JUL 1716
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I149@
+1 HUSB @I152@
+0 @F365@ FAM
+1 WIFE @I268@
+1 MARR
+2 DATE BEF 1240
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+1 CHIL @I265@
+1 HUSB @I267@
+0 @F226@ FAM
+1 WIFE @I176@
+1 MARR
+2 DATE BEF 1588
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+1 CHIL @I171@
+1 HUSB @I175@
+0 @F53@ FAM
+1 HUSB @I6@
+1 MARR
+2 DATE 7 JAN 1905
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC , Montreuil, 93, Seine-Saint-denis, Ile-de-France, France
+1 CHIL @I2@
+1 WIFE @I7@
+1 CHIL @I59@
+0 @F102@ FAM
+1 WIFE @I93@
+1 MARR
+2 DATE 18 JUN 1761
+2 WIFE
+3 AGE 
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+1 CHIL @I90@
+1 HUSB @I91@
+0 @F63@ FAM
+1 HUSB @I31@
+1 MARR
+2 DATE 16 OCT 1857
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+1 CHIL @I30@
+1 WIFE @I32@
+0 @F149@ FAM
+1 WIFE @I122@
+1 MARR
+2 DATE 6 FEB 1786
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I35@
+1 HUSB @I121@
+0 @F174@ FAM
+1 WIFE @I139@
+1 MARR
+2 DATE 11 FEB 1681
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+1 CHIL @I133@
+1 HUSB @I138@
+0 @F220@ FAM
+1 WIFE @I171@
+1 MARR
+2 DATE 15 SEP 1614
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+1 CHIL @I166@
+1 HUSB @I170@
+0 @F238@ FAM
+1 WIFE @I184@
+1 MARR
+2 DATE 3 MAR 1685
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I153@
+1 HUSB @I183@
+0 @F290@ FAM
+1 WIFE @I218@
+1 MARR
+2 DATE 26 NOV 1740
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I214@
+1 HUSB @I217@
+0 @F324@ FAM
+1 WIFE @I240@
+1 MARR
+2 DATE 24 JUL 1646
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I237@
+1 HUSB @I239@
+0 @F162@ FAM
+1 WIFE @I131@
+1 MARR
+2 DATE 29 NOV 1760
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+1 CHIL @I122@
+1 HUSB @I130@
+0 @F201@ FAM
+1 WIFE @I157@
+1 MARR
+2 DATE 11 FEB 1657
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I154@
+1 HUSB @I156@
+0 @F302@ FAM
+1 WIFE @I226@
+1 MARR
+2 DATE 21 AUG 1691
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I216@
+0 @F368@ FAM
+1 WIFE @I270@
+1 MARR
+2 DATE ABT SEP 1210
+2 WIFE
+3 AGE 
+2 PLAC ,Thieulain,7901,Hainaut,Wallonie,Belgique
+1 CHIL @I267@
+1 HUSB @I269@
+0 @F98@ FAM
+1 HUSB @I89@
+1 MARR
+2 DATE 12 JUN 1782
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+1 CHIL @I85@
+1 WIFE @I90@
+0 @F108@ FAM
+1 WIFE @I97@
+1 MARR
+2 DATE BEF 1700
+2 WIFE
+3 AGE 
+2 PLAC ,Lascelle,15,Cantal,Auvergne-Rhône-Alpes,France
+1 CHIL @I94@
+1 HUSB @I96@
+0 @F168@ FAM
+1 WIFE @I135@
+1 MARR
+2 DATE 29 NOV 1738
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+1 CHIL @I131@
+1 HUSB @I134@
+0 @F241@ FAM
+1 WIFE @I186@
+1 MARR
+2 DATE 27 APR 1636
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I183@
+1 HUSB @I185@
+0 @F308@ FAM
+1 WIFE @I230@
+1 MARR
+2 DATE 22 MAY 1661
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I224@
+1 HUSB @I229@
+0 @F407@ FAM
+1 WIFE @I296@
+1 MARR
+2 DATE ABT 1218
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Tournai,7500,Hainaut,Wallonie,Belgique
+1 CHIL @I293@
+1 HUSB @I295@
+0 @F55@ FAM
+1 HUSB @I12@
+1 MARR
+2 DATE 12 SEP 1832
+2 HUSB
+3 AGE 
+2 PLAC ,Marmanhac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 CHIL @I11@
+1 WIFE @I13@
+0 @F57@ FAM
+1 HUSB @I16@
+1 MARR
+2 DATE 31 JAN 1775
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Maurs,15,Cantal,Auvergne-Rhône-Alpes,France
+1 CHIL @I14@
+1 WIFE @I17@
+0 @F146@ FAM
+1 WIFE @I120@
+1 MARR
+2 DATE 6 MAY 1798
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I36@
+1 HUSB @I119@
+0 @F186@ FAM
+1 WIFE @I147@
+1 MARR
+2 DATE 13 FEB 1770
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I119@
+1 HUSB @I146@
+0 @F235@ FAM
+1 WIFE @I182@
+1 MARR
+2 DATE BEF 1582
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+1 CHIL @I180@
+1 HUSB @I181@
+0 @F287@ FAM
+1 WIFE @I216@
+1 MARR
+2 DATE 21 MAY 1735
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I213@
+1 HUSB @I215@
+0 @F321@ FAM
+1 WIFE @I238@
+1 MARR
+2 DATE 22 OCT 1680
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I220@
+1 HUSB @I237@
+0 @F309@ FAM
+1 HUSB @I114@
+1 MARR
+2 DATE 22 OCT 1722
+2 HUSB
+3 AGE 
+2 PLAC ,Maurs,15,Cantal,Auvergne-Rhône-Alpes,France
+1 CHIL @I16@
+1 WIFE @I115@
+0 @F232@ FAM
+1 HUSB @I179@
+1 MARR
+2 DATE 24 OCT 1613
+2 HUSB
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I169@
+1 WIFE @I180@
+0 @F56@ FAM
+1 HUSB @I14@
+1 MARR
+2 DATE 30 JUL 1802
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Quézac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 CHIL @I12@
+1 WIFE @I15@
+0 @F133@ FAM
+1 WIFE @I79@
+1 MARR
+2 DATE 8 JAN 1605
+2 WIFE
+3 AGE 
+2 PLAC ,Frelinghien,59,Nord,Hauts-de-France,France
+1 CHIL @I76@
+1 HUSB @I78@
+0 @F114@ FAM
+1 WIFE @I101@
+1 MARR
+2 DATE BEF 1645
+2 WIFE
+3 AGE 
+1 CHIL @I99@
+1 HUSB @I100@
+0 @F198@ FAM
+1 WIFE @I155@
+1 MARR
+2 DATE 9 NOV 1688
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I152@
+1 HUSB @I154@
+0 @F204@ FAM
+1 WIFE @I159@
+1 MARR
+2 DATE 27 APR 1610
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I156@
+1 HUSB @I158@
+0 @F217@ FAM
+1 WIFE @I169@
+1 MARR
+2 DATE 10 OCT 1660
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Ronse,9600,Oost-Vlaanderen,Flanders,Belgique
+1 CHIL @I155@
+1 HUSB @I166@
+0 @F223@ FAM
+1 WIFE @I174@
+1 MARR
+2 DATE ABT 1585
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+1 CHIL @I170@
+1 HUSB @I173@
+0 @F253@ FAM
+1 WIFE @I194@
+1 MARR
+2 DATE 6 APR 1660
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I184@
+1 HUSB @I193@
+0 @F385@ FAM
+1 WIFE @I280@
+1 MARR
+2 DATE ABT 1102
+2 WIFE
+3 AGE 
+1 CHIL @I277@
+1 HUSB @I279@
+0 @F1@ FAM
+1 HUSB @I2@
+1 MARR
+2 DATE 31 MAR 1945
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC , Bagnolet, 93, Seine-Saint-denis, Ile-de-France, France
+1 CHIL @I1@
+1 WIFE @I3@
+0 @F66@ FAM
+1 HUSB @I38@
+1 MARR
+2 DATE 15 SEP 1856
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC , Bollezeele, 59, Nord, Hauts-de-France, France
+1 CHIL @I37@
+1 WIFE @I39@
+0 @F69@ FAM
+1 HUSB @I28@
+1 MARR
+2 DATE 6 SEP 1919
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+1 CHIL @I3@
+1 WIFE @I29@
+1 CHIL @I58@
+0 @F79@ FAM
+1 HUSB @I62@
+1 MARR
+2 DATE 1 MAY 1901
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 WIFE @I61@
+0 @F61@ FAM
+1 HUSB @I26@
+1 MARR
+2 DATE 31 MAR 1855
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+1 CHIL @I25@
+1 WIFE @I27@
+0 @F99@ FAM
+1 HUSB @I85@
+1 MARR
+2 DATE 22 JUL 1829
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Jussac,15,Cantal,Auvergne-Rhône-Alpes,France
+1 CHIL @I20@
+1 WIFE @I86@
+0 @F105@ FAM
+1 HUSB @I94@
+1 MARR
+2 DATE 7 JUL 1722
+2 HUSB
+3 AGE 
+2 PLAC ,Laroquevieille,15,Cantal,Auvergne-Rhône-Alpes,France
+1 CHIL @I91@
+1 WIFE @I95@
+0 @F72@ FAM
+1 WIFE @I49@
+1 MARR
+2 DATE 27 JUL 1831
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Borre,59,Nord,Hauts-de-France,France
+1 CHIL @I46@
+1 HUSB @I48@
+0 @F119@ FAM
+1 WIFE @I105@
+1 MARR
+2 DATE 6 AUG 1801
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Borre,59,Nord,Hauts-de-France,France
+1 CHIL @I49@
+1 HUSB @I104@
+0 @F64@ FAM
+1 HUSB @I35@
+1 MARR
+2 DATE 22 APR 1822
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I32@
+1 WIFE @I36@
+0 @F152@ FAM
+1 WIFE @I124@
+1 MARR
+2 DATE 11 NOV 1736
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I121@
+1 HUSB @I123@
+0 @F180@ FAM
+1 WIFE @I143@
+1 MARR
+2 DATE 23 NOV 1700
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Frasnes-lez-Anvaing,7910,Hainaut,Wallonie,Belgique
+1 CHIL @I134@
+1 HUSB @I142@
+0 @F247@ FAM
+1 WIFE @I190@
+1 MARR
+2 DATE 18 FEB 1610
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I186@
+1 HUSB @I189@
+0 @F293@ FAM
+1 WIFE @I220@
+1 MARR
+2 DATE 22 MAY 1707
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I217@
+1 HUSB @I219@
+0 @F299@ FAM
+1 WIFE @I224@
+1 MARR
+2 DATE 7 AUG 1689
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I215@
+1 HUSB @I223@
+0 @F305@ FAM
+1 WIFE @I228@
+1 MARR
+2 DATE 15 OCT 1641
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I223@
+1 HUSB @I227@
+0 @F312@ FAM
+1 HUSB @I232@
+1 MARR
+2 DATE 25 FEB 1680
+2 HUSB
+3 AGE 
+2 PLAC ,Cordes,7910,Hainaut,Wallonie,Belgique
+1 CHIL @I219@
+1 WIFE @I231@
+0 @F281@ FAM
+1 WIFE @I212@
+1 MARR
+2 DATE BEF 1380
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+1 CHIL @I210@
+1 HUSB @I211@
+0 @F65@ FAM
+1 HUSB @I30@
+1 MARR
+2 DATE 18 APR 1892
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC ,Dunkerque,59,Nord,Hauts-de-France,France
+1 CHIL @I28@
+1 WIFE @I37@
+0 @F183@ FAM
+1 WIFE @I145@
+1 MARR
+2 DATE 21 MAY 1703
+2 HUSB
+3 AGE 
+2 WIFE
+3 AGE 
+2 PLAC , Frasnes-lez-Anvaing, 7910, Hainaut, Wallonie, Belgique
+1 CHIL @I135@
+1 HUSB @I144@
+0 @F284@ FAM
+1 WIFE @I214@
+1 MARR
+2 DATE 27 JAN 1767
+2 WIFE
+3 AGE 
+2 PLAC ,Ellezelles,7890,Hainaut,Wallonie,Belgique
+1 CHIL @I120@
+1 HUSB @I213@
+0 @F54@ FAM
+1 CHIL @I6@
+1 HUSB @I8@
+1 WIFE @I9@
+1 CHIL @I61@
+0 @F60@ FAM
+1 CHIL @I7@
+1 HUSB @I24@
+1 WIFE @I25@
+0 @F6@ FAM
+1 CHIL @I8@
+1 WIFE @I11@
+0 @F139@ FAM
+1 CHIL @I8@
+1 HUSB @I118@
+0 @F77@ FAM
+1 CHIL @I13@
+1 HUSB @I22@
+1 WIFE @I23@
+0 @F58@ FAM
+1 CHIL @I15@
+1 HUSB @I18@
+1 WIFE @I19@
+0 @F90@ FAM
+1 CHIL @I21@
+1 HUSB @I80@
+1 WIFE @I81@
+0 @F410@ FAM
+1 CHIL @I26@
+1 HUSB @I297@
+1 WIFE @I298@
+0 @F70@ FAM
+1 CHIL @I29@
+1 HUSB @I44@
+1 WIFE @I45@
+1 CHIL @I63@
+0 @F62@ FAM
+1 CHIL @I31@
+1 HUSB @I33@
+1 WIFE @I34@
+0 @F67@ FAM
+1 CHIL @I38@
+1 HUSB @I40@
+1 WIFE @I41@
+0 @F68@ FAM
+1 CHIL @I39@
+1 HUSB @I42@
+1 WIFE @I43@
+0 @F71@ FAM
+1 CHIL @I44@
+1 HUSB @I46@
+1 WIFE @I47@
+0 @F73@ FAM
+1 CHIL @I45@
+1 HUSB @I50@
+1 WIFE @I53@
+0 @F142@ FAM
+1 CHIL @I48@
+1 HUSB @I102@
+1 WIFE @I103@
+0 @F74@ FAM
+1 CHIL @I50@
+1 HUSB @I51@
+1 WIFE @I52@
+0 @F75@ FAM
+1 CHIL @I53@
+1 HUSB @I54@
+1 WIFE @I57@
+0 @F76@ FAM
+1 CHIL @I54@
+1 HUSB @I55@
+1 WIFE @I56@
+0 @F138@ FAM
+1 CHIL @I66@
+1 HUSB @I72@
+1 WIFE @I73@
+0 @F135@ FAM
+1 CHIL @I72@
+1 HUSB @I74@
+1 WIFE @I75@
+0 @F136@ FAM
+1 CHIL @I74@
+1 HUSB @I76@
+1 WIFE @I77@
+0 @F134@ FAM
+1 CHIL @I86@
+1 HUSB @I87@
+1 WIFE @I88@
+0 @F137@ FAM
+1 CHIL @I104@
+1 HUSB @I108@
+1 WIFE @I109@
+0 @F140@ FAM
+1 CHIL @I106@
+1 HUSB @I112@
+1 WIFE @I113@
+0 @F141@ FAM
+1 CHIL @I107@
+1 HUSB @I110@
+1 WIFE @I111@
+0 @F143@ FAM
+1 CHIL @I115@
+1 HUSB @I116@
+1 WIFE @I117@
+0 @F159@ FAM
+1 CHIL @I123@
+1 HUSB @I125@
+1 WIFE @I126@
+0 @F158@ FAM
+1 CHIL @I124@
+1 HUSB @I128@
+1 WIFE @I129@
+0 @F171@ FAM
+1 CHIL @I132@
+1 HUSB @I136@
+1 WIFE @I137@
+0 @F177@ FAM
+1 CHIL @I138@
+1 HUSB @I140@
+1 WIFE @I141@
+0 @F192@ FAM
+1 CHIL @I148@
+1 HUSB @I150@
+1 WIFE @I151@
+1 CHIL @I218@
+0 @F210@ FAM
+1 CHIL @I157@
+1 HUSB @I162@
+1 WIFE @I163@
+0 @F207@ FAM
+1 CHIL @I158@
+1 HUSB @I160@
+1 WIFE @I161@
+0 @F213@ FAM
+1 CHIL @I163@
+1 HUSB @I164@
+1 WIFE @I165@
+0 @F229@ FAM
+1 CHIL @I175@
+1 HUSB @I177@
+1 WIFE @I178@
+0 @F413@ FAM
+1 CHIL @I181@
+1 HUSB @I299@
+1 WIFE @I300@
+0 @F416@ FAM
+1 CHIL @I182@
+1 HUSB @I301@
+1 WIFE @I302@
+0 @F244@ FAM
+1 CHIL @I185@
+1 HUSB @I187@
+1 WIFE @I188@
+0 @F250@ FAM
+1 CHIL @I189@
+1 HUSB @I191@
+1 WIFE @I192@
+0 @F256@ FAM
+1 CHIL @I193@
+1 HUSB @I195@
+1 WIFE @I196@
+0 @F260@ FAM
+1 CHIL @I195@
+1 HUSB @I197@
+1 WIFE @I198@
+0 @F263@ FAM
+1 CHIL @I196@
+1 HUSB @I199@
+1 WIFE @I200@
+0 @F266@ FAM
+1 CHIL @I200@
+1 HUSB @I201@
+1 WIFE @I202@
+1 CHIL @I243@
+0 @F269@ FAM
+1 CHIL @I202@
+1 HUSB @I203@
+1 WIFE @I204@
+0 @F272@ FAM
+1 CHIL @I203@
+1 HUSB @I205@
+1 WIFE @I206@
+0 @F275@ FAM
+1 CHIL @I205@
+1 HUSB @I207@
+1 WIFE @I208@
+0 @F354@ FAM
+1 CHIL @I206@
+1 HUSB @I259@
+1 WIFE @I260@
+0 @F278@ FAM
+1 CHIL @I207@
+1 HUSB @I209@
+1 WIFE @I210@
+0 @F355@ FAM
+1 CHIL @I209@
+1 HUSB @I261@
+0 @F356@ FAM
+1 CHIL @I209@
+1 WIFE @I262@
+0 @F389@ FAM
+1 CHIL @I211@
+1 HUSB @I283@
+1 WIFE @I284@
+0 @F359@ FAM
+1 CHIL @I212@
+1 HUSB @I263@
+1 WIFE @I264@
+0 @F318@ FAM
+1 CHIL @I231@
+1 HUSB @I235@
+1 WIFE @I236@
+0 @F315@ FAM
+1 CHIL @I232@
+1 HUSB @I233@
+1 WIFE @I234@
+0 @F336@ FAM
+1 CHIL @I238@
+1 HUSB @I247@
+1 WIFE @I248@
+0 @F327@ FAM
+1 CHIL @I239@
+1 HUSB @I241@
+1 WIFE @I242@
+0 @F330@ FAM
+1 CHIL @I240@
+1 HUSB @I243@
+1 WIFE @I244@
+0 @F333@ FAM
+1 CHIL @I244@
+1 HUSB @I245@
+1 WIFE @I246@
+0 @F339@ FAM
+1 CHIL @I247@
+1 HUSB @I249@
+1 WIFE @I250@
+0 @F348@ FAM
+1 CHIL @I248@
+1 HUSB @I255@
+1 WIFE @I256@
+0 @F342@ FAM
+1 CHIL @I250@
+1 HUSB @I251@
+1 WIFE @I252@
+0 @F345@ FAM
+1 CHIL @I251@
+1 HUSB @I253@
+1 WIFE @I254@
+0 @F351@ FAM
+1 CHIL @I256@
+1 HUSB @I257@
+1 WIFE @I258@
+0 @F362@ FAM
+1 CHIL @I263@
+1 HUSB @I265@
+1 WIFE @I266@
+0 @F371@ FAM
+1 CHIL @I269@
+1 HUSB @I271@
+1 WIFE @I272@
+0 @F377@ FAM
+1 CHIL @I271@
+1 HUSB @I275@
+1 WIFE @I276@
+0 @F374@ FAM
+1 CHIL @I272@
+1 HUSB @I273@
+1 WIFE @I274@
+0 @F380@ FAM
+1 CHIL @I275@
+1 HUSB @I277@
+1 WIFE @I278@
+0 @F386@ FAM
+1 CHIL @I279@
+1 HUSB @I281@
+1 WIFE @I282@
+0 @F392@ FAM
+1 CHIL @I283@
+1 HUSB @I285@
+1 WIFE @I286@
+0 @F395@ FAM
+1 CHIL @I285@
+1 HUSB @I287@
+0 @F398@ FAM
+1 CHIL @I287@
+1 HUSB @I289@
+1 WIFE @I290@
+0 @F401@ FAM
+1 CHIL @I289@
+1 HUSB @I291@
+1 WIFE @I292@
+0 @F404@ FAM
+1 CHIL @I291@
+1 HUSB @I293@
+1 WIFE @I294@
+0 @F419@ FAM
+1 CHIL @I301@
+1 WIFE @I304@
+0 TRLR

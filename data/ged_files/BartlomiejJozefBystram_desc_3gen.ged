@@ -1,0 +1,601 @@
+0 HEAD
+1 SOUR The Next Generation of Genealogy Sitebuilding
+2 VERS 12.0.2
+2 NAME The Next Generation of Genealogy Sitebuilding (R)
+2 CORP Next Generation Software, LLC
+3 ADDR Sandy, UT
+1 FILE Bartłomiej Józef Bystram, h.Tarnawa.ged
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 SUBM @SUB1@
+0 @SUB1@ SUBM
+1 NAME Jan
+1 EMAIL no-reply@bystram.be
+1 DEST Gedcom55
+0 @I137@ INDI
+1 NAME Bartłomiej Józef /Bystram/ h.Tarnawa
+2 GIVN Bartłomiej Józef
+2 SURN Bystram
+2 NOTE Wzmiankowany 1758-1795; własciciel dóbr Borkłojnie (Bartłomiejewo), Golminiany, Józefów, Kursze i Sutkuny - powiat Upita. Rotmistrz upicki - 1764, sedzia ziemski upicki - 1765. W 1758r. w Sadzie Grodzkim Upickim kwitował Andrzeja, Antoniego i Jó
+3 CONC zefa (synów Aleksandra, a wnuków Bogusława).
+3 CONT
+3 CONT Co do matki Bartlomieja - za Minakowskim - slub Boguslawa i N.Korsakówny mial miejsce w ca.1720r. A Boguslawa i Thekli przed 13.6.1726 i musial miec miejsce po smierci Korsakówny. Poniewaz Bartlomiej urodzil sie w ca.1730, to prawdopodbnie rodzi
+3 CONC l sie z Thekli, ale .... nosi imie Bartlomiej. Polskie imie, podczas gdy jezykiem ojczystym Thekli byl niemiecki i  prawdopodobnie czula sie Niemka. Podczas gdy N.Korsakówna prawdopodobnie czula sie Polka i dalaby synowi polskie imie. Zatem do w
+3 CONC yjasnienia - kto byl matka Bartlomieja Józefa.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1730
+2 NOTE za Minakowskim
+1 DEAT
+2 DATE 9 Aug 1795
+2 PLAC Ramygala, Lithuania
+2 NOTE Ksiega zgonów - LVIA, 669-1-41, k. 201.
+1 BURI
+2 PLAC kolo kosciola w Ramygole (prawdopodobnie)
+1 OCCU Sędzia ziemski upicki - za A.Bonieckim (judge)
+2 DATE 1765
+2 PLAC Upytė, Lithuania
+1 EVEN za tablica genealog. Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1764-1788
+1 EVEN za ?
+2 TYPE Mentioned
+2 DATE 1758-1795
+1 GRAD rotmistrz upicki (za A.Bonieckim)
+2 DATE 1764
+1 EVEN
+2 TYPE Mentioned
+2 DATE 1782-1821
+2 NOTE wzmiankowany 1782-1821 w Archiwum Glówne Akt Dawnych (Warszawa)-Jedn.Aktowa 1/383/0/-/605; 1782-1821 i b.d. korespondencja Bartlomieja z róznymi osobami
+1 EVEN
+2 TYPE Mentioned
+2 NOTE własciciel dóbr Borkłojnie (Bartłomiejewo), Golminiany, Józefów, Kursze i Sutkuny - powiat Upita. W 1758r. w Sadzie Grodzkim Upickim kwitował Andrzeja, Antoniego i Józefa (synów Aleksandra, a wnuków Bogusława).
+1 EVEN w Sadzie Grodzkim Upickim kwitował Andrzeja, Antoniego i Józefa (synów Aleksandra, a wnuków Bogusława)-za A.Bonieckim.
+2 TYPE Mentioned
+2 DATE 1758
+1 CHAN
+2 DATE 02 Sep 2021
+1 FAMS @F47@
+1 FAMS @F445@
+0 @I138@ INDI
+1 NAME Rozalia Anna /Antonowicz/ h.Hełm
+2 GIVN Rozalia Anna
+2 SURN Antonowicz
+2 NOTE Lenczewski w "Genealogie Utytułowanych Rodów w Polsce" podaje Antonowicz h.Hełm
+3 CONT z Dwojniszek w parafii Pokroje - za A.Pszczólkowskim
+3 CONT
+3 CONT GENI podaje Rozalia Anna Antoniewicz ( https://www.geni.com/people/Rozalia-Bystram/6000000105368582821 )
+2 NSFX h.Hełm
+1 SEX F
+1 BIRT
+2 DATE ca1750
+2 NOTE przypuszczenie moje (KB) i za Minakowskim
+1 EVEN skarbnikówna zmudzka, za A.Pszczólkowskim
+2 TYPE Mentioned
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F47@
+0 @I139@ INDI
+1 NAME Zofia /Bystram/ h.Tarnawa
+2 GIVN Zofia
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1773
+2 NOTE ? Geni?
+1 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F47@
+1 FAMS @F150@
+0 @I396@ INDI
+1 NAME Jan /Burniewicz/
+2 GIVN Jan
+2 SURN Burniewicz
+1 SEX M
+1 BIRT Y
+2 NOTE za Minakowskim
+1 OCCU pisarz ziemski Upita - za A.Bonieckim.
+1 CHAN
+2 DATE 28 Jul 2020
+1 FAMS @F150@
+0 @I1788@ INDI
+1 NAME Wiktoria Franciszka /Bystram/ h.Tarnawa
+2 GIVN Wiktoria Franciszka
+2 SURN Bystram
+2 NOTE https://www.geni.com/people/Wiktoria-Bystram-h-Tarnawa/6000000105454573860
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1773
+2 PLAC Kursze (Karolów),
+2 NOTE https://www.geni.com/people/Wiktoria-Bystram-h-Tarnawa/6000000105454573860
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F47@
+0 @I1789@ INDI
+1 NAME Jozefata Teodora /Bystram/ h.Tarnawa
+2 GIVN Jozefata Teodora
+2 SURN Bystram
+2 NOTE https://www.geni.com/people/Jozefata-Bystram-h-Tarnawa/6000000105455113821
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1774
+2 PLAC Kursze (Karolów),
+2 NOTE https://www.geni.com/people/Jozefata-Bystram-h-Tarnawa/6000000105455113821
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F47@
+0 @I1790@ INDI
+1 NAME Jozefata Brigyda /Bystram/ h.Tarnawa
+2 GIVN Jozefata Brigyda
+2 SURN Bystram
+2 NOTE https://www.geni.com/people/Jozefata-Bystram-h-Tarnawa/6000000105378786833
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 26 Aug 1776
+2 PLAC Kursze (Karolów),
+2 NOTE https://www.geni.com/people/Jozefata-Bystram-h-Tarnawa/6000000105378786833
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F47@
+0 @I135@ INDI
+1 NAME Karol Marcin /Bystram/ h.Tarnawa
+2 GIVN Karol Marcin
+2 SURN Bystram
+2 NOTE Za Lenczewskim ( i nie tylko):
+3 CONT Własciciel dóbr Bartłomiejewo (Karolów) i Bystrampol z przyległosciami, Sutkuny (powiat Upita-Poniewiez) i Branice (Branczyce) gubernia minska.
+3 CONT Wlasciciel Borklojn i Karolowa  - za A.Bonieckim.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 1776
+2 PLAC Kursze (Karolów)
+1 CHR
+2 DATE 8 Nov 1777
+2 PLAC Ramygola
+1 DEAT
+2 DATE 1 May 1853
+1 BURI
+2 PLAC Bystrampol (cm.rodzinny), Lithuania
+1 OCCU Sędzia graniczny Upita
+2 PLAC Upytė, Lithuania
+1 EVEN rozpoczal budowe dworu w Bystrampolu
+2 TYPE Mentioned
+2 DATE 1844
+1 GRAD otrzymał rosyjskie potwierdzenie szwedzkiego tytułu barona. Zawiadomienie przyszlo po jego smierci - za Lenczewskim (i nie tylko):
+2 DATE 21 Sep 1853
+1 OCCU Wicemarszałek szlachty powiatu upickiego (poniewieskiego).
+1 EVEN za tablica genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1790
+1 EVEN bracia (Franciszek, Tomasz i Karol)dopelnili podzialu dóbr z odbioru posagu przez Stanislawa i Józefate Bobanów z 1793r - za A.Bonieckim.
+2 TYPE Mentioned
+2 DATE 1796
+1 CHAN
+2 DATE 08 Oct 2021
+1 FAMC @F47@
+1 FAMS @F46@
+0 @I136@ INDI
+1 NAME Franciszka Anna /Monwiłł-Białłozor/ h.Wieniawa
+2 GIVN Franciszka Anna
+2 SURN Monwiłł-Białłozor
+2 NOTE https://www.geni.com/people/Franciszka-Bystram/6000000002026325327
+3 CONT córka Jana Białłozora h.Wieniawa - starosty kojranskiego, wlasciciela dóbr Hrynkiszki pow Szawle, pisarza ziemskiego powiatu szawelskiego i Anny Lopacinskiej h.Lubicz
+2 NSFX h.Wieniawa
+1 SEX F
+1 BIRT
+2 DATE 4 Jun 1789
+2 NOTE https://www.geni.com/people/Franciszka-Bystram/6000000002026325327
+1 DEAT
+2 DATE 14 May 1823
+2 NOTE https://www.geni.com/people/Franciszka-Bystram/6000000002026325327
+1 BURI
+2 PLAC Bystrampol (cm.rodzinny), Lithuania
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F46@
+0 @I1791@ INDI
+1 NAME Maryanna /Bystram/ h.Tarnawa
+2 GIVN Maryanna
+2 SURN Bystram
+2 NOTE https://www.geni.com/people/Maryanna-Bystram-h-Tarnawa/6000000105291072857
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 12 Feb 1810
+2 PLAC Bystrampol
+2 NOTE https://www.geni.com/people/Maryanna-Bystram-h-Tarnawa/6000000105291072857
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F46@
+0 @I130@ INDI
+1 NAME Karol Kazimierz Adolf /Bystram/ h.Tarnawa
+2 GIVN Karol Kazimierz Adolf
+2 SURN Bystram
+2 NOTE urodzony w Karolowie; wiosce kolo Bystrampola. Dworu w Bystrampolu jeszcze nie bylo, bo Karol Kazimierz go pobudował; budowa zaczela sie w 1844r;
+3 CONT Własciciel dóbr Borklany, Bystrampol z przyległosciami (powiat Poniewiez-Panevezys), Nidoki (Ludokiai) z przyległosciami (powiat Wiłkomierz-Ukmerge);
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 15 Apr 1812
+2 PLAC Karolów, Lithuania
+1 CHR
+2 DATE 22 Apr 1812
+2 PLAC Ramygola, Lithuania
+1 DEAT
+2 DATE 16 Jun 1887
+2 PLAC Żmujdki, Lithuania
+1 BURI
+2 PLAC Nidoki (Ludokiai) pow.Wiłkomierz(Ukmerge)
+1 OCCU Marszałek szlachty powiatu poniewieskiego.
+2 DATE 1852-1858
+1 EVEN wiezien carski za uczestnictwo w Powstaniu Styczniowym
+2 TYPE Mentioned
+2 DATE 1863-1866
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F46@
+1 FAMS @F45@
+0 @I131@ INDI
+1 NAME Zofia Dominika Teresa /Mineyko/ h.Gozdawa
+2 GIVN Zofia Dominika Teresa
+2 SURN Mineyko
+2 NSFX h.Gozdawa
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE 7 Jun 1819
+2 PLAC Worniany, Belarus
+1 DEAT
+2 DATE 10 Feb 1875
+1 BURI
+2 PLAC Lyduokiai, Lithuania
+1 NOTE Zofia was a cousin of the Famous Polish writer Henryk Sienkiewicz. She was the sister of the Grandfather of the spouse of the writer. Henryk Sienkiewicz was regulary a guest at the Bystrampol estate.
+2 CONT https://en.wikipedia.org/wiki/Henryk_Sienkiewicz
+2 SOUR @S4@
+3 DATA
+4 DATE 8 Oct 2018
+4 TEXT Związki z Henrykiem Sienkiewiczem
+5 CONT Zofia Mineykówna była kuzynką Henryka Sienkiewicza (była siostrą dziadka żony pisarza). Sienkiewicz gościł wielokrotnie w rezydencji, w Bystrampolu zbierał materiały do swojej trylogii. Pisarz spędził tu lato, wtedy też poznał miejscową szlacht
+5 CONC ę i miejscowości, które uwiecznił później w trylogii – Laudę, Wodokty, Pacunele. 26 listopada 2016 roku, w setną rocznicę śmierci pisarza, na ścianie pałacu umieszczono dwujęzyczną tablicę upamiętniającą litewskie ścieżki Sienkiewicza[7][8].
+5 CONC
+3 PAGE https://pl.wikipedia.org/wiki/Ku%C4%8Diai#Zwi%C4%85zki_z_Henrykiem_Sienkiewiczem
+3 QUAY 3
+3 NOTE [7] http://www.wilno.msz.gov.pl/resource/5bfefd80-a926-4216-b07e-ed8513e844bf:JCR
+4 CONT [8] http://dzieje.pl/ochrona-zabytkow/litwa-obchody-roku-sienkiewicza-w-bystrampolu-k-poniewieza
+1 CHAN
+2 DATE 09 Oct 2021
+1 FAMS @F45@
+0 @I109@ INDI
+1 NAME Władysław Kazimierz Józef Tomasz /Bystram z Radlina/ h.Tarnawa
+2 GIVN Władysław Kazimierz Józef Tomasz
+2 SURN Bystram z Radlina
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 14 May 1839
+2 PLAC Bystrampol, Lithuania
+2 NOTE Bystrampol (pol.)
+1 CHR
+2 DATE 4 Jun 1839
+2 PLAC Ramygola, Lithuania
+1 DEAT
+2 DATE 13 Nov 1918
+1 BURI
+2 DATE 16 Nov 1918
+2 PLAC Bystrampol (cm.rodzinny), Lithuania
+1 NOTE urodzony 14/26 maja 1839.Dwie daty ze wzgledu na 2 kalendarze: julianski i gregorianski;
+2 CONT własciciel dóbr Bystrampol z przyległosciami, Karlów, Upita powiat Poniewwiez, Wolin powiat Ukmerge (Wiłkomierz);
+2 CONT powstaniec 1863r, adjutant ks.A.Mackiewicza,brał udział w bitwie pod Bystrampolem 16.11.1863r.
+1 CHAN
+2 DATE 03 Aug 2020
+1 FAMC @F45@
+0 @I132@ INDI
+1 NAME Celestyna /Bystram z Radlina/ h.Tarnawa
+2 GIVN Celestyna
+2 SURN Bystram z Radlina
+2 NSFX h.Tarnawa
+2 NICK Celina
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1843
+2 NOTE za Minakowskim
+1 DEAT
+2 DATE 1867
+2 NOTE za Minakowskim
+1 BURI
+2 PLAC Vilnius (cm. Na Rossie), Lithuania
+2 NOTE pochowana na cmentarzu Na Rossie w Wilnie.
+1 CHAN
+2 DATE 08 Jan 2021
+1 FAMC @F45@
+0 @I133@ INDI
+1 NAME Melania /Bystram z Radlina/ h.Tarnawa
+2 GIVN Melania
+2 SURN Bystram z Radlina
+2 NOTE https://www.geni.com/people/Melania-Hoppen/6000000029045423568
+3 CONT za Minakowskim
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE 1848
+1 DEAT
+2 DATE 12 May 1884
+1 BURI
+2 PLAC Vilnius, Lithuania
+1 CHAN
+2 DATE 17 Jan 2021
+1 FAMC @F45@
+0 @I134@ INDI
+1 NAME Kazimierz /Bystram z Radlina/ h.Tarnawa
+2 GIVN Kazimierz
+2 SURN Bystram z Radlina
+2 NOTE własciciel dóbr Zmujdki (sprzedał) powiat Wiłkomierz (Ukmerge) oraz dóbr Gize (sprzedał) powiat Mariampol
+3 CONT za Lenczewskim str.245
+3 CONT https://www.geni.com/people/baron-Kazimierz-Bystram-h-Tarnawa/6000000029047003748
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 1859
+2 PLAC Bistrampolis, Lithuania
+2 NOTE Bistrampolis (lit.)
+3 CONT w Panevezys - za GENI - https://www.geni.com/people/baron-Kazimierz-Bystram-h-Tarnawa/6000000029047003748
+1 DEAT
+2 DATE 28 Jul 1923
+2 PLAC Vyazyn, Belarus
+2 NOTE za Lenczewskim str.245
+3 CONT https://www.geni.com/people/baron-Kazimierz-Bystram-h-Tarnawa/6000000029047003748
+1 BURI
+2 PLAC Gize
+1 CHAN
+2 DATE 11 Aug 2021
+1 FAMC @F45@
+0 @I473@ INDI
+1 NAME Emilia /Bystram z Radlina/ h.Tarnawa
+2 GIVN Emilia
+2 SURN Bystram z Radlina
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F45@
+0 @I1068@ INDI
+1 NAME N. /N./
+2 GIVN N.
+2 SURN N.
+1 SEX F
+1 CHAN
+2 DATE 08 Jul 2020
+1 FAMS @F445@
+0 @I263@ INDI
+1 NAME Franciszek /Bystram/ h.Tarnawa
+2 GIVN Franciszek
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1780
+2 NOTE za Minakowskim
+1 OCCU sedzia ziemski Upita - za A.Bonieckim.
+2 DATE 1792
+1 GRAD deputat na trybunal litewski-za A.Bonieckim.
+2 DATE 1790
+1 EVEN bracia (Franciszek, Tomasz i Karol)dopelnili podzialu dóbr z odbioru posagu przez Stanislawa i Józefate Bobanów z 1793r - za A.Bonieckim.
+2 TYPE Mentioned
+2 DATE 1796
+1 NOTE Własciciel dóbrKursze, Józefów;
+2 CONT deputat na trybunał litewski 1790r.;
+2 CONT sedzia ziemski upicki 1792r.
+1 CHAN
+2 DATE 28 Jul 2020
+1 FAMC @F445@
+0 @I264@ INDI
+1 NAME Tomasz Tadeusz /Bystram/ h.Tarnawa
+2 GIVN Tomasz Tadeusz
+2 SURN Bystram
+2 NOTE za A.Bonieckim, Minakowski podaje Tadeusz Tomasz.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1780
+2 NOTE za Minakowskim
+1 OCCU sedzia ziemski prezydujacy Upita - za A.Bonieckim.
+2 DATE 1796
+1 EVEN Komisarz cywilno-wojskowy powiatu upickiego - za A.Bonieckim.
+2 TYPE Mentioned
+2 DATE 1790
+1 EVEN z tablicy genealog. Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1792-1823
+1 GRAD kandydat na Prezydenta Sadu Glównego Litewskiego-Wilenskiego - za A.Pszczólkowskim
+2 DATE 1809
+1 EVEN bracia (Franciszek, Tomasz i Karol)dopelnili podzialu dóbr z odbioru posagu przez Stanislawa i Józefate Bobanów z 1793r - za A.Bonieckim.
+2 TYPE Mentioned
+2 DATE 1796
+1 NOTE własciciel dóbr Golminiany powiat Upita;
+2 CONT prezydent ziemski upicki(sedzia);
+2 CONT kandydat na Prezydenta Sadu Głównego Litewsko-Wilenskiego w 1809r. (A.A.Pszczólkowski)
+1 CHAN
+2 DATE 28 Jul 2020
+1 FAMC @F445@
+0 @I393@ INDI
+1 NAME Józefata /Bystram/ h.Tarnawa
+2 GIVN Józefata
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE ca1780
+2 NOTE za Minakowskim
+1 EVEN sedzia ziemski upicki - za A.Bonieckim
+2 TYPE Mentioned
+1 EVEN Stefan i Józefata Bobanowie kwitowali z odbioru posagu w aktach ziemskich upickich
+2 TYPE Mentioned
+2 DATE 1793
+1 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F445@
+1 FAMS @F152@
+0 @I397@ INDI
+1 NAME Stanislaw /Boban/ h.Pobóg
+2 GIVN Stanislaw
+2 SURN Boban
+2 NSFX h.Pobóg
+1 SEX M
+1 BIRT
+2 DATE ca.1750
+2 NOTE za Minakowskim
+1 OCCU sedzia ziemski Upita - za A.Bonieckim.
+1 NOTE za Minakowskim
+1 CHAN
+2 DATE 28 Jul 2020
+1 FAMS @F152@
+0 @I394@ INDI
+1 NAME Apolonia /Bystram/ h.Tarnawa
+2 GIVN Apolonia
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE ca.1780
+2 NOTE za Minakowskim
+1 NOTE za Minakowskim
+1 CHAN
+2 DATE 08 Jul 2020
+1 FAMC @F445@
+0 @I395@ INDI
+1 NAME Barbara /Bystram/ h.Tarnawa
+2 GIVN Barbara
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE ca.1780
+2 NOTE za Minakowskim
+1 NOTE za Minakowskim
+1 CHAN
+2 DATE 14 Jul 2020
+1 FAMC @F445@
+0 @F47@ FAM
+1 HUSB @I137@
+1 WIFE @I138@
+1 MARR
+2 DATE 1770
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 CHIL @I139@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I1788@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I1789@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I1790@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I135@
+2 _FREL birth
+2 _MREL birth
+0 @F150@ FAM
+1 HUSB @I396@
+1 WIFE @I139@
+1 MARR
+2 DATE ca.1790
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 08 Jul 2020
+0 @F46@ FAM
+1 HUSB @I135@
+1 WIFE @I136@
+1 MARR
+2 DATE 1810
+1 CHAN
+2 DATE 16 Jan 2021
+1 CHIL @I1791@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I130@
+2 _FREL birth
+2 _MREL birth
+0 @F45@ FAM
+1 HUSB @I130@
+1 WIFE @I131@
+1 MARR
+2 DATE 1838
+1 CHAN
+2 DATE 11 Aug 2021
+1 CHIL @I109@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I132@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I133@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I134@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I473@
+2 _FREL birth
+2 _MREL birth
+0 @F445@ FAM
+1 HUSB @I137@
+1 WIFE @I1068@
+1 CHAN
+2 DATE 08 Jul 2020
+1 CHIL @I263@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I264@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I393@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I394@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I395@
+2 _FREL birth
+2 _MREL birth
+0 @F152@ FAM
+1 HUSB @I397@
+1 WIFE @I393@
+1 MARR
+2 DATE ca.1790
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 08 Jul 2020
+0 @S4@ SOUR
+1 ABBR wikipedia.org
+0 TRLR

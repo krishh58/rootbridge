@@ -1,0 +1,174 @@
+0 NOTE Name: Daniel Heyman
+0 NOTE https://github.com/mattmelachrinos/ssw-555-DDM 
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE My Family
+1 DATE 22 MAY 2016
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME Daniel Heyman
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Iris /Betsalel/
+2 GIVN Iris
+2 SURN Betsalel
+2 _MARNM Heyman
+1 SEX F
+1 BIRT
+2 DATE 10 MAR 1969
+1 FAMS @F2@
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Daniel /Heyman/
+2 GIVN Daniel
+2 SURN Heyman
+2 _MARNM Heyman
+1 SEX M
+1 BIRT
+2 DATE 29 APR 1996
+1 FAMC @F2@
+0 @I3@ INDI
+1 NAME Eran /Heyman/
+2 GIVN Eran
+2 SURN Heyman
+2 _MARNM Heyman
+1 SEX M
+1 BIRT
+2 DATE 28 FEB 1967
+1 FAMS @F2@
+0 @I4@ INDI
+1 NAME Mia /Heyman/
+2 GIVN Mia
+2 SURN Heyman
+2 _MARNM Heyman
+1 SEX F
+1 BIRT
+2 DATE 10 MAY 2005
+1 FAMC @F2@
+0 @I5@ INDI
+1 NAME Tom /Heyman/
+2 GIVN Tom
+2 SURN Heyman
+2 _MARNM Heyman
+1 SEX M
+1 BIRT
+2 DATE 10 MAR 1998
+1 FAMC @F2@
+0 @I6@ INDI
+1 NAME Nathan /Betsalel/
+2 GIVN Nathan
+2 SURN Betsalel
+2 _MARNM Betsalel
+1 SEX M
+1 BIRT
+2 DATE 14 APR 1945
+1 FAMS @F1@
+0 @I7@ INDI
+1 NAME Louna /Betsalel/
+2 GIVN Louna
+2 SURN Betsalel
+2 _MARNM Betsalel
+1 SEX F
+1 BIRT
+2 DATE 3 MAR 1947
+1 FAMS @F1@
+1 FAMC @F3@
+0 @I8@ INDI
+1 NAME Keren /Betsalel/
+2 GIVN Keren
+2 SURN Betsalel
+2 _MARNM Shaked
+1 SEX F
+1 BIRT
+2 DATE 7 MAR 1968
+1 FAMS @F4@
+1 FAMS @F5@
+1 FAMC @F1@
+0 @I9@ INDI
+1 NAME George /Fishman/
+2 GIVN George
+2 SURN Fishman
+2 _MARNM Fishman
+1 SEX M
+1 BIRT
+2 DATE 20 JUN 1960
+1 DEAT Y
+2 DATE 10 JAN 2005
+1 FAMS @F4@
+0 @I10@ INDI
+1 NAME Albert /Fishman/
+2 GIVN Albert
+2 SURN Fishman
+2 _MARNM Fishman
+1 SEX M
+1 BIRT
+2 DATE 2 JUL 2004
+1 FAMC @F4@
+0 @I11@ INDI
+1 NAME Noa /Shaked/
+2 GIVN Noa
+2 SURN Shaked
+2 _MARNM Shaked
+1 SEX F
+1 BIRT
+2 DATE 19 JAN 2007
+1 FAMC @F5@
+0 @I12@ INDI
+1 NAME Adam /Shaked/
+2 GIVN Adam
+2 SURN Shaked
+2 _MARNM Shaked
+1 SEX M
+1 BIRT
+2 DATE 13 JUN 1970
+1 FAMS @F5@
+0 @I13@ INDI
+1 NAME Daniel /Betsalel/
+2 GIVN Daniel
+2 SURN Betsalel
+2 _MARNM Betsalel
+1 SEX M
+1 FAMS @F3@
+0 @I14@ INDI
+1 NAME Shira /Betsalel/
+2 GIVN Shira
+2 SURN Betsalel
+2 _MARNM Betsalel
+1 SEX F
+1 BIRT
+2 DATE 6 JUN 1930
+1 FAMS @F3@
+0 @F1@ FAM
+1 HUSB @I6@
+1 WIFE @I7@
+1 CHIL @I1@
+1 CHIL @I8@
+1 _CURRENT Y
+0 @F2@ FAM
+1 HUSB @I3@
+1 WIFE @I1@
+1 CHIL @I2@
+1 CHIL @I4@
+1 CHIL @I5@
+1 _CURRENT N
+0 @F3@ FAM
+1 HUSB @I13@
+1 WIFE @I14@
+1 CHIL @I7@
+1 _CURRENT Y
+0 @F4@ FAM
+1 HUSB @I9@
+1 WIFE @I8@
+1 CHIL @I10@
+1 _CURRENT N
+0 @F5@ FAM
+1 HUSB @I12@
+1 WIFE @I8@
+1 CHIL @I11@
+1 _CURRENT N
+0 TRLR

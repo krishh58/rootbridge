@@ -1,0 +1,44 @@
+0 HEAD
+1 SOUR MultiAgentGenealogyTrapCases
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 NOTE Tier 1 deterministic trap: recorded father (Henry, b.1855) would have
+2 CONT been 5 years old when the child (Grace, b.1860) was born — below the
+2 CONT biological floor of 12. check_parent_too_young_at_birth should fire.
+0 @I1@ INDI
+1 NAME Grace /Tooyoung/
+1 SEX F
+1 BIRT
+2 DATE 15 MAR 1860
+2 PLAC Chicago, Illinois
+1 DEAT
+2 DATE 1 JAN 1930
+2 PLAC Chicago, Illinois
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Henry /Tooyoung/
+1 SEX M
+1 BIRT
+2 DATE 5 MAY 1855
+2 PLAC Chicago, Illinois
+1 DEAT
+2 DATE 20 JUN 1920
+2 PLAC Chicago, Illinois
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Susan /Miller/
+1 SEX F
+1 BIRT
+2 DATE 10 JUN 1840
+2 PLAC Chicago, Illinois
+1 DEAT
+2 DATE 4 APR 1910
+2 PLAC Chicago, Illinois
+1 FAMS @F1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+0 TRLR

@@ -1,0 +1,945 @@
+0 HEAD
+1 SOUR RoRo-Bot
+2 NAME Grandma RoRo Family Bot
+2 VERS 1.0
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 NOTE Generated from the Sampson-Kahn family tree maintained by RoRo Bot.
+0 @I1@ INDI
+1 NAME Henry /Kahn/
+2 GIVN Henry
+2 SURN Kahn
+1 FAMS @F1@
+0 @I2@ INDI
+1 NAME Bela /Goldstein/
+2 GIVN Bela
+2 SURN Goldstein
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Israel /Kahn/
+2 GIVN Israel
+2 SURN Kahn
+1 BIRT
+2 DATE 1822
+2 PLAC Darmstadt, Hesse, Germany
+1 DEAT
+2 DATE 1883
+1 NOTE Emigrated from Germany 1848, arrived Baltimore on the Henry Shelton from Rotterdam. Founded dry goods business in Oakland 1879 at 10th & Broadway. Sons: Henry, Samuel, Solomon, Frederick, John.
+1 FAMC @F1@
+1 FAMS @F2@
+0 @I4@ INDI
+1 NAME Sarah /Bauer/
+2 GIVN Sarah
+2 SURN Bauer
+1 BIRT
+2 DATE 1828
+1 DEAT
+2 DATE 1888
+1 FAMS @F2@
+0 @I5@ INDI
+1 NAME Samuel /Lavenson/
+2 GIVN Samuel
+2 SURN Lavenson
+1 BIRT
+2 DATE 1829
+1 DEAT
+2 DATE 1900
+1 FAMS @F3@
+0 @I6@ INDI
+1 NAME Caroline /Heiman/
+2 GIVN Caroline
+2 SURN Heiman
+1 BIRT
+2 DATE 1842
+1 DEAT
+2 DATE 24 JUN 1872
+2 PLAC Sacramento, CA
+1 NOTE Died at age 29-30, the same year her daughter Helen was born. Buried at Home of Peace Cemetery, Sacramento. Three children: Clara (1870), Sara (1871), Helen (1872).
+1 FAMS @F3@
+0 @I7@ INDI
+1 NAME Albert S. /Lavenson/
+2 GIVN Albert S.
+2 SURN Lavenson
+1 BIRT
+2 DATE 1865
+2 PLAC Sacramento, CA
+1 DEAT
+2 DATE 1930
+1 NOTE Partner and vice-president of Capwell's Department Store (30 years, from 1890). President of Temple Sinai. Organizer of the Commercial Club (later Oakland Chamber of Commerce). Music patron at Mills College, responsible for construction of Music Bu
+2 CONC ilding. Chaired Jewish Welfare Campaign of the East Bay (1927). Died at 65 of heart disease. Left estate to charitable/educational foundation.
+1 SOUR https://www.jta.org/1930/06/11/archive/albert-lavenson-california-philanthropist-dies-at-65
+1 FAMC @F3@
+1 FAMS @F4@
+0 @I8@ INDI
+1 NAME Amy /Furth/
+2 GIVN Amy
+2 SURN Furth
+1 NOTE Daughter of Gold Rush merchant Simon Furth.
+1 FAMS @F4@
+0 @I9@ INDI
+1 NAME Alma Ruth /Lavenson/
+2 GIVN Alma Ruth
+2 SURN Lavenson
+1 BIRT
+2 DATE 1897
+2 PLAC Oakland, CA
+1 DEAT
+2 DATE 1989
+1 NOTE Noted photographer. Studied under Edward Weston and Imogen Cunningham.
+1 SOUR https://www.jmaw.org/lavenson-capwells-jewish/
+1 FAMC @F4@
+0 @I10@ INDI
+1 NAME Clara Lavenson /Furth/
+2 GIVN Clara Lavenson
+2 SURN Furth
+1 BIRT
+2 DATE 1870
+1 DEAT
+2 DATE 1945
+1 FAMC @F3@
+0 @I11@ INDI
+1 NAME Sara /Lavenson/
+2 GIVN Sara
+2 SURN Lavenson
+1 BIRT
+2 DATE 1871
+1 DEAT
+2 DATE 1946
+1 FAMC @F3@
+0 @I12@ INDI
+1 NAME Frederick /Kahn/
+2 GIVN Frederick
+2 SURN Kahn
+1 BIRT
+2 DATE 21 SEP 1860
+2 PLAC New York, NY
+1 DEAT
+2 DATE 19 AUG 1925
+2 PLAC Oakland, CA (3933 Harrison Street)
+1 NOTE First worked at Bauer Brothers Company (wholesalers of laces and fancy goods, 83 First Street, SF), then joined the family store after it was founded in 1879. Kahn Brothers Dept Store moved 1912 to Beaux-Arts building at 16th & Broadway (architect 
+2 CONC Charles W. Dickey, 120-ft elliptical dome - now Rotunda Building, Oakland Landmark #132, National Register). First president of Jewish Welfare Federation of the East Bay (founded 1918). Founding member & president of Temple Sinai. Chairman of Advis
+2 CONC ory Committee of Board of Education ($5M school building program). VP of Alameda County Anti-Tuberculosis Society. Concordia Club, B'nai B'rith. Buried at Home of Eternity Cemetery, Mountain View Cemetery, Oakland.
+1 FAMC @F2@
+1 FAMS @F5@
+0 @I13@ INDI
+1 NAME Helen /Lavenson/
+2 GIVN Helen
+2 SURN Lavenson
+1 BIRT
+2 DATE 20 MAY 1872
+2 PLAC California
+1 DEAT
+2 DATE 4 MAR 1935
+2 PLAC Oakland, CA
+1 NOTE Established the Kahn Foundation in 1928 after Frederick's death. In 1965, foundation donated $125,000 for 71 paintings -the Kahn Collection of 19th-century California art at the Oakland Museum, catalogued by Marjorie Arkelian.
+1 FAMC @F3@
+1 FAMS @F5@
+0 @I14@ INDI
+1 NAME Helen Sarah /Kahn/
+2 GIVN Helen Sarah
+2 SURN Kahn
+1 BIRT
+2 DATE 1913
+1 DEAT
+2 DATE 1956
+1 FAMC @F5@
+1 FAMS @F6@
+0 @I15@ INDI
+1 NAME Frederick Kahn /Jr./
+2 GIVN Frederick Kahn
+2 SURN Jr.
+1 FAMC @F5@
+0 @I16@ INDI
+1 NAME Rose Etta Kahn /Sampson/
+2 GIVN Rose Etta Kahn
+2 SURN Sampson
+2 NICK RoRo
+1 BIRT
+2 DATE 10 DEC 1907
+2 PLAC Oakland, CA
+1 DEAT
+2 DATE 12 JUL 1997
+2 PLAC San Francisco, CA (Mount Zion Hospital)
+1 NOTE Phi Beta Kappa, UC Berkeley 1928. Carried the key at Temple Sinai's dedication as a girl. Award-winning weaver -wove furniture upholstery for Seacliff home, made cushion for Haas-Lilienthal House. President of Kahn Foundation. Volunteered at Mt. Zi
+2 CONC on Hospital into her 80s. Died of lung embolism. Memorial August 4 at Congregation Emanu-El.
+1 FAMC @F5@
+1 FAMS @F7@
+0 @I17@ INDI
+1 NAME Hartwig /Cohen/
+2 GIVN Hartwig
+2 SURN Cohen
+2 NICK Reverend Hartwig Cohen
+1 BIRT
+2 DATE 14 NOV 1784
+2 PLAC Wartha, Frankenstein, Silesia, Prussia
+1 DEAT
+2 DATE 12 OCT 1861
+2 PLAC Winnsboro, Fairfield County, SC
+1 NOTE Spiritual leader of Charleston's Kahal Kadosh Beth Elohim.
+1 SOUR https://www.geni.com/people/Rev-Hartwig-Cohen/6000000016009111717
+1 SOUR https://www.wikitree.com/wiki/Cohen-2905
+1 FAMS @F8@
+0 @I18@ INDI
+1 NAME Deborah Marks /Cohen/
+2 GIVN Deborah Marks
+2 SURN Cohen
+1 BIRT
+2 DATE 3 MAY 1801
+2 PLAC Charleston, SC
+1 DEAT
+2 DATE 15 FEB 1888
+2 PLAC New York, NY
+1 NOTE Born Deborah Marks. Family name was anglicized from Marques. Children included Esther 'Hetty' (Sampson), Rosa, Leonora (Baum), Adeline (Phillips), Frances Aaron Cohen, and Fishel Hartwig Cohen.
+1 FAMC @F9@
+1 FAMS @F8@
+0 @I19@ INDI
+1 NAME Samuel Mendel /Marks/
+2 GIVN Samuel Mendel
+2 SURN Marks
+1 NOTE Son of Isaac Marks and Miriam Simpson/Simons. Moved to Charleston, SC.
+1 FAMC @F10@
+1 FAMS @F9@
+0 @I20@ INDI
+1 NAME Sarah /Harris/
+2 GIVN Sarah
+2 SURN Harris
+1 FAMS @F9@
+0 @I21@ INDI
+1 NAME Isaac /Marks/
+2 GIVN Isaac
+2 SURN Marks
+1 BIRT
+2 DATE 1732
+2 PLAC New York, NY
+1 DEAT
+2 DATE 1776
+2 PLAC New York
+1 NOTE Fought in the American Revolution as private in NY Militia. Listed in DAR family histories. Lived in NYC from age 8 (1740). Originally Marques, name anglicized to Marks. Father unknown. Cousin of Bernard Baruch (through granddaughter Sarah Wolfe). 
+2 CONC His son Samuel Mendel Marks moved to Charleston, SC.
+1 NOTE [CONTESTED] Connection to Esther de Salomon Levy Maduro as mother appears in multiple Geni/Ancestry trees but lacks primary documentation. Esther's first husband died ~1725, Isaac born 1732 with unknown father. Parentage is plausible but unproven. 
+2 CONC Death place listed as 'New York' per residence records; 'Charleston, SC' in some trees but that was his son's location. Military service claim lacks muster roll confirmation.
+1 SOUR https://www.geni.com/people/Pvt-Isaac-Marks-NY-Militia/6000000019301598241
+1 SOUR https://sites.americanjewisharchives.org/publications/fajf/pdfs/stern_p185.pdf
+1 SOUR https://paulskolnick.com/genealogy/chris-ann-maxwell/marques-marks/marques-marks-text-tree/
+1 FAMC @F11@
+1 FAMS @F10@
+0 @I22@ INDI
+1 NAME Miriam /Simpson/Simons/
+2 GIVN Miriam
+2 SURN Simpson/Simons
+1 NOTE Of Long Island.
+1 FAMS @F10@
+0 @I23@ INDI
+1 NAME Esther de Salomon Levy /Maduro/
+2 GIVN Esther de Salomon Levy
+2 SURN Maduro
+2 NICK Esther Marques
+1 BIRT
+2 DATE 16 DEC 1699
+2 PLAC Bordeaux, Gironde, France
+1 DEAT
+2 DATE 30 JUL 1759
+2 PLAC Curaçao, Netherlands Antilles
+1 NOTE Buried at Beth Haim Cemetery, Curaçao, section IV, row C, grave 621. First married Jacob Rodriguez Marques (May 27, 1722, in Barbados). Jacob died ~1725. Then married Ishac de Shemuel Levy Maduro (buried adjacent plot IV-C-620). Isaac Marks born 17
+2 CONC 32 with unknown father - possibly conceived in New York. Also had daughter Rachel Marquez (~1725, Barbados). Researched by Matt Reider 2022, corresponded with Ron Gomes Casseres at Beth Haim cemetery. Emmanuel's books contain contradictions: 'Histo
+2 CONC ry of the Jews of the Netherlands Antilles' (1970) p.943 says she married Jacob 1722, but 'Precious Stones of the Jews of Curaçao' (1957) p.507 lists her as wife of Ishac de Shemuel.
+1 NOTE [CONTESTED] Birth year 1699 and birthplace Bordeaux are from Geni user trees. Geneanet/Genealogy Online records show a different Esther de Salomon Levy Maduro y Namias de Castro born 1710 (not 1699) who married Isaac de Samuel Levy Maduro y Vieyra 
+2 CONC (1712-1784). The Geni profile may conflate two different women named Esther. The Bordeaux birthplace is unsupported; the Levy Maduro family was based in Amsterdam and Curaçao.
+1 SOUR https://www.geni.com/people/Esther-Marques/6000000010280084001
+1 SOUR https://www.bethhaimcuracao.org
+1 SOUR https://archive.org/stream/willsofearlyjewi00frie/willsofearlyjewi00frie_djvu.txt
+1 FAMS @F11@
+0 @I24@ INDI
+1 NAME Jacob Rodriguez /Marques/
+2 GIVN Jacob Rodriguez
+2 SURN Marques
+1 DEAT
+2 DATE ABT 1725
+1 NOTE Married Esther in Barbados at St. Michaels. Died ~1725. From the Isaac Rodriguez Marques family of New York/Denmark. His father Isaac Rodriguez Marques (1695-1706) was a ship owner (the Dolphin) who sailed between NY and England. Father's will (170
+2 CONC 6) mentions son Jacob and daughter Esther (a different Esther). Referenced in Friedman's 'Wills of Early Jewish Settlers in New York' and Baruch's autobiography 'The Adventures of a Wall Street Legend' p.22.
+1 SOUR https://archive.org/stream/willsofearlyjewi00frie/willsofearlyjewi00frie_djvu.txt
+1 FAMS @F11@
+0 @I25@ INDI
+1 NAME Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias /Sardo/
+2 GIVN Ribi Hazzan Salomon de Mosseh Levy Maduro y Dias
+2 SURN Sardo
+2 NICK Samuel de Mosseh Levy Maduro
+1 BIRT
+2 DATE 1673
+2 PLAC Amsterdam, Netherlands
+1 DEAT
+2 DATE 6 APR 1752
+2 PLAC Curaçao
+1 NOTE Rabbi (Hazzan). Also known as Samuel (Hebrew name Salomon). Born in Amsterdam.
+1 SOUR https://gw.geneanet.org/camiloro?lang=en&n=levy+maduro+y+dias+sardo&p=samuel+de+mosseh
+1 FAMC @F12@
+0 @I26@ INDI
+1 NAME Hazzan & Ribi Mosseh de Salomon Levy /Maduro/
+2 GIVN Hazzan & Ribi Mosseh de Salomon Levy
+2 SURN Maduro
+1 BIRT
+2 DATE 1649
+2 PLAC Amsterdam, Netherlands
+1 DEAT
+2 DATE 10 NOV 1708
+2 PLAC Curaçao
+1 NOTE Rabbi and cantor. Arrived Curaçao 1672. Full name includes 'y de Crasto' from his mother's family.
+1 SOUR https://www.geni.com/people/Hazzan-Ribi-Mosseh-Levy-Maduro/6000000004281588224
+1 SOUR https://www.genealogieonline.nl/en/stamboom-lobe/I20033.php
+1 FAMC @F13@
+1 FAMS @F12@
+0 @I27@ INDI
+1 NAME Hester Dias /Sardo/
+2 GIVN Hester Dias
+2 SURN Sardo
+1 FAMS @F12@
+0 @I28@ INDI
+1 NAME Salomon de Moshe Levy /Maduro/
+2 GIVN Salomon de Moshe Levy
+2 SURN Maduro
+2 NICK Salomon Levy Maduro Rodriguez
+1 BIRT
+2 DATE 1629
+2 PLAC Amsterdam, Netherlands
+1 DEAT
+2 DATE 1699
+1 SOUR https://www.genealogieonline.nl/en/stamboom-lobe/I20035.php
+1 FAMC @F14@
+1 FAMS @F13@
+0 @I29@ INDI
+1 NAME Chana de /Castro/
+2 GIVN Chana de
+2 SURN Castro
+1 FAMS @F13@
+0 @I30@ INDI
+1 NAME Mosseh Levy o /Maduro/
+2 GIVN Mosseh Levy o
+2 SURN Maduro
+1 BIRT
+2 DATE ABT 1591
+2 PLAC Portugal
+1 DEAT
+2 DATE 1 JAN 1640
+2 PLAC Amsterdam, Netherlands
+1 NOTE Adopted the 'Maduro' name. Married Clara (also known as Rachel/Raquel) Rodriguez in Amsterdam.
+1 SOUR https://www.geni.com/people/Mosseh-Levy-o-Maduro/6000000004281963094
+1 FAMS @F14@
+0 @I31@ INDI
+1 NAME Solomon /Levy/
+2 GIVN Solomon
+2 SURN Levy
+0 @I32@ INDI
+1 NAME Salomon /Levy/
+2 GIVN Salomon
+2 SURN Levy
+0 @I33@ INDI
+1 NAME Antonio Ha Levy, /Abulafia/
+2 GIVN Antonio Ha Levy,
+2 SURN Abulafia
+1 FAMC @F15@
+0 @I34@ INDI
+1 NAME Diogo /Rodrigues/
+2 GIVN Diogo
+2 SURN Rodrigues
+1 FAMS @F15@
+0 @I35@ INDI
+1 NAME Clara /Roiz/
+2 GIVN Clara
+2 SURN Roiz
+1 FAMS @F15@
+0 @I36@ INDI
+1 NAME Joseph H. /Sampson/
+2 GIVN Joseph H.
+2 SURN Sampson
+1 BIRT
+2 DATE 10 JUN 1823
+2 PLAC Charleston, SC
+1 DEAT
+2 DATE 14 JUL 1883
+1 NOTE Prominent Jewish merchant and shipping operator in Georgetown, SC, with brother Samuel. After the Civil War, revived their mercantile business and expanded into shipping. Family originally from Bury St. Edmunds, England. Sampson family names appear
+2 CONC  in Kahal Kadosh Beth Elohim records in Charleston. Georgetown had ~80 Jews by 1800 (~10% of white population), second largest Jewish community in SC. Buried in Jewish Cemetery, Georgetown (est. 1772).
+1 SOUR https://billiongraves.com/grave/Joseph-Sampson/3278781
+1 SOUR https://www.isjl.org/south-carolina-georgetown-encyclopedia.html
+1 SOUR https://jhssc.org/synagogue/beth-elohim/
+1 FAMS @F16@
+0 @I37@ INDI
+1 NAME Esther 'Hetty' /Cohen/
+2 GIVN Esther 'Hetty'
+2 SURN Cohen
+1 BIRT
+2 DATE 30 JUN 1832
+2 PLAC Charleston, SC
+1 DEAT
+2 DATE 22 SEP 1897
+2 PLAC Georgetown, SC
+1 NOTE Siblings: Sarah (Cohen) Wolfe (Bernard Baruch's grandmother) and Frances A. Cohen. Mother of Cornelia C. (Sampson) Ehrich and Dr. Arthur Fischel Sampson.
+1 SOUR https://www.wikitree.com/wiki/Cohen-2905
+1 SOUR https://www.geni.com/people/Esther-Sampson/325137901420005493
+1 FAMC @F8@
+1 FAMS @F16@
+0 @I38@ INDI
+1 NAME Abraham /Levy/
+2 GIVN Abraham
+2 SURN Levy
+1 BIRT
+2 DATE 1827
+1 DEAT
+2 DATE 1879
+1 FAMS @F17@
+0 @I39@ INDI
+1 NAME Esther /Halff/
+2 GIVN Esther
+2 SURN Halff
+1 BIRT
+2 DATE 1833
+1 DEAT
+2 DATE 1908
+1 FAMS @F17@
+0 @I40@ INDI
+1 NAME Arthur Fischel /Sampson/
+2 GIVN Arthur Fischel
+2 SURN Sampson
+2 NICK AF
+1 BIRT
+2 DATE 1 JUL 1855
+2 PLAC Georgetown, SC
+1 DEAT
+2 DATE 26 NOV 1934
+2 PLAC San Francisco, CA
+1 NOTE Physician. Medical school in SC, practiced in Galveston TX. Married Bettie in Galveston. After 1900 Galveston flood, moved to SF 1902. Franklin Street home (between Bush and Sutter) dynamited by US Army as firebreak during 1906 earthquake. Rebuilt 
+2 CONC on Washington Street near Laurel. Five children: Joseph Abraham (1888), Arthur Jr. (1891), Cornelia 'Nellie' (1893), Esther, John Jacob (1898).
+1 SOUR https://www.geni.com/people/Dr.-Arthur-Fischel-Sampson/325131943140001618
+1 FAMC @F16@
+1 FAMS @F18@
+0 @I41@ INDI
+1 NAME Babette 'Bettie' /Levy/
+2 GIVN Babette 'Bettie'
+2 SURN Levy
+1 BIRT
+2 DATE 24 MAR 1868
+2 PLAC San Antonio, TX
+1 DEAT
+2 DATE 21 MAR 1949
+2 PLAC Santa Clara, CA
+1 FAMC @F17@
+1 FAMS @F18@
+0 @I42@ INDI
+1 NAME Joseph Abraham /Sampson/
+2 GIVN Joseph Abraham
+2 SURN Sampson
+1 BIRT
+2 DATE 4 DEC 1888
+2 PLAC Galveston, TX
+1 FAMC @F18@
+0 @I43@ INDI
+1 NAME Arthur Fischel Sampson /Jr./
+2 GIVN Arthur Fischel Sampson
+2 SURN Jr.
+1 BIRT
+2 DATE 2 JUN 1891
+2 PLAC Galveston, TX
+1 FAMC @F18@
+0 @I44@ INDI
+1 NAME Cornelia 'Nellie' /Sampson/
+2 GIVN Cornelia 'Nellie'
+2 SURN Sampson
+1 BIRT
+2 DATE 8 AUG 1893
+2 PLAC Galveston, TX
+1 DEAT
+2 DATE 1989
+2 PLAC San Francisco, CA
+1 NOTE Married first Sidney Bibbero (son Richard Bibbero b. 1915), then Herbert Salinger.
+1 FAMC @F18@
+0 @I45@ INDI
+1 NAME Esther Sampson /Langfeld/
+2 GIVN Esther Sampson
+2 SURN Langfeld
+1 FAMC @F18@
+0 @I46@ INDI
+1 NAME John Jacob /Sampson/
+2 GIVN John Jacob
+2 SURN Sampson
+2 NICK Grandpa John
+1 BIRT
+2 DATE 28 APR 1898
+2 PLAC Galveston, TX
+1 DEAT
+2 DATE 24 DEC 1987
+2 PLAC San Francisco, CA
+1 NOTE MD before age 21. 3 years at UC then medical degree. Medical officer on freighter to Far East and India. Practiced with his father, then UCSF research and clinical staff until retirement at 85. Chief of Staff at Mount Zion Hospital. Cardiologist -4
+2 CONC 9 publications (1926-1980) on cardiac pain, pulmonary lymph flow, angina, shock. Collaborated with Meyer Friedman (Type A behavior), Herman Uhley, Sanford Leeds at Harold Brunn Institute for Cardiovascular Research. The John J. Sampson-Lucie Stern 
+2 CONC Endowed Chair in Cardiology established at UCSF in his honor.
+1 FAMC @F18@
+1 FAMS @F7@
+0 @I47@ INDI
+1 NAME Deborah Sampson /Green/
+2 GIVN Deborah Sampson
+2 SURN Green
+1 BIRT
+2 DATE 11 JAN 1934
+2 PLAC San Francisco, CA
+1 NOTE Educator, editor, college instructor of English Lit. Lives in Seattle. Schools: Lowell, Alamo, Presidio Jr. High, Wellesley (1978).
+1 FAMC @F7@
+1 FAMS @F19@
+0 @I48@ INDI
+1 NAME John R. /Green/
+2 GIVN John R.
+2 SURN Green
+1 BIRT
+2 DATE ABT 1921
+1 DEAT
+2 DATE ABT 1996
+1 FAMS @F19@
+0 @I49@ INDI
+1 NAME Caleb /Green/
+2 GIVN Caleb
+2 SURN Green
+1 FAMC @F19@
+1 FAMS @F20@
+0 @I50@ INDI
+1 NAME Robert Bruce /Banta-Green/
+2 GIVN Robert Bruce
+2 SURN Banta-Green
+1 FAMC @F20@
+0 @I51@ INDI
+1 NAME Peter Caleb /Banta-Green/
+2 GIVN Peter Caleb
+2 SURN Banta-Green
+1 FAMC @F20@
+0 @I52@ INDI
+1 NAME John Frederick /Sampson/
+2 GIVN John Frederick
+2 SURN Sampson
+2 NICK Johnny
+1 BIRT
+2 DATE 18 MAR 1935
+2 PLAC San Francisco, CA
+1 NOTE Appraiser and real estate broker in SF. Lowell HS (1953), Reed College (3 yrs), AB Univ of SF (1957), Wharton (1960). First wife Louise Adler (1962, div. 1991). Second wife Sharon L. Litsky (1999).
+1 SOUR https://www.geni.com/people/John-Frederick-Sampson/287594964040008991
+1 FAMC @F7@
+1 FAMS @F21@
+0 @I53@ INDI
+1 NAME Jennifer Ruth /Sampson/
+2 GIVN Jennifer Ruth
+2 SURN Sampson
+1 BIRT
+2 DATE 22 OCT 1969
+2 PLAC San Francisco, CA
+1 NOTE Lives in Berkeley, CA.
+1 SOUR https://www.geni.com/people/Jennifer-Ruth-Sampson/325120278230006393
+1 FAMC @F21@
+0 @I54@ INDI
+1 NAME John Frederick Sampson /Jr./
+2 GIVN John Frederick Sampson
+2 SURN Jr.
+1 FAMC @F21@
+0 @I55@ INDI
+1 NAME Juliet Margaret /Sampson/
+2 GIVN Juliet Margaret
+2 SURN Sampson
+1 BIRT
+2 DATE 19 MAY 1968
+2 PLAC San Francisco, CA
+1 NOTE Country Financial Analyst. Lives in London.
+1 SOUR https://www.geni.com/people/Juliet-Margaret-Sampson/325120088920006414
+1 FAMC @F21@
+1 FAMS @F22@
+0 @I56@ INDI
+1 NAME Simon /Mays-Smith/
+2 GIVN Simon
+2 SURN Mays-Smith
+1 FAMS @F22@
+0 @I57@ INDI
+1 NAME Isaac /Mays-Smith/
+2 GIVN Isaac
+2 SURN Mays-Smith
+1 SOUR https://www.geni.com/people/Isaac-Mays-Smith/325123506560001643
+1 FAMC @F22@
+0 @I58@ INDI
+1 NAME Noah /Mays-Smith/
+2 GIVN Noah
+2 SURN Mays-Smith
+1 FAMC @F22@
+0 @I59@ INDI
+1 NAME Rose Etta /Mays-Smith/
+2 GIVN Rose Etta
+2 SURN Mays-Smith
+1 NOTE Named after Rose Etta Kahn Sampson (RoRo).
+1 FAMC @F22@
+0 @I60@ INDI
+1 NAME Janet Sampson /Reider/
+2 GIVN Janet Sampson
+2 SURN Reider
+1 BIRT
+2 DATE 1 MAR 1937
+2 PLAC San Francisco, CA
+1 NOTE Photographer (janetreider.com). Met Pete at Lowell High School at age 13.
+1 FAMC @F7@
+1 FAMS @F23@
+0 @I61@ INDI
+1 NAME Arthur Elliott 'Pete' /Reider/
+2 GIVN Arthur Elliott 'Pete'
+2 SURN Reider
+2 NICK Pete
+1 BIRT
+2 DATE 1 NOV 1936
+2 PLAC Topeka, KS
+1 DEAT
+2 DATE 13 AUG 2015
+2 PLAC San Francisco, CA
+1 NOTE Psychiatrist. Presidio Hill School, Grant School, Lowell HS, Harvard (Class of 1958), Harvard Medical. Captain of Harvard Track -ran 4:11 mile (1957 Harvard record). Harvard Athletic Hall of Fame (1982). All-Ivy League Cross Country Team. Coach McC
+2 CONC urdy: 'one of the toughest little men I have ever known.' Private practice in Cambridge, Hyannis, Newton MA. Retired in SF. Published Stepping Stones (2014), poetry and fiction. Fromm Institute at USF, Osher Foundation at Brandeis. Died of lymphoma
+2 CONC  at home. Memorial at Congregation Emanu-El, August 17, 2015.
+1 FAMC @F24@
+1 FAMS @F23@
+0 @I62@ INDI
+1 NAME Jonathan /Reider/
+2 GIVN Jonathan
+2 SURN Reider
+1 NOTE Stanford admissions officer for 15 years, then Director of College Counseling at SF University High School.
+1 FAMC @F24@
+0 @I63@ INDI
+1 NAME Norman /Reider/
+2 GIVN Norman
+2 SURN Reider
+1 BIRT
+2 DATE 3 JUL 1907
+2 PLAC Alliance, Stark County, OH
+1 DEAT
+2 DATE 23 MAR 1989
+2 PLAC San Francisco, CA
+1 NOTE BA and MD from Western Reserve University (now Case Western Reserve). Trained at Menninger Clinic, Topeka (1934-1939). Chief of Psychiatry at Mt. Zion Hospital, SF (succeeding Jascha Kasanin). Early member of the San Francisco Psychoanalytic Societ
+2 CONC y (founded 1942; Norman arrived SF 1946). Featured in TIME magazine (1947) for 'The Unmarried Father.' Wrote 'Chess, Oedipus, and the Mater Dolorosa' (1959). ACLU board member (Northern California). Papers archived at SF Center for Psychoanalysis (
+2 CONC 4.6 linear feet, 1822-1980s).
+1 FAMC @F25@
+1 FAMS @F24@
+0 @I64@ INDI
+1 NAME Louise J. /Cohen/
+2 GIVN Louise J.
+2 SURN Cohen
+1 BIRT
+2 DATE 29 NOV 1907
+2 PLAC Cleveland, OH
+1 DEAT
+2 DATE 22 FEB 1985
+2 PLAC San Francisco, CA
+1 NOTE Psychiatric social worker, stopped practicing around 1946.
+1 FAMS @F24@
+0 @I65@ INDI
+1 NAME Maurice Jacob /Rudner/
+2 GIVN Maurice Jacob
+2 SURN Rudner
+2 NICK Morris Jacob Rudner
+1 BIRT
+2 DATE ABT 1882
+2 PLAC Horoduk/Orduk Village, Vilna Gubernia, Lithuania
+1 DEAT
+2 DATE ABT 1960
+2 PLAC Canton, OH
+1 NOTE Originally named Rudner, changed to Reider. Foreman at steel foundry. Married Jun 7, 1906, Canton OH.
+1 FAMC @F26@
+1 FAMS @F25@
+0 @I66@ INDI
+1 NAME Uriah 'Uri' /Rudner/
+2 GIVN Uriah 'Uri'
+2 SURN Rudner
+1 BIRT
+2 DATE FEB 1855
+2 PLAC Orduk Village, Vilna Gubernia, Lithuania (Russian Empire)
+1 DEAT
+2 DATE 23 APR 1916
+2 PLAC Canton, OH
+1 NOTE First wife Clara Scope (d. 1909). Children: Anna, Morris (Reider), Isaac, Bennie (1884-1901), Len, Sam, Rhea. Second wife Hattie Altman.
+1 FAMS @F26@
+0 @I67@ INDI
+1 NAME Clara /Scope/
+2 GIVN Clara
+2 SURN Scope
+1 BIRT
+2 DATE JUN 1862
+2 PLAC Russia
+1 DEAT
+2 DATE 15 SEP 1909
+2 PLAC Canton, OH
+1 FAMS @F26@
+0 @I68@ INDI
+1 NAME Lillian /Cohen/
+2 GIVN Lillian
+2 SURN Cohen
+1 BIRT
+2 DATE 1887
+1 DEAT
+2 DATE 1981
+1 FAMC @F27@
+1 FAMS @F25@
+0 @I69@ INDI
+1 NAME Hyman /Cohen/
+2 GIVN Hyman
+2 SURN Cohen
+1 BIRT
+2 DATE 1850
+1 FAMS @F27@
+0 @I70@ INDI
+1 NAME Jennie /Sugarman/
+2 GIVN Jennie
+2 SURN Sugarman
+1 BIRT
+2 DATE 1865
+1 DEAT
+2 DATE 1928
+1 FAMS @F27@
+0 @I71@ INDI
+1 NAME Abe Pasek /Cohen/
+2 GIVN Abe Pasek
+2 SURN Cohen
+1 BIRT
+2 DATE 1886
+1 DEAT
+2 DATE ABT 1915
+0 @I72@ INDI
+1 NAME Rena Posak /Shepsenwol/
+2 GIVN Rena Posak
+2 SURN Shepsenwol
+1 BIRT
+2 DATE 1886
+0 @I73@ INDI
+1 NAME Jacob M. /Reider/
+2 GIVN Jacob M.
+2 SURN Reider
+1 BIRT
+2 DATE 25 JUN 1963
+2 PLAC Boston, MA
+1 NOTE Family physician (FAAFP). Hampshire College '83, Albany Medical College '94. Deputy National Coordinator for Health IT at HHS (2011-2014), also Acting National Coordinator. CMIO at Allscripts (2006-2010). CEO of Alliance for Better Health (2016-202
+2 CONC 1). Co-founded five health IT startups including Twistle (acquired by Health Catalyst) and Physera (acquired by Omada). Maintains docnotes.net blog since 1999. Married Alicia Ouellette (former Dean of Albany Law School, now Dean at Lewis & Clark La
+2 CONC w School). Children: Molly, Sampson. Lives in Slingerlands, NY.
+1 FAMC @F23@
+1 FAMS @F28@
+0 @I74@ INDI
+1 NAME Alicia /Ouellette/
+2 GIVN Alicia
+2 SURN Ouellette
+1 NOTE 18th President and Dean of Albany Law School (2015-2023), now Dean at Lewis & Clark Law School.
+1 FAMS @F28@
+0 @I75@ INDI
+1 NAME Molly /Reider/
+2 GIVN Molly
+2 SURN Reider
+1 FAMC @F28@
+0 @I76@ INDI
+1 NAME Sampson /Reider/
+2 GIVN Sampson
+2 SURN Reider
+1 FAMC @F28@
+0 @I77@ INDI
+1 NAME Suzie /Reider/
+2 GIVN Suzie
+2 SURN Reider
+1 BIRT
+2 DATE 29 MAR 1965
+2 PLAC Boston, MA
+1 NOTE EVP of Lyft Media & Business at Lyft. Previously Global CRO at Waze.
+1 FAMC @F23@
+1 FAMS @F29@
+0 @I78@ INDI
+1 NAME Rose Reider /Smith/
+2 GIVN Rose Reider
+2 SURN Smith
+1 FAMC @F29@
+0 @I79@ INDI
+1 NAME Charlotte Reider /Smith/
+2 GIVN Charlotte Reider
+2 SURN Smith
+1 FAMC @F29@
+0 @I80@ INDI
+1 NAME Matt /Reider/
+2 GIVN Matt
+2 SURN Reider
+1 BIRT
+2 DATE 22 DEC 1969
+2 PLAC Boston, MA
+1 NOTE Software. Lives in Oakland, CA. He's the one who brought RoRo into the chat.
+1 FAMC @F23@
+1 FAMS @F30@
+0 @I81@ INDI
+1 NAME Alison /Cohen/
+2 GIVN Alison
+2 SURN Cohen
+1 BIRT
+2 DATE 7 AUG 1972
+1 FAMS @F30@
+0 @I82@ INDI
+1 NAME Max Nathan /Reider/
+2 GIVN Max Nathan
+2 SURN Reider
+1 BIRT
+2 DATE 3 MAR 2007
+2 PLAC Oakland, CA
+1 FAMC @F30@
+0 @I83@ INDI
+1 NAME Zoe Ella /Reider/
+2 GIVN Zoe Ella
+2 SURN Reider
+1 BIRT
+2 DATE 29 JUL 2008
+2 PLAC Oakland, CA
+1 FAMC @F30@
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 CHIL @I3@
+0 @F2@ FAM
+1 HUSB @I3@
+1 WIFE @I4@
+1 CHIL @I12@
+0 @F3@ FAM
+1 HUSB @I5@
+1 WIFE @I6@
+1 CHIL @I7@
+1 CHIL @I10@
+1 CHIL @I11@
+1 CHIL @I13@
+0 @F4@ FAM
+1 HUSB @I7@
+1 WIFE @I8@
+1 MARR
+2 DATE 1894
+1 CHIL @I9@
+0 @F5@ FAM
+1 HUSB @I12@
+1 WIFE @I13@
+1 CHIL @I14@
+1 CHIL @I15@
+1 CHIL @I16@
+0 @F6@ FAM
+1 WIFE @I14@
+0 @F7@ FAM
+1 HUSB @I16@
+1 WIFE @I46@
+1 MARR
+2 DATE 17 MAY 1931
+1 CHIL @I47@
+1 CHIL @I52@
+1 CHIL @I60@
+0 @F8@ FAM
+1 HUSB @I17@
+1 WIFE @I18@
+1 CHIL @I37@
+0 @F9@ FAM
+1 HUSB @I19@
+1 WIFE @I20@
+1 CHIL @I18@
+0 @F10@ FAM
+1 HUSB @I21@
+1 WIFE @I22@
+1 CHIL @I19@
+0 @F11@ FAM
+1 HUSB @I24@
+1 WIFE @I23@
+1 MARR
+2 DATE 27 MAY 1722
+1 CHIL @I21@
+0 @F12@ FAM
+1 HUSB @I26@
+1 WIFE @I27@
+1 MARR
+2 DATE 13 JUL 1670
+1 CHIL @I25@
+0 @F13@ FAM
+1 HUSB @I28@
+1 WIFE @I29@
+1 MARR
+2 DATE 27 OCT 1648
+1 CHIL @I26@
+0 @F14@ FAM
+1 HUSB @I30@
+1 MARR
+2 DATE 27 JUL 1622
+1 CHIL @I28@
+0 @F15@ FAM
+1 HUSB @I35@
+1 WIFE @I34@
+1 CHIL @I33@
+0 @F16@ FAM
+1 HUSB @I36@
+1 WIFE @I37@
+1 CHIL @I40@
+0 @F17@ FAM
+1 HUSB @I38@
+1 WIFE @I39@
+1 CHIL @I41@
+0 @F18@ FAM
+1 HUSB @I40@
+1 WIFE @I41@
+1 MARR
+2 DATE 4 APR 1887
+1 CHIL @I42@
+1 CHIL @I43@
+1 CHIL @I44@
+1 CHIL @I45@
+1 CHIL @I46@
+0 @F19@ FAM
+1 HUSB @I47@
+1 WIFE @I48@
+1 CHIL @I49@
+0 @F20@ FAM
+1 HUSB @I49@
+1 CHIL @I50@
+1 CHIL @I51@
+0 @F21@ FAM
+1 HUSB @I52@
+1 CHIL @I53@
+1 CHIL @I54@
+1 CHIL @I55@
+0 @F22@ FAM
+1 HUSB @I55@
+1 WIFE @I56@
+1 CHIL @I57@
+1 CHIL @I58@
+1 CHIL @I59@
+0 @F23@ FAM
+1 HUSB @I60@
+1 WIFE @I61@
+1 MARR
+2 DATE 1958
+1 CHIL @I73@
+1 CHIL @I77@
+1 CHIL @I80@
+0 @F24@ FAM
+1 HUSB @I63@
+1 WIFE @I64@
+1 MARR
+2 DATE 1927
+1 CHIL @I61@
+1 CHIL @I62@
+0 @F25@ FAM
+1 HUSB @I68@
+1 WIFE @I65@
+1 CHIL @I63@
+0 @F26@ FAM
+1 HUSB @I66@
+1 WIFE @I67@
+1 CHIL @I65@
+0 @F27@ FAM
+1 HUSB @I69@
+1 WIFE @I70@
+1 CHIL @I68@
+0 @F28@ FAM
+1 HUSB @I73@
+1 WIFE @I74@
+1 CHIL @I75@
+1 CHIL @I76@
+0 @F29@ FAM
+1 HUSB @I77@
+1 CHIL @I78@
+1 CHIL @I79@
+0 @F30@ FAM
+1 HUSB @I80@
+1 WIFE @I81@
+1 MARR
+2 DATE 19 JUN 2003
+1 CHIL @I82@
+1 CHIL @I83@
+0 TRLR

@@ -1,0 +1,50 @@
+0 HEAD
+1 SOUR MultiAgentGenealogyTrapCases
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 NOTE Tier 2 plausible-but-wrong trap: recorded father has surname
+2 CONT 'Bianchi' but the child's surname is 'Rossi' in a patronymic culture
+2 CONT where father and child should share a surname. All dates are plausible.
+2 CONT Mother's surname also does not match. Tier 1 passes. The LLM should
+2 CONT flag the surname mismatch as suspicious in an Italian genealogical
+2 CONT context where women take husband's name and children inherit it.
+0 @I1@ INDI
+1 NAME Lucia /Rossi/
+1 SEX F
+1 BIRT
+2 DATE 15 MAR 1890
+2 PLAC Florence, Italy
+1 DEAT
+2 DATE 1 JAN 1965
+2 PLAC Florence, Italy
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Marco /Bianchi/
+1 SEX M
+1 BIRT
+2 DATE 5 MAY 1860
+2 PLAC Florence, Italy
+1 DEAT
+2 DATE 20 JUN 1935
+2 PLAC Florence, Italy
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Anna /Verdi/
+1 SEX F
+1 BIRT
+2 DATE 10 JUN 1865
+2 PLAC Florence, Italy
+1 DEAT
+2 DATE 4 APR 1940
+2 PLAC Florence, Italy
+1 FAMS @F1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 MARR
+2 DATE 1 JAN 1889
+2 PLAC Florence, Italy
+0 TRLR

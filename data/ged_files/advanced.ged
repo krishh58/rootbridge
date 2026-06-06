@@ -1,0 +1,103 @@
+%YAML 1.2
+---
+lang: en-US
+
+type: dataset
+
+uri: https://github.com/glamberson/gedcom-extended-ASSO/examples/advanced
+
+---
+0 HEAD
+1 GEDC
+2 VERS 7.0
+1 SCHMA
+2 TAG _TYPE https://github.com/glamberson/gedcom-extended-ASSO/_TYPE
+2 TAG _PERIOD https://github.com/glamberson/gedcom-extended-ASSO/_PERIOD
+2 TAG _START https://github.com/glamberson/gedcom-extended-ASSO/_START
+2 TAG _END https://github.com/glamberson/gedcom-extended-ASSO/_END
+2 TAG _CONF https://github.com/glamberson/gedcom-extended-ASSO/_CONF
+2 TAG _PRIV https://github.com/glamberson/gedcom-extended-ASSO/_PRIV
+
+0 @I1@ INDI
+1 NAME Sarah /Brown/
+1 ASSO @I2@
+2 ROLE Possible Sister
+2 _TYPE Sibling
+2 _CONF 1
+2 NOTE Same household in 1850 census, ages consistent with siblings
+2 SOUR @S1@
+
+0 @I2@ INDI  
+1 NAME Elizabeth /Brown/
+1 ASSO @I1@
+2 ROLE Possible Sister
+2 _TYPE Sibling
+2 _CONF 1
+
+0 @I3@ INDI
+1 NAME Thomas /Anderson/
+1 ASSO @I4@
+2 ROLE Informant
+2 _TYPE Intelligence Asset
+2 _PERIOD
+3 _START 1962
+3 _END 1975
+2 _PRIV Y
+2 _CONF 4
+2 NOTE Classified relationship - Cold War intelligence
+
+0 @I4@ INDI
+1 NAME [REDACTED]
+1 ASSO @I3@
+2 ROLE Handler
+2 _TYPE Intelligence Asset
+2 _PERIOD
+3 _START 1962
+3 _END 1975
+2 _PRIV Y
+2 _CONF 4
+
+0 @I5@ INDI
+1 NAME John /Employer/
+1 ASSO @I6@
+2 ROLE Employer
+2 _TYPE Employment
+2 _PERIOD
+3 _START 1 JAN 1850
+3 _END 31 DEC 1860
+2 _CONF 3
+
+0 @I6@ INDI
+1 NAME Jane /Worker/
+1 ASSO @I5@
+2 ROLE Employee
+2 _TYPE Employment
+2 _PERIOD
+3 _START 1 JAN 1850
+3 _END 15 JUN 1855
+2 _CONF 3
+2 NOTE Left employment earlier than employer records show
+
+0 @I7@ INDI
+1 NAME Alice /Jones/
+1 ASSO @I8@
+2 ROLE Friend
+2 _TYPE Close Friend
+2 _PERIOD
+3 _START 1920
+2 NOTE Friendship continued until Alice's death
+
+0 @I8@ INDI
+1 NAME Betty /Smith/
+1 DEAT Y
+2 DATE 15 MAR 1975
+1 ASSO @I7@
+2 ROLE Friend
+2 _TYPE Close Friend
+2 _PERIOD
+3 _START 1920
+
+0 @S1@ SOUR
+1 TITL 1850 U.S. Federal Census
+
+0 TRLR

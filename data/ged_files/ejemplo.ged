@@ -1,0 +1,112 @@
+0 HEAD
+1 SOUR ArbolGenealogico
+2 VERS 1.0
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 DATE 28 AUG 2024
+
+0 @I1@ INDI
+1 NAME Carlos Alberto /Rodríguez/
+1 SEX M
+1 BIRT
+2 DATE 1945-01-15
+2 PLAC San José, Costa Rica
+1 DEAT
+2 DATE 2020-03-12
+1 FAMS @F1@
+
+0 @I2@ INDI
+1 NAME María Elena /González/
+1 SEX F
+1 BIRT
+2 DATE 1948-04-22
+2 PLAC Alajuela, Costa Rica
+1 FAMS @F1@
+
+0 @I3@ INDI
+1 NAME Roberto /Rodríguez/
+1 SEX M
+1 BIRT
+2 DATE 1970-07-08
+2 PLAC San José, Costa Rica
+1 FAMC @F1@
+1 FAMS @F2@
+
+0 @I4@ INDI
+1 NAME Ana Patricia /Vargas/
+1 SEX F
+1 BIRT
+2 DATE 1972-11-14
+2 PLAC Heredia, Costa Rica
+1 FAMS @F2@
+
+0 @I5@ INDI
+1 NAME Luis Carlos /Rodríguez/
+1 SEX M
+1 BIRT
+2 DATE 1995-03-25
+2 PLAC San José, Costa Rica
+1 FAMC @F2@
+
+0 @I6@ INDI
+1 NAME Sofia Elena /Rodríguez/
+1 SEX F
+1 BIRT
+2 DATE 1998-09-10
+2 PLAC San José, Costa Rica
+1 FAMC @F2@
+
+0 @I7@ INDI
+1 NAME Carmen /Rodríguez/
+1 SEX F
+1 BIRT
+2 DATE 1975-02-03
+2 PLAC San José, Costa Rica
+1 FAMC @F1@
+1 FAMS @F3@
+
+0 @I8@ INDI
+1 NAME Miguel /Morales/
+1 SEX M
+1 BIRT
+2 DATE 1973-06-18
+2 PLAC Cartago, Costa Rica
+1 FAMS @F3@
+
+0 @I9@ INDI
+1 NAME Diego /Morales/
+1 SEX M
+1 BIRT
+2 DATE 2005-12-05
+2 PLAC San José, Costa Rica
+1 FAMC @F3@
+
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 CHIL @I3@
+1 CHIL @I7@
+1 MARR
+2 DATE 1969-02-14
+2 PLAC San José, Costa Rica
+
+0 @F2@ FAM
+1 HUSB @I3@
+1 WIFE @I4@
+1 CHIL @I5@
+1 CHIL @I6@
+1 MARR
+2 DATE 1994-06-20
+2 PLAC San José, Costa Rica
+
+0 @F3@ FAM
+1 HUSB @I8@
+1 WIFE @I7@
+1 CHIL @I9@
+1 MARR
+2 DATE 1999-08-12
+2 PLAC San José, Costa Rica
+
+0 TRLR

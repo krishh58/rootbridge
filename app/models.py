@@ -76,10 +76,15 @@ class Person(db.Model):
     parent_ids = db.Column(db.JSON, default=list)
     spouse_ids = db.Column(db.JSON, default=list)
     research_findings = db.Column(db.JSON, default=list)
+    soundex_key  = db.Column(db.String(4), nullable=True)
+    birth_decade = db.Column(db.Integer, nullable=True)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     search_results = db.relationship('SearchResult', backref='person', lazy=True, cascade='all, delete-orphan')
     gaps = db.relationship('Gap', backref='person', lazy=True, cascade='all, delete-orphan')
     alfred_messages = db.relationship('AlfredMessage', cascade='all, delete-orphan', backref='person', lazy=True)
+    __table_args__ = (
+        db.Index('ix_persons_soundex_decade', 'soundex_key', 'birth_decade'),
+    )
 
 class Document(db.Model):
     __tablename__ = 'documents'
@@ -203,3 +208,17 @@ class EmailVerification(db.Model):
     token      = db.Column(db.String(64), unique=True, nullable=False)
     created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     expires_at = db.Column(db.DateTime, nullable=False)
+
+
+class PersonEdge(db.Model):
+    """Adjacency list replacing JSON parent_ids/spouse_ids for O(1) bidirectional traversal."""
+    __tablename__ = 'person_edges'
+    id         = db.Column(db.Integer, primary_key=True)
+    person_id  = db.Column(db.Integer, db.ForeignKey('persons.id', ondelete='CASCADE'), nullable=False)
+    related_id = db.Column(db.Integer, db.ForeignKey('persons.id', ondelete='CASCADE'), nullable=False)
+    rel_type   = db.Column(db.String(10), nullable=False)  # 'parent', 'child', 'spouse'
+    __table_args__ = (
+        db.Index('ix_person_edges_person_id',  'person_id'),
+        db.Index('ix_person_edges_related_id', 'related_id'),
+        db.UniqueConstraint('person_id', 'related_id', 'rel_type', name='uq_person_edge'),
+    )

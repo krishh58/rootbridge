@@ -1,0 +1,49 @@
+0 HEAD
+1 SOUR Genealogy2
+2 VERS 1.0
+2 NAME Genealogy2 System
+2 CORP Genealogy2 Corporation
+3 ADDR 123 Genealogy Street
+4 CITY Anytown
+4 STAE State
+4 POST 12345
+4 CTRY USA
+3 PHON +1-555-123-4567
+3 EMAIL support@genealogy2.com
+3 WWW https://www.genealogy2.com
+1 DEST ANY
+1 DATE 15 JAN 2024
+2 TIME 14:30:25
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 LANG English
+1 SUBM @SUBM1@
+1 COPR Copyright 2024 Genealogy2. All rights reserved.
+1 FILE genealogy_export_20240115_143025.ged
+1 NOTE This GEDCOM file was exported from Genealogy2 System
+2 CONT For more information, visit https://www.genealogy2.com
+0 @SUBM1@ SUBM
+1 NAME Genealogy2 System
+1 ADDR 123 Genealogy Street
+2 ADR1 123 Genealogy Street
+2 CITY Anytown
+2 STAE State
+2 POST 12345
+2 CTRY USA
+1 PHON +1-555-123-4567
+1 EMAIL support@genealogy2.com
+1 WWW https://www.genealogy2.com
+1 LANG English
+0 @I1@ INDI
+1 NAME John /Smith/
+2 GIVN John
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 DATE 15 JAN 1980
+2 PLAC New York, New York, USA
+0 @F1@ FAM
+1 HUSB @I1@
+0 TRLR

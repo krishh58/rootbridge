@@ -1,0 +1,1198 @@
+0 HEAD
+1 SOUR Family Tree Project
+1 GEDC
+2 VERS 5.5.1
+1 CHAR UTF-8
+0 I1 INDI
+1 NAME Granat
+1 NOTE Roots: Biezun & Jaffa
+1 RESI
+2 PLAC Unknown
+0 I2 INDI
+1 NAME Yosef Granat
+1 NOTE G-2: Ancestor (Deceased)
+1 RESI
+2 PLAC Biezun, Poland
+0 I3 INDI
+1 NAME Hirsch Granat
+1 NOTE G-1: Ancestor (Deceased)
+1 RESI
+2 PLAC Biezun, Poland
+1 FAMS @F1@
+0 I4 INDI
+1 NAME Gita Granat
+1 NOTE G-1: Ancestor (Deceased)
+1 FAMS @F1@
+0 I5 INDI
+1 NAME Josek Hersz Granat
+1 NOTE G0: Patriarch (1815–1878) (Deceased)
+1 RESI
+2 PLAC Biezun, Poland (Ancestral Home)
+1 FAMC @F1@
+1 FAMS @F2@
+0 I6 INDI
+1 NAME Hana Haya Gerlitz
+1 NOTE G0: Matriarch (1817–1885) (Deceased)
+1 FAMS @F2@
+0 I7 INDI
+1 NAME Efraim Eliezer Rimon (Granat)
+1 NOTE G1: Founder & Poet (1868–1919) (Deceased)
+1 RESI
+2 PLAC Jaffa, Israel (Last Residence)
+1 FAMC @F2@
+1 FAMS @F3@
+0 I8 INDI
+1 NAME Esther Hava Rimon (Elstein)
+1 NOTE G1: Businesswoman (1864–1918) (Deceased)
+1 FAMS @F3@
+0 I9 INDI
+1 NAME Yosef Zvi Rimon
+1 NOTE G2: The Poet of Zion (1889–1958) (Deceased)
+1 RESI
+2 PLAC Jerusalem & Tel Aviv, Israel
+1 FAMC @F3@
+1 FAMS @F4@
+0 I10 INDI
+1 NAME Esther Ester Rimon (Schachtin)
+1 NOTE G2: Matriarch (1887–1965) (Deceased)
+1 FAMS @F4@
+0 I11 INDI
+1 NAME Rivka Rimon
+1 NOTE G3: Art Teacher (1908–1981) (Deceased)
+1 FAMC @F4@
+0 I12 INDI
+1 NAME David Rimon
+1 NOTE G3: Haganah Member (1916–2002)
+1 RESI
+2 PLAC Tel Aviv-Yafo, Israel
+1 FAMC @F4@
+1 FAMS @F5@
+0 I13 INDI
+1 NAME Rita (Sara Rivka) Rimon (Domb)
+1 NOTE G3: Wife
+1 FAMS @F5@
+0 I14 INDI
+1 NAME Rabbi Yosef Zvi Rimon
+1 NOTE G4: Halachic Authority & Rabbi
+1 RESI
+2 PLAC Alon Shvut, Israel
+1 FAMC @F5@
+1 FAMS @F6@
+0 I15 INDI
+1 NAME Rabbanit Sharon Rimon (Blumenzweig)
+1 NOTE G4: Tanach Scholar & Educator
+1 FAMS @F6@
+0 I16 INDI
+1 NAME Daughter 1 Rimon
+1 NOTE G5: Daughter
+1 FAMC @F6@
+0 I17 INDI
+1 NAME Daughter 2 Rimon
+1 NOTE G5: Daughter
+1 FAMC @F6@
+0 I18 INDI
+1 NAME Daughter 3 Rimon
+1 NOTE G5: Daughter
+1 FAMC @F6@
+0 I19 INDI
+1 NAME Daughter 4 Rimon
+1 NOTE G5: Daughter
+1 FAMC @F6@
+0 I20 INDI
+1 NAME Daughter 5 Rimon
+1 NOTE G5: Daughter
+1 FAMC @F6@
+0 I21 INDI
+1 NAME Daughter 6 Rimon
+1 NOTE G5: Daughter
+1 FAMC @F6@
+0 I22 INDI
+1 NAME Daughter 7 Rimon
+1 NOTE G5: Daughter
+1 FAMC @F6@
+0 I23 INDI
+1 NAME Daughter 8 Rimon
+1 NOTE G5: Daughter
+1 FAMC @F6@
+0 I24 INDI
+1 NAME Unknown Rimon
+1 NOTE G4: Doctor
+1 FAMC @F5@
+0 I25 INDI
+1 NAME Ruth Rimon
+1 NOTE G4: Daughter
+1 FAMC @F5@
+0 I26 INDI
+1 NAME Unknown Rimon
+1 NOTE G4: Child
+1 FAMC @F5@
+0 I27 INDI
+1 NAME Hana Haya Kaczor
+1 NOTE G2: Sibling
+1 FAMC @F3@
+0 I28 INDI
+1 NAME Yechiel Bunim Rimon (Granat)
+1 NOTE G2: Sibling
+1 FAMC @F3@
+0 I29 INDI
+1 NAME Yaakov Haim (Zvi) Rimon (Granat)
+1 NOTE G2: Author & Social Worker (1903–1973) (Deceased)
+1 RESI
+2 PLAC Jaffa, Israel
+1 FAMC @F3@
+1 FAMS @F7@
+0 I30 INDI
+1 NAME Bracha Rimon (Laznowsky)
+1 NOTE G2: Matriarch (b. Kutno) (Deceased)
+1 FAMS @F7@
+0 I31 INDI
+1 NAME Hava Esther Cohen (Rimon)
+1 NOTE G3: Sibling (1928 - 2002) (Deceased) (Aged 74)
+1 FAMC @F7@
+1 FAMS @F8@
+0 I32 INDI
+1 NAME Benjamin Cohen
+1 NOTE G3: Husband (1921–1981) (Deceased) (Aged 60)
+1 FAMS @F8@
+0 I33 INDI
+1 NAME Yoram Cohen
+1 NOTE G4: Sibling
+1 FAMC @F8@
+0 I34 INDI
+1 NAME Michal Cohen
+1 NOTE G5: Daughter
+0 I35 INDI
+1 NAME Dafna Cohen
+1 NOTE G4: Sibling
+1 FAMC @F8@
+0 I36 INDI
+1 NAME Uri Cohen
+1 NOTE G5: Son
+1 RESI
+2 PLAC Tel Aviv, Israel
+0 I37 INDI
+1 NAME Rivka Zinkin
+1 NOTE G3: Sibling
+1 FAMC @F7@
+0 I38 INDI
+1 NAME Nitzchia Rimon
+1 NOTE G3: Sibling
+1 FAMC @F7@
+0 I39 INDI
+1 NAME Miriam Esther Gliksberg (Rimon)
+1 NOTE G3: Educator (Deceased)
+1 FAMC @F7@
+1 FAMS @F9@
+0 I40 INDI
+1 NAME Israel Gliksberg
+1 NOTE G3: Educator & Scholar
+1 FAMS @F9@
+0 I41 INDI
+1 NAME Prof. David Gliksberg
+1 NOTE G4: Law & Tax Expert
+1 RESI
+2 PLAC Jerusalem, Israel
+1 FAMC @F9@
+0 I42 INDI
+1 NAME Alex Gliksberg
+1 NOTE G4: Literacy Archivist
+1 FAMC @F9@
+0 I43 INDI
+1 NAME Ephraim Rimon
+1 NOTE G3: Songwriter | Bank of Israel
+1 RESI
+2 PLAC Ha-Rav Herzog St 17, Tel Aviv-Jaffa, Israel
+1 FAMC @F7@
+1 FAMS @F10@
+0 I44 INDI
+1 NAME Talma Rimon
+1 NOTE G3: Bank of Israel
+1 FAMS @F10@
+0 I45 INDI
+1 NAME Gil Rimon
+1 NOTE G4: Entrepreneur, Branding & Writer
+
+1 RESI
+2 PLAC Beersheba, Israel (Birth) | Aljezur, Portugal
+1 FAMC @F10@
+1 FAMS @F11@
+0 I46 INDI
+1 NAME Yael Givon
+1 NOTE G4: Creative Director
+
+1 FAMS @F11@
+0 I47 INDI
+1 NAME Omer Shalom Rimon
+1 NOTE G5: The Union 
+1 RESI
+2 PLAC Aljezur, Portugal
+1 FAMC @F11@
+0 I48 INDI
+1 NAME Nomi Rimon
+1 NOTE G5: Daughter 
+1 RESI
+2 PLAC Aljezur, Portugal
+1 FAMC @F11@
+0 I49 INDI
+1 NAME Ran Rimon
+1 NOTE G4: Entrepreneur
+1 RESI
+2 PLAC Sanhedrin St 4, Tel Aviv-Jaffa, Israel
+1 FAMC @F10@
+1 FAMS @F12@
+0 I50 INDI
+1 NAME Shulamit Bonder
+1 NOTE Spouse
+1 FAMS @F12@
+0 I51 INDI
+1 NAME Eyal Rimon
+1 NOTE G5: Student (Age 14)
+1 RESI
+2 PLAC Sanhedrin St 4, Tel Aviv-Jaffa, Israel
+1 FAMC @F12@
+0 I52 INDI
+1 NAME Talia Rimon
+1 NOTE G5: Student (Age 11-12)
+1 RESI
+2 PLAC Sanhedrin St 4, Tel Aviv-Jaffa, Israel
+1 FAMC @F12@
+0 I53 INDI
+1 NAME Gur Rimon
+1 NOTE G5: Student (Age 6-7)
+1 RESI
+2 PLAC Sanhedrin St 4, Tel Aviv-Jaffa, Israel
+1 FAMC @F12@
+0 I54 INDI
+1 NAME Ana Rimon
+1 NOTE G5: Student (Age 1.5)
+1 RESI
+2 PLAC Sanhedrin St 4, Tel Aviv-Jaffa, Israel
+1 FAMC @F12@
+0 I55 INDI
+1 NAME Gitel Rivka Granat
+1 NOTE G1: Sibling
+1 FAMC @F2@
+1 FAMS @F13@
+0 I56 INDI
+1 NAME Yechiel Bunim Elstein
+1 NOTE G1: Husband
+1 FAMS @F13@
+0 I57 INDI
+1 NAME Weissbarst
+1 NOTE Heritage: Maternal Roots (Talma)
+1 RESI
+2 PLAC Unknown
+0 I58 INDI
+1 NAME Hirsch Weissbarst
+1 NOTE G0: Ancestor
+1 RESI
+2 PLAC Raciąż, Poland
+1 FAMS @F14@
+0 I59 INDI
+1 NAME Beile Frenkel
+1 NOTE G0: Ancestor
+1 FAMS @F14@
+0 I60 INDI
+1 NAME Zvi (Hirsch) Weissburst
+1 NOTE G1: Merchant (b. 1888)
+1 FAMC @F14@
+1 FAMS @F15@
+0 I61 INDI
+1 NAME Sara Weissbarst
+1 NOTE G1: Matriarch
+1 FAMS @F15@
+0 I62 INDI
+1 NAME Shalom Weissbarst
+1 NOTE G2: Architect (1915-2002)
+1 RESI
+2 PLAC Haifa, Israel
+1 FAMC @F15@
+1 FAMS @F16@
+0 I63 INDI
+1 NAME Tova (Gita) Wallach
+1 NOTE G2: Matriarch (1917-2002)
+1 FAMS @F16@
+0 I64 INDI
+1 NAME Talma Rimon (Weissburst)
+1 NOTE G3: Daughter (See Rimon Family)
+1 FAMC @F16@
+0 I65 INDI
+1 NAME Gerlitz
+1 NOTE Heritage: Maternal Ancestry (Granat)
+1 RESI
+2 PLAC Unknown
+0 I66 INDI
+1 NAME Wolf Eliasz Gerlitz
+1 NOTE Ancestor (b. 1782)
+1 FAMS @F17@
+0 I67 INDI
+1 NAME Sara Rayzel Gerlitz (Hertzov)
+1 NOTE Matriarch (1792-1857)
+1 FAMS @F17@
+0 I68 INDI
+1 NAME Hana Haya Gerlitz
+1 NOTE Daughter (See Granat Family)
+1 FAMC @F17@
+0 I69 INDI
+1 NAME Wallach
+1 NOTE Heritage: Ukraine to Israel
+1 RESI
+2 PLAC Unknown
+0 I70 INDI
+1 NAME Shmuel Eliezer Wallach
+1 NOTE G1: Ancestor
+1 FAMS @F18@
+0 I71 INDI
+1 NAME Tsipora Kaminetsky
+1 NOTE G1: Ancestor
+1 FAMS @F18@
+0 I72 INDI
+1 NAME Tova (Gita) Wallach
+1 NOTE G2: Matriarch (1917-2002) (See Weissbarst Family)
+1 FAMC @F18@
+0 I73 INDI
+1 NAME Cohen
+1 NOTE Heritage: Paternal Roots
+1 RESI
+2 PLAC Unknown
+0 I74 INDI
+1 NAME Baruch Zvi Hirsh Cohen
+1 NOTE Paternal Roots (1852–1941)
+1 RESI
+2 PLAC Montreal, Canada
+0 I75 INDI
+1 NAME Rabbi Mosheh David Rozental Hacohen
+1 NOTE G2: Rabbi & Scholar
+1 RESI
+2 PLAC Haifa, Israel
+0 I76 INDI
+1 NAME Benjamin Cohen
+1 NOTE G3: Husband (1921–1981)
+0 I77 INDI
+1 NAME Yoram Cohen
+1 NOTE G4: Legacy Representative
+0 I78 INDI
+1 NAME Michal Cohen
+1 NOTE G5: Daughter
+0 I79 INDI
+1 NAME Dafna Cohen
+1 NOTE G4: Daughter
+0 I80 INDI
+1 NAME Uri Cohen
+1 NOTE G5: Son
+0 I81 INDI
+1 NAME Laznowsky
+1 NOTE Family of Bracha Rimon
+0 I82 INDI
+1 NAME Laznowsky Parents
+1 NOTE Ancestors
+0 I83 INDI
+1 NAME Mordehay Laznowsky
+1 NOTE Brother of Bracha
+0 I84 INDI
+1 NAME Unknown Brother Laznowsky
+1 NOTE Brother of Bracha
+0 I85 INDI
+1 NAME Elstein
+1 NOTE Heritage: Elstein-Levin
+0 I86 INDI
+1 NAME Levin Elstein
+1 NOTE G0: Ancestor
+1 FAMS @F19@
+0 I87 INDI
+1 NAME Hava Elstein
+1 NOTE G0: Ancestor
+1 FAMS @F19@
+0 I88 INDI
+1 NAME Yechiel Bunim Elstein
+1 NOTE G1: Patriarch
+1 FAMC @F19@
+0 I89 INDI
+1 NAME Schachtin
+1 NOTE Heritage: Vilna Roots
+0 I90 INDI
+1 NAME Aharon Selig Schachtin
+1 NOTE G0: Ancestor
+0 I91 INDI
+1 NAME Zvi David Schachtin
+1 NOTE G1: Patriarch (d. 1914) (Deceased)
+1 FAMS @F20@
+0 I92 INDI
+1 NAME Tova Rivka Schachtin
+1 NOTE G1: Ancestor
+1 FAMS @F20@
+0 I93 INDI
+1 NAME Esther Ester Rimon (Schachtin)
+1 NOTE G2: Matriarch (1887–1965) (See Granat branch)
+1 FAMC @F20@
+0 I94 INDI
+1 NAME Yosef Schachtin
+1 NOTE G2: Sibling (1876–1941) (Deceased)
+1 FAMC @F20@
+1 FAMS @F21@
+0 I95 INDI
+1 NAME Chaya Golda Schachtin
+1 NOTE G2: Matriarch (1876–1941) (Deceased)
+1 FAMS @F21@
+0 I96 INDI
+1 NAME Yehuda Schachtin
+1 NOTE G3: Son
+1 FAMC @F21@
+0 I97 INDI
+1 NAME Hasya Schachtin
+1 NOTE G3: Daughter
+1 FAMC @F21@
+0 I98 INDI
+1 NAME Moshe Schachtin
+1 NOTE G3: Son
+1 FAMC @F21@
+0 I99 INDI
+1 NAME Givon
+1 NOTE Heritage: Zoref-Gelbman-Givon
+1 RESI
+2 PLAC Unknown
+0 I100 INDI
+1 NAME Yehuda Zoref
+1 NOTE G1: Patriarch
+1 FAMS @F22@
+0 I101 INDI
+1 NAME Zimbul Behar
+1 NOTE G1: Matriarch
+1 FAMS @F22@
+0 I102 INDI
+1 NAME Victoria Zoref
+1 NOTE G2: Matriarch
+1 FAMC @F22@
+1 FAMS @F23@
+0 I103 INDI
+1 NAME Zvi Givon (Gelbman)
+1 NOTE G2: Patriarch
+1 FAMS @F23@
+0 I104 INDI
+1 NAME Moshe Givon (Gelbman)
+1 NOTE G3: The Marketer (b. 1927)
+1 RESI
+2 PLAC Meishar, Israel
+1 FAMC @F23@
+1 FAMS @F24@
+0 I105 INDI
+1 NAME Deborah Givon (Diamentstein)
+1 NOTE G3: Matriarch
+1 FAMS @F24@
+0 I106 INDI
+1 NAME Ronnie Heller
+1 NOTE G4: Daughter
+1 RESI
+2 PLAC Bar Kochba, Tel Aviv, Israel
+1 FAMC @F24@
+0 I107 INDI
+1 NAME Amir Heller
+1 NOTE G5: Pro Surfer (Age 21)
+1 RESI
+2 PLAC Tel Aviv, Israel
+0 I108 INDI
+1 NAME David Heller
+1 NOTE G5: Sibling (Age 15-16)
+1 RESI
+2 PLAC Tel Aviv, Israel
+0 I109 INDI
+1 NAME Daphna Givon
+1 NOTE G4: Daughter
+1 FAMC @F24@
+1 FAMS @F25@
+0 I110 INDI
+1 NAME Arturo Whitelegg
+1 NOTE G4: Husband
+1 FAMS @F25@
+0 I111 INDI
+1 NAME Lian Givon Whitelegg
+1 NOTE G5: Son (Age 15)
+1 FAMC @F25@
+0 I112 INDI
+1 NAME Alma Givon Whitelegg
+1 NOTE G5: Daughter (Age 13.5)
+1 FAMC @F25@
+0 I113 INDI
+1 NAME Yanai Givon Whitelegg
+1 NOTE G5: Son (Age 9-10)
+1 FAMC @F25@
+0 I114 INDI
+1 NAME Ilay Givon Whitelegg
+1 NOTE G5: Son (Age 5)
+1 FAMC @F25@
+0 I115 INDI
+1 NAME Daniella Givon
+1 NOTE G4: CEO (Unik) & Founder (Dunica)
+1 FAMC @F24@
+0 I116 INDI
+1 NAME Nave Midbar Tapuhi
+1 NOTE G5: Daughter
+0 I117 INDI
+1 NAME Soof Tapuhi
+1 NOTE G5: Daughter
+0 I118 INDI
+1 NAME Yael Givon Rimon
+1 NOTE G4: Artist & Co-Founder of Baixo Art Space
+
+1 RESI
+2 PLAC Aljezur, Portugal (Baixo Art Space)
+1 FAMC @F24@
+1 FAMS @F26@
+0 I119 INDI
+1 NAME Gil Rimon
+1 NOTE G4: Entrepreneur & Branding
+
+1 FAMS @F26@
+0 I120 INDI
+1 NAME Omer Shalom Rimon
+1 NOTE G5: The Union 
+1 FAMC @F26@
+0 I121 INDI
+1 NAME Nomi Rimon
+1 NOTE G5: Daughter 
+1 FAMC @F26@
+0 I122 INDI
+1 NAME Assaf Givon
+1 NOTE G4: Son
+1 FAMC @F24@
+1 FAMS @F27@
+0 I123 INDI
+1 NAME Ruth Givon
+1 NOTE G4: Wife
+1 FAMS @F27@
+0 I124 INDI
+1 NAME Ivry Givon
+1 NOTE G5: Child
+1 FAMC @F27@
+0 I125 INDI
+1 NAME Lily Givon
+1 NOTE G5: Child
+1 FAMC @F27@
+0 I126 INDI
+1 NAME Thomas (Tsvi) Givon
+1 NOTE G3: Distinguished Professor (Linguistics)
+1 RESI
+2 PLAC Eugene, Oregon, USA
+1 FAMC @F23@
+1 FAMS @F28@
+0 I127 INDI
+1 NAME Linda Givon
+1 NOTE Partner (Second Wife)
+1 FAMS @F28@
+0 I128 INDI
+1 NAME Chris Givon
+1 NOTE G4: Son (from first marriage)
+1 FAMC @F28@
+0 I129 INDI
+1 NAME Raquel Givon
+1 NOTE G5: Daughter
+0 I130 INDI
+1 NAME Son
+1 NOTE G6: Grandson
+0 I131 INDI
+1 NAME Daughter
+1 NOTE G6: Granddaughter
+0 I132 INDI
+1 NAME Nathaniel Givon
+1 NOTE G4: Son (with Linda)
+1 FAMC @F28@
+0 I133 INDI
+1 NAME Haya Ran
+1 NOTE G3: Sister (Deceased)
+1 RESI
+2 PLAC Tel Aviv, Israel
+1 FAMC @F23@
+1 FAMS @F29@
+0 I134 INDI
+1 NAME Amnon Marton
+1 NOTE G3: First Husband
+1 FAMS @F29@
+0 I135 INDI
+1 NAME Yifat Marton
+1 NOTE G4: Daughter (Deceased)
+1 FAMC @F29@
+0 I136 INDI
+1 NAME Orit Marton
+1 NOTE G4: Daughter
+1 FAMC @F29@
+0 I137 INDI
+1 NAME Tzafra Marton
+1 NOTE G4: Daughter
+1 FAMC @F29@
+0 I138 INDI
+1 NAME Gal M. Ran
+1 NOTE G4: Son
+1 RESI
+2 PLAC Tel Aviv, Israel
+1 FAMC @F29@
+0 I139 INDI
+1 NAME Maya Ran
+1 NOTE G4: Daughter (Deceased)
+1 RESI
+2 PLAC Tel Aviv, Israel
+1 FAMC @F29@
+0 I140 INDI
+1 NAME Matan Punk
+1 NOTE G5: Son
+1 RESI
+2 PLAC Tel Aviv, Israel
+0 I141 INDI
+1 NAME Iris Leal
+1 NOTE G4: Daughter
+1 RESI
+2 PLAC Tel Aviv, Israel
+1 FAMC @F29@
+1 FAMS @F30@
+0 I142 INDI
+1 NAME Dudi Leal
+1 NOTE G4: First Husband
+1 FAMS @F30@
+0 I143 INDI
+1 NAME Jorden Leal
+1 NOTE G5: Daughter (first marriage)
+1 FAMC @F30@
+0 I144 INDI
+1 NAME Itamar Sher
+1 NOTE G5: Son (second marriage)
+1 FAMC @F30@
+0 I145 INDI
+1 NAME Ari Sher
+1 NOTE G5: Daughter (second marriage)
+1 FAMC @F30@
+0 I146 INDI
+1 NAME Marko Zoref
+1 NOTE G2: Sibling
+1 FAMC @F23@
+1 FAMS @F31@
+0 I147 INDI
+1 NAME Pavlina Zoref
+1 NOTE G2: Wife
+1 FAMS @F31@
+0 I148 INDI
+1 NAME Dror Zoref
+1 NOTE G3: Son (USA)
+1 FAMC @F31@
+0 I149 INDI
+1 NAME Unknown Zoref
+1 NOTE G3: Son
+1 FAMC @F31@
+0 I150 INDI
+1 NAME Valentina Zoref
+1 NOTE G2: Sibling
+1 FAMC @F23@
+0 I151 INDI
+1 NAME Jac Zoref
+1 NOTE G2: Sibling
+1 FAMC @F23@
+1 FAMS @F32@
+0 I152 INDI
+1 NAME Lily Zoref
+1 NOTE G2: Wife
+1 FAMS @F32@
+0 I153 INDI
+1 NAME Sioma Zoref
+1 NOTE G3: Son
+1 FAMC @F32@
+1 FAMS @F33@
+0 I154 INDI
+1 NAME Yafa Zoref
+1 NOTE G3: Wife
+1 FAMS @F33@
+0 I155 INDI
+1 NAME Erez Zoref
+1 NOTE G4: Son
+1 FAMC @F33@
+0 I156 INDI
+1 NAME Asaf Zoref
+1 NOTE G4: Son
+1 FAMC @F33@
+1 FAMS @F34@
+0 I157 INDI
+1 NAME Keren Zoref
+1 NOTE G4: Wife
+1 FAMS @F34@
+0 I158 INDI
+1 NAME Yehezkel Zoref
+1 NOTE G2: Sibling
+1 FAMC @F23@
+0 I159 INDI
+1 NAME Yuda Zoref
+1 NOTE G3: Son
+0 I160 INDI
+1 NAME Daniella Zoref
+1 NOTE G3: Daughter
+0 I161 INDI
+1 NAME Diamentstein
+1 NOTE Heritage: Diamentstein-Gurfinkel
+1 RESI
+2 PLAC Unknown
+0 I162 INDI
+1 NAME Leah Diamentstein
+1 NOTE G2: Matriarch (Deceased)
+1 FAMS @F35@
+0 I163 INDI
+1 NAME Ze'ev Gurfinkel
+1 NOTE G2: Patriarch (Deceased)
+1 FAMS @F35@
+0 I164 INDI
+1 NAME Deborah Miriam Givon (Gurfinkel)
+1 NOTE G3: Daughter (See Givon Family)
+1 FAMC @F35@
+0 I165 INDI
+1 NAME Ran Nergal
+1 NOTE G3: Son
+1 FAMC @F35@
+0 I166 INDI
+1 NAME Tali Nergal
+1 NOTE G4: Daughter
+0 I167 INDI
+1 NAME Livnat Nergal
+1 NOTE G4: Daughter
+0 I168 INDI
+1 NAME Ziv Nergal
+1 NOTE G4: Child
+0 I169 INDI
+1 NAME Chen Nergal
+1 NOTE G4: Child
+0 I170 INDI
+1 NAME Rachel Diamentstein
+1 NOTE G2: Sibling (Deceased)
+1 FAMS @F36@
+0 I171 INDI
+1 NAME Bernard Ashkenazy
+1 NOTE Partner (Deceased)
+1 FAMS @F36@
+0 I172 INDI
+1 NAME Herbert Ashkenazy
+1 NOTE G3: Son
+1 FAMC @F36@
+1 FAMS @F37@
+0 I173 INDI
+1 NAME Ruth Ashkenazy
+1 NOTE Partner
+1 FAMS @F37@
+0 I174 INDI
+1 NAME Leah Ashkenazy
+1 NOTE G4: Daughter
+1 FAMC @F37@
+0 I175 INDI
+1 NAME David Ashkenazy
+1 NOTE G4: Son
+1 FAMC @F37@
+0 I176 INDI
+1 NAME Miriam Ashkenazy
+1 NOTE G4: Daughter
+1 FAMC @F37@
+0 I177 INDI
+1 NAME Diamentstein
+1 NOTE Heritage: Sátoraljaújhely, Hungary
+1 RESI
+2 PLAC Unknown
+0 I178 INDI
+1 NAME Leah Diamentstein
+1 NOTE G2: Matriarch
+1 RESI
+2 PLAC Unknown
+0 I179 INDI
+1 NAME Rachel Diamentstein
+1 NOTE G2: Sibling
+1 RESI
+2 PLAC Unknown
+0 I180 INDI
+1 NAME DUNICA
+1 NOTE Shared Venture (Ex-Company)
+1 RESI
+2 PLAC Unknown
+0 I181 INDI
+1 NAME Gelbman
+1 NOTE Heritage: The Gelbman Siblings
+1 RESI
+2 PLAC Unknown
+0 I182 INDI
+1 NAME Gelbman Patriarch
+1 NOTE G1: Father (Name Unknown)
+1 FAMS @F38@
+0 I183 INDI
+1 NAME Gelbman Matriarch
+1 NOTE G1: Mother (Name Unknown)
+1 FAMS @F38@
+0 I184 INDI
+1 NAME Zvi Givon (Gelbman)
+1 NOTE G2: Great-Uncle of Polgár Sisters
+1 FAMC @F38@
+0 I185 INDI
+1 NAME Sarah Gelbman
+1 NOTE G2: Grandmother of Polgár Champions
+1 FAMC @F38@
+0 I186 INDI
+1 NAME Edit Gelbman
+1 NOTE G2: Great-Aunt of Polgár Sisters
+1 FAMC @F38@
+0 I187 INDI
+1 NAME Gelbman Brother (Unnamed)
+1 NOTE G2: Great-Uncle of Polgár Sisters
+1 FAMC @F38@
+0 I188 INDI
+1 NAME Gelbman-Polgár
+1 NOTE Heritage: The Chess Prodigies
+1 RESI
+2 PLAC Unknown
+0 I189 INDI
+1 NAME Sándor Proszwimmer
+1 NOTE G1: Ancestor
+1 RESI
+2 PLAC Hungary
+0 I190 INDI
+1 NAME Ármin Polgár (Proszwimmer)
+1 NOTE G2: Father (1900–1992) (Deceased)
+1 RESI
+2 PLAC Budapest, Hungary
+1 FAMS @F39@
+0 I191 INDI
+1 NAME Sarah Gelbman
+1 NOTE G2: Matriarch (Grandmother of Champions)
+1 FAMS @F39@
+0 I192 INDI
+1 NAME László Polgár
+1 NOTE G3: Psychologist (b. May 11, 1946)
+1 RESI
+2 PLAC Gyöngyös, Hungary
+1 FAMC @F39@
+1 FAMS @F40@
+0 I193 INDI
+1 NAME Klára Polgár (Altberger)
+1 NOTE G3: Mother of Champions
+1 FAMS @F40@
+0 I194 INDI
+1 NAME Susan Polgár (Zsuzsa)
+1 NOTE G4: Grandmaster (b. April 19, 1969)
+1 FAMC @F40@
+1 FAMS @F41@
+0 I195 INDI
+1 NAME Paul Truong
+1 NOTE G4: Husband & Chess Master
+1 FAMS @F41@
+0 I196 INDI
+1 NAME Tom Shutzman
+1 NOTE G5: Son
+1 FAMC @F41@
+0 I197 INDI
+1 NAME Leeam Shutzman
+1 NOTE G5: Son
+1 FAMC @F41@
+0 I198 INDI
+1 NAME Sofia Polgár (Zsófia)
+1 NOTE G4: International Master (b. November 2, 1974)
+1 FAMC @F40@
+1 FAMS @F42@
+0 I199 INDI
+1 NAME Yona Kosashvili
+1 NOTE G4: Grandmaster & Surgeon
+1 FAMS @F42@
+0 I200 INDI
+1 NAME Yoav Kosashvili
+1 NOTE G5: Son
+1 FAMC @F42@
+0 I201 INDI
+1 NAME Alon Kosashvili
+1 NOTE G5: Son
+1 FAMC @F42@
+0 I202 INDI
+1 NAME Judit Polgár
+1 NOTE G4: Grandmaster & Legend (b. July 23, 1976)
+1 FAMC @F40@
+1 FAMS @F43@
+0 I203 INDI
+1 NAME Gusztáv Font
+1 NOTE G4: Husband
+1 FAMS @F43@
+0 I204 INDI
+1 NAME Hanna Font
+1 NOTE G5: Daughter
+1 FAMC @F43@
+0 I205 INDI
+1 NAME Oliver Font
+1 NOTE G5: Son
+1 FAMC @F43@
+0 I206 INDI
+1 NAME The Jackont Family
+1 NOTE Aljezur Branch
+1 RESI
+2 PLAC Unknown
+0 I207 INDI
+1 NAME Liora Jackont
+1 NOTE G3: New Member
+1 RESI
+2 PLAC Aseret, Gderot Regional Council, Rehovot Subdistrict, Center District, Israel
+0 I208 INDI
+1 NAME Liora Jackont
+1 NOTE G3: New Member
+1 RESI
+2 PLAC Aseret, Gderot Regional Council, Rehovot Subdistrict, Center District, Israel
+0 I209 INDI
+1 NAME Hadas Jackont
+1 NOTE Co-Founder of Baixo Art Space
+1 FAMS @F44@
+0 I210 INDI
+1 NAME Gilan Jackont
+1 NOTE Husband
+1 FAMS @F44@
+0 I211 INDI
+1 NAME Avner Jackont
+1 NOTE Son
+1 FAMC @F44@
+0 I212 INDI
+1 NAME Yoel Jackont
+1 NOTE Son
+1 FAMC @F44@
+0 I213 INDI
+1 NAME Millie Jackont
+1 NOTE Daughter
+1 FAMC @F44@
+0 I214 INDI
+1 NAME Baixo Art Space
+1 NOTE Cultural & Art Space
+1 RESI
+2 PLAC Rua da Serra, Aljezur
+0 @F1@ FAM
+1 HUSB @I3@
+1 WIFE @I4@
+1 CHIL @I5@
+0 @F2@ FAM
+1 HUSB @I5@
+1 WIFE @I6@
+1 CHIL @I7@
+1 CHIL @I55@
+0 @F3@ FAM
+1 HUSB @I7@
+1 WIFE @I8@
+1 CHIL @I9@
+1 CHIL @I27@
+1 CHIL @I28@
+1 CHIL @I29@
+0 @F4@ FAM
+1 HUSB @I9@
+1 WIFE @I10@
+1 CHIL @I11@
+1 CHIL @I12@
+0 @F5@ FAM
+1 HUSB @I12@
+1 WIFE @I13@
+1 CHIL @I14@
+1 CHIL @I26@
+1 CHIL @I25@
+1 CHIL @I26@
+0 @F6@ FAM
+1 HUSB @I14@
+1 WIFE @I15@
+1 CHIL @I16@
+1 CHIL @I17@
+1 CHIL @I18@
+1 CHIL @I19@
+1 CHIL @I20@
+1 CHIL @I21@
+1 CHIL @I22@
+1 CHIL @I23@
+0 @F7@ FAM
+1 HUSB @I29@
+1 WIFE @I30@
+1 CHIL @I31@
+1 CHIL @I37@
+1 CHIL @I38@
+1 CHIL @I39@
+1 CHIL @I43@
+0 @F8@ FAM
+1 HUSB @I31@
+1 WIFE @I32@
+1 CHIL @I77@
+1 CHIL @I79@
+0 @F9@ FAM
+1 HUSB @I39@
+1 WIFE @I40@
+1 CHIL @I41@
+1 CHIL @I42@
+0 @F10@ FAM
+1 HUSB @I43@
+1 WIFE @I44@
+1 CHIL @I119@
+1 CHIL @I49@
+0 @F11@ FAM
+1 HUSB @I45@
+1 WIFE @I46@
+1 CHIL @I120@
+1 CHIL @I121@
+0 @F12@ FAM
+1 HUSB @I49@
+1 WIFE @I50@
+1 CHIL @I51@
+1 CHIL @I52@
+1 CHIL @I53@
+1 CHIL @I54@
+0 @F13@ FAM
+1 HUSB @I55@
+1 WIFE @I56@
+0 @F14@ FAM
+1 HUSB @I58@
+1 WIFE @I59@
+1 CHIL @I60@
+0 @F15@ FAM
+1 HUSB @I60@
+1 WIFE @I61@
+1 CHIL @I62@
+0 @F16@ FAM
+1 HUSB @I62@
+1 WIFE @I63@
+1 CHIL @I64@
+0 @F17@ FAM
+1 HUSB @I66@
+1 WIFE @I67@
+1 CHIL @I68@
+0 @F18@ FAM
+1 HUSB @I70@
+1 WIFE @I71@
+1 CHIL @I72@
+0 @F19@ FAM
+1 HUSB @I86@
+1 WIFE @I87@
+1 CHIL @I88@
+0 @F20@ FAM
+1 HUSB @I91@
+1 WIFE @I92@
+1 CHIL @I93@
+1 CHIL @I94@
+0 @F21@ FAM
+1 HUSB @I94@
+1 WIFE @I95@
+1 CHIL @I96@
+1 CHIL @I97@
+1 CHIL @I98@
+0 @F22@ FAM
+1 HUSB @I100@
+1 WIFE @I101@
+1 CHIL @I102@
+0 @F23@ FAM
+1 HUSB @I102@
+1 WIFE @I103@
+1 CHIL @I104@
+1 CHIL @I126@
+1 CHIL @I133@
+1 CHIL @I146@
+1 CHIL @I150@
+1 CHIL @I151@
+1 CHIL @I158@
+0 @F24@ FAM
+1 HUSB @I104@
+1 WIFE @I105@
+1 CHIL @I106@
+1 CHIL @I109@
+1 CHIL @I115@
+1 CHIL @I118@
+1 CHIL @I122@
+0 @F25@ FAM
+1 HUSB @I109@
+1 WIFE @I110@
+1 CHIL @I111@
+1 CHIL @I112@
+1 CHIL @I113@
+1 CHIL @I114@
+0 @F26@ FAM
+1 HUSB @I118@
+1 WIFE @I119@
+1 CHIL @I120@
+1 CHIL @I121@
+0 @F27@ FAM
+1 HUSB @I122@
+1 WIFE @I123@
+1 CHIL @I124@
+1 CHIL @I125@
+0 @F28@ FAM
+1 HUSB @I126@
+1 WIFE @I127@
+1 CHIL @I128@
+1 CHIL @I132@
+0 @F29@ FAM
+1 HUSB @I133@
+1 WIFE @I134@
+1 CHIL @I135@
+1 CHIL @I136@
+1 CHIL @I137@
+1 CHIL @I138@
+1 CHIL @I139@
+1 CHIL @I141@
+0 @F30@ FAM
+1 HUSB @I141@
+1 WIFE @I142@
+1 CHIL @I143@
+1 CHIL @I144@
+1 CHIL @I145@
+0 @F31@ FAM
+1 HUSB @I146@
+1 WIFE @I147@
+1 CHIL @I148@
+1 CHIL @I149@
+0 @F32@ FAM
+1 HUSB @I151@
+1 WIFE @I152@
+1 CHIL @I153@
+0 @F33@ FAM
+1 HUSB @I153@
+1 WIFE @I154@
+1 CHIL @I155@
+1 CHIL @I156@
+0 @F34@ FAM
+1 HUSB @I156@
+1 WIFE @I157@
+0 @F35@ FAM
+1 HUSB @I162@
+1 WIFE @I163@
+1 CHIL @I164@
+1 CHIL @I165@
+0 @F36@ FAM
+1 HUSB @I170@
+1 WIFE @I171@
+1 CHIL @I172@
+0 @F37@ FAM
+1 HUSB @I172@
+1 WIFE @I173@
+1 CHIL @I174@
+1 CHIL @I175@
+1 CHIL @I176@
+0 @F38@ FAM
+1 HUSB @I182@
+1 WIFE @I183@
+1 CHIL @I184@
+1 CHIL @I191@
+1 CHIL @I186@
+1 CHIL @I187@
+0 @F39@ FAM
+1 HUSB @I190@
+1 WIFE @I191@
+1 CHIL @I192@
+0 @F40@ FAM
+1 HUSB @I192@
+1 WIFE @I193@
+1 CHIL @I194@
+1 CHIL @I198@
+1 CHIL @I202@
+0 @F41@ FAM
+1 HUSB @I194@
+1 WIFE @I195@
+1 CHIL @I196@
+1 CHIL @I197@
+0 @F42@ FAM
+1 HUSB @I198@
+1 WIFE @I199@
+1 CHIL @I200@
+1 CHIL @I201@
+0 @F43@ FAM
+1 HUSB @I202@
+1 WIFE @I203@
+1 CHIL @I204@
+1 CHIL @I205@
+0 @F44@ FAM
+1 HUSB @I209@
+1 WIFE @I210@
+1 CHIL @I211@
+1 CHIL @I212@
+1 CHIL @I213@
+0 TRLR

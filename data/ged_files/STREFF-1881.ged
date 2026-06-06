@@ -1,0 +1,54 @@
+0 HEAD
+1 SOUR IGI
+2 VERS 5.0
+2 NAME International Genealogical Index (R)
+2 CORP The Church of Jesus Christ of Latter-day Saints
+3 ADDR 50 East North Temple Street
+4 CONT Salt Lake City, Utah 84150
+2 DATA International Genealogical Index
+3 DATE 12 February 2004
+3 COPR Copyright (c) 1980, 2002
+1 DEST PAF
+1 DATE 12 February 2004
+2 TIME 10:50:20
+1 FILE STREFF-1881
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 CHAR ANSEL
+1 SUBM @SUB01@
+1 SUBN @N01@
+0 @SUB01@ SUBM
+1 NAME Created by FamilySearch (TM) Internet Genealogy Service
+1 ADDR 50 East North Temple Street
+2 CONT Salt Lake City, Utah 84150
+0 @N01@ SUBN
+1 DESC 1
+1 ORDI N
+0 @I100163670431@ INDI
+1 NAME MARY /SCHROETTLE/
+1 SEX F
+1 FAMS @F247251296@
+1 SOUR @S01@
+0 @I100163670430@ INDI
+1 NAME PAUL A. /STREFF/
+1 SEX M
+1 FAMS @F247251296@
+1 SOUR @S01@
+2 PAGE Batch #: M730736, Source Call #: 1030118, Printout Call #: NONE, Dates: 1881
+0 @F247251296@ FAM
+1 MARR
+2 DATE 28 JUN 1881
+2 PLAC , Cook, Illinois
+1 HUSB @I100163670430@
+1 WIFE @I100163670431@
+0 @S01@ SOUR
+1 AUTH The Church of Jesus Christ of Latter-day Saints
+1 TITL International Genealogical Index (R)
+1 PUBL Copyright (c) 1980, 2002, data as of February 12, 2004
+1 REPO @R01@
+0 @R01@ REPO
+1 NAME Family History Library
+1 ADDR 35 N West Temple Street
+2 CONT Salt Lake City, Utah 84150  USA
+0 TRLR

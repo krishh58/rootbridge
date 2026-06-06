@@ -1,0 +1,47 @@
+```gedcom
+0 @I13@ INDI
+1 NAME Johann /AMAN/
+1 FAMS @F1@
+
+0 @F1@ FAM
+1 HUSB @I13@
+1 WIFE @I14@
+1 CHIL @I15@
+1 MARR
+2 DATE 17 JAN 1875
+2 PLAC Alt Ker
+
+0 @I14@ INDI
+1 NAME Elisabetha /OTT/
+
+0 @I15@ INDI
+1 NAME Elisabetha /Aman/
+1 BIRT
+2 DATE 06 JUL 1855
+2 PLAC Alt Ker
+1 FAMS @F2@
+
+0 @F2@ FAM
+1 WIFE @I15@
+1 HUSB @I16@
+1 MARR
+
+0 @I16@ INDI
+1 NAME Johann Georg /Häuser/
+1 NOTE link to @1667@
+1 NOTE ANSCHÜTZ 
+```
+
+**Explanation of Changes and Assumptions:**
+
+* **Individuals (INDI) and Families (FAM):** Each person and marriage gets its own record, linked by pointers (@I13@, @F1@, etc.).
+* **Names:** Surnames are enclosed in slashes (e.g., /AMAN/).
+* **Marriage (MARR):** The marriage date and place are under the FAM record.
+* **Birth (BIRT):**  Elisabetha Aman's birth information is included.
+* **Linking to @1667@:** This is kept as a NOTE.  GEDCOM doesn't have a standardized way to represent a link to an external database entry, so a note is the most common practice.  You might also use a custom tag like _LINK if your genealogy software supports it.
+* **ANSCHÜTZ:**  This is also treated as a NOTE, as its relationship to Johann Georg Häuser isn't clear.  It could be a title, a second surname, an occupation, or something else.  Further research would be needed to determine the correct tag.  If it were a confirmed second surname, you might use 1 NAME Johann Georg /Häuser/ /ANSCHÜTZ/.
+* **Missing Information:** The GEDCOM format requires a husband and wife for a family record. Since Elisabetha Ott's birth and death dates are unknown, placeholders are used.  Similarly,  the marriage date for Elisabetha Aman and Johann Georg Häuser is unknown.
+
+
+This conversion makes several assumptions due to the ambiguity of the original text.  If you have more context, the GEDCOM can be refined further.  For example, if ANSCHÜTZ is a place name related to Johann Georg Häuser, it could be added as a residence (RESI) event.
+

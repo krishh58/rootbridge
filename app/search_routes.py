@@ -1,4 +1,5 @@
 import re
+import datetime
 from flask import Blueprint, request, jsonify, g, Response, stream_with_context, current_app
 from .auth import require_auth
 from .token_middleware import require_tokens
@@ -472,14 +473,14 @@ def deep_research(person_id):
                         # Bump confidence for each newly filled field
                         if filled:
                             p.confidence = min(95, (p.confidence or 0) + filled * 10)
-                        # Save parent/spouse findings so expand-tree can use them
-                        ancestor_findings = [
-                            f for f in findings
-                            if f.get('field') in ('parent', 'spouse')
-                            and f.get('value', '').strip()
-                        ]
-                        if ancestor_findings:
-                            p.research_findings = ancestor_findings
+                        # Save all findings + a run summary for persistent display
+                        run_summary = {
+                            'type': 'run_summary',
+                            'text': event.get('summary', ''),
+                            'ran_at': datetime.datetime.utcnow().isoformat()
+                        }
+                        tagged_findings = [dict(f, type='finding') for f in findings]
+                        p.research_findings = [run_summary] + tagged_findings
                         db.session.commit()
                     yield 'data: ' + _json.dumps({'type': 'saved', 'person_id': person_id}) + '\n\n'
                 except Exception as _e:

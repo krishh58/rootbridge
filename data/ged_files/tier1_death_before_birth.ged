@@ -1,0 +1,44 @@
+0 HEAD
+1 SOUR MultiAgentGenealogyTrapCases
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 NOTE Tier 1 deterministic trap: subject's death date (1850) precedes her
+2 CONT birth date (1870). check_death_before_birth should fire. Parents are
+2 CONT included so the Hypothesizer has something to propose about.
+0 @I1@ INDI
+1 NAME Clara /Impossible/
+1 SEX F
+1 BIRT
+2 DATE 15 MAR 1870
+2 PLAC Philadelphia, Pennsylvania
+1 DEAT
+2 DATE 20 DEC 1850
+2 PLAC Philadelphia, Pennsylvania
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Samuel /Impossible/
+1 SEX M
+1 BIRT
+2 DATE 5 MAY 1830
+2 PLAC Philadelphia, Pennsylvania
+1 DEAT
+2 DATE 1 JAN 1900
+2 PLAC Philadelphia, Pennsylvania
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Eliza /Brown/
+1 SEX F
+1 BIRT
+2 DATE 10 JUN 1835
+2 PLAC Philadelphia, Pennsylvania
+1 DEAT
+2 DATE 4 APR 1905
+2 PLAC Philadelphia, Pennsylvania
+1 FAMS @F1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+0 TRLR

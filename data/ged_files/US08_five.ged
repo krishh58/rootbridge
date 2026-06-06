@@ -1,0 +1,51 @@
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE Family 3
+1 DATE 2 OCT 2022
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I1@
+2 NAME evalent2@stevens.edu
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Enrique /Valentino/
+2 GIVN Enrique
+2 SURN Valentino
+2 _MARNM Valentino
+1 SEX M
+1 BIRT
+2 DATE 10 JAN 2000
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Father /Valentino/
+2 GIVN Father
+2 SURN Valentino
+2 _MARNM Valentino
+1 SEX M
+1 BIRT
+2 DATE 5 AUG 1973
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Mother /Something/
+2 GIVN Mother
+2 SURN Something
+2 _MARNM Valentino
+1 SEX F
+1 BIRT
+2 DATE 3 MAR 1975
+1 FAMS @F1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+1 MARR
+2 DATE 5 MAY 1999
+1 DIV
+2 DATE 10 APR 1999
+1 _CURRENT Y
+1 _PRIMARY Y
+0 TRLR

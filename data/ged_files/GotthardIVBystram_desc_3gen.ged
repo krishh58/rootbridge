@@ -1,0 +1,791 @@
+0 HEAD
+1 SOUR The Next Generation of Genealogy Sitebuilding
+2 VERS 12.0.2
+2 NAME The Next Generation of Genealogy Sitebuilding (R)
+2 CORP Next Generation Software, LLC
+3 ADDR Sandy, UT
+1 FILE Gotthard (IV) von Bistram z Radlina, h.Tarnawa.ged
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 SUBM @SUB1@
+0 @SUB1@ SUBM
+1 NAME Jan
+1 EMAIL no-reply@bystram.be
+1 DEST Gedcom55
+0 @I187@ INDI
+1 NAME Gotthard (IV) /von Bistram z Radlina/ h.Tarnawa
+2 GIVN Gotthard (IV)
+2 SURN von Bistram z Radlina
+2 NOTE za Lenczewskim (Genealogie Rodów Utytułowanych str.240):
+3 CONT - baron von Bistramb !
+3 CONT - wzmianakowany w 1618r.
+3 CONT - umarł miedzy 20 Nov (?1651) a 6 Jul 1652r.
+3 CONT - własciciel dóbr Waddax,
+3 CONT - sedzia sadu rycerskiego Kurlandii.
+3 CONT - otrzymał szwedzki dziedziczny tytuł barona w dniu 13.6.1604
+3 CONT
+3 CONT Jest sprawa nie wyjasniona kto dostal tytul i dalsza afiliacja.
+3 CONT
+3 CONT Dal poczatek 2 liniom kurlandzkim
+3 CONT
+3 CONT List do Krzysztofa ks.Radziwilla od Gothardus'a Bistramb'a z   1621r.  https://www.szukajwarchiwach.gov.pl/en/jednostka/-/jednostka/28270694
+2 NPFX Baron
+2 NSFX h.Tarnawa
+1 SEX M
+1 BIRT
+2 DATE ca.1590
+2 NOTE przed 1604, 1590-za Minakowskim.
+3 SOUR @S7@
+2 NOTE estimated between 1570 and 1628
+3 SOUR @S3@
+4 PAGE https://www.geni.com/people/Gotthard-I-von-Bistram/6000000025632933094
+1 DEAT
+2 DATE 1652
+2 NOTE between November 20, 1651 and July 06, 1652
+3 SOUR @S3@
+4 PAGE https://www.geni.com/people/Gotthard-I-von-Bistram/6000000025632933094
+1 OCCU Lord of Waddax
+2 DATE 1618
+2 PLAC Vadakste, Latvia
+2 SOUR @S8@
+3 PAGE 514
+3 QUAY 3
+1 GRAD Otrzymal dziedziczny szwedzki tytul barona - za Lenczewskim
+2 DATE 13 Jun 1604
+1 OCCU Sedzia Sadu Rycerskiego Kurlandii - za Lenczewskim
+1 EVEN - za Lenczewskim
+2 TYPE Mentioned
+2 DATE 1604-1652
+1 EVEN Dzierzawca (Pfandherr) Esserhof-za CHRONIK...str 48
+2 TYPE Mentioned
+2 DATE 1613
+1 CHAN
+2 DATE 10 Dec 2020
+1 FAMS @F59@
+0 @I188@ INDI
+1 NAME Gertrude /von Schmölling/
+2 GIVN Gertrude
+2 SURN von Schmölling
+2 NOTE Z Sejn pow.Erwalen i Punien pow.Talsen (Kurlandia od 1655)- za CHRONIK ... str 48
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE ca.1590
+2 NOTE za Minakowskim
+1 DEAT
+2 DATE po 12.4.1649
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F59@
+0 @I184@ INDI
+1 NAME Jan Kazimierz (linia polsko-litewska) /Bystram z Radlina/ h.Tarnawa
+2 GIVN Jan Kazimierz (linia polsko-litewska)
+2 SURN Bystram z Radlina
+2 NOTE https://www.geni.com/people/baron-Jan-Kazimierz-Bystram-h-Tarnawa/6000000109515175980
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1620
+2 NOTE za MJ Minakowskim
+1 OCCU dworzanin królewski - Royal Courtier
+1 EVEN wlasciciel dóbr Borklojnie i Zwirblany pow.Upita (Lord of Borklojnie i Żwirblany near Upita, Lithuania)
+2 TYPE Mentioned
+2 DATE 1645-1653
+2 PLAC Upytė, Lithuania
+2 SOUR @S1@
+3 DATA
+4 TEXT Jan Kazimierz Baron Bystram, wzm. 1645-1653, wł.d. Żwirblany, pow. Upita, Król. pol. Dworzanin; x Magdalena v. Heyking, c. ...
+3 PAGE 242
+3 QUAY 3
+1 EVEN za zaslugi wojenne,otrzymal od Wladyslawa IV 26 wlók w wójtostwie orwistowskim i w Dowkajniach
+2 TYPE Mentioned
+2 DATE 1645
+1 NOTE własciciel dóbr Zwirblany powiat Upita;
+2 CONT
+2 CONT Od niego bierze poczatek gałaz polsko-litewska z Bystrampola.
+1 CHAN
+2 DATE 14 Jan 2021
+1 FAMC @F59@
+1 FAMS @F58@
+0 @I185@ INDI
+1 NAME Magdalena /von Heyking/
+2 GIVN Magdalena
+2 SURN von Heyking
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE ca.1620
+2 NOTE za MJ Minakowskim
+1 CHAN
+2 DATE 14 Jan 2021
+1 FAMS @F58@
+0 @I179@ INDI
+1 NAME Jan Ewald /Bystram/ h.Tarnawa
+2 GIVN Jan Ewald
+2 SURN Bystram
+2 NOTE wzmiankowany 1672-1725;
+3 CONT własciciel dóbr Borkłojnie (od 1695r.) i Zwirblany powiat Upita; To prawdopodobnie on kupil Borklojnie, które przemianowal na Bystrampol.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1640
+2 NOTE za MJ Minakowskim
+1 DEAT Y
+2 NOTE A.Boniecki podaje "...Synom, córkom i wnukowi Krzysztofowi, synowi Stanislawa zapisal Jan wszystkie swoje majatki w 1725r.(Zs Upickie).
+1 EVEN za drzewem genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1672-1725
+1 OCCU czesnik inflandzki za MJ Minakowskim i Lenczewskim
+1 EVEN wlasciciel Zwirblan i Borklojni (Akta Tryb. Lit. i ZS Upickie)
+2 TYPE Mentioned
+2 DATE 1695, 1701
+1 CHAN
+2 DATE 14 Jan 2021
+1 FAMC @F58@
+1 FAMS @F141@
+1 FAMS @F57@
+1 FAMS @F143@
+1 FAMS @F453@
+0 @I377@ INDI
+1 NAME Katharina Gertrude /von Bistram/ h.Tarnawa
+2 GIVN Katharina Gertrude
+2 SURN von Bistram
+2 NSFX h.Tarnawa
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE ca.1640
+2 NOTE przypuszczenie moje (KB), 1630-za MJ Minakowskim
+1 NOTE wystepuje równiez pod nazwiskiem van der Ley.
+1 CHAN
+2 DATE 14 Jan 2021
+1 FAMS @F141@
+1 FAMC @F206@
+0 @I384@ INDI
+1 NAME Zuzanna /Bystram/ h.Tarnawa
+2 GIVN Zuzanna
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE ca.1670
+2 NOTE za MJ Minakowskim
+1 CHAN
+2 DATE 05 Aug 2020
+1 FAMC @F141@
+0 @I182@ INDI
+1 NAME Stanisław /Bystram/ h.Tarnawa
+2 GIVN Stanisław
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1670
+2 NOTE przypuszzenie moje (KB) - za A.Bonieckim; Minakowskii podaje ca.1660
+1 EVEN za drzewem genealog. Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1700-1725
+1 CHAN
+2 DATE 05 Aug 2020
+1 FAMC @F141@
+0 @I383@ INDI
+1 NAME Elzbieta /Bystram/ h.Tarnawa
+2 GIVN Elzbieta
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baronówna
+1 SEX F
+1 BIRT
+2 DATE ca.1689
+2 NOTE za A.Bonieckim
+1 CHAN
+2 DATE 05 Aug 2020
+1 FAMC @F141@
+0 @I180@ INDI
+1 NAME Anna /Święcicka/ h.Jastrzebiec
+2 GIVN Anna
+2 SURN Święcicka
+2 NSFX h.Jastrzebiec
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE ca.1650
+2 NOTE przyblizenie moje (KB), Minakowski podaje ca.1660, ale podaje tez przyblizony rok slubu z Janem Ewaldem 1670. Wówczas mialaby 10 lat. To tylko przyblizenia.
+1 DEAT
+2 DATE ca.1670
+1 CHAN
+2 DATE 14 Jul 2020
+1 FAMS @F57@
+0 @I181@ INDI
+1 NAME Mikołaj /Bystram/ h.Tarnawa
+2 GIVN Mikołaj
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1670
+2 NOTE za MJ Minakowskim
+1 EVEN za drzewem genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1725
+1 CHAN
+2 DATE 10 Dec 2020
+1 FAMC @F57@
+0 @I177@ INDI
+1 NAME Bogusław Kazimierz /Bystram/ h.Tarnawa
+2 GIVN Bogusław Kazimierz
+2 SURN Bystram
+2 NOTE własciciel dóbr Gieguzyn z przyległosciami-powiat Wilkomierz(Ukmerge), wojski smolenski (za MJ Minakowskim ca.1700-1737/1746)
+3 CONT https://www.familysearch.org/ark:/61903/2:2:3P79-P62
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1690
+2 NOTE za A. Bonieckim (...najmlodszy syn Jana...), 1690-przypuszczenie moje (KB); ca.1700-za MJ Minakowskim
+1 DEAT
+2 DATE 29 Jan 1746
+2 NOTE zmarł miedzy 18.4.1737 a 29.1.1746 za Lenczewskim 'Genealogie Rodów Utytulowanych w Polsce' str242
+3 CONT
+3 CONT 1741r. - za https://www.familysearch.org/ark:/61903/2:2:3P79-P62
+1 EVEN za drzewem genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1725-1746
+1 OCCU wojski smolenski - za A.Bonieckim i Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F57@
+0 @I183@ INDI
+1 NAME Aleksander /Bystram/ h.Tarnawa
+2 GIVN Aleksander
+2 SURN Bystram
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1695
+2 NOTE ca.1690-za MJ Minakowskim; A.Boniecki podaje '...Aleksander, najmlodszy syn Jana...), bral slub w 1705r. stad ca.1685 - przypuszczenie moje (KB).
+1 EVEN za drzewem genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1704-1740
+1 EVEN akt sprzedazy Polawien, Borklojn i Sutkun (Akta Tryb.Lit.)
+2 TYPE Mentioned
+2 DATE 1754
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F57@
+0 @I379@ INDI
+1 NAME No Name /Hoffmann/
+2 GIVN No Name
+2 SURN Hoffmann
+2 NOTE za Minakowskim
+1 SEX F
+1 BIRT
+2 DATE ca.1650
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F143@
+0 @I1081@ INDI
+1 NAME N. /N./
+2 GIVN N.
+2 SURN N.
+2 NOTE za Minakowskim
+1 SEX F
+1 BIRT
+2 DATE ca1650
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F453@
+0 @I1277@ INDI
+1 NAME Ottomar Alexander (I) linia kurlandzka5 /Bystram z Radlina/
+2 GIVN Ottomar Alexander (I) linia kurlandzka5
+2 SURN Bystram z Radlina
+2 NOTE z Lukian za CHRONIK... str 469
+3 CONT https://www.geni.com/people/Otto-Ottomar-von-Bistram/6000000026091332201
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1640
+2 NOTE z Lukian za CHRONIK... str 469
+3 CONT https://www.geni.com/people/Otto-Ottomar-von-Bistram/6000000026091332201
+1 EVEN za CHRONIK .... str 469
+2 TYPE Mentioned
+2 DATE 1677/1679
+1 CHAN
+2 DATE 12 Jan 2021
+1 FAMC @F58@
+1 FAMS @F529@
+0 @I1278@ INDI
+1 NAME Elisabeth Hedwig /van der Osten-Sacken/
+2 GIVN Elisabeth Hedwig
+2 SURN van der Osten-Sacken
+2 NOTE za CHRONIK.... str 469
+1 SEX F
+1 CHAN
+2 DATE 14 Jan 2021
+1 FAMS @F529@
+0 @I1280@ INDI
+1 NAME Johann Ernst /Bystram z Radlina/ h.Tarnawa
+2 GIVN Johann Ernst
+2 SURN Bystram z Radlina
+2 NOTE Dzierzawca Podbirzy (Pfandherr aus Podbirsen/Lit.
+3 CONT - za CHRONIK str 469)
+3 CONT https://www.geni.com/people/Johann-Ernst-von-Bistram/6000000039100331010
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1680
+2 NOTE przypuszczenie moje (KB)
+1 CHAN
+2 DATE 12 Jan 2021
+1 FAMC @F529@
+0 @I186@ INDI
+1 NAME Ottomar Aleksander(II) /Bystram z Radlina/ h.Tarnawa
+2 GIVN Ottomar Aleksander(II)
+2 SURN Bystram z Radlina
+2 NOTE z Lukian (Litwa) za CHRONIK... str.469
+3 CONT https://www.geni.com/people/Ottomar-Alexander-II-von-Bistram/6000000026090788428
+3 CONT za Minakowskim
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 EVEN za tablica genealog.Kazimierza Bystrama
+2 TYPE Mentioned
+2 DATE 1700-1712
+1 EVEN za CHRONIK ...str 469
+2 TYPE Mentioned
+2 DATE 1700-1714
+1 CHAN
+2 DATE 12 Jan 2021
+1 FAMC @F529@
+0 @I189@ INDI
+1 NAME Christopher (VII) linia kurlandzka4 /von Bistram z Radlina/ h.Tarnawa
+2 GIVN Christopher (VII) linia kurlandzka4
+2 SURN von Bistram z Radlina
+2 NOTE własciciel dóbr Wodoksty (gałaz Waddax +1811) - za Lenczewskim "Genealogie Rodów Utytulowanych w Polsce"
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1620
+2 NOTE za MJ Minakowskim
+1 DEAT
+2 DATE 1661
+2 NOTE za Lenczewskim, idem - zmarł miedzy 2.3.1658 a 13.3.1661; 1658-za Minakowskim.
+1 OCCU wlasciciel dóbr Waddax (Wodoksty)
+2 CONT Lord of Waddax
+2 PLAC Vadakste, Latvia
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F59@
+1 FAMS @F206@
+0 @I509@ INDI
+1 NAME Elizabeth /von Neuhoff/
+2 GIVN Elizabeth
+2 SURN von Neuhoff
+2 NOTE za Minakowskim
+1 SEX F
+1 _LIVING Y
+1 BIRT Y
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 21 Oct 2018
+1 FAMS @F206@
+0 @I190@ INDI
+1 NAME Hartwig /von Bistram z Radlina/ h.Tarnawa
+2 GIVN Hartwig
+2 SURN von Bistram z Radlina
+2 NOTE linia kurlandzka 3 na drzewie genealog. Kazimierza Bystrama
+2 NPFX Baron
+2 NSFX h.Tarnawa
+1 SEX M
+1 BIRT
+2 DATE ca.1600
+2 NOTE za MJ Minakowskim
+1 DEAT
+2 DATE 1656
+2 NOTE za Lenczewskim:
+3 CONT - zmarł miedzy 24.3.1655 a 10.2.1658
+3 CONT - własciciel dóbr Sejny powiat Erwalen i Punie powiat Talsen - Kurlandia (od 1655r.),
+3 CONT
+3 CONT Poczatek gałezi Daukszogiry-Waddax (Wodoksty). Gałąz niemiecko jezyczna;
+1 NOTE za Lenczewskim:
+2 CONT  Poczatek galezi Wodoksty-Daukszogiry (Waddax-Daudzogir).
+1 CHAN
+2 DATE 13 Dec 2020
+1 FAMC @F59@
+1 FAMS @F84@
+0 @I249@ INDI
+1 NAME Anna Catharina /von Vietinghoff/
+2 GIVN Anna Catharina
+2 SURN von Vietinghoff
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE ca.1610
+2 NOTE za MJ Minakowskim
+1 DEAT
+2 DATE 1670
+2 NOTE za Lenczewskim:
+3 CONT - zmarła miedzy 8.2 a 4.6.1670;
+3 CONT - włascicielka dóbr Deguhnen (od 1669) - Kurlandia.
+3 CONT
+1 CHAN
+2 DATE 05 Jul 2020
+1 FAMS @F84@
+0 @I360@ INDI
+1 NAME Heinrich Friedrich /von Bistram/ h.Tarnawa
+2 GIVN Heinrich Friedrich
+2 SURN von Bistram
+2 NOTE porzadek imion za MJ Minakowskim - Friedrich Heinrich
+3 CONT z Sejn i Punie - za CHRONIK ...str 48 i 120
+2 NPFX Baron
+2 NSFX h.Tarnawa
+1 SEX M
+1 BIRT
+2 DATE ca.1640
+2 NOTE za MJ Minakowskim - ca.1640-1697
+1 DEAT
+2 DATE 14 Apr 1697
+1 BURI
+2 PLAC Bowsk
+1 EVEN za CHRONIK ... str 48
+2 TYPE Mentioned
+2 DATE 1668
+1 EVEN Sprzedal Sejny i Punie (verk. 1673 za CHRONIK... str 48)
+2 TYPE Mentioned
+2 DATE 1673
+1 EVEN Dzierzawca Bauske i Schwirkaln (Pfandherr auf Amt Bauske und Schwirkaln)za CHRONIK... str 48
+2 TYPE Mentioned
+1 NOTE za Lenczewskim:
+2 CONT - wzmiankowany w 1668r;
+2 CONT - własciciel dóbr Sejny i Punie (sprzedane w 1673r.);
+2 CONT - zastawnik na Bowsku i Szwirkalniach.
+1 CHAN
+2 DATE 14 Jan 2021
+1 FAMC @F84@
+1 FAMS @F422@
+1 FAMS @F134@
+0 @I361@ INDI
+1 NAME Thekla Catharina /von Franck/
+2 GIVN Thekla Catharina
+2 SURN von Franck
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE 1652
+1 BURI
+2 DATE 11 Oct 1707
+2 PLAC Bowsk
+2 NOTE Bauska, Lettland
+1 CHAN
+2 DATE 10 Dec 2020
+1 FAMS @F422@
+1 FAMS @F134@
+0 @I503@ INDI
+1 NAME Georg Hartwig /von Bistram/ h.Tarnawa
+2 GIVN Georg Hartwig
+2 SURN von Bistram
+2 NOTE Hartwig Georg - porzadek imion za MJ Minakowskim
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1680
+2 NOTE za MJ Minakowskim
+1 DEAT
+2 DATE 1734
+2 PLAC Gross-Sessau (Kurlandia)
+2 NOTE Lenczewski - 'Gen.Rodów Utytul. w Polsce' str 241-podaje "po 25.6.1734"
+1 EVEN wlasciciel dóbr Dauszogiry (za Lenczewskim)
+2 TYPE Mentioned
+1 OCCU król.pol.rtm - za Lenczewskim
+1 NOTE Odnoga Daukszogiry od galezi Daukszogiry-Waddax
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F422@
+0 @I362@ INDI
+1 NAME  Wilhelm /von Bistram/ h.Tarnawa
+2 GIVN  Wilhelm
+2 SURN von Bistram
+2 NOTE Poczatek linii Wodokszty-Krotuszki (Waddax-Krottuschen) - za CHRONIK ... str 120
+3 CONT za Lenczewskim:
+3 CONT - odnoga galezi Daukszogiry-Waddax-Krotuszyn(Krotuszki)(Krottuschen) istniejaca w Niemczech.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 3 Mar 1688
+2 NOTE za CHRONIK ... str 120
+1 DEAT
+2 DATE 1719
+2 NOTE za CHRONIK ... str 120
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F134@
+0 @I363@ INDI
+1 NAME George Hartwig /von Bistram/ h.Tarnawa
+2 GIVN George Hartwig
+2 SURN von Bistram
+2 NOTE Poczatek linii Wodoksty-Daukszogiry (Waddax-Dauzogir
+3 CONT za MJ Minakowskim - Hartwig Georg
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE ca.1680
+2 NOTE za MJ Minakowskim
+1 DEAT
+2 DATE 25 Jun 1734
+2 PLAC Gross-Sessau, Kurlandia
+2 NOTE za Lenczewskim:
+3 CONT - data smierci 'p.25.6.1734'; po 25.6.1734 ?;
+3 CONT - własciciel dóbr Daukszogiry (od 1721r.) powiat Mariampol;
+3 CONT - porucznik król.pol.
+1 BURI
+2 PLAC Bowsk
+1 EVEN na Daukszogirach od 1721r. za CHRONIK ... str 48
+2 TYPE Mentioned
+2 DATE 1721
+1 NOTE Poczatek linii Wodoksty-Daukszogiry(Waddax-Dauzogir)
+2 CONT za Lenczewskim:
+2 CONT - własciciel dóbr Daukszogiry (od 1721r.) powiat Mariampol;
+2 CONT - porucznik król.pol.
+2 CONT
+1 CHAN
+2 DATE 14 Jan 2021
+1 FAMC @F134@
+0 @I191@ INDI
+1 NAME Gotthard (V) /von Bistram z Radlina/ h.Tarnawa
+2 GIVN Gotthard (V)
+2 SURN von Bistram z Radlina
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 CHAN
+2 DATE 20 Jul 2020
+1 FAMC @F59@
+1 FAMS @F85@
+0 @I250@ INDI
+1 NAME Anna Margaretha /v. Grotthuss/
+2 GIVN Anna Margaretha
+2 SURN v. Grotthuss
+1 SEX F
+1 CHAN
+2 DATE 08 Oct 2018
+1 FAMS @F85@
+0 @I192@ INDI
+1 NAME Heinrich /von Bistram z Radlina/ h.Tarnawa
+2 GIVN Heinrich
+2 SURN von Bistram z Radlina
+2 NOTE https://www.geni.com/people/Heinrich-von-Bistram-a-d-H-Waddax/6000000019040509889
+3 CONT Minakowski podaje "Henryk", nie Heinrich.
+2 NSFX h.Tarnawa
+1 TITL Baron
+1 SEX M
+1 BIRT
+2 DATE 1644
+2 NOTE https://www.geni.com/people/Heinrich-von-Bistram-a-d-H-Waddax/6000000019040509889
+3 CONT 1616 - za Minakowskim
+1 DEAT
+2 DATE 24 Nov 1716
+2 NOTE https://www.geni.com/people/Heinrich-von-Bistram-a-d-H-Waddax/6000000019040509889
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMC @F59@
+1 FAMS @F86@
+0 @I251@ INDI
+1 NAME Anna Elisanbeth /von Redern/
+2 GIVN Anna Elisanbeth
+2 SURN von Redern
+2 NOTE https://www.geni.com/people/Anna-Elisabeth-von-Redern/6000000026090392100
+1 TITL Baronowa
+1 SEX F
+1 BIRT
+2 DATE 1633
+2 NOTE za Minakowskim oraz za https://www.geni.com/people/Anna-Elisabeth-von-Redern/6000000026090392100
+1 DEAT
+2 DATE 28 Aug 1689
+2 NOTE https://www.geni.com/people/Anna-Elisabeth-von-Redern/6000000026090392100
+1 CHAN
+2 DATE 16 Jan 2021
+1 FAMS @F86@
+0 @F59@ FAM
+1 HUSB @I187@
+1 WIFE @I188@
+1 CHAN
+2 DATE 21 Oct 2018
+1 CHIL @I184@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I189@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I190@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I191@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I192@
+2 _FREL birth
+2 _MREL birth
+0 @F58@ FAM
+1 HUSB @I184@
+1 WIFE @I185@
+1 MARR
+2 DATE ca.1640
+2 NOTE za Minakowskim
+1 NOTE wzmiankowany 1645-1653; własciciel dóbrZwirblany (Zwirblenai) powiat Upita;
+2 CONT dworzanin króla polskiego.
+1 CHAN
+2 DATE 10 Dec 2020
+1 CHIL @I179@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I1277@
+2 _FREL birth
+2 _MREL birth
+0 @F141@ FAM
+1 HUSB @I179@
+1 WIFE @I377@
+1 MARR
+2 DATE po 20 Jul 1672
+2 NOTE za Lenczewskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 CHIL @I384@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I182@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I383@
+2 _FREL birth
+2 _MREL birth
+0 @F57@ FAM
+1 HUSB @I179@
+1 WIFE @I180@
+1 MARR
+2 DATE ca1670
+2 NOTE przypuszczenie moje (KB)
+1 CHAN
+2 DATE 28 Jul 2020
+1 CHIL @I181@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I177@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I183@
+2 _FREL birth
+2 _MREL birth
+0 @F143@ FAM
+1 HUSB @I179@
+1 WIFE @I379@
+1 CHAN
+2 DATE 11 Oct 2018
+0 @F453@ FAM
+1 HUSB @I179@
+1 WIFE @I1081@
+1 MARR
+2 DATE ca.1670
+2 NOTE jedynie Minakowski podaje, ze Jan Ewald byl zonaty 4 razy.
+3 CONT
+3 CONT o tym malzenstwie Jana Ewalda A.Boniecki nie wspomina (KB)
+1 CHAN
+2 DATE 16 Jan 2021
+0 @F529@ FAM
+1 HUSB @I1277@
+1 WIFE @I1278@
+1 CHAN
+2 DATE 10 Dec 2020
+1 CHIL @I1280@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I186@
+2 _FREL birth
+2 _MREL birth
+0 @F206@ FAM
+1 HUSB @I189@
+1 WIFE @I509@
+1 MARR
+2 DATE ca.1630
+2 NOTE za MJ Minakowskim
+1 CHAN
+2 DATE 14 Jan 2021
+1 CHIL @I377@
+2 _FREL birth
+2 _MREL birth
+0 @F84@ FAM
+1 HUSB @I190@
+1 WIFE @I249@
+1 CHAN
+2 DATE 07 Oct 2018
+1 CHIL @I360@
+2 _FREL birth
+2 _MREL birth
+0 @F422@ FAM
+1 HUSB @I360@
+1 WIFE @I361@
+1 CHAN
+2 DATE 14 Jan 2021
+1 CHIL @I503@
+2 _FREL birth
+2 _MREL birth
+0 @F134@ FAM
+1 HUSB @I360@
+1 WIFE @I361@
+1 MARR
+2 DATE ca.1674
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 16 Jan 2021
+1 CHIL @I362@
+2 _FREL birth
+2 _MREL birth
+1 CHIL @I363@
+2 _FREL birth
+2 _MREL birth
+0 @F85@ FAM
+1 HUSB @I191@
+1 WIFE @I250@
+1 CHAN
+2 DATE 12 Oct 2018
+0 @F86@ FAM
+1 HUSB @I192@
+1 WIFE @I251@
+1 MARR
+2 DATE ca.1650
+2 NOTE za Minakowskim
+1 CHAN
+2 DATE 29 Jul 2020
+0 @S7@ SOUR
+1 ABBR Bystram Family Tree Drawing
+1 AUTH Kazimierz Karol Bystram (1910-1993)
+0 @S3@ SOUR
+1 ABBR geni.com
+0 @S8@ SOUR
+1 CALN 1939
+1 TITL Genealogisches Handbuch der kurländischen Ritterschaft
+1 AUTH Oskar Stavenhagen
+1 PUBL Görlitz
+1 CALN 1939
+0 @S1@ SOUR
+1 CALN ISBN 83-86100-13-3
+1 ABBR Genealogie rodów utytułowanych w Polsce T. 1
+1 AUTH Tomasz Lenczewski
+1 PUBL Adiutor
+1 CALN ISBN 83-86100-13-3
+0 TRLR

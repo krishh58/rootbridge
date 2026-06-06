@@ -1,0 +1,47 @@
+0 HEAD
+1 SOUR MultiAgentGenealogyTrapCases
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 NOTE Tier 2 plausible-but-wrong trap: parent born Palermo, Sicily 1820;
+2 CONT child born Dublin, Ireland 1850. 30-year age gap passes all Tier 1
+2 CONT checks. Geographic distance ~2200km triggers geo flag_moderate.
+2 CONT Sicily-to-Ireland migration was rare in this era and there is no
+2 CONT migration event recorded — the LLM should flag this as suspicious
+2 CONT without auto-rejecting (migration cases exist, this is a soft signal).
+0 @I1@ INDI
+1 NAME Margaret /Bianchi/
+1 SEX F
+1 BIRT
+2 DATE 15 MAR 1850
+2 PLAC Dublin, Ireland
+1 DEAT
+2 DATE 20 DEC 1920
+2 PLAC Dublin, Ireland
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Salvatore /Bianchi/
+1 SEX M
+1 BIRT
+2 DATE 5 MAY 1820
+2 PLAC Palermo, Sicily
+1 DEAT
+2 DATE 1 JAN 1885
+2 PLAC Palermo, Sicily
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Giuseppina /Rossi/
+1 SEX F
+1 BIRT
+2 DATE 10 JUN 1825
+2 PLAC Palermo, Sicily
+1 DEAT
+2 DATE 4 APR 1895
+2 PLAC Palermo, Sicily
+1 FAMS @F1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+0 TRLR

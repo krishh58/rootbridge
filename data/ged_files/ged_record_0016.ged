@@ -1,0 +1,69 @@
+```gedcom
+0 @I16@ INDI
+1 NAME Johann Aumann
+1 FAMS @F1@
+2 MARR
+3 HUSB @I16@
+3 WIFE @I17@
+3 DATE
+2 SOUR @1653.4@
+1 BIRT
+2 DATE 18 JUN 1850
+2 PLAC Neu Schowe
+1 BAPM
+2 DATE 20 JUN 1850
+2 GODP Philipp Poth
+2 GODP Maria Häuser
+1 NOTE Eltern: Häuser Philipp, Schock Margaretha sie ermittelt 1875 durch HNr. 82
+0 @I17@ INDI
+1 NAME Margaretha Häuser
+1 FAMS @F1@
+1 RELI Reformed
+
+0 @F1@ FAM
+1 HUSB @I16@
+1 WIFE @I17@
+1 CHIL @I18@
+
+0 @I18@ INDI
+1 NAME Ludwig Aumann
+1 FAMC @F1@
+1 RELI Evangelical
+1 _STAT illegitimate
+1 NOTE Vater ist angegeben
+1 BIRT
+2 DATE 02 JUL 1875
+2 PLAC Neu Schowe
+1 BAPM
+2 DATE 03 JUL 1875
+2 GODP Ludwig Müller
+2 GODP Margaretha Jung
+1 DEAT
+2 DATE 03 FEB 1876
+2 PLAC Alt Schowe
+1 BURI
+2 DATE 04 FEB 1876
+2 AGE 7 months
+```
+
+**Explanation of Changes and Assumptions:**
+
+* **Created Individuals and Families:**  The text describes a marriage (Johann Aumann and Margaretha Häuser) and a child (Ludwig Aumann).  Therefore, I created individual records (@I16@, @I17@, @I18@) and a family record (@F1@) to link them.
+* **Handles "link to @1653.4@":** This is treated as a source citation for the marriage using the `SOUR` tag.  You'll need to create a separate source record for @1653.4@ elsewhere in your GEDCOM.
+* **Religious Affiliation:**  "Evangelical" and "Reformed" are stored using the `RELI` tag.
+* **Godparents:**  `GODP` tag is used for godparents' names.
+* **Parents' Note:** The information about the parents of Margaretha Häuser is added as a `NOTE` to Johann Aumann's record since it's unclear which individual it directly relates to.  Ideally, you should try to verify and create separate records for Häuser Philipp and Schock Margaretha and link them appropriately as parents of @I17@.
+* **Illegitimate Child:** I've added a custom tag `_STAT` with the value `illegitimate` for Ludwig to indicate this status.  GEDCOM doesn't have a standard tag for this, but custom tags are permitted.
+* **"Vater ist angegeben" Note:** This note about the father being indicated is included in Ludwig's record.
+* **Age at Death:**  Ludwig's age at death ("7 months") is included using the `AGE` tag within the `BURI` event.
+
+
+**Important Considerations:**
+
+* **HN. 82:** The reference "HN. 82" is not clearly defined and hasn't been included in a specific tag.  You should add this information as a note or in a source citation once you understand its meaning (house number, record number, etc.).
+* **Source Citations:**  The GEDCOM extract lacks source citations. Always cite your sources for each piece of information using the `SOUR` tag to document where you obtained the data.
+* **Uncertain Parentage:**  It's important to try and resolve the uncertainty surrounding Margaretha Häuser's parents. The current GEDCOM entry makes an assumption by adding a note to Johann's record.  Further research is needed to confirm their identities and create separate records for them.
+
+
+This improved GEDCOM structure is much more useful for genealogy software and helps preserve the relationships and context of the data. Remember to continue refining the information with proper sourcing as you uncover more details.
+

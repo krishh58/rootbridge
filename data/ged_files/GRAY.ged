@@ -1,0 +1,6601 @@
+0 HEAD
+1 SOUR FTW
+2 VERS Family Tree Maker (13.0.280)
+2 NAME Family Tree Maker for Windows
+2 CORP MyFamily.com, Inc.
+3 ADDR 360 W 4800 N
+4 CONT Provo, UT 84604
+3 PHON (801) 705-7000
+1 DEST FTW
+1 DATE 19 AUG 2019
+1 CHAR ANSI
+1 SUBM Unknown
+1 FILE C:\Documents and Settings\William Gray\My Documents\GRAY.GED
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE-LINKED
+1 _SCHEMA
+2 INDI
+3 _FA1
+4 LABL Fact 1
+3 _FA2
+4 LABL Fact 2
+3 _FA3
+4 LABL Fact 3
+3 _FA4
+4 LABL Fact 4
+3 _FA5
+4 LABL Fact 5
+3 _FA6
+4 LABL Fact 6
+3 _FA7
+4 LABL Fact 7
+3 _FA8
+4 LABL Fact 8
+3 _FA9
+4 LABL Fact 9
+3 _FA10
+4 LABL Fact 10
+3 _FA11
+4 LABL Fact 11
+3 _FA12
+4 LABL Fact 12
+3 _FA13
+4 LABL Fact 13
+3 _MREL
+4 LABL Relationship to Mother
+3 _FREL
+4 LABL Relationship to Father
+2 FAM
+3 _FA1
+4 LABL Marriage fact
+3 _FA2
+4 LABL Fact 2
+3 _MSTAT
+4 LABL Marriage Beginning Status
+3 _MEND
+4 LABL Marriage Ending Status
+0 @I001@ INDI
+1 NAME William Robert /Gray/
+1 SEX M
+1 BIRT
+2 DATE 1 JUL 1921
+2 PLAC Windsor, Weld County, Colorado
+1 FAMS @F003@
+1 FAMC @F011@
+0 @I002@ INDI
+1 NAME Jean Elise /Stewart/
+1 SEX F
+1 BIRT
+2 DATE 26 JUL 1920
+2 PLAC Pueblo, Pueblo County, Colorado
+1 FAMS @F003@
+1 FAMC @F008@
+0 @I003@ INDI
+1 NAME William Stewart /Gray/
+1 SEX M
+1 BIRT
+2 DATE 18 JAN 1946
+2 PLAC Pueblo, Colorado
+1 FAMS @F004@
+1 FAMC @F003@
+0 @I004@ INDI
+1 NAME Mark Thomas /Gray/
+1 SEX M
+1 BIRT
+2 DATE 11 DEC 1951
+2 PLAC Pueblo, Colorado
+1 FAMC @F003@
+0 @I005@ INDI
+1 NAME Julie Ruth /Gray/
+1 SEX F
+1 BIRT
+2 DATE 11 JUL 1959
+2 PLAC Newton, Sussex County, New Jersey
+1 FAMS @F005@
+1 FAMC @F003@
+0 @I006@ INDI
+1 NAME Edwin Douglas /Roberts/
+1 SEX M
+1 BIRT
+2 DATE 29 JUN 1959
+2 PLAC Tauton, Mass
+1 FAMS @F005@
+1 FAMC @F007@
+0 @I007@ INDI
+1 NAME Joshua James /Roberts/
+1 SEX M
+1 BIRT
+2 DATE 8 NOV 1979
+2 PLAC Brookdale, California
+1 FAMC @F005@
+0 @I008@ INDI
+1 NAME Ian Michael /Roberts/
+1 SEX M
+1 BIRT
+2 DATE 4 JUL 1981
+2 PLAC Nashua, NH
+1 FAMS @F068@
+1 FAMC @F005@
+0 @I009@ INDI
+1 NAME Nicholas William /Roberts/
+1 SEX M
+1 BIRT
+2 DATE 20 MAY 1985
+2 PLAC Lowell, Mass?
+1 FAMC @F005@
+0 @I010@ INDI
+1 NAME James Arnold /Roberts/
+1 SEX M
+1 BIRT
+2 DATE ABT 19 DEC 1936
+2 PLAC Fort Plain, New York
+1 FAMS @F007@
+0 @I011@ INDI
+1 NAME Jean Beatrice /Oldfield/
+1 SEX F
+1 BIRT
+2 DATE ABT 3 SEP 1932
+2 PLAC Providence, Road Island
+1 FAMS @F007@
+0 @I012@ INDI
+1 NAME Thomas Andrew /Stewart/
+1 SEX M
+1 BIRT
+2 DATE 14 MAY 1893
+2 PLAC Pueblo, Colorado
+1 DEAT
+2 DATE 19 JUN 1974
+2 PLAC Newton, Sussex County, New Jersey
+1 FAMS @F008@
+1 FAMC @F009@
+0 @I013@ INDI
+1 NAME Esther Amanda /Druva/
+1 SEX F
+1 BIRT
+2 DATE 3 FEB 1894
+2 PLAC Aurora, Illinois
+1 DEAT
+2 DATE 10 JUL 1964
+2 PLAC Pueblo, Colorado
+1 FAMS @F008@
+1 FAMC @F010@
+0 @I014@ INDI
+1 NAME Thomas Albert /Stewart/,Jr
+1 SEX M
+1 BIRT
+2 DATE 9 JAN 1917
+2 PLAC Pueblo, Colorado
+1 DEAT
+2 DATE 22 MAY 2003
+2 PLAC BRADENTON,MANATEE COUNTY,FLORIDA
+1 FAMS @F020@
+1 FAMC @F008@
+0 @I015@ INDI
+1 NAME Betty Ruth /Stewart/
+1 SEX F
+1 BIRT
+2 DATE 21 AUG 1927
+2 PLAC La Junta, Colorado
+1 FAMS @F019@
+1 FAMC @F008@
+0 @I016@ INDI
+1 NAME Thomas /Stewart/
+1 SEX M
+1 BIRT
+2 DATE 1859
+2 PLAC Glasgow, Scotland
+1 DEAT
+2 DATE 9 OCT 1930
+2 PLAC Pueblo,Colorado
+1 FAMS @F009@
+0 @I017@ INDI
+1 NAME Julia /Keating/
+1 SEX F
+1 BIRT
+2 DATE 1855
+2 PLAC Carlton, Illinois
+1 DEAT
+2 DATE 12 JAN 1942
+2 PLAC pueblo,Colorado
+1 FAMS @F009@
+0 @I018@ INDI
+1 NAME August Albert /Druva/
+1 SEX M
+1 BIRT
+2 DATE 7 SEP 1862
+2 PLAC Stockholm, Sweden
+1 DEAT
+2 DATE 29 MAY 1938
+2 PLAC Pueblo, Colorado
+1 _FA1
+2 DATE 1870
+2 PLAC EMIGRATED WITH PARENTS AND SIBLINGS TO NORTH AMERICA
+1 _FA2
+2 DATE 13 SEP 1898
+2 PLAC nat Rock Island, Ill.
+1 FAMS @F010@
+1 FAMC @F023@
+0 @I019@ INDI
+1 NAME Anna Belle /Westfall/
+1 SEX F
+1 BIRT
+2 DATE 21 AUG 1865
+2 PLAC Glascon, Henry county, Iowa
+1 DEAT
+2 DATE 10 NOV 1946
+2 PLAC Pueblo, Colorado
+1 FAMS @F010@
+1 FAMC @F041@
+0 @I020@ INDI
+1 NAME Elmer William /Gray/
+1 SEX M
+1 BIRT
+2 DATE 12 JAN 1901
+2 PLAC Johnstown,Colorado
+1 DEAT
+2 DATE 12 NOV 1973
+2 PLAC Denver, Colorado
+1 FAMS @F011@
+1 FAMC @F006@
+0 @I021@ INDI
+1 NAME Fleeta Faye /Webb/
+1 SEX F
+1 BIRT
+2 DATE 13 MAR 1902
+2 PLAC Lawrence, Kansas
+1 DEAT
+2 DATE 23 FEB 1989
+2 PLAC Denver, Colorado
+1 FAMS @F011@
+1 FAMC @F012@
+0 @I022@ INDI
+1 NAME Marjorie Faye /Gray/
+1 SEX F
+1 BIRT
+2 DATE 8 NOV 1922
+2 PLAC Milliken Colorado
+1 DEAT
+2 DATE 15 OCT 2001
+2 PLAC DENVER, COLORADO
+1 FAMS @F018@
+1 FAMC @F011@
+0 @I023@ INDI
+1 NAME Earl Elmer /Gray/
+1 SEX M
+1 BIRT
+2 DATE 30 JAN 1929
+2 PLAC Milliken Colorado
+1 FAMS @F017@
+1 FAMC @F011@
+0 @I024@ INDI
+1 NAME Owen Edgar /Webb/
+1 SEX M
+1 BIRT
+2 DATE 12 DEC 1866
+2 PLAC Batavia, Jefferson, Iowa
+1 DEAT
+2 DATE 7 MAR 1955
+2 PLAC Milliken Colorado
+1 FAMS @F012@
+1 FAMC @F013@
+0 @I025@ INDI
+1 NAME Esther Caroline /Willms/
+1 SEX F
+1 BIRT
+2 DATE 21 MAR 1873
+2 PLAC Fosterburg,Madison, Illinois
+1 DEAT
+2 DATE 15 FEB 1954
+2 PLAC Johnstown,Colorado
+1 FAMS @F012@
+1 FAMC @F016@
+0 @I026@ INDI
+1 NAME Charles Owen /Webb/
+1 SEX M
+1 BIRT
+2 DATE 27 SEP 1897
+2 PLAC Paxico, Waubaunnee, kansas
+1 DEAT
+2 DATE 21 NOV 1956
+2 PLAC Pueblo, Colorado
+1 FAMC @F012@
+0 @I027@ INDI
+1 NAME Florence Esther /Webb/
+1 SEX F
+1 BIRT
+2 DATE 14 MAY 1900
+2 PLAC Paxico, Wanbaumee, Kansas
+1 DEAT
+2 DATE 29 OCT 1991
+2 PLAC Canoga Park, Los Angeles, California
+1 FAMS @F065@
+1 FAMC @F012@
+0 @I028@ INDI
+1 NAME William P /Webb/
+1 SEX M
+1 BIRT
+2 DATE 28 OCT 1839
+2 PLAC Huntington Co, PA
+1 DEAT
+2 DATE 23 MAY 1904
+2 PLAC Larned ,Pawnee,KS
+1 FAMS @F013@
+1 FAMC @F014@
+0 @I029@ INDI
+1 NAME George Washington /Troy/
+1 SEX M
+1 BIRT
+2 DATE 22 APR 1810
+2 PLAC Batavia ,Clermont, Ohio
+1 DEAT
+2 DATE 7 APR 1888
+2 PLAC Rice County, KS  ( near  Ellenwood KS)
+1 FAMS @F081@
+0 @I030@ INDI
+1 NAME Jacob /Webb/
+1 SEX M
+1 BIRT
+2 DATE 1800
+2 PLAC NJ
+1 DEAT
+2 DATE ABT 1885
+1 FAMS @F014@
+1 FAMC @F015@
+0 @I031@ INDI
+1 NAME Nancy /Still/
+1 SEX F
+1 BIRT
+2 DATE 26 SEP 1796
+2 PLAC County Down,Ireland [Northern]
+1 DEAT
+2 DATE 3 OCT 1872
+1 FAMS @F014@
+0 @I032@ INDI
+1 NAME /Webb/
+1 SEX M
+1 BIRT
+2 DATE ABT 1775
+2 PLAC Ireland
+1 DEAT
+2 DATE Dead
+2 PLAC Jefferson Co,IA
+1 FAMS @F015@
+0 @I033@ INDI
+1 NAME Elizabrth /Hoskins/
+1 SEX F
+1 BIRT
+2 DATE ABT 1775
+2 PLAC English Ancestry
+1 DEAT
+2 DATE Dead
+1 FAMS @F015@
+0 @I034@ INDI
+1 NAME Charles Adams Augusta /Willms/
+1 SEX M
+1 BIRT
+2 DATE 24 APR 1849
+2 PLAC Herman,Gasonade, Missouri
+1 DEAT
+2 DATE 3 SEP 1929
+2 PLAC Milliken,Weld, CO
+1 FAMS @F016@
+1 FAMC @F067@
+0 @I035@ INDI
+1 NAME Minnie Ellen Irma Aluitmia /Kaiser/
+1 SEX F
+1 BIRT
+2 DATE 30 MAY 1849
+2 PLAC Moro, Madison, Illinois
+1 DEAT
+2 DATE 13 NOV 1931
+2 PLAC Milliken,Weld County, Colorado
+1 FAMS @F016@
+1 FAMC @F102@
+0 @I036@ INDI
+1 NAME James Earl /Gray/
+1 SEX M
+1 BIRT
+2 DATE 1869
+2 PLAC England
+1 DEAT
+2 DATE 1915
+2 PLAC Johnstown, Co.
+1 _FA1
+2 PLAC After coming from England,lived first in Pa.
+1 FAMS @F006@
+0 @I037@ INDI
+1 NAME Elizabeth Ellen /Barrett/
+1 SEX F
+1 BIRT
+2 DATE 25 JUN 1871
+2 PLAC Locusdale, Schuykil Co, Pa.
+1 DEAT
+2 DATE 23 SEP 1919
+2 PLAC Denver, Colorado
+1 _FA1
+2 PLAC Lived in Lafayette , Co afterPa.
+1 FAMS @F006@
+0 @I038@ INDI
+1 NAME Maude /Gray/
+1 SEX F
+1 FAMS @F021@
+1 FAMC @F006@
+0 @I039@ INDI
+1 NAME Mildred /Gray/
+1 SEX F
+1 BIRT
+2 DATE 1 DEC 1904
+1 DEAT
+2 DATE 26 SEP 1976
+1 FAMC @F006@
+0 @I040@ INDI
+1 NAME Belle M. /Gray/
+1 SEX F
+1 BIRT
+2 DATE 1890
+1 DEAT
+2 DATE 1890
+1 FAMC @F006@
+0 @I041@ INDI
+1 NAME Margie /Wormington/
+1 SEX F
+1 BIRT
+2 DATE 18 NOV 1931
+2 PLAC TORRANCE, CALIFORNIA
+1 FAMS @F017@
+0 @I042@ INDI
+1 NAME Alan W /Bracy/
+1 SEX M
+1 BIRT
+2 DATE 17 MAY 1921
+2 PLAC Milliken,Weld County, Colorado
+1 DEAT
+2 DATE 19 DEC 1983
+2 PLAC DENVER, COLORADO
+1 FAMS @F018@
+0 @I043@ INDI
+1 NAME Alan William /Bracy/
+1 SEX M
+1 BIRT
+2 DATE 24 FEB 1943
+2 PLAC DENVER, COLORADO
+1 FAMC @F018@
+0 @I044@ INDI
+1 NAME Micheal Alan /Bracy/
+1 SEX M
+1 BIRT
+2 DATE 1 JUN 1945
+2 PLAC DENVER, COLORADO
+1 FAMS @F101@
+1 FAMC @F018@
+0 @I045@ INDI
+1 NAME Timothy Carrol /Bracy/
+1 SEX M
+1 BIRT
+2 DATE 30 OCT 1956
+2 PLAC DENVER, COLORADO
+1 FAMS @F100@
+1 FAMC @F018@
+0 @I046@ INDI
+1 NAME Pamela Faye /Bracy/
+1 SEX F
+1 BIRT
+2 DATE 12 NOV 1958
+2 PLAC DENVER, COLORADO
+1 FAMS @F022@
+1 FAMC @F018@
+0 @I047@ INDI
+1 NAME John Edward /Roth/
+1 SEX M
+1 BIRT
+2 DATE 28 JAN 1919
+2 PLAC Idaho Springs, Colorado
+1 DEAT
+2 DATE 30 AUG 1984
+2 PLAC Carmel, California
+1 FAMS @F019@
+0 @I048@ INDI
+1 NAME Stewart Michael /Roth/
+1 SEX M
+1 BIRT
+2 DATE 14 JUN 1963
+2 PLAC Monterey, California
+1 FAMC @F019@
+0 @I049@ INDI
+1 NAME Shawn Elizabeth /Roth/
+1 SEX F
+1 BIRT
+2 DATE 30 APR 1965
+2 PLAC Monterey, California
+1 FAMS @F037@
+1 FAMS @F036@
+1 FAMC @F019@
+0 @I050@ INDI
+1 NAME Agnes /Stewart/
+1 SEX F
+1 BIRT
+2 DATE UNKNOWN
+1 DEAT
+2 DATE UNKNOWN
+1 FAMS @F029@
+1 FAMC @F009@
+0 @I051@ INDI
+1 NAME Ellen Elizabeth /Stewart/
+1 SEX F
+1 BIRT
+2 DATE 14 APR 1889
+2 PLAC pueblo, Colorado
+1 DEAT
+2 DATE 16 NOV 1972
+2 PLAC Pueblo, Colorado
+1 FAMC @F009@
+0 @I052@ INDI
+1 NAME Wiliam /Stewart/
+1 SEX M
+1 BIRT
+2 DATE 1895
+1 DEAT
+2 DATE 30 AUG 1971
+2 PLAC Pueblo, Colorado
+1 FAMS @F032@
+1 FAMC @F009@
+0 @I053@ INDI
+1 NAME Robert J /Stewart/
+1 SEX M
+1 BIRT
+2 DATE 1898
+2 PLAC Pueblo, Colorado
+1 DEAT
+2 DATE 30 JUN 1984
+2 PLAC Pueblo, Colorado
+1 FAMS @F033@
+1 FAMC @F009@
+0 @I054@ INDI
+1 NAME Mary Esther /Stewart/
+1 SEX F
+1 BIRT
+2 DATE 1888
+2 PLAC Pueblo, Colorado
+1 DEAT
+2 DATE 23 SEP 1920
+2 PLAC Pueblo, Colorado
+1 FAMC @F009@
+0 @I055@ INDI
+1 NAME Mirium Jeanne /Almes/
+1 SEX F
+1 BIRT
+2 DATE 1 FEB 1918
+2 PLAC East Las Vegas, New Mexico
+1 DEAT
+2 DATE 13 APR 2002
+2 PLAC Bradenton, Flordia
+1 FAMS @F020@
+0 @I056@ INDI
+1 NAME Thomas Alivin /Stewart/
+1 SEX M
+1 BIRT
+2 DATE 5 JUN 1940
+1 DEAT
+2 DATE 28 AUG 1943
+1 FAMC @F020@
+0 @I057@ INDI
+1 NAME Nancy /Stewart/
+1 SEX F
+1 BIRT
+2 DATE ABT 1946
+1 FAMS @F098@
+1 FAMC @F020@
+0 @I058@ INDI
+1 NAME Patricia K /Stewart/
+1 SEX F
+1 BIRT
+2 DATE 26 MAR 1947
+1 FAMS @F094@
+1 FAMC @F020@
+0 @I059@ INDI
+1 NAME Peggy /Stewart/
+1 SEX F
+1 BIRT
+2 DATE 26 AUG 1948
+1 FAMS @F095@
+1 FAMC @F020@
+0 @I060@ INDI
+1 NAME Rita Melinda /Cistoldi/
+1 SEX F
+1 BIRT
+2 DATE 9 NOV 1950
+1 FAMS @F004@
+0 @I061@ INDI
+1 NAME Robert L /Druva/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+0 @I062@ INDI
+1 NAME Mary Lenore /Druva/
+1 SEX F
+1 BIRT
+2 DATE 17 JUL 1890
+2 PLAC Mt Pleasant, Iowa
+1 DEAT
+2 DATE Dead
+2 PLAC Denver, Colorado
+1 FAMS @F034@
+1 FAMS @F035@
+1 FAMC @F010@
+0 @I063@ INDI
+1 NAME Charles Lee /Druva/
+1 SEX M
+1 BIRT
+2 DATE 3 JUL 1899
+2 PLAC Aurora, Illinois
+1 DEAT
+2 DATE 23 NOV 1981
+2 PLAC Pueblo, Colorado
+1 FAMS @F043@
+1 FAMC @F010@
+0 @I064@ INDI
+1 NAME Ruth Alice /Druva/
+1 SEX F
+1 BIRT
+2 DATE 28 JAN 1896
+2 PLAC Uurora, Illinois
+1 DEAT
+2 DATE 6 JUN 1982
+2 PLAC La Guna Beach,California
+1 FAMS @F031@
+1 FAMS @F038@
+1 FAMC @F010@
+0 @I065@ INDI
+1 NAME James Albert /Druva/
+1 SEX M
+1 BIRT
+2 DATE 20 OCT 1898
+1 DEAT
+2 DATE 12 SEP 1968
+2 PLAC Palm Srings, California
+1 FAMS @F030@
+1 FAMC @F010@
+0 @I066@ INDI
+1 NAME Dorothy Lois /Druva/
+1 SEX F
+1 BIRT
+2 DATE 19 MAY 1903
+2 PLAC Pueblo, Colorado
+1 FAMS @F047@
+1 FAMS @F051@
+1 FAMC @F010@
+0 @I067@ INDI
+1 NAME AUGUST CARLSON /DRUFVA/
+1 SEX M
+1 BIRT
+2 DATE 29 NOV 1836
+2 PLAC Kristberg, Sweden
+1 DEAT
+2 DATE Dead
+2 PLAC Australia?
+1 _FA1
+2 DATE 30 NOV 1836
+2 PLAC christened in Kristberg
+1 _FA2
+2 DATE 10 JUN 1870
+2 PLAC Left Motala with family
+1 _FA3
+2 DATE 17 JUN 1870
+2 PLAC sailed from Gothenberg for New York
+1 FAMS @F049@
+1 FAMS @F023@
+1 FAMC @F024@
+0 @I068@ INDI
+1 NAME Sophia /Svensdotter/
+1 SEX F
+1 BIRT
+2 DATE 11 OCT 1830
+2 PLAC Kristberg, Sweden
+1 DEAT
+2 DATE 1870
+2 PLAC Macon, Mississippi?
+1 _FA1
+2 DATE 13 OCT 1830
+2 PLAC christened in Kristberg
+1 FAMS @F023@
+1 FAMC @F027@
+0 @I069@ INDI
+1 NAME Agusta Sophia /Druva/
+1 SEX F
+1 BIRT
+2 DATE 1 MAY 1859
+2 PLAC MotALA,Sweden
+1 DEAT
+2 DATE 12 OCT 1862
+2 PLAC MotALA,Sweden
+1 FAMC @F023@
+0 @I070@ INDI
+1 NAME Karl Alfred /Druva/
+1 SEX M
+1 ALIA Uncle /Charlie/
+1 BIRT
+2 DATE 25 MAY 1862
+2 PLAC MotALA,Sweden
+1 DEAT
+2 DATE 17 OCT 1921
+2 PLAC Genesea,Ill.
+1 FAMS @F053@
+1 FAMC @F023@
+0 @I071@ INDI
+1 NAME Alma /Druva/
+1 SEX F
+1 ALIA Aunt /Mamie/
+1 BIRT
+2 DATE 22 FEB 1867
+2 PLAC Motala,Sweden
+1 DEAT
+2 DATE 24 FEB 1962
+2 PLAC Little Rock,Ark
+1 FAMS @F052@
+1 FAMC @F023@
+0 @I072@ INDI
+1 NAME Carl Gustaf Gustafsson /Drufva/
+1 SEX M
+1 BIRT
+2 DATE 28 JUN 1811
+2 PLAC Godegard, Sweden
+1 DEAT
+2 DATE 30 NOV 1891
+2 PLAC Kristberg, Sweden
+1 _FA1
+2 DATE 1834
+2 PLAC enlisted as Life grenadier ,Name changed to Drufva
+1 FAMS @F024@
+1 FAMS @F025@
+1 FAMS @F026@
+1 FAMC @F028@
+0 @I073@ INDI
+1 NAME Anna Maja /Carlsdotter/
+1 SEX F
+1 BIRT
+2 DATE 8 NOV 1812
+2 PLAC Godegard, Sweden
+1 DEAT
+2 DATE 11 FEB 1839
+2 PLAC Kristberg, Sweden
+1 FAMS @F024@
+0 @I074@ INDI
+1 NAME Carl Gustaf /DRUFVA/
+1 SEX M
+1 BIRT
+2 DATE 4 MAY 1835
+2 PLAC kristberg, Sweden
+1 DEAT
+2 DATE 6 OCT 1842
+2 PLAC unknown
+1 FAMC @F024@
+0 @I075@ INDI
+1 NAME Johan Alfred /Drufva/
+1 SEX M
+1 BIRT
+2 DATE 1 FEB 1839
+2 PLAC kristberg, Sweden
+1 FAMC @F024@
+0 @I076@ INDI
+1 NAME Maja Stina /Andersdotter/
+1 SEX F
+1 BIRT
+2 DATE 19 JUN 1804
+2 PLAC Regna
+1 DEAT
+2 DATE 1 MAY 1858
+2 PLAC Kristberg, Sweden
+1 FAMS @F025@
+0 @I077@ INDI
+1 NAME Ulla /Drufva/
+1 SEX F
+1 BIRT
+2 DATE 13 AUG 1840
+2 PLAC Kristberg, Sweden
+1 FAMC @F025@
+0 @I078@ INDI
+1 NAME Wilhelm /Drufva/
+1 SEX M
+1 BIRT
+2 DATE 24 MAR 1842
+2 PLAC Kristberg, Sweden
+1 FAMC @F025@
+0 @I079@ INDI
+1 NAME Mathilda /Drufva/
+1 SEX F
+1 BIRT
+2 DATE 27 FEB 1845
+2 PLAC Kristberg, Sweden
+1 FAMC @F025@
+0 @I080@ INDI
+1 NAME Anna Lotta /Jaensdotter/
+1 SEX F
+1 BIRT
+2 DATE 7 JUL 1813
+2 PLAC Tjallmo
+1 DEAT
+2 DATE 6 SEP 1887
+2 PLAC kristberg, Sweden
+1 FAMS @F026@
+0 @I081@ INDI
+1 NAME Anna Maja /Larsdotter/
+1 SEX F
+1 BIRT
+2 DATE 22 NOV 1802
+2 PLAC kristberg, Sweden
+1 DEAT
+2 DATE 28 FEB 1886
+2 PLAC kristberg, Sweden
+1 FAMS @F027@
+0 @I082@ INDI
+1 NAME Swen /Larsson/
+1 SEX M
+1 BIRT
+2 DATE 17 OCT 1797
+2 PLAC trehorna Sweden
+1 DEAT
+2 DATE 24 JAN 1884
+2 PLAC kristberg, Sweden
+1 FAMS @F027@
+0 @I083@ INDI
+1 NAME Lisa /Svensdotter/
+1 SEX F
+1 BIRT
+2 DATE 5 FEB 1828
+1 FAMC @F027@
+0 @I084@ INDI
+1 NAME Carl August /Larsson/
+1 SEX M
+1 BIRT
+2 DATE 28 APR 1835
+2 PLAC Kristberg, Sweden
+1 FAMS @F058@
+1 FAMS @F059@
+1 FAMC @F027@
+0 @I085@ INDI
+1 NAME Petter Johan /Larsson/
+1 SEX M
+1 BIRT
+2 DATE 12 FEB 1836
+2 PLAC Kristberg, Sweden
+1 DEAT
+2 DATE 16 MAR 1836
+2 PLAC Kristberg, Sweden
+1 FAMC @F027@
+0 @I086@ INDI
+1 NAME Sven /Larsson/
+1 SEX M
+1 BIRT
+2 DATE 7 APR 1837
+1 FAMC @F027@
+0 @I087@ INDI
+1 NAME Brita Maja /Svensdotter/
+1 SEX F
+1 BIRT
+2 DATE 31 DEC 1838
+1 FAMC @F027@
+0 @I088@ INDI
+1 NAME Adam /Larsson/
+1 SEX M
+1 BIRT
+2 DATE 15 DEC 1840
+2 PLAC Kristberg, Sweden
+1 DEAT
+2 DATE 24 SEP 1859
+2 PLAC ?
+1 FAMC @F027@
+0 @I089@ INDI
+1 NAME Peter /Larsson/
+1 SEX M
+1 BIRT
+2 DATE 2 APR 1843
+1 FAMC @F027@
+0 @I090@ INDI
+1 NAME Otto /Larsson/
+1 SEX M
+1 BIRT
+2 DATE 8 MAY 1846
+1 FAMC @F027@
+0 @I091@ INDI
+1 NAME Gustaf Eliasson /Ovist/
+1 SEX M
+1 BIRT
+2 DATE 1782
+2 PLAC Lerback, Orebro county
+1 DEAT
+2 DATE AFT 1811
+2 PLAC unknown
+1 FAMS @F028@
+0 @I092@ INDI
+1 NAME Sara /Persdotter/
+1 SEX F
+1 BIRT
+2 DATE 3 SEP 1788
+2 PLAC Godegard, Sweden
+1 DEAT
+2 DATE UNKNOWN
+2 PLAC ?
+1 FAMS @F060@
+1 FAMS @F028@
+0 @I093@ INDI
+1 NAME Howard Edward /Whitlock/
+1 SEX M
+1 BIRT
+2 DATE 1892
+2 PLAC ?
+1 DEAT
+2 DATE 11 JUN 1969
+2 PLAC Pueblo, Colorado
+1 FAMS @F031@
+0 @I094@ INDI
+1 NAME Virginia Louise /Whitlock/
+1 SEX F
+1 BIRT
+2 DATE 2 NOV 1914
+2 PLAC Pueblo, Colorado
+1 DEAT
+2 DATE 17 JUN 1986
+2 PLAC denver, Colorado
+1 FAMS @F039@
+1 FAMS @F040@
+1 FAMC @F031@
+0 @I095@ INDI
+1 NAME Dorothy Jean /Whitlock/
+1 SEX F
+1 BIRT
+2 DATE 20 JUN 1919
+2 PLAC Pueblo, Colorado
+1 FAMS @F042@
+1 FAMC @F031@
+0 @I096@ INDI
+1 NAME Howard Edward /Whitlock/,Jr
+1 SEX M
+1 BIRT
+2 DATE 2 AUG 1923
+2 PLAC Pueblo, Colorado
+1 FAMS @F046@
+1 FAMC @F031@
+0 @I097@ INDI
+1 NAME Mary M /[Unkown]/
+1 SEX F
+1 BIRT
+2 DATE 1893
+1 DEAT
+2 DATE 5 FEB 1977
+2 PLAC Pueblo, Colorado
+1 FAMS @F032@
+0 @I098@ INDI
+1 NAME Margaret /Stewart/
+1 SEX F
+1 BIRT
+2 DATE 1924
+1 DEAT
+2 DATE 18 SEP 1979
+1 FAMC @F032@
+0 @I099@ INDI
+1 NAME Marie /[Unknown]/
+1 SEX F
+1 BIRT
+2 DATE 1897
+1 DEAT
+2 DATE 27 OCT 1985
+2 PLAC Pueblo, Colorado
+1 FAMS @F033@
+0 @I100@ INDI
+1 NAME Frank /Burroughs/
+1 SEX M
+1 DEAT
+2 DATE 29 AUG 1933
+2 PLAC Peaceful Valley
+1 FAMS @F034@
+0 @I101@ INDI
+1 NAME Henry /Western/
+1 SEX M
+1 BIRT
+2 DATE 28 OCT 1888
+2 PLAC Bradinoch, England
+1 DEAT
+2 DATE 13 SEP 1968
+2 PLAC Denver, Colorado
+1 FAMS @F035@
+0 @I102@ INDI
+1 NAME Betty /Turner/
+1 SEX F
+1 BIRT
+2 DATE UNKNOWN
+1 DEAT
+2 DATE 24 AUG 1960
+1 FAMS @F030@
+0 @I103@ INDI
+1 NAME Brian Richard /Fantazia/
+1 SEX M
+1 FAMS @F036@
+0 @I104@ INDI
+1 NAME Brice Anthony /Fantazia/
+1 SEX M
+1 BIRT
+2 DATE 7 AUG 1985
+1 FAMC @F036@
+0 @I105@ INDI
+1 NAME Ashley Rose /Fantazia/
+1 SEX F
+1 BIRT
+2 DATE 15 DEC 1986
+1 FAMC @F036@
+0 @I106@ INDI
+1 NAME Gary Lauce /Mazur/
+1 SEX M
+1 BIRT
+2 DATE 14 DEC 1961
+2 PLAC Santa Monica, California
+1 FAMS @F037@
+0 @I107@ INDI
+1 NAME Courtney Viola /Mazur/
+1 SEX F
+1 BIRT
+2 DATE 16 SEP 1993
+1 FAMC @F037@
+0 @I108@ INDI
+1 NAME Edward A /Walmesly/
+1 SEX M
+1 FAMS @F038@
+0 @I109@ INDI
+1 NAME Edgar /Huffman/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 DEAT
+2 DATE 4 DEC 1969
+1 FAMS @F039@
+0 @I110@ INDI
+1 NAME Howard /Benson/
+1 SEX M
+1 FAMS @F040@
+0 @I111@ INDI
+1 NAME Michael William /Huffman/
+1 SEX M
+1 BIRT
+2 DATE 1948
+1 DEAT
+2 DATE 23 NOV 1967
+1 FAMC @F039@
+0 @I112@ INDI
+1 NAME John /Westfall/
+1 SEX M
+1 FAMS @F041@
+0 @I113@ INDI
+1 NAME Electra /Kirkpatrick/
+1 SEX F
+1 FAMS @F041@
+0 @I114@ INDI
+1 NAME Salvatore /Nasisse/
+1 SEX M
+1 BIRT
+2 DATE 1913
+2 PLAC Mass
+1 DEAT
+2 DATE 1959
+1 FAMS @F042@
+0 @I115@ INDI
+1 NAME Anne E /Strohmer/
+1 SEX F
+1 BIRT
+2 DATE 30 SEP 1901
+2 PLAC Madeberg, Germany
+1 DEAT
+2 DATE 6 MAR 1978
+1 FAMS @F043@
+0 @I116@ INDI
+1 NAME Robert Lee /Druva/
+1 SEX M
+1 BIRT
+2 DATE 8 DEC 1921
+2 PLAC Pueblo, Colorado
+1 FAMS @F044@
+1 FAMC @F043@
+0 @I117@ INDI
+1 NAME Albert /Druva/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 DEAT
+2 DATE 10 AUG 1993
+1 FAMS @F045@
+1 FAMC @F043@
+0 @I118@ INDI
+1 NAME David /Druva/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F043@
+0 @I119@ INDI
+1 NAME Annalee /Titman/
+1 SEX F
+1 BIRT
+2 DATE 5 SEP 1922
+2 PLAC Aurora, Nebraska
+1 FAMS @F044@
+0 @I120@ INDI
+1 NAME /Dorthy/
+1 SEX F
+1 FAMS @F045@
+0 @I121@ INDI
+1 NAME William Franklin /Moss/
+1 SEX M
+1 BIRT
+2 DATE 21 FEB 1898
+2 PLAC near Silom Springs, Arkanas
+1 DEAT
+2 DATE 5 SEP 1954
+2 PLAC Pueblo, Colorado
+1 FAMS @F047@
+0 @I122@ INDI
+1 NAME Dorothy Anne /Moss/
+1 SEX F
+1 BIRT
+2 DATE 13 MAR 1930
+2 PLAC Pueblo, Colorado
+1 FAMS @F048@
+1 FAMC @F047@
+0 @I123@ INDI
+1 NAME Delbert B. /Vance/
+1 SEX M
+1 ALIA /Red/
+1 BIRT
+2 DATE 17 OCT 1925
+2 PLAC Louisville, Kentucky
+1 DEAT
+2 DATE 14 OCT 1993
+2 PLAC Oakland, California
+1 FAMS @F048@
+0 @I124@ INDI
+1 NAME Kevin William /Vance/
+1 SEX M
+1 BIRT
+2 DATE 21 JAN 1959
+2 PLAC Oakland, California
+1 FAMS @F056@
+1 FAMC @F048@
+0 @I125@ INDI
+1 NAME Seth Roger /Vance/
+1 SEX M
+1 BIRT
+2 DATE 15 MAR 1963
+2 PLAC Oakland, California
+1 FAMC @F048@
+0 @I126@ INDI
+1 NAME Elizabeth McCann /Vance/
+1 SEX F
+1 BIRT
+2 DATE 12 SEP 1960
+2 PLAC Oakland, California
+1 FAMS @F057@
+1 FAMC @F048@
+0 @I127@ INDI
+1 NAME Roger William /Moss/
+1 SEX M
+1 BIRT
+2 DATE 17 DEC 1938
+1 FAMS @F050@
+1 FAMC @F047@
+0 @I128@ INDI
+1 NAME Jean /Russ/
+1 SEX F
+1 BIRT
+2 DATE 21 DEC 1925
+1 FAMS @F050@
+0 @I129@ INDI
+1 NAME James /Bates/
+1 SEX M
+1 FAMS @F051@
+0 @I130@ INDI
+1 NAME Amanda /Stewart/
+1 SEX F
+1 FAMS @F049@
+0 @I131@ INDI
+1 NAME Bill /Drufva/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F049@
+0 @I132@ INDI
+1 NAME William /Brewer/
+1 SEX M
+1 FAMS @F052@
+0 @I133@ INDI
+1 NAME Minnie /Wiegard/
+1 SEX F
+1 FAMS @F053@
+0 @I134@ INDI
+1 NAME Thomas /Dugan/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+2 PLAC ?
+1 DEAT
+2 DATE Dead
+2 PLAC ?
+1 FAMS @F029@
+0 @I135@ INDI
+1 NAME Bill /Dugan/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F029@
+0 @I136@ INDI
+1 NAME Mary /Dugan/
+1 SEX F
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F029@
+0 @I137@ INDI
+1 NAME Tom /Dugan/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F029@
+0 @I138@ INDI
+1 NAME Mary Ellen /Stewart/
+1 SEX F
+1 BIRT
+2 DATE UNKNOWN
+1 FAMS @F055@
+1 FAMC @F033@
+0 @I139@ INDI
+1 NAME Dorthy /Stewart/
+1 SEX F
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F033@
+0 @I140@ INDI
+1 NAME Robert /Stewart/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F033@
+0 @I141@ INDI
+1 NAME Julianne /Stewart/
+1 SEX F
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F033@
+0 @I142@ INDI
+1 NAME Bill /Stewart/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F033@
+0 @I143@ INDI
+1 NAME Grace /Stewart/
+1 SEX F
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F033@
+0 @I144@ INDI
+1 NAME Christina Ruth /Nasisse/
+1 SEX F
+1 BIRT
+2 DATE 17 NOV 1946
+2 PLAC Boston, Mass
+1 FAMS @F054@
+1 FAMC @F042@
+0 @I145@ INDI
+1 NAME Andre /Nasisse/
+1 SEX M
+1 BIRT
+2 DATE 1 DEC 1947
+2 PLAC pueblo, Colorado
+1 FAMS @F064@
+1 FAMC @F042@
+0 @I146@ INDI
+1 NAME /Ruth/
+1 SEX F
+1 BIRT
+2 DATE 1966
+2 PLAC Colorado Springs, Colorado
+1 FAMC @F054@
+0 @I147@ INDI
+1 NAME /Molly/
+1 SEX F
+1 BIRT
+2 DATE 1968
+2 PLAC colorado Springs, Colorado
+1 FAMC @F054@
+0 @I148@ INDI
+1 NAME William /O'Connell/
+1 SEX M
+1 BIRT
+2 DATE 1940
+2 PLAC ?
+1 FAMS @F054@
+0 @I149@ INDI
+1 NAME Phillip /Woods/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 DEAT
+2 DATE UNKNOWN
+1 FAMS @F055@
+0 @I150@ INDI
+1 NAME Carole Francis /Lindner/
+1 SEX F
+1 BIRT
+2 DATE 29 JAN 1959
+1 FAMS @F056@
+0 @I151@ INDI
+1 NAME William Leo /Lindner-Vance/
+1 SEX M
+1 BIRT
+2 DATE 5 JUN 1996
+1 FAMC @F056@
+0 @I152@ INDI
+1 NAME Donald Scot /Reasoner/
+1 SEX M
+1 BIRT
+2 DATE 12 SEP 1956
+1 FAMS @F057@
+0 @I153@ INDI
+1 NAME Jill Ilene /Reasoner/
+1 SEX F
+1 BIRT
+2 DATE 27 APR 1983
+1 FAMC @F057@
+0 @I154@ INDI
+1 NAME Gregory Scot /Reasoner/
+1 SEX M
+1 BIRT
+2 DATE 8 JUL 1986
+1 FAMC @F057@
+0 @I155@ INDI
+1 NAME Garrett Alan /Reasoner/
+1 SEX M
+1 BIRT
+2 DATE 17 FEB 1991
+1 FAMC @F057@
+0 @I156@ INDI
+1 NAME Willie May /Brewer/
+1 SEX F
+1 FAMC @F052@
+0 @I157@ INDI
+1 NAME James Calvin /Westfall/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F041@
+0 @I158@ INDI
+1 NAME Mae /Druva/
+1 SEX F
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F053@
+0 @I159@ INDI
+1 NAME Myrtle /Druva/
+1 SEX F
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F053@
+0 @I160@ INDI
+1 NAME Geoorge /Brewer/
+1 SEX M
+1 BIRT
+2 DATE UNKNOWN
+1 FAMC @F052@
+0 @I161@ INDI
+1 NAME Johanna Sofia /Skold/
+1 SEX F
+1 BIRT
+2 DATE 20 OCT 1838
+2 PLAC Kristberg, Sweden
+1 DEAT
+2 DATE 8 MAR 1863
+1 FAMS @F058@
+0 @I162@ INDI
+1 NAME Fredrika /Persdotter/
+1 SEX F
+1 BIRT
+2 DATE 3 MAR 1833
+2 PLAC Kristberg, Sweden
+1 FAMS @F059@
+0 @I163@ INDI
+1 NAME Carl Alfrid /Larsson/
+1 SEX M
+1 BIRT
+2 DATE 3 MAR 1863
+2 PLAC Kristberg, Sweden
+1 DEAT
+2 DATE 11 MAR 1864
+1 FAMC @F058@
+0 @I164@ INDI
+1 NAME Alfrid Leonard /Larsson/
+1 SEX M
+1 BIRT
+2 DATE 7 JUL 1867
+1 FAMC @F059@
+0 @I165@ INDI
+1 NAME Hilma Alfrida /Larsson/
+1 SEX F
+1 BIRT
+2 DATE 6 OCT 1870
+1 FAMC @F059@
+0 @I166@ INDI
+1 NAME Alma Axelina /Larsson/
+1 SEX F
+1 BIRT
+2 DATE 23 FEB 1873
+1 FAMC @F059@
+0 @I167@ INDI
+1 NAME /Abraham/
+1 SEX M
+1 FAMS @F060@
+0 @I168@ INDI
+1 NAME Per /Abraham/
+1 SEX M
+1 BIRT
+2 DATE 13 MAY 1808
+2 PLAC Godegard, Sweden
+1 FAMC @F060@
+0 @I169@ INDI
+1 NAME Marianne /Druva/
+1 SEX F
+1 BIRT
+2 DATE 19 APR 1950
+2 PLAC Denver, Colorado
+1 FAMS @F061@
+1 FAMC @F044@
+0 @I170@ INDI
+1 NAME Robert /Druva/ II
+1 SEX M
+1 BIRT
+2 DATE 22 MAR 1953
+2 PLAC denver, Colorado
+1 DEAT
+2 DATE 19 AUG 1970
+2 PLAC denver, Colorado
+1 FAMC @F044@
+0 @I171@ INDI
+1 NAME Mark Thomas /Druva/
+1 SEX M
+1 BIRT
+2 DATE 28 APR 1958
+1 FAMS @F062@
+1 FAMC @F044@
+0 @I172@ INDI
+1 NAME Nancy Sue /Druva/
+1 SEX F
+1 BIRT
+2 DATE 22 AUG 1959
+1 FAMS @F063@
+1 FAMC @F044@
+0 @I173@ INDI
+1 NAME /Horner/
+1 SEX M
+1 FAMS @F061@
+0 @I174@ INDI
+1 NAME Kristen /Horner/
+1 SEX F
+1 BIRT
+2 DATE 17 DEC 1975
+2 PLAC Omaha, Nebraska
+1 FAMC @F061@
+0 @I175@ INDI
+1 NAME Nick /Horner/
+1 SEX M
+1 BIRT
+2 DATE 26 APR 1978
+2 PLAC Minneapolis, MN
+1 FAMC @F061@
+0 @I176@ INDI
+1 NAME Robert /Horner/
+1 SEX M
+1 BIRT
+2 DATE 22 SEP 1987
+2 PLAC Denver, Colorado
+1 FAMC @F061@
+0 @I177@ INDI
+1 NAME Stephanie /Druva/
+1 SEX F
+1 BIRT
+2 DATE 9 NOV 1989
+2 PLAC denver, Colorado
+1 FAMC @F062@
+0 @I178@ INDI
+1 NAME Eric /Druva/
+1 SEX M
+1 BIRT
+2 DATE 15 NOV 1992
+2 PLAC Denver, Colorado
+1 FAMC @F062@
+0 @I179@ INDI
+1 NAME Jennifer /Druva/
+1 SEX F
+1 BIRT
+2 DATE 26 APR 1995
+2 PLAC Denver, Colorado
+1 FAMC @F062@
+0 @I180@ INDI
+1 NAME /Patch/
+1 SEX M
+1 FAMS @F063@
+0 @I181@ INDI
+1 NAME Ryan /Patch/
+1 SEX M
+1 BIRT
+2 DATE 5 JUL 1988
+2 PLAC Boulder, Colorado
+1 FAMC @F063@
+0 @I182@ INDI
+1 NAME Treavor /Patch/
+1 SEX M
+1 BIRT
+2 DATE 2 JUL 1993
+2 PLAC Louisville,Colorado
+1 FAMC @F063@
+0 @I183@ INDI
+1 NAME Dylan /Patch/
+1 SEX M
+1 BIRT
+2 DATE 31 MAR 1995
+2 PLAC Louisville, Colorado
+1 FAMC @F063@
+0 @I184@ INDI
+1 NAME Martha /Galloway/
+1 SEX F
+1 BIRT
+2 PLAC Nebraska
+1 FAMS @F046@
+0 @I185@ INDI
+1 NAME Randy /Whitlock/
+1 SEX M
+1 FAMC @F046@
+0 @I186@ INDI
+1 NAME Laura /Whitlock/
+1 SEX F
+1 FAMC @F046@
+0 @I187@ INDI
+1 NAME Mary /Engel/
+1 SEX F
+1 BIRT
+2 DATE 19 JUN 1965
+2 PLAC Illinois
+1 FAMS @F064@
+0 @I188@ INDI
+1 NAME Carlo /Nasisse/
+1 SEX M
+1 BIRT
+2 DATE 5 JAN 1994
+1 FAMC @F064@
+0 @I189@ INDI
+1 NAME Jesse /Paige/
+1 SEX M
+1 FAMS @F021@
+0 @I190@ INDI
+1 NAME Lon E. /Gray/
+1 SEX M
+1 BIRT
+2 DATE 22 JUN 1950
+2 PLAC Ft Collins, Colorado
+1 FAMS @F069@
+1 FAMC @F017@
+0 @I191@ INDI
+1 NAME Mildred E /Gray/
+1 SEX F
+1 BIRT
+2 DATE 19 NOV 1953
+2 PLAC Ft. Collins, Colrado
+1 _FA1
+2 DATE 31 JAN 1993
+2 PLAC Remarried Dan Simpson
+1 FAMS @F070@
+1 FAMC @F017@
+0 @I192@ INDI
+1 NAME Gail /Packard/
+1 SEX F
+1 BIRT
+2 DATE 6 JAN 1950
+2 PLAC Potlatch , Idaho
+1 FAMS @F069@
+0 @I193@ INDI
+1 NAME Maureen /Gray/
+1 SEX F
+1 BIRT
+2 DATE 2 MAY 1971
+2 PLAC Puerto Rico,
+1 FAMS @F071@
+1 FAMC @F069@
+0 @I194@ INDI
+1 NAME Kristine /Gray/
+1 SEX F
+1 BIRT
+2 DATE 21 MAY 1975
+2 PLAC Moscow,, Idaho
+1 FAMC @F069@
+0 @I195@ INDI
+1 NAME Jamee /Nettles/, & Dan Simpson
+1 SEX M
+1 FAMS @F070@
+0 @I196@ INDI
+1 NAME Jenesta /Nettles/
+1 SEX F
+1 BIRT
+2 DATE 6 OCT 1975
+1 FAMC @F070@
+0 @I197@ INDI
+1 NAME Kip /Nettles/
+1 SEX M
+1 BIRT
+2 DATE 15 DEC 1977
+1 FAMC @F070@
+0 @I198@ INDI
+1 NAME Craig /Healy/
+1 SEX M
+1 FAMS @F071@
+0 @I199@ INDI
+1 NAME Zachary /Healy/
+1 SEX M
+1 BIRT
+2 DATE 12 APR 1993
+1 FAMC @F071@
+0 @I200@ INDI
+1 NAME Carrisa Lyn /Rocci/
+1 SEX F
+1 BIRT
+2 DATE 9 OCT 1979
+2 PLAC Greenfield, Ma.
+1 FAMS @F068@
+1 FAMC @F001@
+0 @I201@ INDI
+1 NAME Harry Edward /Parker/
+1 SEX M
+1 BIRT
+2 DATE 3 MAR 1898
+2 PLAC Phillipsbugh, Pjipps Co. Kansas
+1 DEAT
+2 DATE 16 JAN 1960
+2 PLAC Santa MONICA, California
+1 FAMS @F065@
+1 FAMC @F088@
+0 @I202@ INDI
+1 NAME Ed Parker /Jr/
+1 SEX M
+1 BIRT
+2 DATE 25 OCT 1921
+2 PLAC Johnstown, Weld, Co
+1 DEAT
+2 DATE 23 NOV 2002
+2 PLAC Paridise , Butte,CA
+1 FAMS @F084@
+1 FAMC @F065@
+0 @I203@ INDI
+1 NAME Robert "Bob" /Parker/
+1 SEX M
+1 BIRT
+2 DATE 20 FEB 1923
+2 PLAC Johnstown, Weld, Co
+1 FAMS @F085@
+1 FAMC @F065@
+0 @I204@ INDI
+1 NAME Betty Jean /Parker/
+1 SEX F
+1 BIRT
+2 DATE 4 AUG 1925
+2 PLAC SANTA MONICA, California
+1 FAMS @F072@
+1 FAMC @F065@
+0 @I205@ INDI
+1 NAME Richard "Dick" Owen /Parker/
+1 SEX M
+1 BIRT
+2 DATE 24 MAY 1928
+2 PLAC Santa MONICA, California
+1 DEAT
+2 DATE 26 JAN 2005
+2 PLAC Glendale, Maricopa, AZ
+1 FAMS @F078@
+1 FAMC @F065@
+0 @I206@ INDI
+1 NAME Royal William /Webb/
+1 SEX M
+1 BIRT
+2 DATE 15 JUN 1903
+2 PLAC Paxico, Wanbaumee, Kansas
+1 DEAT
+2 DATE 3 FEB 1981
+2 PLAC Santa MONICA, California
+1 FAMS @F066@
+1 FAMC @F012@
+0 @I207@ INDI
+1 NAME Mary /Price/
+1 SEX F
+1 FAMS @F066@
+0 @I208@ INDI
+1 NAME William Wesley /Webb/
+1 SEX M
+1 BIRT
+2 DATE 3 JUL 1923
+1 FAMC @F066@
+0 @I209@ INDI
+1 NAME Donald /Webb/
+1 SEX M
+1 BIRT
+2 DATE 6 DEC 1925
+1 FAMC @F066@
+0 @I210@ INDI
+1 NAME Royal Arthor /Webb/
+1 SEX M
+1 BIRT
+2 DATE 10 FEB 1928
+1 FAMC @F066@
+0 @I211@ INDI
+1 NAME John Berent /Mossel/
+1 SEX M
+1 BIRT
+2 DATE 11 JUL 1921
+2 PLAC Rockaway Beach, QUEENS NY
+1 FAMS @F072@
+0 @I212@ INDI
+1 NAME Fredrick Berent /Mossel/
+1 SEX M
+1 BIRT
+2 DATE 19 JUL 1946
+1 FAMC @F072@
+0 @I213@ INDI
+1 NAME Adalaide /Mossel/
+1 SEX F
+1 BIRT
+2 DATE 20 NOV 1947
+1 FAMC @F072@
+0 @I214@ INDI
+1 NAME James Edward /Mossel/
+1 SEX M
+1 BIRT
+2 DATE 6 AUG 1950
+1 FAMC @F072@
+0 @I215@ INDI
+1 NAME William Winfield /Webb/
+1 SEX M
+1 BIRT
+2 DATE 17 NOV 1861
+2 PLAC Bativia, Jefferson ,Iow
+1 DEAT
+2 DATE 5 AUG 1955
+2 PLAC Beaumont,Riverside, California (near Palm Springs)
+1 FAMS @F074@
+1 FAMC @F013@
+0 @I216@ INDI
+1 NAME Lowery Waldo /Webb/
+1 SEX M
+1 BIRT
+2 DATE 28 FEB 1863
+2 PLAC Jefferson Co, Iowa
+1 DEAT
+2 DATE 1941
+2 PLAC Larned, Pawnee, Kansas
+1 FAMS @F075@
+1 FAMC @F013@
+0 @I217@ INDI
+1 NAME Nancy Rosetta /Webb/
+1 SEX F
+1 BIRT
+2 DATE 5 AUG 1865
+2 PLAC Bativia, Jefferson ,Iow
+1 DEAT
+2 DATE 23 JUL 1939
+2 PLAC Milliken,Weld, CO
+1 FAMS @F076@
+1 FAMC @F013@
+0 @I218@ INDI
+1 NAME Eva May /Webb/
+1 SEX F
+1 BIRT
+2 DATE 4 APR 1869
+2 PLAC Bativia, Jefferson ,Iowa
+1 FAMS @F079@
+1 FAMC @F013@
+0 @I219@ INDI
+1 NAME Herbert Otto /Webb/
+1 SEX M
+1 BIRT
+2 DATE 23 JAN 1871
+2 PLAC Bativia, Jefferson ,Iowa
+1 DEAT
+2 DATE 21 FEB 1913
+2 PLAC Larned, Pawnee, Kansas
+1 FAMC @F013@
+0 @I220@ INDI
+1 NAME Raleigh (Rollin)Troy /Webb/
+1 SEX M
+1 BIRT
+2 DATE 4 AUG 1878
+2 PLAC LARNED, PAWNEE, KANSAS
+1 DEAT
+2 DATE 3 DEC 1932
+2 PLAC COACHELLA VALLEY, RIVERSIDE CA,
+1 FAMS @F073@
+1 FAMC @F013@
+0 @I221@ INDI
+1 NAME Minnie Ethzelda /Webb/
+1 SEX F
+1 BIRT
+2 DATE 19 JAN 1881
+2 PLAC 19 Jan 1881
+1 DEAT
+2 DATE 24 AUG 1950
+2 PLAC Greeley, Weld, CO
+1 FAMS @F080@
+1 FAMC @F013@
+0 @I222@ INDI
+1 NAME Leah Ann /Wilson/
+1 SEX F
+1 FAMS @F073@
+0 @I223@ INDI
+1 NAME Hazel Merle /Webb/
+1 SEX F
+1 FAMC @F073@
+0 @I224@ INDI
+1 NAME THELMA LORRAINE /Webb/
+1 SEX F
+1 FAMC @F073@
+0 @I225@ INDI
+1 NAME Emma /Spencer/
+1 SEX F
+1 BIRT
+2 DATE 9 AUG 1860
+1 DEAT
+2 DATE DEC 1954
+1 FAMS @F074@
+0 @I226@ INDI
+1 NAME Maude /Webb/
+1 SEX F
+1 FAMC @F074@
+0 @I227@ INDI
+1 NAME Therodore /Webb/
+1 SEX M
+1 FAMC @F074@
+0 @I228@ INDI
+1 NAME Rosa A. /Shell/
+1 SEX F
+1 BIRT
+2 DATE 1863
+2 PLAC Terre Haute, Vigo, IN
+1 DEAT
+2 DATE AUG 1930
+1 FAMS @F075@
+0 @I229@ INDI
+1 NAME Claude /Webb/
+1 SEX M
+1 FAMC @F075@
+0 @I230@ INDI
+1 NAME Wallie /Webb/
+1 SEX M
+1 FAMC @F075@
+0 @I231@ INDI
+1 NAME Willa /Webb/
+1 SEX F
+1 FAMC @F075@
+0 @I232@ INDI
+1 NAME Edgar /Webb/
+1 SEX M
+1 FAMC @F075@
+0 @I233@ INDI
+1 NAME O. G. /Wheaton/
+1 SEX M
+1 FAMS @F076@
+0 @I234@ INDI
+1 NAME Lossie (Bales) /Wheaton/
+1 SEX F
+1 FAMC @F076@
+0 @I235@ INDI
+1 NAME Mertie (Sellers) /Wheaton/
+1 SEX F
+1 BIRT
+2 DATE 16 OCT 1887
+1 DEAT
+2 DATE 10 OCT 1977
+2 PLAC Johnstown, Weld, Co
+1 FAMS @F077@
+1 FAMC @F076@
+0 @I236@ INDI
+1 NAME Kenn Warner /Wheaton/
+1 SEX F
+1 FAMC @F077@
+0 @I237@ INDI
+1 NAME Clive /Wheaton/
+1 SEX M
+1 FAMC @F076@
+0 @I238@ INDI
+1 NAME Hazel (Boyd) /Wheaton/
+1 SEX F
+1 DEAT
+2 DATE 10 OCT 1936
+1 FAMC @F076@
+0 @I239@ INDI
+1 NAME George /Timm/
+1 SEX M
+1 BIRT
+2 DATE 19 APR 1869
+1 DEAT
+2 DATE 21 FEB 1921
+1 FAMS @F079@
+0 @I240@ INDI
+1 NAME Troy O. /Timm/
+1 SEX M
+1 FAMC @F079@
+0 @I241@ INDI
+1 NAME Howard /Young/
+1 SEX M
+1 BIRT
+2 DATE 8 NOV 1872
+2 PLAC Palmyra,, Marion MO
+1 DEAT
+2 DATE 18 OCT 1957
+2 PLAC Greeley, Weld, CO
+1 FAMS @F080@
+0 @I242@ INDI
+1 NAME Lottye Ethzelda /Young/
+1 SEX F
+1 FAMC @F080@
+0 @I243@ INDI
+1 NAME Nancy /Troy/
+1 SEX F
+1 BIRT
+2 DATE 1843
+2 PLAC Jeffersn County Iowa
+1 DEAT
+2 DATE 9 JUL 1886
+2 PLAC Pawnee County,Kansas
+1 FAMS @F013@
+1 FAMC @F081@
+0 @I244@ INDI
+1 NAME Rosetta /Hoskins/
+1 SEX F
+1 BIRT
+2 DATE 15 MAY 1812
+2 PLAC Woolford County, Kentucky
+1 DEAT
+2 DATE 1875
+2 PLAC Batavia ,, Jefferson, Iowa
+1 FAMS @F081@
+0 @I245@ INDI
+1 NAME Mary /Troy/
+1 SEX F
+1 FAMC @F081@
+0 @I246@ INDI
+1 NAME Louisa /Troy/
+1 SEX F
+1 FAMC @F081@
+0 @I247@ INDI
+1 NAME John H /Troy/
+1 SEX M
+1 FAMC @F081@
+0 @I248@ INDI
+1 NAME Prilla /Troy/
+1 SEX F
+1 FAMC @F081@
+0 @I249@ INDI
+1 NAME Ellen /Troy/
+1 SEX F
+1 FAMC @F081@
+0 @I250@ INDI
+1 NAME Martha /Troy/
+1 SEX F
+1 FAMC @F081@
+0 @I251@ INDI
+1 NAME Julia /Troy/
+1 SEX F
+1 FAMC @F081@
+0 @I252@ INDI
+1 NAME Brazilla /Troy/
+1 SEX F
+1 FAMC @F081@
+0 @I253@ INDI
+1 NAME Mary Jane /Webb/
+1 SEX F
+1 BIRT
+2 DATE 1832
+2 PLAC Hunington County, Penn
+1 DEAT
+2 PLAC Iowa
+1 FAMS @F082@
+1 FAMC @F014@
+0 @I254@ INDI
+1 NAME James /Frost/
+1 SEX M
+1 FAMS @F082@
+0 @I255@ INDI
+1 NAME James S. /Webb/
+1 SEX M
+1 BIRT
+2 DATE 1834
+2 PLAC Hunington County, Penn
+1 FAMC @F014@
+0 @I256@ INDI
+1 NAME Ann E. /Webb/
+1 SEX F
+1 BIRT
+2 DATE 1836
+2 PLAC Hunington County, Penn
+1 FAMS @F083@
+1 FAMC @F014@
+0 @I257@ INDI
+1 NAME /Boyd/
+1 SEX M
+1 FAMS @F083@
+0 @I258@ INDI
+1 NAME Bobbye Jean /Hecox/
+1 SEX F
+1 BIRT
+2 DATE 25 FEB 1925
+2 PLAC Merced, CA
+1 FAMS @F084@
+0 @I259@ INDI
+1 NAME Richard Alan /Parker/
+1 SEX M
+1 BIRT
+2 DATE 24 MAY 1938
+2 PLAC Santa MONICA, California
+1 FAMC @F084@
+0 @I260@ INDI
+1 NAME Susan Jane /Parker/
+1 SEX F
+1 BIRT
+2 DATE 2 SEP 1947
+2 PLAC Paridise , Butte,CA
+1 FAMC @F084@
+0 @I261@ INDI
+1 NAME Janet Carol /Parker/
+1 SEX F
+1 BIRT
+2 DATE 2 JUL 1957
+2 PLAC Paridise , Butte,CA
+1 FAMC @F084@
+0 @I262@ INDI
+1 NAME Merle /Glenna/, Capps
+1 SEX F
+1 FAMS @F078@
+0 @I263@ INDI
+1 NAME Steven Lee /Parker/
+1 SEX M
+1 FAMC @F078@
+0 @I264@ INDI
+1 NAME Linda Joan /Parker/
+1 SEX F
+1 FAMC @F078@
+0 @I265@ INDI
+1 NAME Gregory Lee /Parker/
+1 SEX M
+1 FAMC @F078@
+0 @I266@ INDI
+1 NAME Jo Anne /Monroe/
+1 SEX F
+1 BIRT
+2 DATE 17 DEC 1923
+2 PLAC Goose Creek, Harris, Texas
+1 FAMS @F085@
+0 @I267@ INDI
+1 NAME Patti Jo /Parker/
+1 SEX F
+1 BIRT
+2 DATE 8 NOV 1945
+2 PLAC hHouston, Texas
+1 FAMS @F120@
+1 FAMC @F085@
+0 @I268@ INDI
+1 NAME Bette Florence /Parker/
+1 SEX F
+1 BIRT
+2 DATE 21 FEB 1948
+2 PLAC Baytown , Harris, Texas
+1 FAMS @F118@
+1 FAMS @F119@
+1 FAMC @F085@
+0 @I269@ INDI
+1 NAME Mary Monroe /Parker/
+1 SEX F
+1 BIRT
+2 DATE 4 AUG 1952
+2 PLAC Baytown , Harris, Texas
+1 FAMS @F087@
+1 FAMC @F085@
+0 @I270@ INDI
+1 NAME Robert Webb  Parker /Jr./
+1 SEX M
+1 BIRT
+2 DATE 24 MAR 1955
+2 PLAC Baytown , Harris, Texas
+1 FAMS @F086@
+1 FAMC @F085@
+0 @I271@ INDI
+1 NAME Patricia Ann /Fergusion/
+1 SEX F
+1 BIRT
+2 DATE 8 FEB 1955
+1 FAMS @F086@
+0 @I272@ INDI
+1 NAME Sarah Ann /Parker./
+1 SEX F
+1 BIRT
+2 DATE 12 MAR 1982
+2 PLAC dallas Texas
+1 FAMC @F086@
+0 @I273@ INDI
+1 NAME Matthew Monroe /Parker./
+1 SEX M
+1 BIRT
+2 DATE 23 OCT 1986
+2 PLAC Dallas Texas
+1 FAMC @F086@
+0 @I274@ INDI
+1 NAME James Robert /Parker./
+1 SEX M
+1 BIRT
+2 DATE 12 NOV 1987
+2 PLAC Dallas Texas
+1 FAMC @F086@
+0 @I275@ INDI
+1 NAME William Johnson /Dalton/
+1 SEX M
+1 BIRT
+2 DATE 31 MAY 1944
+2 PLAC , Middlesex MA
+1 FAMS @F087@
+0 @I276@ INDI
+1 NAME Srijaya Ruth /Dalton/
+1 SEX F
+1 BIRT
+2 DATE 23 SEP 1980
+2 PLAC Chico, Butte, CA
+1 DEAT
+2 DATE 26 MAY 2003
+2 PLAC San Frisco, CA
+1 FAMC @F087@
+0 @I277@ INDI
+1 NAME Ariella Marie /Dalton/
+1 SEX F
+1 BIRT
+2 DATE 7 FEB 1983
+1 FAMC @F087@
+0 @I278@ INDI
+1 NAME Lydia Jane /Brown/
+1 SEX F
+1 BIRT
+2 DATE 21 AUG 1855
+2 PLAC Carthage Illinois
+1 DEAT
+2 DATE 11 MAR 1947
+2 PLAC Denver, CO
+1 FAMS @F088@
+0 @I279@ INDI
+1 NAME Luban /Parker/
+1 SEX M
+1 BIRT
+2 DATE 7 MAR 1852
+2 PLAC Colchester, Illinois
+1 DEAT
+2 DATE 24 JAN 1924
+2 PLAC Santa MONICA, California
+1 FAMS @F088@
+0 @I280@ INDI
+1 NAME Elsie Pearl /Parker/
+1 SEX F
+1 BIRT
+2 DATE 23 MAR 1877
+2 PLAC Quincy, Adams, Ill
+1 DEAT
+2 DATE 19 JAN 1953
+2 PLAC Johnstown, Weld, Colorado
+1 FAMS @F123@
+1 FAMC @F088@
+0 @I281@ INDI
+1 NAME Ardie Golden /Parker/
+1 SEX M
+1 BIRT
+2 DATE 26 JAN 1884
+2 PLAC Fountain Green, Hancock, Illinios
+1 DEAT
+2 DATE 8 MAR 1955
+2 PLAC Milliken,Weld County, Colorado
+1 FAMS @F121@
+1 FAMC @F088@
+0 @I282@ INDI
+1 NAME Maude Alta /Parker/
+1 SEX F
+1 BIRT
+2 DATE 8 OCT 1878
+2 PLAC Phillipsburg, Phillips, Kansas
+1 DEAT
+2 DATE 11 MAR 1966
+2 PLAC Santa Monica California
+1 FAMS @F124@
+1 FAMC @F088@
+0 @I283@ INDI
+1 NAME Clarence /Parker/
+1 SEX M
+1 BIRT
+2 DATE 9 DEC 1890
+2 PLAC Phillipsburg, Phillips, Kansas
+1 DEAT
+2 DATE 14 AUG 1978
+2 PLAC Santa Monica California
+1 FAMS @F154@
+1 FAMC @F088@
+0 @I284@ INDI
+1 NAME Anne Lucinda /TITTLE/
+1 SEX F
+1 FAMS @F154@
+0 @I285@ INDI
+1 NAME Carrie /Parker/
+1 SEX F
+1 BIRT
+2 DATE 1924
+1 DEAT
+2 DATE 1947
+1 FAMC @F088@
+0 @I286@ INDI
+1 NAME James /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 22 JAN 1874
+2 PLAC MiCHIGAN
+1 DEAT
+2 DATE 18 APR 1900
+2 PLAC MARVIN,PHILLLIPS, KANSAS
+1 FAMS @F155@
+1 FAMC @F168@
+0 @I287@ INDI
+1 NAME Florence ( Florie) Amelia /Parker/
+1 SEX F
+1 BIRT
+2 DATE 11 SEP 1878
+2 PLAC CARTHAGE,HANCOCK, ILL
+1 DEAT
+2 DATE 26 NOV 1926
+2 PLAC GOODLAND,SHERMAN, KS
+1 FAMS @F155@
+1 FAMS @F156@
+1 FAMC @F088@
+0 @I288@ INDI
+1 NAME Charles L. /Parker/
+1 SEX M
+1 BIRT
+2 DATE 1894
+2 PLAC Phillipsburg, Phillips, Kansas
+1 DEAT
+2 PLAC Kanorado, Sherman,KANAS
+1 FAMC @F088@
+0 @I289@ INDI
+1 NAME Heinrich Christolph /Willms/
+1 SEX M
+1 BIRT
+2 DATE 25 NOV 1816
+2 PLAC Lemgo, Brake/Lippe, Detmold, Germany
+1 DEAT
+2 DATE 23 MAR 1906
+2 PLAC Hutchinson ,KS
+1 FAMS @F067@
+1 FAMC @F089@
+0 @I290@ INDI
+1 NAME Henriette Conradine Sagel \ Caroline /Rohrmann/
+1 SEX F
+1 DEAT
+2 DATE 1877
+1 FAMS @F067@
+0 @I291@ INDI
+1 NAME Johann Friedrich /Willms/
+1 SEX M
+1 FAMS @F089@
+0 @I292@ INDI
+1 NAME AnnaMarie Elisabeth /Mollermeyer/
+1 SEX F
+1 FAMS @F089@
+0 @I293@ INDI
+1 NAME Henry Simon /Willms/
+1 SEX M
+1 FAMC @F067@
+0 @I294@ INDI
+1 NAME Emily Amelia Caroline /Willms/
+1 SEX F
+1 FAMC @F067@
+0 @I295@ INDI
+1 NAME Malinda Magdalina /Willms/
+1 SEX F
+1 FAMC @F067@
+0 @I296@ INDI
+1 NAME Louis Henry /Willms/
+1 SEX M
+1 FAMC @F067@
+0 @I297@ INDI
+1 NAME Hannah /Willms/
+1 SEX F
+1 FAMC @F067@
+0 @I298@ INDI
+1 NAME Carolin C. /Willms/
+1 SEX F
+1 FAMC @F067@
+0 @I299@ INDI
+1 NAME Martha ( Mattie) /Willms/
+1 SEX F
+1 FAMC @F067@
+0 @I300@ INDI
+1 NAME Daniel Edward /Willms/
+1 SEX M
+1 BIRT
+2 DATE 9 SEP 1875
+2 PLAC Fosterburg, Madison County, Illinois
+1 DEAT
+2 DATE 11 JUL 1939
+2 PLAC Long Beach, Ca
+1 FAMS @F091@
+1 FAMC @F016@
+0 @I301@ INDI
+1 NAME William Walter /Willms/
+1 SEX M
+1 BIRT
+2 DATE 22 MAY 1878
+2 PLAC Ellinwood, Barton, Ks
+1 DEAT
+2 DATE 17 MAR 1946
+2 PLAC Medicine Lodge, KS
+1 FAMS @F093@
+1 FAMC @F016@
+0 @I302@ INDI
+1 NAME Johnnie Frances /Harris/
+1 SEX F
+1 FAMS @F092@
+0 @I303@ INDI
+1 NAME Caroline Agusta (Carrie) /Willms/
+1 SEX F
+1 BIRT
+2 DATE 10 JUN 1885
+2 PLAC Ellinwood.Barton,Kansas
+1 FAMS @F090@
+1 FAMC @F016@
+0 @I304@ INDI
+1 NAME Henry Charles /Willms/
+1 SEX M
+1 BIRT
+2 DATE 11 JUL 1887
+2 PLAC Ellinwood, Barton, Ks
+1 DEAT
+2 DATE 13 SEP 1957
+2 PLAC Littlel Rock Arkansas
+1 FAMS @F092@
+1 FAMC @F016@
+0 @I305@ INDI
+1 NAME Alfred Reuben /Haas/
+1 SEX M
+1 TITL Dr.
+1 FAMS @F090@
+0 @I306@ INDI
+1 NAME Kathleen A. /Wedg/
+1 SEX F
+1 FAMS @F091@
+0 @I307@ INDI
+1 NAME Margaret Lenore /Willms/
+1 SEX F
+1 FAMC @F091@
+0 @I308@ INDI
+1 NAME Edna H. Earl /Herron/
+1 SEX F
+1 FAMS @F093@
+0 @I309@ INDI
+1 NAME Theodore Wayne /Durling/
+1 SEX M
+1 FAMS @F001@
+0 @I310@ INDI
+1 NAME Bonita Elaine /Reed/
+1 SEX F
+1 FAMS @F001@
+0 @I311@ INDI
+1 NAME Gary L /Severson/
+1 SEX M
+1 FAMS @F095@
+0 @I312@ INDI
+1 NAME Scott /Severson/
+1 SEX M
+1 BIRT
+2 DATE 30 APR 1980
+1 FAMS @F097@
+1 FAMC @F095@
+0 @I313@ INDI
+1 NAME Olivia /Severson/
+1 SEX F
+1 BIRT
+2 DATE 20 MAY 1975
+1 FAMS @F096@
+1 FAMC @F095@
+0 @I314@ INDI
+1 NAME Grant /Dillahay/
+1 SEX M
+1 FAMS @F096@
+0 @I315@ INDI
+1 NAME Jaimie /Klick/
+1 SEX F
+1 BIRT
+2 DATE 16 FEB 1980
+1 FAMS @F002@
+1 FAMS @F097@
+0 @I316@ INDI
+1 NAME /Cameron/
+1 SEX M
+1 BIRT
+2 DATE 1 JUL 2002
+1 FAMC @F097@
+1 FAMC @F002@
+0 @I317@ INDI
+1 NAME Tyler /Severson/
+1 SEX M
+1 BIRT
+2 DATE 1 FEB 2006
+1 FAMC @F097@
+1 FAMC @F002@
+0 @I318@ INDI
+1 NAME Tom /Flanery/
+1 SEX M
+1 FAMS @F094@
+0 @I319@ INDI
+1 NAME Stethen /Miskill/
+1 SEX M
+1 FAMS @F098@
+0 @I320@ INDI
+1 NAME Patrick Ray /Mc Dowell/
+1 SEX M
+1 BIRT
+2 DATE 10 JUL 1962
+2 PLAC Flint, MI
+1 FAMS @F022@
+0 @I321@ INDI
+1 NAME Doris /Rupp/
+1 SEX F
+1 BIRT
+2 DATE 2 JAN
+1 FAMS @F100@
+0 @I322@ INDI
+1 NAME Jeremiah Justin /Bracy/
+1 SEX M
+1 BIRT
+2 DATE 8 AUG 1988
+2 PLAC DENVER, COLORADO
+1 FAMC @F100@
+0 @I323@ INDI
+1 NAME Laura /Overholtz/
+1 SEX F
+1 FAMS @F101@
+0 @I324@ INDI
+1 NAME Harm Janssen /KAISER/
+1 SEX M
+1 BIRT
+2 DATE 19 DEC 1792
+2 PLAC Banband , Ostfriesland, Germany
+1 DEAT
+2 DATE 23 SEP 1869
+2 PLAC Moro, Madison, Illinois
+1 FAMS @F104@
+1 FAMS @F102@
+1 FAMS @F103@
+1 FAMC @F111@
+0 @I325@ INDI
+1 NAME Hillena Janssen /Kayser/
+1 SEX F
+1 BIRT
+2 DATE 4 FEB 1806
+2 PLAC Firrel Ostfriesland, Germany
+1 DEAT
+2 DATE 10 OCT 1892
+2 PLAC Phillipsburg, Phillips, Ellinwood, Barton Kansas
+1 FAMS @F102@
+0 @I326@ INDI
+1 NAME Hillena Jassen /KAYSER/
+1 SEX F
+1 BIRT
+2 DATE 4 FEB 1806
+2 PLAC Firrel Ostfriesland, Germany
+1 DEAT
+2 DATE 10 OCT 1892
+2 PLAC Phillipsburg, Phillips, Kansas
+1 FAMS @F103@
+0 @I327@ INDI
+1 NAME Anna Janssen /MARTEMS/
+1 SEX F
+1 BIRT
+2 DATE MAY 1791
+2 PLAC Grossoldendorf,Germany
+1 DEAT
+2 DATE 19 FEB 1829
+2 PLAC Hessel, Germany
+1 FAMS @F104@
+0 @I328@ INDI
+1 NAME Ida /KAISER/
+1 SEX F
+1 FAMC @F104@
+0 @I329@ INDI
+1 NAME Johann /KAYSER/
+1 SEX M
+1 FAMC @F104@
+0 @I330@ INDI
+1 NAME Frauke /KAISER/
+1 SEX M
+1 FAMC @F104@
+0 @I331@ INDI
+1 NAME Hei (Heye) /KAISER/
+1 SEX F
+1 FAMC @F104@
+0 @I332@ INDI
+1 NAME Herbert (Harbert) /KEISER/
+1 SEX M
+1 FAMC @F104@
+0 @I333@ INDI
+1 NAME Anna H. /KEISER/
+1 SEX F
+1 BIRT
+2 DATE 1831
+1 DEAT
+2 DATE 1848
+1 FAMC @F102@
+0 @I334@ INDI
+1 NAME Aljet /KEISER/
+1 SEX M
+1 BIRT
+2 DATE 1833
+1 DEAT
+2 DATE 1834
+1 FAMC @F102@
+0 @I335@ INDI
+1 NAME Aljet H. (Ira) /KEISER/
+1 SEX M
+1 BIRT
+2 DATE 1 MAR 1835
+2 PLAC Firrel, Hanover,Germany
+1 DEAT
+2 DATE 14 MAY 1894
+2 PLAC Alton, Madison, Illinois
+1 FAMS @F105@
+1 FAMC @F102@
+0 @I336@ INDI
+1 NAME Jurgen (George) H. /KEISER/
+1 SEX M
+1 BIRT
+2 DATE 1837
+1 DEAT
+2 DATE 1911
+1 FAMC @F102@
+0 @I337@ INDI
+1 NAME Almet (Alma) /KEISER/
+1 SEX F
+1 BIRT
+2 DATE 1840
+1 DEAT
+2 DATE 1848
+1 FAMC @F102@
+0 @I338@ INDI
+1 NAME Frauke H.(Frances) /KEISER/
+1 SEX M
+1 BIRT
+2 DATE 1842
+1 DEAT
+2 DATE 1925
+1 FAMC @F102@
+0 @I339@ INDI
+1 NAME Harm /KAISER/
+1 SEX M
+1 BIRT
+2 DATE 8 OCT 1839
+2 PLAC Firrel Ostfriesland, Germany
+1 DEAT
+2 DATE 1877
+1 FAMS @F108@
+1 FAMC @F102@
+0 @I340@ INDI
+1 NAME Margret Jack /ALLEN/
+1 SEX F
+1 FAMS @F105@
+0 @I341@ INDI
+1 NAME Ellen (Ella) /KEISER/
+1 SEX F
+1 BIRT
+2 DATE 1860
+2 PLAC Alton, Madison, Illinois
+1 DEAT
+2 DATE 18 NOV 1898
+2 PLAC Alton, Madison, Illinois
+1 FAMC @F105@
+0 @I342@ INDI
+1 NAME Mary Elizabeth /KEISER/
+1 SEX F
+1 BIRT
+2 DATE 25 MAR 1862
+2 PLAC Alton, Madison, Illinois
+1 DEAT
+2 DATE 14 JAN 1938
+2 PLAC St. Louis MO
+1 FAMS @F106@
+1 FAMC @F105@
+0 @I343@ INDI
+1 NAME William Joseph /FISCHER/
+1 SEX M
+1 FAMS @F106@
+0 @I344@ INDI
+1 NAME Ralph Whitelaw /FISCHER/
+1 SEX M
+1 FAMC @F106@
+0 @I345@ INDI
+1 NAME Ira William /FiSCHER/
+1 SEX M
+1 FAMC @F106@
+0 @I346@ INDI
+1 NAME Lelia (LuLu) /KEISER/
+1 SEX F
+1 BIRT
+2 DATE 1864
+2 PLAC Alton, Madison, Illinois
+1 FAMS @F107@
+1 FAMC @F105@
+0 @I347@ INDI
+1 NAME Thomas /Marfoot/
+1 SEX M
+1 FAMS @F107@
+0 @I348@ INDI
+1 NAME Harriet ( Hattie) /KEISER/
+1 SEX F
+1 BIRT
+2 DATE 1868
+2 PLAC Alton, Madison, Illinois
+1 FAMC @F105@
+0 @I349@ INDI
+1 NAME Emma /KAISER/
+1 SEX F
+1 BIRT
+2 DATE 1870
+2 PLAC Alton, Madison, Illinois
+1 DEAT
+2 DATE 1880
+1 FAMC @F105@
+0 @I350@ INDI
+1 NAME Ada (Ruth) /KEISER/
+1 SEX F
+1 BIRT
+2 DATE 1872
+2 PLAC Alton, Madison, Illinois
+1 FAMS @F109@
+1 FAMC @F105@
+0 @I351@ INDI
+1 NAME William D. /MILLER/
+1 SEX M
+1 FAMS @F109@
+0 @I352@ INDI
+1 NAME Willim Miller /Jr./
+1 SEX F
+1 FAMC @F109@
+0 @I353@ INDI
+1 NAME Allen /Keiser/
+1 SEX M
+1 BIRT
+2 DATE 1872
+2 PLAC Alton, Madison, Illinois
+1 DEAT
+2 DATE 7 JAN 1938
+2 PLAC Alton, Madison, Illinois
+1 FAMS @F110@
+1 FAMC @F105@
+0 @I354@ INDI
+1 NAME Edna Tilton /Smith/
+1 SEX F
+1 FAMS @F110@
+0 @I355@ INDI
+1 NAME Irving Wallae /KEISER/
+1 SEX M
+1 BIRT
+2 DATE 31 DEC 1875
+2 PLAC Alton, Madison, Illinois
+1 FAMC @F105@
+0 @I356@ INDI
+1 NAME Jann Hinrichs Janssen /KAISER/
+1 SEX M
+1 BIRT
+2 DATE BEF 1776
+1 DEAT
+2 DATE 20 FEB 1816
+2 PLAC Firrel Ostfriesland, Germany
+1 FAMS @F111@
+0 @I357@ INDI
+1 NAME H. Frauke aus Strackholts /HARBERTS/
+1 SEX F
+1 BIRT
+2 DATE 1746
+2 PLAC Bagband, Germany
+1 DEAT
+2 DATE 20 FEB 1816
+2 PLAC Firrel Ostfriesland, Germany
+1 FAMS @F111@
+0 @I358@ INDI
+1 NAME Anke /KAISER/
+1 SEX F
+1 BIRT
+2 DATE 6 NOV 1789
+2 PLAC Bagband, Germany
+1 DEAT
+2 DATE 23 OCT 1790
+1 FAMC @F111@
+0 @I359@ INDI
+1 NAME Jurgen (George) /KAISER/
+1 SEX M
+1 BIRT
+2 DATE 27 APR 1787
+2 PLAC Bagband, Germany
+1 DEAT
+2 DATE 31 MAR 1843
+1 FAMC @F111@
+0 @I360@ INDI
+1 NAME Jann Hinrichs Jennsen /KAISER/
+1 SEX M
+1 BIRT
+2 DATE 24 APR 1784
+2 PLAC Firrel Ostfriesland, Germany
+1 DEAT
+2 DATE 30 JUL 1841
+1 FAMS @F112@
+1 FAMC @F111@
+0 @I361@ INDI
+1 NAME Anke Margarethe /Albers/
+1 SEX F
+1 FAMS @F112@
+0 @I362@ INDI
+1 NAME Harm Janssen /KEISER/
+1 SEX M
+1 BIRT
+2 DATE 8 OCT 1839
+2 PLAC Firrel Ostfriesland, Germany
+1 FAMC @F112@
+0 @I363@ INDI
+1 NAME Harbert Janssen /KAISER/
+1 SEX M
+1 BIRT
+2 DATE 4 MAR 1777
+2 PLAC Firrel Ostfriesland, Germany
+1 DEAT
+2 DATE 25 JAN 1816
+2 PLAC Firrel Ostfriesland, Germany
+1 FAMS @F116@
+1 FAMC @F111@
+0 @I364@ INDI
+1 NAME Ahlke Janssen /KAISER/
+1 SEX M
+1 BIRT
+2 DATE 2 JAN 1779
+2 PLAC Bagband, Germany
+1 DEAT
+2 DATE 6 SEP 1861
+1 FAMS @F117@
+1 FAMC @F111@
+0 @I365@ INDI
+1 NAME Mary /Faaken(SP)/
+1 SEX F
+1 FAMS @F108@
+0 @I366@ INDI
+1 NAME Anna (Annie) /KAISER/
+1 SEX F
+1 FAMC @F108@
+0 @I367@ INDI
+1 NAME Henry /KAISER/
+1 SEX M
+1 BIRT
+2 DATE 1879
+2 PLAC Comanche, Township Kansas
+1 FAMC @F108@
+0 @I368@ INDI
+1 NAME Hannah /KAISER/
+1 SEX F
+1 FAMC @F108@
+0 @I369@ INDI
+1 NAME Lydia /KAISER/
+1 SEX F
+1 FAMC @F108@
+0 @I370@ INDI
+1 NAME Albert /KAISER/
+1 SEX M
+1 FAMC @F108@
+0 @I371@ INDI
+1 NAME Ellen Ruth /Haas/
+1 SEX F
+1 FAMC @F090@
+0 @I372@ INDI
+1 NAME Maurice Alfred /Haas/
+1 SEX M
+1 FAMC @F090@
+0 @I373@ INDI
+1 NAME Lucille Mabel /Haas/
+1 SEX F
+1 FAMC @F090@
+0 @I374@ INDI
+1 NAME Franklin C. /Haas/
+1 SEX M
+1 FAMC @F090@
+0 @I375@ INDI
+1 NAME Emma Amelia /WILLMS/
+1 SEX F
+1 BIRT
+2 DATE 20 OCT 1882
+2 PLAC Ellinwood.Barton,Kansas
+1 DEAT
+2 DATE 2 APR 1944
+2 PLAC Turner, Marion, Oregon
+1 FAMS @F113@
+1 FAMC @F016@
+0 @I376@ INDI
+1 NAME Frank W /GUNNING/
+1 SEX M
+1 BIRT
+2 DATE 17 MAR 1871
+2 PLAC Hutchinson , Reno, Kansa
+1 DEAT
+2 DATE 11 AUG 1922
+2 PLAC Sterling, Rice, Kansa
+1 FAMS @F114@
+1 FAMS @F113@
+0 @I377@ INDI
+1 NAME Oscar /GUNNING/
+1 SEX M
+1 BIRT
+2 DATE 1909
+2 PLAC LAWERNCE , KANSAS
+1 DEAT
+2 DATE OCT 1935
+2 PLAC salem, Marion, OR
+1 FAMC @F113@
+1 FAMC @F114@
+0 @I378@ INDI
+1 NAME Francis Irene /GUNNING/
+1 SEX F
+1 BIRT
+2 DATE 1911
+2 PLAC Arkansa City, Kansa
+1 DEAT
+2 DATE JUL 1987
+1 FAMC @F113@
+1 FAMC @F114@
+0 @I379@ INDI
+1 NAME Lois Marie /GUNNING/
+1 SEX F
+1 BIRT
+2 DATE 5 MAY 1922
+2 PLAC Sterling, Rice, Kansa
+1 FAMS @F115@
+1 FAMC @F113@
+1 FAMC @F114@
+0 @I380@ INDI
+1 NAME Lilly Victoria /HAYES/
+1 SEX F
+1 FAMS @F114@
+0 @I381@ INDI
+1 NAME Ira Curtis /Glenna/
+1 SEX F
+1 FAMC @F114@
+0 @I382@ INDI
+1 NAME Authur /Fry/
+1 SEX M
+1 FAMS @F115@
+0 @I383@ INDI
+1 NAME Gene Richard /FRy/
+1 SEX M
+1 FAMC @F115@
+0 @I384@ INDI
+1 NAME Brian Richard /FRY/
+1 SEX M
+1 FAMC @F115@
+0 @I385@ INDI
+1 NAME Marion Gail /FRY/
+1 SEX F
+1 FAMC @F115@
+0 @I386@ INDI
+1 NAME /UNKNOWN/
+1 SEX M
+1 FAMS @F002@
+0 @I387@ INDI
+1 NAME Eleanor Faye /Bracy/
+1 SEX F
+1 FAMS @F099@
+1 FAMC @F101@
+0 @I388@ INDI
+1 NAME Kevin /Kruta/
+1 SEX M
+1 FAMS @F099@
+0 @I389@ INDI
+1 NAME Sean /Kruta/
+1 SEX M
+1 FAMC @F099@
+0 @I390@ INDI
+1 NAME Samantha /Kruta/
+1 SEX F
+1 FAMC @F099@
+0 @I391@ INDI
+1 NAME Craig /Kruta/
+1 SEX M
+1 FAMC @F099@
+0 @I392@ INDI
+1 NAME Michael Patrick /Bracy/
+1 SEX F
+1 FAMC @F101@
+0 @I393@ INDI
+1 NAME Wubke /MARTENS/
+1 SEX F
+1 DEAT
+2 DATE 21 AUG 1780
+1 FAMS @F116@
+0 @I394@ INDI
+1 NAME Gerd /Harms/
+1 SEX F
+1 FAMS @F117@
+0 @I395@ INDI
+1 NAME Mark Steven /CLEAVER/
+1 SEX M
+0 @I396@ INDI
+1 NAME Leonard Michael /HAMMEL/
+1 SEX M
+1 FAMS @F118@
+0 @I397@ INDI
+1 NAME Michael Anthony "Tony" /HAMMEL/
+1 SEX M
+1 ALIA /TONY/
+1 FAMC @F118@
+1 FAMC @F119@
+0 @I398@ INDI
+1 NAME Robert Christopher /HAMMEL/
+1 SEX M
+1 FAMC @F118@
+1 FAMC @F119@
+0 @I399@ INDI
+1 NAME Mark Steven /Cleaver/
+1 SEX M
+1 FAMS @F119@
+0 @I400@ INDI
+1 NAME Carrie Elizabeth /Cleaver/
+1 SEX F
+1 FAMC @F119@
+0 @I401@ INDI
+1 NAME Thomas /DAVIS/
+1 SEX M
+1 FAMS @F120@
+0 @I402@ INDI
+1 NAME Dietrich Chistopher /DAVIS/
+1 SEX M
+1 FAMC @F120@
+0 @I403@ INDI
+1 NAME Genevieve Christine /DAVIS/
+1 SEX F
+1 FAMC @F120@
+0 @I404@ INDI
+1 NAME Dawn Heather /DAVIS/
+1 SEX F
+1 FAMC @F120@
+0 @I405@ INDI
+1 NAME Cora May /Eelliot/
+1 SEX F
+1 FAMS @F121@
+0 @I406@ INDI
+1 NAME Edith May /Parker/
+1 SEX F
+1 BIRT
+2 DATE 18 DEC 1909
+2 PLAC GLADE, PHILLIPS COUNTY, KANSAS
+1 DEAT
+2 DATE 18 MAR 1943
+2 PLAC DENVER, COLORADO
+1 FAMS @F122@
+1 FAMC @F121@
+0 @I407@ INDI
+1 NAME Floyde Golden /Parker/
+1 SEX M
+1 BIRT
+2 DATE 22 JUL 1912
+2 PLAC BURLINGTON, KIT CARSON, COLORADO
+1 DEAT
+2 DATE 30 DEC 1984
+2 PLAC KENNEWICK, BENTON, WASHINGTON
+1 FAMS @F126@
+1 FAMC @F121@
+0 @I408@ INDI
+1 NAME Eva Faye /Parker/
+1 SEX F
+1 FAMC @F121@
+0 @I409@ INDI
+1 NAME Delbert Lee /Parker/
+1 SEX M
+1 FAMC @F121@
+0 @I410@ INDI
+1 NAME Truman Edward /WILLIS/
+1 SEX M
+1 BIRT
+2 DATE 18 AUG 1904
+2 PLAC SOUTH OF JOHNSTOWN, COLRADO
+1 DEAT
+2 DATE 1940
+2 PLAC LONGMONT, COLRADO
+1 FAMS @F122@
+0 @I411@ INDI
+1 NAME Edward /WILLIS/
+1 SEX M
+1 BIRT
+2 DATE MAY 1927
+1 DEAT
+2 DATE MAY 1927
+1 FAMC @F122@
+0 @I412@ INDI
+1 NAME Ivan Truman /WILLIS/
+1 SEX M
+1 BIRT
+2 DATE 7 JAN 1929
+2 PLAC Milliken,Weld County, Colorado
+1 DEAT
+2 DATE 19 FEB 1996
+1 FAMS @F125@
+1 FAMC @F122@
+0 @I413@ INDI
+1 NAME Jaunito /COOPER/
+1 SEX F
+1 DEAT
+2 DATE FEB 1962
+1 FAMS @F125@
+0 @I414@ INDI
+1 NAME CATHY ANN /WILLIS/
+1 SEX F
+1 BIRT
+2 DATE 20 DEC 1955
+2 PLAC GREELEY, WELD COLORADO
+1 FAMC @F125@
+0 @I415@ INDI
+1 NAME Yative Thomascine Eustice /WINTERS/
+1 SEX F
+1 BIRT
+2 DATE 17 JAN 1918
+2 PLAC GEORGETOWN CLEAR CREEK, COLORADO
+1 DEAT
+2 DATE 16 DEC 1995
+2 PLAC KENNEWICK, BENTON, WASHINGTON
+1 FAMS @F126@
+1 FAMC @F127@
+1 FAMC @F139@
+0 @I416@ INDI
+1 NAME Floyd Ardie /Parker/
+1 SEX M
+1 BIRT
+2 DATE 4 JAN 1935
+2 PLAC Central City, Gilpin Colrado
+1 DEAT
+2 DATE 14 JUN 2004
+1 FAMC @F126@
+0 @I417@ INDI
+1 NAME Jerry Lee /Parker/
+1 SEX M
+1 BIRT
+2 DATE 23 MAY 1939
+2 PLAC GOLDEN, JEFFERSON, COLRADO
+1 FAMS @F131@
+1 FAMS @F130@
+1 FAMS @F129@
+1 FAMC @F126@
+0 @I418@ INDI
+1 NAME Barbara Sue /Parker/
+1 SEX F
+1 BIRT
+2 DATE 18 APR 1944
+2 PLAC DENVER, COLORADO
+1 FAMS @F128@
+1 FAMC @F126@
+0 @I419@ INDI
+1 NAME Linda Kay /Parker/
+1 SEX F
+1 BIRT
+2 DATE 23 MAY 1949
+2 PLAC RICHLAND, WA
+1 FAMS @F132@
+1 FAMS @F133@
+1 FAMS @F134@
+1 FAMS @F135@
+1 FAMC @F126@
+0 @I420@ INDI
+1 NAME Robert James /Parker/
+1 SEX M
+1 BIRT
+2 DATE 18 JUL 1951
+2 PLAC RICHLAND, WA
+1 FAMS @F136@
+1 FAMS @F137@
+1 FAMC @F126@
+0 @I421@ INDI
+1 NAME Owen Patrick /GRANT/
+1 SEX M
+1 FAMS @F128@
+0 @I422@ INDI
+1 NAME Angela Sue /GRANT/
+1 SEX F
+1 FAMC @F128@
+0 @I423@ INDI
+1 NAME Cary Patrick /GRANT/
+1 SEX M
+1 FAMC @F128@
+0 @I424@ INDI
+1 NAME Jennifer Lin /GRANT/
+1 SEX F
+1 FAMC @F128@
+0 @I425@ INDI
+1 NAME Bethanny Parker /GRANT/
+1 SEX F
+1 FAMC @F128@
+0 @I426@ INDI
+1 NAME Peggy Jane /STEELE/
+1 SEX F
+1 FAMS @F129@
+0 @I427@ INDI
+1 NAME Nolana Beth /BRIGGS/
+1 SEX F
+1 FAMC @F129@
+0 @I428@ INDI
+1 NAME Meloni Jane /BRIGGS/
+1 SEX F
+1 FAMC @F129@
+0 @I429@ INDI
+1 NAME Britton Carl /BRIGGS/
+1 SEX M
+1 FAMC @F129@
+0 @I430@ INDI
+1 NAME Sharon Lee /CARR/
+1 SEX F
+1 FAMS @F130@
+0 @I431@ INDI
+1 NAME Corey Michael /Parker/
+1 SEX F
+1 FAMC @F130@
+0 @I432@ INDI
+1 NAME Janice Carole /GALLAUHER/
+1 SEX F
+1 FAMS @F131@
+0 @I433@ INDI
+1 NAME Carolee Ann /Parker/
+1 SEX F
+1 FAMC @F131@
+0 @I434@ INDI
+1 NAME Stephen Paul /Parker/
+1 SEX M
+1 FAMC @F131@
+0 @I435@ INDI
+1 NAME Kerry Lind /COOPER/
+1 SEX M
+1 FAMS @F132@
+0 @I436@ INDI
+1 NAME Patrick Lind /COOPER/
+1 SEX M
+1 FAMC @F132@
+1 FAMC @F133@
+1 FAMC @F134@
+1 FAMC @F135@
+0 @I437@ INDI
+1 NAME Erin Kathleen /COOPER/
+1 SEX F
+1 FAMC @F132@
+1 FAMC @F133@
+1 FAMC @F134@
+1 FAMC @F135@
+0 @I438@ INDI
+1 NAME Bridget Elizabeth /COOPER/
+1 SEX F
+1 FAMC @F132@
+1 FAMC @F133@
+1 FAMC @F134@
+1 FAMC @F135@
+0 @I439@ INDI
+1 NAME Bernard /MARX/
+1 SEX M
+1 FAMS @F133@
+0 @I440@ INDI
+1 NAME Raymond /OMIT/
+1 SEX M
+1 FAMS @F134@
+0 @I441@ INDI
+1 NAME Sheila Rae /OMIT/
+1 SEX F
+1 FAMC @F134@
+1 FAMC @F135@
+0 @I442@ INDI
+1 NAME Evan /LOTT/
+1 SEX M
+1 FAMS @F135@
+0 @I443@ INDI
+1 NAME Diana Lynn /PARKER/
+1 SEX F
+1 FAMS @F136@
+0 @I444@ INDI
+1 NAME Melissa Dawn /Parker/
+1 SEX F
+1 FAMC @F136@
+1 FAMC @F137@
+0 @I445@ INDI
+1 NAME Andrew Golden /Parker/
+1 SEX M
+1 FAMC @F136@
+1 FAMC @F137@
+0 @I446@ INDI
+1 NAME Cecilia Elena /AQUILLAR/
+1 SEX F
+1 FAMS @F137@
+0 @I447@ INDI
+1 NAME Alexander /BOYD/
+1 SEX M
+1 FAMS @F127@
+0 @I448@ INDI
+1 NAME Francis Irene /EUSTICE/
+1 SEX F
+1 FAMS @F127@
+1 FAMS @F139@
+1 FAMC @F138@
+0 @I449@ INDI
+1 NAME George /EUSTISE/
+1 SEX M
+1 FAMS @F138@
+0 @I450@ INDI
+1 NAME Lavinia Emily /COLLICK/
+1 SEX F
+1 DEAT
+2 DATE 23 APR 1933
+2 PLAC GILPIN COUNTY, COLORADO
+1 FAMS @F138@
+0 @I451@ INDI
+1 NAME Frank Leo /WINTERS/
+1 SEX M
+1 DEAT
+2 DATE ABT JUN 1918
+1 FAMS @F139@
+0 @I452@ INDI
+1 NAME Clarence Edward /SCOFIELD/
+1 SEX M
+1 BIRT
+2 DATE 1 DEC 1876
+2 PLAC WILTON,MUSCATINE IOWA
+1 DEAT
+2 DATE 30 OCT 1940
+2 PLAC Johnstown, Weld, Colorado
+1 FAMS @F123@
+1 FAMC @F153@
+0 @I453@ INDI
+1 NAME Fern Elizabeth /SCOFIELD/
+1 SEX F
+1 BIRT
+2 DATE 20 FEB 1900
+2 PLAC GLADE, PHILLIPS COUNTY, KANSAS
+1 DEAT
+2 DATE 10 JAN 1990
+2 PLAC PARKER, DOUGLAS, COLORADO
+1 FAMS @F145@
+1 FAMS @F146@
+1 FAMC @F123@
+0 @I454@ INDI
+1 NAME Frank Eugene /SCOFIELD/
+1 SEX M
+1 BIRT
+2 DATE 28 APR 1901
+2 PLAC GLADE, PHILLIPS COUNTY, KANSAS
+1 DEAT
+2 DATE 8 AUG 1973
+2 PLAC Daly Ciy, San Mateo, California
+1 FAMC @F123@
+0 @I455@ INDI
+1 NAME Myrle Lucille /SCOFIELD/
+1 SEX F
+1 BIRT
+2 DATE 29 SEP 1902
+2 PLAC GLADE, PHILLIPS COUNTY, KANSAS
+1 DEAT
+2 DATE 9 JAN 1981
+2 PLAC Bremerton, Kitsap, WA
+1 FAMS @F142@
+1 FAMC @F123@
+0 @I456@ INDI
+1 NAME Ardie Golden /SCOFIELD/
+1 SEX M
+1 BIRT
+2 DATE 14 FEB 1904
+2 PLAC GLADE, PHILLIPS COUNTY, KANSAS
+1 DEAT
+2 DATE 2 JUL 1973
+2 PLAC BERTHOUD,LARIMER, COLORADO
+1 FAMS @F140@
+1 FAMC @F123@
+0 @I457@ INDI
+1 NAME Ivan Esco /SCOFIELD/
+1 SEX M
+1 BIRT
+2 DATE 13 DEC 1905
+2 PLAC GLADE, PHILLIPS COUNTY, KANSAS
+1 DEAT
+2 DATE NOV 1995
+2 PLAC Franconville , France
+1 FAMS @F148@
+1 FAMS @F149@
+1 FAMC @F123@
+0 @I458@ INDI
+1 NAME Hazel Louella /SCOFIELD/
+1 SEX F
+1 BIRT
+2 DATE 12 NOV 1908
+2 PLAC Kanorado, Sherman,KANAS
+1 FAMS @F147@
+1 FAMC @F123@
+0 @I459@ INDI
+1 NAME Velma Pearl /SCOFIELD/
+1 SEX F
+1 BIRT
+2 DATE 16 NOV 1910
+2 PLAC Kanorado, Sherman,KANAS
+1 DEAT
+2 DATE 5 JAN 1911
+2 PLAC Kanorado, Sherman,KANAS
+1 FAMC @F123@
+0 @I460@ INDI
+1 NAME Ruby Josphine /SCOFIELD/
+1 SEX F
+1 BIRT
+2 DATE 31 OCT 1911
+2 PLAC Kanorado, Sherman,KANAS
+1 FAMS @F151@
+1 FAMS @F152@
+1 FAMC @F123@
+0 @I461@ INDI
+1 NAME Edith Fay /SCOFIELD/
+1 SEX F
+1 BIRT
+2 DATE 13 FEB 1914
+2 PLAC Johnstown, Weld, Colorado
+1 FAMS @F143@
+1 FAMS @F144@
+1 FAMC @F123@
+0 @I462@ INDI
+1 NAME Earl Edward ( Bud ) /SCOFIELD/
+1 SEX M
+1 BIRT
+2 DATE 27 JAN 1917
+2 PLAC Johnstown, Weld, Colorado
+1 DEAT
+2 DATE 31 OCT 1991
+2 PLAC PARKER, DOUGLAS, COLORADO
+1 FAMS @F141@
+1 FAMC @F123@
+0 @I463@ INDI
+1 NAME Neva Lydia /SCOFIELD/
+1 SEX F
+1 BIRT
+2 DATE 5 APR 1919
+2 PLAC GROVER, WELD, COLORADO
+1 FAMS @F150@
+1 FAMC @F123@
+0 @I464@ INDI
+1 NAME Marie /HEWETT/
+1 SEX F
+1 FAMS @F140@
+0 @I465@ INDI
+1 NAME Mary Lou /SCOFIELD/
+1 SEX F
+1 FAMC @F140@
+0 @I466@ INDI
+1 NAME Josie Sue /SCOFIELD/
+1 SEX F
+1 FAMC @F140@
+0 @I467@ INDI
+1 NAME Baby Son /SCOFIELD/
+1 SEX M
+1 FAMC @F140@
+0 @I468@ INDI
+1 NAME Erina /PAOLI/
+1 SEX F
+1 BIRT
+2 DATE ABT 1920
+2 PLAC ITALY
+1 FAMS @F141@
+0 @I469@ INDI
+1 NAME William /SCOFIELD/
+1 SEX M
+1 FAMC @F141@
+0 @I470@ INDI
+1 NAME Jeanette /SCOFIELD/
+1 SEX F
+1 FAMC @F141@
+0 @I471@ INDI
+1 NAME Jerry /LONGO/
+1 SEX M
+1 FAMS @F143@
+0 @I472@ INDI
+1 NAME Robert /HERING/
+1 SEX M
+1 FAMS @F144@
+0 @I473@ INDI
+1 NAME Duncan /HERING/
+1 SEX M
+1 FAMC @F144@
+0 @I474@ INDI
+1 NAME David /HERING/
+1 SEX M
+1 FAMC @F144@
+0 @I475@ INDI
+1 NAME Roy /WOOD/
+1 SEX M
+1 FAMS @F145@
+0 @I476@ INDI
+1 NAME Merlyn /WOOD/
+1 SEX M
+1 FAMC @F145@
+1 FAMC @F146@
+0 @I477@ INDI
+1 NAME Boyd /WOOD/
+1 SEX M
+1 FAMC @F145@
+1 FAMC @F146@
+0 @I478@ INDI
+1 NAME Norma /WOOD/
+1 SEX F
+1 FAMC @F145@
+1 FAMC @F146@
+0 @I479@ INDI
+1 NAME Raymonr William /HIGMAN/
+1 SEX M
+1 FAMS @F146@
+0 @I480@ INDI
+1 NAME Edward Earl /PEAK/
+1 SEX M
+1 FAMS @F147@
+0 @I481@ INDI
+1 NAME Duane Elmer /PEAK/
+1 SEX M
+1 FAMC @F147@
+0 @I482@ INDI
+1 NAME Frank /PEAK/
+1 SEX M
+1 FAMC @F147@
+0 @I483@ INDI
+1 NAME Charlotte /SANDSTROM/
+1 SEX F
+1 FAMS @F148@
+0 @I484@ INDI
+1 NAME Carmen /SCOFIELD/
+1 SEX F
+1 FAMC @F148@
+1 FAMC @F149@
+0 @I485@ INDI
+1 NAME Baby Son /SCOFIELD/
+1 SEX M
+1 FAMC @F148@
+1 FAMC @F149@
+0 @I486@ INDI
+1 NAME Marriel /LOUISETTE/
+1 SEX F
+1 FAMS @F149@
+0 @I487@ INDI
+1 NAME Artie Merle /GORACKE/
+1 SEX M
+1 FAMS @F142@
+0 @I488@ INDI
+1 NAME Glen /GORACKE/
+1 SEX M
+1 FAMC @F142@
+0 @I489@ INDI
+1 NAME Melvin Harvey /MEIER/
+1 SEX M
+1 FAMS @F150@
+0 @I490@ INDI
+1 NAME Linda Kay /MEIER/
+1 SEX F
+1 FAMC @F150@
+0 @I491@ INDI
+1 NAME William Russell /MEIER/
+1 SEX M
+1 FAMC @F150@
+0 @I492@ INDI
+1 NAME Thomas /BROWN/
+1 SEX M
+1 FAMS @F151@
+0 @I493@ INDI
+1 NAME JOANN /BROWN/
+1 SEX F
+1 FAMC @F151@
+1 FAMC @F152@
+0 @I494@ INDI
+1 NAME Edwin /DALTON/
+1 SEX M
+1 FAMS @F152@
+0 @I495@ INDI
+1 NAME Wilbur Davis /SCOFIELD/
+1 SEX M
+1 FAMS @F153@
+0 @I496@ INDI
+1 NAME Elizabeth Sarah /BURTON/
+1 SEX F
+1 FAMS @F153@
+0 @I497@ INDI
+1 NAME Namomi Violet /Parker/
+1 SEX F
+1 FAMC @F154@
+0 @I498@ INDI
+1 NAME Rita Lucille /Parker/
+1 SEX F
+1 FAMC @F154@
+0 @I499@ INDI
+1 NAME Virgil Leroy /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 30 DEC 1894
+1 DEAT
+2 DATE 8 JUL 1897
+2 PLAC GLADE, PHILLIPS COUNTY, KANSAS
+1 FAMC @F155@
+1 FAMC @F156@
+0 @I500@ INDI
+1 NAME James Earl /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 13 OCT 1898
+2 PLAC GLADE, PHILLIPS COUNTY, KANSAS
+1 DEAT
+2 DATE 5 JUN 1958
+2 PLAC LONGMONT, COLRADO
+1 FAMS @F169@
+1 FAMC @F155@
+1 FAMC @F156@
+0 @I501@ INDI
+1 NAME Emerett Eugene /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 25 DEC 1876
+1 DEAT
+2 DATE 19 FEB 1933
+2 PLAC Kanorado, Sherman,KANAS
+1 FAMS @F156@
+1 FAMC @F159@
+0 @I502@ INDI
+1 NAME Edna Eunice /HARRINGTON/
+1 SEX F
+1 BIRT
+2 DATE 13 AUG 1909
+2 PLAC NUNN, WELD, COLORADO
+1 FAMS @F162@
+1 FAMC @F156@
+0 @I503@ INDI
+1 NAME Harold Wilbur /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 12 SEP 1911
+2 PLAC BURLINGTON, KIT CARSON, COLORADO
+1 DEAT
+2 DATE 9 MAR 1983
+2 PLAC Kanorado, Sherman,KANAS
+1 FAMC @F156@
+0 @I504@ INDI
+1 NAME Arovonia Maud /HARRINGTON/
+1 SEX F
+1 BIRT
+2 DATE 30 SEP 1913
+1 DEAT
+2 DATE 19 FEB 1984
+2 PLAC Phoenix, Maricopa Co., Arizona
+1 FAMS @F165@
+1 FAMC @F156@
+0 @I505@ INDI
+1 NAME Emerett Lee /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 25 JUL 1916
+2 PLAC BURLINGTON, KIT CARSON, COLORADO
+1 DEAT
+2 DATE 11 MAY 1974
+2 PLAC CASTLE ROCK, DOUGLAS, COLORADO
+1 FAMS @F160@
+1 FAMC @F156@
+0 @I506@ INDI
+1 NAME Lawrence Edward /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 7 DEC 1918
+2 PLAC LAJUNTA, OTERO, COLORADO
+1 DEAT
+2 DATE 1 SEP 1969
+1 FAMC @F156@
+0 @I507@ INDI
+1 NAME Delbert De Wayne /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 24 MAY 1922
+2 PLAC BURLINGTON, KIT CARSON, COLORADO
+1 DEAT
+2 DATE 14 JUN 1993
+2 PLAC POCATELLA, BANNOCK, IDAHO
+1 FAMS @F166@
+1 FAMS @F167@
+1 FAMC @F156@
+0 @I508@ INDI
+1 NAME Maron Walter /HARRIGINGTON/
+1 SEX M
+1 BIRT
+2 DATE 24 NOV 1883
+2 PLAC Guthrie, IA
+1 DEAT
+2 DATE 13 MAR 1947
+2 PLAC DENVER, COLORADO
+1 FAMS @F124@
+1 FAMC @F158@
+0 @I509@ INDI
+1 NAME Helen Laurene /HARRIGINGTON/
+1 SEX F
+1 BIRT
+2 DATE 6 FEB 1916
+2 PLAC GLADE, PHILLIPS COUNTY, KANSAS
+1 FAMS @F157@
+1 FAMC @F124@
+0 @I510@ INDI
+1 NAME Elna Ruth /HARRIGINGTON/
+1 SEX F
+1 BIRT
+2 DATE 23 MAR 1928
+2 PLAC KIT CARSON,CHEYENNE COLORADO
+1 DEAT
+2 DATE 13 MAR 1947
+2 PLAC LARKSPUR, DOUGLAS, CO
+1 FAMC @F124@
+0 @I511@ INDI
+1 NAME William Kirk /BAKER/
+1 SEX M
+1 FAMS @F157@
+0 @I512@ INDI
+1 NAME Gary Dean /BAKER/
+1 SEX M
+1 BIRT
+2 DATE 24 JAN 1936
+1 FAMC @F157@
+0 @I513@ INDI
+1 NAME Donald Lee /BAKER/
+1 SEX M
+1 BIRT
+2 DATE 4 FEB 1939
+1 FAMC @F157@
+0 @I514@ INDI
+1 NAME E.E. /HARRINGTON/
+1 SEX M
+1 FAMS @F158@
+0 @I515@ INDI
+1 NAME E. E. /HARRIGINGTON/
+1 SEX M
+1 FAMS @F159@
+0 @I516@ INDI
+1 NAME Mable /HARRIGINGTON/
+1 SEX F
+1 FAMC @F158@
+0 @I517@ INDI
+1 NAME Pearl /HARRIGINGTON/
+1 SEX F
+1 FAMC @F158@
+0 @I518@ INDI
+1 NAME H.W. /HARRIGINGTON/
+1 SEX M
+1 FAMC @F158@
+0 @I519@ INDI
+1 NAME Marrion Walter /HARRINGTON/
+1 SEX F
+1 FAMC @F159@
+0 @I520@ INDI
+1 NAME Mable /HARRINGTON/
+1 SEX F
+1 FAMC @F159@
+0 @I521@ INDI
+1 NAME Pearl /HARRINGTON/
+1 SEX F
+1 FAMC @F159@
+0 @I522@ INDI
+1 NAME H. W. /HARRINGTON/
+1 SEX M
+1 FAMC @F159@
+0 @I523@ INDI
+1 NAME Maxine /MOLLIS/
+1 SEX F
+1 BIRT
+2 DATE 31 MAR 1913
+1 FAMS @F160@
+0 @I524@ INDI
+1 NAME Grimmes Harrison (Guy) /HARRINGTON/
+1 SEX M
+1 ALIA /GUY/
+1 BIRT
+2 DATE 1938
+1 FAMC @F160@
+0 @I525@ INDI
+1 NAME James Lee /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 1940
+1 FAMC @F160@
+0 @I526@ INDI
+1 NAME Flora Mae /HARRINGTON/
+1 SEX F
+1 BIRT
+2 DATE 1942
+1 FAMC @F160@
+0 @I527@ INDI
+1 NAME Betty Jean /HARRINGTON/
+1 SEX F
+1 BIRT
+2 DATE 1944
+1 FAMC @F160@
+0 @I528@ INDI
+1 NAME Judy Darlene /HARRINGTON/
+1 SEX F
+1 BIRT
+2 DATE 1948
+1 FAMC @F160@
+0 @I529@ INDI
+1 NAME Richard Eugene(slim) /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 1947
+1 DEAT
+2 DATE 1981
+1 FAMC @F160@
+0 @I530@ INDI
+1 NAME Elizabeth A. /HARRINGTON/
+1 SEX F
+1 BIRT
+2 DATE 1945
+1 FAMC @F160@
+0 @I531@ INDI
+1 NAME Sandra Coleen /HARRINGTON/
+1 SEX F
+1 BIRT
+2 DATE 1951
+1 FAMC @F160@
+0 @I532@ INDI
+1 NAME Robert /HERING/
+1 SEX M
+1 BIRT
+2 DATE 1954
+1 FAMS @F161@
+1 FAMC @F160@
+0 @I533@ INDI
+1 NAME David Ray /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 1956
+1 FAMC @F160@
+0 @I534@ INDI
+1 NAME Albert Dean /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 1958
+1 FAMC @F160@
+0 @I535@ INDI
+1 NAME Earl Edward /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 1959
+1 FAMC @F160@
+0 @I536@ INDI
+1 NAME Billy Joe /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 1961
+1 FAMC @F160@
+0 @I537@ INDI
+1 NAME Randy Lyn /HARRINGTON/
+1 SEX M
+1 BIRT
+2 DATE 1963
+1 DEAT
+2 DATE 1963
+1 FAMC @F160@
+0 @I538@ INDI
+1 NAME EDITH FAY /SCOFIELD/
+1 SEX F
+1 FAMS @F161@
+0 @I539@ INDI
+1 NAME Albert Roosevelt /JENSEN/
+1 SEX M
+1 BIRT
+2 DATE 18 AUG 1903
+1 DEAT
+2 DATE 12 NOV 1984
+2 PLAC DENVER`
+1 FAMS @F162@
+0 @I540@ INDI
+1 NAME Norma Darlene /JENSEN/
+1 SEX F
+1 BIRT
+2 DATE 24 JUN 1928
+1 FAMS @F163@
+1 FAMC @F162@
+0 @I541@ INDI
+1 NAME Richard Wayne /JENSEN/
+1 SEX M
+1 BIRT
+2 DATE 30 MAY 1930
+1 FAMS @F164@
+1 FAMC @F162@
+0 @I542@ INDI
+1 NAME Lynn Eldon /SHIPPS/
+1 SEX M
+1 FAMS @F163@
+0 @I543@ INDI
+1 NAME Lynetta Jo /SHIPPS/
+1 SEX F
+1 FAMC @F163@
+0 @I544@ INDI
+1 NAME Alvan James /SHIPPS/
+1 SEX M
+1 FAMC @F163@
+0 @I545@ INDI
+1 NAME Mary Jane /GOEHRY/
+1 SEX F
+1 FAMS @F164@
+0 @I546@ INDI
+1 NAME Ricky Lee /JENSEN/
+1 SEX M
+1 BIRT
+2 DATE 1953
+1 FAMC @F164@
+0 @I547@ INDI
+1 NAME Terry Wayne /JENSEN/
+1 SEX M
+1 BIRT
+2 DATE 1956
+1 FAMC @F164@
+0 @I548@ INDI
+1 NAME Randy Lynn /JENSEN/
+1 SEX M
+1 BIRT
+2 DATE 1957
+1 FAMC @F164@
+0 @I549@ INDI
+1 NAME Wesley Dale (Toddy) /SPERRY/
+1 SEX M
+1 FAMS @F165@
+0 @I550@ INDI
+1 NAME Phyliss Mae /SPERRY/
+1 SEX F
+1 FAMC @F165@
+0 @I551@ INDI
+1 NAME Betty Lee /SPERRY/
+1 SEX F
+1 FAMC @F165@
+0 @I552@ INDI
+1 NAME Jack Eugene /SPERRY/
+1 SEX M
+1 FAMC @F165@
+0 @I553@ INDI
+1 NAME Richard Dale /SPERRY/
+1 SEX M
+1 FAMC @F165@
+0 @I554@ INDI
+1 NAME Opel Aline /ADEN/
+1 SEX F
+1 FAMS @F166@
+0 @I555@ INDI
+1 NAME Beverly Jean /MARTINSON/
+1 SEX F
+1 BIRT
+2 DATE 20 APR 1927
+1 FAMS @F167@
+0 @I556@ INDI
+1 NAME Thomas /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 10 MAR 1830
+2 PLAC IRELAND
+1 DEAT
+2 DATE 24 APR 1900
+2 PLAC Phillipsburg, Phillips, Kansas
+1 FAMS @F168@
+0 @I557@ INDI
+1 NAME Sarah Cathrine /WARD/
+1 SEX F
+1 BIRT
+2 DATE 12 OCT 1846
+2 PLAC ALLEGHENNY COUNTY,PENNSYLVANIA
+1 DEAT
+2 DATE 31 OCT 1915
+1 FAMS @F168@
+0 @I558@ INDI
+1 NAME Thomas /Jr.Trimble/
+1 SEX M
+1 BIRT
+2 DATE 6 SEP 1867
+2 PLAC CANADA
+1 FAMC @F168@
+0 @I559@ INDI
+1 NAME John /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 7 SEP 1879
+2 PLAC Phillipsburg, Phillips, Kansas
+1 FAMS @F181@
+1 FAMC @F168@
+0 @I560@ INDI
+1 NAME Eliza /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 15 NOV 1877
+2 PLAC IOWA
+1 FAMC @F168@
+0 @I561@ INDI
+1 NAME J. W. /STONEKING/
+1 SEX M
+1 FAMS @F182@
+0 @I562@ INDI
+1 NAME Elizabeth /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 25 JAN 1863
+1 DEAT
+2 DATE 12 APR 1874
+1 FAMC @F168@
+0 @I563@ INDI
+1 NAME Sarah /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 11 SEP 1864
+1 DEAT
+2 DATE 10 APR 1874
+1 FAMC @F168@
+0 @I564@ INDI
+1 NAME Margret "Mattie" /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 16 OCT 1868
+2 PLAC CANADA
+1 DEAT
+2 DATE 1 APR 1874
+1 FAMC @F168@
+0 @I565@ INDI
+1 NAME Martha /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 20 NOV 1870
+1 DEAT
+2 DATE SEP 1894
+1 FAMS @F183@
+1 FAMC @F168@
+0 @I566@ INDI
+1 NAME Mary /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 8 MAY 1872
+1 DEAT
+2 DATE 20 JUL 1884
+1 FAMC @F168@
+0 @I567@ INDI
+1 NAME Jane "Jennie" /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 8 SEP 1875
+2 PLAC MiCHIGAN
+1 FAMC @F168@
+0 @I568@ INDI
+1 NAME Elizabeth "Lizzie" /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 28 FEB 1881
+2 PLAC Phillipsburg, Phillips, Kansas
+1 FAMS @F182@
+1 FAMC @F168@
+0 @I569@ INDI
+1 NAME Anna Maude /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 28 NOV 1883
+2 PLAC Phillipsburg, Phillips, Kansas
+1 FAMC @F168@
+0 @I570@ INDI
+1 NAME Sophia /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 2 NOV 1885
+2 PLAC Phillipsburg, Phillips, Kansas
+1 FAMS @F184@
+1 FAMC @F168@
+0 @I571@ INDI
+1 NAME William /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 9 SEP 1887
+2 PLAC Phillipsburg, Phillips, Kansas
+1 FAMC @F168@
+0 @I572@ INDI
+1 NAME Hazel /FOSTER/
+1 SEX F
+1 BIRT
+2 DATE 16 AUG 1900
+2 PLAC MONTROSE, COLORADO
+1 DEAT
+2 DATE 1 MAY 1997
+2 PLAC GREELEY, WELD COLORADO
+1 FAMS @F169@
+0 @I573@ INDI
+1 NAME Earlene /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 18 NOV 1921
+2 PLAC MEADE, WELD COLORADO
+1 FAMS @F170@
+1 FAMC @F169@
+0 @I574@ INDI
+1 NAME Ivan J. /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 25 AUG 1925
+2 PLAC Johnstown, Weld, Colorado
+1 DEAT
+2 DATE 30 DEC 1987
+2 PLAC LONGMONT, COLRADO
+1 FAMS @F171@
+1 FAMC @F169@
+0 @I575@ INDI
+1 NAME Donald Foster /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 23 FEB 1925
+2 PLAC Johnstown, Weld, Colorado
+1 FAMS @F174@
+1 FAMC @F169@
+0 @I576@ INDI
+1 NAME David /WAGNER/
+1 SEX M
+1 BIRT
+2 DATE 28 JUN 1917
+2 PLAC LONGMONT, COLRADO
+1 FAMS @F170@
+0 @I577@ INDI
+1 NAME David Earl (Dewey) /WAGNER/
+1 SEX M
+1 BIRT
+2 DATE 8 NOV 1943
+2 PLAC LONGMONT, COLRADO
+1 FAMS @F177@
+1 FAMC @F170@
+0 @I578@ INDI
+1 NAME Gerald Eugene /WAGNER/
+1 SEX M
+1 BIRT
+2 DATE 31 DEC 1945
+2 PLAC LONGMONT, COLRADO
+1 FAMS @F179@
+1 FAMC @F170@
+0 @I579@ INDI
+1 NAME Herbert Lee /WAGNER/
+1 SEX M
+1 BIRT
+2 DATE 2 JUN 1948
+2 PLAC LONGMONT, COLRADO
+1 FAMS @F180@
+1 FAMC @F170@
+0 @I580@ INDI
+1 NAME Rachel /KING/
+1 SEX F
+1 BIRT
+2 DATE 21 NOV 1925
+2 PLAC HIGHLAND, DONIPHAN, KANSAS
+1 FAMS @F171@
+0 @I581@ INDI
+1 NAME Gregory King /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 10 JAN 1950
+2 PLAC LONGMONT, COLRADO
+1 DEAT
+2 DATE 10 JAN 1950
+2 PLAC LONGMONT, COLRADO
+1 FAMC @F171@
+0 @I582@ INDI
+1 NAME Michael J. /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 21 SEP 1951
+2 PLAC LONGMONT, COLRADO
+1 FAMS @F173@
+1 FAMC @F171@
+0 @I583@ INDI
+1 NAME Debra Gay /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 25 OCT 1955
+2 PLAC LONGMONT, COLRADO
+1 FAMS @F172@
+1 FAMC @F171@
+0 @I584@ INDI
+1 NAME David /SMITH/
+1 SEX M
+1 BIRT
+2 DATE 8 DEC 1952
+2 PLAC BOULDER, COLORADO
+1 FAMS @F172@
+0 @I585@ INDI
+1 NAME Benjamin John /SMITH/
+1 SEX M
+1 FAMC @F172@
+0 @I586@ INDI
+1 NAME Bonnie Rickman /SMITH/
+1 SEX F
+1 FAMC @F172@
+0 @I587@ INDI
+1 NAME Amy Alexander /SMITH/
+1 SEX F
+1 FAMC @F172@
+0 @I588@ INDI
+1 NAME Masako Asako /OKANOUE/
+1 SEX F
+1 FAMS @F173@
+0 @I589@ INDI
+1 NAME Kristopher /TRIMBLE/
+1 SEX M
+1 FAMC @F173@
+0 @I590@ INDI
+1 NAME Shirley Mae /WOODS/
+1 SEX F
+1 BIRT
+2 DATE 9 AUG 1928
+2 PLAC WIGGINS, MORGAN, COLORADO
+1 FAMS @F174@
+0 @I591@ INDI
+1 NAME James Allen /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 9 JUL 1953
+2 PLAC KREMMLING, GRAND, COLORADO
+1 FAMS @F175@
+1 FAMC @F174@
+0 @I592@ INDI
+1 NAME Jeanne Elaine /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 26 AUG 1957
+2 PLAC Sacramento, California
+1 FAMC @F174@
+0 @I593@ INDI
+1 NAME Janis Kay /TRIMBLE/
+1 SEX F
+1 BIRT
+2 DATE 24 JAN 1960
+2 PLAC Sacramento, California
+1 FAMS @F176@
+1 FAMC @F174@
+0 @I594@ INDI
+1 NAME Julia Ann /HADLRY/
+1 SEX F
+1 FAMS @F175@
+0 @I595@ INDI
+1 NAME Bryon Donald /TRIMBLE/
+1 SEX M
+1 BIRT
+2 DATE 17 NOV 1988
+2 PLAC Sacramento, California
+1 FAMC @F175@
+0 @I596@ INDI
+1 NAME Donald /WONG/
+1 SEX M
+1 BIRT
+2 DATE 5 AUG 1953
+2 PLAC Sacramento, California
+1 FAMS @F176@
+0 @I597@ INDI
+1 NAME Sherran An /ZIMBELMAN/
+1 SEX F
+1 FAMS @F177@
+0 @I598@ INDI
+1 NAME Davina Ann /WAGNER/
+1 SEX F
+1 BIRT
+2 DATE 27 MAY 1965
+2 PLAC GREELEY, WELD COLORADO
+1 FAMS @F178@
+1 FAMC @F177@
+0 @I599@ INDI
+1 NAME Darrin David /WAGNER/
+1 SEX M
+1 BIRT
+2 DATE 13 AUG 1970
+2 PLAC OKHOLAMA CITY, OK.
+1 FAMC @F177@
+0 @I600@ INDI
+1 NAME Sarah Dawn /WAGNER/
+1 SEX F
+1 BIRT
+2 DATE 29 DEC 1974
+2 PLAC OKHOLAMA CITY, OK.
+1 FAMC @F177@
+0 @I601@ INDI
+1 NAME Sharla Ann /WAGNER/
+1 SEX F
+1 BIRT
+2 DATE 30 APR 1979
+2 PLAC OKHOLAMA CITY, OK.
+1 FAMC @F177@
+0 @I602@ INDI
+1 NAME Mark Charles /VAN DUKER/
+1 SEX M
+1 BIRT
+2 DATE 15 DEC 1963
+1 FAMS @F178@
+0 @I603@ INDI
+1 NAME Abby Caroline /VAN DUKER/
+1 SEX F
+1 BIRT
+2 DATE 19 DEC 1991
+1 DEAT
+2 PLAC `
+1 FAMC @F178@
+0 @I604@ INDI
+1 NAME Heidi Catherine /VAN DUKER/
+1 SEX F
+1 BIRT
+2 DATE 3 OCT 1994
+1 FAMC @F178@
+0 @I605@ INDI
+1 NAME Jane Ann /RIDDLE/
+1 SEX F
+1 BIRT
+2 DATE 29 JUN 1947
+2 PLAC ST JOSEPH , BUCHANAN, MO.
+1 FAMS @F179@
+0 @I606@ INDI
+1 NAME Matthew Ryan /WAGNER/
+1 SEX M
+1 BIRT
+2 DATE 19 JUL 1977
+2 PLAC GREELEY, WELD COLORADO
+1 FAMC @F179@
+0 @I607@ INDI
+1 NAME Michael John /WAGNER/
+1 SEX M
+1 BIRT
+2 DATE 26 JUL 1979
+2 PLAC GREELEY, WELD COLORADO
+1 FAMC @F179@
+0 @I608@ INDI
+1 NAME Yvonne Marie /BOUSQUET/
+1 SEX F
+1 BIRT
+2 DATE 10 SEP 1958
+2 PLAC MA.
+1 FAMS @F180@
+0 @I609@ INDI
+1 NAME David Lee /WAGNER/
+1 SEX M
+1 BIRT
+2 DATE 4 SEP 1983
+2 PLAC DENVER, COLORADO
+1 FAMC @F180@
+0 @I610@ INDI
+1 NAME MARY ELIZABETH /UNKNOWN/
+1 SEX F
+1 FAMS @F181@
+0 @I611@ INDI
+1 NAME Fred /FULLER/
+1 SEX M
+1 FAMS @F183@
+0 @I612@ INDI
+1 NAME Bert /ODIE/
+1 SEX M
+1 FAMS @F184@
+0 @F001@ FAM
+1 HUSB @I309@
+1 WIFE @I310@
+1 CHIL @I200@
+2 _FREL Natural
+2 _MREL Natural
+0 @F002@ FAM
+1 HUSB @I386@
+1 WIFE @I315@
+1 CHIL @I316@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I317@
+2 _FREL Step
+2 _MREL Natural
+0 @F003@ FAM
+1 HUSB @I001@
+1 WIFE @I002@
+1 CHIL @I003@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I004@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I005@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 29 APR 1945
+2 PLAC Pueblo, Colorado
+0 @F004@ FAM
+1 HUSB @I003@
+1 WIFE @I060@
+1 MARR
+2 DATE 24 FEB 1973
+2 PLAC San Jose, California
+0 @F005@ FAM
+1 HUSB @I006@
+1 WIFE @I005@
+1 CHIL @I007@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I008@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I009@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 3 FEB 1979
+2 PLAC Sparta, New Jersey
+0 @F006@ FAM
+1 HUSB @I036@
+1 WIFE @I037@
+1 CHIL @I038@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I040@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I020@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I039@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1890
+2 PLAC unknown
+0 @F007@ FAM
+1 HUSB @I010@
+1 WIFE @I011@
+1 CHIL @I006@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE UNKNOWN
+0 @F008@ FAM
+1 HUSB @I012@
+1 WIFE @I013@
+1 CHIL @I014@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I002@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I015@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 20 NOV 1915
+2 PLAC Florence, Colorado
+0 @F009@ FAM
+1 HUSB @I016@
+1 WIFE @I017@
+1 CHIL @I012@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I050@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I051@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I052@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I053@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I054@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE UNKNOWN
+2 PLAC ?
+0 @F010@ FAM
+1 HUSB @I018@
+1 WIFE @I019@
+1 CHIL @I062@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I013@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I064@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I065@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I063@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I066@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 10 NOV 1888
+2 PLAC ROME, Henry County, IOWA
+0 @F011@ FAM
+1 HUSB @I020@
+1 WIFE @I021@
+1 CHIL @I001@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I022@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I023@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 6 JUN 1920
+2 PLAC Johnstown,Colorado
+0 @F012@ FAM
+1 HUSB @I024@
+1 WIFE @I025@
+1 CHIL @I021@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I026@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I027@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I206@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 30 MAY 1896
+2 PLAC Ellinwood,Barton, Kansas
+0 @F013@ FAM
+1 HUSB @I028@
+1 WIFE @I243@
+1 CHIL @I024@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I215@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I216@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I217@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I218@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I219@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I220@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I221@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 14 FEB 1861
+2 PLAC Batavia, Jefferson, Iowa
+0 @F014@ FAM
+1 HUSB @I030@
+1 WIFE @I031@
+1 CHIL @I028@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I253@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I255@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I256@
+2 _FREL Natural
+2 _MREL Natural
+0 @F015@ FAM
+1 HUSB @I032@
+1 WIFE @I033@
+1 CHIL @I030@
+2 _FREL Natural
+2 _MREL Natural
+0 @F016@ FAM
+1 HUSB @I034@
+1 WIFE @I035@
+1 CHIL @I025@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I300@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I301@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I303@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I304@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I375@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1 MAY 1872
+2 PLAC Fosterburg, Madison County, Illinois
+0 @F017@ FAM
+1 HUSB @I023@
+1 WIFE @I041@
+1 CHIL @I190@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I191@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 5 AUG 1949
+2 PLAC RENO,NEVADA
+0 @F018@ FAM
+1 HUSB @I042@
+1 WIFE @I022@
+1 CHIL @I043@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I044@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I045@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I046@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 20 NOV 1941
+2 PLAC Greeley, Colorado
+0 @F019@ FAM
+1 HUSB @I047@
+1 WIFE @I015@
+1 CHIL @I048@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I049@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 14 APR 1962
+2 PLAC Carmel, California
+0 @F020@ FAM
+1 HUSB @I014@
+1 WIFE @I055@
+1 CHIL @I056@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I057@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I058@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I059@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 26 APR 1938
+2 PLAC New Mexico
+0 @F021@ FAM
+1 HUSB @I189@
+1 WIFE @I038@
+0 @F022@ FAM
+1 HUSB @I320@
+1 WIFE @I046@
+1 MARR
+2 DATE 19 MAY 2001
+2 PLAC Pigeon Ford, Tenn
+0 @F023@ FAM
+1 HUSB @I067@
+1 WIFE @I068@
+1 CHIL @I069@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I070@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I018@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I071@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 3 APR 1859
+2 PLAC Kristberg, Sweden
+0 @F024@ FAM
+1 HUSB @I072@
+1 WIFE @I073@
+1 CHIL @I074@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I067@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I075@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 22 FEB 1835
+2 PLAC Tjallmo
+0 @F025@ FAM
+1 HUSB @I072@
+1 WIFE @I076@
+1 CHIL @I077@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I078@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I079@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1840
+2 PLAC Kristberg, Sweden
+0 @F026@ FAM
+1 HUSB @I072@
+1 WIFE @I080@
+1 MARR
+2 DATE 18 NOV 1860
+2 PLAC kristberg, Sweden
+0 @F027@ FAM
+1 HUSB @I082@
+1 WIFE @I081@
+1 CHIL @I068@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I083@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I084@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I085@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I086@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I087@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I088@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I089@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I090@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1825
+2 PLAC kristberg, Sweden
+0 @F028@ FAM
+1 HUSB @I091@
+1 WIFE @I092@
+1 CHIL @I072@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 18 MAY 1810
+2 PLAC Godegard, Sweden
+0 @F029@ FAM
+1 HUSB @I134@
+1 WIFE @I050@
+1 CHIL @I135@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I136@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I137@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE UNKNOWN
+0 @F030@ FAM
+1 HUSB @I065@
+1 WIFE @I102@
+0 @F031@ FAM
+1 HUSB @I093@
+1 WIFE @I064@
+1 CHIL @I094@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I095@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I096@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1913
+2 PLAC Pueblo, Colorado
+0 @F032@ FAM
+1 HUSB @I052@
+1 WIFE @I097@
+1 CHIL @I098@
+2 _FREL Natural
+2 _MREL Natural
+0 @F033@ FAM
+1 HUSB @I053@
+1 WIFE @I099@
+1 CHIL @I138@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I139@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I140@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I141@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I142@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I143@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE UNKNOWN
+0 @F034@ FAM
+1 HUSB @I100@
+1 WIFE @I062@
+1 _FA1
+2 DATE 29 AUG 1933
+2 PLAC Peaceful Valley
+1 _MEND Death of one spouse
+0 @F035@ FAM
+1 HUSB @I101@
+1 WIFE @I062@
+1 MARR
+2 DATE UNKNOWN
+2 PLAC Denver, Colorado
+0 @F036@ FAM
+1 HUSB @I103@
+1 WIFE @I049@
+1 CHIL @I104@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I105@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 22 FEB 1986
+2 PLAC Turlock, California
+1 _MEND Divorce
+0 @F037@ FAM
+1 HUSB @I106@
+1 WIFE @I049@
+1 CHIL @I107@
+2 _FREL Natural
+2 _MREL Natural
+1 _MSTAT Partners
+0 @F038@ FAM
+1 HUSB @I108@
+1 WIFE @I064@
+1 MARR
+2 DATE 1974
+2 PLAC Colorado Springs, Colorado
+0 @F039@ FAM
+1 HUSB @I109@
+1 WIFE @I094@
+1 CHIL @I111@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 8 NOV 1946
+0 @F040@ FAM
+1 HUSB @I110@
+1 WIFE @I094@
+1 MARR
+2 DATE 12 JUN 1971
+2 PLAC Colorado Springs, Colorado
+0 @F041@ FAM
+1 HUSB @I112@
+1 WIFE @I113@
+1 CHIL @I019@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I157@
+2 _FREL Natural
+2 _MREL Natural
+0 @F042@ FAM
+1 HUSB @I114@
+1 WIFE @I095@
+1 CHIL @I144@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I145@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE UNKNOWN
+2 PLAC ?
+0 @F043@ FAM
+1 HUSB @I063@
+1 WIFE @I115@
+1 CHIL @I116@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I117@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I118@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 27 MAR 1921
+2 PLAC Pueblo, Colorado
+0 @F044@ FAM
+1 HUSB @I116@
+1 WIFE @I119@
+1 CHIL @I169@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I170@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I171@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I172@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 15 SEP 1941
+2 PLAC Taos, New Mexico
+0 @F045@ FAM
+1 HUSB @I117@
+1 WIFE @I120@
+0 @F046@ FAM
+1 HUSB @I096@
+1 WIFE @I184@
+1 CHIL @I185@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I186@
+2 _FREL Natural
+2 _MREL Natural
+0 @F047@ FAM
+1 HUSB @I121@
+1 WIFE @I066@
+1 CHIL @I122@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I127@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE JUN 1928
+0 @F048@ FAM
+1 HUSB @I123@
+1 WIFE @I122@
+1 CHIL @I124@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I125@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I126@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1 JUN 1957
+0 @F049@ FAM
+1 HUSB @I067@
+1 WIFE @I130@
+1 CHIL @I131@
+2 _FREL Natural
+2 _MREL Natural
+0 @F050@ FAM
+1 HUSB @I127@
+1 WIFE @I128@
+1 MARR
+2 DATE 9 DEC
+0 @F051@ FAM
+1 HUSB @I129@
+1 WIFE @I066@
+1 MARR
+2 DATE 16 DEC 1960
+0 @F052@ FAM
+1 HUSB @I132@
+1 WIFE @I071@
+1 CHIL @I156@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I160@
+2 _FREL Natural
+2 _MREL Natural
+0 @F053@ FAM
+1 HUSB @I070@
+1 WIFE @I133@
+1 CHIL @I158@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I159@
+2 _FREL Natural
+2 _MREL Natural
+0 @F054@ FAM
+1 HUSB @I148@
+1 WIFE @I144@
+1 CHIL @I146@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I147@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE UNKNOWN
+0 @F055@ FAM
+1 HUSB @I149@
+1 WIFE @I138@
+1 MARR
+2 DATE UNKNOWN
+0 @F056@ FAM
+1 HUSB @I124@
+1 WIFE @I150@
+1 CHIL @I151@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 6 APR 1991
+2 PLAC Berkeley, California
+0 @F057@ FAM
+1 HUSB @I152@
+1 WIFE @I126@
+1 CHIL @I153@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I154@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I155@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 4 OCT 1980
+0 @F058@ FAM
+1 HUSB @I084@
+1 WIFE @I161@
+1 CHIL @I163@
+2 _FREL Natural
+2 _MREL Natural
+0 @F059@ FAM
+1 HUSB @I084@
+1 WIFE @I162@
+1 CHIL @I164@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I165@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I166@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1 JUL 1866
+2 PLAC Kristberg, Sweden
+0 @F060@ FAM
+1 HUSB @I167@
+1 WIFE @I092@
+1 CHIL @I168@
+2 _FREL Natural
+2 _MREL Natural
+0 @F061@ FAM
+1 HUSB @I173@
+1 WIFE @I169@
+1 CHIL @I174@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I175@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I176@
+2 _FREL Natural
+2 _MREL Natural
+0 @F062@ FAM
+1 HUSB @I171@
+1 CHIL @I177@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I178@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I179@
+2 _FREL Natural
+2 _MREL Natural
+0 @F063@ FAM
+1 HUSB @I180@
+1 WIFE @I172@
+1 CHIL @I181@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I182@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I183@
+2 _FREL Natural
+2 _MREL Natural
+0 @F064@ FAM
+1 HUSB @I145@
+1 WIFE @I187@
+1 CHIL @I188@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE UNKNOWN
+0 @F065@ FAM
+1 HUSB @I201@
+1 WIFE @I027@
+1 CHIL @I202@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I203@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I204@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I205@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 28 DEC 1920
+2 PLAC Evans, Weld, Co, Colorado
+0 @F066@ FAM
+1 HUSB @I206@
+1 WIFE @I207@
+1 CHIL @I208@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I209@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I210@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 PLAC Santa MONICA, California
+0 @F067@ FAM
+1 HUSB @I289@
+1 WIFE @I290@
+1 CHIL @I034@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I293@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I294@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I295@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I296@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I297@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I298@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I299@
+2 _FREL Natural
+2 _MREL Natural
+0 @F068@ FAM
+1 HUSB @I008@
+1 WIFE @I200@
+1 MARR
+2 DATE 24 SEP 2005
+2 PLAC Jaffrey,  New Hampshire
+0 @F069@ FAM
+1 HUSB @I190@
+1 WIFE @I192@
+1 CHIL @I193@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I194@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 20 SEP 1969
+2 PLAC Moscow, Idaho
+0 @F070@ FAM
+1 HUSB @I195@
+1 WIFE @I191@
+1 CHIL @I196@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I197@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1975
+1 _FA1
+2 PLAC divorced
+1 _MSTAT Other
+1 _MEND Unknown
+1 NOTE @NF070@
+0 @NF070@ NOTE
+1 CONC Divorced in mid 80's
+0 @F071@ FAM
+1 HUSB @I198@
+1 WIFE @I193@
+1 CHIL @I199@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 2 NOV 1992
+1 _FA1
+2 PLAC Divorced
+1 _MSTAT Unknown
+1 _MEND Unknown
+0 @F072@ FAM
+1 HUSB @I211@
+1 WIFE @I204@
+1 CHIL @I212@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I213@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I214@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 7 MAY 1944
+2 PLAC Santa MONICA, California
+0 @F073@ FAM
+1 HUSB @I220@
+1 WIFE @I222@
+1 CHIL @I223@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I224@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 26 OCT 1908
+2 PLAC LOS ANGELES CALIFORNIA
+0 @F074@ FAM
+1 HUSB @I215@
+1 WIFE @I225@
+1 CHIL @I226@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I227@
+2 _FREL Natural
+2 _MREL Natural
+0 @F075@ FAM
+1 HUSB @I216@
+1 WIFE @I228@
+1 CHIL @I229@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I230@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I231@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I232@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 17 JAN 1887
+0 @F076@ FAM
+1 HUSB @I233@
+1 WIFE @I217@
+1 CHIL @I234@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I235@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I237@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I238@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 18 OCT 1885
+0 @F077@ FAM
+1 WIFE @I235@
+1 CHIL @I236@
+2 _FREL Natural
+2 _MREL Natural
+0 @F078@ FAM
+1 HUSB @I205@
+1 WIFE @I262@
+1 CHIL @I263@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I264@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I265@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 27 AUG 1949
+2 PLAC Santa MONICA, California
+0 @F079@ FAM
+1 HUSB @I239@
+1 WIFE @I218@
+1 CHIL @I240@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 8 JUN 1893
+0 @F080@ FAM
+1 HUSB @I241@
+1 WIFE @I221@
+1 CHIL @I242@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 26 FEB 1902
+2 PLAC Larned, Pawnee, Kansas
+0 @F081@ FAM
+1 HUSB @I029@
+1 WIFE @I244@
+1 CHIL @I243@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I245@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I246@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I247@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I248@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I249@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I250@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I251@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I252@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 23 APR 1831
+2 PLAC Morgan County, Illinois
+0 @F082@ FAM
+1 HUSB @I254@
+1 WIFE @I253@
+0 @F083@ FAM
+1 HUSB @I257@
+1 WIFE @I256@
+0 @F084@ FAM
+1 HUSB @I202@
+1 WIFE @I258@
+1 CHIL @I259@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I260@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I261@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 26 MAR 1944
+2 PLAC Los ANGELES CALIFORNIA
+1 _MSTAT Other
+0 @F085@ FAM
+1 HUSB @I203@
+1 WIFE @I266@
+1 CHIL @I267@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I268@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I269@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I270@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 14 MAY 1944
+2 PLAC Baytown , Harris, Texas
+0 @F086@ FAM
+1 HUSB @I270@
+1 WIFE @I271@
+1 CHIL @I272@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I273@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I274@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 19 JAN 1980
+1 _MSTAT Other
+0 @F087@ FAM
+1 HUSB @I275@
+1 WIFE @I269@
+1 CHIL @I276@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I277@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 20 MAR 1980
+1 _MSTAT Other
+0 @F088@ FAM
+1 HUSB @I279@
+1 WIFE @I278@
+1 CHIL @I201@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I280@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I281@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I282@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I283@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I285@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I287@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I288@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 15 JAN 1874
+2 PLAC Carthage Illinois
+0 @F089@ FAM
+1 HUSB @I291@
+1 WIFE @I292@
+1 CHIL @I289@
+2 _FREL Natural
+2 _MREL Natural
+0 @F090@ FAM
+1 HUSB @I305@
+1 WIFE @I303@
+1 CHIL @I371@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I372@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I373@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I374@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 5 JUN 1907
+2 PLAC Hutchinson ,KS
+0 @F091@ FAM
+1 HUSB @I300@
+1 WIFE @I306@
+1 CHIL @I307@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 24 FEB 1898
+2 PLAC Larned, Pawnee, Kansas
+0 @F092@ FAM
+1 HUSB @I304@
+1 WIFE @I302@
+1 MARR
+2 DATE 4 NOV 1916
+2 PLAC Des Moines , Iowa
+0 @F093@ FAM
+1 HUSB @I301@
+1 WIFE @I308@
+1 MARR
+2 DATE 28 FEB 1906
+2 PLAC Hutchinson ,KS
+0 @F094@ FAM
+1 HUSB @I318@
+1 WIFE @I058@
+0 @F095@ FAM
+1 HUSB @I311@
+1 WIFE @I059@
+1 CHIL @I312@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I313@
+2 _FREL Natural
+2 _MREL Natural
+0 @F096@ FAM
+1 HUSB @I314@
+1 WIFE @I313@
+1 MARR
+2 DATE 4 JUL 2004
+0 @F097@ FAM
+1 HUSB @I312@
+1 WIFE @I315@
+1 CHIL @I316@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I317@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 22 MAY 2005
+0 @F098@ FAM
+1 HUSB @I319@
+1 WIFE @I057@
+0 @F099@ FAM
+1 HUSB @I388@
+1 WIFE @I387@
+1 CHIL @I389@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I390@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I391@
+2 _FREL Natural
+2 _MREL Natural
+0 @F100@ FAM
+1 HUSB @I045@
+1 WIFE @I321@
+1 CHIL @I322@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1984
+0 @F101@ FAM
+1 HUSB @I044@
+1 WIFE @I323@
+1 CHIL @I387@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I392@
+2 _FREL Natural
+2 _MREL Natural
+0 @F102@ FAM
+1 HUSB @I324@
+1 WIFE @I325@
+1 CHIL @I035@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I333@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I334@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I335@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I336@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I337@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I338@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I339@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 8 MAY 1831
+0 @F103@ FAM
+1 HUSB @I324@
+1 WIFE @I326@
+1 MARR
+2 DATE 8 MAY 1831
+0 @F104@ FAM
+1 HUSB @I324@
+1 WIFE @I327@
+1 CHIL @I328@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I329@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I330@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I331@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I332@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 3 OCT 1812
+2 PLAC Oldendorf, Germany
+0 @F105@ FAM
+1 HUSB @I335@
+1 WIFE @I340@
+1 CHIL @I341@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I342@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I346@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I348@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I349@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I350@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I353@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I355@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 11 NOV 1858
+2 PLAC Alton, Madison, Illinois
+0 @F106@ FAM
+1 HUSB @I343@
+1 WIFE @I342@
+1 CHIL @I344@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I345@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 28 AUG 1889
+2 PLAC IL.
+0 @F107@ FAM
+1 HUSB @I347@
+1 WIFE @I346@
+0 @F108@ FAM
+1 HUSB @I339@
+1 WIFE @I365@
+1 CHIL @I366@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I367@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I368@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I369@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I370@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 11 JUL 1863
+2 PLAC IL.
+0 @F109@ FAM
+1 HUSB @I351@
+1 WIFE @I350@
+1 CHIL @I352@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 22 OCT 1907
+2 PLAC Alton, Madison, Illinois
+0 @F110@ FAM
+1 HUSB @I353@
+1 WIFE @I354@
+1 MARR
+2 DATE 1 OCT 1900
+2 PLAC Alton, Madison, Illinois
+0 @F111@ FAM
+1 HUSB @I356@
+1 WIFE @I357@
+1 CHIL @I324@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I358@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I359@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I360@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I363@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I364@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 9 JUN 1776
+0 @F112@ FAM
+1 HUSB @I360@
+1 WIFE @I361@
+1 CHIL @I362@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1804
+0 @F113@ FAM
+1 HUSB @I376@
+1 WIFE @I375@
+1 CHIL @I377@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I378@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I379@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 31 MAR 1908
+2 PLAC Hutchinson, Reno, Kansas
+0 @F114@ FAM
+1 HUSB @I376@
+1 WIFE @I380@
+1 CHIL @I377@
+2 _FREL Natural
+2 _MREL Step
+1 CHIL @I378@
+2 _FREL Natural
+2 _MREL Step
+1 CHIL @I379@
+2 _FREL Natural
+2 _MREL Step
+1 CHIL @I381@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 24 DEC 1896
+2 PLAC Lewis Sta. Henry Co. MO.
+0 @F115@ FAM
+1 HUSB @I382@
+1 WIFE @I379@
+1 CHIL @I383@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I384@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I385@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 16 NOV 1947
+2 PLAC Oak Ridge, TN
+0 @F116@ FAM
+1 HUSB @I363@
+1 WIFE @I393@
+1 MARR
+2 DATE 23 OCT 1786
+0 @F117@ FAM
+1 HUSB @I364@
+1 WIFE @I394@
+1 MARR
+2 DATE 1800
+2 PLAC BAGBAND, GERMANY
+0 @F118@ FAM
+1 HUSB @I396@
+1 WIFE @I268@
+1 CHIL @I397@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I398@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 26 MAY 1967
+2 PLAC TEXAS CITY, BRAZORIA , TEXAS
+1 _FA1
+2 DATE 16 JAN 1983
+2 PLAC HOUSTON, HARRIS, TEXAS
+1 _MEND Divorce
+0 @F119@ FAM
+1 HUSB @I399@
+1 WIFE @I268@
+1 CHIL @I397@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I398@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I400@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 14 APR 1984
+2 PLAC BAYTOWN HARRIS, TEXAS
+1 _FA1
+2 DATE 17 APR 1997
+2 PLAC HOUSTON, TEXAS
+1 _MEND Divorce
+0 @F120@ FAM
+1 HUSB @I401@
+1 WIFE @I267@
+1 CHIL @I402@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I403@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I404@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 18 AUG 1968
+2 PLAC UNKNOWN
+1 _FA1
+2 DATE UNKNOWN
+1 _MEND Divorce
+0 @F121@ FAM
+1 HUSB @I281@
+1 WIFE @I405@
+1 CHIL @I406@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I407@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I408@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I409@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 4 FEB 1907
+2 PLAC Milliken, Weld CO
+0 @F122@ FAM
+1 HUSB @I410@
+1 WIFE @I406@
+1 CHIL @I411@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I412@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 2 SEP 1926
+2 PLAC Milliken, Weld CO
+0 @F123@ FAM
+1 HUSB @I452@
+1 WIFE @I280@
+1 CHIL @I453@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I454@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I455@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I456@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I457@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I458@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I459@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I460@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I461@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I462@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I463@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 4 JUN 1899
+2 PLAC PHILLIPSBURG, PHILLIPS CO, KANSAS
+0 @F124@ FAM
+1 HUSB @I508@
+1 WIFE @I282@
+1 CHIL @I509@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I510@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 20 JAN 1909
+2 PLAC BURLINGTON,KIT CARSON , COLORADO
+0 @F125@ FAM
+1 HUSB @I412@
+1 WIFE @I413@
+1 CHIL @I414@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 27 FEB 1955
+0 @F126@ FAM
+1 HUSB @I407@
+1 WIFE @I415@
+1 CHIL @I416@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I417@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I418@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I419@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I420@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 10 FEB 1934
+2 PLAC GREELEY WELD COLORADO
+0 @F127@ FAM
+1 HUSB @I447@
+1 WIFE @I448@
+1 CHIL @I415@
+2 _FREL Natural
+2 _MREL Natural
+0 @F128@ FAM
+1 HUSB @I421@
+1 WIFE @I418@
+1 CHIL @I422@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I423@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I424@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I425@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 25 JUL 1962
+0 @F129@ FAM
+1 HUSB @I417@
+1 WIFE @I426@
+1 CHIL @I427@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I428@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I429@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 27 OCT 1978
+2 PLAC RICHLAND, BENTON, WA
+0 @F130@ FAM
+1 HUSB @I417@
+1 WIFE @I430@
+1 CHIL @I431@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 31 JAN 1966
+2 PLAC RICHLAND, BENTON, WA
+0 @F131@ FAM
+1 HUSB @I417@
+1 WIFE @I432@
+1 CHIL @I433@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I434@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 6 MAR 1958
+2 PLAC RICHLAND, BENTON, WA
+0 @F132@ FAM
+1 HUSB @I435@
+1 WIFE @I419@
+1 CHIL @I436@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I437@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I438@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE BEF 1970
+0 @F133@ FAM
+1 HUSB @I439@
+1 WIFE @I419@
+1 CHIL @I436@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I437@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I438@
+2 _FREL Step
+2 _MREL Natural
+1 MARR
+2 DATE AFT 1974
+0 @F134@ FAM
+1 HUSB @I440@
+1 WIFE @I419@
+1 CHIL @I436@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I437@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I438@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I441@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE BEF 1985
+0 @F135@ FAM
+1 HUSB @I442@
+1 WIFE @I419@
+1 CHIL @I436@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I437@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I438@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I441@
+2 _FREL Step
+2 _MREL Natural
+1 MARR
+2 DATE AFT 1985
+0 @F136@ FAM
+1 HUSB @I420@
+1 WIFE @I443@
+1 CHIL @I444@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I445@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 10 OCT 1972
+0 @F137@ FAM
+1 HUSB @I420@
+1 WIFE @I446@
+1 CHIL @I444@
+2 _FREL Natural
+2 _MREL Step
+1 CHIL @I445@
+2 _FREL Natural
+2 _MREL Step
+1 MARR
+2 DATE 1993
+0 @F138@ FAM
+1 HUSB @I449@
+1 WIFE @I450@
+1 CHIL @I448@
+2 _FREL Natural
+2 _MREL Natural
+0 @F139@ FAM
+1 HUSB @I451@
+1 WIFE @I448@
+1 CHIL @I415@
+2 _FREL Step
+2 _MREL Natural
+0 @F140@ FAM
+1 HUSB @I456@
+1 WIFE @I464@
+1 CHIL @I465@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I466@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I467@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 16 AUG 1930
+2 PLAC COLORADO
+0 @F141@ FAM
+1 HUSB @I462@
+1 WIFE @I468@
+1 CHIL @I469@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I470@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 19 MAY 1942
+2 PLAC TRENTO, ITALY
+0 @F142@ FAM
+1 HUSB @I487@
+1 WIFE @I455@
+1 CHIL @I488@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 5 JUL 1924
+2 PLAC COLORADO SPRINGS,EL PASO, COLORADO
+0 @F143@ FAM
+1 HUSB @I471@
+1 WIFE @I461@
+1 MARR
+2 DATE 1935
+0 @F144@ FAM
+1 HUSB @I472@
+1 WIFE @I461@
+1 CHIL @I473@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I474@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1945
+2 PLAC Redwood City, San Mateo. California
+0 @F145@ FAM
+1 HUSB @I475@
+1 WIFE @I453@
+1 CHIL @I476@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I477@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I478@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE MAR 1922
+2 PLAC Milliken, Weld CO
+0 @F146@ FAM
+1 HUSB @I479@
+1 WIFE @I453@
+1 CHIL @I476@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I477@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I478@
+2 _FREL Step
+2 _MREL Natural
+1 MARR
+2 DATE 1938
+0 @F147@ FAM
+1 HUSB @I480@
+1 WIFE @I458@
+1 CHIL @I481@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I482@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 17 SEP 1936
+2 PLAC GREELEY WELD COLORADO
+0 @F148@ FAM
+1 HUSB @I457@
+1 WIFE @I483@
+1 CHIL @I484@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I485@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 10 DEC 1928
+2 PLAC GREELEY WELD COLORADO
+0 @F149@ FAM
+1 HUSB @I457@
+1 WIFE @I486@
+1 CHIL @I484@
+2 _FREL Natural
+2 _MREL Step
+1 CHIL @I485@
+2 _FREL Natural
+2 _MREL Step
+1 MARR
+2 DATE UNKNOWN
+2 PLAC FRANCE
+0 @F150@ FAM
+1 HUSB @I489@
+1 WIFE @I463@
+1 CHIL @I490@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I491@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 26 AUG 1939
+2 PLAC Brighton,ADAMS, COLORADO
+0 @F151@ FAM
+1 HUSB @I492@
+1 WIFE @I460@
+1 CHIL @I493@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 17 MAY 1930
+2 PLAC GREELEY WELD COLORADO
+0 @F152@ FAM
+1 HUSB @I494@
+1 WIFE @I460@
+1 CHIL @I493@
+2 _FREL Step
+2 _MREL Natural
+1 MARR
+2 DATE 29 JUN 1950
+2 PLAC SAN FRANCISCO, CALIFORNIA
+0 @F153@ FAM
+1 HUSB @I495@
+1 WIFE @I496@
+1 CHIL @I452@
+2 _FREL Natural
+2 _MREL Natural
+0 @F154@ FAM
+1 HUSB @I283@
+1 WIFE @I284@
+1 CHIL @I497@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I498@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 1 JUL 1912
+2 PLAC KANORADO, SHERMAN, KANSAS
+0 @F155@ FAM
+1 HUSB @I286@
+1 WIFE @I287@
+1 CHIL @I499@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I500@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 29 JAN 1896
+2 PLAC PHILLIPSBURG, PHILLIPS CO, KANSAS
+0 @F156@ FAM
+1 HUSB @I501@
+1 WIFE @I287@
+1 CHIL @I499@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I500@
+2 _FREL Step
+2 _MREL Natural
+1 CHIL @I502@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I503@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I504@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I505@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I506@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I507@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 21 OCT 1908
+2 PLAC KANORADO, SHERMAN, KANSAS
+0 @F157@ FAM
+1 HUSB @I511@
+1 WIFE @I509@
+1 CHIL @I512@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I513@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 16 JUN 1934
+0 @F158@ FAM
+1 HUSB @I514@
+1 CHIL @I508@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I516@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I517@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I518@
+2 _FREL Natural
+2 _MREL Natural
+0 @F159@ FAM
+1 HUSB @I515@
+1 CHIL @I501@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I519@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I520@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I521@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I522@
+2 _FREL Natural
+2 _MREL Natural
+0 @F160@ FAM
+1 HUSB @I505@
+1 WIFE @I523@
+1 CHIL @I524@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I525@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I526@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I527@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I528@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I529@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I530@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I531@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I532@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I533@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I534@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I535@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I536@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I537@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 6 DEC 1937
+0 @F161@ FAM
+1 HUSB @I532@
+1 WIFE @I538@
+0 @F162@ FAM
+1 HUSB @I539@
+1 WIFE @I502@
+1 CHIL @I540@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I541@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 15 AUG 1927
+0 @F163@ FAM
+1 HUSB @I542@
+1 WIFE @I540@
+1 CHIL @I543@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I544@
+2 _FREL Natural
+2 _MREL Natural
+0 @F164@ FAM
+1 HUSB @I541@
+1 WIFE @I545@
+1 CHIL @I546@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I547@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I548@
+2 _FREL Natural
+2 _MREL Natural
+0 @F165@ FAM
+1 HUSB @I549@
+1 WIFE @I504@
+1 CHIL @I550@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I551@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I552@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I553@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE NOV 1929
+0 @F166@ FAM
+1 HUSB @I507@
+1 WIFE @I554@
+1 MARR
+2 DATE 10 OCT 1947
+2 PLAC ROSITA, CO.
+0 @F167@ FAM
+1 HUSB @I507@
+1 WIFE @I555@
+1 MARR
+2 DATE 14 OCT 1970
+0 @F168@ FAM
+1 HUSB @I556@
+1 WIFE @I557@
+1 CHIL @I286@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I558@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I559@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I560@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I562@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I563@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I564@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I565@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I566@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I567@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I568@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I569@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I570@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I571@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 3 OCT 1861
+2 PLAC SEWICKLEY, ALLENGHENY, PENNSYLVANIA
+0 @F169@ FAM
+1 HUSB @I500@
+1 WIFE @I572@
+1 CHIL @I573@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I574@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I575@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 16 JUL 1921
+2 PLAC Montrose, COLORADO
+0 @F170@ FAM
+1 HUSB @I576@
+1 WIFE @I573@
+1 CHIL @I577@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I578@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I579@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 28 MAR 1942
+2 PLAC DENVER, COLORADO
+0 @F171@ FAM
+1 HUSB @I574@
+1 WIFE @I580@
+1 CHIL @I581@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I582@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I583@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 13 APR 1949
+2 PLAC LONGMONT,BOULDER , COLORADO
+0 @F172@ FAM
+1 HUSB @I584@
+1 WIFE @I583@
+1 CHIL @I585@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I586@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I587@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 22 OCT 1983
+0 @F173@ FAM
+1 HUSB @I582@
+1 WIFE @I588@
+1 CHIL @I589@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 18 JUN 1977
+2 PLAC YASU-CHO KOCHI, JAPAN
+0 @F174@ FAM
+1 HUSB @I575@
+1 WIFE @I590@
+1 CHIL @I591@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I592@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I593@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 29 MAR 1949
+0 @F175@ FAM
+1 HUSB @I591@
+1 WIFE @I594@
+1 CHIL @I595@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 5 JUN 1977
+0 @F176@ FAM
+1 HUSB @I596@
+1 WIFE @I593@
+0 @F177@ FAM
+1 HUSB @I577@
+1 WIFE @I597@
+1 CHIL @I598@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I599@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I600@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I601@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 22 MAY 1964
+2 PLAC RATON, COLFAX, NEW MEXICO
+0 @F178@ FAM
+1 HUSB @I602@
+1 WIFE @I598@
+1 CHIL @I603@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I604@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 14 DEC 1984
+2 PLAC OKHOLAMA CITY, OK.
+0 @F179@ FAM
+1 HUSB @I578@
+1 WIFE @I605@
+1 CHIL @I606@
+2 _FREL Natural
+2 _MREL Natural
+1 CHIL @I607@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 17 AUG 1974
+2 PLAC PROSPECT VALLEY,COLORADO
+0 @F180@ FAM
+1 HUSB @I579@
+1 WIFE @I608@
+1 CHIL @I609@
+2 _FREL Natural
+2 _MREL Natural
+1 MARR
+2 DATE 4 FEB 1982
+0 @F181@ FAM
+1 HUSB @I559@
+1 WIFE @I610@
+1 MARR
+2 DATE 23 NOV 1907
+0 @F182@ FAM
+1 HUSB @I561@
+1 WIFE @I568@
+1 MARR
+2 DATE 6 FEB 1901
+0 @F183@ FAM
+1 HUSB @I611@
+1 WIFE @I565@
+1 MARR
+2 DATE 10 JAN 1893
+0 @F184@ FAM
+1 HUSB @I612@
+1 WIFE @I570@
+0 TRLR

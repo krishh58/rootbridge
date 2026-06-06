@@ -1,0 +1,2444 @@
+
+
+
+
+
+
+
+
+
+
+
+
+                       *     *  ****     *    **** *****
+                       **   **  *   *   * *  *     *
+                       * * * *  ****   *****  ***  ****
+                       *  *  *  *   *  *   *     * *
+                       *     *  ****   *   * ****  *****
+
+
+
+                            ***      *****     ****
+                           *   *     *         *   *
+                           *         ****      *   *
+                           *  ***    *         *   *
+                            ****  *  *****  *  ****  *
+
+
+
+
+
+
+
+                                      MBASE
+                             GENERAL EXTERNAL DESIGN
+                                  Revision 1.1
+
+                                   Dick Rawson
+
+                                     TYMNET
+                         NETWORK TECHNOLOGY DEVELOPMENT
+                                 March 17, 1986
+
+
+
+
+      File: MBASE13, updated March 17, 1986 12:31
+
+      *==================================================================*
+      | Tymnet, Inc.'s proprietary rights are included in the            |
+      | information disclosed herein.  The recipient, by receiving this  |
+      | document, agrees that neither this document nor the information  |
+      | disclosed herein nor any part thereof shall be reproduced or     |
+      | transferred to other documents or used or disclosed to others    |
+      | for manufacturing or for any other purpose except as             |
+      | specifically authorized in writing by Tymnet, Inc.               |
+      *==================================================================*
+
+
+
+   Copyright 1986 by Tymnet -- The McDonnell Douglas Network Systems Company
+
+
+
+
+
+
+
+
+
+
+                                                           March 17, 1986
+
+
+
+
+
+
+                                     PREFACE
+
+
+        This General External Design describes in general terms the
+        functionality of the MBase slot, and how it interacts with its
+        Spirit and ISIS interfaces, so as to achieve the Design
+        Objectives.
+
+        Concurrent with implementation, the External Reference
+        Specification is to be completed, detailing the actual
+        functionality and interactions as implemented.  That ERS then
+        superceeds this GED.
+
+
+
+                                    FOREWARD
+
+
+        MBase is the Tymnet interface for the Microdata Spirit computer.
+        The MBase software runs on the TSI, or Tymnet Spirit Interface
+        processor, which is a card plugging into the Spirit's card cage,
+        on the processor and memory bus, S-BUS.  In fact, the TSI is a
+        Tymnet Engine running ISIS, and the MBase software runs as an
+        ISIS application slot.
+
+        Each Tymnet base to date has used a different, customized host
+        interface, and MBase follows this hallowed tradition.  The
+        differences are more radical than usual, because MBase is
+        required to represent each Tymnet circuit as a distinct pair of
+        S-BUS I/O devices, and because MBase will be passing ISIS
+        messages between Spirit and ISIS largely unaltered.  As always,
+        the details of controlling the host/base interface also have an
+        important influence on how we define the base/host protocol; in
+        addition, implementation will require certain techniques to
+        achieve good throughput over the S-BUS.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        2                 Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+                                                           March 17, 1986
+
+
+
+
+
+
+                               SUMMARY OF CHANGES
+
+
+        Revision 1.0 was the initial edition.
+
+        Revision 1.1 makes the following changes and additions:
+
+           - A remark clarifies the relationship between TYM.03.S and the
+           ISIS Reference Manual.
+
+           - Description of the S-BUS interface is changed and elaborated
+           concerning Channel -1, Halt I/O for circuit ports, Halt I/O on
+           Channel 0 at power failure, clearing of Start I/O and Halt I/O
+           fields upon sending status, and how the 256 channels are used.
+
+           - Added sections describe responsibilities for initializing S-
+           BUS tables, and for handling the situation of finding invalid
+           values in an IOCB.
+
+           - A section describes S-BUS Stall Timeout detection, and the
+           command Set S-BUS Timeout Value.
+
+           - Start I/O Error is indicated if a Read Data command
+           specifies a length shorter than a Circuit Signal to be
+           presented.
+
+           - A new section mentions the use of the Host Status message,
+           and specifies that MBase limits the rate of its use.
+
+           - A remark is added to clarify that MBase passes all ISIS
+           messages to Spirit.
+
+           - The data forwarding description now includes the length
+           criterion, and emphasizes that the function serves to help
+           minimize the Spirit interruption rate, not to analyze the data
+           stream into protocol units for Spirit.
+
+           - Two messages are added to let Spirit control whether MBase
+           provides automatic input backpressuring in most cases.
+
+           - Various minor editing and formatting changes.
+
+
+           Most of these changes are also indicated by a vertical bar to
+           the left of affected text.
+
+
+
+
+
+
+        3                 Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+                                                           March 17, 1986
+
+
+
+
+
+
+                       T A B L E    O F    C O N T E N T S
+
+
+                     Preface
+
+                     Forward
+
+                     Summary of Changes
+
+
+                  1  General Functionality
+
+                  2  Spirit-Bus Link Level Protocols
+                  2.1  S-Bus Design Considerations
+                  2.2  S-Bus Channel Assignments
+                  2.3  S-Bus Command Definitions
+                  2.4  S-Bus Driver
+     |            2.5  S-Bus Initialization
+     |            2.6  S-Bus Interface Damage
+     |            2.7  S-Bus Power Fail Handling
+
+                  3  MBase/Spirit Session Level Protocols
+                  3.1  Messages
+                  3.2  ISIS/Spirit Message Code Mapping
+                  3.3  Interface Reset Procedure
+                  3.4  Suspend and Resume
+                  3.5  Circuit Establishing Procedures
+                  3.6  Circuit Clearing Procedures
+                  3.7  Circuit Data and Signal Flow Procedures
+                  3.8  Halting a Pending Output Command
+                  3.9  Disk and Tape Services - INCOMPLETE!
+     |            3.10 S-Bus Stall Timeout Monitoring
+
+                  4  Availability and Servicability
+                  4.1  Error Handling Guidelines
+                  4.2  Event Trace Tables
+
+                  5  References
+
+
+
+
+                                    APPENDIX
+
+
+                  A    The Microdata Spirit Bus
+
+
+
+
+
+        4                 Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        General Functionality                              March 17, 1986
+
+
+
+
+
+
+                       Chapter 1  -  GENERAL FUNCTIONALITY
+
+
+        Here we mention each general area of MBase function, trying to
+        suggest why it is there, or how it is used.  Every MBase item is
+        discussed at more length in following chapters.
+
+
+        The functions of Booting and Downline loading are implemented in
+        the TSI microcode and Engine prom.  They aren't treated further
+        here.
+
+        Interface Reset is the procedure for initializing the S-BUS
+        dialog between the MBase slot and the Spirit cpu, either after
+        the slot or Engine has been rebooted, or to reestablish the
+        dialog after it failed or stalled.
+
+        MBase provides the S-BUS driver functions at two levels:
+        interpreting the I/O requests that Spirit makes on a channel-by-
+        channel basis using the IOCB control blocks, and moving data and
+        status indications between Spirit and MBase across the S-BUS
+        using the Message control block.
+
+        MBase receives ISIS messages in its Dispatcher ring for
+        forwarding to Spirit, and vice versa.  MBase buffers ISIS
+        messages for a Spirit channel that is not immediately able to
+        read them.
+
+        MBase keeps track of which S-BUS channels are attached to
+        Dispatcher ports, in order to perform S-BUS I/O correctly.  MBase
+        interprets ISIS messages and Spirit messages pertaining to call
+        establishment, and participates in the call clearing procedure.
+
+        MBase and Spirit exchange some messages concerning the operation
+        of MBase or the characteristics of individual circuits; these
+        messages are not ISIS messages, and don't involve the Dispatcher
+        rings.
+
+        MBase reformats ISIS messages between their standard ISIS formats
+        and a private representation for the Spirit.  This is done to
+        speed up S-BUS transfers.  The main change is compressing the
+        ISIS message type code into fewer than 8 bits.  To handle future
+        additions to the set of ISIS messages, the Spirit/ISIS code
+        correspondence is defined by a table in MBase, rather than by
+        literals in the program code; Spirit loads this table into MBase
+        during initialization.
+
+        MBase makes explicit decisions concerning when to "forward"
+        circuit data received from the Dispatcher.  This is another S-BUS
+
+
+        5                 Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        General Functionality                              March 17, 1986
+
+
+        optimization, in that the cost of doing an additional S-BUS I/O
+        operation is quite high, compared to the incremental cost of
+        transferring additional characters as part of a single S-BUS I/O
+        operation.  An analogous issue in the X.3 PAD is called data
+        forwarding, so it is helpful to use that terminology here.
+     |  Spirit is able to adjust MBase's data forwarding criteria for
+     |  each circuit, independently of others.  (Spirit cannot rely on
+     |  this facility to indicate when certain data arrives on a circuit,
+     |  however; MBase uses data forwarding criteria only to limit how
+     |  long forwarding may be delayed.)
+
+        MBase can suspend I/O activity with Spirit upon Spirit's request,
+        and resume activity later without unnecessary disruption.
+
+        MBase has no explicit policy of rationing individual circuits'
+        usage of its bandwidth in order to compel fair sharing; it is
+        thought that both the S-BUS and Dispatcher Ring interfaces have
+        adequate bandwidth
+
+        MBase provides a connection between ISIS disk and tape drivers
+        and the Spirit peripheral server, so that Spirit can provide the
+        disk and tape services needed by a TSI Supervisor slot.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        6                 Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        S-BUS Link Level Protocols                         March 17, 1986
+
+
+
+
+
+
+                  Chapter 2  -  SPIRIT-BUS LINK LEVEL PROTOCOLS
+
+
+        The design of MBase is very strongly molded by the nature of the
+        Spirit cpu, and its backplane bus, the S-BUS.  A much larger part
+        of the design than one might expect is devoted to using the S-BUS
+        correctly and efficiently.
+
+        In this chapter we review the S-BUS in general (more details are
+        in Appendix A), the assignment of S-BUS channels to specific
+        uses, the controller I/O commands defined for MBase, and the S-
+        BUS Driver that is MBase's software interface to the S-BUS.
+
+
+
+
+                        2.1 - S-BUS Design Considerations
+
+
+        Microdata's Spirit Bus (S-BUS) is the communication path between
+        Spirit and TSI (and therefore MBase).  It is a computer backplane
+        bus; TSI is a "slave", responding to bus read and write requests,
+        but not initiating transfer requests; it can request an interrupt
+        of the Spirit cpu, and must do so during I/O operations.
+
+        Appendix A is an overview of how the S-BUS works with a
+        peripheral controller such as TSI.
+
+     |  The S-BUS reference document is the Spirit Bus Interface
+     |  Specification, Microdata IS20035007.  Some details changed, and
+     |  many more were added for TSI and MBase; see also the TSI/MBase
+        Software Interface, Microdata TYM.03.S.
+
+        TSI maps the 64 KByte S-BUS Window into Engine Memory, and ISIS
+        maps it into MBase slot memory.  Spirit and MBase both read and
+        modify control blocks placed there.  MBase must notice when a
+        channel's IOCB SIO (Start I/O) field is set to X'01'; that
+        requires scanning all SIO fields that might be used.  Finding SIO
+        set merely tells MBase that Spirit has prepared a request for
+        MBase in the rest of the IOCB.  Nothing happens further until
+        MBase makes it happen.  Multiple channels may have pending I/O
+        present concurrently - it's just a bit pattern in storage.
+
+        MBase also must notice when a channel's IOCB HIO (Halt I/O) field
+        is set to X'01'.  Halt I/O is provided for Spirit to ask MBase to
+        abort the request specified in the IOCB.  MBase may abort the
+        command, or may proceed normally, depending on timing.  The
+        purpose of aborting the command this way is to compel a command
+        to end when it appears stuck; therefore, it is unimportant
+
+
+        7                 Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        S-BUS Link Level Protocols                         March 17, 1986
+
+
+        whether the command proceeds normally or aborts abnormally, just
+     |  so it proceeds.  MBase supports Halt I/O this way on even
+     |  numbered channels 4 and higher; that means that that Halt I/O is
+     |  supported for circuit-port output commands, but not for input
+     |  commands.  On Channel 0, Halt I/O signals MBase that power is
+     |  failing.  MBase does not scan for Halt I/O requests very
+     |  frequently.
+
+        The Message Block is the means by which MBase makes data transfer
+        requests to Spirit; there is only one such block, and at most one
+        Service Request can be active or pending at a time.  When Spirit
+        provides the requested service, it is doing nothing else with its
+        cpu; the TSI sees the transfer as DMA, however.
+
+        MBase can make transfers only to fulfill active IOCB commands.
+        It can't simply expect to transfer network messages to Spirit
+        upon arrival:  there might be no Read command started on the
+        appropriate channel, or the Message Block might be busy
+        requesting a data move for a different channel.  For these
+        reasons, MBase must be able to buffer received messages.
+
+        Also, for example, it is quite possible for MBase to need to make
+        several S-BUS data transfers as a result of processing the ISIS
+        input ring.  Since only one can be requested at a time, MBase
+        must accumulate a queue of pending transfer requests to be
+        started as previous ones complete.
+
+        There is considerable latency from the instant Spirit sets SIO in
+        some IOCB, until the instant MBase has done the last Service
+        Request needed to perform the IOCB command.  Also, Spirit must
+        spend some cpu to process each I/O interrupt, and Read commands
+        cost the Spirit at least one interrupt each.  For these reasons,
+        MBase sometimes explicitly delays received circuit data, rather
+        than presenting it immediately to Spirit.  This is detailed
+        later; see the section "Circuit Data and Signal Flow Procedures."
+
+     |  MBase must clear both the Start I/O and Halt I/O fields of an
+     |  IOCB just prior to making a Read Status Service Request for the
+     |  IOCB.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        8                 Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        S-BUS Link Level Protocols                         March 17, 1986
+
+
+
+
+                         2.2 - S-BUS Channel Assignments
+
+
+        The Microdata S-BUS specification doesn't define what the
+        controller should use the set of 256 channels for, with only
+        minor exceptions.  Each controller can define channel usage to
+        suit its needs, and MBase does so.  For complete definitions, see
+        the TSI/MBase Software interface specification.
+
+        As a general rule, two S-BUS channels are used for each Tymnet
+        circuit, one for transmit and one for receive, but there are some
+        special low-numbered channels.
+
+        Channels 2 and 3 correspond to ISIS Dispatcher port zero, meaning
+        that they are used for circuit construction, etc., just as
+        Dispatcher port zero is usually.  In addition, MBase presents an
+        ISIS Needle or Pseudo Needle indication using the Attach Channel
+        message on Channel 3 (in contrast, ISIS presents its needles on
+        the port to which the circuit is being connected).
+
+        Channel 1 is used bidirectionally for messages between Spirit and
+        MBase, meaning things of general concern to MBase.  This is in
+        contrast to two alternatives:  things of concern to a specific
+        circuit (channel pair), and things of concern to the TSI
+        hardware.
+
+        Channel 0 is used bidirectionally for messages between Spirit and
+        TSI.  These are messages that must work even though MBase
+        software is not (yet, or still) running in its ISIS slot, and so
+        are handled by TSI fie.  MBase is not involved; and Channel
+     |  0 is not used while MBase is running.  However, see the
+     |  description of Power Failure Handling for an exception, where
+     |  Channel 0 Halt I/O signals a power failure.
+     |
+     |  Channel -1 is indicated with the Unsolicited Interrupt Service
+     |  Request, but there actually is no corresponding IOCB:  an
+     |  Unsolicited Interrupt pertains to Channel 0, although the Message
+     |  Block has X'FF' (-1) in the Channel Number field, by convention.
+     |  All this, too, is used only by the TSI firmware, not by MBase.
+     |
+     |  The S-BUS really has only 256 channels per controller, despite
+     |  the shifted numbering scheme.  Dedicating channels 0, 1, 2, and 3
+     |  to various control purposes leaves 252 channels for Tymnet
+     |  circuits.  Tymnet circuits each use two channels, and MBase
+     |  supports 125 Tymnet circuits using channels 4 through 253.
+     |  Channels 254 and 255 have no assigned use.
+
+
+
+
+
+
+
+        9                 Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        S-BUS Link Level Protocols                         March 17, 1986
+
+
+
+
+                         2.3 - S-BUS Command Definitions
+
+
+        There is also a custom set of I/O commands for MBase channels.
+     |  The commands used on Channel 0 aren't mentioned here, because
+        they are implemented in TSI firmware.  Full details are in the
+        TSI/MBase Software Interface specification.
+
+        The commands specified for S-BUS channel 1 are:
+
+           Reset Interface
+
+           Read Extended Status
+
+     |     Load Mapping Tables
+     |
+     |     Set S-BUS Timeout Value
+
+           Suspend MBase
+
+           Resume MBase
+
+        The commands specified for S-BUS input channels (3, 5, ... 253)
+        are:
+
+           Read Data
+
+        The commands specified for S-BUS output channels (2, 4, ... 252)
+        are:
+
+           Write Data
+
+           Write Single Byte
+
+           Send Circuit Signal Long
+
+           Send Circuit Signal Short (3 bytes)
+
+        The scheme behind the design of commands for the Tymnet channels
+        is to eliminate one Spirit cpu interrupt if only very few bytes
+        need to be transferred.  For output (Write and Send commands),
+        the command code determines the format.  For input (Read
+        command), MBase choses the format according to what happens to be
+        appropriate, and informs Spirit by means of fields in the Message
+        Block.  Spirit can't predict what MBase will next have available
+        to be read, so Spirit lets MBase optimize the transfer format at
+        the last moment.
+
+        Note that Spirit must specify a transfer length for the Read Data
+        command that is long enough to hold the longest possible circuit-
+     |  signal message.  (MBase indicates Start I/O Error if it has a
+
+
+        10                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        S-BUS Link Level Protocols                         March 17, 1986
+
+
+     |  circuit signal that is too long for the pending Read Data
+     |  command.)  That is because there is no way to split a circuit
+        signal across two Read Data commands.  MBase does however split
+        incoming circuit data as required by several constraints:  Read
+        Data's transfer length, forwarding characteristics, and message
+        sequences.  In particular, MBase forwards circuit data when the
+        forwarding characteristics are satisfied, or when a circuit-
+        signal arrives following the data.
+
+        All output from a Send Circuit Signal command is placed in the
+     |  Dispatcher OUT ring at the same time.  (The Logon String circuit
+     |  signal is an exception; it evokes a sequence of Normal Logon
+     |  Character ISIS messages.)  In contrast, output from a Write
+        command is treated as a continuous sequence of bytes and the
+        bytes are placed in the OUT ring grouped unpredictably into ISIS
+        messages.  MBase preserves the ordering of all circuit signals
+        and data bytes within each circuit.
+
+
+
+
+                               2.4 - S-BUS Driver
+
+
+        The S-BUS Driver manages a queue of Service Requests that must
+        await a turn to use the Message Block.  Details are a part of the
+        internal design, but it is worth noting here that the driver
+        exists.
+
+        Its input queue does affect MBase's functional characteristics:
+        an MBase routine may decide to transfer a message to Spirit, and
+        queue such a request with the S-BUS Driver, but the requesting
+        routine doesn't have any control over when the transfer will
+        actually be done.  It might go immediately, or it may wait
+        awhile.  Spirit could send a Zap message for the circuit before
+        receiving the queued message, and as a result Spirit would
+        receive the queued message on a circuit that it knew it had
+        zapped.
+
+        The S-BUS Driver also polls IOCB Start I/O and Halt I/O fields to
+        detect new Spirit commands on attached channels.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        11                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        S-BUS Link Level Protocols                         March 17, 1986
+
+
+
+
+     |                     2.5 - S-BUS Initialization
+     |
+     |
+     |  The TSI firmware initializes all IOCB and Message Block space
+     |  during its reset initialization.  The MBase slot receives control
+     |  with the IOCBs and the Message Block usable, but idle; MBase is
+     |  not responsible for any initialization.
+     |
+     |
+     |
+     |
+     |                    2.6 - S-BUS Interface Damange
+     |
+     |
+     |  MBase may detect an inappropriate value in some field of an IOCB.
+     |  Either the field was modified by an unintended store operation by
+     |  the Spirit or MBase cpu, or software that intended to modify the
+     |  field got it wrong.
+     |
+     |  When MBase detects such a thing, even after performing some data-
+     |  transfer Service Requests for the channel, MBase issues a Read
+     |  Status Service Request to indicate the trouble, and also to end
+     |  the command.  The status bytes indicate Attention and Start I/O
+     |  Error, plus a specific code in Status Byte 1.
+     |
+     |  The code is Illegal Command, if a bad value was noticed in the
+     |  IOCB command field, and Damaged or Illegal IOCB otherwise.
+     |
+     |  Further response to the error is up to Spirit; MBase will try to
+     |  perform any further Spirit commands on the channel.  Spirit
+     |  should first record anything that should be analyzed later.
+     |  Thereafter, Spirit might ignore the circuit's channel pair, or
+     |  reinitialize the IOCB to all zeros, or command Reset Interface,
+     |  or even use Channel 0 to reset TSI and dump its memory for
+     |  analysis.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        12                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        S-BUS Link Level Protocols                         March 17, 1986
+
+
+
+
+     |                 2.7 - S-BUS Power Failure Handling
+     |
+     |
+     |  MBase is normally unconcerned with Channel 0; rather, Channel 0
+     |  normally is used only by TSI firmware.  However, MBase does
+     |  respond to a Channel 0 Halt I/O indication, which Spirit uses to
+     |  warn of power failure.
+     |
+     |  In the event Spirit detects that power will fail, Spirit asserts
+     |  the Power Failure Warning S-BUS indication, and later indicates
+     |  Halt I/O on Channel 0.  TSI firmware ignores the Channel 0 Halt
+     |  I/O indication in this case, because the S-BUS Power Failure
+     |  Warning indication is present.
+     |
+     |  MBase polls Channel 0 for a Halt I/O indication, and begins the
+     |  Interface Reset Procedure (section 3.3) when it notices the Halt
+     |  I/O.  As a result, MBase aborts all active S-BUS commands as soon
+     |  as possible, after which Spirit can flush its system memory to
+     |  disk before power finally fails.
+     |
+     |  This accomplishes the intended purpose of Channel 0 Halt I/O, but
+     |  deviates from the exact response that Channel 0 Halt I/O is
+     |  documented (in the Spirit Bus Interface Specification) as
+     |  causing.  According to that document, Channel 0 Halt I/O should
+     |  act as if a separate Halt I/O indication had been set into each
+     |  active IOCB, and that seems to say MBase should be presenting I/O
+     |  Halted status, rather than Interface Reset Required status.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        13                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+
+
+
+
+                   3  -  MBASE/SPIRIT SESSION LEVEL PROTOCOLS
+
+
+        These protocols use the Spirit Bus facilities to build, use, and
+        clear communications circuits.  One component is the procedure
+        for establishing and reestablishing a session of communication
+        between Spirit and MBase.  Once such a session exists, we need
+        procedures for establishing and clearing individual circuits.
+        Also included in this section are procedures for passing data on
+        each individual circuit, although a case could be argued for
+        making this a separate protocol level.
+
+     |  MBase passes all ISIS messages to Spirit, even though MBase
+     |  interprets some of the messages itself.
+
+
+
+
+                                 3.1 - Messages
+
+
+        These are "messages" in approximately the sense of ISIS Messages,
+        and in fact most of them correspond one-to-one with ISIS
+     |  Messages, differing only slightly.  They are enumerated in
+     |  TSI/MBase Software Interface; for each message that corresponds
+     |  to a specific ISIS message, the ISIS-II Reference Manual
+     |  specifies format and usage.  Here is a general description of the
+        scheme, and some additional descriptions of several messages.
+
+        Messages convey either actual circuit data, or else convey some
+        kind of control signal about the circuit or its data; these
+        control signals are termed "circuit signals" in MBase
+        documentation.  Various different S-BUS incantations are used to
+        move a message between Spirit and MBase, but that doesn't modify
+        the message's meaning, so we don't need to mention S-BUS commands
+        in order to discuss the messages.
+
+        Messages do not specify a port number (c.f. RPORT in ISIS format
+        messages), because the port number is implied by the S-BUS
+        channel used.
+
+
+
+
+
+
+
+
+
+
+
+        14                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+
+
+        3.1.1 - PORT 0 (Channels 2 and 3) Messages
+
+          TAKEOVER message:
+
+             When the Node slot informs MBase, by an ISIS message, that a
+             Supervisor has taken over the node, Spirit may need to
+             respond.  This needs further study; development has removed
+             some of the reasons for responding, but we need to see what
+             remains.
+
+             If Spirit was in the process of requesting a new circuit,
+             the request may need to be restarted, if it's possible that
+             the old Supervisor got the request but didn't complete it.
+
+             Certain host characteristics were passed to the Supervisor,
+             but not in ISIS or the Node slot; those wouldn't be
+             reportable by ISIS or the Node slot during a takeover.
+             Spirit would have to send any such messages anew.
+
+          Attach Channel message:
+
+             MBase passes the information from an ISIS needle or
+             pseudoneedle message to Spirit using Channel 3, and not
+             using the channel associated with the port ISIS assigned.
+             This differs from how ISIS presents the needle to MBase.
+
+
+        3.1.2 - Circuit Port (Channels 4 - 253) Messages
+
+          DATA message:
+
+             Input characters are buffered in MBase, and may be grouped
+             differently when forwarded than when received.  For example,
+             if AAAA was received from the Dispatcher, followed later by
+             BBB on the circuit, Spirit could receive AAAABBB all at
+             once, or perhaps two messages of AA followed by AABBB, etc.
+             (See also the discussion of SET FORWARDING CHARACTERISTICS.)
+
+             Output characters are also buffered in MBase; they are
+     |       output to ISIS subject to several considerations:  transfers
+             from Spirit, any Set Transmit Limit message received from
+             ISIS, and space available in the Dispatcher OUT ring.
+
+
+
+
+
+
+
+
+
+
+
+        15                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+          APPLY/RELEASE BACKPRESSURE messages:
+
+             MBase controls backpressure against incoming circuit flow,
+             but considers the Spirit's backpressure messages.  MBase
+             applies backpressure if Spirit requests it, or if MBase has
+             some reason to reduce flow (such as buffer shortage); MBase
+             releases backpressure if neither Spirit nor MBase require
+     |       it.  Spirit can disable MBase applying backpressure for its
+     |       own reasons:  see below.
+
+             MBase does not otherwise honor backpressure requests from
+             Spirit.  In particular, Spirit cannot assume that input from
+             a circuit will immediately cease when Spirit applies
+             backpressure.  (MBase could add some functionality along
+             these lines, but there can still be no guarantee that
+             further data haven't ALREADY arrived in MBase and been
+             buffered waiting for the S-BUS Driver to transfer it to
+             Spirit.)
+
+             ISIS controls backpressure against MBase output, in that
+             MBase obeys ISIS Apply and Release Backpressure messages, in
+             addition to passing those messages through to Spirit.  This
+             is necessary because Spirit could not respond to the ISIS
+             Apply Backpressure message promptly enough to protect ISIS's
+             buffers.  MBase continues to process output-channel commands
+             as long as possible.  Some circuit signals are performed
+             regardless of backpressure:  gobbler, and all of the circuit
+             clearing signals.
+
+             If a Spirit output command addresses a backpressured
+             Dispatcher port, the S-BUS channel command remains pending.
+             Spirit may need to use Halt I/O to recover; see section 3.7,
+             below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        16                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+     |    AUTOMATIC BACKPRESSURE Permission messages:
+     |
+     |       Spirit uses the Automatic Backpressure Not Permitted message
+     |       to disable MBase's automatic backpressure control against
+     |       received circuit data.  That way, Spirit can be certain of
+     |       receiving circuit data as promptly as conditions permit,
+     |       even if MBase (or perhaps even Spirit) is overloaded.
+     |
+     |       Spirit sends the Automatic Backpressure Permitted message to
+     |       restore MBase's automatic backpressure control.  When a
+     |       circuit is first attached, automatic backpressure control is
+     |       in effect.
+     |
+     |       While Spirit has MBase Suspended, MBase disregards whether
+     |       Spirit is permitting automatic backpressure, and performs
+     |       automatic backpressure as needed.
+     |
+     |       If Spirit forbids automatic backpressure, data received from
+     |       that circuit can potentially disrupt MBase functioning.
+     |       MBase uses automatic backpressure (if permitted) to protect
+     |       its ability to buffer data safely, and to reduce
+     |       interactions among the various circuits.  Spirit should
+     |       leave automatic backpressure enabled on all circuits unless
+     |       specific benefits outweigh the costs.
+
+          FLUSH INPUT and FLUSH OUTPUT (gobbler) messages:
+
+             From Spirit, Flush Output also clears messages buffered in
+             MBase, if any; it does not affect messages already in the
+             Dispatcher OUT Ring.  Flush Output discards all kinds of
+             messages, not just circuit data.  Receiving this message
+             from ISIS indicates that some quantity of messages may have
+             been removed from the circuit, and program-to-program
+             protocols usually require resynchronization.
+
+             The Flush Input message is not completely implemented in
+             Tymnet, and as a result is nearly useless.  It is a request
+             from the interface at one end of a circuit, to the other
+             end's interface, asking the far end to send a Flush Output
+             message.  It works within a single ISIS system, providing
+             that the other interface cooperates.  It doesn't work across
+             an internodal link, because there is no corresponding
+             internodal signal, so the Node slot has no alternative to
+             discarding a Flush Input message.
+
+
+
+
+
+
+
+
+
+
+
+        17                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+          SET TRANSMIT LIMIT message:
+
+             In general, this is a message to some other interface slot
+             of the same Engine, e.g. the Node slot or the X.25 slot; it
+             is not a message to the other end of the circuit.  It tells
+             the other (local) interface to put no more than the
+             specified limit number of characters into each ISIS Data
+             message.  This allows one interface to set a bound on the
+             number of characters it might receive in one message, and
+             thus during one Background turn.  A slot receives only one
+             message per port per Background turn, so if the slot
+             responds with Apply Backpressure, it can block the flood
+             after receiving one Transmit Limit's worth of input.
+
+             From Spirit, this message is not useful.  MBase should not
+             need to send the message to ISIS on its own behalf, either.
+
+             From ISIS, MBase does interpret it as well as pass it to
+             Spirit.  In response, MBase will obey the specified transmit
+             limit when placing data into the Dispatcher OUT ring.  No
+             response from Spirit seems needed.
+
+          SET FORWARDING CHARACTERISTICS message:
+
+             This is a message to MBase, concerning this circuit only.
+             Spirit may change a circuit's forwarding characteristics as
+             often as desired.  They specify the minimum circumstances
+             under which MBase should forward input to Spirit, allowing
+             (not requiring) MBase to defer completing a Read Data
+             command, in hopes that additional characters will arrive in
+     |       time to be read by the same command; MBase may forward input
+     |       and complete the Read Data command earlier if it choses.  It
+             is a performance optimization intended to reduce Spirit cpu
+             overhead spent on MBase I/O interrupt processing.
+
+             A circuit is born with no optimization selected.  That is,
+             MBase will not defer forwarding unless Spirit requests it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        18                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+
+
+                     3.2 - ISIS/Spirit Message Code Mapping
+
+
+        All the ISIS message types for data map into one Spirit type;
+        most of the other ISIS types map one-to-one into a Spirit type.
+        MBase works generally with associated ISIS message types, when
+        they exist; MBase translates all Spirit message types using a
+        Message Mapping Table.  Spirit loads this table into MBase with
+     |  the Channel 1 command, Load Mapping Tables.  As discussed under
+        Interface Reset Procedure, Spirit loads the table before any
+        ISIS/Spirit messages are used.
+
+        The Message Mapping Table contains entries for every message type
+        code that Spirit sends to MBase, and for every message type code
+        that MBase sends to Spirit; ISIS message type codes that don't
+        correspond to Spirit codes aren't represented.
+
+        Each entry in the table contains an indicator that distinguishes
+        the following cases.
+
+           - The message is forwarded between Spirit and ISIS without any
+           change in format specific to this particular message, if MBase
+           choses to forward it at all.  (For example, backpressure
+           messages aren't always forwarded.)
+
+           - The message is specific to the MBase/Spirit interface, and
+           doesn't have an ISIS equivalent.  In this case, the "maps to"
+           and "Spirit type" fields have identical values.  MBase uses
+           the "maps to" field's value, however, so the codes specified
+           in TYM.03.S can be revised in the future.
+
+        The Message Mapping Table has entries for the Port Zero channels,
+        Channels 2 and 3, to provide for Spirit messages that have no
+        ISIS Port Zero counterparts.  For messages that exist in Spirit
+        and ISIS versions, the type codes are the same.
+
+        This provides Spirit the maximum opportunity to take advantage of
+        new Tymnet extensions without recoding MBase, as well as a good
+        opportunity to get in trouble.  Spirit is responsible not to send
+        invalid messages; they will either produce unintended results on
+        the circuit, possibly clearing it, or else they will make ISIS
+        crash the MBase slot, exercising its recovery code.
+
+
+
+
+
+
+
+
+
+
+
+        19                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+
+
+                         3.3 - Interface Reset Procedure
+
+
+        The Spirit/MBase interface requires communications continuity in
+        order to operate correctly; certain information is normally
+        passed from one to the other so that both parties share a
+        consistent view of the interface's state.  The interface must be
+        stopped and reinitialized if continuity is lost.  The procedure
+        for doing this is called Interface Reset.
+
+        One party (either MBase or Spirit) decides to perform Interface
+        Reset, prepares itself, and informs the other; upon being
+        informed, the other party also gets ready.  When both are ready,
+        they proceed with the initial S-BUS dialog.  First look at the
+        MBase view.
+
+        MBase reinitializes its S-BUS interface state when it starts up
+        (including starting up from an ISIS Restart), when it times out
+        an S-BUS Service Request, and when Spirit issues a Reset
+        Interface command on Channel 1.  It clears all its Dispatcher
+        Ports (using either an ISIS Restart SVC, or individual zappers),
+        empties all circuit buffers, and initializes all circuit tables;
+        it initializes the S-BUS interface as much as feasible at this
+        step.
+
+        Once MBase has determined to reinitialize, it responds with the
+        status indication Interface Reset Required to any S-BUS commands
+        on Channels 1 and above, except for the Channel 1 Reset Interface
+        command.  MBase ordinarily does not respond to Reset Interface
+        until MBase is ready for Spirit to proceed with initialization;
+        see below.  MBase may instead respond with Interface Reset
+        Required, due to a timing problem; in this case, Spirit is to
+        reissue the Reset Interface command.
+
+        Note that Spirit won't see any other indication that previously
+        existing circuits were cleared; Interface Reset clears them all,
+        implicitly.
+
+        Spirit does similar things if it desires to reset the interface.
+        One reason for Spirit to desire this is receiving a Interface
+        Reset Required status code; Spirit issues the Reset Interface
+        command on Channel 1 as promptly thereafter as convenient.
+
+        Spirit does not modify any IOCB after it has Started I/O until it
+        receives status on the operation, to protect against race
+        conditions with MBase references to the same IOCB.  (One
+        exception:  Spirit may set the Halt I/O field to X'01',
+        requesting MBase to abort performing the pending command; MBase
+        may abort the command, or may proceed normally, depending on
+        timing races.)  But during Interface Reset, MBase ends every
+        active IOCB as soon as possible; each IOCB ended shows Interface
+
+
+        20                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+        Reset Required status.
+
+        When MBase completes preparations, it waits for a Reset Interface
+        command on Channel 1, and ends it with a Read Status Service
+        Request showing normal status.  If an additional Reset Interface
+        command appears with no other S-BUS activity intervening, MBase
+        merely ends each of them like the first.
+
+        Spirit next issues a Read Extended Status command on Channel 1,
+        and MBase ends it with a Read Data and Status Service Request.
+
+     |  Spirit issues a Load Mapping Tables command on Channel 1, and
+        MBase ends it with a Read Status Service Request.
+
+        This completes Interface Reset.  During the time beginning with
+        the Reset Interface command, and ending with the Load Mapping
+     |  Tables command's completion, any out-of-sequence commands on
+        Channels 1 and above result in a Read Status Service Request
+        showing "Start I/O error" and "Illegal command".
+
+        Both Spirit and MBase must implement the Interface Reset
+        Procedure so that it works correctly if one party abandons the
+        procedure before completing it, and then starts it over.  That
+        would happen if the party crashed, of if someone intervened with
+        an interactive debugger, and then the party started the reset
+        procedure over from the beginning.  It must not be possible to
+        deadlock the interface by restarting one of the processors.
+
+        When MBase crashes and restarts, it stops responding to the S-BUS
+        for four seconds, because ISIS dismisses the MBase slot for that
+        period.  (See the ISIS manual, section 4.2.1.1.)
+
+        MBase may issue a Read Status Service Request, tendering
+        Interface Request Reset Required, to an S-BUS channel that is
+        actually idle.  This would be due to a timing race, and seems
+        unlikely considering that four-second delay mentioned above.
+        Spirit should cope with it anyway.
+
+
+     |  3.3.1 - Host Answering
+     |
+     |  After an Interface Reset, the network believes that the host
+     |  (Spirit) is "down".  If Spirit had been "up" as a specific host
+     |  prior to Interface Reset, ISIS has reported that it went down;
+     |  alternatively, it may simply not have been up yet.  Until Spirit
+     |  reports its host status as "Host Answered", the Supervisor will
+     |  not build circuits involving this host.  Clearly, Spirit should
+     |  send the host status message routinely after an Interface Reset
+     |  completes.
+     |
+     |  MBase limits the rate at which it lets Spirit send the Report
+     |  Host Status message, to protect the Supervisor against an
+     |  excessive rate of these messages.  The exact limit has not been
+
+
+        21                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+     |  determined yet, but will have no effect on normal use of MBase
+     |  with Spirit.
+
+
+
+
+                            3.4 - Suspend and Resume
+
+
+        Spirit requires a way temporarily to silence MBase activity on
+        the S-BUS, at least when using some Spirit debugging facilities.
+        Spirit uses the Suspend Node command to suspend MBase S-BUS
+        activity.  MBase implements it very directly by shutting off its
+        S-BUS Driver:  not scanning for new SIOs and not initiating any
+        Service Requests.
+
+        One issue is making sure the S-BUS Driver remains able to finish
+        the Suspend Node command correctly, even though other activity
+        was suspended; it must also remain able to detect and complete
+        properly the matching Resume Node command.  These are all on S-
+        BUS Channel 1; higher-numbered channels are to be ignored.
+
+        Another issue is handling Dispatcher Ring traffic correctly.  In
+        general, backpressure is allowed to work normally, in that MBase
+        generally asserts backpressure to protect its buffers, in
+        addition to allowing Spirit to backpressure circuits it chooses.
+        This is described also in the MESSAGES Chapter.  With the S-BUS
+        "suspended," incoming data eventually evokes backpressure.  In
+        general, MBase circuit functions assume there may be some delay
+        between the time an incoming ISIS message is found in the
+        Dispatcher IN Ring, and the time it can be presented to Spirit
+        ... even a logon or zapper.
+
+
+
+
+                      3.5 - Circuit Establishing Procedures
+
+        Spirit requests normal and auxiliary circuits using essentially
+        the protocol described in Section 2.4, Circuits, of the ISIS-II
+        Reference Manual, bearing in mind that Spirit renumbers the non-
+        port-zero messages, etc.  That is, Spirit requests a Pseudo
+        Needle, and if it successfully receives one, it uses the assigned
+        port to transmit the appropriate login string, and uses the port
+        to receive call progress indications.
+
+        Similarly, an externally initiated new circuit arrives as a
+        Needle.
+
+        ISIS presents a Needle or Pseudo Needle to MBase over the
+        Dispatcher port that was just assigned to the new circuit.  MBase
+        forwards this information to Spirit, using the Attach Channel
+        message, over Channel 3, NOT the new circuit's input channel.
+
+
+        22                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+        This avoids MBase needing to listen to every unattached input
+        channel.
+
+        As a convenience, MBase supports a (Normal) Login String message
+        in place of the ISIS Normal Logon Character message; MBase emits
+        the corresponding sequence of those ISIS messages.
+
+
+
+
+                        3.6 - Circuit Clearing Procedures
+
+        MBase arranges for ISIS to consider its Dispatcher Ports as non-
+        reusable, meaning that ISIS will not reuse a port it zaps until
+        MBase also zaps the port.  There are two cases.  (MBase treats
+        Zap and Zap With Reason alike, but forwarding whichever kind it
+        receives.)
+
+        In the first case, MBase receives a Zap in the Dispatcher IN
+        ring, and forwards it to Spirit as it would forward any message;
+        in addition, MBase marks its tables to show that the port was
+        zapped by ISIS, and ignores any further I/O requests in the input
+        channel's IOCB.  MBase continues to process output messages for
+        this port, if any, into the Dispatcher OUT ring, but ISIS
+        discards most of them.  (ISIS forwards Addendum to Accounting in
+        this state, however.)
+
+        When Spirit is ready for the port (channel pair) to be reused by
+        an unrelated new login circuit, Spirit sends a Zap (not Zap
+        Acknowledge!) on the port.  MBase discards any messages remaining
+        to be output for this circuit, and places the Zap (etc.) message
+        into the Dispatcher OUT ring.  Then MBase marks its tables to
+        show that the port is fully zapped, and ignores any further I/O
+        requests in the output channel's IOCB.
+
+        In the second case, Spirit emits a Zap or Detach message first.
+        MBase marks its tables to show that Spirit has done this, and may
+        discard some messages waiting to be input to Spirit for this
+        circuit.  MBase marks its tables to show that Spirit zapped the
+        circuit, and ignores any further I/O requests in the output
+        channel's IOCB.  (An input message might be in the process of
+        being transferred, having already been given to the S-BUS driver.
+        In general, Spirit must handle messages appearing after it has
+        zapped a circuit, until it receives a Zap or Zap Acknowledge
+        message.)
+
+        The next time Spirit starts a Read Data command on this circuit's
+        receive channel, MBase tenders a Zap Acknowledge, meaning that
+        the S-BUS Driver is requested to deliver it.  When that Read Data
+        command has actually completed, and therefore Spirit has received
+        the Zap Acknowledge, MBase marks its tables to show that Spirit
+        received a zap, and ignores any further I/O requests in the input
+        channel's IOCB.  Then it places a Zap or Detach message into the
+
+
+        23                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+        Dispatcher OUT ring, marking its tables accordingly.  When a Zap
+        Acknowledge is discovered in the Dispatcher IN ring, MBase marks
+        the port as completely zapped.
+
+        Note that the case where Spirit initiates the clearing is the
+        more complex case.  MBase is making certain that Spirit is ready
+        for a possible new login on the circuit's port before telling
+        ISIS to clear the existing circuit.  As soon the Dispatcher gets
+        the Zap or Detach message, it returns a Zap Acknowledge, and it
+        can connect a new circuit to the same port immediately
+        thereafter.  (While a Detach message does hold the circuit to the
+        other end awhile, this end's Dispatcher port is immediately
+        disconnected, hence the immediate Zap Acknowledge.)
+
+        Here is a summary of how MBase treats circuit clearing ISIS
+        messages:
+
+           Detach is not expected from ISIS, but is treated the same as
+           Zap if it occurs.
+
+           If MBase has not sent a Zap message to ISIS, then Zap
+           Acknowledge is not expected, but will be treated the same as
+           Zap if it occurs.
+
+           If MBase has in fact sent a Zap message to ISIS, then either
+           Zap or Zap Acknowledge is expected soon, and they are treated
+           alike.
+
+        Spirit must maintain a Read Data command on each circuit, because
+        otherwise there is no way to signal that the circuit was cleared.
+
+        Similarly, ISIS backpressure may result in an output channel
+        command being pending indefinitely.  If that happens, Spirit must
+        use Halt I/O to abort the stuck S-BUS command, in order to send a
+        Zap message.
+
+        MBase performs I/O requests for each circuit's S-BUS channels
+        only for the duration of the circuit.  That duration begins with
+        the Attach Channel message; for a circuit's input channel, I/O
+        ceases when a zap (of any kind) is delivered to Spirit; for a
+        circuit's output channel, I/O ceases when a zap (of any kind is
+        sent from Spirit.
+
+
+
+
+
+
+
+
+
+
+
+
+
+        24                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+
+
+                  3.7 - Circuit Data and Signal Flow Procedures
+
+
+        Messages from Spirit are handled rather differently than messages
+        from ISIS.  A message output from Spirit is fully processed
+        before another message is accepted over the same channel; MBase
+        can chose to ignore one channel without interfering with the
+        other channel of the same circuit, or with other circuits.  On
+        the other hand, a message received in the Dispatcher IN ring is
+        buffered until Spirit accepts it, because the Dispatcher IN ring
+        is shared by all circuits.
+
+        Other articles touch on this topic; see particularly the
+        discussion of backpressure and forwarding characteristics
+        messages.
+
+        MBase buffers all messages received for a circuit until they can
+        be read by Spirit.  Consecutive data messages may be combined
+        into fewer, larger messages; "consecutive" means there are no
+        intervening circuit signals.  The only limit to accumulating
+        messages for any given circuit is the buffer storage available to
+        MBase.  MBase uses backpressure to try to limit data stored for
+        each circuit, and within MBase overall.  If storage nears
+        exhaustion, certain data messages may be replaced by Black Ball
+        messages to recover storage; or a circuit with too many circuit-
+        signal messages may be zapped.  In any case, MBase makes every
+        effort to minimize the damage caused by storage exhaustion, to
+        avoid failing and having to restart.
+
+        MBase forwards circuit signal messages to Spirit as soon as MBase
+        receives them; data messages are subject to data Forwarding
+        Characteristics.  However, nothing is allowed to change the
+        ordering of circuit signals and data characters; Spirit will
+        receive everything in the same order as MBase received it from
+        ISIS.
+
+        MBase transfers one message per Spirit I/O Read command:  either
+        one circuit signal message, or some number of characters in a
+        Data message.  The characters in a Data message did not
+        necessarily arrive as one ISIS data message, due to buffering and
+        recombining in MBase; they could also have been recombined in
+        node-code buffers anywhere along the circuit, regardless of how
+        they were transmitted by the originating interface.
+
+        The message Set Forwarding Characteristics establishes criteria
+        that MBase MAY use to minimize the number of Spirit I/O Read
+        commands used to transfer Data messages on a circuit.  MBase DOES
+        in fact implement these criteria, but the implementation may not
+        always wait until the criteria say data MUST be forwarded, and
+        doesn't relieve Spirit for example of the need to parse a line to
+        see that it is complete.  These criteria exist only to permit
+
+
+        25                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+        improving I/O performance, and that goal is achieved for the
+        system if MOST transfers are optimized.
+
+     |  Two of the criteria are modeled after the PAD Idle Timer and PAD
+        Forward statements in the Tymnet X.25 manual.  They specify two
+        tests which, when satisfied, result in MBase assembling a Data
+        message for Spirit and queuing it for transfer across the S-BUS.
+        (There is no corresponding function for data from Spirit.)  One
+        criterion is the Idle Timer, the duration of an interval in
+        twentieths of a second between successive characters received
+     |  from ISIS (zero denotes timeouts are not wanted); exceeding the
+     |  interval causes forwarding a Data Message to Spirit.
+     |
+     |  The second criterion is a one byte mask of bits denoting sets of
+     |  characters; receiving one of these characters causes forwarding a
+     |  Data Message to Spirit.  A value of X'FF' denotes the set of all
+     |  characters; in other words, data is to be forwarded at once.
+     |
+     |  One more criterion is length in characters; accumulating that
+     |  many characters causes forwarding a Data Message to Spirit.  This
+     |  indicates the maximum length that MBase should delay, without
+     |  limiting the maximum length that MBase can input to the command.
+
+
+
+
+                     3.8 - Halting a Pending Output Command
+
+
+        If a Spirit output command specifies output to a backpressured
+        Dispatcher port, the S-BUS channel command remains pending.  If
+        the circuit never resumes consuming characters, ISIS will never
+        release backpressure, and the S-BUS output command will remain
+        pending indefinitely.  Until the output command ends, Spirit
+        cannot send further circuit signals, and so cannot even clear the
+        circuit.
+
+        Spirit can use Halt I/O to force the S-BUS output command to end,
+     |  if required.  If the output command has not completed by the time
+     |  MBase attempts to halt it, then MBase discards any buffered
+     |  output messages waiting for the port, and ends the output command
+     |  with the "I/O Halted" status indication; there is no indication
+     |  how much of the output command was left undone, but indicates
+     |  something was.  If this port had no output messages buffered, but
+     |  had some output data still not transferred from Spirit, then "I/O
+     |  Halted" is still indicated, since something of the output command
+     |  is being abandoned.  Halt I/O has no effect if MBase has
+        completed the work specified by the output command, even if MBase
+        has yet to present status; if Halt I/O had no effect, then status
+        will not show "I/O Halted."
+
+     |  MBase always resets the Halt I/O field of an IOCB, whether or not
+     |  there was any started I/O to halt.  When concluding an I/O
+
+
+        26                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+     |  command with a Read Data and Status (or Read Data) Service
+     |  Request, MBase clears Halt I/O (along with Start I/O) just before
+     |  interrupting Spirit.  However, if Spirit sets Halt I/O when no
+     |  I/O is in fact active, MBase resets the Halt I/O field by writing
+     |  zeroes into the field, without making an associated Service
+     |  Request.
+
+        If Spirit halts an output command, it should then output either a
+        gobbler or a zapper; otherwise, there was no need to halt the
+        previous command.
+
+        Note that Spirit's (Normal) Login String message results in a
+        sequence of ISIS messages out of MBase.  Halting a command
+        outputting this message could in principle result in a truncated
+        string of ISIS messages, but it's pretty unlikely that the
+        circuit is backpressured.  Nonetheless, Spirit should zap the
+        port and request another pseudo needle.
+
+        It is possible for one output command to finish with the S-BUS,
+        meaning that MBase has presented status for the command, but
+        still remain incomplete within MBase.  For example, a Write Data
+        command has transferred 10 bytes of data to MBase, completing the
+        command, but backpressure is keeping them buffered within MBase;
+        they haven't been passed to ISIS yet.  In this state, MBase does
+        not proceed with a subsequent output command; although MBase does
+        acknowledge the Start I/O, it makes no Service Requests.
+
+        There is one exception:  for the command Send Circuit Signal
+        Short, MBase "peeks" at the circuit signal visible in the IOCB,
+        to see if it is a zapper or gobbler.  If it is one of these, then
+        MBase does proceed to transfer the message, and call clearing or
+        output flushing proceeds regardless of backpressure.  For this
+        reason, Spirit should not use Send Circuit Signal Long to send a
+        zapper or gobbler.
+
+        In the above example, characters were buffered in MBase for a
+        backpressured port, but the command had completed.  There are two
+        more cases.  In one, there are no characters buffered in MBase,
+        but previous output has provoked backpressure just the same, and
+        MBase does not proceed with new output commands.
+
+        In the last case, the command designated about 2000 characters
+        (filling a display screen), MBase moved 256 of them to its buffer
+        in the S-BUS window, placed one Transmit Limit's worth (say 157,
+        the maximum Transmit Limit) in the OUT ring, and received an
+        Apply Backpressure message.  This time, the Write Data command
+        remains pending.
+
+
+
+
+
+
+
+
+        27                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+
+
+                          3.9 - Disk and Tape Services
+
+
+        MBase provides a communications path between ISIS disk and tape
+        drivers, and Spirit service programs to simulate Engine disk and
+        tape services.  This supports having a Supervisor slot on TSI,
+        without adding Engine disk and tape equipment and interfaces to
+        TSI.
+
+        To simulate disk and tape services, supporting application
+        (Supervisor, in fact) I/O SVCs, ISIS communicates with MBase
+        using the ICOM facility; MBase communicates with Spirit using a
+        pair of S-BUS channels.
+
+        ICOM (ISIS Communicator) is a versatile new facility that has
+        been under study for some time; its general purpose is to provide
+        a generalized transport facility with interchangable interfaces,
+        to support Tymnet internal functions.  It appears to be about the
+        same amount of effort to implement the ISIS/MBase communications
+        via an ICOM interface as via an ad hoc one, but an ICOM
+        implementation can be extended more easily.  The portion of ICOM
+        to be developed for this support is not yet defined.
+
+        To communicate with Spirit's disk and tape services, MBase
+        originates a new circuit logon to Spirit, indicating a
+        prearranged, reserved network userid, in order to assign an S-BUS
+        channel pair for this purpose.  Thereafter, MBase delivers
+        logical disk/tape read requests as ISIS text data byte strings,
+     |  as though received as ISIS data messages, and Spirit performs the
+        disk access and responds with the retrieved data; similar
+        appropriate variations handle write and device control functions.
+
+        ICOM and the prearranged-id login provide the means for
+        exchanging I/O requests and data between Spirit and ISIS;
+        detailed formats for requests and data are not specified yet.
+
+        The ISIS end of the ICOM path merely passes slot I/O requests to
+        MBase in some suitable format.  The MBase end of the path is
+        responsible for all other processing to accomplish requested
+        actions using Spirit as a server.  MBase establishes the ICOM
+        connection during slot reset initialization, so that it is always
+        available when MBase is running.  MBase establishes the circuit
+        to Spirit when an ISIS request requires use of Spirit's services,
+        and reestablishes the circuit if it breaks.  MBase times out
+        unanswered requests (unless MBase was explicitly suspended), and
+        returns some kind of trouble status to ISIS.
+
+
+
+
+
+
+
+        28                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        MBase/Spirit Session Level Protocols               March 17, 1986
+
+
+
+
+     |                3.10 - S-BUS Stall Timeout Monitoring
+     |
+     |
+     |  Spirit can set or remove an MBase timeout for the S-BUS, to
+     |  detect an S-BUS stall.  It uses the Set S-BUS Timeout Value
+     |  message on Channel 1 to do this.  If Spirit has not sent that
+     |  message since Interface Reset, MBase has no timeout in effect,
+     |  and no way to detect that Spirit is not performing Service
+     |  Requests.
+     |
+     |  Each time MBase asserts an S-BUS interrupt to begin a Service
+     |  Request, it begins measuring the S-BUS timeout interval.  If the
+     |  entire interval passes without Spirit interrupting MBase (ISIS,
+     |  actually) to signal that the Service Request is complete, MBase
+     |  declares the S-BUS has stalled (timed out), and begins the
+     |  Interface Reset Procedure.  This results in clearing circuits on
+     |  the MBase ISIS ports, and reporting the Spirit hosts "down".  Of
+     |  course, the S-BUS aspects of an Interface Reset do not proceed
+     |  until Spirit resumes performing Service Requests.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        29                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        Availability and Servicability                     March 17, 1986
+
+
+
+
+
+
+                      4  -  AVAILABILITY AND SERVICABILITY
+
+
+        MBase must cope usefully with its own errors, and with errors
+        appearing on its interfaces.  That is achieved partly by design
+        and implementation, and then by fixing problems as they are
+        found.  This chapter first presents some design guidelines for
+        error handling, and then an event-trace facility to provide
+        diagnostic information for fixing problems.
+
+
+
+
+                         4.1 - Error Handling Guidelines
+
+
+        MBase has the usual Tymnet requirement:  it should keep its
+        service available.  This means avoiding service interruptions
+        when possible, and recovering from them without manual
+        intervention in any other case.  (MBase can have any other error
+        handling behaviors available for debugging purposes, so long as
+        they can be turned off for production use.)
+
+        Avoiding interruptions means not allowing invalid input or
+        procedures to crash the code - causing illegal instructions or
+        ISIS calls, for example.  Invalid input may result in useless or
+        no output; in some cases, it may be necessary to zap a circuit,
+        or reset the S-BUS interface.  But some effort should be made to
+        limit the damage to some subset of MBase.
+
+        In general, MBase must check validity of messages it interprets,
+        and limit the disruption due to errors it detects.  But MBase
+        passes through ISIS messages (circuit signals) if they are
+        recognizable, and does not check the validity of message formats
+        or content when it does not need to interpret them.  The purpose
+        of this policy is flexibility:  to maximize the ability of MBase
+        to make ISIS facilities available to Spirit.  The cost is
+        increased responsibility:  Spirit can cause ISIS to crash the
+        MBase slot by sending messages, and Spirit must handle anything
+        ISIS (or the other end of the circuit) sends.
+
+        Here is a possible progression of damage-limiting steps,
+        progressing from less to more disruption.  (There isn't
+        necessarily any one problem that would offer a choice among all
+        these steps; this is just to illustrate the idea.)
+
+           - Send an Apply Backpressure message to ISIS.
+
+           - Discard all data messages buffered for Spirit on a circuit.
+
+
+        30                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        Availability and Servicability                     March 17, 1986
+
+
+           - Clear (zap) a circuit that is occupying too much storage
+             with non-data messages.
+
+           - Clear (zap) a circuit which has presented an invalid message
+             type code (from ISIS or Spirit).
+
+           - Begin the Interface Reset procedure if Spirit isn't
+             responding, so connected terminal circuits can be freed up
+             and possibly be used for other things.
+
+           - Begin the Interface Reset procedure after reinitializing the
+             programming environment if MBase is entered by a Restart
+             Trap, so that service can be begin again.
+
+
+
+
+                            4.2 - Event Trace Tables
+
+
+        MBase maintains a continuous record in memory of "interesting"
+        events:  messages (or parts of them) from the Dispatcher IN ring;
+        S-BUS I/O commands and MBase responses; buffer allocation and
+        deallocation; etc.  This helps analyze real-time event sequences
+        after the fact, both when examining a running MBase slot, and
+        when studying the image of a failed slot.
+
+        The record is a wrap-around table in memory:  it is a ring buffer
+        without any attempt to prevent overwriting, so the older data are
+        eventually overwritten.
+
+        Tracing can be turned on or off by some kind of interactive
+        control, for example slot DDT modifying a control word.  When
+        off, the trace table support uses almost no cpu; when turned on,
+        a trace table is allocated if it is not already present.  The
+        slot can be configured via the Tymfile with tracing either on or
+        off, which is how the slot will run without intervention; but the
+        slot is always able to have tracing started or stopped.
+
+        The trace table is allocated dynamically from suitable space.
+        Certain events cause a new table to be allocated and replace the
+        use of the previous table; the previous one (up to some explicit
+        limit) is saved, "frozen."  Such events include at least
+        Interface Reset (except initially), and slot restart (if
+        possible).
+
+        Each trace table entry encodes what type of entry it is, possibly
+        the time, and variable data appropriate to the entry type.
+
+
+
+
+
+
+
+        31                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        References                                         March 17, 1986
+
+
+
+
+
+
+                                5  -  REFERENCES
+
+
+
+          SPIRIT BUS INTERFACE SPECIFICATION, Microdata IS20035007,
+     |    Revision AX5 (May 21, 1985).
+
+             The primary reference documentation for the Spirit Bus.
+             However, at this level, the Spirit Bus is regarded as a
+             framework within which the different Microdata controllers
+             are defined.  Notice that "word" in this document means
+             16-bit word.  There are frequent references to other
+             products.
+
+          SPIRIT I/O SOFTWARE INTERFACE, Microdata SPI.21.S, Revision 6
+          (August 8, 1984).
+
+             The interface presented to Spirit applications-system
+             software by the I/O software and firmware.  Doesn't specify
+             details needed for MBase, but provides a supplementary view
+             of how a Spirit system may use its peripherals.
+
+     |    TSI/MBASE SOFTWARE INTERFACE, Microdata TYM.03.S, Revision 2
+     |    22.1.86.
+
+             The interface presented by MBase to Spirit, and vice versa.
+             This is the interface as negotiated between Tymnet and
+             Microdata, and is incorporated into this GED by reference.
+             Any contradictions between this GED and TYM.03.S, or between
+             TYM.03.S and Tymnet's ISIS Reference Manual, are are
+             unintended and should be fixed.
+
+          TSI DESIGN OBJECTIVES, Tymnet, Revision 1.6, June 4, 1985.
+
+             Proposal of the Tymnet Spirit Interface in response to the
+             Microdata MBASE PIR.
+
+     |    TSI ARCHITECTURAL SPECIFICATION, Tymnet, Revision 2.4, October
+     |    30, 1985
+
+             The overall structure of the TSI board, and some detailed
+             implementation choices.  TSI is fundamentally a Tymnet
+             Engine, and this document describes the Tymnet Engine,
+             substituting TSI changes where there are any; there isn't a
+             simple tabulation of changes.
+
+
+
+
+
+
+        32                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        References                                         March 17, 1986
+
+
+          ISIS-II REFERENCE MANUAL, Tymnet, September 26, 1985.
+
+             The standard documentation of ISIS interfaces.
+
+          X.25/X.75 INTERFACE REFERENCE MANUAL, Tymnet Pub. Nr. 399,
+          March 31, 1984.
+
+             Describes the implementation characteristics of the product,
+             including the system generation statements necessary for
+     |       configuring an interface slot.  The PAD Options provided two
+     |       of the codes used for the MBase Set Forwarding
+             Characteristics message.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        33                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        Appendix A - Spirit Bus                            March 17, 1986
+
+
+
+
+
+
+                                   APPENDIX A
+
+                            THE MICRODATA SPIRIT BUS
+
+
+        Here is an study of how a controller is to interface with the
+        Spirit Bus, along with a few comments.  Refer to Microdata's
+        specifications for specific formats, protocols, etc.; with few
+        exceptions, they aren't repeated here.  While this description
+        applies to Spirit controllers generally, some remarks address
+        specifically the TSI "controller".
+
+
+        SPIRIT BUS CONFIGURATION
+
+        A controller plugs into a card slot in the backplane, connecting
+        to the S-BUS as a bus slave device:  the controller cannot to be
+        bus master.  That means that the controller cannot access the
+        Spirit's memory directly; it must ask the Spirit cpu for help.
+
+        The controller shares some of its memory with the Spirit cpu,
+        responding to a 64k byte address range of S-BUS addresses, and
+        mapping it into some 64k byte interval of on-board memory.  The
+        controller performs READ and WRITE operations as a bus slave for
+        S-BUS addresses that range.  We will refer to this address range
+        as the (controller's) S-BUS Window [1].
+
+        The shared memory accessible via the window is dual-ported:  the
+        controller uses one port and the S-BUS interface uses the other
+        port.  The dual-porting facility, or something else on the card
+        (not in the S-BUS) resolves contention between the controller and
+        the S-BUS for access to the shared memory.  [2]
+
+                              --------------------
+
+
+        [1] Microdata doesn't seem to have a concise term for this, so we
+          coined this one for convenience.  Also, nothing requires the
+          controller to use the same addresses that the S-BUS uses to
+          access these 64k bytes.
+
+        [2] The Spirit cpu itself may be slowed down significantly when
+          repeatedly accessing the controller's shared memory if
+          contention resolution delays S-BUS accesses much.  To avoid
+          this, the Spirit cpu asserts Bus Hold prior to the first access
+          (of a sequence), and releases it during the last one; the cpu
+          is asking the controller to leave the S-BUS in control of the
+          shared memory, meaning to leave the controller unable to access
+          it.  TSI ignores Bus Hold, and uses DMA access to Engine memory
+
+
+        34                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        Appendix A - Spirit Bus                            March 17, 1986
+
+
+        The controller may additionally decode references to certain
+        fields in the shared memory, in order to interrupt its own (on-
+        board) processor.  Useful fields might be:  in IOCB - Start I/O,
+        Halt I/O; in Message Block - Service Request.  TSI decodes an S-
+        BUS Write request to the Service Request byte, and generates an
+        Engine I/O interrupt in that case.
+
+        The controller can interrupt the cpu.  The interrupt's priority,
+        which the cpu determines in the course of performing the
+        interrupt, identifies the interrupting controller, and in
+        particular identifies the address of the controller's S-BUS
+        window.  The cpu addresses the message block of this S-BUS window
+        to see why it was interrupted.  TSI alline code causes this
+        interrupt by executing an Output Command instruction.
+
+        The controller's interrupt priority could (should) be
+        configurable by jumper [3].
+
+
+        MESSAGE BLOCK SERVICE REQUESTS - Controller-caused transfers.
+
+        In the block mode protocol, the cpu microcode copies data memory-
+        to-memory, between the controller's S-BUS window, and wherever
+        the cpu wishes to have the data.
+
+        The controller requests the cpu to perform such a copy by
+        assembling a service request in its message block in the shared
+        memory, and then interrupting the cpu; the cpu looks at the
+        message block, and does the requested copy  [4].  The message
+        block designates, among other things, the controller memory
+        addresses to use, and the channel being serviced, but not the
+        Spirit memory addresses.  The cpu determines the Spirit memory
+        addresses from the state of the channel.
+
+        The controller constructs the message block, and therefore choses
+        controller-memory addresses at will within its S-BUS window.
+
+        We've been looking at how the controller gets the cpu to move
+
+                              --------------------
+
+          to perform S-BUS requests.
+
+        [3] The controller's interrupt priority is synonymous with its
+          interrupt number.  Interrupt type is another thing:  the nature
+          of the particular controller; Microdata specifies that MBase is
+          type X'28'.
+
+        [4] The cpu takes 100 uS (average) to notice the controller's
+          interrupt request.  The copy proceeds at 6.25 uS/byte, maximum,
+          which means that a 256-byte maximum-size block could take as
+          little as 40 uS.  The 6.25 uS/byte figure is the maximum rate,
+          assuming the controller doesn't slow down the transfer.
+
+
+        35                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        Appendix A - Spirit Bus                            March 17, 1986
+
+
+        data between the two.  This is a building block the controller
+        uses to perform I/O tasks for the cpu.
+
+
+        INPUT/OUTPUT TASKS - How the CPU Starts I/O
+
+        Each channel has its own I/O Control Block (IOCB); the mapping
+        between channel number and S-BUS memory address is fixed, and all
+        IOCBs immediately follow the message block at the start of the S-
+        BUS window.  Also, the controller itself corresponds to IOCB0,
+        the first of the IOCBs.
+
+        An IOCB may describe an inactive channel, or a single operation.
+        In the block mode protocol, the cpu prepares the IOCB to describe
+        the desired read or write task, then sets a specific byte of the
+        IOCB to signal "Start I/O."  The controller responds by using
+        service-request messages to perform the request, and then resets
+        that same signal byte (prior to the last service-request message)
+        to say the controller is finished with the task.
+
+        The IOCB designates the number of bytes to transfer, the
+        direction of transfer, and the device address.  (A channel may be
+        shared among multiple devices that don't need concurrently active
+        I/O tasks; MBase doesn't use this technique.)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        36                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+
+
+
+        Appendix A - Spirit Bus                            March 17, 1986
+
+
+        -----    --------------           ----------
+        |   |    | S-BUS      |           | Spirit |
+        | S |====| Bus Master |-----------| System |
+        | P |    | Interface  |           | CPU    |
+        | I |    --------------           ----------
+        | R |
+        | I |    --------------           --------------------
+        | T |    | S-BUS      |           | Spirit           |
+        |   |====| Bus Slave  |-----------|    System        |
+        | B |    | Interface  |           |                  |
+        | U |    | (addresses |           |         RAM      |
+        | S |    |  0-DFFFFF) |           |                  |
+        |   |    -------------            --------------------
+        |   |
+        |   |    ---------------------    --------------------
+        |   |    | S-BUS             |    | Controller's     |
+        |   |    | Bus Slave         |    | 2-port RAM       |
+        |   |====| Interface         |    | Contains:        |
+        |   |    | (addresses        |    |   Message Block  |
+        |   |    | in 64k byte range |    |   IOCBs          |
+        |   |    | above DFFFFF)     |    |   Data Buffers   |
+        |   |    -----+-----------+---    ---+------------+---
+        |   |         |           +----------+ 0        1 |
+        |   |         |                           Ports   |
+        |   |         |                                   |
+        |   |         |                                   |
+        |   |         |                                   |
+        |   |         +------------------------+          |
+        |   |         <--- Interrupt      -----+----------+---
+        |   |               Request       | Rest             |
+        |   |                             |     of           |
+        |   |                             |       Controller |
+        |   |                             --------------------
+        |   |
+        -----
+
+        Figure:  Spirit Bus Block-Mode Controller Interface
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        37                Microdata SPIRIT Network Base         MBASE.GED
+
+
+
+
+   #@)K

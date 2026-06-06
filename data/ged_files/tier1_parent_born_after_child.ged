@@ -1,0 +1,40 @@
+0 HEAD
+1 SOUR MultiAgentGenealogyTrapCases
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+1 NOTE Tier 1 deterministic trap: parent (Robert, b.1890) is younger than
+2 CONT the child (Alice, b.1850). check_parent_younger_than_child should fire.
+0 @I1@ INDI
+1 NAME Alice /Testcase/
+1 SEX F
+1 BIRT
+2 DATE 15 MAR 1850
+2 PLAC Boston, Massachusetts
+1 DEAT
+2 DATE 20 DEC 1920
+2 PLAC Boston, Massachusetts
+1 FAMC @F1@
+0 @I2@ INDI
+1 NAME Robert /Testcase/
+1 SEX M
+1 BIRT
+2 DATE 5 MAY 1890
+2 PLAC Boston, Massachusetts
+1 DEAT
+2 DATE 1 JAN 1950
+2 PLAC Boston, Massachusetts
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Martha /Smith/
+1 SEX F
+1 BIRT
+2 DATE 10 JUN 1892
+2 PLAC Boston, Massachusetts
+1 FAMS @F1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+0 TRLR

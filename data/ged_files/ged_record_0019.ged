@@ -1,0 +1,60 @@
+```gedcom
+0 @I19@ INDI
+1 NAME Karl Ludwig /BADER/
+1 BIRT
+2 DATE 05 MAY 1822
+2 PLAC Bulkes
+1 DEAT
+2 DATE 27 JAN 1878
+2 PLAC Bulkes
+1 MARR
+2 DATE 13 OCT 1840
+2 PLAC Bulkes
+1 FAMS @F1@  // Create a family for the marriage
+
+0 @F1@ FAM
+1 HUSB @I19@
+1 WIFE @I20@ // Create an ID for the wife
+1 CHIL @I21@ // Create an ID for the child Susanna
+
+0 @I20@ INDI  // Kaufmann Maria
+1 NAME Maria /KAUFMANN/
+1 BIRT
+2 DATE 15 JUL 1822
+2 PLAC Bulkes
+1 DEAT
+2 DATE 02 SEP 1912
+2 PLAC Bulkes
+
+0 @I21@ INDI // Bader Susanna
+1 NAME Susanna /Bader/
+1 BIRT
+2 DATE 30 DEC 1851
+2 PLAC Bulkes
+1 MARR
+2 DATE 23 NOV 1873
+2 PLAC Bulkes
+1 FAMS @F2@ // Create a family for Susanna's marriage
+
+0 @F2@ FAM
+1 WIFE @I21@
+1 HUSB @I22@ // Create an ID for Christian Häuser
+
+
+0 @I22@ INDI // Häuser Christian -  link to @1664@ -  This assumes @1664@ already exists
+1 NAME Christian /Häuser/
+1 ALIA @1664@ // ALIA is used for an alternate ID/record.  This links them.
+
+
+```
+
+**Explanation and Improvements:**
+
+* **Unique Identifiers:**  Each individual and family needs a unique identifier.  I've added `@I20@`, `@I21@`, `@I22@`, `@F1@`, and `@F2@`. You should replace these with your own numbering scheme.  Critically, the provided `@1664@` is assumed to already exist in your file.
+* **Family Records:** Marriage information requires creating `FAM` records to link the spouses and children.
+* **Surnames:**  Surnames are enclosed in `/` for better GEDCOM compatibility.
+* **Standard Date Format:** Dates are formatted as DAY MONTH YEAR.
+* **Linking to @1664@:**  The `ALIA` tag is used to link the Christian Häuser record to the pre-existing `@1664@` record. This indicates they are the same person.  Using `ALIA` allows software to recognize the connection.
+
+
+This revised GEDCOM is more complete and structured, facilitating better import and interpretation by genealogy software.  Remember to replace the placeholder IDs with your own unique identifiers and integrate this into your larger GEDCOM file.

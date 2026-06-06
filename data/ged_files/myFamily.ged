@@ -1,0 +1,156 @@
+0 NOTE https://github.com/frankappolonia/CS555-Proj
+0 NOTE Frank Appolonia	
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE My Family
+1 DATE 11 SEP 2022
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 SUBM @I3@
+2 NAME fappolon@stevens.edu
+1 SUBN
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Matthew /Appolonia/
+2 GIVN Matthew
+2 SURN Appolonia
+2 _MARNM Appolonia
+1 SEX M
+1 BIRT
+2 DATE 8 DEC 1965
+1 FAMS @F1@
+1 FAMC @F2@
+0 @I2@ INDI
+1 NAME Catherine /Arace/
+2 GIVN Catherine
+2 SURN Arace
+2 _MARNM Appolonia
+1 SEX F
+1 BIRT
+2 DATE 4 AUG 1975
+1 FAMS @F1@
+1 FAMC @F3@
+0 @I3@ INDI
+1 NAME
+1 FAMC @F1@
+0 @I3@ INDI
+1 NAME Sandra /Arace/
+2 GIVN Sandra
+2 SURN Arace
+2 _MARNM Arace
+1 SEX F
+1 BIRT
+2 DATE 12 JUN 1942
+1 FAMS @F3@
+0 @I5@ INDI
+1 NAME Frank /Arace/
+2 GIVN Frank
+2 SURN Arace
+2 _MARNM Arace
+1 SEX M
+1 BIRT
+2 DATE 2 FEB 1940
+1 DEAT Y
+2 DATE 14 FEB 2005
+1 FAMS @F3@
+0 @I6@ INDI
+1 NAME Anthony /Appolonia/
+2 GIVN Anthony
+2 SURN Appolonia
+2 _MARNM Appolonia
+1 SEX M
+1 BIRT
+2 DATE 18 APR 1935
+1 DEAT Y
+2 DATE 13 JAN 1968
+1 FAMS @F2@
+0 @I7@ INDI
+1 NAME Mary /Racconelli/
+2 GIVN Mary
+2 SURN Racconelli
+2 _MARNM Appolonia
+1 SEX F
+1 BIRT
+2 DATE 20 JUN 1935
+1 DEAT Y
+2 DATE 10 AUG 2019
+1 FAMS @F2@
+1 FAMS @F4@
+0 @I8@ INDI
+1 NAME Maria /Appolonia/
+2 GIVN Maria
+2 SURN Appolonia
+2 _MARNM Appolonia
+1 SEX F
+1 BIRT
+2 DATE 13 JUN 1995
+1 FAMC @F1@
+0 @I9@ INDI
+1 NAME Matthew Louis /Appolonia/
+2 GIVN Matthew Louis
+2 SURN Appolonia
+2 _MARNM Appolonia
+1 SEX M
+1 BIRT
+2 DATE 4 MAY 2002
+1 FAMC @F1@
+0 @I10@ INDI
+1 NAME Joseph /Lalori/
+2 GIVN Joseph
+2 SURN Lalori
+2 _MARNM Lalori
+1 SEX M
+1 BIRT
+2 DATE 7 SEP 1935
+1 DEAT Y
+2 DATE 12 JUN 2012
+1 FAMS @F4@
+0 @I11@ INDI
+1 NAME Patrick /Lalori/
+2 GIVN Patrick
+2 SURN Lalori
+2 _MARNM Lalori
+1 SEX M
+1 BIRT
+2 DATE 1 JAN 1972
+1 FAMC @F4@
+0 @F1@ FAM 
+1 HUSB @I1@
+1 WIFE @I2@
+1 CHIL @I3@
+1 CHIL @I8@
+1 CHIL @I9@
+1 MARR
+2 DATE 10 MAR 1990
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F2@ FAM
+1 HUSB @I6@
+1 WIFE @I7@
+1 CHIL @I1@
+1 MARR
+2 DATE 1 JAN 1955
+1 EVEN
+2 TYPE Ending
+1 _CURRENT N
+1 _PRIMARY N
+0 @F3@ FAM
+1 HUSB @I5@
+1 WIFE @I3@
+1 CHIL @I2@
+1 MARR
+2 DATE 9 AUG 1960
+1 _CURRENT Y
+1 _PRIMARY Y
+0 @F4@ FAM
+1 HUSB @I10@
+1 WIFE @I7@
+1 CHIL @I11@
+1 MARR
+2 DATE 1 MAY 1970
+1 _CURRENT Y
+1 _PRIMARY Y
+0 TRLR

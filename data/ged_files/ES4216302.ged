@@ -1,0 +1,1232 @@
+﻿0 HEAD
+1 SOUR Pedigree to GedCom (GedMatch read from gedMatch)
+2 DATA https://app.gedmatch.com/GEDCOM/pedigree_text.php
+3 DATE 9/1/2025
+1 SUBM @X1@
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+0 @X1@ SUBM
+1 NAME Pedigree to GedCom Utility
+0 @I1@ INDI
+1 NAME Harold Woods /CHRISTY/
+1 SEX U
+1 BIRT
+2 DATE 6 AUG 1911
+2 PLAC Mississippi
+1 DEAT
+2 DATE 25 SEP 1994
+2 PLAC San Mateo, California
+1 FAMC @F1@
+1 SOUR @S1@
+0 @I2@ INDI
+1 NAME Clinton /CHRISTY/
+1 SEX M
+1 BIRT
+2 DATE 7 DEC 1882
+2 PLAC Holly Springs, Marshall, Mississippi, USA
+1 DEAT
+2 DATE 18 MAR 1943
+2 PLAC Chicago, Cook, Illinois
+1 FAMS @F1@
+1 FAMC @F2@
+1 SOUR @S1@
+0 @I3@ INDI
+1 NAME Minnie Agnes /WOODS/
+1 SEX F
+1 BIRT
+2 DATE 12 JUN 1887
+2 PLAC Tennessee
+1 DEAT
+2 DATE MAY 1959
+2 PLAC Chicago, Cook, Illinois, United States
+1 FAMS @F1@
+1 FAMC @F3@
+1 SOUR @S1@
+0 @I4@ INDI
+1 NAME Albion Louden /CHRISTY/
+2 NICK Lee
+1 SEX M
+1 BIRT
+2 DATE ABT 1853
+2 PLAC Memphis, Tennessee, USA
+1 DEAT
+2 DATE 6 SEP 1906
+2 PLAC Water Valley, Mississippi
+1 FAMS @F2@
+1 FAMC @F4@
+1 SOUR @S1@
+0 @I5@ INDI
+1 NAME Elizabeth Bettie /CANNON/
+1 SEX F
+1 BIRT
+2 DATE 7 DEC 1861
+2 PLAC Mississippi
+1 DEAT
+2 DATE 10 JUN 1891
+2 PLAC Mississippi, United States
+1 FAMS @F2@
+1 FAMC @F5@
+1 SOUR @S1@
+0 @I6@ INDI
+1 NAME William L /WOODS/
+1 SEX M
+1 BIRT
+2 DATE 1 MAY 1825
+1 DEAT
+2 DATE 1 JUL 1895
+2 PLAC Water Valley, Mississippi
+1 FAMS @F3@
+1 FAMC @F6@
+1 SOUR @S1@
+0 @I7@ INDI
+1 NAME Josephine E /RILEY/
+1 SEX F
+1 BIRT
+2 DATE NOV 1844
+2 PLAC Mississippi
+1 DEAT
+2 DATE 17 JUN 1917
+1 FAMS @F3@
+1 SOUR @S1@
+0 @I8@ INDI
+1 NAME Louden /CHRISTY/
+1 SEX M
+1 BIRT
+2 DATE SEP 1816
+2 PLAC Fleming County, Kentucky
+1 DEAT
+2 DATE 11 JUL 1883
+2 PLAC Holly Springs Ward 1, Marshall, Mississippi
+1 FAMS @F4@
+1 FAMC @F7@
+1 SOUR @S1@
+0 @I9@ INDI
+1 NAME Susan /HAMILTON/
+1 SEX F
+1 BIRT
+2 DATE ABT 1821
+2 PLAC North Carolina, United States
+1 DEAT
+2 DATE 1856
+2 PLAC Shelby County, Tennessee, USA
+1 FAMS @F4@
+1 FAMC @F8@
+1 SOUR @S1@
+0 @I10@ INDI
+1 NAME William J /CANNON/
+1 SEX M
+1 BIRT
+2 DATE 14 AUG 1833
+2 PLAC Robersonville, North Carolina, USA
+1 DEAT
+2 DATE 1868
+2 PLAC Holly Springs, Mississippi, USA
+1 FAMS @F5@
+1 FAMC @F9@
+1 SOUR @S1@
+0 @I11@ INDI
+1 NAME Lydia Narcissus /WARD/
+1 SEX F
+1 BIRT
+2 DATE 1835
+2 PLAC Kentucky, USA
+1 DEAT
+2 DATE 23 JAN 1918
+2 PLAC Holly Springs, Mississippi, USA
+1 FAMS @F5@
+1 FAMC @F10@
+1 SOUR @S1@
+0 @I12@ INDI
+1 NAME John Woods Panola County Mississippi /USA/
+1 SEX M
+1 BIRT
+2 DATE EST 1784
+1 DEAT
+1 FAMS @F6@
+1 FAMC @F11@
+1 SOUR @S1@
+0 @I13@ INDI
+1 NAME Obedience /ADELINE/
+1 SEX F
+1 BIRT
+2 DATE EST 1790
+1 DEAT
+1 FAMS @F6@
+1 SOUR @S1@
+0 @I14@ INDI
+1 NAME James /CHRISTY/
+1 SEX M
+1 BIRT
+2 DATE 1766
+2 PLAC Culpepper County, Virginia
+1 DEAT
+2 DATE 1847
+2 PLAC Poplar Plains, Fleming, Kentucky
+1 FAMS @F7@
+1 FAMC @F12@
+1 SOUR @S1@
+0 @I15@ INDI
+1 NAME Elizabeth /ARMSTRONG/
+1 SEX F
+1 BIRT
+2 DATE 4 SEP 1769
+2 PLAC Augusta Springs, Augusta, Virginia, USA
+1 DEAT
+2 DATE 8 JAN 1843
+2 PLAC Fleming, Letcher, Kentucky, USA
+1 FAMS @F7@
+1 FAMC @F13@
+1 SOUR @S1@
+0 @I16@ INDI
+1 NAME Archibald /HAMILTON/
+1 SEX M
+1 BIRT
+2 DATE 1787
+2 PLAC Orange County, North Carolina
+1 DEAT
+2 DATE 4 APR 1860
+2 PLAC Carroll County, Tennessee, USA
+1 FAMS @F8@
+1 FAMC @F14@
+1 SOUR @S1@
+0 @I17@ INDI
+1 NAME Frances Fanny /BIRD/
+1 SEX F
+1 BIRT
+2 DATE 1789
+2 PLAC Orange, North Carolina, United States
+1 DEAT
+2 DATE AFT 1850
+2 PLAC Caroll Co, Tennessee, United States
+1 FAMS @F8@
+1 FAMC @F15@
+1 SOUR @S1@
+0 @I18@ INDI
+1 NAME William /CANNON/
+1 SEX M
+1 BIRT
+2 DATE ABT 1790
+1 DEAT
+2 DATE BEF 1850
+2 PLAC Marshall Co., MS
+1 FAMS @F9@
+1 FAMC @F16@
+1 SOUR @S1@
+0 @I19@ INDI
+1 NAME Mary /GAINES/
+1 SEX F
+1 BIRT
+2 DATE ABT 1805
+2 PLAC VA
+1 DEAT
+2 DATE AFT 1850
+2 PLAC Marshall Co., MS
+1 FAMS @F9@
+1 SOUR @S1@
+0 @I20@ INDI
+1 NAME Alfred /WARD/
+1 SEX M
+1 BIRT
+2 DATE 1803
+2 PLAC North Carolina, USA
+1 DEAT
+2 DATE 1860
+2 PLAC Holly Springs, Mississippi, USA
+1 FAMS @F10@
+1 SOUR @S1@
+0 @I21@ INDI
+1 NAME Tabitha Elizabeth Lehew Or /LEHU/
+1 SEX F
+1 BIRT
+2 DATE 1805
+2 PLAC North Carolina
+1 DEAT
+2 DATE 1860
+2 PLAC Holly Springs, Marshall, Mississippi, USA
+1 FAMS @F10@
+1 SOUR @S1@
+0 @I22@ INDI
+1 NAME John /WOOD/
+2 NPFX Capt
+1 SEX M
+1 BIRT
+2 DATE 1751
+2 PLAC Kentucky, USA
+1 DEAT
+2 DATE 19 APR 1815
+2 PLAC Tennessee, USA
+1 FAMS @F11@
+1 FAMC @F17@
+1 SOUR @S1@
+0 @I23@ INDI
+1 NAME Abigail /ESTILL/
+1 SEX F
+1 BIRT
+2 DATE 22 NOV 1752
+2 PLAC Augusta, Virginia, United States
+1 DEAT
+2 DATE 19 AUG 1840
+2 PLAC Franklin, Tennessee, United States
+1 FAMS @F11@
+1 FAMC @F18@
+1 SOUR @S1@
+0 @I24@ INDI
+1 NAME Julius /CHRISTY/
+1 SEX M
+1 BIRT
+2 DATE 1731
+2 PLAC Essex, Virginia, United States
+1 DEAT
+2 DATE MAY 1804
+2 PLAC Clark, Kentucky, United States
+1 FAMS @F12@
+1 FAMC @F19@
+1 SOUR @S1@
+0 @I25@ INDI
+1 NAME Agatha /BARNETT/
+1 SEX F
+1 BIRT
+2 DATE 1740
+2 PLAC Culpepper, Virginia, United States
+1 DEAT
+2 DATE 1820
+2 PLAC Clark, Kentucky, United States
+1 FAMS @F12@
+1 FAMC @F20@
+1 SOUR @S1@
+0 @I26@ INDI
+1 NAME Robert /ARMSTRONG/
+1 SEX M
+1 BIRT
+2 DATE 1724
+2 PLAC Virginia
+1 DEAT
+2 DATE 30 APR 1811
+2 PLAC Poplar Plains, Fleming, Kentucky, USA
+1 FAMS @F13@
+1 FAMC @F21@
+1 SOUR @S1@
+0 @I27@ INDI
+1 NAME Jane /LOUDON/
+1 SEX F
+1 BIRT
+2 DATE 1748-05-08
+2 PLAC Augusta, Virginia, USA
+1 DEAT
+2 DATE 23 AUG 1816
+2 PLAC Poplar Plains, Fleming, Kentucky, USA
+1 FAMS @F13@
+1 FAMC @F22@
+1 SOUR @S1@
+0 @I28@ INDI
+1 NAME Archibald /HAMILTON/
+1 SEX M
+1 BIRT
+2 DATE 5 MAY 1743
+2 PLAC Prince George's, Maryland, United States
+1 DEAT
+2 DATE 22 MAY 1820
+2 PLAC Willow Grove, North Carolina, United States
+1 FAMS @F14@
+1 SOUR @S1@
+0 @I29@ INDI
+1 NAME Mary Polly /HAWKINS/
+1 SEX F
+1 BIRT
+2 DATE 1745
+2 PLAC Lincoln, North Carolina, United States
+1 DEAT
+2 DATE 6 SEP 1834
+2 PLAC Willow Grove, North Carolina, United States
+1 FAMS @F14@
+1 SOUR @S1@
+0 @I30@ INDI
+1 NAME Empson /BIRD/
+1 SEX M
+1 BIRT
+2 DATE 28 MAR 1749
+2 PLAC New Castle, New Castle, Delaware, United States
+1 DEAT
+2 DATE 27 JAN 1802
+2 PLAC Alamance, North Carolina, USA
+1 FAMS @F15@
+1 FAMC @F23@
+1 SOUR @S1@
+0 @I31@ INDI
+1 NAME Mary /WHITTED/
+1 SEX F
+1 BIRT
+2 DATE 29 JUN 1755
+2 PLAC Orange, North Carolina, United States
+1 DEAT
+2 DATE 11 APR 1815
+2 PLAC Alamance, North Carolina, USA
+1 FAMS @F15@
+1 SOUR @S1@
+0 @I32@ INDI
+1 NAME Mathew /CANNON/
+1 SEX M
+1 BIRT
+2 DATE EST 1754
+1 DEAT
+1 FAMS @F16@
+1 SOUR @S1@
+0 @I33@ INDI
+1 NAME Thomas /WOOD/
+1 SEX M
+1 BIRT
+2 DATE EST 1715
+1 DEAT
+1 FAMS @F17@
+1 SOUR @S1@
+0 @I34@ INDI
+1 NAME Mary /WOOD/
+1 SEX F
+1 BIRT
+2 DATE EST 1718
+1 DEAT
+1 FAMS @F17@
+1 SOUR @S1@
+0 @I35@ INDI
+1 NAME James /ESTILL/
+1 SEX M
+1 BIRT
+2 DATE EST 1716
+1 DEAT
+1 FAMS @F18@
+1 SOUR @S1@
+0 @I36@ INDI
+1 NAME Samuel /CHRISTY/
+1 SEX M
+1 BIRT
+2 DATE EST 1695
+1 DEAT
+1 FAMS @F19@
+1 SOUR @S1@
+0 @I37@ INDI
+1 NAME John /BARNETT/
+1 SEX M
+1 BIRT
+2 DATE EST 1710
+1 DEAT
+1 FAMS @F20@
+1 FAMC @F24@
+1 SOUR @S1@
+0 @I38@ INDI
+1 NAME Marran /GIBBS/
+1 SEX F
+1 BIRT
+2 DATE 20 APR 1704
+2 PLAC Christ Church, Middlesex, Virginia, United State
+1 DEAT
+2 DATE 1782
+2 PLAC Orange, Virginia, United States
+1 FAMS @F20@
+1 FAMC @F25@
+1 SOUR @S1@
+0 @I39@ INDI
+1 NAME Robert /ARMSTRONG/
+1 SEX M
+1 BIRT
+2 DATE 1706
+2 PLAC Scotland
+1 DEAT
+2 DATE 20 APR 1773
+2 PLAC Augusta, Virginia, USA
+1 FAMS @F21@
+1 FAMC @F26@
+1 SOUR @S1@
+0 @I40@ INDI
+1 NAME Lydia /LOUDEN/
+1 SEX F
+1 BIRT
+2 DATE 1 JAN 1700
+2 PLAC Londonderry, Ireland
+1 DEAT
+2 DATE 1 JAN 1759
+2 PLAC Augusta, Virginia, USA
+1 FAMS @F21@
+1 SOUR @S1@
+0 @I41@ INDI
+1 NAME John /JAMESON/
+1 SEX M
+1 BIRT
+2 DATE 1723
+2 PLAC Pennsylvania, Somerset, Pennsylvania, United Sta
+1 DEAT
+2 DATE 19 MAR 1776
+2 PLAC Virginia, United States
+1 FAMS @F22@
+1 FAMC @F27@
+1 SOUR @S1@
+0 @I42@ INDI
+1 NAME Jean /ERWIN/
+1 SEX F
+1 BIRT
+2 DATE 1723
+2 PLAC Virginia, Gage, Nebraska, United States
+1 DEAT
+2 DATE 19 MAR 1779
+2 PLAC Fredericksville Parish, Albermarle, Virginia, En
+1 FAMS @F22@
+1 FAMC @F28@
+1 SOUR @S1@
+0 @I43@ INDI
+1 NAME James /BIRD/
+1 SEX M
+1 BIRT
+2 DATE 20 NOV 1726
+2 PLAC Wilmington, New Castle, Delaware, United States
+1 DEAT
+2 DATE AUG 1805
+2 PLAC Orange, North Carolina, United States
+1 FAMS @F23@
+1 FAMC @F29@
+1 SOUR @S1@
+0 @I44@ INDI
+1 NAME Mary /ASHFORD/
+1 SEX F
+1 BIRT
+2 DATE 1728
+2 PLAC Wilmington, New Castle, Delaware, United States
+1 DEAT
+2 DATE 24 OCT 1793
+2 PLAC Orange, North Carolina, United States
+1 FAMS @F23@
+1 SOUR @S1@
+0 @I45@ INDI
+1 NAME John /BARNETT/
+1 SEX M
+1 BIRT
+2 DATE 1684
+2 PLAC Christ Church, Middlesex, Virginia, United State
+1 DEAT
+2 DATE 31 OCT 1721
+2 PLAC Christ Church, Middlesex, Virginia, United State
+1 FAMS @F24@
+1 FAMC @F30@
+1 SOUR @S1@
+0 @I46@ INDI
+1 NAME Jonathan /GIBBS/
+1 SEX M
+1 BIRT
+2 DATE 10 OCT 1680
+2 PLAC Christchurch, Middlesex County, Virginia, USA
+1 DEAT
+2 DATE 31 JAN 1725
+2 PLAC Christchurch, Middlesex County, Virginia, USA
+1 FAMS @F25@
+1 SOUR @S1@
+0 @I47@ INDI
+1 NAME Mary //
+1 SEX F
+1 BIRT
+1 FAMS @F25@
+1 SOUR @S1@
+0 @I48@ INDI
+1 NAME Robert /ARMSTRONG/
+1 SEX M
+1 BIRT
+2 DATE 1681
+2 PLAC Scotland
+1 DEAT
+2 DATE 1762
+2 PLAC Beverly Manor, Augusta, Virginia, United States
+1 FAMS @F26@
+1 SOUR @S1@
+0 @I49@ INDI
+1 NAME William /JAMESON/
+1 SEX M
+1 BIRT
+2 DATE 1697
+2 PLAC Europe, Ulster, Ireland
+1 DEAT
+2 DATE 21 MAR 1753
+2 PLAC USA, Virginia, Pennsylvania, United States
+1 FAMS @F27@
+1 SOUR @S1@
+0 @I50@ INDI
+1 NAME Sarah /COLLINS/
+1 SEX F
+1 BIRT
+2 DATE 1697
+2 PLAC Pennsylvania, Somerset, Pennsylvania, United Sta
+1 DEAT
+2 DATE 1770
+2 PLAC Fredericksville Parish, Albemarle, Virginia, Uni
+1 FAMS @F27@
+1 SOUR @S1@
+0 @I51@ INDI
+1 NAME Matthew /ERWIN/
+1 SEX M
+1 BIRT
+2 DATE 1697
+2 PLAC Virginia, United States
+1 DEAT
+2 DATE 17 APR 1759
+2 PLAC Augusta, Virginia, United States
+1 FAMS @F28@
+1 FAMC @F31@
+1 SOUR @S1@
+0 @I52@ INDI
+1 NAME Elizabeth /HOBSON/
+1 SEX F
+1 BIRT
+2 DATE 1701
+2 PLAC Virginia, United States, Augusta, Virginia, England
+1 DEAT
+1 FAMS @F28@
+1 SOUR @S1@
+0 @I53@ INDI
+1 NAME Thomas /BIRD/
+1 SEX M
+1 BIRT
+2 DATE 1660
+2 PLAC Wilmington, New Castle, Delaware, United States
+1 DEAT
+2 DATE 10 DEC 1726
+2 PLAC Wilmington, New Castle, Delaware, United States
+1 FAMS @F29@
+1 FAMC @F32@
+1 SOUR @S1@
+0 @I54@ INDI
+1 NAME Sarah /EMPSON/
+1 SEX F
+1 BIRT
+2 DATE 20 JUL 1687
+2 PLAC Goole Grange, New Castle, Delaware, United State
+1 DEAT
+2 DATE 1741
+2 PLAC Wilmington, New Castle, Delaware, United States
+1 FAMS @F29@
+1 SOUR @S1@
+0 @I55@ INDI
+1 NAME William /BARNETT/
+1 SEX M
+1 BIRT
+2 DATE 1646
+2 PLAC Petsoe, Buckinghamshire, England
+1 DEAT
+2 DATE 1704
+2 PLAC Middlesex, Virginia, United States
+1 FAMS @F30@
+1 FAMC @F33@
+1 SOUR @S1@
+0 @I56@ INDI
+1 NAME Loretta Pannell /PANNIL/
+1 SEX F
+1 BIRT
+2 DATE 1657
+2 PLAC Buckinghamshire, England
+1 DEAT
+2 DATE 1700
+2 PLAC Virginia, United States
+1 FAMS @F30@
+1 SOUR @S1@
+0 @I57@ INDI
+1 NAME Matthew /IRVINE/
+1 SEX M
+1 BIRT
+2 DATE 1678
+2 PLAC Aberdeenshire, Scotland
+1 DEAT
+2 DATE 19 APR 1755
+2 PLAC Augusta, Virginia, United States
+1 FAMS @F31@
+1 FAMC @F34@
+1 SOUR @S1@
+0 @I58@ INDI
+1 NAME Suit /GARLAND/
+1 SEX F
+1 BIRT
+2 DATE 1690
+2 PLAC Donegal, Lancaster, Pennsylvania, United States
+1 DEAT
+2 DATE 24 DEC 1736
+2 PLAC Donegal, Lancaster, Pennsylvania, United States
+1 FAMS @F31@
+1 FAMC @F35@
+1 SOUR @S1@
+0 @I59@ INDI
+1 NAME Thomas /BYRD/
+1 SEX M
+1 BIRT
+2 DATE 1653
+2 PLAC London, England
+1 DEAT
+2 DATE 12 MAR 1710
+2 PLAC Virginia, USA
+1 FAMS @F32@
+1 FAMC @F36@
+1 SOUR @S1@
+0 @I60@ INDI
+1 NAME Mary /HOWLETT/
+1 SEX F
+1 BIRT
+2 DATE 1655
+2 PLAC London, Middlesex, England
+1 DEAT
+2 DATE 15 MAR 1710
+2 PLAC Henrico, Virginia, USA
+1 FAMS @F32@
+1 SOUR @S1@
+0 @I61@ INDI
+1 NAME Richard /BERNARD/
+1 SEX M
+1 BIRT
+2 DATE 12 MAR 1608
+2 PLAC Turvey, Bedford, England
+1 DEAT
+2 DATE 3 APR 1651
+2 PLAC Gloucester, Gloucester, Virginia, United States
+1 FAMS @F33@
+1 FAMC @F37@
+1 SOUR @S1@
+0 @I62@ INDI
+1 NAME Anna /CORDRAY/
+1 SEX F
+1 BIRT
+2 DATE 1612
+2 PLAC Chute, Wiltshire, England
+1 DEAT
+2 DATE 1670
+2 PLAC Westmoreland, Virginia, United States
+1 FAMS @F33@
+1 SOUR @S1@
+0 @I63@ INDI
+1 NAME David /IRVINE/
+1 SEX M
+1 BIRT
+2 DATE 1646
+2 PLAC Drum Castle, Aberdeenshire, Scotland
+1 DEAT
+2 DATE 1678
+2 PLAC Ireland
+1 FAMS @F34@
+1 FAMC @F38@
+1 SOUR @S1@
+0 @I64@ INDI
+1 NAME Sophia /GAULT/
+1 SEX F
+1 BIRT
+2 DATE 1650
+2 PLAC Drumblade, Aberdeenshire, Scotland, Ireland
+1 DEAT
+1 FAMS @F34@
+1 SOUR @S1@
+0 @I65@ INDI
+1 NAME Sylvester /GARLAND/
+1 SEX M
+1 BIRT
+2 DATE 1670
+2 PLAC New York, United States
+1 DEAT
+2 DATE 1718
+2 PLAC New Castle, New Castle, Delaware, United States
+1 FAMS @F35@
+1 FAMC @F39@
+1 SOUR @S1@
+0 @I66@ INDI
+1 NAME Soetji /VANDERCULIN/
+1 SEX F
+1 BIRT
+2 DATE 1670
+2 PLAC Ridley, Chester, Pennsylvania, United States
+1 DEAT
+2 DATE 1719
+2 PLAC New Castle, New Castle, Delaware, United States
+1 FAMS @F35@
+1 FAMC @F40@
+1 SOUR @S1@
+0 @I67@ INDI
+1 NAME John /BYRD/
+1 SEX M
+1 BIRT
+2 DATE 1620
+2 PLAC Brexton, Cheshire, England
+1 DEAT
+2 DATE 1677
+2 PLAC London, Middlesex, England
+1 FAMS @F36@
+1 FAMC @F41@
+1 SOUR @S1@
+0 @I68@ INDI
+1 NAME Grace /STEGGE/
+1 SEX F
+1 BIRT
+2 DATE 1625
+2 PLAC London, London, England
+1 DEAT
+2 DATE 1690
+2 PLAC London, London, England
+1 FAMS @F36@
+1 SOUR @S1@
+0 @I69@ INDI
+1 NAME Richard /BERNARD/
+1 SEX M
+1 BIRT
+2 DATE 1555
+2 PLAC Abington, Northamptonshire, England
+1 DEAT
+2 DATE 1613
+2 PLAC Bedfordshire, England
+1 FAMS @F37@
+1 SOUR @S1@
+0 @I70@ INDI
+1 NAME Elizabeth /WOOLHOUSE/
+1 SEX F
+1 BIRT
+2 DATE 1572
+2 PLAC London, London, England
+1 DEAT
+2 DATE 10 MAR 1622
+2 PLAC Surrey, England
+1 FAMS @F37@
+1 SOUR @S1@
+0 @I71@ INDI
+1 NAME Robert /IRVINE/
+1 SEX M
+1 BIRT
+2 DATE 1620
+2 PLAC Drum Castle, Aberdeenshire, Scotland
+1 DEAT
+2 DATE 1645
+2 PLAC Edinburgh, Midlothian, Scotland
+1 FAMS @F38@
+1 SOUR @S1@
+0 @I72@ INDI
+1 NAME Elizabeth /WYLIE/
+1 SEX F
+1 BIRT
+2 DATE 28 FEB 1619
+2 PLAC Edinburgh, Midlothian, Scotland
+1 DEAT
+2 DATE 1630
+2 PLAC Ireland
+1 FAMS @F38@
+1 SOUR @S1@
+0 @I73@ INDI
+1 NAME John /GARLAND/
+1 SEX M
+1 BIRT
+2 DATE 1640
+2 PLAC Yorkshire, Cattaraugus, New York, United States
+1 DEAT
+2 DATE 1673
+2 PLAC New York, United States
+1 FAMS @F39@
+1 SOUR @S1@
+0 @I74@ INDI
+1 NAME Susanna Ver /PLANCK/
+1 SEX F
+1 BIRT
+2 DATE 25 MAY 1642
+2 PLAC Albany, Albany, New York, United States
+1 DEAT
+2 DATE 1680
+2 PLAC Delaware, United States
+1 FAMS @F39@
+1 SOUR @S1@
+0 @I75@ INDI
+1 NAME George /VANDERCULIN/
+1 SEX M
+1 BIRT
+2 DATE 1650
+2 PLAC Ridly, Chester, Pennsylvania, United States
+1 DEAT
+2 DATE 1712
+2 PLAC Ridley, Chester, Pennsylvania, United States
+1 FAMS @F40@
+1 FAMC @F42@
+1 SOUR @S1@
+0 @I76@ INDI
+1 NAME Thomas /BIRD/
+1 SEX M
+1 BIRT
+2 DATE 16 JAN 1599
+2 PLAC London, London, England
+1 DEAT
+2 DATE 1623
+2 PLAC London, Middlesex, England
+1 FAMS @F41@
+1 SOUR @S1@
+0 @I77@ INDI
+1 NAME Elizabeth /BURGH/
+1 SEX F
+1 BIRT
+2 DATE 1600
+2 PLAC London, London, England
+1 DEAT
+2 DATE 1684
+2 PLAC London, London, England
+1 FAMS @F41@
+1 SOUR @S1@
+0 @I78@ INDI
+1 NAME Reynier /VANDERCULIN/
+1 SEX M
+1 BIRT
+2 DATE 1627
+2 PLAC Netherlands
+1 DEAT
+2 DATE 03 OCT 1677
+2 PLAC Delaware, United States
+1 FAMS @F42@
+1 SOUR @S1@
+0 @I79@ INDI
+1 NAME Jannetje /JANS/
+1 SEX F
+1 BIRT
+2 DATE 1629
+2 PLAC Utrecht, Netherlands
+1 DEAT
+2 DATE 13 JUL 1694
+2 PLAC Bergen, New Jersey, USA
+1 FAMS @F42@
+1 SOUR @S1@
+0 @F1@ FAM
+1 HUSB @I2@
+1 WIFE @I3@
+1 CHIL @I1@
+0 @F2@ FAM
+1 HUSB @I4@
+1 WIFE @I5@
+1 CHIL @I2@
+0 @F3@ FAM
+1 HUSB @I6@
+1 WIFE @I7@
+1 CHIL @I3@
+0 @F4@ FAM
+1 HUSB @I8@
+1 WIFE @I9@
+1 CHIL @I4@
+0 @F5@ FAM
+1 HUSB @I10@
+1 WIFE @I11@
+1 CHIL @I5@
+0 @F6@ FAM
+1 HUSB @I12@
+1 WIFE @I13@
+1 CHIL @I6@
+0 @F7@ FAM
+1 HUSB @I14@
+1 WIFE @I15@
+1 CHIL @I8@
+0 @F8@ FAM
+1 HUSB @I16@
+1 WIFE @I17@
+1 CHIL @I9@
+0 @F9@ FAM
+1 HUSB @I18@
+1 WIFE @I19@
+1 CHIL @I10@
+0 @F10@ FAM
+1 HUSB @I20@
+1 WIFE @I21@
+1 CHIL @I11@
+0 @F11@ FAM
+1 HUSB @I22@
+1 WIFE @I23@
+1 CHIL @I12@
+0 @F12@ FAM
+1 HUSB @I24@
+1 WIFE @I25@
+1 CHIL @I14@
+0 @F13@ FAM
+1 HUSB @I26@
+1 WIFE @I27@
+1 CHIL @I15@
+0 @F14@ FAM
+1 HUSB @I28@
+1 WIFE @I29@
+1 CHIL @I16@
+0 @F15@ FAM
+1 HUSB @I30@
+1 WIFE @I31@
+1 CHIL @I17@
+0 @F16@ FAM
+1 HUSB @I32@
+1 CHIL @I18@
+0 @F17@ FAM
+1 HUSB @I33@
+1 WIFE @I34@
+1 CHIL @I22@
+0 @F18@ FAM
+1 HUSB @I35@
+1 CHIL @I23@
+0 @F19@ FAM
+1 HUSB @I36@
+1 CHIL @I24@
+0 @F20@ FAM
+1 HUSB @I37@
+1 WIFE @I38@
+1 CHIL @I25@
+0 @F21@ FAM
+1 HUSB @I39@
+1 WIFE @I40@
+1 CHIL @I26@
+0 @F22@ FAM
+1 HUSB @I41@
+1 WIFE @I42@
+1 CHIL @I27@
+0 @F23@ FAM
+1 HUSB @I43@
+1 WIFE @I44@
+1 CHIL @I30@
+0 @F24@ FAM
+1 HUSB @I45@
+1 CHIL @I37@
+0 @F25@ FAM
+1 HUSB @I46@
+1 WIFE @I47@
+1 CHIL @I38@
+0 @F26@ FAM
+1 HUSB @I48@
+1 CHIL @I39@
+0 @F27@ FAM
+1 HUSB @I49@
+1 WIFE @I50@
+1 CHIL @I41@
+0 @F28@ FAM
+1 HUSB @I51@
+1 WIFE @I52@
+1 CHIL @I42@
+0 @F29@ FAM
+1 HUSB @I53@
+1 WIFE @I54@
+1 CHIL @I43@
+0 @F30@ FAM
+1 HUSB @I55@
+1 WIFE @I56@
+1 CHIL @I45@
+0 @F31@ FAM
+1 HUSB @I57@
+1 WIFE @I58@
+1 CHIL @I51@
+0 @F32@ FAM
+1 HUSB @I59@
+1 WIFE @I60@
+1 CHIL @I53@
+0 @F33@ FAM
+1 HUSB @I61@
+1 WIFE @I62@
+1 CHIL @I55@
+0 @F34@ FAM
+1 HUSB @I63@
+1 WIFE @I64@
+1 CHIL @I57@
+0 @F35@ FAM
+1 HUSB @I65@
+1 WIFE @I66@
+1 CHIL @I58@
+0 @F36@ FAM
+1 HUSB @I67@
+1 WIFE @I68@
+1 CHIL @I59@
+0 @F37@ FAM
+1 HUSB @I69@
+1 WIFE @I70@
+1 CHIL @I61@
+0 @F38@ FAM
+1 HUSB @I71@
+1 WIFE @I72@
+1 CHIL @I63@
+0 @F39@ FAM
+1 HUSB @I73@
+1 WIFE @I74@
+1 CHIL @I65@
+0 @F40@ FAM
+1 HUSB @I75@
+1 CHIL @I66@
+0 @F41@ FAM
+1 HUSB @I76@
+1 WIFE @I77@
+1 CHIL @I67@
+0 @F42@ FAM
+1 HUSB @I78@
+1 WIFE @I79@
+1 CHIL @I75@
+0 @S1@ SOUR
+1 TITL Pedigree for Harold Woods CHRISTY
+1 TEXT Home
+2 CONT Pedigree
+2 CONT Descendants
+2 CONT SEARCH
+2 CONT 
+2 CONT Number of generations
+2 CONT 11
+2 CONT 
+2 CONT GEDCOM Pedigree Chart
+2 CONT                                                       
+2 CONT                                        Samuel Christy
+2 CONT                                      /          
+2 CONT                                  Julius Christy, b. 1731, Essex, Virginia, United States, d. May 1804, Clark, Kentucky, United States
+2 CONT                                /          
+2 CONT                            James Christy, b. 1766, Culpepper County, Virginia, d. 1847, Poplar Plains, Fleming, Kentucky
+2 CONT                          /     \                                              
+2 CONT                          |     |                               Richard Bernard, b. 1555, Abington, Northamptonshire, England, d. 1613, Bedfordshire, England
+2 CONT                          |     |                             /          
+2 CONT                          |     |                         Richard Bernard, b. 12 March 1608, Turvey, Bedford, England, d. 3 Apr 1651, Gloucester, Gloucester, Virginia, United States
+2 CONT                          |     |                       /     \                
+2 CONT                          |     |                       |       Elizabeth Woolhouse, b. 1572, London, London, England, d. 10 Mar 1622, Surrey, England
+2 CONT                          |     |                       /          
+2 CONT                          |     |                   William Barnett, b. 1646, Petsoe, Buckinghamshire, , England, d. 1704, Middlesex, Virginia, United States
+2 CONT                          |     |                 /     \                
+2 CONT                          |     |                 |       Anna Cordray, b. 1612, Chute, Wiltshire, , England, d. 1670, Westmoreland, Virginia, United States
+2 CONT                          |     |                 /          
+2 CONT                          |     |             John Barnett, b. 1684, Christ Church, Middlesex, Virginia, United State, d. 31 Oct 1721, Christ Church, Middlesex, Virginia, United State
+2 CONT                          |     |           /     \                
+2 CONT                          |     |           |       Loretta Pannell Pannil, b. 1657, , Buckinghamshire, , England, d. 1700, Virginia, United States
+2 CONT                          |     |           /          
+2 CONT                          |     |       John Barnett
+2 CONT                          |     \     /          
+2 CONT                          |       Agatha Barnett, b. 1740, Culpepper, Virginia, United States, d. 1820, Clark, Kentucky, United States
+2 CONT                          |           \                      
+2 CONT                          |           |       Jonathan Gibbs, b. 10 October 1680, Christchurch, Middlesex County, Virginia, USA, d. 31 Jan 1725, Christchurch, Middlesex County, Virginia, USA
+2 CONT                          |           \     /          
+2 CONT                          |             Marran Gibbs, b. 20 Apr 1704, Christ Church, Middlesex, Virginia, United State, d. 1782, Orange, Virginia, United States
+2 CONT                          |                 \                
+2 CONT                          |                   Mary 
+2 CONT                          /          
+2 CONT                      Louden Christy, b. Sept 1816, Fleming County, Kentucky, d. July 11, 1883, Holly Springs Ward 1, Marshall, Mississippi
+2 CONT                    /     \                                  
+2 CONT                    |     |                   Robert Armstrong, b. 1681, Scotland, d. 1762, Beverly Manor, Augusta, Virginia, United States
+2 CONT                    |     |                 /          
+2 CONT                    |     |             Robert Armstrong, b. 1706, , , , Scotland, d. 20 Apr 1773, , Augusta, Virginia, USA
+2 CONT                    |     |           /          
+2 CONT                    |     |       Robert Armstrong, b. 1724, Virginia, d. 1811-04-30, Poplar Plains,Fleming,Kentucky,USA
+2 CONT                    |     |     /     \                
+2 CONT                    |     |     |       Lydia Louden, b. 1 Jan 1700, , Londonderry, , Ireland, d. 1 Jan 1759, , Augusta, Virginia, USA
+2 CONT                    |     \     /          
+2 CONT                    |       Elizabeth Armstrong, b. 4 Sep 1769, Augusta Springs, Augusta, Virginia, USA, d. 8 Jan 1843, Fleming, Letcher, Kentucky, USA
+2 CONT                    |           \                            
+2 CONT                    |           |             William Jameson, b. 1697, Europe, Ulster, Ireland, d. 21 Mar 1753, USA, Virginia, Pennsylvania, United States
+2 CONT                    |           |           /          
+2 CONT                    |           |       John Jameson, b. 1723, Pennsylvania, Somerset, Pennsylvania, United Sta, d. 19 March 1776, Virginia, United States
+2 CONT                    |           |     /     \                
+2 CONT                    |           |     |       Sarah Collins, b. 1697, Pennsylvania, Somerset, Pennsylvania, United Sta, d. 1770, Fredericksville Parish, Albemarle, Virginia, Uni
+2 CONT                    |           \     /          
+2 CONT                    |             Jane Loudon, b. 1748-05-08, Augusta, Virginia, USA, d. 1816-08-23, Poplar Plains,Fleming,Kentucky,USA
+2 CONT                    |                 \                                        
+2 CONT                    |                 |                         Robert Irvine, b. 1620, Drum Castle, Aberdeenshire, , Scotland, d. 1645, Edinburgh, Midlothian, , Scotland
+2 CONT                    |                 |                       /          
+2 CONT                    |                 |                   David Irvine, b. 1646, Drum Castle, Aberdeenshire, , Scotland, d. 1678, , , , Ireland
+2 CONT                    |                 |                 /     \                
+2 CONT                    |                 |                 |       Elizabeth Wylie, b. 28 Feb 1619, Edinburgh, Midlothian, , Scotland, d. 1630, , , , Ireland
+2 CONT                    |                 |                 /          
+2 CONT                    |                 |             Matthew Irvine, b. 1678, Aberdeenshire, Scotland, d. 19 Apr 1755, Augusta, Virginia, United States
+2 CONT                    |                 |           /     \                
+2 CONT                    |                 |           |       Sophia Gault, b. 1650, Drumblade, Aberdeenshire, , Scotland, , , , Ireland
+2 CONT                    |                 |           /          
+2 CONT                    |                 |       Matthew Erwin, b. 1697, Virginia, United States, d. 17 Apr 1759, Augusta, Virginia, United States
+2 CONT                    |                 |     /     \                            
+2 CONT                    |                 |     |     |             John Garland, b. 1640, Yorkshire, Cattaraugus, New York, United States, d. 1673, New York, United States
+2 CONT                    |                 |     |     |           /          
+2 CONT                    |                 |     |     |       Sylvester Garland, b. 1670, New York, United States, d. 1718, New Castle, New Castle, Delaware, United States
+2 CONT                    |                 |     |     |     /     \                
+2 CONT                    |                 |     |     |     |       Susanna Ver Planck, b. 25 May 1642, Albany, Albany, New York, United States, d. 1680, Delaware, United States
+2 CONT                    |                 |     |     \     /          
+2 CONT                    |                 |     |       Suit Garland, b. 1690, Donegal, Lancaster, Pennsylvania, United States, d. 24 Dec 1736, Donegal, Lancaster, Pennsylvania, United States
+2 CONT                    |                 |     |           \                            
+2 CONT                    |                 |     |           |             Reynier VanDerCulin, b. 1627, Netherlands, d. 03 OCT 1677, Delaware, United States
+2 CONT                    |                 |     |           |           /          
+2 CONT                    |                 |     |           |       George Vanderculin, b. 1650, Ridly, Chester, Pennsylvania, United States, d. 1712, Ridley, Chester, Pennsylvania, United States
+2 CONT                    |                 |     |           |     /     \                
+2 CONT                    |                 |     |           |     |       Jannetje Jans, b. 1629, Utrecht, Netherlands, d. 13 JUL 1694, Bergen, New Jersey, USA
+2 CONT                    |                 |     |           \     /          
+2 CONT                    |                 |     |             Soetji Vanderculin, b. 1670, Ridley, Chester, Pennsylvania, United States, d. 1719, New Castle, New Castle, Delaware, United States
+2 CONT                    |                 \     /          
+2 CONT                    |                   Jean Erwin, b. 1723, Virginia, Gage, Nebraska, United States, d. 19 Mar 1779, Fredericksville Parish, Albermarle, Virginia, En
+2 CONT                    |                       \                
+2 CONT                    |                         Elizabeth Hobson, b. 1701, Virginia, United States, Augusta, , Virginia, England
+2 CONT                    /          
+2 CONT                Albion Louden (Lee) Christy, b. abt 1853, Memphis, Tennessee, USA, d. Sept 6, 1906, Water Valley, Mississippi
+2 CONT              /     \                            
+2 CONT              |     |             Archibald Hamilton, b. 5 May 1743, Prince George's, Maryland, United States, d. 22 May 1820, Willow Grove, North Carolina, United States
+2 CONT              |     |           /          
+2 CONT              |     |       Archibald Hamilton, b. 1787, Orange County, North Carolina, d. 4 Apr 1860, Carroll County, Tennessee, USA
+2 CONT              |     |     /     \                
+2 CONT              |     |     |       Mary Polly Hawkins, b. 1745, Lincoln, North Carolina, United States, d. 6 Sep 1834, Willow Grove, North Carolina, United States
+2 CONT              |     \     /          
+2 CONT              |       Susan Hamilton, b. abt 1821, North Carolina, United States, d. 1856, Shelby County, Tennessee, USA
+2 CONT              |           \                                                    
+2 CONT              |           |                                     Thomas Bird, b. 16 Jan 1599, London, London, , England, d. 1623, London, Middlesex, , England
+2 CONT              |           |                                   /          
+2 CONT              |           |                               John Byrd, b. 1620, Brexton, Cheshire, , England, d. 1677, London, Middlesex, , England
+2 CONT              |           |                             /     \                
+2 CONT              |           |                             |       Elizabeth Burgh, b. 1600, London, London, , England, d. 1684, London, London, , England
+2 CONT              |           |                             /          
+2 CONT              |           |                         Thomas Byrd, b. 1653, , London, , England, d. 12 Mar 1710, Virginia, USA
+2 CONT              |           |                       /     \                
+2 CONT              |           |                       |       Grace Stegge, b. 1625, London, London, , England, d. 1690, London, London, , England
+2 CONT              |           |                       /          
+2 CONT              |           |                   Thomas Bird, b. 1660, Wilmington, New Castle, Delaware, United States, d. 10 Dec 1726, Wilmington, New Castle, Delaware, United States
+2 CONT              |           |                 /     \                
+2 CONT              |           |                 |       Mary Howlett, b. 1655, London, Middlesex, England, d. 15 Mar 1710, , Henrico, Virginia, USA
+2 CONT              |           |                 /          
+2 CONT              |           |             James Bird, b. 20 Nov 1726, Wilmington, New Castle, Delaware, United States, d. Aug 1805, Orange, North Carolina, United States
+2 CONT              |           |           /     \                
+2 CONT              |           |           |       Sarah Empson, b. 20 Jul 1687, Goole Grange, New Castle, Delaware, United State, d. 1741, Wilmington, New Castle, Delaware, United States
+2 CONT              |           |           /          
+2 CONT              |           |       Empson Bird, b. 28 Mar 1749, New Castle, New Castle, Delaware, United States, d. 27 Jan 1802, Alamance, North Carolina, USA
+2 CONT              |           |     /     \                
+2 CONT              |           |     |       Mary Ashford, b. 1728, Wilmington, New Castle, Delaware, United States, d. 24 Oct 1793, Orange, North Carolina, United States
+2 CONT              |           \     /          
+2 CONT              |             Frances Fanny Bird, b. 1789, Orange, North Carolina, United States, d. aft 1850, Caroll Co, Tennessee, United States
+2 CONT              |                 \                
+2 CONT              |                   Mary Whitted, b. 29 Jun 1755, Orange, North Carolina, United States, d. 11 Apr 1815, Alamance, North Carolina, USA
+2 CONT              /          
+2 CONT          Clinton Christy, b. December 7, 1882, Holly Springs, Marshall, Mississippi, USA, d. March 18, 1943, Chicago, Cook, Illinois
+2 CONT        /     \                                  
+2 CONT        |     |                   Mathew Cannon
+2 CONT        |     |                 /          
+2 CONT        |     |             William Cannon, b. ABT 1790, d. Bef. 1850, Marshall Co., MS
+2 CONT        |     |           /          
+2 CONT        |     |       William J. Cannon, b. August 14, 1833, Robersonville, North Carolina, USA, d. 1868, Holly Springs, Mississippi, USA
+2 CONT        |     |     /     \                
+2 CONT        |     |     |       Mary Gaines, b. ABT 1805, VA, d. Aft. 1850, Marshall Co., MS
+2 CONT        |     \     /          
+2 CONT        |       Elizabeth Bettie Cannon, b. Dec 7 1861, Mississippi, d. June 10 1891, Mississippi, United States
+2 CONT        |           \                      
+2 CONT        |           |       Alfred Ward, b. 1803, ,,North Carolina,USA, d. 1860, Holly Springs, Mississippi, USA
+2 CONT        |           \     /          
+2 CONT        |             Lydia Narcissus Ward, b. 1835, Kentucky, USA, d. 23 January 1918, Holly Springs, , Mississippi, USA
+2 CONT        |                 \                
+2 CONT        |                   Tabitha Elizabeth Lehew or Lehu, b. 1805, North Carolina, d. 1860, Holly Springs, Marshall, Mississippi, USA
+2 CONT        /          
+2 CONT    Harold Woods Christy, b. 6 Aug 1911, Mississippi, d. 25 Sep 1994, San Mateo, California
+2 CONT        \                                        
+2 CONT        |                         Thomas Wood
+2 CONT        |                       /          
+2 CONT        |                   Capt. John Wood, b. 1751, Kentucky, USA, d. 19 Apr 1815, Tennessee, USA
+2 CONT        |                 /     \                
+2 CONT        |                 |       Mary Wood
+2 CONT        |                 /          
+2 CONT        |             John Woods, Panola County, Mississippi, USA
+2 CONT        |           /     \                      
+2 CONT        |           |     |       James Estill
+2 CONT        |           |     \     /          
+2 CONT        |           |       Abigail Estill, b. 22 Nov 1752, Augusta, Virginia, United States, d. 19 Aug 1840, Franklin, Tennessee, United States
+2 CONT        |           /          
+2 CONT        |       William L Woods, b. May 1,1825, d. 1 Jul 1895, Water Valley, Mississippi
+2 CONT        |     /     \                
+2 CONT        |     |       Obedience Adeline
+2 CONT        \     /          
+2 CONT          Minnie Agnes Woods, b. june 12 1887, Tennessee, d. May 1959, Chicago, Cook, Illinois, United States
+2 CONT              \                
+2 CONT                Josephine E. Riley, b. Nov 1844, Mississippi, d. 17 Jun 1917
+2 CONT 
+2 CONT LEGEND
+2 CONT 
+2 CONT RED = Female
+2 CONT 
+2 CONT BLUE = Male
+2 CONT 
+2 CONT BLACK = Sex Unknown
+2 CONT 
+2 CONT 
+2 CONT 
+2 CONT 
+2 CONT Web site and contents ï¿½Copyright 2011-2020 by Verogen, Inc.
+0 TRLR

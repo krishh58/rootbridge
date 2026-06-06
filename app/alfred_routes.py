@@ -4,6 +4,7 @@ from .auth import require_auth
 from .token_middleware import require_tokens
 from .db import db
 from .models import Person, Tree, AlfredMessage
+from .alfred_curator import run_curation
 
 alfred_bp = Blueprint('alfred', __name__)
 OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
@@ -119,3 +120,25 @@ def chat(person_id):
     ))
     db.session.commit()
     return jsonify({'response': assistant_reply})
+
+
+@alfred_bp.post('/api/alfred/curate-gedcom')
+@require_auth
+def curate_gedcom():
+    """Admin-only: run Alfred's AI curation agent to find new GEDCOM sources."""
+    # Only allow seed user or user id=1
+    if g.user_id != 1:
+        return jsonify({'error': 'Admin only'}), 403
+
+    data = request.get_json() or {}
+    skip_crosscheck = data.get('skip_crosscheck', False)
+
+    api_key = current_app.config.get('OPENROUTER_API_KEY', '')
+    if not api_key:
+        return jsonify({'error': 'OPENROUTER_API_KEY not configured'}), 500
+
+    try:
+        result = run_curation(api_key, skip_crosscheck=skip_crosscheck)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500

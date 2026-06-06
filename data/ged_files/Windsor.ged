@@ -1,0 +1,1615 @@
+0 HEAD
+1 SOUR GEDitCOM II
+2 NAME GEDitCOM II
+2 VERS 1.0
+2 CORP RSAC Software
+3 ADDR 2995 NW Snowberry Pl
+4 CONT Corvallis, OR 97330
+4 CONT USA
+1 SUBM @SUBM@
+1 SUBN @SUBN@
+1 DEST ANSTFILE
+1 GEDC
+2 VERS 5.5
+2 FORM LINEAGE_LINKED
+1 LANG English
+1 NOTE Some information taken from "The Lines of the Kings & Queens of England" (see sources)
+2 CONT
+2 CONT Other information taken from the internet (see sources)
+2 CONT
+2 CONT This GEDCOM file was originally created by GEDitCOM (version 1.0, John A. Nairn, RSAC Software). 100% of the file (including invalid data, if present) was imported into GEDitCOM II (the customizable Macintosh genealogy application)
+2 CONC  on 18 MAY 2009. The GEDitCOM II web site is <http://www.geditcom.com>.
+1 CHAR UTF-8
+1 _HME @I11@
+1 _HME @I12@
+1 _HME @I6@
+1 _HME @I10@
+0 @SUBN@ SUBN
+0 @SUBM@ SUBM
+1 NAME John A. Nairn
+1 ADDR 7108 South Pine Cone Street
+2 CONT Salt Lake City, UT 84121
+2 CONT USA
+1 PHON 801-581-3413
+1 CHAN
+2 DATE 2 Oct 1998
+3 TIME 22:40:44
+0 @I14@ INDI
+1 NAME David Albert Charles /Armstong-Jones/
+1 SEX M
+1 BIRT
+2 DATE 3 Nov 1961
+1 FAMC @F4@
+1 TITL Viscount Linley
+1 NOTE @N14@
+1 CHAN
+2 DATE 31 Mar 2002
+3 TIME 14:16:44
+0 @I13@ INDI
+1 NAME Anthony Charles Robert /Armstrong-Jones/
+1 SEX M
+1 BIRT
+2 DATE 7 Mar 1930
+1 FAMS @F4@
+1 TITL Earl of Snowden and Viscount Linley
+1 NOTE @N11@
+1 CHAN
+2 DATE 7 Nov 2001
+3 TIME 22:24:52
+0 @I15@ INDI
+1 NAME Sarah Frances Elizabeth /Armstrong-Jones/
+1 SEX F
+1 BIRT
+2 DATE 1 May 1964
+1 FAMC @F4@
+1 TITL Lady
+1 NOTE @N15@
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 10:52:49
+0 @I2@ INDI
+1 NAME Elizabeth Angela Marguerite /Bowes-Lyon/
+1 SEX F
+1 BIRT
+2 DATE 4 Aug 1900
+2 PLAC London, England
+2 NOTE @N40@
+1 DEAT
+2 DATE 30 MAR 2002
+2 PLAC Old Windsor, Berkshire, England
+2 ADDR Royal Lodge
+2 AGE 101
+2 _GPS (51.439, -0.6068)
+1 FAMS @F1@
+1 CHR
+2 DATE 23 Sep 1900
+1 DSCR 5'2" tall with blue eyes
+1 TITL Lady
+1 NOTE @N4@
+1 CHAN
+2 DATE 25 MAR 2012
+3 TIME 09:45:03
+1 OBJE @M18@
+1 RESI
+2 DATE From 1920 to 2002
+2 PLAC England
+2 ADDR Clarence House, London
+3 CONT Royal Lodge, Windsor
+3 CONT Birkhall, Balmoral
+3 CONT Castle of Mey, Caithnesshire.
+2 NOTE @N38@
+0 @I25@ INDI
+1 NAME Camilla Parker /Bowles/
+1 SEX F
+1 BIRT
+2 DATE 17 JUL 1947
+2 PLAC London, England
+1 FAMS @F9@
+1 REFN 7 JUN 2009 15:33:25
+2 TYPE Creation Date
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:41:49
+1 OBJE @M11@
+0 @I16@ INDI
+1 NAME Sarah Margaret /Ferguson/
+1 SEX F
+1 BIRT
+2 DATE 15 Oct 1959
+2 PLAC Marylebone, London, England
+2 ADDR 27 Welbech St.
+2 NOTE @N33@
+2 _GPS (51.5183, -0.1494)
+1 FAMS @F5@
+1 DSCR Red hair.
+1 TITL Duchess of York
+1 NOTE @N2@
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 12:16:16
+1 OBJE @M16@
+0 @I28@ INDI
+1 NAME Autumn /Kelly/
+1 SEX F
+1 FAMS @F12@
+1 REFN 9 OCT 2011 23:29:49
+2 TYPE Creation Date
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:29:49
+0 @I23@ INDI
+1 NAME Timothy /Laurence/
+1 SEX M
+1 BIRT
+2 DATE 1 MAR 1955
+2 PLAC Camberwell, Southwark, London, England
+1 FAMS @F8@
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:30:56
+1 OBJE @M27@
+0 @I26@ INDI
+1 NAME Catherine Elizabeth /Middleton/
+1 SEX F
+1 BIRT
+2 DATE 9 JAN 1982
+2 PLAC Reading, Berkshire, England
+1 FAMS @F10@
+1 REFN 9 OCT 2011 23:13:28
+2 TYPE Creation Date
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:18:00
+1 TITL Her Royal Highness the Duchess of Cambridge
+1 OBJE @M21@
+0 @I30@ INDI
+1 NAME James Alexander Philip Theo /Mountbatten-Windsor/
+1 SEX M
+1 BIRT
+2 DATE 17 DEC 2007
+2 PLAC Frimley, Surrey, England
+2 ADDR Frimley Park NHS Hospital
+2 _GPS (51.319670, -0.74156)
+1 FAMC @F7@
+1 REFN 9 OCT 2011 23:38:14
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 12:25:10
+1 OBJE @M29@
+0 @I24@ INDI
+1 NAME Louise Alice Elizabeth Mary /Mountbatten-Windsor/
+1 SEX M
+1 BIRT
+2 DATE 8 NOV 2003
+2 PLAC Frimley, Surrey, England
+2 ADDR Frimley Park NHS Hospital
+2 _GPS (51.319670, -0.74156)
+1 FAMC @F7@
+1 REFN USR 27 Nov 2003 1
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:35:41
+1 OBJE @M30@
+0 @I5@ INDI
+1 NAME Phillip /Mountbatten/
+1 SEX M
+1 BIRT
+2 DATE 10 Jun 1921
+2 PLAC Isle of Kerkira, Mon Repos, Corfu, Greece
+1 FAMS @F2@
+1 DSCR 5'11 1/2" (nearly 6ft.) tall.
+1 TITL Duke of Edinburgh
+1 NOTE @N16@
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 15:53:57
+1 OBJE @M10@
+0 @I17@ INDI
+1 NAME Mark Anthony Peter /Phillips/
+1 SEX M
+1 BIRT
+2 DATE 22 Sep 1948
+2 PLAC Tetbury, Cotswold District, Gloucestershire, England
+1 FAMS @F6@
+1 NOTE @N29@
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:48:19
+1 OBJE @M26@
+0 @I20@ INDI
+1 NAME Peter Mark Andrew /Phillips/
+1 SEX M
+1 FAMS @F12@
+1 BIRT
+2 DATE 15 Nov 1977
+2 PLAC Paddington, London, England
+2 ADDR St. Mary's Hospital
+2 NOTE @N30@
+2 _GPS (51.5174, -0.1741)
+1 FAMC @F6@
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:11:32
+1 OBJE @M25@
+0 @I29@ INDI
+1 NAME Savannah /Phillips/
+1 SEX F
+1 BIRT
+2 DATE 29 DEC 2010
+1 FAMC @F12@
+1 REFN 9 OCT 2011 23:30:36
+2 TYPE Creation Date
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:30:51
+0 @I21@ INDI
+1 NAME Zara Anne Elizabeth /Phillips/
+1 SEX F
+1 FAMS @F11@
+1 BIRT
+2 DATE 15 May 1981
+2 PLAC Paddington, London, England
+2 ADDR St. Mary's Hospital
+2 _GPS (51.5174, -0.1741)
+1 FAMC @F6@
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:11:50
+1 OBJE @M24@
+0 @I22@ INDI
+1 NAME Sophie /Rhys-Jones/
+1 SEX F
+1 BIRT
+2 DATE 20 JAN 1965
+2 PLAC Oxford, Oxfordshire, England
+1 FAMS @F7@
+1 TITL HRH The Countess of Wessex
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:26:02
+1 OBJE @M28@
+0 @I10@ INDI
+1 NAME Diana Frances /Spencer/
+1 SEX F
+1 BIRT
+2 DATE 1 Jul 1961
+2 PLAC Sandringham, Norfolk, England
+2 ADDR Park House
+2 NOTE @N21@
+1 DEAT
+2 DATE 31 Aug 1997
+2 PLAC Paris, France
+2 AGE 36
+1 FAMS @F3@
+1 DSCR 5' 10" tall, with blond hair and blue eyes.
+1 TITL Princess of Wales
+1 OBJE @M1@
+1 NOTE @N20@
+1 CHAN
+2 DATE 25 MAR 2012
+3 TIME 09:50:00
+0 @I27@ INDI
+1 NAME Mike /Tindall/
+1 SEX M
+1 FAMS @F11@
+1 REFN 9 OCT 2011 23:24:38
+2 TYPE Creation Date
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:24:38
+0 @I8@ INDI
+1 NAME Andrew Albert Christian /Windsor/
+1 SEX M
+1 BIRT
+2 DATE 16 Feb 1960
+2 PLAC Buckingham Palace, London, England
+2 ADDR Belgian Suite
+1 FAMS @F5@
+1 FAMC @F2@
+1 DSCR 6 feet tall.
+1 TITL Duke of York
+1 OBJE @M3@
+1 NOTE @N31@
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 22:49:59
+0 @I7@ INDI
+1 NAME Anne Elizabeth Alice /Windsor/
+1 SEX F
+1 BIRT
+2 DATE 15 Aug 1950
+2 PLAC Westminster, London, England
+2 ADDR Clarence House
+2 _GPS (51.5039, -0.1384)
+1 FAMS @F6@
+1 FAMS @F8@
+1 FAMC @F2@
+1 CHR
+2 DATE 21 Oct 1950
+2 PLAC Buckingham Palace, London, England
+1 DSCR 5'6 1/2" tall.
+1 TITL Princess Royal
+2 DATE JUN 1987
+1 NOTE @N27@
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:56:35
+1 OBJE @M14@
+0 @I18@ INDI
+1 NAME Beatrice Elizabeth Mary /Windsor/
+1 SEX F
+1 BIRT
+2 DATE 8 Aug 1988
+2 PLAC Westminster, London, England
+2 ADDR The Portland Hospital for Women and Children
+2 NOTE @N35@
+2 _GPS (51.5231, -0.1444)
+1 FAMC @F5@
+1 TITL Princess
+1 NOTE @N34@
+1 REFN JAN 4 Oct 1998
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:18:28
+1 OBJE @M19@
+0 @I6@ INDI
+1 NAME Charles Philip Arthur /Windsor/
+1 SEX M
+1 BIRT
+2 DATE 14 NOV 1948
+2 PLAC Buckingham Palace, London, England
+2 NOTE @N18@
+1 FAMS @F3@
+1 FAMS @F9@
+1 FAMC @F2@
+1 CHR
+2 DATE 15 DEC 1948
+2 PLAC Buckingham Palace, London, England
+2 ADDR The Music Room
+2 NOTE @N19@
+1 DSCR 5' 11" tall.
+1 TITL Prince of Wales
+1 NOTE @N17@
+1 OBJE @M4@
+1 CHAN
+2 DATE 25 MAR 2012
+3 TIME 09:51:19
+0 @I9@ INDI
+1 NAME Edward Antony Richard /Windsor/
+1 SEX M
+1 BIRT
+2 DATE 10 Mar 1964
+2 PLAC Buckingham Palace, London, England
+1 FAMS @F7@
+1 FAMC @F2@
+1 CHR
+2 DATE 2 May 1964
+1 DSCR 6 feet tall.
+1 TITL Prince
+1 TITL Earl of Wessex
+1 NOTE @N36@
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:04:08
+1 OBJE @M17@
+0 @I3@ INDI
+1 NAME Elizabeth II Alexandra Mary /Windsor/
+1 SEX F
+1 BIRT
+2 DATE 21 Apr 1926
+2 PLAC London, England
+2 ADDR 17 Bruton St.,
+3 CONT London, W1
+3 CONT England
+2 NOTE @N7@
+2 _GPS (51.5102, -0.1449)
+1 FAMS @F2@
+1 FAMC @F1@
+1 EVEN
+2 DATE 2 Jun 1953
+2 AGE 27
+2 TYPE Coronation as Queen of England
+2 PLAC London, England
+2 CAUS Death of George VI
+2 NOTE @N8@
+1 OCCU Queen of England
+1 DSCR 5'4" tall and has blue eyes
+1 NOTE @N6@
+1 CHAN
+2 DATE 25 MAR 2012
+3 TIME 09:52:17
+1 OBJE @M13@
+1 RESI
+2 DATE From 1926
+2 PLAC England
+2 ADDR Buckingham Palace, London, SW1
+3 CONT Windsor Castle, Berkshire
+3 CONT Sandringham House, Norfolk
+3 CONT Balmoral Castle, Aberdeenshire
+2 NOTE @N39@
+1 SOUR @SR1@
+1 SOUR @SR2@
+0 @I19@ INDI
+1 NAME Eugenie Victoria Helena /Windsor/
+1 SEX F
+1 BIRT
+2 DATE 23 Mar 1990
+2 PLAC Westminster, London, England
+2 ADDR The Portland Hospital for Women and Children
+2 _GPS (51.5231, -0.1444)
+1 FAMC @F5@
+1 CHR
+2 DATE 23 Dec 1990
+2 PLAC Sandringham, Norfolk, England
+1 TITL Princess
+1 REFN JAN 4 Oct 1998 1
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:18:49
+1 OBJE @M20@
+0 @I1@ INDI
+1 NAME George VI /Windsor/
+1 SEX M
+1 BIRT
+2 DATE 14 Dec 1895
+2 PLAC Sandringham, Norfolk, England
+1 DEAT
+2 DATE 6 Feb 1952
+2 PLAC Sandringham, Norfolk, England
+2 AGE 56
+2 CAUS lung cancer
+2 NOTE @N5@
+1 FAMS @F1@
+1 BURI
+2 DATE 11 Mar 1952
+2 PLAC Windsor, Berkshire, England
+2 ADDR St. George's Chapel
+2 _GPS (51.4836, -0.607)
+1 EVEN
+2 DATE 1936
+2 PLAC London, England
+2 TYPE Coronation as King of England
+2 CAUS Abdication of Edward VIII
+1 OCCU King of England
+1 NOTE @N3@
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:43:06
+1 OBJE @M15@
+1 SOUR @SR1@
+1 SOUR @SR2@
+0 @I12@ INDI
+1 NAME Henry Charles Albert /Windsor/
+1 SEX M
+1 BIRT
+2 DATE 15 Sep 1984
+2 PLAC Paddington, London, England
+2 ADDR St. Mary's Hospital
+2 NOTE @N26@
+2 _GPS (51.5174, -0.1741)
+1 FAMC @F3@
+1 CHR
+2 DATE DEC 1984
+2 PLAC Windsor, Berkshire, England
+2 ADDR St. George's Chapel
+2 _GPS (51.4836, -0.607)
+1 TITL Prince
+1 NOTE @N25@
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:43:19
+1 OBJE @M9@
+0 @I4@ INDI
+1 NAME Margaret Rose /Windsor/
+1 SEX F
+1 BIRT
+2 DATE 21 Aug 1930
+2 PLAC Glamis, Angus, Tayside, Scotland
+2 ADDR Glamis Castle
+2 NOTE @N10@
+2 _GPS (56.6203, -3.0027)
+1 DEAT
+2 DATE 9 FEB 2002
+2 PLAC London, England
+2 ADDR King Edward VII Hospital
+2 AGE 71
+1 FAMS @F4@
+1 FAMC @F1@
+1 DSCR 5'2" tall with blue eyes
+1 TITL Princess
+1 NOTE @N9@
+1 OBJE @M5@
+1 CHAN
+2 DATE 25 MAR 2012
+3 TIME 09:53:10
+0 @I11@ INDI
+1 NAME William Arthur Philip /Windsor/
+1 SEX M
+1 FAMS @F10@
+1 BIRT
+2 DATE 21 Jun 1982
+2 PLAC Paddington, London, England
+2 ADDR St. Mary's Hospital
+2 NOTE @N24@
+2 _GPS (51.5174, -0.1741)
+1 FAMC @F3@
+1 CHR
+2 DATE 4 Aug 1982
+2 PLAC Buckingham Palace, London, England
+2 ADDR The Music Room
+1 TITL Prince
+1 NOTE @N23@
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:12:28
+1 OBJE @M8@
+0 @F4@ FAM
+1 HUSB @I13@
+1 WIFE @I4@
+1 MARR
+2 DATE 6 May 1960
+2 PLAC Westminster Cathedral, London, England
+1 CHIL @I14@
+1 CHIL @I15@
+1 DIV
+2 DATE MAY 1978
+2 NOTE @N13@
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 22:47:15
+0 @F8@ FAM
+1 HUSB @I23@
+1 WIFE @I7@
+1 MARR
+2 DATE 12 DEC 1992
+2 PLAC Crathie, Aberdeenshire, Grampian, Scotland
+2 ADDR Crathie Church
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 12:11:03
+0 @F2@ FAM
+1 HUSB @I5@
+1 WIFE @I3@
+1 MARR
+2 DATE 20 Nov 1947
+2 PLAC Westminster Abbey, London, England
+1 CHIL @I6@
+1 CHIL @I7@
+1 CHIL @I8@
+1 CHIL @I9@
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 15:47:19
+0 @F6@ FAM
+1 HUSB @I17@
+1 WIFE @I7@
+1 MARR
+2 DATE 14 Nov 1973
+2 PLAC Westminster Abbey, London, England
+1 CHIL @I20@
+1 CHIL @I21@
+1 DIV
+2 DATE 28 APR 1992
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:32:53
+0 @F12@ FAM
+1 HUSB @I20@
+1 WIFE @I28@
+1 MARR
+2 DATE 17 MAY 2008
+2 PLAC Windsor, Berkshire, England
+2 ADDR St. George's Chapel
+2 _GPS (51.4836, -0.607)
+1 CHIL @I29@
+1 REFN 9 OCT 2011 23:29:35
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:43:35
+0 @F11@ FAM
+1 HUSB @I27@
+1 WIFE @I21@
+1 MARR
+2 DATE 30 JUL 2011
+2 PLAC Edinburgh, Lothian, Scotland
+2 ADDR Canongate Kirk
+1 REFN 9 OCT 2011 23:24:18
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:28:59
+1 OBJE @M23@
+0 @F5@ FAM
+1 HUSB @I8@
+1 WIFE @I16@
+1 MARR
+2 DATE 23 Jul 1986
+2 PLAC Westminster Abbey, London, England
+1 CHIL @I18@
+1 CHIL @I19@
+1 DIV
+2 DATE MAY 1996
+1 NOTE @N32@
+1 CHAN
+2 DATE 7 Nov 2001
+3 TIME 22:13:46
+0 @F3@ FAM
+1 HUSB @I6@
+1 WIFE @I10@
+1 MARR
+2 DATE 29 Jul 1981
+2 PLAC St. Paul's Cathedral, London, England
+1 CHIL @I11@
+1 CHIL @I12@
+1 OBJE @M7@
+1 NOTE @N22@
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 15:45:06
+0 @F9@ FAM
+1 HUSB @I6@
+1 WIFE @I25@
+1 MARR
+2 DATE 9 APR 2005
+2 PLAC Windsor, Berkshire, England
+2 ADDR Guildhall
+1 REFN 7 JUN 2009 15:34:06
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:38:14
+1 OBJE @M12@
+0 @F7@ FAM
+1 HUSB @I9@
+1 WIFE @I22@
+1 MARR
+2 DATE 19 JUN 1999
+2 PLAC Windsor, Berkshire, England
+2 ADDR St. George's Chapel
+2 _GPS (51.4836, -0.607)
+1 ENGA
+2 DATE 6 JAN 1999
+1 CHIL @I24@
+1 CHIL @I30@
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:43:45
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 MARR
+2 DATE 26 Apr 1923
+1 CHIL @I3@
+1 CHIL @I4@
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 10:31:49
+0 @F10@ FAM
+1 HUSB @I11@
+1 WIFE @I26@
+1 MARR
+2 DATE 29 APR 2011
+2 PLAC Westminster Abbey, London, England
+1 REFN 9 OCT 2011 23:11:29
+2 TYPE Creation Date
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:22:16
+1 OBJE @M22@
+0 @SR1@ SOUR
+1 AUTH Antonia Fraser
+1 TITL The Lives of the Kings & Queens of England
+1 ABBR Kings & Queens of England
+1 PUBL Weidenfeld and Nicoloson, London
+1 _DATE 1975
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 23:02:32
+0 @SR2@ SOUR
+1 _TYPE web page
+1 _URL http://ftp.cac.psu.edu/~saw/royal/royalgen.html
+1 TITL Royal Genealogies
+1 AUTH Henry Churchyard
+1 _DATE 1999
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 23:05:06
+0 @N32@ NOTE
+1 CONC A most beautiful film of the wedding ceremony was produced by the BBC and available on video tape.
+1 CONT
+1 CONT The engagement was announced on 19 March 1986. 
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:19:07
+0 @N11@ NOTE
+1 CONC Anthony Armstrong-Jones was a British photographer and a commoner who in 1961 was created 1st Earl of Snowdon.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 10:47:34
+0 @N40@ NOTE
+1 CONC British records recorded her birth in the district of Hitchen near London (volume 3a, page 667, and the data can be found at http://freebmd.rootsweb.com).
+1 REFN 9 NOV 2011 08:44:19
+2 TYPE Creation Date
+1 CHAN
+2 DATE 25 MAR 2012
+3 TIME 09:44:00
+0 @N29@ NOTE
+1 CONC Captain Mark Anthony Peter Phillips has has refused a title so far, therefore, his children have no titles. However, their Royal Grandmother may make them a Lord and Lady later so that they do not feel inferior.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:39:26
+0 @N18@ NOTE
+1 CONC Charles was born on a Sunday at 9:14 pm and weighed 7lb. 6oz.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:01:49
+0 @N19@ NOTE
+1 CONC Charles was christened: Charles Philip Arthur George.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:03:33
+0 @N36@ NOTE
+1 CONC Christened: Edward Antony Richard Louis. The family name, Mountbatten-Windsor was made by decree of Elizabeth II. a.k.a.: Prince Edward, Duke of Kent II.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:22:55
+0 @N21@ NOTE
+1 CONC Diana weighed 7 lbs. 12 oz. at birth.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:05:15
+0 @N7@ NOTE
+1 CONC Elizabeth was born by Caesarean section at 2:40 am. Her royal birth was witnessed by a member of Parliament (a practice that was eliminated after the birth of her sister, Margaret).
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:45:22
+0 @N15@ NOTE
+1 CONC Following a royal tradition, Lady Sarah showed minimal academic talent at Bedales School. The rules of title dictate that although her mother is a royal princess, Lady Sarah can inherit neither title nor position from her;
+1 CONC  she is Lady Sarah because her father is an earl. Her only route to higher station is through marriage.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 10:52:42
+0 @N5@ NOTE
+1 CONC George VI had cancer of the lung (one lung had be removed). He died of cancer after a long illness.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 10:36:58
+0 @N23@ NOTE
+1 CONC He is Prince William of Wales; Prince William Arthur Philip Louis;  and is alled, "Wills" or "Wombat" by the family. Prince Charles likes to call him "Willie Wombat," but many people have pointed out that it is an unsuitably
+1 CONC  slothful name for so active a child.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:49:48
+0 @N3@ NOTE
+1 CONC He was christened as Albert Arthur Frederick George. He was known to the Royal Family as Bertie; Was Prince Albert, Duke of York (1920-1936); Acceded as George VI following his brother's abdication on 11 Dec 1936. The reign
+1 CONC  of George VI was marked by the relinquishment of the title of Emperor of India, following the partition of India in 1947 into Pakistan and India. Bertie had a speech defect which made him stutter and stammer.
+1 REFN JAN 4 Oct 1998 6
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:46:26
+0 @N24@ NOTE
+1 CONC He was orn at 9:03 pm and weighed 7 lbs 1 1/2 oz at birth.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:50:01
+0 @N26@ NOTE
+1 CONC Henry weighed 6 lbs 14 oz at birth. Henry Rasof (Charles & Diana) gives his birthday as Sept. 13.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:48:20
+0 @N34@ NOTE
+1 CONC Her Aunt Jane refers to her as "Baby Beetroot".
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:20:23
+0 @N16@ NOTE
+1 CONC HRH Prince Philip, Duke of Edinburgh; Consort of Queen Elizabeth II. Philip spent his childhood in England at the home of his uncle, Louis Mountbatten, 1st Earl Mountbatten of Burma, and began a naval career in 1939, when he
+1 CONC  entered the Royal Naval College, Dartmouth. He served in both the Mediterranean and Pacific theaters during World War II and married the then Princess Elizabeth in 1947, at which time he was named Duke of Edinburgh. In 1957 he was
+1 CONC  created Prince of the United Kingdom. Prince Philip, and active advocate of sports, science and education has made many goodwill trips throughout the world, both as representative of and in company with Queen Elizabeth. Before his
+1 CONC  marriage he was simply: Lieutenant Philip Mountbatten. He was naturalized as a British citizen in 1947.
+1 CONT
+1 CONT His title: Baron of Greenwich, Earl of Merioneth and Duke of Edinburgh; Granted the style and titular dignity of a Prince of the United Kingdom on 22 Feb 1957. He was born as: HRH Prince Philip of Greece and Denmark. There was no
+1 CONC  actual divorce between Prince Philip's parents, but they separated while Philip was still a small boy. His father took off to indulge himself in the fleshpots of Monte Carlo while his mother lived in turn with her four daughters,
+1 CONC  all of whom had married German Princelings. Philip was taken care of by his Mountbatten relatives in England, who also paid for his schooling. As a result of the family split, World War II found Philip serving in the British Navy
+1 CONC  while his brothers-in-law were fighting on the side of Germany.
+1 CONT
+1 CONT Philip was a baby of only eighteen months, fifth in line of succession to the Greek throne, when his family had to flee into exile. The was 1922 and Greece was under the heels of a revolutionary junta. Philip's father, Prince
+1 CONC  Andrew, was arrested and tossed into jail. Others who opposed the new regime had already been summarily executed and Andrew seemed assured of the same fate. Philip's mother left the family's island home on Corfu and journeyed to
+1 CONC  Athens in an attempt to save her husband. She appealed for help to her cousin, England's King George V. He dispatched a British secret-service agent, Commander Gerald Talbot, to Athens with instructions to negotiate Prince Andrew's
+1 CONC  release or, if that failed, to rescue him from prison. After much ado, the family was finally saved. Prince Philip was born Philippos Schleswig-Holstein-Sonderbert-Glucksburn, Prince of Greece. Philippos became Philip during
+1 CONC  schooldays in England. He took the name, Mountbatten when he relinquished his Greek Title to take British citizenship prior to marrying Elizabeth. His own choice of name was actually Philip Oldcastle, but he was finally prevailed
+1 CONC  upon to take the Mountbatten surname of his mother's family. 
+1 CONT
+1 CONT Elizabeth calls him, "Darling" in private and he is "Papa" to his sons and daughter. His aides address him as "Sir". To everyone else, he is or should be, "Your Royal Highness" the first time he is addressed and "Sir" thereafter.
+1 CONC  Occupation listed on his passport is given as: Prince of the Royal Household.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:38:45
+0 @N20@ NOTE
+1 CONC Lady Diana Spencer (before her marriage to Charles) was popularly known as: "Shy Di". Diana Spencer's ancestry (through her father) links her with more than one King and she and Prince Charles are 16th cousins, once removed. 
+1 CONT
+1 CONT Diana's descent from Frank Work links her with many famous Americans: George Washington, John Adams (2nd U.S. Pres.), The Roosevelt family, Calvin Coolidge, John Pierpont Morgan, Harriet Beecher Stowe, Louisa M. Alcott, Ralph Waldo
+1 CONC  Emerson, Gloria Vanderbilt, Erle Stanley Gardner, General George Patton, George Gallup (of Gallup polls fame) Nelson Bunker Hunt, Orson Welles, Humphrey Bogart and Lee Remick, among others.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:05:59
+0 @N30@ NOTE
+1 CONC Peter weighed 7 lb. 9oz. at birth.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:13:13
+0 @N25@ NOTE
+1 CONC Prince Henry Charles Albert David was called, "Harry" by the family.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:47:53
+0 @N35@ NOTE
+1 CONC Princess Bea was unnamed at birth and referred to as "Baby Yorklet". She was born at 8:18 pm. 6lb 12oz.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:20:30
+0 @N31@ NOTE
+1 CONC Registered on 22 March 1960 as: Andrew Albert Christian Edward. No photographs of the christening were released and the Prince was not seen in public for the first sixteen months of his life. The first view the public had of
+1 CONC  Prince Andrew was on the balcony of Buckingham Palace following Trooping the Colour in June 1961.
+1 CONT
+1 CONT He served as a helicopter pilot during the Falkland War with Argentina. The tabloids called him, "Randy Andy" because of his romances prior to Sarah Ferguson with Koo Stark the soft porn film star. The Yorks are building a sixteen
+1 CONC  bedroom mansion at Sunninghill Park, near Ascot. It is a gift to the couple from Queen Elizabeth II and is estimated to cost 1 million British pounds to build. (1989)
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:17:06
+0 @N2@ NOTE
+1 CONC Sarah was popularly known as "Fergie" in the tabloids. She has a most charming smile and manner; very outgoing. Much was made at the size of her hips. While by no means rich, the Fergusons were certainly comfortably well-off
+1 CONC  with the means to employ a cook, gardener, stable boy and a nanny to care for the children. The family had a pet Pekingese dog, Solly. Her father gave her the nickname, G.B.-whose initials he has refused to reveal the meaning. She
+1 CONC  "works" for a graphic arts company.
+1 REFN JAN 4 Oct 1998 5
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:38:19
+0 @N8@ NOTE
+1 CONC She acceded to throne 6 Feb 1952.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:43:16
+0 @N33@ NOTE
+1 CONC She was born at 9:03 a.m. on a Thursday.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:37:40
+0 @N4@ NOTE
+1 CONC She was known as the Queen Mother as the mother of Queen Elizabeth II. Whe was formerly Lady Elizabeth Bowes-Lyon; Duchess of York (1923-1936). Queen Consort, 1936-1952; Queen Mother from 1952. a.k.a.: Queen Elizabeth, the
+1 CONC  Queen Mother.
+1 CONT
+1 CONT Queen Elizabeth the Queen Mother descended from Henry VII, King of England. Elizabeth was the youngest daughter and 9th child. Spent her childhood at Glamis Castle in Scotland; The precise location of her birth in London is unknown;
+1 CONC  When she married in 1923, she became HRH the Duchess of York; Queen Elizabeth (known as the smiling Queen) is most beloved by all of her countrymen and women.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:33:59
+0 @N9@ NOTE
+1 CONC She was privately educated. After the death of her father, King George VI in 1952, she assumed various ceremonial duties, such as official tours of Commonwealth territories. She was refused permission in 1955 to marry the
+1 CONC  divorced Royal Air Force captain Peter Townsend (1914- ), a former member of her father's staff.
+1 CONT
+1 CONT She is also known as Princess Margaret, Countess of Snowdon.
+1 CONT
+1 CONT She supposedly has size 2 1/2 shoes. She is a heavy smoker despite her doctor's warnings. Margaret was a lively and talented girl, and was always considered to be the beauty of the family.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:49:06
+0 @N10@ NOTE
+1 CONC She was the last Royal born in England that required a Parliamentary witness for the Royal birth; the practice ended when her father decreed that there was no longer need for such anachronistic nonsense.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 10:46:30
+0 @N27@ NOTE
+1 CONC Shw is also known as Princess Anne Elizabeth Alice Louise Mountbatten-Windsor and may be the least popular of the Royal Family.
+1 CONT
+1 CONT She is an avid horsewoman, as is her husband, Capt. Mark Phillips. Anne has refused all titles for herself and her children (other than those she was born with). She and her husband run the 750 acres of Gatcombe Park in
+1 CONC  Gloucestershire as a commercial farm. Gatcombe was bought for the couple by the Queen as a belated wedding gift for her daughter.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:40:54
+0 @N6@ NOTE
+1 CONC Shw was known as Princess Elizabeth of York (as a child); Heir Presumptive; Full name: Elizabeth Alexandra Mary; Family called her, "Lillibet". Title: Elizabeth II Queen of the United Kingdom of Great Britain and Northern
+1 CONC  Ireland.
+1 CONT
+1 CONT She is addressed as "Your Majesty" by everyone outside of the immediate family.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:43:51
+0 @N22@ NOTE
+1 CONC Their engagement was announced by Buckingham Palace on 24 February 1981.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 11:06:07
+0 @N13@ NOTE
+1 CONC There was a 2 year separation preceding the divorce, which became final in 1978.
+1 CHAN
+2 DATE 4 Dec 1998
+3 TIME 10:49:24
+0 @N39@ NOTE
+1 CONC This residence information lists several of her residences around England.
+1 REFN 5 JAN 2011 21:44:40
+2 TYPE Creation Date
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:45:06
+0 @N38@ NOTE
+1 CONC This residence information lists several places where she lived.
+1 REFN 5 JAN 2011 21:37:03
+2 TYPE Creation Date
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:37:21
+0 @N17@ NOTE
+1 CONC When Elizabeth II ascended the throne, Charles automatically became Duke of Cornwall, Duke of Rothesay, Earl of Carrick, Baron Renfrew, Lord of the Isles and Great Steward of Scotland, Knight of the Garter. He was created
+1 CONC  Prince of Wales in 1958 and invested as such in 1969 on his coming of age. He assumed his seat in the House of Lords in February 1970 and became the first to the British Crown to earn a university degree when he was graduated with
+1 CONC  honors from the University of Cambridge in June 1970. Charles is an opera lover and is president of the Friends of the Royal Opera House.
+1 CONT
+1 CONT Like his father, he should properly be addressed as "Your Royal Highness" the first time and "Sir" thereafter. He does not care to be called, Prince (an American custom). He thinks it makes him sound like a police dog. He doesn't
+1 CONC  mind being called Charles or Charlie.
+1 CONT
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:42:34
+0 @N14@ NOTE
+1 CONC When he was three years old, Viscount Linley had his ears adjusted by a plastic surgeon at Great Ormond Street Hospital for Children. He prefers to be known as, David Linley. He is the only member of the royal family to have
+1 CONC  made his way in the world using his hands, employing the creative talents he inherited from his photographer x. Linley prefers the company of creative people to his royal cousins, although he is a close friend of Prince Andrew.
+1 CONC  Linley's name has been linked with that of Susannah Constantine and Kate Menzies, but as of this writing he remains a bachelor and one of the most sought-after dinner guests at smart parties in London and New York.
+1 CHAN
+2 DATE 5 JAN 2011
+3 TIME 21:32:06
+0 @M11@ OBJE
+1 TITL Camilla Parker Bowles
+1 _FILE multimedia/camilla.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 15:39:07
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M12@ OBJE
+1 TITL Charles and Camilla
+1 _FILE multimedia/cc.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 15:41:23
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M7@ OBJE
+1 FORM jpeg
+1 TITL Charles and Diana Wedding Pictures
+1 _FILE multimedia/wedding2.jpg
+1 REFN 18 MAY 2009 19:15:05
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 09:00:59
+0 @M29@ OBJE
+1 _FILE multimedia/severn.jpg
+1 TITL James Alexander Philip Theo
+1 FORM jpg
+1 REFN 9 OCT 2011 23:43:55
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 09:00:34
+0 @M21@ OBJE
+1 _FILE multimedia/kate-middleton.jpg
+1 TITL Kate mMiddleton
+1 FORM jpg
+1 REFN 9 OCT 2011 23:18:00
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 08:58:21
+0 @M15@ OBJE
+1 TITL King George VI
+1 _FILE multimedia/georgeVI.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 15:58:24
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M30@ OBJE
+1 _FILE multimedia/louise.jpg
+1 TITL Louise Alice Elizabeth Mary
+1 FORM jpg
+1 REFN 9 OCT 2011 23:44:44
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 08:59:03
+0 @M26@ OBJE
+1 _FILE multimedia/mark_phillips.jpg
+1 TITL Mark Phillips
+1 FORM jpg
+1 REFN 9 OCT 2011 23:31:53
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 08:59:19
+0 @M25@ OBJE
+1 _FILE multimedia/peter.jpg
+1 TITL Peter Phillips
+1 FORM jpg
+1 REFN 9 OCT 2011 23:29:18
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 08:59:26
+0 @M10@ OBJE
+1 TITL Phillip Mountbatten
+1 _FILE multimedia/philmont.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 15:53:57
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M19@ OBJE
+1 TITL Pricess Beatrice
+1 _FILE multimedia/beatrice.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 16:10:27
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M3@ OBJE
+1 FORM jpeg
+1 TITL Prince Andrew
+1 _FILE multimedia/princeandrew.jpg
+1 REFN 18 MAY 2009 19:15:05
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M4@ OBJE
+1 FORM jpeg
+1 TITL Prince Charles
+1 _FILE multimedia/charles.jpg
+1 REFN 18 MAY 2009 19:15:05
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M17@ OBJE
+1 TITL Prince Edward
+1 _FILE multimedia/edward.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 16:04:08
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M9@ OBJE
+1 TITL Prince Harry
+1 _FILE multimedia/harry.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 15:50:52
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M8@ OBJE
+1 TITL Prince William
+1 _FILE multimedia/william.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 15:49:37
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M14@ OBJE
+1 TITL Princess Anne
+1 _FILE multimedia/anne.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 15:56:15
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M1@ OBJE
+1 TITL Princess Diana
+1 _FILE multimedia/diana110.jpg
+1 FORM jpg
+1 REFN 18 MAY 2009 19:15:05
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M20@ OBJE
+1 TITL Princess Eugenie
+1 _FILE multimedia/eugenie.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 16:10:37
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M5@ OBJE
+1 FORM jpeg
+1 TITL Princess Margaret
+1 _FILE multimedia/marg3.jpg
+1 REFN 18 MAY 2009 19:15:05
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M13@ OBJE
+1 TITL Queen Elizabeth II
+1 _FILE multimedia/elizabethI.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 15:54:05
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 09:00:08
+0 @M18@ OBJE
+1 TITL Queen Mother Ellizabeth
+1 _FILE multimedia/queenmum.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 16:06:14
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M16@ OBJE
+1 TITL Sarah Ferguson
+1 _FILE multimedia/fergie.jpg
+1 FORM jpg
+1 REFN 7 JUN 2009 16:02:12
+2 TYPE Creation Date
+1 CHAN
+2 DATE 7 JUN 2009
+3 TIME 16:22:52
+0 @M28@ OBJE
+1 _FILE multimedia/sophie_rhys_jones.jpg
+1 TITL Sophie Rhys-Jones
+1 FORM jpg
+1 REFN 9 OCT 2011 23:36:18
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 09:00:43
+0 @M27@ OBJE
+1 _FILE multimedia/timothy_laurence.jpg
+1 TITL Timothy Laurence
+1 FORM jpg
+1 REFN 9 OCT 2011 23:33:36
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 09:00:50
+0 @M22@ OBJE
+1 _FILE multimedia/prince-william-3320.jpg
+1 TITL William and Catherine Wedding
+1 FORM jpg
+1 REFN 9 OCT 2011 23:22:16
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 08:59:55
+0 @M23@ OBJE
+1 _FILE multimedia/zara-phillips-435.jpg
+1 TITL Zara and Mark Phillips Wedding
+1 FORM jpg
+1 REFN 9 OCT 2011 23:25:25
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 09:01:21
+0 @M24@ OBJE
+1 _FILE multimedia/zara.jpg
+1 TITL Zara Phillips
+1 FORM jpg
+1 REFN 9 OCT 2011 23:27:24
+2 TYPE Creation Date
+1 CHAN
+2 DATE 10 OCT 2011
+3 TIME 09:01:31
+0 @P3@ _PLC
+1 _PLACE England
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 _PFACT population total
+2 DATE ABT 1347
+2 _VALUE ABT 4000000
+1 _PFACT population total
+2 DATE ABT 1351
+2 _VALUE ABT 2500000
+1 _PFACT Other change
+2 DATE 15 May 1532
+2 _VALUE Church governing body agrees to demands by Henry VIII
+2 _PNOTE Governing body for the Roman Catholic Church within England recognized Royal Supremacy over the church so that it could no longer make canon law without without the permission of the King
+1 _PFACT population total
+2 DATE 1541
+2 _VALUE 2,774,000
+1 _PFACT population total
+2 DATE 1601
+2 _VALUE 4,110,000
+1 _PFACT census
+2 DATE 1801
+2 _VALUE first comprehensive census of England
+1 _PFACT population total
+2 DATE 1801
+2 _VALUE BET 8,308,000 AND 8,664,000
+1 _PFACT census
+2 DATE 1831
+2 _VALUE 4th census of England
+1 _PFACT census
+2 DATE 1841
+2 _VALUE 5th census of England, with new approach
+1 _PFACT census
+2 DATE 1911
+2 _VALUE 1911 census of England, searchable by name and place
+1 _URL http://en.wikipedia.org/wiki/England
+2 _LABEL Wikipedia
+1 _BOX Bounding Box
+2 _BNDS (49.871158, -6.37988), (55.811740, 1.768960)
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:00:19
+0 @P41@ _PLC
+1 _PLACE Old Windsor, Berkshire, England
+1 REFN 21 FEB 2012 11:46:40
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:46:40
+1 _BOX Old Windsor
+2 _BNDS (51.431339, -0.623279), (51.473807, -0.563529)
+2 _POI Old Windsor Library
+3 _GPS (51.464511, -0.586069)
+3 _CODE LIBR
+0 @P34@ _PLC
+1 _PLACE Reading, Berkshire, England
+1 REFN 9 OCT 2011 23:13:59
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:01:04
+1 _URL http://en.wikipedia.org/wiki/Reading,_Berkshire
+2 _LABEL Wikipedia
+1 _BOX Reading
+2 _BNDS (51.409889, -1.053029), (51.493130, -0.928470)
+2 _POI Bupa Dunedin Hospital
+3 _GPS (51.450220, -0.986820)
+3 _CODE HSP
+2 _POI Capio Reading Hospital
+3 _GPS (51.44455, -0.988310)
+3 _CODE HSP
+2 _POI Royal Berkshire Hospital
+3 _GPS (51.4514, -0.95865)
+3 _URL http://en.wikipedia.org/wiki/Royal_Berkshire_Hospital
+3 _CODE HSP
+0 @P40@ _PLC
+1 _PLACE Windsor, Berkshire, England
+1 REFN 21 FEB 2012 11:37:56
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:37:56
+1 _BOX Windsor
+2 _BNDS (51.459980, -0.682259), (51.498150, -0.595319)
+2 _POI King Edward VII Hospital-Windsor SL4
+3 _GPS (51.4739, -0.614099)
+3 _CODE HSP
+2 _POI Eton Wick Library
+3 _GPS (51.497211, -0.635789)
+3 _CODE LIBR
+2 _POI Dedworth Branch Library
+3 _GPS (51.479889, -0.64354)
+3 _CODE LIBR
+2 _POI Eton Library
+3 _GPS (51.490608, -0.609369)
+3 _CODE LIBR
+0 @P42@ _PLC
+1 _PLACE Tetbury, Cotswold District, Gloucestershire, England
+1 REFN 21 FEB 2012 11:48:06
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:48:06
+1 _BOX Tetbury
+2 _BNDS (51.582400, -2.293480), (51.706477, -2.083559)
+2 _POI Tetbury Hospital
+3 _GPS (51.635219, -2.154669)
+3 _CODE HSP
+2 _POI Athelstan Museum
+3 _GPS (51.583599, -2.096610)
+3 _CODE MUS
+2 _POI Minchinhampton Library
+3 _GPS (51.705879, -2.187149)
+3 _CODE LIBR
+2 _POI Tetbury Library
+3 _GPS (51.636662, -2.163359)
+3 _CODE LIBR
+2 _POI Malmesbury Public Library
+3 _GPS (51.582821, -2.096620)
+3 _CODE LIBR
+0 @P1@ _PLC
+1 _PLACE London, England
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:02:18
+1 _URL http://en.wikipedia.org/wiki/Greater_London
+2 _LABEL Wikipedia
+1 _BOX London
+2 _BNDS (51.286839, -0.510349), (51.692321, 0.334029)
+2 _POI British Library
+3 _GPS (51.528799, -0.126700)
+3 _URL http://en.wikipedia.org/wiki/British_Library
+3 _CODE LIBR
+2 _POI Royal Courts of Justice
+3 _GPS (51.513680, -0.11332)
+3 _URL http://en.wikipedia.org/wiki/Royal_Courts_of_Justice
+3 _CODE CTHSE
+2 _POI St Paul's Cathedral
+3 _GPS (51.513860, -0.098299)
+3 _URL http://en.wikipedia.org/wiki/St_Paul%27s_Cathedral
+3 _CODE CH
+2 _POI The Temple Church
+3 _GPS (51.51323, -0.110380)
+3 _URL http://en.wikipedia.org/wiki/Temple_Church
+3 _CODE CH
+2 _POI West London Mental Health Trust
+3 _GPS (51.432899, -0.308099)
+3 _URL http://en.wikipedia.org/wiki/West_London_Mental_Health_%28NHS%29_Trust
+3 _CODE HSP
+2 _POI Westminster Abbey
+3 _GPS (51.499369, -0.128459)
+3 _URL http://ru.wikipedia.org/wiki/%D0%92%D0%B5%D1%81%D1%82%D0%BC%D0%B8%D0%BD%D1%81%D1%82%D0%B5%D1%80%D1%81%D0%BA%D0%BE%D0%B5_%D0%B0%D0%B1%D0%B1%D0%B0%D1%82%D1%81%D1%82%D0%B2%D0%BE
+3 _CODE CH
+2 _POI London Family History Centre
+3 _GPS (51.496681, -0.173661)
+3 _URL http://www.londonfhc.org/
+3 _CODE LIBR
+3 _PNOTE Located at 64-68 Exhibition Road, close to the Imperial College just south of Hyde Park.
+0 @P14@ _PLC
+1 _PLACE Buckingham Palace, London, England
+1 _BOX Buckingham Palace
+2 _BNDS (51.5013, -0.1419) .25mi
+2 _STYLE Satellite
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:04:23
+0 @P4@ _PLC
+1 _PLACE Marylebone, London, England
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:05:07
+1 _BOX Marylebone
+2 _BNDS (51.518180, -0.17068), (51.524261, -0.15137)
+0 @P7@ _PLC
+1 _PLACE Paddington, London, England
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:12:44
+1 _BOX Paddington
+2 _BNDS (51.503120, -0.20013), (51.524878, -0.16041)
+2 _POI Saint Mary's Hospital
+3 _CODE HSP
+3 _GPS (51.5174, -0.1741)
+0 @P39@ _PLC
+1 _PLACE Camberwell, Southwark, London, England
+1 REFN 21 FEB 2012 11:30:41
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:30:41
+1 _BOX Camberwell
+2 _BNDS (51.457118, -0.110990), (51.488190, -0.074730)
+0 @P31@ _PLC
+1 _PLACE St. Paul's Cathedral, London, England
+1 _BOX St. Paul's Cathedral
+2 _BNDS (51.5137, -0.0985),.15m
+2 _STYLE Satellite
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:07:02
+0 @P15@ _PLC
+1 _PLACE Westminster, London, England
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:18:13
+1 _BOX Westminster
+2 _BNDS (51.501491, -0.16685), (51.525230, -0.129260)
+2 _POI The Portland Hospital for Women and Children
+3 _CODE HSP
+3 _GPS (51.5231, -0.1444)
+0 @P29@ _PLC
+1 _PLACE Westminster Abbey, London, England
+1 _BOX Westminster Abbey
+2 _BNDS (51.4995, -0.1276),.15m
+2 _STYLE Satellite
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:09:37
+0 @P27@ _PLC
+1 _PLACE Westminster Cathedral, London, England
+1 _BOX Westminster Cathedral
+2 _BNDS (51.4947, -0.1403), (51.4965, -0.1383)
+2 _STYLE Satellite
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:24:27
+0 @P20@ _PLC
+1 _PLACE Sandringham, Norfolk, England
+1 _BOX The Town
+2 _BNDS  (52.8294, 0.5135) .6mi
+2 _POI Park House
+3 _GPS (52.8254, 0.5165)
+3 _PNOTE Lady Di was born here
+4 _DIST Anyone
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 9 OCT 2011
+3 TIME 23:00:21
+0 @P9@ _PLC
+1 _PLACE Oxford, Oxfordshire, England
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:26:02
+1 _URL http://en.wikipedia.org/wiki/Oxford
+2 _LABEL Wikipedia
+1 _BOX Oxford
+2 _BNDS (51.71096, -1.30443), (51.796298, -1.175820)
+2 _POI John Radcliffe Hospital
+3 _GPS (51.763869, -1.219810)
+3 _URL http://en.wikipedia.org/wiki/John_Radcliffe_Hospital
+3 _CODE HSP
+0 @P6@ _PLC
+1 _PLACE Frimley, Surrey, England
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:35:16
+1 _BOX Frimley
+2 _BNDS (51.299548, -0.761090), (51.323120, -0.71931)
+2 _POI Frimley Park Hospital
+3 _GPS (51.319670, -0.74156)
+3 _CODE HSP
+2 _POI Frimley Green Library
+3 _GPS (51.30294, -0.726260)
+3 _CODE LIBR
+0 @P11@ _PLC
+1 _PLACE Paris, France
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 _URL http://en.wikipedia.org/wiki/Paris
+2 _LABEL Wikipedia
+1 _BOX Paris
+2 _BNDS (48.815731, 2.22383), (48.902481, 2.46977)
+2 _POI Bibliothèque Nationale de France
+3 _GPS (48.833640, 2.37575)
+3 _URL http://en.wikipedia.org/wiki/Biblioth%C3%A8que_nationale_de_France
+3 _CODE LIBR
+2 _POI Cimetière Saint-Vincent
+3 _GPS (48.889400, 2.338900)
+3 _URL http://en.wikipedia.org/wiki/Saint-Vincent_Cemetery
+3 _CODE CMTY
+2 _POI Cimetière de Passy
+3 _GPS (48.861789, 2.284959)
+3 _URL http://en.wikipedia.org/wiki/Passy_Cemetery
+3 _CODE CMTY
+2 _POI Cimetière de Picpus
+3 _GPS (48.844029, 2.400199)
+3 _URL http://en.wikipedia.org/wiki/Picpus_Cemetery
+3 _CODE CMTY
+2 _POI Cimetière du Montparnasse
+3 _GPS (48.838679, 2.32666)
+3 _URL http://en.wikipedia.org/wiki/Montparnasse_Cemetery
+3 _CODE CMTY
+2 _POI Hôpital La Pitié-Salpñtrière
+3 _GPS (48.839019, 2.364120)
+3 _URL http://en.wikipedia.org/wiki/Piti%C3%A9-Salp%C3%AAtri%C3%A8re_Hospital
+3 _CODE HSP
+2 _POI Les Invalides
+3 _GPS (48.855020, 2.312510)
+3 _URL http://en.wikipedia.org/wiki/Les_Invalides
+3 _CODE CH
+2 _POI Montmartre Cemetery
+3 _GPS (48.887900, 2.329959)
+3 _URL http://en.wikipedia.org/wiki/Montmartre_Cemetery
+3 _CODE CMTY
+2 _POI Notre Dame de Paris
+3 _GPS (48.852960, 2.350070)
+3 _URL http://en.wikipedia.org/wiki/Notre_Dame_de_Paris
+3 _CODE CH
+2 _POI Père Lachaise Cemetery
+3 _GPS (48.86065, 2.394849)
+3 _URL http://en.wikipedia.org/wiki/P%C3%A8re_Lachaise_Cemetery
+3 _CODE CMTY
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:27:23
+0 @P5@ _PLC
+1 _PLACE Isle of Kerkira, Mon Repos, Corfu, Greece
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 _URL http://en.wikipedia.org/wiki/Kerkyra_Prefecture
+2 _LABEL Wikipedia
+1 _BOX Isle of Kerkira
+2 _BNDS (39.119259, 19.37359), (39.900761, 20.25967)
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:52:17
+0 @P28@ _PLC
+1 _PLACE Crathie, Aberdeenshire, Grampian, Scotland
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 12:10:39
+1 _BOX Crathie
+2 _BNDS (57.035271, -3.220400), (57.075297, -3.192060)
+0 @P35@ _PLC
+1 _PLACE Edinburgh, Lothian, Scotland
+1 REFN 9 OCT 2011 23:25:54
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 11:28:59
+1 _URL http://en.wikipedia.org/wiki/Edinburgh
+2 _LABEL Wikipedia
+1 _BOX Edinburgh
+2 _BNDS (55.818877, -3.453949), (56.012217, -3.077119)
+0 @P25@ _PLC
+1 _PLACE Glamis, Angus, Tayside, Scotland
+1 REFN 9 OCT 2011 22:41:02
+2 TYPE Creation Date
+1 CHAN
+2 DATE 21 FEB 2012
+3 TIME 12:02:44
+1 _BOX Glamis
+2 _BNDS (56.600608, -3.015820), (56.628151, -2.993409)
+0 @B1@ _BOK
+1 _DESC Sample GEDitCOM II Book
+1 _ABOUT John A. Nairn is the author of "GEDitCOM II," which is the customizable genealogy application for the Macintosh. The web site for the application is http://www.geditcom.com. One feature of "GEDitCOM II" is that you can
+2 CONC  create a complete book from your genealogy data and those books can be controlled by Book Style records. This book was created with such a record within the sample "Windsors.gedpkg" file that comes with the "GEDitCOM II"
+2 CONC  installation. The source file has all the descendants of King George VI and Queen Elizabeth (the Queen Mother).
+1 _ANC all
+1 _DES all
+1 _FONT 11
+1 _FFAM Helvetica
+1 _LINE 1.3
+1 _OVER Y
+1 _PAPER US Letter
+1 _SIZE Full Page
+1 _TEXSTY Default
+1 _TSET Y
+1 _XTEX Y
+1 REFN 10 OCT 2011 09:06:35
+2 TYPE Creation Date
+1 _INDI @I11@
+1 _AUTH John A. Nairn
+1 _EMAIL john@geditcom.com
+1 CHAN
+2 DATE 9 JUN 2012
+3 TIME 10:50:33
+1 _FLDR /Users/nairnj/Programming/Cocoa_HomeProjects/geditcom-ii/trunk/Windsors/Books/Sample GEDitCOM II Book
+0 TRLR

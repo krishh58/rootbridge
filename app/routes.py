@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, g, send_from_directory, current_app, request
-import os
+import os, json
+from pathlib import Path
 from .auth import require_auth
 from .db import db
-from .models import User
+from .models import User, Person, Tree
 
 routes_bp = Blueprint('routes', __name__)
 
@@ -64,3 +65,33 @@ def terms():
 @routes_bp.get('/privacy')
 def privacy():
     return send_from_directory(os.path.join(current_app.root_path, '..', 'static'), 'privacy.html')
+
+@routes_bp.get('/api/seed/stats')
+@require_auth
+def seed_stats():
+    from .match_index import index_stats
+    index_path = Path(current_app.root_path).parent / 'data' / 'ged_index.json'
+    index_count = 0
+    if index_path.exists():
+        try:
+            index_count = len(json.loads(index_path.read_text()))
+        except Exception:
+            pass
+    seed_tree = Tree.query.filter_by(name='GEDCOM Seed Data').first()
+    seed_persons = Person.query.filter_by(tree_id=seed_tree.id).count() if seed_tree else 0
+    return jsonify({
+        'index_count': index_count,
+        'seed_persons': seed_persons,
+        'match_index': index_stats(),
+    })
+
+
+@routes_bp.post('/api/admin/rebuild-index')
+@require_auth
+def rebuild_index():
+    if g.user_id != 1:
+        return jsonify({'error': 'Admin only'}), 403
+    from .match_index import build_hot_index
+    count = build_hot_index(current_app._get_current_object())
+    from .match_index import index_stats
+    return jsonify({'rebuilt': True, 'indexed': count, 'stats': index_stats()})

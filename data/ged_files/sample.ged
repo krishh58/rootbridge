@@ -1,0 +1,89 @@
+0 HEAD
+1 SOUR Family Echo
+2 WWW http://www.familyecho.com/
+1 FILE My Family
+1 DATE 2 NOV 2025
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME John /Smith/
+2 GIVN John
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 DATE 1 JAN 1950
+2 PLAC New York, NY, USA
+1 DEAT
+2 DATE 15 JUL 2020
+2 PLAC Boston, MA, USA
+1 FAMS @F1@
+1 FAMC @F2@
+0 @I2@ INDI
+1 NAME Mary /Johnson/
+2 GIVN Mary
+2 SURN Johnson
+1 SEX F
+1 BIRT
+2 DATE 5 MAR 1952
+2 PLAC Chicago, IL, USA
+1 FAMS @F1@
+0 @I3@ INDI
+1 NAME Robert /Smith/
+2 GIVN Robert
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 DATE 10 JUN 1975
+2 PLAC Boston, MA, USA
+1 FAMC @F1@
+0 @I4@ INDI
+1 NAME Sarah /Smith/
+2 GIVN Sarah
+2 SURN Smith
+1 SEX F
+1 BIRT
+2 DATE 22 AUG 1978
+2 PLAC Boston, MA, USA
+1 FAMC @F1@
+0 @I5@ INDI
+1 NAME James /Smith/
+2 GIVN James
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 DATE 15 FEB 1920
+2 PLAC London, England
+1 DEAT
+2 DATE 10 MAY 1995
+2 PLAC New York, NY, USA
+1 FAMS @F2@
+0 @I6@ INDI
+1 NAME Elizabeth /Brown/
+2 GIVN Elizabeth
+2 SURN Brown
+1 SEX F
+1 BIRT
+2 DATE 20 APR 1925
+2 PLAC Manchester, England
+1 DEAT
+2 DATE 5 DEC 2010
+2 PLAC New York, NY, USA
+1 FAMS @F2@
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 CHIL @I3@
+1 CHIL @I4@
+1 MARR
+2 DATE 12 JUN 1974
+2 PLAC Boston, MA, USA
+0 @F2@ FAM
+1 HUSB @I5@
+1 WIFE @I6@
+1 CHIL @I1@
+1 MARR
+2 DATE 3 MAY 1948
+2 PLAC New York, NY, USA
+0 TRLR

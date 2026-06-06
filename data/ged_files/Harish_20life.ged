@@ -1,0 +1,2346 @@
+0 HEAD
+1 SUBM @SUBM1@
+1 SOUR Ancestry.com Family Trees
+2 NAME Ancestry.com Member Trees
+2 VERS 2025.04
+2 _TREE Harish life
+3 RIN 100532275
+3 NOTE A nice family who are quite famous! Lots yet to video call each other or call at high speeds
+3 _ENV prd
+2 CORP Ancestry.com
+3 PHON 801-705-7000
+3 WWW www.ancestry.com
+3 ADDR 1300 West Traverse Parkway
+4 CONT Lehi, UT  84043
+4 CONT USA
+1 DATE 17 May 2025
+2 TIME 10:44:33
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+0 @SUBM1@ SUBM
+1 NAME Ancestry.com Member Trees Submitter
+0 @I310004095943@ INDI
+1 NAME Harish /Ravi/
+2 GIVN Harish
+2 SURN Ravi
+2 SOUR @S1172960845@
+3 PAGE "U.S., School Yearbooks, 1880-2012"; School Name: Westridge School for Girls; Year: 1958
+3 DATA
+4 WWW https://www.classmates.com/yearbooks/?page=1&s=81166&utm_source=ancestry&utm_medium=unpaid&utm_campaign=partnerships&utm_term=yearbook&utm_content=81166
+3 _APID 1,1265::431685097
+2 SOUR @S1172508697@
+3 _APID 1,1392::214548
+2 SOUR @S1173012608@
+3 PAGE Gale Research Company; Detroit, Michigan; Accession Number: 30801
+3 _APID 1,4394::10129270
+2 SOUR @S1172996125@
+3 _APID 1,6224::103532122
+2 SOUR @S1172503888@
+3 _APID 1,8820::43532821
+2 SOUR @S1172996137@
+3 _APID 1,50102::4359446274
+2 SOUR @S1172970136@
+3 DATA
+4 WWW https://www.findagrave.com/memorial/272902557/chen-shi-lu
+3 _APID 1,60541::243702282
+2 SOUR @S1170342189@
+3 _APID 1,62209::215241016
+3 _APID 1,62209::238746624
+2 SOUR @S1172503855@
+3 _APID 1,62725::581335
+2 SOUR @S1050469670@
+3 PAGE Facebook update -  - 05/19/2016
+3 DATA
+4 DATE 05/19/2016
+4 WWW http://www.facebook.com/10208360057332009
+1 SEX M
+2 SOUR @S1172508697@
+3 _APID 1,1392::214548
+2 SOUR @S1172996125@
+3 _APID 1,6224::103532122
+2 SOUR @S1172503888@
+3 _APID 1,8820::43532821
+2 SOUR @S1172996137@
+3 _APID 1,50102::4359446274
+2 SOUR @S1170342189@
+3 _APID 1,62209::215241016
+2 SOUR @S1172503855@
+3 _APID 1,62725::581335
+2 SOUR @S1050469670@
+3 PAGE Facebook update -  - 05/19/2016
+3 DATA
+4 DATE 05/19/2016
+4 WWW http://www.facebook.com/10208360057332009
+1 FAMC @F9@
+1 FAMS @F15@
+1 BIRT
+2 DATE 1988
+2 PLAC Chennai, Tamil Nadu, India
+2 SOUR @S1173012608@
+3 PAGE Gale Research Company; Detroit, Michigan; Accession Number: 30801
+3 _APID 1,4394::10129270
+2 SOUR @S1172996125@
+3 _APID 1,6224::103532122
+1 _DEG Btech EE
+2 DATE 2010
+1 _DEG MS Phys
+2 DATE 2014
+1 _DEG PhD ms btech
+2 DATE 2017
+2 PLAC Bangalore, Karnataka, India
+1 WILL
+2 DATE 12 Jan 2025
+2 PLAC Bangalore, Karnataka, India
+2 NOTE If I leave after 2050 and prefereably after 2070 or something I wish for a bit to go to universities and museums a few children my sister a few girl friends and maybe a wife and a bit to cousins' progeny
+1 SSN 619-**-****
+1 _WLNK
+2 TITL Happy travels and about !
+2 NOTE https://www.extremeadventurein.com
+1 SOUR @S1172960845@
+2 PAGE "U.S., School Yearbooks, 1880-2012"; School Name: Westridge School for Girls; Year: 1958
+2 DATA
+3 WWW https://www.classmates.com/yearbooks/?page=1&s=81166&utm_source=ancestry&utm_medium=unpaid&utm_campaign=partnerships&utm_term=yearbook&utm_content=81166
+2 _APID 1,1265::431685097
+1 SOUR @S1172508697@
+2 _APID 1,1392::214548
+1 SOUR @S1173012608@
+2 PAGE Gale Research Company; Detroit, Michigan; Accession Number: 30801
+2 _APID 1,4394::10129270
+1 SOUR @S1172996125@
+2 _APID 1,6224::103532122
+1 SOUR @S1172503888@
+2 _APID 1,8820::43532821
+1 SOUR @S1172996137@
+2 _APID 1,50102::4359446274
+1 SOUR @S1172970136@
+2 DATA
+3 WWW https://www.findagrave.com/memorial/272902557/chen-shi-lu
+2 _APID 1,60541::243702282
+1 SOUR @S1170342189@
+2 _APID 1,62209::215241016
+2 _APID 1,62209::238746624
+1 SOUR @S1172503855@
+2 _APID 1,62725::581335
+1 SOUR @S1050469670@
+2 PAGE Facebook update -  - 05/19/2016
+2 DATA
+3 DATE 05/19/2016
+3 WWW http://www.facebook.com/10208360057332009
+1 OBJE @O38@
+2 _PRIM Y
+2 _CROP
+3 _LEFT 0
+3 _TOP 0
+3 _WDTH 3060
+3 _HGHT 3060
+3 _TYPE primary
+1 OBJE @O35@
+1 OBJE @O41@
+1 OBJE @O43@
+1 OBJE @O33@
+1 OBJE @O34@
+1 OBJE @O26@
+1 OBJE @O14@
+1 OBJE @O11@
+2 _CROP
+3 _LEFT 646
+3 _TOP 2648
+3 _WDTH 257
+3 _HGHT 323
+3 _TYPE primary
+1 OBJE @O12@
+1 OBJE @O23@
+1 OBJE @O40@
+1 OBJE @O18@
+1 OBJE @O55@
+1 OBJE @O27@
+1 OBJE @O53@
+1 OBJE @O28@
+1 OBJE @O30@
+1 OBJE @O52@
+1 OBJE @O51@
+1 OBJE @O19@
+1 OBJE @O6@
+1 OBJE @O5@
+1 OBJE @O25@
+1 OBJE @O36@
+1 OBJE @O10@
+1 OBJE @O22@
+1 OBJE @O44@
+1 OBJE @O8@
+2 _CROP
+3 _LEFT 0
+3 _TOP 0
+3 _WDTH 0
+3 _HGHT 0
+3 _TYPE primary
+1 OBJE @O24@
+1 OBJE @O17@
+1 OBJE @O49@
+2 _CROP
+3 _LEFT 0
+3 _TOP 0
+3 _WDTH 0
+3 _HGHT 0
+3 _TYPE primary
+1 OBJE @O45@
+1 NOTE <notexml><line>Nice guy</line><line></line><line>It takes days to write stories for all..</line><line></line><line>I like comedy and here is some : </line><line></line><line>I am a physicist..</line><line></line><line>Without speeddial I got a bi
+2 CONC t troubled on getting fast almost free friendly chat ..</line><line></line><line></line><line>Added other profile websites late..</line><line></line><line>Harish, a genealogy enthusiast, dedicated himself to assisting families in tracing their line
+2 CONC ages. He meticulously combed through historical records, including birth certificates, marriage licenses, census documents, and immigration papers. His expertise in deciphering old handwriting and navigating various databases proved invaluable to t
+2 CONC hose seeking to connect with their ancestors. Harish's passion for genealogy and his meticulous research helped numerous families uncover their heritage, fostering a deeper understanding of their roots and identities.</line><line></line><line>I bec
+2 CONC ame a fan of plantnet and other plant and tree profiling apps</line><line></line><line></line><line>Also medical problems..</line><line></line><line>I tried to sue the doctor but international trips reduce longevity without settlement offers</line>
+2 CONC <line></line><line>My marriage was is being also delayed by bad luck.</line><line></line><line>The world is 10%  evil and bad.. but 80% good and fun</line><line></line><line>I wish to own my own house with just my wife as they keep space from me an
+2 CONC d encrypt the most to make sure I dont broadcast more than 30% on social media </line><line></line><line></line><line></line><line></line><line></line><line></line><line></line><line></line></notexml>
+0 @I310004096119@ INDI
+1 NAME Ravishankar /Ramamoorthy/
+2 GIVN Ravishankar
+2 SURN Ramamoorthy
+2 SOUR @S1172503479@
+3 _APID 1,62219::14445313
+1 SEX M
+2 SOUR @S1172503479@
+3 _APID 1,62219::14445313
+1 FAMC @F4@
+1 FAMS @F9@
+1 BIRT
+2 DATE 3 Aug 1958
+1 RESI
+2 PLAC Redmond, Washington, USA
+2 SOUR @S1172503479@
+3 _APID 1,62219::14445313
+1 SOUR @S1172503479@
+2 _APID 1,62219::14445313
+1 OBJE @O7@
+2 _CROP
+3 _LEFT 0
+3 _TOP 0
+3 _WDTH 0
+3 _HGHT 0
+3 _TYPE primary
+1 NOTE Taught speedo to grandson hari was very kind and rich..
+2 CONT 
+2 CONT Bcom..
+2 CONT 
+2 CONT Professors with whom you work are also like 10% parents in all faiths.. :D
+2 CONT 
+2 CONT Cheated me of 59 crores
+0 @I310004096185@ INDI
+1 NAME Girija /Kalyanaraman/
+2 GIVN Girija
+2 SURN Kalyanaraman
+2 SOUR @S1172503592@
+3 _APID 1,7339::45936953
+1 SEX F
+2 SOUR @S1172503592@
+3 _APID 1,7339::45936953
+1 FAMC @F18@
+1 FAMS @F9@
+1 BIRT
+2 DATE 14 May 1960
+2 PLAC Vizhupuram
+1 RESI
+2 DATE 1996-2002
+2 PLAC New Hyde Park, New York, USA
+2 SOUR @S1172503592@
+3 _APID 1,7339::45936953
+1 SOUR @S1172503592@
+2 _APID 1,7339::45936953
+1 OBJE @O3@
+1 OBJE @O50@
+0 @I310004096224@ INDI
+1 NAME Ramamoorthy /Muthuswami/
+2 GIVN Ramamoorthy
+2 SURN Muthuswami
+2 SOUR @S1172503592@
+3 _APID 1,7339::90907399
+2 SOUR @S1172504075@
+3 _APID 1,62492::219860
+1 SEX M
+2 SOUR @S1172503592@
+3 _APID 1,7339::90907399
+2 SOUR @S1172504075@
+3 _APID 1,62492::219860
+1 FAMC @F23@
+1 FAMS @F5@
+1 FAMS @F4@
+1 FAMS @F26@
+1 BIRT
+2 DATE 7 October 1921
+1 RESI
+2 SOUR @S1172504075@
+3 _APID 1,62492::219860
+2 NOTE Occupation: Clerk Class 1
+1 DEAT
+2 DATE 7 Oct 2006
+1 SOUR @S1172503592@
+2 _APID 1,7339::90907399
+1 SOUR @S1172504075@
+2 _APID 1,62492::219860
+1 OBJE @O47@
+2 _PRIM Y
+1 NOTE <notexml><line>Speedo king</line><line></line><line>Was a nice man</line></notexml>
+0 @I310004096415@ INDI
+1 NAME Kalyanaraman /Mahadevan/
+2 GIVN Kalyanaraman
+2 SURN Mahadevan
+1 SEX M
+1 FAMC @F42@
+1 FAMC @F43@
+1 FAMS @F18@
+1 BIRT
+2 DATE April 1919
+2 PLAC Vizhupurum
+1 DEAT
+2 DATE 29 Aug 2006
+2 PLAC Chennai
+1 NOTE Gave 5 lakhs and his daughters used sons to abduct and threaten lol.. they didn't give business..
+0 @I310004096449@ INDI
+1 NAME Bhagyalakshmi //
+2 GIVN Bhagyalakshmi
+1 SEX F
+1 FAMC @F27@
+1 FAMS @F18@
+0 @I310004096499@ INDI
+1 NAME Nila //
+2 GIVN Nila
+1 SEX F
+1 FAMC @F25@
+1 FAMS @F4@
+0 @I310004096554@ INDI
+1 NAME Janani /Ravi/
+2 GIVN Janani
+2 SURN Ravi
+2 SOUR @S1170342189@
+3 _APID 1,62209::240266322
+1 SEX F
+2 SOUR @S1170342189@
+3 _APID 1,62209::240266322
+1 FAMC @F9@
+1 FAMS @F8@
+1 BIRT
+2 PLAC Seattle
+1 RESI
+2 DATE 2015-2017
+2 PLAC Seattle, Washington, USA
+2 SOUR @S1170342189@
+3 _APID 1,62209::240266322
+1 RESI
+2 DATE 2020
+2 PLAC Seattle, Washington, USA
+2 SOUR @S1170342189@
+3 _APID 1,62209::240266322
+1 SOUR @S1170342189@
+2 _APID 1,62209::240266322
+1 OBJE @O20@
+1 NOTE She is an inspiration. I owe her a lot.
+0 @I310004096684@ INDI
+1 NAME Rama /Ravi/ kal
+2 GIVN Rama
+2 SURN Ravi
+2 NSFX kal
+2 SOUR @S1172504173@
+3 _APID 1,62216::112125711
+1 SEX F
+2 SOUR @S1172504173@
+3 _APID 1,62216::112125711
+1 FAMC @F18@
+1 FAMS @F6@
+1 BIRT
+2 DATE 12 Feb 1960
+2 PLAC Chennai, Tamil Nadu, India
+1 RESI
+2 PLAC None, India
+2 SOUR @S1172504173@
+3 _APID 1,62216::112125711
+1 SOUR @S1172504173@
+2 _APID 1,62216::112125711
+1 OBJE @O31@
+2 _PRIM Y
+1 OBJE @O2@
+0 @I310004096918@ INDI
+1 NAME Meera //
+2 GIVN Meera
+1 SEX F
+1 FAMC @F18@
+1 FAMS @F21@
+0 @I310004096971@ INDI
+1 NAME Mythili //
+2 GIVN Mythili
+1 SEX F
+1 FAMC @F18@
+1 FAMS @F19@
+0 @I310040071690@ INDI
+1 NAME Prakash //
+2 GIVN Prakash
+1 SEX M
+1 FAMC @F6@
+1 NOTE Chess champ. Will be an influential person in the future.
+0 @I310040071700@ INDI
+1 NAME Ravi //
+2 GIVN Ravi
+1 SEX M
+1 FAMS @F6@
+1 NOTE Very bad man.. wasted lots of time..
+2 CONT 
+2 CONT Always taking to hospitals etc when healthy during 2018 bad mouthing.. inciting..
+2 CONT 
+2 CONT Losses to 2.53 crores due to bad manners of this dad..
+0 @I310040071744@ INDI
+1 NAME Vivek //
+2 GIVN Vivek
+1 SEX M
+1 FAMC @F19@
+1 NOTE Bro! We had lot of good times in Bangalore and in Chennai holidays!
+0 @I310040071757@ INDI
+1 NAME Nandu //
+2 GIVN Nandu
+1 SEX F
+1 FAMC @F19@
+1 FAMS @F1@
+1 FAMS @F3@
+1 NOTE Great sis. Amazing source of inspiration. Very positive. CA by profession. 
+2 CONT Good times : Since childhood, great friends. 
+2 CONT Rough times : None
+0 @I310040071780@ INDI
+1 NAME Babu //
+2 GIVN Babu
+1 SEX M
+1 FAMS @F19@
+0 @I310040073135@ INDI
+1 NAME Suri //
+2 GIVN Suri
+1 SEX M
+1 FAMS @F21@
+0 @I310040073156@ INDI
+1 NAME Vinod //
+2 GIVN Vinod
+1 SEX M
+1 FAMC @F21@
+1 FAMS @F13@
+1 NOTE <notexml><line>Nice cousin who played computer games with me </line></notexml>
+0 @I310040073201@ INDI
+1 NAME Harini //
+2 GIVN Harini
+1 SEX F
+1 FAMC @F21@
+1 FAMS @F20@
+0 @I310040073225@ INDI
+1 NAME Lalli //
+2 GIVN Lalli
+1 SEX F
+1 FAMC @F26@
+1 FAMS @F11@
+1 NOTE <notexml><line>Step aunt historian very great</line><line>..</line></notexml>
+0 @I310040073259@ INDI
+1 NAME Raj  /Gopal/
+2 GIVN Raj 
+2 SURN Gopal
+2 SOUR @S1172503661@
+3 _APID 1,61213::213959
+2 SOUR @S1172503618@
+3 _APID 1,61843::643062122
+1 SEX M
+2 SOUR @S1172503661@
+3 _APID 1,61213::213959
+2 SOUR @S1172503618@
+3 _APID 1,61843::643062122
+1 FAMC @F26@
+1 FAMS @F12@
+1 BIRT
+2 DATE 1942
+2 PLAC India
+2 SOUR @S1172503661@
+3 _APID 1,61213::213959
+2 SOUR @S1172503618@
+3 _APID 1,61843::643062122
+1 RESI
+2 SOUR @S1172503661@
+3 _APID 1,61213::213959
+2 NOTE Relation to Head of House: Self
+1 SOUR @S1172503661@
+2 _APID 1,61213::213959
+1 SOUR @S1172503618@
+2 _APID 1,61843::643062122
+1 NOTE <notexml><line>Step uncle</line></notexml>
+0 @I310040073274@ INDI
+1 NAME Muthu //
+2 GIVN Muthu
+1 SEX M
+1 FAMC @F26@
+1 FAMS @F14@
+0 @I310040073415@ INDI
+1 NAME Prem //
+2 GIVN Prem
+1 SEX F
+1 FAMS @F14@
+0 @I310040073458@ INDI
+1 NAME Jay //
+2 GIVN Jay
+1 SEX M
+1 FAMC @F14@
+0 @I310040073543@ INDI
+1 NAME Sonia //
+2 GIVN Sonia
+1 SEX F
+1 FAMC @F14@
+0 @I310040073576@ INDI
+1 NAME Paul //
+2 GIVN Paul
+1 SEX M
+1 FAMS @F11@
+0 @I310040073602@ INDI
+1 NAME Abhi //
+2 GIVN Abhi
+1 SEX M
+1 FAMC @F11@
+1 FAMS @F16@
+0 @I310040073851@ INDI
+1 NAME Ammu //
+2 GIVN Ammu
+1 SEX F
+1 FAMC @F11@
+1 FAMS @F7@
+0 @I310040073928@ INDI
+1 NAME Harsha //
+2 GIVN Harsha
+1 SEX M
+1 FAMC @F32@
+1 FAMS @F10@
+0 @I310040073942@ INDI
+1 NAME Aarthi //
+2 GIVN Aarthi
+1 SEX F
+1 FAMC @F32@
+0 @I310040073979@ INDI
+1 NAME Sridhar //
+2 GIVN Sridhar
+1 SEX M
+1 FAMS @F32@
+1 NOTE Didn't even entertain meetings or calls in same city what a sewer they are.
+0 @I310040073993@ INDI
+1 NAME Parvathi //
+2 GIVN Parvathi
+1 SEX F
+1 FAMS @F12@
+0 @I310040074021@ INDI
+1 NAME Neil //
+2 GIVN Neil
+1 SEX M
+1 FAMC @F12@
+0 @I310040074076@ INDI
+1 NAME Meera //
+2 GIVN Meera
+1 SEX F
+1 FAMC @F12@
+0 @I310040074608@ INDI
+1 NAME Sunder //
+2 GIVN Sunder
+1 SEX M
+1 FAMC @F38@
+1 FAMC @F39@
+1 FAMS @F8@
+0 @I310040074649@ INDI
+1 NAME Sateesh //
+2 GIVN Sateesh
+1 SEX M
+1 FAMS @F3@
+0 @I310040074687@ INDI
+1 NAME Janani //
+2 GIVN Janani
+1 SEX F
+1 FAMS @F13@
+0 @I310040074732@ INDI
+1 NAME Vishwanathan //
+2 GIVN Vishwanathan
+1 SEX M
+1 FAMS @F20@
+0 @I310040074943@ INDI
+1 NAME Kadambari //
+2 GIVN Kadambari
+1 SEX F
+1 FAMS @F16@
+0 @I310040075029@ INDI
+1 NAME Nilanjan //
+2 GIVN Nilanjan
+1 SEX M
+1 FAMS @F7@
+0 @I310040075051@ INDI
+1 NAME Munni //
+2 GIVN Munni
+1 SEX F
+1 FAMS @F10@
+0 @I310040075080@ INDI
+1 NAME Subha //
+2 GIVN Subha
+1 SEX F
+1 FAMC @F4@
+1 OBJE @O54@
+1 NOTE Took advantage of unfinished family tree with 190 re meal by sister and caused 1 crore loss in 2017 .
+0 @I312639300693@ INDI
+1 NAME soon pls /pls/
+2 GIVN soon pls
+2 SURN pls
+2 SOUR @S1172967436@
+3 PAGE Bureau of Land Management, General Land Office Records; Washington D.C., USA; Federal Land Patents, State Volumes
+3 DATA
+4 WWW http://glorecords.blm.gov/details/patent/default.aspx?accession=0924-135&docClass=MW&sid=uzbb3cyk.q3m
+3 _APID 1,1246::12755443
+1 SEX F
+1 FAMS @F15@
+1 SOUR @S1172967436@
+2 PAGE Bureau of Land Management, General Land Office Records; Washington D.C., USA; Federal Land Patents, State Volumes
+2 DATA
+3 WWW http://glorecords.blm.gov/details/patent/default.aspx?accession=0924-135&docClass=MW&sid=uzbb3cyk.q3m
+2 _APID 1,1246::12755443
+1 OBJE @O1@
+1 OBJE @O9@
+1 OBJE @O16@
+1 NOTE <notexml><line>Lot of girls ditched and were evil till 2024.. they were irritating..</line><line></line><line>Lots of people might feel romantic ! So hope there's a chance..</line></notexml>
+0 @I312639301122@ INDI
+1 NAME jehan /l/
+2 GIVN jehan
+2 SURN l
+1 FAMC @F16@
+0 @I312639301132@ INDI
+1 NAME jeha  /l/
+2 GIVN jeha 
+2 SURN l
+1 SEX M
+1 FAMC @F16@
+0 @I312639301166@ INDI
+1 NAME ramnadar /)/
+2 GIVN ramnadar
+2 SURN )
+1 SEX M
+1 FAMS @F27@
+0 @I312639301187@ INDI
+1 NAME subbalakshmi /?(1)/
+2 GIVN subbalakshmi
+2 SURN ?(1)
+1 SEX F
+1 FAMC @F33@
+1 FAMS @F42@
+0 @I312639301195@ INDI
+1 NAME where /?(1)/
+2 GIVN where
+2 SURN ?(1)
+1 SEX M
+1 FAMC @F31@
+1 FAMS @F33@
+0 @I312639301226@ INDI
+1 NAME l /stud/
+2 GIVN l
+2 SURN stud
+1 SEX M
+1 FAMC @F15@
+1 FAMS @F40@
+1 BIRT
+2 DATE 2035
+0 @I312641188159@ INDI
+1 NAME h /R mumbai/
+2 GIVN h
+2 SURN R mumbai
+1 SEX M
+1 FAMC @F28@
+1 FAMS @F23@
+0 @I312641189733@ INDI
+1 NAME random /stud/
+2 GIVN random
+2 SURN stud
+1 SEX M
+1 FAMC @F40@
+0 @I312667262883@ INDI
+1 NAME Satish  //
+2 GIVN Satish 
+1 SEX M
+1 FAMS @F1@
+0 @I312667262954@ INDI
+1 NAME samskriti //
+2 GIVN samskriti
+1 SEX F
+1 FAMC @F1@
+0 @I312667263168@ INDI
+1 NAME vishaka //
+2 GIVN vishaka
+1 SEX F
+1 FAMC @F20@
+0 @I312667263276@ INDI
+1 NAME ria and someone twins //
+2 GIVN ria and someone twins
+1 SEX F
+1 FAMC @F13@
+0 @I312668120626@ INDI
+1 NAME Emme Jausephine /Charle/
+2 GIVN Emme Jausephine
+2 SURN Charle
+2 SOUR @S1172525630@
+3 _APID 1,62418::1099253
+1 SEX F
+2 SOUR @S1172525630@
+3 _APID 1,62418::1099253
+1 FAMC @F22@
+1 BIRT
+2 DATE 1828
+2 PLAC Authou, Eure, France
+2 SOUR @S1172525630@
+3 _APID 1,62418::1099253
+1 SOUR @S1172525630@
+2 _APID 1,62418::1099253
+0 @I312668120654@ INDI
+1 NAME Pierre /Charles/
+2 GIVN Pierre
+2 SURN Charles
+2 SOUR @S1172525630@
+3 _APID 1,62418::106099253
+1 SEX M
+2 SOUR @S1172525630@
+3 _APID 1,62418::106099253
+1 FAMS @F22@
+1 BIRT
+2 DATE Abt 1804
+2 SOUR @S1172525630@
+3 _APID 1,62418::106099253
+1 RESI
+2 DATE abt 1828
+2 SOUR @S1172525630@
+3 _APID 1,62418::106099253
+1 SOUR @S1172525630@
+2 _APID 1,62418::106099253
+0 @I312671938165@ INDI
+1 NAME a /a/ saw photo
+2 GIVN a
+2 SURN a
+2 NSFX saw photo
+1 SEX M
+1 FAMC @F24@
+1 FAMS @F25@
+0 @I312671938183@ INDI
+1 NAME b /a/
+2 GIVN b
+2 SURN a
+1 SEX M
+1 FAMC @F28@
+1 FAMS @F24@
+0 @I312671938194@ INDI
+1 NAME b /a/
+2 GIVN b
+2 SURN a
+1 SEX M
+1 FAMC @F29@
+1 FAMS @F28@
+0 @I312671938223@ INDI
+1 NAME ape /a/
+2 GIVN ape
+2 SURN a
+1 SEX M
+1 FAMC @F34@
+1 FAMC @F35@
+1 FAMS @F29@
+0 @I312671938234@ INDI
+1 NAME ape /a/
+2 GIVN ape
+2 SURN a
+1 SEX M
+1 FAMC @F30@
+1 FAMS @F34@
+0 @I312671938255@ INDI
+1 NAME a /?(1)/
+2 GIVN a
+2 SURN ?(1)
+1 SEX M
+1 FAMC @F29@
+1 FAMS @F31@
+0 @I312671938269@ INDI
+1 NAME a /Mahadevan/
+2 GIVN a
+2 SURN Mahadevan
+1 SEX M
+1 FAMS @F43@
+0 @I312671938335@ INDI
+1 NAME protozoa /a/
+2 GIVN protozoa
+2 SURN a
+1 SEX M
+1 FAMC @F37@
+1 FAMS @F30@
+1 OBJE @O13@
+2 _PRIM Y
+0 @I312671938447@ INDI
+1 NAME atom /a/
+2 GIVN atom
+2 SURN a
+1 SEX M
+1 FAMC @F41@
+1 FAMS @F37@
+1 OBJE @O39@
+1 OBJE @O48@
+1 NOTE <notexml><line>Bohr theory and greatness of 13.6 from waves</line></notexml>
+0 @I312671938466@ INDI
+1 NAME photons /a/
+2 GIVN photons
+2 SURN a
+1 SEX M
+1 FAMC @F36@
+1 FAMS @F41@
+1 OBJE @O29@
+2 _PRIM Y
+1 NOTE <notexml><line>E=h\nu</line></notexml>
+0 @I312672874329@ INDI
+1 NAME saraswati //
+2 GIVN saraswati
+1 SEX F
+1 FAMS @F5@
+0 @I312672874701@ INDI
+1 NAME sushee //
+2 GIVN sushee
+1 SEX F
+1 FAMC @F5@
+1 FAMS @F2@
+0 @I312672874807@ INDI
+1 NAME sridhar //
+2 GIVN sridhar
+1 SEX M
+1 FAMS @F2@
+0 @I312672874839@ INDI
+1 NAME Harsha //
+2 GIVN Harsha
+1 SEX M
+1 FAMC @F2@
+1 FAMS @F17@
+0 @I312672874945@ INDI
+1 NAME Aarthi //
+2 GIVN Aarthi
+1 SEX F
+1 FAMC @F2@
+0 @I312672878700@ INDI
+1 NAME munni //
+2 GIVN munni
+1 SEX F
+1 FAMS @F17@
+0 @I312674319486@ INDI
+1 NAME anantha //
+2 GIVN anantha
+1 FAMS @F38@
+0 @I312674319512@ INDI
+1 NAME padma //
+2 GIVN padma
+1 FAMS @F39@
+0 @I312674327231@ INDI
+1 NAME String Theory /a/
+2 GIVN String Theory
+2 SURN a
+1 SEX M
+1 FAMS @F36@
+1 OBJE @O15@
+2 _PRIM Y
+1 NOTE <notexml><line>F _mu nu F ^ mu nu =0</line><line></line><line>13.6 Billion years ago from Hubble investigations</line><line></line><line>And proved by 1 ligo data analysis lecture..</line><line></line><line></line></notexml>
+0 @I312674327307@ INDI
+1 NAME Were There Snakes Ducks And Flowers In Evolution //
+2 GIVN Were There Snakes Ducks And Flowers In Evolution
+1 SEX F
+1 FAMS @F35@
+0 @F1@ FAM
+1 HUSB @I312667262883@
+1 WIFE @I310040071757@
+1 CHIL @I312667262954@
+0 @F2@ FAM
+1 HUSB @I312672874807@
+1 WIFE @I312672874701@
+1 CHIL @I312672874945@
+1 CHIL @I312672874839@
+0 @F3@ FAM
+1 HUSB @I310040074649@
+1 WIFE @I310040071757@
+0 @F4@ FAM
+1 HUSB @I310004096224@
+1 WIFE @I310004096499@
+1 CHIL @I310004096119@
+1 CHIL @I310040075080@
+0 @F5@ FAM
+1 HUSB @I310004096224@
+1 WIFE @I312672874329@
+1 CHIL @I312672874701@
+0 @F6@ FAM
+1 HUSB @I310040071700@
+1 WIFE @I310004096684@
+1 CHIL @I310040071690@
+0 @F7@ FAM
+1 HUSB @I310040075029@
+1 WIFE @I310040073851@
+0 @F8@ FAM
+1 HUSB @I310040074608@
+1 WIFE @I310004096554@
+0 @F9@ FAM
+1 HUSB @I310004096119@
+1 WIFE @I310004096185@
+1 CHIL @I310004095943@
+1 CHIL @I310004096554@
+0 @F10@ FAM
+1 HUSB @I310040073928@
+1 WIFE @I310040075051@
+0 @F11@ FAM
+1 HUSB @I310040073576@
+1 WIFE @I310040073225@
+1 CHIL @I310040073851@
+1 CHIL @I310040073602@
+0 @F12@ FAM
+1 HUSB @I310040073259@
+1 WIFE @I310040073993@
+1 CHIL @I310040074076@
+1 CHIL @I310040074021@
+0 @F13@ FAM
+1 HUSB @I310040073156@
+1 WIFE @I310040074687@
+1 CHIL @I312667263276@
+0 @F14@ FAM
+1 HUSB @I310040073274@
+1 WIFE @I310040073415@
+1 CHIL @I310040073543@
+1 CHIL @I310040073458@
+0 @F15@ FAM
+1 HUSB @I310004095943@
+1 WIFE @I312639300693@
+1 CHIL @I312639301226@
+1 MARR
+2 DATE 2027
+2 PLAC Bangalore, Karnataka, India
+2 NOTE why delay with random with some experience
+0 @F16@ FAM
+1 HUSB @I310040073602@
+1 WIFE @I310040074943@
+1 CHIL @I312639301132@
+1 CHIL @I312639301122@
+0 @F17@ FAM
+1 HUSB @I312672874839@
+1 WIFE @I312672878700@
+0 @F18@ FAM
+1 HUSB @I310004096415@
+1 WIFE @I310004096449@
+1 CHIL @I310004096684@
+1 CHIL @I310004096185@
+1 CHIL @I310004096971@
+1 CHIL @I310004096918@
+0 @F19@ FAM
+1 HUSB @I310040071780@
+1 WIFE @I310004096971@
+1 CHIL @I310040071744@
+1 CHIL @I310040071757@
+0 @F20@ FAM
+1 HUSB @I310040074732@
+1 WIFE @I310040073201@
+1 CHIL @I312667263168@
+0 @F21@ FAM
+1 HUSB @I310040073135@
+1 WIFE @I310004096918@
+1 CHIL @I310040073201@
+1 CHIL @I310040073156@
+0 @F22@ FAM
+1 HUSB @I312668120654@
+1 CHIL @I312668120626@
+0 @F23@ FAM
+1 HUSB @I312641188159@
+1 CHIL @I310004096224@
+0 @F24@ FAM
+1 HUSB @I312671938183@
+1 CHIL @I312671938165@
+0 @F25@ FAM
+1 HUSB @I312671938165@
+1 CHIL @I310004096499@
+0 @F26@ FAM
+1 HUSB @I310004096224@
+1 CHIL @I310040073259@
+1 CHIL @I310040073274@
+1 CHIL @I310040073225@
+0 @F27@ FAM
+1 HUSB @I312639301166@
+1 CHIL @I310004096449@
+0 @F28@ FAM
+1 HUSB @I312671938194@
+1 CHIL @I312641188159@
+1 CHIL @I312671938183@
+0 @F29@ FAM
+1 HUSB @I312671938223@
+1 CHIL @I312671938255@
+1 CHIL @I312671938194@
+0 @F30@ FAM
+1 HUSB @I312671938335@
+1 CHIL @I312671938234@
+0 @F31@ FAM
+1 HUSB @I312671938255@
+1 CHIL @I312639301195@
+0 @F32@ FAM
+1 HUSB @I310040073979@
+1 CHIL @I310040073928@
+1 CHIL @I310040073942@
+0 @F33@ FAM
+1 HUSB @I312639301195@
+1 CHIL @I312639301187@
+0 @F34@ FAM
+1 HUSB @I312671938234@
+1 CHIL @I312671938223@
+0 @F35@ FAM
+1 WIFE @I312674327307@
+1 CHIL @I312671938223@
+0 @F36@ FAM
+1 HUSB @I312674327231@
+1 CHIL @I312671938466@
+0 @F37@ FAM
+1 HUSB @I312671938447@
+1 CHIL @I312671938335@
+0 @F38@ FAM
+1 HUSB @I312674319486@
+1 CHIL @I310040074608@
+0 @F39@ FAM
+1 HUSB @I312674319512@
+1 CHIL @I310040074608@
+0 @F40@ FAM
+1 HUSB @I312639301226@
+1 CHIL @I312641189733@
+0 @F41@ FAM
+1 HUSB @I312671938466@
+1 CHIL @I312671938447@
+0 @F42@ FAM
+1 WIFE @I312639301187@
+1 CHIL @I310004096415@
+0 @F43@ FAM
+1 HUSB @I312671938269@
+1 CHIL @I310004096415@
+0 @O1@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 633005
+3 _WDTH 1080
+3 _HGHT 2376
+2 TITL Screenshot_20250501_161257.jpg
+1 _OID 01eac30f-aeb1-4f8a-a485-87669fdbacd9
+1 DATE 01 May 2025
+1 _CREA 2025-05-01 10:45:00.341
+1 _USER eEkCrI3svRX0CPk1WK8IulgsfTecuh+mMO/Wo/oUvppIeLOOIGBkj/CnarfcysmMDDKlAtqM57B0Yvn6xKGjSw==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O2@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 4312034
+3 _WDTH 3000
+3 _HGHT 4000
+2 TITL Photo
+1 _OID 08631e02-b89c-4073-9ce9-ce37a9caf243
+1 DATE 16 Jan 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-01-15 23:19:32.106
+1 _USER axejFnDKqFLbi15Oc3hwhDPpHTaUXPj1pJx8/RxN5gmsUZh58NIGwceeBvulRP34Fphuo9YVJQhzvRYbhMIUkw==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O3@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 27384
+3 _WDTH 489
+3 _HGHT 653
+2 TITL FB_IMG_1745974014834.jpg
+1 _OID 0b187d8d-6cd7-4b1a-a788-b6fa6b12a6b7
+1 DATE 30 Apr 2025
+1 _CREA 2025-04-30 00:47:39.319
+1 _USER lv6GxwAky8VrWeE+0XZpIb62mqJap5cN/4N8KCaU6rcbZvMWwqIvvbJb6LSke84vQ0JPHFXpoh5OtBaCRk+Ouw==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O4@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3202407
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL 1908663879.jpg
+1 _OID 0e44c575-ee31-4439-a8f2-6077d256bd83
+1 DATE 16 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-16 10:34:57.102
+1 _USER Hn1MA8VxQ14fLoxum2nbvGtZpS6QlE+F0+OPZsCTWH/6/5JNVi9y0BXnO6ODxFA6FzS0r8k2FeaRyLkyoA8ScQ==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O5@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _STYPE jpeg
+3 _SIZE 181572
+3 _WDTH 1007
+3 _HGHT 646
+2 TITL Michael & Willie
+1 _OID 0eca43cb-e714-4ce4-9eaa-c0d6f783b92e
+1 _CREA 2025-05-14 12:06:18.480
+1 _USER NfsjEVnZ7MGBAeEKQ0xm6ydlxzqxr5rmmecykWP9Thd2zw94V8SFIP28LUlqtR6kXdU5yWi6aAwlshsLYYbNgA==
+2 _ENCR 1
+1 _CLON
+2 _TID 158916102
+2 _PID 102077927190
+2 _OID 01aad473-bb25-4bc6-9972-e0eeb6a98bed
+2 _USER +9IunOVljjFOijBUZNaL1TXRyYEwD1j/qCwKNX0UcckbIuvUSCY0QTLQMZuLQelfuvE9kmTHi05Z7/+8wMl35Q==
+3 _ENCR 1
+2 _DATE 2019-02-23 00:04:00.663
+1 _ORIG u
+1 _MSER
+2 _LKID 01aad473-bb25-4bc6-9972-e0eeb6a98bed
+1 _ATL Y
+0 @O6@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpeg
+3 _SIZE 277947
+3 _WDTH 887
+3 _HGHT 602
+2 TITL George S. Schwab & Ella F. (Peiper) Schwab's 50th wedding anniversary
+1 _OID 14c4db72-c1f9-4247-833b-4f4d9f33a293
+1 _DSCR Keith, Ester, Ella, George S., Melvin "George" & John Schwab. (Other sister Ruth had passed away before picture).
+1 _META <metadataxml><cemetery /><transcription /></metadataxml>
+1 _CREA 2025-05-14 12:19:44.826
+1 _USER q1nfMRE+04cR8h2aNjC1r2fOnjBKOW4ZpE+kMlpZF3eGmt/FNC7EygAeZlHJ9LxRMETETKoGVOpKS06oJPaofA==
+2 _ENCR 1
+1 _CLON
+2 _TID 46463518
+2 _PID 6986559247
+2 _OID 8212329b-0aa5-4fc2-b327-920e289a42f7
+2 _USER n7qn82j63jr76eHuOpavTMtqX3q1J8YE5MmU5gmyDdW08XmFiA7q6/bTz4ck6JB28L1xfx93MORF4MT1aPLuaw==
+3 _ENCR 1
+2 _DATE 2013-05-19 07:13:31.810
+1 _ORIG u
+1 _MSER
+2 _LKID 8212329b-0aa5-4fc2-b327-920e289a42f7
+1 _ATL Y
+0 @O7@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 129466
+3 _WDTH 1031
+3 _HGHT 1917
+2 TITL FB_IMG_1745854773389.jpg
+1 _OID 1c09b1b1-7698-4901-b2cd-2d3601280f0b
+1 DATE 28 Apr 2025
+1 _META <metadataxml />
+1 _CREA 2025-04-28 15:41:53.744
+1 _USER 63RePfGHasyJFz3FYmgJ8ZXp/CcrpjK+mORAjVH4kxMzzaKy+7iGXESlFNtalOiXri2F0twxMij3M0ER55Uunw==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O8@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 1699477
+3 _WDTH 1564
+3 _HGHT 1564
+2 TITL IMG_20250119_145654.jpg
+1 _OID 1dc1738a-1eec-4ab7-909d-d7304b819820
+1 DATE 19 Jan 2025
+1 _DSCR Family and institute tree photography game..
+1 _META <metadataxml />
+1 _CREA 2025-01-19 09:27:31.972
+1 _USER uL4dEygKACua9gtWcIVWMY7F2xqF9IEvbUNsheCozFXXlt3blG2HCSRYaOtmCytc0aqIxGeHl8jPRUr/2dogkw==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O9@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 963686
+3 _WDTH 1080
+3 _HGHT 2376
+2 TITL Screenshot_20250501_030924.jpg
+1 _OID 202d83d6-537b-46e9-9342-569041c8c166
+1 DATE 01 May 2025
+1 _CREA 2025-04-30 21:40:18.018
+1 _USER hN8s5xRPfm7L1sh9//8H350zRIipQ1V7g3m5GYxoaMHollDHt/Dmh0y2atbOpi/02dtqp3EqiW6UkXt0lTU/tg==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O10@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3051450
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL IMG_20250510_094021.jpg
+1 _OID 207b38ed-026a-476f-a8bc-842cb109536e
+1 DATE 10 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _DSCR Money earned with research and random ness.. it doenst grow on trees some earned with education
+1 _META <metadataxml />
+1 _CREA 2025-05-10 04:10:55.892
+1 _USER ST/gBIScUV/XlkhOCJwnnC5O2iqItLHmdWXrSizdVsrsAkXAXTIfWz+mjUqSzMe001yYgb0uql7yvrcCL9GBaQ==
+2 _ENCR 1
+1 _ORIG u
+1 _MSER
+2 _LKID 207b38ed-026a-476f-a8bc-842cb109536e
+1 _ATL Y
+0 @O11@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 2767098
+3 _WDTH 2916
+3 _HGHT 3828
+2 TITL 1617663791.jpg
+1 _OID 23742f62-8f8f-41ac-8ed8-4a87f7ee08af
+1 DATE 16 May 2025
+1 _CREA 2025-05-16 00:12:08.383
+1 _USER NLEdRoloiYAOUTYAAWxFOHo/1KvmYR3KwRcBbYe4689TXaL8IJ9BrAZ6KtnwhVBO08wXC6DNbxyqFpm9+G2LMw==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O12@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3458526
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL IMG_20250515_073521.jpg
+1 _OID 25222654-5da5-4b59-b270-4d941f8dd367
+1 DATE 15 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-15 02:06:44.426
+1 _USER 4BV3FPAlCLi3FcGXuAzk8LOtpLTZK6nK7QY6jvut71VOr9BpFOwQlEjZDqUUrKAA4dDK+bufmfV0+cQZUhhvcA==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O13@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3270171
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL 116661936.jpg
+1 _OID 279c038a-9bb2-4d96-8d9a-b86a956290fb
+1 DATE 15 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-14 20:17:24.764
+1 _USER rE5mWiV+R1mkZPAsJ/u8xYOIJR9knMwrSJDTt94dDVlzbYPInxeDdHy5GkgXToVhhG9jpgOSBxU0nc+cmg0XMg==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O14@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 2958526
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL 1079308892.jpg
+1 _OID 3824ec76-3b2e-4ae4-81a7-4ef4ecd645c0
+1 DATE 16 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-16 09:59:54.844
+1 _USER /1BH4KXiHp3Zq4H3XN4RW5H+mL62U4Jz4vsnYX4afM3hqdffe/X5yNxHaW0Q7UjelmCFmF3LHSryUMoQWjltwQ==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O15@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3080703
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL 952050318.jpg
+1 _OID 3c02bdf4-ccda-45e8-8ad8-e870fc0885d8
+1 DATE 15 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-14 20:03:36.439
+1 _USER 3cx/urrpDcKTfaChWFzDb332IWHWjhY0rvnkt8M6a5Qd6WDbHSh4fKeaxNG+lAqax/UyY8zjAVXKntwwWCslsw==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O16@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 673826
+3 _WDTH 1080
+3 _HGHT 2376
+2 TITL Screenshot_20250430_172942.jpg
+1 _OID 3d4b3fb4-2bd1-418f-8953-2e6b62882790
+1 DATE 30 Apr 2025
+1 _CREA 2025-04-30 12:01:00.601
+1 _USER VmGZvRO5nlSEhrWyKLdsTFbIbviWQpSM/puowNH7sU7gP4ipnMd2RUnNjeAaKsb4wsxn3bXO51/chft1e/37yA==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O17@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3656442
+3 _WDTH 3000
+3 _HGHT 4000
+2 TITL Photo
+1 _OID 3f355c4a-3621-4537-be7f-90ca18a95a11
+1 DATE 16 Jan 2005
+1 PLAC Mumbai, Maharashtra, India
+1 _DSCR Winning olympiad times
+1 _META <metadataxml />
+1 _CREA 2025-01-15 23:24:52.783
+1 _USER PkMMZ66eUjiUdIGrRlg+oJkzqFmsKeIOSYwZU5TRyxnkTFouYp9KWQAmUYYY5eehzmHk6yEaCqVC2rFsZMqlJw==
+2 _ENCR 1
+1 _ORIG u
+1 _MSER
+2 _LKID 3f355c4a-3621-4537-be7f-90ca18a95a11
+1 _ATL Y
+0 @O18@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _STYPE jpeg
+3 _SIZE 236215
+3 _WDTH 2048
+3 _HGHT 2048
+2 TITL Gemini_Generated_Image_r6lf1tr6lf1tr6lf
+1 _OID 3f510bee-0491-465d-ad21-76ea403676c6
+1 _CREA 2025-05-14 22:09:35.159
+1 _USER BHFaU5ttOLIQe4Kz8CHk5dR8h3pEirTjgQMf2436n6eKbQg62omAdBdYFCIJefPmqgwgfRzZ0eddabsIRuk8hQ==
+2 _ENCR 1
+1 _ORIG acom
+1 _ATL Y
+0 @O19@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpeg
+3 _SIZE 8723
+3 _WDTH 133
+3 _HGHT 157
+2 TITL Billy Oris Phillips  circa 1942
+1 _OID 430e3315-47f3-4cd8-8129-f9269fe3433a
+1 _META <metadataxml><cemetery /><transcription /></metadataxml>
+1 _CREA 2025-05-14 12:24:55.250
+1 _USER LEMn/K/HFvGUEQQYCkkY+bDKCP1ET12bvS4FD2/EUwlrYiBesUuLvEIdFqEhHiFwVfkwk5GNL52Kat3ye43R7A==
+2 _ENCR 1
+1 _CLON
+2 _TID 17284790
+2 _PID 29574785210
+2 _OID 149912ca-f3ff-4299-98cb-b62244458fc2
+2 _USER 4FgxQnlw7rr09ugBJdGwHG9SeGk5aICxpjtLUEkgQ/eoJU3Kasf8wSevG+5n/bGFadJPXM2CIvnPQFWLEfd2EQ==
+3 _ENCR 1
+2 _DATE 2015-07-08 16:25:10.230
+1 _ORIG u
+1 _MSER
+2 _LKID 149912ca-f3ff-4299-98cb-b62244458fc2
+1 _ATL Y
+0 @O20@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 68118
+3 _WDTH 1080
+3 _HGHT 720
+2 TITL FB_IMG_1745976657368.jpg
+1 _OID 464bba4f-ed88-474c-9e8a-bc71ccd615b3
+1 DATE 30 Apr 2025
+1 _CREA 2025-04-30 01:33:01.807
+1 _USER nEP+dr5qrMCCrCNFYP6rqDnFlwIhMXrCEVpkoBZ0XIZHpVyJ574s8+yT5qrIzVUSFzTisAnUK50aXHmHlsI6Hg==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O21@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 543819
+3 _WDTH 1920
+3 _HGHT 1920
+2 TITL Friends.jpg
+1 _OID 4ab96048-c7b1-4919-bcc7-8941ffc87579
+1 DATE 15 Jan 2025
+1 _DSCR People who shaped Hari
+1 _META <metadataxml />
+1 _CREA 2025-01-15 09:24:54.756
+1 _USER 6cJkfmi9doDMOMT4Y+/Pvmj7WIqbQD6iNmN0Fnz5gMMHmHZrPoMTGvGwnfxBNHok1LyVNbCSk/0XFD42+8qxrA==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O22@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 70693
+3 _WDTH 631
+3 _HGHT 692
+2 TITL Screenshot_2025_0422_125919.jpg
+1 _OID 5244ba96-518d-4771-9bb5-da4ff8b965dc
+1 DATE 22 Apr 2025
+1 _CREA 2025-04-30 02:12:28.243
+1 _USER VcSsKxnB8L/DU8oNeVKbdLrJxqQS0e314w/EIMYM3KVVzM4XG8UTDToi50Pg/njGn+tSuj+HtnCg26MvmbWCuA==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O23@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpeg
+3 _SIZE 43023
+3 _WDTH 317
+3 _HGHT 724
+2 TITL china great wall
+1 _OID 525b6fce-7f81-4be3-8288-15ec0db9206a
+1 _META <metadataxml><cemetery /><transcription /></metadataxml>
+1 _CREA 2025-05-14 22:21:25.038
+1 _USER lDbVoqYTVQhhb71+LVVOy+2OSw2ZaagM2e6LFXSJHTa9rS9zEhgIm7L9OYJD/ivTmPiMb4JgKYT4I2GS5Rxgqg==
+2 _ENCR 1
+1 _CLON
+2 _TID 66048492
+2 _PID 34153787964
+2 _OID b897a8cf-7420-4040-9add-f5028f318821
+2 _USER t1kxx96zZUA6xtCWD/iQJgtZ6iH4xokHZBTQ+vpP+FGCXzZEe+/AA1HA1Y7lh+qIp26Y0q4cfWd30OX3uTGUUA==
+3 _ENCR 1
+2 _DATE 2014-02-14 18:54:02.270
+1 _ORIG u
+1 _MSER
+2 _LKID b897a8cf-7420-4040-9add-f5028f318821
+1 _ATL Y
+0 @O24@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 4068251
+3 _WDTH 3000
+3 _HGHT 4000
+2 TITL Photo
+1 _OID 612ed8f6-c0c1-410b-a687-275462c0979a
+1 DATE Jan 2006
+1 PLAC Bengaluru, Karnataka, India
+1 _DSCR Won bronze in ipho and gold in national level
+1 _META <metadataxml />
+1 _CREA 2025-01-15 23:28:57.524
+1 _USER sOLXF38bDK4FQQNzSOPrE2QU5rym301LX97lHTJtoQpx9dNs1IJcfpPNPT1RbxDOFKGqK07izdBwNh1A0JbzWw==
+2 _ENCR 1
+1 _ORIG u
+1 _MSER
+2 _LKID 612ed8f6-c0c1-410b-a687-275462c0979a
+1 _ATL Y
+0 @O25@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE document
+3 _STYPE jpeg
+3 _SIZE 24469
+3 _WDTH 250
+3 _HGHT 293
+2 TITL Christine Morrison Avery 
+1 _OID 6235fef7-7dca-40f3-8a8d-7aa9d4116bb1
+1 DATE 20 Jan 1917
+1 PLAC Detroit, Wayne County, Michigan, USA
+1 _DSCR Woodlawn Cemetery
+1 _CREA 2025-05-14 11:53:47.876
+1 _USER RTjSFfjoVqFxXRF51dOrP3cLi+ndCGqKYpcEo2b+5pUvE5kiGmfeTYzZ0x/yGl7A0whqQ9+JIL5/7of+ehiuQg==
+2 _ENCR 1
+1 _CLON
+2 _TID 41806742
+2 _PID 19984122613
+2 _OID d7a0b7c0-a96e-4d91-83b1-d806f0ed25db
+2 _USER Gu8tT3T1i+/XeM3lHpARHVJiFz/OxgtnrGvntkfPw6mp+My8YT4o8+9+BxHWPwK2u/J6oqJEHspoJOKyr2Nl5w==
+3 _ENCR 1
+2 _DATE 2024-10-05 18:17:56.470
+1 _ORIG u
+2 _URL https://www.findagrave.com/memorial/239653048/christine-avery
+1 _MSER
+2 _LKID d7a0b7c0-a96e-4d91-83b1-d806f0ed25db
+1 _ATL Y
+0 @O26@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3066775
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL -1791614719.jpg
+1 _OID 6c3bbdcd-51b9-416e-8400-b7402696c37e
+1 DATE 16 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-16 10:18:30.533
+1 _USER oMWxtMlBGxh7PndIQ2w8lo4jehvBRMR9kIBlDmoeoBK3V3bRGi39HiTeR8aG4b+bZo3FGjMhlcLj5TStXepEFA==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O27@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpeg
+3 _SIZE 6749
+3 _WDTH 106
+3 _HGHT 109
+2 TITL Muhammad_Adil_Shah_II_with_courtiers_and_attendants
+1 _OID 6d1cb6e2-33b4-48a9-bba8-64c5203d5cb2
+1 _META <metadataxml><cemetery /><transcription /></metadataxml>
+1 _CREA 2025-05-14 22:05:06.256
+1 _USER mKYoHCZlL/4QQmtQx43ATWAr1uxlALwJWGlNi2/RKNopmtGD4LDqAV6T0CxexGEgTLb+dL4HZfH3L7VW0KjsRw==
+2 _ENCR 1
+1 _CLON
+2 _TID 10965519
+2 _PID 25799863544
+2 _OID 19ce0396-57e2-4023-b088-305a0d7bcff4
+2 _USER CORzCUJqGX55YxMOLxZtfMRZRafDKG6fvBpyZ2i6DPB2T/6vdAEdUVlCCsnapZbne/PM/teOj2c9/mFQvE+2pQ==
+3 _ENCR 1
+2 _DATE 2015-09-21 18:17:14.247
+1 _ORIG u
+1 _MSER
+2 _LKID 19ce0396-57e2-4023-b088-305a0d7bcff4
+1 _ATL Y
+0 @O28@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpeg
+3 _SIZE 309281
+3 _WDTH 1700
+3 _HGHT 2338
+2 TITL Margie
+1 _OID 6f37744c-017f-4ff5-be46-797b1c67c1bd
+1 _META <metadataxml><cemetery /><transcription /></metadataxml>
+1 _CREA 2025-05-14 14:57:47.122
+1 _USER ghQ+YSDMkbYuDrEtWeZhwCpfOITyoh6ytXG6n0XJBMWJl0anRvp72NeH3pBq8gRrigJDcs5cvKyKJ6ZZt4nGOg==
+2 _ENCR 1
+1 _CLON
+2 _TID 38176384
+2 _PID 19265416268
+2 _OID c3ecdc04-7dfa-4a8c-b469-d76e8543ee90
+2 _USER JuSJ75P47Kb4wjsDV+XXXVbHwM2+bY74k/vvJKvThyRZj5FLjiww2AsL5fd5fnHOV4uFU1W6BRaZvHI1L+P2+A==
+3 _ENCR 1
+2 _DATE 2012-04-13 22:27:36.557
+1 _ORIG u
+1 _MSER
+2 _LKID c3ecdc04-7dfa-4a8c-b469-d76e8543ee90
+1 _ATL Y
+0 @O29@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3267377
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL -1956470547.jpg
+1 _OID 785ad617-8ba7-4f27-96e6-dfcf06f0e967
+1 DATE 15 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-14 20:04:20.827
+1 _USER X2jUV9JTdTfSQU0uqBYNoebqWxmGOx9ev2hNqOMjeQarE0TDDw/9THPocYeG0y3BHSxUvm8cu4jv1+2J6Slrkw==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O30@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _STYPE jpeg
+3 _SIZE 11768
+3 _WDTH 196
+3 _HGHT 277
+2 TITL C. V. Raman
+1 _OID 7b07fdc4-c858-4a27-a2fc-ebd7270c2d97
+1 _CREA 2025-05-14 14:48:57.702
+1 _USER WGa37cCuwl0SiEl/kKrGwea+dvvbZ/M83UOL/O+HCmJbCGMAmq36MBHJZ5O5PElh3vgir1pq2pRbQ5dKVsiWQQ==
+2 _ENCR 1
+1 _CLON
+2 _TID 7712450
+2 _PID 360000815111
+2 _OID 9d91630a-adfb-4f78-9a5d-9a8f8abea147
+2 _USER QfNukMWj+hvsPRuvXhQDBju0go791d+rjmQEathYTNQxx9AqhuEzWOW7QUIKnYhhnhB9iSbK0jr2CHRUpoflAw==
+3 _ENCR 1
+2 _DATE 2016-05-06 18:09:44.593
+1 _ORIG u
+1 _MSER
+2 _LKID 9d91630a-adfb-4f78-9a5d-9a8f8abea147
+1 _ATL Y
+0 @O31@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3520037
+3 _WDTH 3000
+3 _HGHT 4000
+2 TITL Android Photo
+1 _OID 85675b02-d25e-43e0-8ceb-b20ff446131e
+1 DATE 16 Jan 2025
+1 _META <metadataxml />
+1 _CREA 2025-01-15 23:21:45.753
+1 _USER +Av0u8GrqAVo5Xt63WMovyqpgV//l5xZCYmVytu+PnBrklJFfAtZUkqRRMae954K7p9WcA2noecZvq/TXIBpfg==
+2 _ENCR 1
+1 _ORIG u
+1 _MSER
+2 _LKID 85675b02-d25e-43e0-8ceb-b20ff446131e
+1 _ATL Y
+0 @O32@ OBJE
+1 FILE
+2 FORM m4a
+3 TYPE audio
+3 _MTYPE story
+3 _STYPE mp4
+3 _SIZE 266263
+3 _WDTH -1
+3 _HGHT -1
+2 TITL Community Story
+1 _OID 86967bd8-9cb0-4d27-baa1-b2efcd5a16cd
+1 DATE 05 May 2025
+1 _CREA 2025-05-05 05:22:46.445
+1 _USER c0LOtX3bfIPERYhb7lrpb/mgtxTV3UiWjohlfEayRuiASHnoI8YuBue8pdmNReac/NOSMwlY6LMQCimJDG/nVw==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O33@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3081755
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL 825195270.jpg
+1 _OID 86c52966-4992-4913-9e8a-0e018aafdd82
+1 DATE 16 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-16 10:20:25.462
+1 _USER 9Nu8U7OVNHCeguCuBWli9+iqY0pzciE13F9TfI6i9slVqJYMSNV07NE5Kxq1HedHMtru0WN0S09w6LrkKgKuyQ==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O34@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3140824
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL -1505173631.jpg
+1 _OID 88fa2ef7-f485-4e97-8b73-376091fef371
+1 DATE 16 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-16 10:18:55.978
+1 _USER /3G1WNF/KFTJBhr+9dPmxwTCnIMYu3U3SNHBRxonPWp4qHQBaaFCB379E/1TC43h5hiQv0eqS65T3voLuMyKwg==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O35@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE headstone
+3 _STYPE jpeg
+3 _SIZE 37676
+3 _WDTH 250
+3 _HGHT 444
+2 TITL Ernestine Zubcke Hannemann B 1829 Headstone
+1 _OID 8ddbb9eb-f8df-46d1-a5a2-aa69989627c0
+1 DATE 05/31/1829
+1 PLAC Oak Hil Cemetery
+1 _DSCR Death Date
+2 CONT 10/24/1902
+1 _META <metadataxml><cemetery>Oak Hill Cemetery</cemetery><transcription /><personas><persona><pname>Carl Hannemann,Ernestine Zubcke</pname><bdate>05/31/1829</bdate><bplace>Germany</bplace><ddate>10/24/1902</ddate><dplace>Nashua, Chickasaw County, Iowa IS
+2 CONC A</dplace></persona></personas></metadataxml>
+1 _CREA 2025-05-17 08:23:36.540
+1 _USER zSd0sSizAqgh48f7GeK3/rbkcUIbJhauCMrg2VKMAng0GC6ATm7/onDYsil9L/bagUgjOXBvGVyhJoGgjkUEHg==
+2 _ENCR 1
+1 _CLON
+2 _TID 40510401
+2 _PID 19538598868
+2 _OID afd34a35-58bf-4868-81c8-24815143235a
+2 _USER 4VQbvcVM1d69pCav+gaCv4lcpymohDocVZfblgf8HA4OpZjPLQMc8lLc2untj2vPxRAH0ta5CyXOHLsi0uizoA==
+3 _ENCR 1
+2 _DATE 2024-03-03 21:48:54.173
+1 _ORIG acom
+1 _MSER
+2 _LKID afd34a35-58bf-4868-81c8-24815143235a
+1 _ATL Y
+0 @O36@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3317138
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL 1109929994.jpg
+1 _OID 92a359be-42c9-4bf6-8772-6282baf05fe3
+1 DATE 10 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-10 04:13:12.131
+1 _USER HAi9M2y+Sao9E0XvBQH44qioPtlf77WCTwcDZ30dN/Fj4vZj0244xXUPKKS1iZZjatHjs5ynPPP/ncHPICcIXQ==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O37@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 2954697
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL -88247599.jpg
+1 _OID 9b4c2366-c4af-4448-ab8a-21d7324797d8
+1 DATE 16 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-16 10:35:19.769
+1 _USER TxljgvLDYHV3I4ImzT1AL1IcUi5ho8jcsRrJqHnmTYxBQbscrhElLet2NaXUJ0D7kU16kFFUMg5BVepnTPz2rg==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O38@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3175272
+3 _WDTH 3060
+3 _HGHT 3060
+2 TITL IMG_20250120_193424.jpg
+1 _OID a16d0194-e6c7-430e-bda6-5ca5832eab31
+1 DATE 20 Jan 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _META <metadataxml />
+1 _CREA 2025-01-21 03:37:53.818
+1 _USER rSV65veJFAEaQe+loEsw9S2UNoiS40iiHgGz4/QgS60twXmiMWkRo+xs2hQXOpuOOLtsll3nfrbmQN3KRUgINw==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O39@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3011375
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL -449268754.jpg
+1 _OID a62efc6a-0be7-4afa-8d61-187925047e96
+1 DATE 15 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-14 20:07:24.294
+1 _USER OircbrLhdP1j/Pu56hxxHnjk47AoqK73Hc3Ue5orF56ejMVS2f8YDIvQ/cXYQbaSNbjaG4nhOp8QV7Artd044Q==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O40@ OBJE
+1 FILE
+2 FORM pdf
+3 TYPE story
+3 _MTYPE STORY
+3 _STYPE pdf
+3 _SIZE 348517
+2 TITL Motor
+1 _OID aca7598e-dad7-4510-98c0-639383f27b42
+1 _CREA 2025-05-14 22:10:53.914
+1 _USER XcnjpuGeviYDvyilr6OvSd7Xc0KYlZS8fIXlgOdUFc/4o9G3hEeZA48eSDzIcjnqa1f/dDmpbpi766JY7jkGwQ==
+2 _ENCR 1
+1 _ORIG acom
+1 _ATL Y
+0 @O41@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpeg
+3 _SIZE 122191
+3 _WDTH 624
+3 _HGHT 845
+2 TITL Raymond Nakamura
+1 _OID ae35e25d-1821-481e-99c4-7246336d4069
+1 _DSCR "U.S., School Yearbooks, 1880-2012"; School Name: San Fernando High School; Year: 1958
+1 _META <metadataxml><record_source_gid>426060414:1265</record_source_gid></metadataxml>
+1 _CREA 2025-05-16 23:52:48.287
+1 _USER p6ZXoCyqqMPPBNhlL7IuRTgmmYEaYSNvCtvk2S+iQWKGhjVSRqPR8HjVgTtQuJSVATothDEg2rHCgElvsIWpdA==
+2 _ENCR 1
+1 _CLON
+2 _TID 164988163
+2 _PID 112158227468
+2 _OID 9cd911ef-7a2a-4903-98c7-de5656632803
+2 _USER D/qRIq5qzzV5Hwx0/xnONYpFdy4SJyqFE+u10h3Ymk9nzJLasR1FaMwsTy/iBIjiRwUq4HsGEll5nPgRlxmWTQ==
+3 _ENCR 1
+2 _DATE 2019-12-30 04:29:53.000
+1 _ORIG u
+1 _MSER
+2 _LKID 9cd911ef-7a2a-4903-98c7-de5656632803
+1 _ATL Y
+0 @O42@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 2381428
+3 _WDTH 3000
+3 _HGHT 4000
+2 TITL IMG_20241229_051515.jpg
+1 _OID b5f3ce24-ebce-46cc-b034-6cf7beb2800f
+1 DATE 29 Dec 2024
+1 PLAC Bengaluru, Karnataka, India
+1 _META <metadataxml />
+1 _CREA 2025-01-15 09:24:08.921
+1 _USER dM4axSGJEyahct70vjMJCa+pMlavlKtzljAavdBuVQ/bssq9PHtsMp9NJ2S+Sh/UYATna3TsVL5w3LdKmLVVRQ==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O43@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3010085
+3 _WDTH 3000
+3 _HGHT 3000
+2 TITL 1737420633.jpg
+1 _OID c389a145-4511-44cc-bbb7-8e10a52dd65e
+1 DATE 16 May 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-05-16 10:27:35.945
+1 _USER OAmDt7EPZ2v1RtXwtxHv+NzZCcvuGU5RQggrEKfoZ+hPh60nSibsUgTHu6oFM3rY0u9x3cWmp6OdFPBEPKdCmQ==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O44@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 170075
+3 _WDTH 631
+3 _HGHT 790
+2 TITL Screenshot_2025_0430_074112.jpg
+1 _OID c3b032f7-a53b-477d-a189-1a399ce3f249
+1 DATE 30 Apr 2025
+1 _CREA 2025-04-30 02:11:51.218
+1 _USER lUb9bPjmmds7uXxMwPdFVzLNxcVE46CGu8AYZF/b5YnHXhopXKvpgcXvLtH6PYTkAyVvH0RctQOISWs60UULdg==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O45@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 505417
+3 _WDTH 2048
+3 _HGHT 2048
+2 TITL Android Photo
+1 _OID c54ca36f-c51d-48e3-b8a1-9fc42367e63d
+1 DATE 15 Jan 2025
+1 _META <metadataxml />
+1 _CREA 2025-01-15 08:22:21.918
+1 _USER HUH9HVjwsED/2AYDKdO55issgp1kXkpd/Imf9Dct4UBfhejj9lS6J4xgBzRtdcQTe6JDMI/gC7uBT2ghGUjp5g==
+2 _ENCR 1
+1 _ORIG u
+1 _MSER
+2 _LKID c54ca36f-c51d-48e3-b8a1-9fc42367e63d
+1 _ATL Y
+0 @O46@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 685693
+3 _WDTH 1080
+3 _HGHT 2376
+2 TITL Wish 
+1 _OID c5d569b0-b204-4d1b-916e-fc9192e05c09
+1 DATE 07 May 2025
+1 _META <metadataxml />
+1 _CREA 2025-05-07 06:33:36.536
+1 _USER /EErwDyis2ddWOlFNRiyoRit480owIe9bo4OLyFATHr/rePmVnF7cQ7Sew+NJOgJJSbtJropM32ZAs2/JBbaaA==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O47@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 407985
+3 _WDTH 2048
+3 _HGHT 2048
+2 TITL Android Photo
+1 _OID ce55f10c-a60e-4c95-9d5d-091a3f4cc0e0
+1 DATE 15 Jan 2025
+1 _META <metadataxml />
+1 _CREA 2025-01-15 08:32:25.290
+1 _USER qT+vioh7499+pt854GlaMj/JvYJKcypS9l9RFA/E28OFCst3pXH9ykvWoGMV0PttJva93l2XwF/cX5pkShDmMg==
+2 _ENCR 1
+1 _ORIG u
+1 _MSER
+2 _LKID ce55f10c-a60e-4c95-9d5d-091a3f4cc0e0
+1 _ATL N
+0 @O48@ OBJE
+1 FILE
+2 FORM jpeg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpeg
+3 _SIZE 21891
+3 _WDTH 554
+3 _HGHT 554
+2 TITL images (1).jpeg
+1 _OID cfa875a5-edf4-4f69-accc-083c91279bf5
+1 DATE 10 May 2025
+1 _CREA 2025-05-10 09:09:49.304
+1 _USER 58WxA+XwcusdgzWJcpA+yOM3NWyKw0+ZTTiFztTD6VwV7dwM32Oi5/oy4fFQUDNruYz1cDMuole6pr5P5+OUEA==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL N
+0 @O49@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 2950555
+3 _WDTH 3060
+3 _HGHT 3060
+2 TITL IMG_20241226_073120.jpg
+1 _OID d2dd20af-83e9-4b5f-9586-4511929f7125
+1 DATE 26 Dec 2024
+1 PLAC Bengaluru, Karnataka, India
+1 _META <metadataxml />
+1 _CREA 2025-01-15 08:23:41.282
+1 _USER 1uxh5npVCJI/AboITrJ7AJWiC0u4HqKc0u7Deyihb+dhCDNr4B15gCOAPd9+tfC2Ip0cje9faCkUBHVjRHzO3w==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O50@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3681867
+3 _WDTH 3000
+3 _HGHT 4000
+2 TITL Photo
+1 _OID e4ed5349-1c57-4a14-9f73-599148c1e63e
+1 DATE 16 Jan 1991
+1 PLAC Bengaluru, Karnataka, India
+1 _DSCR Bsnl great!
+1 _META <metadataxml />
+1 _CREA 2025-01-15 23:31:31.395
+1 _USER Z7i9auJU3iM/6cKpeUGR4orYTg37PXS0yodf54UsxNI7GCX3C8rkDfdxUt7FUCWg2q95sb7rvWlouBX0V9cJCg==
+2 _ENCR 1
+1 _ORIG u
+1 _MSER
+2 _LKID e4ed5349-1c57-4a14-9f73-599148c1e63e
+1 _ATL Y
+0 @O51@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _STYPE pjpeg
+3 _SIZE 216463
+3 _WDTH 1024
+3 _HGHT 768
+2 TITL Keederle Monument Face
+1 _OID eb18fc31-c25d-43c0-af42-852b36fd0231
+1 DATE 01/06/2009
+1 PLAC Park View Cemetery, Cleveland, OH
+1 _DSCR Park View Cemetery, Sect 11, Lot 175A
+2 CONT Anthony, Catherine, and Edward are related.  I do not know who Catherine Leprevost or Laverne are yet.
+1 _META <metadataxml><cemetery /><transcription /></metadataxml>
+1 _CREA 2025-05-14 12:48:08.290
+1 _USER e3olN5r1dQdpRllQcLhiky1Jwy7X/BlRlRxAGJsNevdFEQlXYMOo4Sgt5Nv+8MO27xkWjwlCIWwqkiFMj4yjyw==
+2 _ENCR 1
+1 _CLON
+2 _TID 9111250
+2 _PID -829358528
+2 _OID 57122aac-2793-4680-8383-07f2b3a81dc8
+2 _USER cLPZOpf7kPG4wDFdW0Vk6+KEaxe0fN5c4/XIwUqRkrYTgv+G3SsTFfaVSQy3c+0llN7Qd4D9NzOp3apIEip19A==
+3 _ENCR 1
+2 _DATE 2009-01-07 20:36:54.423
+1 _ORIG u
+1 _MSER
+2 _LKID 57122aac-2793-4680-8383-07f2b3a81dc8
+1 _ATL Y
+0 @O52@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpeg
+3 _SIZE 798765
+3 _WDTH 2718
+3 _HGHT 1953
+2 TITL Wedding of William Max Jones and Patricia Maxine Harner
+1 _OID ee893f68-ef8b-42f2-b816-d1010957037f
+1 DATE June 20, 1948
+1 PLAC West Lafayette, Indiana
+1 _META <metadataxml><cemetery /><transcription /></metadataxml>
+1 _CREA 2025-05-14 14:45:48.548
+1 _USER uGABdevud2vGFWDKwDsZ9o2V8Gz3U1VyMNo8qeb1irgeeo9/lplYS4nU7Cvko19zh3PcYfSFdn4aHJPPiEuhdQ==
+2 _ENCR 1
+1 _CLON
+2 _TID 16969735
+2 _PID 444246521
+2 _OID 7b639e99-52cb-4a4b-88c1-a8cce3b8b93d
+2 _USER OBrBp9IOqZ/b/O9nk8QEd7eGUS+AlB3UUvae6FfbsMP7STrmBrfbEK6dfciO7q4yEZ/mk1AuYSpEacNRVyLsgA==
+3 _ENCR 1
+2 _DATE 2010-04-04 23:45:39.990
+1 _ORIG u
+1 _MSER
+2 _LKID 7b639e99-52cb-4a4b-88c1-a8cce3b8b93d
+1 _ATL Y
+0 @O53@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpeg
+3 _SIZE 135383
+3 _WDTH 749
+3 _HGHT 1086
+2 TITL Kevin Austin
+1 _OID efa23095-5780-4225-8068-1c0b5a654152
+1 _DSCR "U.S., School Yearbooks, 1880-2012"; School Name: Fine High School; Year: 1977
+1 _META <metadataxml><record_source_gid>679719026:1265</record_source_gid></metadataxml>
+1 _CREA 2025-05-14 21:13:07.324
+1 _USER lseRVoQVsIilBCIqE/8RFzgI2kdyZ7ZQ30O5/cx8/HhLuvAXVx/g7s/f0x153N6verNdjjq9i52rVl59o5vMBw==
+2 _ENCR 1
+1 _CLON
+2 _TID 44801150
+2 _PID 402181094095
+2 _OID 6f2351d4-6dad-40cc-a174-489349805d22
+2 _USER mcv/67QoX8/CDJOCFPqJYK2pCGmzyM0UWkPSDcMQP+XLljSXf+tW/84KqjK14KUEBlGy2LreVyShHA9E4nT4Wg==
+3 _ENCR 1
+2 _DATE 2020-08-18 20:07:45.000
+1 _ORIG u
+1 _MSER
+2 _LKID 6f2351d4-6dad-40cc-a174-489349805d22
+1 _ATL Y
+0 @O54@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _MTYPE portrait
+3 _STYPE jpg
+3 _SIZE 3709177
+3 _WDTH 3000
+3 _HGHT 4000
+2 TITL Photo
+1 _OID f3a703bb-7d00-4645-b5aa-f2e1c5a08051
+1 DATE 16 Jan 2025
+1 PLAC Bengaluru, Karnataka, India
+1 _CREA 2025-01-15 23:41:31.940
+1 _USER NwyXba4xuvPbWumdlqmLapuHkMUGG2cLmcZnq85m69cOxNniVbJcstl5aXBJdaDjS5v6CMbNK6k2ntMS51NotA==
+2 _ENCR 1
+1 _ORIG u
+1 _ATL Y
+0 @O55@ OBJE
+1 FILE
+2 FORM jpg
+3 TYPE image
+3 _STYPE jpeg
+3 _SIZE 323713
+3 _WDTH 2048
+3 _HGHT 2048
+2 TITL Gemini_Generated_Image_s8k6ts8k6ts8k6ts
+1 _OID f8df89e9-d95c-4e56-a715-663a43cf4259
+1 _CREA 2025-05-14 22:08:57.728
+1 _USER D83tqk4KC26x9Atv4TLirrxsof+m6b+QX9MPSAlc15OY+guJtlodjZZZj1GV8K961/OD30qoeC8ELI6qb6OzYA==
+2 _ENCR 1
+1 _ORIG acom
+1 _ATL Y
+0 @A1@ _ALBU
+1 _OID 43900bd1-c1ab-433d-89f7-373ab51489eb
+1 TITL Nobel laureates and their ancestry
+1 TYPE media
+1 OBJE @O19@
+2 _PRIM Y
+1 OBJE @O30@
+1 OBJE @O51@
+0 @A2@ _ALBU
+1 _OID 4f3ea96d-36f3-4ca1-abf3-4edabe57d4d4
+1 TITL Professors ancestors
+1 _DSCR Ancestral pics of profs who taught me doctorate
+1 TYPE media
+1 OBJE @O6@
+2 _PRIM Y
+1 OBJE @O35@
+0 @A3@ _ALBU
+1 _OID 73339ced-38c7-4bb1-a59c-7212c2cf7c88
+1 TITL chess legends ancestry
+1 _DSCR There are lots of chess legends I worship
+1 TYPE media
+1 OBJE @O22@
+2 _PRIM Y
+1 OBJE @O27@
+1 OBJE @O28@
+1 OBJE @O41@
+0 @A4@ _ALBU
+1 _OID 7f9efe87-c776-42b3-bfe7-143a47cfe246
+1 TITL FIelds medalists
+1 TYPE media
+1 OBJE @O24@
+2 _PRIM Y
+0 @A5@ _ALBU
+1 _OID b0448c8d-f1db-4246-8efc-0a0a30ee85c0
+1 TITL Random 1
+1 _DSCR Random album of the ancestral memories of my best friends
+1 DATE 31 Oct 1988
+1 TYPE holidays
+1 OBJE @O5@
+2 _PRIM Y
+1 OBJE @O25@
+1 OBJE @O52@
+0 @A6@ _ALBU
+1 _OID d56cd9aa-a7e3-429a-8fc6-f197c5729dcd
+1 TITL People who ruined me
+1 TYPE media
+1 OBJE @O53@
+2 _PRIM Y
+0 @A7@ _ALBU
+1 _OID f5689f4a-4f80-4845-a869-768bf1de775b
+1 TITL Fun
+1 _DSCR Travels
+1 TYPE media
+1 OBJE @O42@
+2 _PRIM Y
+1 OBJE @O11@
+1 OBJE @O21@
+0 @S1050469670@ SOUR
+1 TITL Facebook
+1 PUBL Facebook
+2 PLAC http://www.facebook.com/
+1 REPO @R1050025640@
+0 @S1170342189@ SOUR
+1 TITL U.S., Index to Public Records, 1994-2019
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations, Inc.
+2 DATE 2020
+2 PLAC Lehi, UT, USA
+1 _APID 1,62209::0
+1 REPO @R1055856897@
+1 NOTE &lt;i&gt;Voter Registration Lists, Public Record Filings, Historical Residential Records, and Other Household Database Listings&lt;/i&gt;.
+0 @S1172503479@ SOUR
+1 TITL United States Patent and Trademark Office, U.S. Patents, 1970-2019
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations Inc
+2 DATE 2020
+2 PLAC Lehi, UT, USA
+1 _APID 1,62219::0
+1 REPO @R1055856897@
+1 NOTE &lt;i&gt;The Patent Examination Data System&lt;/i&gt;. United States Patent and Trademark Office, 2020.
+0 @S1172503592@ SOUR
+1 TITL U.S., Phone and Address Directories, 1993-2002
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations Inc
+2 DATE 2005
+2 PLAC Lehi, UT, USA
+1 _APID 1,7339::0
+1 REPO @R1055856897@
+1 NOTE &lt;i&gt;1993-2002 White Pages&lt;/i&gt;. Little Rock, AR, USA: Acxiom Corporation.
+0 @S1172503618@ SOUR
+1 TITL U.S., Newspapers.com™ Obituary Index, 1800s-current
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations Inc
+2 DATE 2019
+2 PLAC Lehi, UT, USA
+1 _APID 1,61843::0
+1 REPO @R1055856897@
+1 NOTE See newspaper information provided with each entry.
+0 @S1172503661@ SOUR
+1 TITL Wisconsin, U.S., Federal Naturalization Records, 1848-1992
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations, Inc.
+2 DATE 2016
+2 PLAC Lehi, UT, USA
+1 _APID 1,61213::0
+1 REPO @R1055856897@
+1 NOTE &lt;p&gt;&lt;i&gt;Naturalization Records From U.S. District Courts&lt;/i&gt;. Records of District Courts of the United States, Record Group 21. National Archives at Chicago, Illinois.&lt;/p&gt;
+0 @S1172503855@ SOUR
+1 TITL Washington, District of Columbia, U.S., Voter Registration Records, 1929-2023
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations Inc
+2 DATE 2024
+2 PLAC Lehi, UT, USA
+1 _APID 1,62725::0
+1 REPO @R1055856897@
+1 NOTE Washington, District of Columbia, Voter Registration Records, 1929-2023&lt;br&gt;
+2 CONT District of Columbia Board of Elections&lt;br&gt; 
+2 CONT Washington, DC.
+0 @S1172503888@ SOUR
+1 TITL Canadian Phone and Address Directories, 1995-2002
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations Inc
+2 DATE 2005
+2 PLAC Provo, UT, USA
+1 _APID 1,8820::0
+1 REPO @R1055856897@
+1 NOTE &lt;i&gt;1995-2002 White Pages&lt;/i&gt;. Little Rock, AR, USA: Axciom Corporation, 1995-2002.
+0 @S1172504075@ SOUR
+1 TITL Asia, Directories  and Chronicles Relating to Government Agencies and Foreign Nationals, 1917-1941
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations Inc
+2 DATE 2023
+2 PLAC Lehi, UT, USA
+1 _APID 1,62492::0
+1 REPO @R1055856897@
+1 NOTE &lt;i&gt;Asian Directories and Chronicles&lt;/i&gt;. Edinburgh, Scotland: National Library of Scotland, 2019 https://doi.org/10.34812/thgt-1y03.
+0 @S1172504173@ SOUR
+1 TITL International Patents, 1890-2020
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations, Inc.
+2 DATE 2021
+2 PLAC Lehi, UT, USA
+1 _APID 1,62216::0
+1 REPO @R1055856897@
+0 @S1172508697@ SOUR
+1 TITL JewishGen Belarus Databases Name Index
+1 AUTH JewishGen.org
+1 PUBL Ancestry.com Operations Inc
+2 DATE 2008
+2 PLAC Lehi, UT, USA
+1 _APID 1,1392::0
+1 REPO @R1055856897@
+1 NOTE Index compiled from JewishGen Belarus SIG databases. This data is provided in partnership with &lt;a target="_blank" href="http://jewishgen.org"&gt;JewishGen.org.&lt;/a&gt;
+0 @S1172525630@ SOUR
+1 TITL Eure, France, Births, Marriages and Deaths, 1506-1923
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations, Inc.
+2 DATE 2023
+2 PLAC Lehi, UT, USA
+1 _APID 1,62418::0
+1 REPO @R1055856897@
+1 NOTE &lt;i&gt;Eure, France, Births, Marriages and Deaths, 1506-1923&lt;/i&gt;. Archives départementales des Eure, France. 
+2 CONT 
+2 CONT Actes de naissance, de mariage et de décès.
+0 @S1172960845@ SOUR
+1 TITL U.S., School Yearbooks, 1900-2016
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations, Inc.
+2 DATE 2010
+2 PLAC Lehi, UT, USA
+1 _APID 1,1265::0
+1 REPO @R1055856897@
+1 NOTE Various school yearbooks from across the United States.
+0 @S1172967436@ SOUR
+1 TITL U.S., General Land Office Records, 1776-2015
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations Inc
+2 DATE 2008
+2 PLAC Provo, UT, USA
+1 _APID 1,1246::0
+1 REPO @R1055856897@
+1 NOTE United States. Bureau of Land Management, General Land Office Records. &lt;i&gt;Automated Records Project; Federal Land Patents, State Volumes&lt;/i&gt;. &lt;i&gt;http://www.glorecords.blm.gov/.&lt;/i&gt; Springfield, Virginia: Bureau of Land Manag
+2 CONC ement, Eastern States, 2007.
+0 @S1172970136@ SOUR
+1 TITL Global, Find a Grave® Index for Burials at Sea and other Select Burial Locations, 1300s-Current
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations, Inc.
+2 DATE 2012
+2 PLAC Lehi, UT, USA
+1 _APID 1,60541::0
+1 REPO @R1055856897@
+1 NOTE &lt;i&gt;Find a Grave&lt;/i&gt;. Find a Grave®. http://www.findagrave.com/cgi-bin/fg.cgi.
+0 @S1172996125@ SOUR
+1 TITL 1930 United States Federal Census
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations Inc
+2 DATE 2002
+2 PLAC Provo, UT, USA
+1 _APID 1,6224::0
+1 REPO @R1055856897@
+1 NOTE United States of America, Bureau of the Census. &lt;i&gt;Fifteenth Census of the United States, 1930&lt;/i&gt;. Washington, D.C.: National Archives and Records Administration, 1930. T626, 2,667 rolls.
+0 @S1172996137@ SOUR
+1 TITL Wales, Newspapers.com™ Stories and Events Index, 1800's to current
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations Inc
+2 DATE 2024
+2 PLAC Lehi, UT, USA
+1 _APID 1,50102::0
+1 REPO @R1055856897@
+1 NOTE See newspaper information provided with each entry.
+0 @S1173012608@ SOUR
+1 TITL Biography & Genealogy Master Index (BGMI)
+1 AUTH Ancestry.com
+1 PUBL Ancestry.com Operations, Inc.
+2 DATE 2009
+2 PLAC Provo, UT, USA
+1 _APID 1,4394::0
+1 REPO @R1055856897@
+1 NOTE Gale Research Company. &lt;i&gt;Biography and Genealogy Master Index&lt;/i&gt;. Detroit, MI, USA: Gale Research Company, 2008.
+0 @R1050025640@ REPO
+1 NAME Facebook
+0 @R1055856897@ REPO
+1 NAME Ancestry.com
+0 TRLR

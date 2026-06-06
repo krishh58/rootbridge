@@ -42,10 +42,19 @@ def create_app(config=None):
     app.register_blueprint(message_bp)
     from .document_routes import document_bp
     app.register_blueprint(document_bp)
+    from .rootcommons_routes import rootcommons_bp
+    app.register_blueprint(rootcommons_bp)
 
     with app.app_context():
         from . import models  # noqa: register models with SQLAlchemy
         db.create_all()
+
+    if not app.config.get('TESTING'):
+        import threading
+        from .match_index import build_hot_index
+        def _build_index():
+            build_hot_index(app)
+        threading.Thread(target=_build_index, daemon=True, name='index-builder').start()
 
     if not app.config.get('TESTING'):
         from apscheduler.schedulers.background import BackgroundScheduler
