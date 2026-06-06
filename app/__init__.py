@@ -59,6 +59,54 @@ def create_app(config=None):
         threading.Thread(target=_build_index, daemon=True, name='index-builder').start()
 
     if not app.config.get('TESTING'):
+        import threading
+        def _seed_vault():
+            import time, gzip, json, urllib.request
+            time.sleep(5)
+            with app.app_context():
+                from .models import Person
+                from .db import db
+                count = db.session.execute(db.text('SELECT COUNT(*) FROM persons')).scalar()
+                if count and count > 0:
+                    app.logger.info(f'Vault already seeded ({count:,} persons), skipping.')
+                    return
+                app.logger.info('Vault empty — downloading seed data...')
+                try:
+                    req = urllib.request.Request(
+                        'https://api.github.com/repos/krishh58/rootbridge/releases/assets/440261710',
+                        headers={'Authorization': 'token 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',
+                                 'Accept': 'application/octet-stream'}
+                    )
+                    with urllib.request.urlopen(req) as r:
+                        data = r.read()
+                    app.logger.info(f'Downloaded {len(data):,} bytes. Importing...')
+                    batch, total = [], 0
+                    for line in gzip.decompress(data).decode().splitlines():
+                        row = json.loads(line)
+                        batch.append(Person(
+                            first_name=row.get('first_name'), last_name=row.get('last_name'),
+                            middle_name=row.get('middle_name'), birth_year=row.get('birth_year'),
+                            birth_state=row.get('birth_state'), birth_country=row.get('birth_country'),
+                            death_year=row.get('death_year'), death_place=row.get('death_place'),
+                            notes=row.get('notes'), confidence=row.get('confidence'),
+                            soundex_key=row.get('soundex_key'), birth_decade=row.get('birth_decade'),
+                        ))
+                        if len(batch) >= 1000:
+                            db.session.bulk_save_objects(batch)
+                            db.session.commit()
+                            total += len(batch)
+                            batch = []
+                            app.logger.info(f'Vault seed: {total:,} inserted')
+                    if batch:
+                        db.session.bulk_save_objects(batch)
+                        db.session.commit()
+                        total += len(batch)
+                    app.logger.info(f'Vault seed complete: {total:,} persons.')
+                except Exception as e:
+                    app.logger.error(f'Vault seed failed: {e}')
+        threading.Thread(target=_seed_vault, daemon=True, name='vault-seeder').start()
+
+    if not app.config.get('TESTING'):
         from apscheduler.schedulers.background import BackgroundScheduler
         from .matcher import run_matcher
         from .rescan import run_monthly_rescan
