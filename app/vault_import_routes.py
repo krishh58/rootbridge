@@ -6,12 +6,10 @@ from .models import Person
 
 vault_import_bp = Blueprint('vault_import', __name__)
 
-SEED_SECRET = os.environ.get('SEED_SECRET', '')
-
-
 @vault_import_bp.post('/api/admin/vault-import')
 def vault_import():
-    if not SEED_SECRET or request.headers.get('X-Seed-Secret') != SEED_SECRET:
+    secret = os.environ.get('SEED_SECRET', '')
+    if not secret or request.headers.get('X-Seed-Secret') != secret:
         return jsonify(error='forbidden'), 403
 
     rows = request.get_json(force=True)
