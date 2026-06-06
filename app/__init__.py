@@ -72,6 +72,24 @@ def create_app(config=None):
                     return
                 app.logger.info('Vault empty — downloading seed data...')
                 try:
+                    from .models import Tree, User
+                    # Create system vault user + tree if needed
+                    vault_user = User.query.filter_by(email='vault@rootcommons.internal').first()
+                    if not vault_user:
+                        import secrets, hashlib
+                        vault_user = User(
+                            email='vault@rootcommons.internal',
+                            password_hash=hashlib.sha256(secrets.token_bytes(32)).hexdigest(),
+                            tier='free', token_balance=0,
+                        )
+                        db.session.add(vault_user)
+                        db.session.flush()
+                    vault_tree = Tree.query.filter_by(name='RootCommons Vault').first()
+                    if not vault_tree:
+                        vault_tree = Tree(name='RootCommons Vault', user_id=vault_user.id)
+                        db.session.add(vault_tree)
+                        db.session.flush()
+                    tree_id = vault_tree.id
                     req = urllib.request.Request(
                         'https://api.github.com/repos/krishh58/rootbridge/releases/assets/440261710',
                         headers={'Authorization': 'token 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',
@@ -84,6 +102,7 @@ def create_app(config=None):
                     for line in gzip.decompress(data).decode().splitlines():
                         row = json.loads(line)
                         batch.append(Person(
+                            tree_id=tree_id, user_id=vault_user.id,
                             first_name=row.get('first_name'), last_name=row.get('last_name'),
                             middle_name=row.get('middle_name'), birth_year=row.get('birth_year'),
                             birth_state=row.get('birth_state'), birth_country=row.get('birth_country'),
