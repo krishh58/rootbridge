@@ -47,7 +47,7 @@ function renderTree(persons, treeId) {
   }
 
   const hierarchyData = d3.hierarchy(buildHierarchy(roots[0].id));
-  const treeLayout = d3.tree().size([width - 80, height - 120]);
+  const treeLayout = d3.tree().size([height - 120, width - 200]);
   treeLayout(hierarchyData);
 
   const layoutNodes = hierarchyData.descendants().map(d => d.data.data);
@@ -57,19 +57,19 @@ function renderTree(persons, treeId) {
   const svg = d3.select('#treeContainer').append('svg')
     .attr('width', width).attr('height', height);
 
-  const g = svg.append('g').attr('transform', 'translate(40, 60)');
+  const g = svg.append('g').attr('transform', 'translate(80, 60)');
 
   g.selectAll('.link')
     .data(hierarchyData.links())
     .enter().append('path')
     .attr('class', 'link')
-    .attr('d', d3.linkVertical().x(d => d.x).y(d => d.y));
+    .attr('d', d3.linkHorizontal().x(d => d.y).y(d => d.x));
 
   const node = g.selectAll('.node')
     .data(hierarchyData.descendants())
     .enter().append('g')
     .attr('class', d => `node ${nodeClass(d.data.data.confidence)}`)
-    .attr('transform', d => `translate(${d.x},${d.y})`)
+    .attr('transform', d => `translate(${d.y},${d.x})`)
     .style('cursor', 'pointer')
     .on('click', (event, d) => openPersonCard(d.data.data.id));
 
