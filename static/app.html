@@ -485,119 +485,35 @@
 
       const btn = document.getElementById('addPersonBtn');
       btn.disabled = true;
-      btn.textContent = 'Searching…';
+      btn.textContent = 'Saving…';
       closeModal('addPersonModal');
-      showSearchProgress();
 
-      // Build SSE URL
-      const params = new URLSearchParams({
-        first, middle, last,
-        birth_year:  birthYear  || '',
-        death_year:  deathYear  || '',
-        birth_place: birthPlace || '',
-        death_place: deathPlace || '',
-        tree_name:   last + ' Family',
-      });
-      const es = new EventSource('/api/search/stream?' + params.toString());
-      let totalFound = 0;
-
-      const _SOURCE_LABELS = {
-        findagrave:   '🪦 FindAGrave',
-        obituaries:   '📰 Obituaries',
-        va_gravesite: '🎖️ VA Military',
-        wikitree:     '🌳 WikiTree',
-        chronicling:  '📜 Newspapers',
-        nara:         '🏛️ NARA',
-        dpla_census:  '📋 Census',
-        dpla_military:'⚔️ Military Rec',
-        dpla_general: '📚 DPLA',
-        dpla_obituary:'🗞️ DPLA Obits',
-        dpla_marriage:'💍 Marriage',
-        freebmd:      '🇬🇧 FreeBMD',
-        irish_birth:  '🇮🇪 Irish Rec',
-        irish_death:  '🇮🇪 Irish Rec',
-        antenati:     '🇮🇹 Antenati',
-        geneteka:     '🇵🇱 Geneteka',
-        digitalarkivet:'🇳🇴 Norway',
-        archion:      '🇩🇪 Archion',
-        matricula:              '🇩🇪 Matricula',
-        rootbridge_community:   '🤝 RootBridge',
-      };
-
-      es.onmessage = (evt) => {
-        let data;
-        try { data = JSON.parse(evt.data); } catch { return; }
-
-        if (data.source && data.results && data.count > 0) {
-          // A source returned results — add a badge
-          totalFound += data.count;
-          const badge = document.createElement('span');
-          badge.style.cssText = 'background:#1e3a2f;color:#4ade80;padding:3px 10px;border-radius:20px;font-size:.78rem;font-weight:600;animation:fadein .4s ease';
-          badge.textContent = (_SOURCE_LABELS[data.source] || data.source) + ' +' + data.count;
-          document.getElementById('spBadges').appendChild(badge);
-          document.getElementById('spCount').textContent = `${totalFound} record${totalFound !== 1 ? 's' : ''} found so far…`;
-          document.getElementById('spDetail').textContent = 'Sources are reporting in — ' + Object.keys(_SOURCE_LABELS).length + ' searched in parallel.';
-        }
-
-        if (data.source && !data.count) {
-          // Source finished but found nothing — show grey badge
-          const badge = document.createElement('span');
-          badge.style.cssText = 'background:#1e293b;color:#475569;padding:3px 10px;border-radius:20px;font-size:.78rem';
-          badge.textContent = (_SOURCE_LABELS[data.source] || data.source) + ' ✗';
-          document.getElementById('spBadges').appendChild(badge);
-        }
-
-        if (data.done) {
-          document.getElementById('spHeading').textContent = totalFound > 0 ? `Found ${totalFound} records` : 'Search complete';
-          document.getElementById('spDetail').textContent = data.summary || 'All sources searched.';
-          document.getElementById('spCount').textContent = '';
-          setTimeout(() => {
-            hideSearchProgress();
-            btn.disabled = false;
-            btn.textContent = '🔍 Search the Archives';
-          }, 2200);
-          // Don't close yet — wait for the saved event which arrives right after
-        }
-
-        if (data.saved) {
-          es.close();
+      // Save the person immediately — use "Search US Records" on the person card to search later
+      try {
+        const r = await fetch('/api/persons', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            tree_name: last + ' Family',
+            first_name: first, middle_name: middle, last_name: last,
+            birth_year: birthYear, birth_state: birthPlace,
+            death_year: deathYear, death_place: deathPlace,
+          }),
+          credentials: 'include',
+        });
+        const data = await r.json();
+        if (r.ok) {
           currentTreeId = data.tree_id;
           localStorage.setItem('lastTreeId', currentTreeId);
           loadTrees();
+        } else if (r.status === 401 && data.needs_auth) {
+          showAuthOverlay();
+        } else {
+          alert(data.error || 'Could not save person. Please try again.');
         }
-
-        if (data.error) {
-          es.close();
-          hideSearchProgress();
-          btn.disabled = false;
-          btn.textContent = '🔍 Search the Archives';
-          alert(data.error);
-        }
-      };
-
-      es.onerror = async () => {
-        es.close();
-        // Fallback: create person without search results
-        hideSearchProgress();
-        try {
-          const r = await fetch('/api/persons', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              tree_name: last + ' Family',
-              first_name: first, middle_name: middle, last_name: last,
-              birth_year: birthYear, birth_state: birthPlace,
-            }),
-            credentials: 'include',
-          });
-          const data = await r.json();
-          if (r.ok) { currentTreeId = data.tree_id; localStorage.setItem('lastTreeId', currentTreeId); loadTrees(); }
-          else if (r.status === 401 && data.needs_auth) { showAuthOverlay(); }
-          else alert(data.error || 'Search failed. Please try again.');
-        } catch { alert('Connection error. Please try again.'); }
-        btn.disabled = false;
-        btn.textContent = '🔍 Search the Archives';
-      };
+      } catch { alert('Connection error. Please try again.'); }
+      btn.disabled = false;
+      btn.textContent = '+ Add Person';
     }
 
     function showAddPersonForm() {
@@ -1040,7 +956,7 @@
           </div>
           <div id="par_err" style="display:none;color:#f87171;font-size:.82rem;margin-top:.5rem"></div>
           <div style="display:flex;gap:.75rem;margin-top:1rem">
-            <button class="btn-primary" id="par_save_btn" onclick="saveAddParent(${childId})">Search &amp; Add ${role}</button>
+            <button class="btn-primary" id="par_save_btn" onclick="saveAddParent(${childId})">Add ${role}</button>
             <button class="btn-ghost" onclick="closePersonCard()">Cancel</button>
           </div>
           <style>.input-field{background:#0f172a;border:1px solid #334155;color:#f1f5f9;padding:.55rem .75rem;border-radius:6px;font-size:.9rem}.input-field:focus{outline:2px solid #2563eb;border-color:transparent}</style>
@@ -1057,29 +973,14 @@
       const dp     = document.getElementById('par_dp').value.trim();
       if (!last) { document.getElementById('par_err').textContent = 'Last name is required.'; document.getElementById('par_err').style.display='block'; return; }
       const btn = document.getElementById('par_save_btn');
-      btn.disabled = true; btn.textContent = 'Searching…';
-      // Create the parent person via the search stream, then link them
-      const params = new URLSearchParams({ first, middle, last, birth_year: by||'', death_year: dy||'', birth_place: bp, death_place: dp, tree_name: last + ' Family' });
+      btn.disabled = true; btn.textContent = 'Saving…';
+      // Create the parent person directly (search can be run later from the person card)
       let parentId = null;
-      await new Promise(resolve => {
-        const es = new EventSource('/api/search/stream?' + params.toString());
-        es.onmessage = evt => {
-          try {
-            const d = JSON.parse(evt.data);
-            if (d.saved) { parentId = d.person_id; es.close(); resolve(); }
-            if (d.done && !d.saved) { setTimeout(resolve, 3000); } // fallback
-          } catch(e) {}
-        };
-        es.onerror = () => { es.close(); resolve(); };
-        setTimeout(() => { es.close(); resolve(); }, 35000);
-      });
-      if (!parentId) {
-        // Fallback: create person directly without search
-        const r = await fetch('/api/persons', { method:'POST', headers:{'Content-Type':'application/json'}, credentials:'include',
-          body: JSON.stringify({ first_name:first+(middle?' '+middle:''), last_name:last, birth_year:by?parseInt(by):null, death_year:dy?parseInt(dy):null, birth_state:bp, death_place:dp, tree_name: last + ' Family' }) });
-        if (r.ok) { const d = await r.json(); parentId = d.person_id || d.id; }
-        else if (r.status === 401) { const d = await r.json(); alert(d.error || 'Please log in to save your tree.'); btn.disabled = false; btn.textContent = 'Search & Add'; return; }
-      }
+      const r = await fetch('/api/persons', { method:'POST', headers:{'Content-Type':'application/json'}, credentials:'include',
+        body: JSON.stringify({ first_name:first+(middle?' '+middle:''), last_name:last, birth_year:by?parseInt(by):null, death_year:dy?parseInt(dy):null, birth_state:bp, death_place:dp, tree_name: last + ' Family' }) });
+      if (r.ok) { const d = await r.json(); parentId = d.person_id || d.id; }
+      else if (r.status === 401) { const d = await r.json(); alert(d.error || 'Please log in to save your tree.'); btn.disabled = false; btn.textContent = 'Add Parent'; return; }
+      else { document.getElementById('par_err').textContent = 'Could not save. Please try again.'; document.getElementById('par_err').style.display='block'; btn.disabled=false; btn.textContent='Add Parent'; return; }
       if (parentId) {
         // Link parent → child
         const childResp = await fetch(`/api/persons/${childId}`);
@@ -1093,7 +994,7 @@
       } else {
         document.getElementById('par_err').textContent = 'Could not create parent. Try again.';
         document.getElementById('par_err').style.display = 'block';
-        btn.disabled = false; btn.textContent = 'Search & Add';
+        btn.disabled = false; btn.textContent = 'Add Parent';
       }
     }
 
