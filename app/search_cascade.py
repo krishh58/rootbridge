@@ -255,6 +255,185 @@ def search_nara(first: str, last: str, birth_year: int = None,
 
 
 # ---------------------------------------------------------------------------
+# Free census / genealogy sources
+# ---------------------------------------------------------------------------
+
+_STATE_ABBR = {
+    'alabama':'al','alaska':'ak','arizona':'az','arkansas':'ar','california':'ca',
+    'colorado':'co','connecticut':'ct','delaware':'de','florida':'fl','georgia':'ga',
+    'hawaii':'hi','idaho':'id','illinois':'il','indiana':'in','iowa':'ia',
+    'kansas':'ks','kentucky':'ky','louisiana':'la','maine':'me','maryland':'md',
+    'massachusetts':'ma','michigan':'mi','minnesota':'mn','mississippi':'ms',
+    'missouri':'mo','montana':'mt','nebraska':'ne','nevada':'nv','new hampshire':'nh',
+    'new jersey':'nj','new mexico':'nm','new york':'ny','north carolina':'nc',
+    'north dakota':'nd','ohio':'oh','oklahoma':'ok','oregon':'or','pennsylvania':'pa',
+    'rhode island':'ri','south carolina':'sc','south dakota':'sd','tennessee':'tn',
+    'texas':'tx','utah':'ut','vermont':'vt','virginia':'va','washington':'wa',
+    'west virginia':'wv','wisconsin':'wi','wyoming':'wy',
+}
+
+
+def _state_code(birth_place: str) -> str:
+    """Return 2-letter state code from a place string, or empty string."""
+    bp = birth_place.lower()
+    for name, code in _STATE_ABBR.items():
+        if name in bp or bp.strip() == code:
+            return code
+    return ''
+
+
+def search_usgenweb(first: str, last: str, birth_year: int = None,
+                    birth_place: str = '') -> list:
+    """
+    Search USGenWeb — volunteer-transcribed county census, vital, and land records.
+    Uses the Internet Archive's full-text search over the usgenweb.org collection,
+    which covers all years including 1930 Census transcriptions.
+    """
+    try:
+        state_code = _state_code(birth_place)
+        # IA full-text search over USGenWeb collection
+        q_parts = [f'"{last}"']
+        if first:
+            q_parts.append(f'"{first}"')
+        if birth_year:
+            q_parts.append(f'({birth_year} OR {birth_year - 1} OR {birth_year + 1})')
+        q = ' AND '.join(q_parts)
+
+        params = {
+            'q': q,
+            'fl[]': 'identifier,title,description,subject,date',
+            'rows': 8,
+            'output': 'json',
+            'collection': 'usgenweb-archives',
+        }
+        resp = req_lib.get('https://archive.org/advancedsearch.php',
+                           params=params, timeout=10)
+        resp.raise_for_status()
+        docs = resp.json().get('response', {}).get('docs', [])
+
+        results = []
+        last_lower = last.lower()
+        for doc in docs:
+            title = doc.get('title', '')
+            desc  = doc.get('description', '') or ''
+            if last_lower not in title.lower() and last_lower not in desc.lower():
+                continue
+            # State filter — skip if state code present and doesn't match
+            if state_code and title:
+                title_lower = title.lower()
+                # Only filter if another state is explicitly named
+                other_states = [c for c in _STATE_ABBR.values()
+                                if c != state_code and f'/{c}/' in title_lower]
+                if other_states:
+                    continue
+            results.append({
+                'source': 'usgenweb',
+                'record_type': 'census_transcription',
+                'title': title,
+                'date': str(doc.get('date', '')),
+                'birth_place': birth_place,
+                'url': f"https://archive.org/details/{doc.get('identifier','')}",
+            })
+        return results[:5]
+    except Exception:
+        return []
+
+
+def search_rootsweb(first: str, last: str, birth_year: int = None,
+                    birth_place: str = '') -> list:
+    """
+    Search RootsWeb WorldConnect via Internet Archive — huge collection of
+    user-submitted family trees, many with pre-paywall census citations.
+    Also searches the RootsWeb mailing list archives which contain transcribed
+    census data posted by researchers.
+    """
+    try:
+        q_parts = [f'"{last}"']
+        if first:
+            q_parts.append(f'"{first}"')
+        if birth_place:
+            state_code = _state_code(birth_place)
+            if state_code:
+                q_parts.append(state_code.upper())
+        q = ' '.join(q_parts)
+
+        params = {
+            'q': q,
+            'fl[]': 'identifier,title,description,date',
+            'rows': 8,
+            'output': 'json',
+            'collection': 'rootsweb',
+        }
+        resp = req_lib.get('https://archive.org/advancedsearch.php',
+                           params=params, timeout=10)
+        resp.raise_for_status()
+        docs = resp.json().get('response', {}).get('docs', [])
+
+        results = []
+        last_lower = last.lower()
+        for doc in docs:
+            title = doc.get('title', '') or ''
+            desc  = doc.get('description', '') or ''
+            if last_lower not in title.lower() and last_lower not in desc.lower():
+                continue
+            results.append({
+                'source': 'rootsweb',
+                'record_type': 'family_tree',
+                'title': title,
+                'date': str(doc.get('date', '')),
+                'url': f"https://archive.org/details/{doc.get('identifier','')}",
+            })
+        return results[:5]
+    except Exception:
+        return []
+
+
+def search_open_library_genealogy(first: str, last: str,
+                                   birth_year: int = None,
+                                   birth_place: str = '') -> list:
+    """
+    Search OpenLibrary for digitised genealogy books — county histories,
+    family surname books, state genealogical society publications.
+    These often contain census abstracts and vital records.
+    """
+    try:
+        q_parts = [last]
+        if first:
+            q_parts.append(first)
+        if birth_place:
+            state_code = _state_code(birth_place)
+            if state_code:
+                q_parts.append(birth_place.split(',')[0].strip())
+        q = ' '.join(q_parts) + ' genealogy'
+
+        resp = req_lib.get(
+            'https://openlibrary.org/search.json',
+            params={'q': q, 'limit': 6, 'fields': 'title,author_name,first_publish_year,key'},
+            timeout=8,
+        )
+        resp.raise_for_status()
+        docs = resp.json().get('docs', [])
+
+        results = []
+        last_lower = last.lower()
+        for doc in docs:
+            title = doc.get('title', '')
+            if last_lower not in title.lower():
+                continue
+            authors = doc.get('author_name', [])
+            results.append({
+                'source': 'open_library',
+                'record_type': 'genealogy_book',
+                'title': title,
+                'date': str(doc.get('first_publish_year', '')),
+                'url': f"https://openlibrary.org{doc.get('key','')}",
+            })
+        return results[:4]
+    except Exception:
+        return []
+
+
+# ---------------------------------------------------------------------------
 # Cross-reference scoring
 # ---------------------------------------------------------------------------
 
@@ -401,6 +580,9 @@ def _build_tasks(first: str, last: str, birth_year: int,
         'wikitree':    lambda: search_wikitree(_first_only, last, birth_year),
         'chronicling': lambda: search_chronicling(first, last, birth_year),
         'nara':        lambda: search_nara(_first_only, last, birth_year, birth_place),
+        'usgenweb':    lambda: search_usgenweb(first, last, birth_year, birth_place),
+        'rootsweb':    lambda: search_rootsweb(first, last, birth_year, birth_place),
+        'open_library':lambda: search_open_library_genealogy(first, last, birth_year, birth_place),
     }
 
     if _playwright_available():
