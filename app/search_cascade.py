@@ -539,6 +539,22 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     all_results = []
     _first_only = first.split()[0] if first else first
 
+    _ctx = ResearchContext(
+        first=first, last=last,
+        birth_year=birth_year,
+        birth_place=birth_place,
+        generation=1,
+        generation_label='target',
+    )
+
+    yield 'data: ' + json.dumps({
+        'agent_status': 'context',
+        'generation': _ctx.generation,
+        'generation_label': _ctx.generation_label,
+        'target': f'{first} {last}'.strip(),
+        'constraints': _ctx.constraints,
+    }) + '\n\n'
+
     # ── Phase 0: vault search (internal, instant) ────────────────────────────
     vault_hits = []
     if skip_vault:
@@ -628,6 +644,7 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
         person={'first_name': first, 'last_name': last,
                 'birth_year': birth_year, 'birth_place': birth_place},
         phase1_results=all_results,
+        ctx=_ctx,
     )
     logger.info('Agentic picks for %s %s: %s', first, last, picks)
 
@@ -643,7 +660,7 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
         yield from _run_phase(phase2_tasks, all_results, timeout=16)
 
     # ── Final scoring + AI summary ───────────────────────────────────────────
-    scored   = cross_reference(all_results, first, last, birth_year, birth_place)
+    scored   = cross_reference_with_context(all_results, _ctx)
     snapshot = _build_person_snapshot(first, last, birth_year, birth_place, scored)
     gaps     = classify_gaps(snapshot, scored)
     score    = confidence_score(snapshot)
@@ -654,6 +671,7 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
         person={'first_name': first, 'last_name': last,
                 'birth_year': birth_year, 'birth_state': birth_place},
         results=scored, gaps=gaps,
+        ctx=_ctx,
     )
 
     yield 'data: ' + json.dumps({
