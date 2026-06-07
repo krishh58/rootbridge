@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from typing import Optional
 
@@ -20,8 +22,8 @@ class ResearchContext:
     generation: int = 1
     generation_label: str = 'target'
 
-    confirmed_facts: dict = field(default_factory=dict)
-    ruled_out: list = field(default_factory=list)
+    confirmed_facts: dict[str, ConfirmedFact] = field(default_factory=dict)
+    ruled_out: list[str] = field(default_factory=list)
 
     @property
     def constraints(self) -> dict:
@@ -49,7 +51,7 @@ class ResearchContext:
         score = 50
 
         c = self.constraints
-        result_by = result.get('birth_year') or result.get('date', '')
+        result_by = result.get('birth_year')
         result_bp = (result.get('birth_place') or result.get('location') or '').lower()
 
         if 'birth_year_min' in c and result_by:
@@ -77,7 +79,7 @@ class ResearchContext:
         title = (result.get('title') or result.get('name') or '').lower()
         if last_lower and last_lower in title:
             score += 10
-        elif last_lower and last_lower not in title:
+        elif last_lower not in title and last_lower:
             score -= 10
 
         return max(0, min(100, score))
