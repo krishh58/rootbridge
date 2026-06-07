@@ -55,15 +55,15 @@ Low-confidence/suspicious results (context_score < 40): {len(low_confidence)}
 === YOUR TASK ===
 Reason step by step before writing your summary:
 
-STEP 1 — CONSTRAINT CHECK: Do any results violate the confirmed facts or constraints listed above? Name them explicitly. If a result has context_score < 40, explain why it is suspect.
+STEP 1 — CONSTRAINT CHECK: Compare every result against the CONSTRAINTS above. If a result shows a birth place that does not match the constraint (e.g. constraint says Oklahoma but result says Nebraska), it is WRONG and must be excluded from the summary. Do not report it as a match under any circumstances.
 
-STEP 2 — WHAT WAS FOUND: Which results are credible matches? Cite the source and what it confirms.
+STEP 2 — WHAT WAS FOUND: List only results that pass ALL constraints. If nothing passes, say no credible match was found.
 
-STEP 3 — WHAT IS MISSING: What gaps remain? Be specific about what record type would fill each gap.
+STEP 3 — WHAT IS MISSING: What gaps remain in the confirmed record?
 
-STEP 4 — SUMMARY: Write 2–3 plain English sentences for the user. Reference only credible results. Do NOT mention context_score numbers. Do NOT suggest the user search anywhere or do anything — RootBridge handles all searching automatically. End on what was confirmed, not on what is missing.
+STEP 4 — SUMMARY: Write 2–3 plain English sentences. Only reference results that passed STEP 1. If no results passed, say the search did not find a confirmed match. Do NOT mention context_score numbers. Do NOT suggest the user do anything — RootBridge handles all searching automatically.
 
-Output only the STEP 4 summary to the user. Do not include any step labels, headers, or meta-commentary."""
+Output only the STEP 4 summary. No step labels, no headers."""
 
     return prompt
 

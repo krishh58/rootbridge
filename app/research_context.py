@@ -52,7 +52,10 @@ class ResearchContext:
 
         c = self.constraints
         result_by = result.get('birth_year')
-        result_bp = (result.get('birth_place') or result.get('location') or '').lower()
+        # Pull place from any available field, including title/snippet
+        result_bp = (result.get('birth_place') or result.get('location') or
+                     result.get('place') or result.get('title') or
+                     result.get('snippet') or '').lower()
 
         if 'birth_year_min' in c and result_by:
             try:
