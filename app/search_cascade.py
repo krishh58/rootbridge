@@ -321,6 +321,32 @@ def cross_reference_with_context(results: list,
     return cross_reference(results, ctx.first, ctx.last, ctx.birth_year, ctx.birth_place)
 
 
+_GENERATION_LABELS = {
+    1: 'target',
+    2: 'parent',
+    3: 'grandparent',
+    4: 'great-grandparent',
+    5: 'great-great-grandparent',
+}
+
+
+def build_parent_context(child_ctx,
+                          parent_first: str = '',
+                          parent_last: str = '',
+                          parent_birth_year: int = None,
+                          parent_birth_place: str = '') -> 'ResearchContext':
+    gen = (child_ctx.generation or 1) + 1
+    label = _GENERATION_LABELS.get(gen, f'generation-{gen}')
+    return ResearchContext(
+        first=parent_first,
+        last=parent_last or child_ctx.last,
+        birth_year=parent_birth_year,
+        birth_place=parent_birth_place,
+        generation=gen,
+        generation_label=label,
+    )
+
+
 # ---------------------------------------------------------------------------
 # Person snapshot helper
 # ---------------------------------------------------------------------------
