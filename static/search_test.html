@@ -194,6 +194,7 @@ function showCtx(data) {
 }
 
 let es = null;
+let _sourcesChecked = 0;
 
 function startSearch() {
   if (es) { es.close(); es = null; }
@@ -212,6 +213,7 @@ function startSearch() {
   document.getElementById('progress-panel').style.display = 'none';
   document.getElementById('summary-panel').style.display  = 'none';
   document.getElementById('ph-badges').innerHTML = '';
+  _sourcesChecked = 0;
   document.getElementById('ph-icon').textContent = '⏳';
   document.getElementById('ph-heading').textContent = 'Connecting…';
   document.getElementById('ph-detail').textContent = '';
@@ -280,21 +282,24 @@ function startSearch() {
       return;
     }
 
-    // Source result badge
+    // Source result badge — hits only
     if (data.source && data.count !== undefined) {
+      _sourcesChecked++;
       const badges = document.getElementById('ph-badges');
-      const badge = document.createElement('span');
-      badge.className = 'badge ' + (data.count > 0 ? 'badge-hit' : 'badge-miss');
-      badge.textContent = data.source + (data.count > 0 ? ` +${data.count}` : ' ✗');
-      badges.appendChild(badge);
+      if (data.count > 0) {
+        const badge = document.createElement('span');
+        badge.className = 'badge badge-hit';
+        badge.textContent = data.source + ` +${data.count}`;
+        badges.appendChild(badge);
+      }
       if (data.count > 0) {
         logLine(`[RESULT] source=${data.source} count=${data.count}`, 'hit');
         (data.results || []).slice(0,3).forEach(r =>
           logLine(`  · ${r.title || r.name || '?'} born:${r.birth_year||'?'} ${r.birth_place||''} score:${r.context_score??'?'}`, 'hit')
         );
-      } else {
-        logLine(`[RESULT] source=${data.source} — no results`, 'raw');
       }
+      // grey miss badges suppressed — log only
+      if (data.count === 0) logLine(`[RESULT] source=${data.source} — no results`, 'raw');
       return;
     }
 
@@ -305,7 +310,7 @@ function startSearch() {
       btn.textContent = 'Run Search';
       document.getElementById('ph-icon').textContent = '✅';
       document.getElementById('ph-heading').textContent = 'Search complete';
-      document.getElementById('ph-detail').textContent = '';
+      document.getElementById('ph-detail').textContent = `${_sourcesChecked} archive${_sourcesChecked !== 1 ? 's' : ''} searched`;
 
       if (data.summary) {
         document.getElementById('summary-text').textContent = data.summary;

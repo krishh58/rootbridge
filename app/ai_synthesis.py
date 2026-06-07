@@ -61,9 +61,9 @@ STEP 2 — WHAT WAS FOUND: Which results are credible matches? Cite the source a
 
 STEP 3 — WHAT IS MISSING: What gaps remain? Be specific about what record type would fill each gap.
 
-STEP 4 — SUMMARY: Write 2–3 plain English sentences for the user. Reference only credible results. Do NOT mention context_score numbers. Do NOT tell the user to search elsewhere — RootBridge does the searching.
+STEP 4 — SUMMARY: Write 2–3 plain English sentences for the user. Reference only credible results. Do NOT mention context_score numbers. Do NOT suggest the user search anywhere or do anything — RootBridge handles all searching automatically. End on what was confirmed, not on what is missing.
 
-Output only the STEP 4 summary to the user."""
+Output only the STEP 4 summary to the user. Do not include any step labels, headers, or meta-commentary."""
 
     return prompt
 
