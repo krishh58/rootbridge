@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed, TimeoutError as
 import requests as req_lib
 from .gap_classifier import classify_gaps, confidence_score
 from .db import get_redis
+from .research_context import ResearchContext
 
 logger = logging.getLogger(__name__)
 
@@ -98,25 +99,49 @@ def search_dpla_military(first: str, last: str, birth_year: int = None) -> list:
 
 def search_wikitree(first: str, last: str, birth_year: int = None) -> list:
     try:
-        params = {'action': 'searchPerson', 'firstName': first,
-                  'lastName': last, 'format': 'json'}
+        params = {'action': 'searchPerson', 'FirstName': first,
+                  'LastName': last, 'format': 'json'}
         resp = req_lib.get('https://api.wikitree.com/api.php',
-                           params=params, timeout=5)
+                           params=params, timeout=8)
         resp.raise_for_status()
         data = resp.json()
         matches = []
         if isinstance(data, list) and data:
             matches = data[0].get('matches', [])
         elif isinstance(data, dict):
-            matches = data.get('0', {}).get('matches', [])
+            matches = data.get('matches', [])
         results = []
-        for item in matches[:5]:
-            item_birth = item.get('BirthYear')
-            if birth_year and item_birth and abs(int(item_birth) - birth_year) > 15:
+        for item in matches[:10]:
+            # BirthDate is "YYYY-MM-DD" — extract year
+            birth_date_str = item.get('BirthDate', '') or ''
+            item_birth = None
+            if birth_date_str and len(birth_date_str) >= 4:
+                try:
+                    item_birth = int(birth_date_str[:4])
+                    if item_birth < 1000:
+                        item_birth = None
+                except (ValueError, TypeError):
+                    pass
+
+            if birth_year and item_birth and abs(item_birth - birth_year) > 20:
+                continue
+            fn = item.get('FirstName') or ''
+            ln = item.get('LastNameAtBirth') or ''
+            # Skip if first name requested but missing (low-quality record)
+            if first and not fn:
+                continue
+            name = f"{fn} {ln}".strip()
+            if not name:
                 continue
             results.append({
-                'name': item.get('LongName', ''),
+                'name': name,
+                'title': name,
                 'birth_year': item_birth,
+                'birth_place': item.get('BirthLocation', ''),
+                'death_year': int(item.get('DeathDate', '')[:4]) if (item.get('DeathDate', '') or '')[:4].isdigit() else None,
+                'death_place': item.get('DeathLocation', ''),
+                'gender': item.get('Gender', ''),
+                'date': birth_date_str[:4] if birth_date_str else '',
                 'source': 'wikitree',
                 'record_type': 'family_tree',
                 'url': f"https://www.wikitree.com/wiki/{item.get('Name', '')}",
@@ -130,25 +155,62 @@ def search_wikitree(first: str, last: str, birth_year: int = None) -> list:
 # Chronicling America
 # ---------------------------------------------------------------------------
 
+_LOC_HEADERS = {'User-Agent': 'RootBridge/1.0 (genealogy research; contact@rootbridge.app)'}
+_LOC_BASE    = 'https://www.loc.gov/collections/chronicling-america/'
+
 def search_chronicling(first: str, last: str, birth_year: int = None) -> list:
-    try:
-        query = f'"{first} {last}"'
-        if birth_year:
-            query += ' obituary'
-        params = {'proxtext': query, 'format': 'json', 'rows': 5}
-        resp = req_lib.get('https://chroniclingamerica.loc.gov/search/pages/results/',
-                           params=params, timeout=5)
-        resp.raise_for_status()
-        items = resp.json().get('items', [])
-        return [{
-            'source': 'chronicling_america',
-            'record_type': 'newspaper',
-            'title': i.get('title', ''),
-            'date': i.get('date', ''),
-            'url': f"https://chroniclingamerica.loc.gov{i.get('id', '')}",
-        } for i in items]
-    except Exception:
-        return []
+    """
+    Search Chronicling America via the LOC collections API (1770-1963 newspapers).
+    Runs targeted queries for obituaries and vital notices scoped to the person's lifespan.
+    """
+    results = []
+    name = f'{first} {last}'.strip() if first else last
+
+    def _query(q, count=6):
+        try:
+            params = {'fo': 'json', 'q': q, 'c': count}
+            r = req_lib.get(_LOC_BASE, params=params, headers=_LOC_HEADERS, timeout=10)
+            r.raise_for_status()
+            return r.json().get('results', [])
+        except Exception:
+            return []
+
+    def _item_year(item):
+        d = item.get('date') or ''
+        try:
+            return int(str(d)[:4])
+        except (ValueError, TypeError):
+            return None
+
+    def _fmt(item, record_type):
+        url = (item.get('aka') or [''])[0]
+        return {
+            'source':      'chronicling_america',
+            'record_type': record_type,
+            'title':       (item.get('title') or '')[:100],
+            'date':        item.get('date', ''),
+            'url':         url,
+        }
+
+    # Obituary search — filter results to likely death window client-side
+    obit_items = _query(f'{name} obituary death', count=8)
+    for item in obit_items:
+        yr = _item_year(item)
+        if birth_year and yr:
+            if not (birth_year + 40 <= yr <= min(birth_year + 105, 1963)):
+                continue
+        results.append(_fmt(item, 'obituary'))
+
+    # Birth/marriage search — filter to birth era
+    vital_items = _query(f'{name} born married marriage', count=6)
+    for item in vital_items:
+        yr = _item_year(item)
+        if birth_year and yr:
+            if not (birth_year - 10 <= yr <= birth_year + 35):
+                continue
+        results.append(_fmt(item, 'vital_notice'))
+
+    return results[:8]
 
 
 # ---------------------------------------------------------------------------
@@ -240,6 +302,29 @@ def cross_reference(results: list, first: str, last: str,
     return scored
 
 
+def cross_reference_with_context(results: list,
+                                  ctx: ResearchContext = None) -> list:
+    """
+    Pre-filters results using ResearchContext constraints before scoring.
+    Results that clearly violate known facts are dropped.
+    """
+    if not results:
+        return results
+
+    if ctx is not None:
+        results = ctx.filter_results(results, min_score=25)
+
+    if not results:
+        return results
+
+    first = ctx.first if ctx else ''
+    last  = ctx.last  if ctx else ''
+    birth_year  = ctx.birth_year  if ctx else None
+    birth_place = ctx.birth_place if ctx else ''
+
+    return cross_reference(results, first, last, birth_year, birth_place)
+
+
 # ---------------------------------------------------------------------------
 # Person snapshot helper
 # ---------------------------------------------------------------------------
@@ -291,16 +376,9 @@ def _build_tasks(first: str, last: str, birth_year: int,
     _first_only = first.split()[0] if first else first
 
     tasks = {
-        'wikitree':      lambda: search_wikitree(_first_only, last, birth_year),
-        'chronicling':   lambda: search_chronicling(first, last, birth_year),
-        'dpla_census':   lambda: search_dpla_census(_first_only, last, birth_year, birth_place),
-        'dpla_military': lambda: search_dpla_military(_first_only, last, birth_year),
-        'dpla_general':  lambda: search_dpla(_first_only, last, birth_year),
-        'dpla_obituary': lambda: _dpla_search(
-            f'{first} {last} obituary death'.strip(), 'dpla_obituary', 3),
-        'dpla_marriage': lambda: _dpla_search(
-            f'{first} {last} marriage'.strip(), 'dpla_marriage', 3),
-        'nara':          lambda: search_nara(_first_only, last, birth_year, birth_place),
+        'wikitree':    lambda: search_wikitree(_first_only, last, birth_year),
+        'chronicling': lambda: search_chronicling(first, last, birth_year),
+        'nara':        lambda: search_nara(_first_only, last, birth_year, birth_place),
     }
 
     if _playwright_available():
@@ -418,11 +496,8 @@ def _build_phase2_tasks(picks: list, first: str, last: str,
     tasks = {}
 
     mapping = {
-        'chronicling':    lambda: search_chronicling(first, last, birth_year),
-        'dpla_military':  lambda: search_dpla_military(_first_only, last, birth_year),
-        'dpla_obituary':  lambda: _dpla_search(f'{first} {last} obituary death'.strip(), 'dpla_obituary', 3),
-        'dpla_marriage':  lambda: _dpla_search(f'{first} {last} marriage'.strip(), 'dpla_marriage', 3),
-        'nara':           lambda: search_nara(_first_only, last, birth_year, birth_place),
+        'chronicling': lambda: search_chronicling(first, last, birth_year),
+        'nara':        lambda: search_nara(_first_only, last, birth_year, birth_place),
     }
 
     if _has_playwright:
@@ -452,7 +527,7 @@ def _build_phase2_tasks(picks: list, first: str, last: str,
 
 def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = None,
                           birth_place: str = '', country_hint: str = '',
-                          community_results: list = None):
+                          community_results: list = None, skip_vault: bool = False):
     """
     Agentic two-phase search generator yielding SSE strings.
 
@@ -460,6 +535,8 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     Agent:   OpenRouter reads Phase 1 clues, picks best Phase 2 sources
     Phase 2: only the AI-chosen sources run
     Final:   score, gap analysis, AI summary
+
+    skip_vault: set True when the caller already ran vault search (avoids double-hit)
     """
     from .ai_synthesis import synthesize_gaps, agentic_pick_sources
 
@@ -467,13 +544,17 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     _first_only = first.split()[0] if first else first
 
     # ── Phase 0: vault search (internal, instant) ────────────────────────────
-    yield 'data: ' + json.dumps({'agent_status': 'vault', 'message': 'Searching RootBridge vault (776k records)…'}) + '\n\n'
-
     vault_hits = []
+    if skip_vault:
+        yield 'data: ' + json.dumps({'agent_status': 'vault', 'message': 'Vault already searched — checking external sources…'}) + '\n\n'
+    else:
+        yield 'data: ' + json.dumps({'agent_status': 'vault', 'message': 'Searching RootBridge vault…'}) + '\n\n'
+
     _vault_t0 = time.time()
     try:
-        from .match_index import search_vault
-        vault_hits = search_vault(last, first, birth_year, limit=20)
+        if not skip_vault:
+            from .match_index import search_vault, search_ged_vault
+            vault_hits = search_vault(last, first, birth_year, limit=20)
         vault_ms = round((time.time() - _vault_t0) * 1000)
         if vault_hits:
             vault_results = [{
@@ -500,6 +581,28 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
         logger.debug('Vault search failed: %s', e)
         yield 'data: ' + json.dumps({'source': 'rootbridge_vault', 'count': 0, 'vault_ms': vault_ms}) + '\n\n'
 
+    # ── Phase 0b: GED vault index (857K persons from 7,278 GEDCOM files) ────────
+    yield 'data: ' + json.dumps({'agent_status': 'ged_vault', 'message': 'Searching 857,000-person GED archive…'}) + '\n\n'
+    _ged_t0 = time.time()
+    try:
+        from .match_index import search_ged_vault
+        ged_hits = search_ged_vault(last, first, birth_year, birth_place, limit=20)
+        ged_ms   = round((time.time() - _ged_t0) * 1000)
+        if ged_hits:
+            all_results.extend(ged_hits)
+            yield 'data: ' + json.dumps({
+                'source': 'ged_vault',
+                'results': ged_hits,
+                'count': len(ged_hits),
+                'total': len(all_results),
+                'ged_ms': ged_ms,
+            }) + '\n\n'
+        else:
+            yield 'data: ' + json.dumps({'source': 'ged_vault', 'count': 0, 'ged_ms': ged_ms}) + '\n\n'
+    except Exception as e:
+        logger.debug('GED vault search failed: %s', e)
+        yield 'data: ' + json.dumps({'source': 'ged_vault', 'count': 0}) + '\n\n'
+
     if community_results:
         _cr = list(community_results)
         all_results.extend(_cr)
@@ -510,19 +613,17 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
             'total': len(all_results),
         }) + '\n\n'
 
-    # ── Phase 1: fast reliable external sources ───────────────────────────────
+    # ── Phase 1: reliable external sources (no Playwright — gets blocked) ────────
+    # DPLA removed — returns museum/library artifacts, not genealogy records
     phase1_tasks = {
         'wikitree':    lambda: search_wikitree(_first_only, last, birth_year),
-        'dpla_census': lambda: search_dpla_census(_first_only, last, birth_year, birth_place),
+        'chronicling': lambda: search_chronicling(first, last, birth_year),
         'nara':        lambda: search_nara(_first_only, last, birth_year, birth_place),
     }
-    if _playwright_available():
-        from .playwright_scrapers import search_findagrave
-        phase1_tasks['findagrave'] = lambda: search_findagrave(_first_only, last, birth_year)
 
-    yield 'data: ' + json.dumps({'agent_status': 'phase1', 'message': 'Searching core external archives…'}) + '\n\n'
+    yield 'data: ' + json.dumps({'agent_status': 'phase1', 'message': 'Searching external archives…'}) + '\n\n'
 
-    yield from _run_phase(phase1_tasks, all_results, timeout=12)
+    yield from _run_phase(phase1_tasks, all_results, timeout=14)
 
     # ── Agent decision ───────────────────────────────────────────────────────
     yield 'data: ' + json.dumps({'agent_status': 'thinking', 'message': 'Alfred is choosing the best next sources…'}) + '\n\n'
