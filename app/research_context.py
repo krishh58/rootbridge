@@ -73,7 +73,8 @@ class ResearchContext:
             if overlap:
                 score += 20
             else:
-                score -= 50
+                # Explicit place contradiction — hard floor so it never survives filtering
+                score = min(score, 15)
 
         last_lower = self.last.lower()
         title = (result.get('title') or result.get('name') or '').lower()
