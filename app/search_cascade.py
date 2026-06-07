@@ -311,18 +311,14 @@ def cross_reference_with_context(results: list,
     if not results:
         return results
 
-    if ctx is not None:
-        results = ctx.filter_results(results, min_score=25)
+    if ctx is None:
+        return results
 
+    results = ctx.filter_results(results, min_score=25)
     if not results:
         return results
 
-    first = ctx.first if ctx else ''
-    last  = ctx.last  if ctx else ''
-    birth_year  = ctx.birth_year  if ctx else None
-    birth_place = ctx.birth_place if ctx else ''
-
-    return cross_reference(results, first, last, birth_year, birth_place)
+    return cross_reference(results, ctx.first, ctx.last, ctx.birth_year, ctx.birth_place)
 
 
 # ---------------------------------------------------------------------------
