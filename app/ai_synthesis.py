@@ -5,52 +5,78 @@ OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions'
 MODEL = 'anthropic/claude-3-haiku'
 
 
-def synthesize_gaps(person: dict, results: list, gaps: list) -> dict:
-    name = f"{person.get('first_name', '')} {person.get('last_name', '')}".strip()
-    birth = f"{person.get('birth_year', 'unknown')} {person.get('birth_state', '')}".strip()
+def build_synthesis_prompt(ctx, results: list, gaps: list) -> str:
+    if ctx is not None:
+        name = f'{ctx.first} {ctx.last}'.strip()
+        birth = f'~{ctx.birth_year}' if ctx.birth_year else 'unknown year'
+        if ctx.birth_place:
+            birth += f', {ctx.birth_place}'
+        context_block = ctx.to_prompt_block()
+        generation_note = (f'(Generation {ctx.generation}: {ctx.generation_label})'
+                           if ctx.generation > 1 else '')
+    else:
+        name = 'Unknown'
+        birth = 'unknown'
+        context_block = ''
+        generation_note = ''
 
     sources = list({r.get('source', '') for r in results if r.get('source')})
-    corroborated = [r for r in results if r.get('corroboration_score', 0) > 0]
+    high_confidence = [r for r in results if r.get('context_score', 50) >= 70]
+    low_confidence  = [r for r in results if r.get('context_score', 50) < 40]
 
-    found_summary = (
-        f"{len(results)} records found across {len(sources)} sources"
-        if results else "No records found"
-    )
-    corroboration_note = (
-        f"{len(corroborated)} of those records were corroborated by multiple independent sources."
-        if corroborated else "No cross-source corroboration found."
-    )
+    result_lines = []
+    for r in results[:15]:
+        cs = r.get('context_score', '?')
+        corr = r.get('corroboration_score', 0)
+        line = (f"  [{r.get('source','?')}] {r.get('title','')} | "
+                f"born:{r.get('birth_year','?')} {r.get('birth_place','')} | "
+                f"context_score:{cs} corroborated_by:{corr}")
+        result_lines.append(line)
 
     gap_list = '\n'.join(
-        f"- {g['label']}: {g['detail']}"
+        f'  - {g.get("label", g.get("gap_type", "gap"))}: {g.get("detail", g.get("suggested_query", ""))}'
         for g in gaps
-    ) or "All key fields are populated."
+    ) or '  None'
 
-    prompt = f"""You are a genealogy research assistant for RootBridge. You searched real archives on the user's behalf.
+    prompt = f"""You are a genealogy research assistant for RootBridge. {generation_note}
 
-SOURCES YOU SEARCHED AND WHAT THEY CONTAIN:
-- findagrave: FindAGrave — 200M+ burial memorials worldwide. Returns name, birth/death dates, cemetery, plot. Best for confirming death and burial location.
-- freebmd: FreeBMD — ALL UK births, marriages, deaths 1837–2006. Civil registration index. Covers England, Wales, Scotland.
-- irish_genealogy: IrishGenealogy.ie — Irish civil registration records. Births from 1864, marriages from 1845, deaths from 1864. Catholic + Protestant church records.
-- antenati: Antenati (Italian National Archives) — Italian vital records 1800–1940. Births, marriages, deaths from Italian communes.
-- geneteka: Geneteka — 66 million+ Catholic parish records from Poland, Lithuania, Belarus, Ukraine. Baptisms, marriages, burials going back to 1600s.
-- digitalarkivet: Digitalarkivet — Norwegian census records and church books. Baptisms, confirmations, marriages, burials.
-- archion: Archion — German Protestant (Evangelical) church records. Baptisms, marriages, burials from German parishes.
-- matricula: Matricula Online — Catholic church records from Germany, Austria, and Poland. Parish registers going back centuries.
-- wikitree: WikiTree — collaborative genealogy tree. User-contributed profiles. Good for connecting family lines.
-- chronicling_america: Chronicling America — digitized US newspapers 1770–1963. Birth announcements, obituaries, marriage notices.
-- dpla: DPLA — Digital Public Library of America. Digitized books, photos, documents from US libraries and archives.
-- nara: NARA — US National Archives catalog. Military records, immigration, naturalization, federal records.
+=== RESEARCH CONTEXT ===
+{context_block if context_block else f'Target: {name}, born {birth}'}
 
-SEARCH RESULTS FOR {name} (born ~{birth}):
-Sources that returned data: {', '.join(sources) or 'none'}
-{found_summary}. {corroboration_note}
+=== SEARCH RESULTS ({len(results)} records) ===
+{chr(10).join(result_lines) if result_lines else '  No records found.'}
 
-Research gaps identified:
+High-confidence matches (context_score >= 70): {len(high_confidence)}
+Low-confidence/suspicious results (context_score < 40): {len(low_confidence)}
+
+=== RESEARCH GAPS ===
 {gap_list}
 
-Write 2-3 plain English sentences: what was found, what is still missing, and what it means for the research.
-Be specific — name the sources and what they returned. Do NOT tell the user to search elsewhere — RootBridge does the searching."""
+=== YOUR TASK ===
+Reason step by step before writing your summary:
+
+STEP 1 — CONSTRAINT CHECK: Do any results violate the confirmed facts or constraints listed above? Name them explicitly. If a result has context_score < 40, explain why it is suspect.
+
+STEP 2 — WHAT WAS FOUND: Which results are credible matches? Cite the source and what it confirms.
+
+STEP 3 — WHAT IS MISSING: What gaps remain? Be specific about what record type would fill each gap.
+
+STEP 4 — SUMMARY: Write 2–3 plain English sentences for the user. Reference only credible results. Do NOT mention context_score numbers. Do NOT tell the user to search elsewhere — RootBridge does the searching.
+
+Output only the STEP 4 summary to the user."""
+
+    return prompt
+
+
+def synthesize_gaps(person: dict, results: list, gaps: list, ctx=None) -> dict:
+    if ctx is None:
+        try:
+            from app.research_context import ResearchContext
+            ctx = ResearchContext.from_person(person)
+        except Exception:
+            pass
+
+    prompt = build_synthesis_prompt(ctx, results, gaps)
 
     try:
         resp = requests.post(
@@ -90,7 +116,7 @@ AGENTIC_SOURCES = {
 }
 
 
-def agentic_pick_sources(person: dict, phase1_results: list) -> list:
+def agentic_pick_sources(person: dict, phase1_results: list, ctx=None) -> list:
     """
     Ask the AI which Phase 2 sources to search based on what Phase 1 found.
     Returns a list of source keys from AGENTIC_SOURCES.
@@ -109,6 +135,8 @@ def agentic_pick_sources(person: dict, phase1_results: list) -> list:
 
     clue_text = '\n'.join(clues) if clues else '  (no records found in Phase 1)'
 
+    context_block = ctx.to_prompt_block() if ctx else ''
+
     source_menu = '\n'.join(f'  {k}: {v}' for k, v in AGENTIC_SOURCES.items())
 
     prompt = f"""You are an agentic genealogy researcher. You just completed a Phase 1 search for:
@@ -116,7 +144,12 @@ def agentic_pick_sources(person: dict, phase1_results: list) -> list:
   Birth year: {birth_year}
   Birth place: {birth_place}
 
-Phase 1 sources already searched: {', '.join(found_sources) or 'none'}
+Phase 1 sources already searched: {', '.join(found_sources) or 'none'}"""
+
+    if context_block:
+        prompt = f"Research context:\n{context_block}\n\n" + prompt
+
+    prompt += f"""
 
 Phase 1 findings:
 {clue_text}
