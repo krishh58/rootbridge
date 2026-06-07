@@ -91,6 +91,26 @@ def synthesize_gaps(person: dict, results: list, gaps: list, ctx=None) -> dict:
         )
         resp.raise_for_status()
         summary = resp.json()['choices'][0]['message']['content'].strip()
+        # Strip any leaked step markers or "more research needed" language
+        for marker in ['STEP 1', 'STEP 2', 'STEP 3', 'STEP 4 —', 'STEP 4—']:
+            if marker in summary:
+                summary = summary.split(marker)[-1].strip(' —\n')
+                break
+        _bad_phrases = [
+            'more research would be needed',
+            'additional research would be needed',
+            'additional searches',
+            'further research',
+            'you may want to',
+            'consider searching',
+            'suggest searching',
+        ]
+        for phrase in _bad_phrases:
+            if phrase in summary.lower():
+                # Trim from that sentence onward
+                idx = summary.lower().find(phrase)
+                summary = summary[:idx].strip().rstrip('.,;')
+                break
         return {'summary': summary}
     except (requests.RequestException, KeyError, IndexError, ValueError):
         return {'summary': ''}
