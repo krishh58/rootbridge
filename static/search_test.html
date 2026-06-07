@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RootBridge — Search Test Dashboard</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; padding: 24px; }
+  h1 { color: #4ade80; font-size: 1.4rem; margin-bottom: 4px; }
+  .subtitle { color: #64748b; font-size: .85rem; margin-bottom: 24px; }
+
+  .card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+  .card h2 { font-size: .9rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 14px; }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-group label { font-size: .8rem; color: #64748b; }
+  .form-group input { background: #0f172a; border: 1px solid #334155; border-radius: 8px; color: #e2e8f0; padding: 8px 12px; font-size: .9rem; outline: none; transition: border-color .2s; }
+  .form-group input:focus { border-color: #4ade80; }
+
+  .presets { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .preset-btn { background: #0f172a; border: 1px solid #334155; border-radius: 20px; color: #94a3b8; cursor: pointer; font-size: .78rem; padding: 5px 14px; transition: all .2s; }
+  .preset-btn:hover { border-color: #4ade80; color: #4ade80; }
+
+  .search-btn { background: #16a34a; border: none; border-radius: 8px; color: white; cursor: pointer; font-size: .95rem; font-weight: 600; margin-top: 16px; padding: 10px 28px; transition: background .2s; }
+  .search-btn:hover { background: #15803d; }
+  .search-btn:disabled { background: #334155; color: #64748b; cursor: not-allowed; }
+
+  /* Context panel */
+  #ctx-panel { display: none; }
+  .ctx-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .ctx-chip { background: #0f172a; border: 1px solid #1e40af; border-radius: 8px; padding: 10px 14px; }
+  .ctx-chip .label { color: #6366f1; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; }
+  .ctx-chip .value { color: #e2e8f0; font-size: .9rem; font-weight: 600; margin-top: 3px; }
+
+  /* Progress */
+  #progress-panel { display: none; }
+  .phase-row { align-items: center; display: flex; gap: 12px; margin-bottom: 8px; }
+  .phase-icon { font-size: 1.2rem; width: 28px; text-align: center; }
+  .phase-text { flex: 1; }
+  .phase-text .ph { color: #e2e8f0; font-size: .88rem; font-weight: 600; }
+  .phase-text .pd { color: #94a3b8; font-size: .8rem; margin-top: 2px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .badge { border-radius: 20px; font-size: .75rem; font-weight: 600; padding: 3px 10px; }
+  .badge-hit  { background: #14532d; color: #4ade80; }
+  .badge-miss { background: #1e293b; color: #475569; }
+
+  /* Summary */
+  #summary-panel { display: none; }
+  #summary-text { color: #e2e8f0; font-size: 1rem; line-height: 1.7; background: #0f172a; border-left: 3px solid #4ade80; padding: 14px 18px; border-radius: 0 8px 8px 0; }
+
+  /* Event log */
+  #log-panel { }
+  #event-log { background: #020617; border-radius: 8px; font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: .75rem; height: 420px; overflow-y: auto; padding: 12px; }
+  .log-line { border-bottom: 1px solid #1e293b; color: #64748b; padding: 3px 0; }
+  .log-line.ctx   { color: #818cf8; }
+  .log-line.hit   { color: #4ade80; }
+  .log-line.phase { color: #facc15; }
+  .log-line.done  { color: #f472b6; font-weight: bold; }
+  .log-line.err   { color: #f87171; }
+  .log-line.raw   { color: #475569; }
+
+  .clear-btn { background: none; border: 1px solid #334155; border-radius: 6px; color: #64748b; cursor: pointer; font-size: .75rem; padding: 3px 10px; float: right; }
+  .clear-btn:hover { border-color: #f87171; color: #f87171; }
+</style>
+</head>
+<body>
+
+<h1>RootBridge — Search Test Dashboard</h1>
+<p class="subtitle">Dev-only · No auth required · Calls full OpenRouter cascade</p>
+
+<!-- Search form -->
+<div class="card">
+  <h2>Search Parameters</h2>
+  <div class="form-grid">
+    <div class="form-group">
+      <label>First Name</label>
+      <input id="f-first" type="text" placeholder="Mary Adelaide">
+    </div>
+    <div class="form-group">
+      <label>Last Name *</label>
+      <input id="f-last" type="text" placeholder="Henderson">
+    </div>
+    <div class="form-group">
+      <label>Birth Year</label>
+      <input id="f-birth-year" type="number" placeholder="1892">
+    </div>
+    <div class="form-group">
+      <label>Birth Place</label>
+      <input id="f-birth-place" type="text" placeholder="Monroe County, Michigan">
+    </div>
+    <div class="form-group">
+      <label>Death Year</label>
+      <input id="f-death-year" type="number" placeholder="1959">
+    </div>
+    <div class="form-group">
+      <label>Death Place</label>
+      <input id="f-death-place" type="text" placeholder="Royal Oak, Michigan">
+    </div>
+  </div>
+
+  <div class="presets">
+    <span style="color:#64748b;font-size:.78rem;align-self:center;">GED presets:</span>
+    <button class="preset-btn" onclick="loadPreset('mary')">Mary Adelaide Henderson (b.1892 MI) ← GED A407584</button>
+    <button class="preset-btn" onclick="loadPreset('james')">James R. Waggener Jr (b.1920 Detroit)</button>
+    <button class="preset-btn" onclick="loadPreset('orville')">Orville C. Henderson (b.1906 OK)</button>
+    <button class="preset-btn" onclick="loadPreset('clear')">Clear</button>
+  </div>
+
+  <button class="search-btn" id="search-btn" onclick="startSearch()">Run Search</button>
+</div>
+
+<!-- Context constraints panel -->
+<div class="card" id="ctx-panel">
+  <h2>Research Context (from ResearchContext engine)</h2>
+  <div class="ctx-grid" id="ctx-grid"></div>
+</div>
+
+<!-- Live progress -->
+<div class="card" id="progress-panel">
+  <h2>Live Search Progress</h2>
+  <div class="phase-row">
+    <div class="phase-icon" id="ph-icon">⏳</div>
+    <div class="phase-text">
+      <div class="ph" id="ph-heading">Starting…</div>
+      <div class="pd" id="ph-detail"></div>
+    </div>
+  </div>
+  <div class="badges" id="ph-badges"></div>
+</div>
+
+<!-- Summary -->
+<div class="card" id="summary-panel">
+  <h2>AI Summary (OpenRouter)</h2>
+  <div id="summary-text"></div>
+</div>
+
+<!-- Raw event log -->
+<div class="card" id="log-panel">
+  <h2>SSE Event Stream <button class="clear-btn" onclick="clearLog()">Clear</button></h2>
+  <div id="event-log"></div>
+</div>
+
+<script>
+const PRESETS = {
+  mary:   { first:'Mary Adelaide', last:'Henderson', by:1892, bp:'Monroe County, Michigan', dy:1959, dp:'Royal Oak, Oakland County, Michigan' },
+  james:  { first:'James Richard', last:'Waggener',  by:1920, bp:'Detroit, Wayne County, Michigan', dy:1992, dp:'Pleasant Ridge, Michigan' },
+  orville:{ first:'Orville',       last:'Henderson', by:1906, bp:'Oklahoma', dy:null, dp:'' },
+  clear:  { first:'', last:'', by:'', bp:'', dy:'', dp:'' },
+};
+
+function loadPreset(key) {
+  const p = PRESETS[key];
+  document.getElementById('f-first').value       = p.first;
+  document.getElementById('f-last').value        = p.last;
+  document.getElementById('f-birth-year').value  = p.by || '';
+  document.getElementById('f-birth-place').value = p.bp;
+  document.getElementById('f-death-year').value  = p.dy || '';
+  document.getElementById('f-death-place').value = p.dp;
+}
+
+// Load Mary by default
+loadPreset('mary');
+
+function logLine(text, cls='raw') {
+  const log = document.getElementById('event-log');
+  const line = document.createElement('div');
+  line.className = 'log-line ' + cls;
+  line.textContent = new Date().toLocaleTimeString() + '  ' + text;
+  log.appendChild(line);
+  log.scrollTop = log.scrollHeight;
+}
+
+function clearLog() {
+  document.getElementById('event-log').innerHTML = '';
+}
+
+function showCtx(data) {
+  const c = data.constraints || {};
+  const chips = [
+    { label: 'Target',      value: data.target },
+    { label: 'Generation',  value: `${data.generation} — ${data.generation_label}` },
+    { label: 'Birth year',  value: c.birth_year_min ? `${c.birth_year_min} – ${c.birth_year_max}` : 'unknown' },
+    { label: 'Birth place', value: c.birth_place || 'unknown' },
+    { label: 'Death year',  value: c.death_year_min ? `${c.death_year_min} – ${c.death_year_max}` : '—' },
+    { label: 'Status',      value: 'Context locked ✓' },
+  ];
+  const grid = document.getElementById('ctx-grid');
+  grid.innerHTML = chips.map(ch =>
+    `<div class="ctx-chip"><div class="label">${ch.label}</div><div class="value">${ch.value}</div></div>`
+  ).join('');
+  document.getElementById('ctx-panel').style.display = 'block';
+}
+
+let es = null;
+
+function startSearch() {
+  if (es) { es.close(); es = null; }
+
+  const first  = document.getElementById('f-first').value.trim();
+  const last   = document.getElementById('f-last').value.trim();
+  const by     = document.getElementById('f-birth-year').value.trim();
+  const bp     = document.getElementById('f-birth-place').value.trim();
+  const dy     = document.getElementById('f-death-year').value.trim();
+  const dp     = document.getElementById('f-death-place').value.trim();
+
+  if (!last) { alert('Last name is required.'); return; }
+
+  // Reset UI
+  document.getElementById('ctx-panel').style.display     = 'none';
+  document.getElementById('progress-panel').style.display = 'none';
+  document.getElementById('summary-panel').style.display  = 'none';
+  document.getElementById('ph-badges').innerHTML = '';
+  document.getElementById('ph-icon').textContent = '⏳';
+  document.getElementById('ph-heading').textContent = 'Connecting…';
+  document.getElementById('ph-detail').textContent = '';
+  clearLog();
+
+  const btn = document.getElementById('search-btn');
+  btn.disabled = true;
+  btn.textContent = 'Searching…';
+
+  const params = new URLSearchParams({ first, last });
+  if (by)  params.set('birth_year',  by);
+  if (bp)  params.set('birth_place', bp);
+  if (dy)  params.set('death_year',  dy);
+  if (dp)  params.set('death_place', dp);
+
+  logLine(`→ GET /api/dev/search/stream?${params}`, 'phase');
+  document.getElementById('progress-panel').style.display = 'block';
+
+  es = new EventSource('/api/dev/search/stream?' + params.toString());
+
+  es.onmessage = evt => {
+    let data;
+    try { data = JSON.parse(evt.data); } catch { logLine('parse error: ' + evt.data, 'err'); return; }
+
+    // Context event
+    if (data.agent_status === 'context') {
+      showCtx(data);
+      logLine(`[CONTEXT] target="${data.target}" gen=${data.generation}(${data.generation_label}) constraints=${JSON.stringify(data.constraints)}`, 'ctx');
+      document.getElementById('ph-icon').textContent = '🎯';
+      document.getElementById('ph-heading').textContent = `Searching for ${data.target} (${data.generation_label})`;
+      const c = data.constraints || {};
+      const parts = [];
+      if (c.birth_year_min) parts.push(`born ${c.birth_year_min}–${c.birth_year_max}`);
+      if (c.birth_place)    parts.push(c.birth_place);
+      document.getElementById('ph-detail').textContent = parts.join(' · ') || '';
+      return;
+    }
+
+    // Phase status events
+    if (data.agent_status === 'vault') {
+      document.getElementById('ph-icon').textContent = '🏛️';
+      document.getElementById('ph-heading').textContent = 'Searching RootBridge Vault…';
+      document.getElementById('ph-detail').textContent = '776,000 records';
+      logLine('[VAULT] searching local index', 'phase');
+      return;
+    }
+    if (data.agent_status === 'phase1') {
+      document.getElementById('ph-icon').textContent = '🔍';
+      document.getElementById('ph-heading').textContent = 'Phase 1 — External Archives';
+      document.getElementById('ph-detail').textContent = data.message || '';
+      logLine(`[PHASE1] ${data.message || ''}`, 'phase');
+      return;
+    }
+    if (data.agent_status === 'thinking') {
+      document.getElementById('ph-icon').textContent = '🤖';
+      document.getElementById('ph-heading').textContent = 'OpenRouter agent choosing Phase 2 sources…';
+      document.getElementById('ph-detail').textContent = '';
+      logLine('[THINKING] agent picking phase 2 sources', 'phase');
+      return;
+    }
+    if (data.agent_status === 'phase2') {
+      document.getElementById('ph-icon').textContent = '🎯';
+      document.getElementById('ph-heading').textContent = 'Phase 2 — Targeted Search';
+      document.getElementById('ph-detail').textContent = 'Agent picks: ' + (data.picks || []).join(', ');
+      logLine(`[PHASE2] picks=${JSON.stringify(data.picks)}`, 'phase');
+      return;
+    }
+
+    // Source result badge
+    if (data.source && data.count !== undefined) {
+      const badges = document.getElementById('ph-badges');
+      const badge = document.createElement('span');
+      badge.className = 'badge ' + (data.count > 0 ? 'badge-hit' : 'badge-miss');
+      badge.textContent = data.source + (data.count > 0 ? ` +${data.count}` : ' ✗');
+      badges.appendChild(badge);
+      if (data.count > 0) {
+        logLine(`[RESULT] source=${data.source} count=${data.count}`, 'hit');
+        (data.results || []).slice(0,3).forEach(r =>
+          logLine(`  · ${r.title || r.name || '?'} born:${r.birth_year||'?'} ${r.birth_place||''} score:${r.context_score??'?'}`, 'hit')
+        );
+      } else {
+        logLine(`[RESULT] source=${data.source} — no results`, 'raw');
+      }
+      return;
+    }
+
+    // Done
+    if (data.done) {
+      es.close(); es = null;
+      btn.disabled = false;
+      btn.textContent = 'Run Search';
+      document.getElementById('ph-icon').textContent = '✅';
+      document.getElementById('ph-heading').textContent = 'Search complete';
+      document.getElementById('ph-detail').textContent = '';
+
+      if (data.summary) {
+        document.getElementById('summary-text').textContent = data.summary;
+        document.getElementById('summary-panel').style.display = 'block';
+      }
+      logLine(`[DONE] confidence=${data.confidence} results=${(data.results||[]).length} gaps=${(data.gaps||[]).length}`, 'done');
+      logLine(`[SUMMARY] ${data.summary || '(none)'}`, 'done');
+      return;
+    }
+
+    if (data.error) {
+      logLine('[ERROR] ' + data.error, 'err');
+      es.close(); es = null;
+      btn.disabled = false;
+      btn.textContent = 'Run Search';
+      return;
+    }
+
+    // Fallthrough — log raw
+    logLine(JSON.stringify(data).slice(0, 120), 'raw');
+  };
+
+  es.onerror = () => {
+    logLine('[SSE ERROR] connection lost', 'err');
+    es.close(); es = null;
+    btn.disabled = false;
+    btn.textContent = 'Run Search';
+  };
+}
+</script>
+</body>
+</html>

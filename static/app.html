@@ -70,6 +70,8 @@
         <div id="exportButtons" style="display:none;margin-top:.75rem;flex-direction:column;gap:.5rem">
           <button class="btn-ghost" style="font-size:.8rem;padding:.4rem .75rem" onclick="downloadGedcom()">⬇ Download GEDCOM</button>
           <button class="btn-ghost" style="font-size:.8rem;padding:.4rem .75rem" onclick="downloadPdf()">⬇ Download PDF</button>
+          <button class="btn-ghost" style="font-size:.8rem;padding:.4rem .75rem;border-color:#b5681e;color:#e8a04a"
+                  onclick="openPrintModal(currentTreeId)">🖼️ Print &amp; Frame…</button>
         </div>
         <div style="margin-top:.5rem">
           <label style="font-size:.78rem;color:#64748b;cursor:pointer;display:flex;align-items:center;gap:.4rem">
@@ -370,8 +372,10 @@
     }
   </style>
 
+  <script src="/static/js/photo_store.js"></script>
   <script src="/static/js/tree.js"></script>
   <script src="/static/js/person_card.js"></script>
+  <script src="/static/js/print_modal.js"></script>
   <script>
     let currentTreeId = null;
 
@@ -1317,6 +1321,16 @@
         let data;
         try { data = JSON.parse(evt.data); } catch { return; }
 
+        if (data.agent_status === 'context') {
+          const c = data.constraints || {};
+          const parts = [];
+          if (c.birth_year_min) parts.push(`born ${c.birth_year_min}–${c.birth_year_max}`);
+          if (c.birth_place)    parts.push(c.birth_place);
+          const detail = parts.length ? `Constraints locked: ${parts.join(' · ')}` : 'Search context established.';
+          document.getElementById('spIcon').textContent = '🎯';
+          document.getElementById('spHeading').textContent = `Searching for ${data.target} (${data.generation_label})`;
+          document.getElementById('spDetail').textContent = detail;
+        }
         if (data.agent_status === 'vault') {
           document.getElementById('spIcon').textContent = '🏛️';
           document.getElementById('spHeading').textContent = 'Searching RootBridge Vault first…';

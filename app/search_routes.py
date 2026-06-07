@@ -111,6 +111,53 @@ def _save_search_to_db(user_id: int, tree_name: str, first: str, last: str,
     return {'person_id': person.id, 'tree_id': tree.id}
 
 
+def _cache_to_vault(first: str, last: str, birth_year: int, birth_place: str,
+                    death_year: int, final_event: dict) -> None:
+    """
+    Save a high-confidence external search result back to the vault seed tree.
+    This means the next person who searches the same ancestor gets a free vault hit.
+    Only caches when confidence >= 60 to avoid polluting vault with noise.
+    """
+    try:
+        confidence = final_event.get('confidence', 0)
+        if confidence < 60:
+            return
+        from .match_index import search_vault, add_to_index
+        # Don't cache if already in vault
+        existing = search_vault(last, first_name=first, birth_year=birth_year, limit=3)
+        top = max((h.get('score', 0) for h in existing), default=0)
+        if top >= 70:
+            return  # already well-represented
+
+        seed_tree = Tree.query.filter_by(name='__vault_seed__').first()
+        if not seed_tree:
+            return
+
+        parts = [x.strip() for x in (birth_place or '').split(',')]
+        birth_state   = parts[-2][:50] if len(parts) >= 2 else None
+        birth_country = parts[-1][:50] if parts else None
+
+        person = Person(
+            tree_id      = seed_tree.id,
+            first_name   = (first or '')[:100],
+            last_name    = (last  or '')[:100],
+            birth_year   = birth_year,
+            birth_state  = birth_state,
+            birth_country= birth_country,
+            death_year   = death_year,
+            confidence   = confidence,
+        )
+        db.session.add(person)
+        db.session.flush()
+        from .match_index import update_person_in_index
+        update_person_in_index(person.id, person.last_name, person.birth_year,
+                               person.first_name, person.birth_state, person.birth_country,
+                               seed_tree.id, seed_tree.user_id)
+        db.session.commit()
+    except Exception:
+        pass
+
+
 @search_bp.post('/search')
 @limiter.limit('30 per hour')
 def guest_search():
@@ -135,6 +182,30 @@ def guest_search():
         results=cascade['results'], gaps=cascade['gaps']
     )
     return jsonify({**cascade, 'summary': synthesis['summary']})
+
+
+@search_bp.get('/api/vault/search')
+@limiter.limit('120 per hour')
+@require_auth
+def vault_quick_search():
+    """
+    Free vault-only search — no token cost, instant results from local vault.
+    Used for auto-populate as users type names in the tree builder.
+    Returns up to 10 vault matches. Does NOT call any external sources.
+    """
+    last  = request.args.get('last', '').strip()
+    first = request.args.get('first', '').strip()
+    year  = request.args.get('year', '').strip()
+    if not last:
+        return jsonify({'results': [], 'vault_count': 0})
+    birth_year = int(year) if year.isdigit() else None
+    from .match_index import search_vault
+    hits = search_vault(last, first_name=first, birth_year=birth_year, limit=10)
+    return jsonify({
+        'results': hits,
+        'vault_count': len(hits),
+        'source': 'vault',
+    })
 
 
 @search_bp.post('/api/search')
@@ -170,11 +241,14 @@ def authenticated_search():
 @search_bp.get('/api/search/stream')
 @limiter.limit('60 per hour')
 @require_auth
-@require_tokens(20)
 def search_stream():
     """
     SSE endpoint — streams results as each source completes.
     Events: {source, results, count, total}  then final {done:true, results, gaps, summary, ...}
+
+    Token model:
+      - Vault hit only (score >= 60, >= 3 results): FREE — 0 tokens
+      - External sources needed: 20 tokens charged before firing external calls
     """
     data = request.args
     if not data.get('last'):
@@ -198,16 +272,74 @@ def search_stream():
     community  = _fetch_community_results(full_first, last, birth_year)
 
     def generate():
+        import json as _json
         all_results = []
         final_event = None
 
+        # ── Phase 0: vault search — always free ──────────────────────────────
+        from .match_index import search_vault
+        vault_hits = search_vault(last, first_name=full_first, birth_year=birth_year, limit=20)
+        vault_results = [{
+            'source': 'rootbridge_vault',
+            'record_type': 'vault',
+            'title': f"{h.get('first_name','')} {h.get('last_name','')}".strip(),
+            'date': str(h.get('birth_year','')) if h.get('birth_year') else '',
+            'location': f"{h.get('birth_state','')} {h.get('birth_country','')}".strip(),
+            'url': '',
+            'vault_score': h.get('score', 0),
+        } for h in vault_hits]
+
+        if vault_results:
+            all_results.extend(vault_results)
+            yield 'data: ' + _json.dumps({
+                'source': 'rootbridge_vault',
+                'results': vault_results,
+                'count': len(vault_results),
+                'total': len(all_results),
+            }) + '\n\n'
+
+        # Strong vault hit → return immediately, no token charge, no external calls
+        top_score = max((h.get('score', 0) for h in vault_hits), default=0)
+        if len(vault_hits) >= 3 and top_score >= 60:
+            yield 'data: ' + _json.dumps({
+                'done': True,
+                'results': vault_results,
+                'gaps': [],
+                'summary': f'Found {len(vault_hits)} matching records in the RootBridge vault.',
+                'confidence': min(top_score, 95),
+                'vault_only': True,
+                'tokens_charged': 0,
+            }) + '\n\n'
+            return
+
+        # ── External sources needed — charge tokens now ───────────────────────
+        current_user = User.query.get(user_id)
+        if not current_user or current_user.total_tokens() < 20:
+            yield 'data: ' + _json.dumps({
+                'done': True,
+                'results': vault_results,
+                'gaps': [],
+                'summary': 'Vault search complete. Subscribe or top up tokens to search external records.',
+                'confidence': top_score,
+                'vault_only': True,
+                'tokens_charged': 0,
+                'token_gate': True,
+            }) + '\n\n'
+            return
+
+        if not current_user.deduct_tokens(20):
+            yield 'data: ' + _json.dumps({'error': 'Token deduction failed'}), + '\n\n'
+            return
+        db.session.commit()
+
+        yield 'data: ' + _json.dumps({'tokens_charged': 20}) + '\n\n'
+
         for event_str in run_us_cascade_stream(
             full_first, last, birth_year, birth_place,
-            community_results=community
+            community_results=community,
+            skip_vault=True,  # vault already searched above
         ):
             yield event_str
-            # Track the last event so we can save after stream ends
-            import json as _json
             try:
                 ev = _json.loads(event_str.replace('data: ', '', 1).strip())
                 if ev.get('done'):
@@ -220,7 +352,6 @@ def search_stream():
         # Save to DB after stream completes
         if final_event:
             try:
-                from .search_cascade import run_us_cascade  # noqa (for _save_search_to_db context)
                 ids = _save_search_to_db(
                     user_id, tree_name, full_first, last, birth_year, birth_place,
                     {'results': final_event.get('results', []),
@@ -229,8 +360,11 @@ def search_stream():
                     final_event.get('summary', ''),
                     death_year=death_year, death_place=death_place,
                 )
-                import json as _json
                 yield 'data: ' + _json.dumps({'saved': True, **ids}) + '\n\n'
+
+                # Cache high-confidence finds back to vault so future searches are free
+                _cache_to_vault(full_first, last, birth_year, birth_place,
+                                death_year, final_event)
             except Exception:
                 pass
 
@@ -570,3 +704,41 @@ def expand_tree(person_id):
     db.session.commit()
 
     return jsonify({'created': created, 'person_id': person_id})
+
+
+# ── Dev/test search — no auth, no tokens, local use only ─────────────────────
+
+@search_bp.get('/api/dev/search/stream')
+def dev_search_stream():
+    """
+    Auth-free SSE search endpoint for local testing.
+    Calls the full cascade including OpenRouter synthesis.
+    NOT for production use — no auth, no token deduction.
+    """
+    import os
+    if os.environ.get('RAILWAY_ENVIRONMENT'):
+        return jsonify({'error': 'Dev endpoint disabled in production'}), 403
+
+    data = request.args
+    first      = data.get('first', '')
+    last       = data.get('last', '')
+    birth_year = int(data['birth_year']) if data.get('birth_year') else None
+    birth_place= data.get('birth_place', '')
+    death_year = int(data['death_year']) if data.get('death_year') else None
+    death_place= data.get('death_place', '')
+
+    if not last:
+        return jsonify({'error': 'Last name required'}), 400
+
+    def generate():
+        for event_str in run_us_cascade_stream(
+            first, last, birth_year, birth_place,
+            skip_vault=False,
+        ):
+            yield event_str
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype='text/event-stream',
+        headers={'X-Accel-Buffering': 'no', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive'},
+    )
