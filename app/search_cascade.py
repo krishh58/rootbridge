@@ -1764,7 +1764,8 @@ def _run_phase(tasks: dict, all_results: list, timeout: float):
 
 
 def _build_phase2_tasks(picks: list, first: str, last: str,
-                        birth_year: int, birth_place: str) -> dict:
+                        birth_year: int, birth_place: str,
+                        is_us: bool = False) -> dict:
     """Turn AI-chosen source keys into callables."""
     _first_only = first.split()[0] if first else first
     _has_playwright = _playwright_available()
@@ -1794,8 +1795,16 @@ def _build_phase2_tasks(picks: list, first: str, last: str,
             'matricula':      lambda: search_matricula(first, last, birth_year, 'DE'),
         })
 
+    _EUROPEAN_KEYS = {
+        'freebmd', 'irish_birth', 'irish_death', 'antenati',
+        'geneteka', 'digitalarkivet', 'archion', 'matricula',
+    }
+
     for key in picks:
         if key in mapping:
+            # Skip European sources when birth/death place is clearly US
+            if is_us and key in _EUROPEAN_KEYS:
+                continue
             tasks[key] = mapping[key]
     return tasks
 
@@ -2282,7 +2291,7 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     }) + '\n\n'
 
     # ── Phase 2: AI-chosen sources ───────────────────────────────────────────
-    phase2_tasks = _build_phase2_tasks(picks, first, last, birth_year or 0, birth_place)
+    phase2_tasks = _build_phase2_tasks(picks, first, last, birth_year or 0, birth_place, is_us=_is_us)
     if phase2_tasks:
         yield from _run_phase(phase2_tasks, all_results, timeout=16)
 

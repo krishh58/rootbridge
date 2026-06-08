@@ -221,6 +221,12 @@ Rules:
 Reply with ONLY a JSON array of source keys, e.g.: {fallback}
 No explanation. Just the array."""
 
+    _EUROPEAN_SOURCES = {
+        'freebmd', 'irish_birth', 'irish_death', 'antenati',
+        'geneteka', 'digitalarkivet', 'archion', 'matricula',
+        'hamburg_emigrant', 'ellis_island', 'castle_garden',
+    }
+
     try:
         resp = requests.post(
             OPENROUTER_URL,
@@ -240,7 +246,13 @@ No explanation. Just the array."""
         raw = resp.json()['choices'][0]['message']['content'].strip()
         picks = _json.loads(raw)
         # Validate — only return keys that actually exist
-        return [p for p in picks if p in AGENTIC_SOURCES]
+        valid = [p for p in picks if p in AGENTIC_SOURCES]
+        # Hard-enforce location rules — never trust the AI alone
+        if is_us and not person.get('deep_ancestry'):
+            valid = [p for p in valid if p not in _EUROPEAN_SOURCES]
+        if is_modern:
+            valid = [p for p in valid if p != 'chronicling']
+        return valid
     except Exception:
         if is_modern and is_us:
             return ['obituaries', 'findagrave', 'va_gravesite']
