@@ -225,8 +225,80 @@ _OBIT_DOMAINS = {'legacy.com', 'findagrave.com', 'dignitymemorial.com', 'tribute
 _OBIT_SIGNALS = {'obituary', 'obituaries', 'passed away', 'in loving memory', 'burial',
                  'interment', 'survived by', 'memorial', 'graveside', 'funeral home'}
 
-BING_API_KEY = os.environ.get('BING_API_KEY', '')
-BING_SEARCH_URL = 'https://api.bing.microsoft.com/v7.0/search'
+BING_API_KEY   = os.environ.get('BING_API_KEY', '')
+SERPER_API_KEY = os.environ.get('SERPER_API_KEY', '')
+BING_SEARCH_URL   = 'https://api.bing.microsoft.com/v7.0/search'
+SERPER_SEARCH_URL = 'https://google.serper.dev/search'
+
+
+def search_serper_obits(first: str, last: str, birth_year: int = None,
+                        search_place: str = '') -> list:
+    """
+    Search Google via Serper.dev for obituaries.
+    Requires SERPER_API_KEY env var (free tier: 2,500 searches).
+    Google's index includes Legacy.com, FindAGrave, and local funeral home
+    sites that block direct scraping.
+    """
+    if not SERPER_API_KEY:
+        return []
+    try:
+        names_to_try = [(first, last)]
+        nick = _first_name_variants(first)
+        if nick:
+            names_to_try.append((nick[0], last))
+
+        results = []
+        seen_urls = set()
+
+        for fname, lname in names_to_try:
+            name_q = f'"{fname} {lname}"'
+            parts = [name_q, 'obituary']
+            if search_place:
+                parts.append(search_place)
+            query = ' '.join(parts)
+
+            resp = req_lib.post(
+                SERPER_SEARCH_URL,
+                json={'q': query, 'num': 10, 'gl': 'us', 'hl': 'en'},
+                headers={'X-API-KEY': SERPER_API_KEY, 'Content-Type': 'application/json'},
+                timeout=10,
+            )
+            resp.raise_for_status()
+            organic = resp.json().get('organic', [])
+
+            last_lower = lname.lower()
+            for item in organic:
+                url   = item.get('link', '')
+                title = item.get('title', '')
+                snip  = item.get('snippet', '')
+                combined = (title + ' ' + snip + ' ' + url).lower()
+
+                if url in seen_urls:
+                    continue
+                if last_lower not in combined:
+                    continue
+                has_signal = any(s in combined for s in _OBIT_SIGNALS)
+                has_domain = any(d in url.lower() for d in _OBIT_DOMAINS)
+                if not (has_signal or has_domain):
+                    continue
+
+                seen_urls.add(url)
+                results.append({
+                    'source': 'google_obituary',
+                    'record_type': 'obituary',
+                    'title': title,
+                    'snippet': snip[:300],
+                    'url': url,
+                    'name': f'{fname} {lname}',
+                })
+
+            if results:
+                break  # found with primary name — skip nickname variant
+
+        return results[:5]
+    except Exception as e:
+        logger.warning('Serper obituary search failed: %s', e)
+        return []
 
 
 def search_bing_api_obits(first: str, last: str, birth_year: int = None,
@@ -234,13 +306,10 @@ def search_bing_api_obits(first: str, last: str, birth_year: int = None,
     """
     Search Bing Web Search API v7 for obituaries.
     Requires BING_API_KEY env var (free Azure tier: 1,000 searches/month).
-    Bing's index includes Legacy.com, FindAGrave, funeral home sites, and
-    local newspapers — all sources that block direct scraping.
     """
     if not BING_API_KEY:
         return []
     try:
-        import urllib.parse as _up
         names_to_try = [(first, last)]
         nick = _first_name_variants(first)
         if nick:
@@ -292,7 +361,7 @@ def search_bing_api_obits(first: str, last: str, birth_year: int = None,
                 })
 
             if results:
-                break  # found results with primary name — skip nickname search
+                break
 
         return results[:5]
     except Exception as e:
@@ -2149,11 +2218,14 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
 
     _obit_task = {}
     if _is_modern:
-        if BING_API_KEY:
-            # Bing API — best option: real index, includes Legacy.com, no Cloudflare
+        if SERPER_API_KEY:
+            # Google via Serper — best free option, includes Legacy.com
+            _obit_task['google_obituary'] = lambda: search_serper_obits(first, last, birth_year, _search_place)
+        elif BING_API_KEY:
+            # Bing API fallback
             _obit_task['bing_obituary'] = lambda: search_bing_api_obits(first, last, birth_year, _search_place)
         else:
-            # Fallbacks when no Bing key: Yahoo + DDG + Bing Lite
+            # No API key — Yahoo + DDG + Bing Lite
             _obit_task['yahoo_obituary'] = lambda: search_yahoo_obits(first, last, birth_year, _search_place)
             if _first_alt:
                 _fa = _first_alt
