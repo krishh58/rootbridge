@@ -22,7 +22,7 @@ from pathlib import Path
 
 import boto3
 from botocore.config import Config
-from app.chunk_crypto import decrypt
+from .chunk_crypto import decrypt
 
 logger = logging.getLogger(__name__)
 

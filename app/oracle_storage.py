@@ -15,7 +15,7 @@ import os
 import boto3
 from botocore.config import Config
 from botocore.exceptions import ClientError
-from app.chunk_crypto import decrypt
+from .chunk_crypto import decrypt
 
 _BUCKET = os.environ.get('ORACLE_BUCKET', 'rootbridge-data')
 _NAMESPACE = os.environ.get('ORACLE_NAMESPACE', '')      # your tenancy namespace
