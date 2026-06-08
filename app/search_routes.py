@@ -103,6 +103,8 @@ def _save_search_to_db(user_id: int, tree_name: str, first: str, last: str,
     for gap in cascade['gaps']:
         db.session.add(Gap(
             person_id=person.id, gap_type=gap['gap_type'],
+            label=gap.get('label', ''),
+            detail=gap.get('detail', ''),
             suggested_source=gap.get('suggested_source', ''),
             suggested_query=gap.get('suggested_query', ''),
         ))

@@ -63,6 +63,15 @@ def create_app(config=None):
     with app.app_context():
         from . import models  # noqa: register models with SQLAlchemy
         db.create_all()
+        # Safe migrations: add columns that may not exist yet
+        from sqlalchemy import text as _text
+        with db.engine.connect() as _conn:
+            for _col, _type in [('label', 'VARCHAR(255)'), ('detail', 'TEXT')]:
+                try:
+                    _conn.execute(_text(f'ALTER TABLE gaps ADD COLUMN {_col} {_type}'))
+                    _conn.commit()
+                except Exception:
+                    pass  # column already exists
 
     # Index builder disabled — was locking persons table on startup and blocking inserts
     # if not app.config.get('TESTING'):

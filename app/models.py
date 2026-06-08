@@ -115,6 +115,8 @@ class Gap(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     person_id = db.Column(db.Integer, db.ForeignKey('persons.id'), nullable=False)
     gap_type = db.Column(db.String(100), nullable=False)
+    label = db.Column(db.String(255))
+    detail = db.Column(db.Text)
     suggested_source = db.Column(db.String(255))
     suggested_query = db.Column(db.Text)
     resolved = db.Column(db.Boolean, default=False)

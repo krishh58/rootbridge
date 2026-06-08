@@ -52,7 +52,8 @@ def _person_detail(p):
         for r in p.search_results
     ]
     d['gaps'] = [
-        {'id': gap.id, 'gap_type': gap.gap_type, 'suggested_source': gap.suggested_source,
+        {'id': gap.id, 'gap_type': gap.gap_type, 'label': gap.label,
+         'detail': gap.detail, 'suggested_source': gap.suggested_source,
          'suggested_query': gap.suggested_query, 'resolved': gap.resolved}
         for gap in p.gaps
     ]

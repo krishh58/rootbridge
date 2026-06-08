@@ -499,9 +499,9 @@ _OBIT_DOMAINS = frozenset([
 def search_obituaries(first: str, last: str, birth_year: int = None,
                       birth_place: str = '') -> list:
     """
-    Search DuckDuckGo for obituaries using a real Chromium browser.
-    Especially effective for deaths in the last 10-20 years where funeral
-    home sites and local newspapers have indexed the obituary online.
+    Search Bing for obituaries using a real Chromium browser.
+    Uses Bing (not DuckDuckGo) — better results and less server-IP blocking.
+    Especially effective for deaths in the last 10-20 years.
     """
     try:
         pw, browser = _make_browser()
@@ -514,22 +514,21 @@ def search_obituaries(first: str, last: str, birth_year: int = None,
             query = ' '.join(parts)
 
             import urllib.parse
-            url = f'https://html.duckduckgo.com/html/?q={urllib.parse.quote(query)}'
+            url = f'https://www.bing.com/search?q={urllib.parse.quote(query)}'
             page.goto(url, timeout=30000, wait_until='domcontentloaded')
-            time.sleep(3)
+            time.sleep(2)
 
-            # Parse result elements
-            result_els = page.query_selector_all('.result')
             results = []
-            for el in result_els[:8]:
+            # Bing result structure: li.b_algo contains h2 > a and p.b_lineclamp2
+            result_els = page.query_selector_all('li.b_algo')
+            for el in result_els[:10]:
                 try:
-                    title = el.query_selector('.result__title')
-                    url_el = el.query_selector('.result__url')
-                    snip_el = el.query_selector('.result__snippet')
-                    if not (title and url_el):
+                    title_el = el.query_selector('h2 a')
+                    snip_el  = el.query_selector('p, .b_lineclamp2, .b_caption p')
+                    if not title_el:
                         continue
-                    title_text = title.inner_text().strip()
-                    result_url = 'https://' + url_el.inner_text().strip()
+                    title_text = title_el.inner_text().strip()
+                    result_url = title_el.get_attribute('href') or ''
                     snippet = snip_el.inner_text().strip() if snip_el else ''
                     combined = (title_text + ' ' + snippet).lower()
 
@@ -556,7 +555,7 @@ def search_obituaries(first: str, last: str, birth_year: int = None,
             browser.close()
             pw.stop()
     except Exception as e:
-        logger.debug('Obituary DDG search failed: %s', e)
+        logger.debug('Obituary Bing search failed: %s', e)
         return []
 
 

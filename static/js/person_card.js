@@ -208,9 +208,11 @@ function buildCardHTML(person, hometown, messages, documents) {
     </span>`;
   }).join('') || '<span class="no-data">No sources yet</span>';
 
-  const gapsHTML = (person.gaps || []).filter(g => !g.resolved).map(g =>
-    `<div class="gap-item">✗ ${escapeHtml(g.gap_type.replace(/_/g,' '))} — <em>${escapeHtml(g.suggested_source)}</em></div>`
-  ).join('') || '';
+  const gapsHTML = (person.gaps || []).filter(g => !g.resolved).map(g => {
+    const label = g.label || g.gap_type.replace(/_/g,' ');
+    const detail = g.detail || g.suggested_source || '';
+    return `<div class="gap-item">✗ ${escapeHtml(label)}${detail ? ` — <em>${escapeHtml(detail)}</em>` : ''}</div>`;
+  }).join('') || '';
 
   const hometownHTML = hometown.available ? `
     <div class="hometown-panel">
