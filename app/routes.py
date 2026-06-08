@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, g, send_from_directory, current_app, request
-import os, json
+import os, json, logging
+logger = logging.getLogger(__name__)
 from pathlib import Path
 from .auth import require_auth
 from .db import db
@@ -49,18 +50,23 @@ def reset_user():
         return jsonify({'error': f'User {email} not found'}), 404
     from sqlalchemy import text as _t
     uid = user.id
-    # Delete in dependency order to avoid FK violations
     for stmt in [
         'DELETE FROM alfred_messages WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u)',
+        'DELETE FROM research_messages WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u)',
+        'DELETE FROM tree_invites WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u)',
+        'DELETE FROM tree_collaborators WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u)',
+        'DELETE FROM person_matches WHERE person_id IN (SELECT id FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u))',
+        'DELETE FROM person_edges WHERE person_id IN (SELECT id FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u))',
+        'DELETE FROM documents WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u)',
         'DELETE FROM gaps WHERE person_id IN (SELECT id FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u))',
         'DELETE FROM search_results WHERE person_id IN (SELECT id FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u))',
-        'DELETE FROM research_findings WHERE person_id IN (SELECT id FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u))',
         'DELETE FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u)',
         'DELETE FROM trees WHERE user_id=:u',
     ]:
         try:
             db.session.execute(_t(stmt), {'u': uid})
-        except Exception:
+        except Exception as _e:
+            logger.warning('reset-user stmt failed: %s', _e)
             db.session.rollback()
     db.session.commit()
     return jsonify({'ok': True, 'email': email})
