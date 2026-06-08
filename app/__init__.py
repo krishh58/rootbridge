@@ -5,17 +5,10 @@ from flask_limiter.util import get_remote_address
 from .config import Config
 from .db import db
 
-def _limiter_storage_uri():
-    """Use Redis if REDIS_URL looks valid, otherwise fall back to in-memory."""
-    url = os.environ.get('REDIS_URL', '')
-    if url.startswith('redis://') or url.startswith('rediss://'):
-        return url
-    return 'memory://'
-
 limiter = Limiter(
     key_func=get_remote_address,
     default_limits=[],
-    storage_uri=_limiter_storage_uri(),
+    storage_uri='memory://',
 )
 
 def create_app(config=None):
