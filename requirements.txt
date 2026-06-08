@@ -19,3 +19,4 @@ Flask-Migrate==4.0.7
 reportlab==4.2.5
 boto3>=1.34.0
 cryptography>=42.0.0
+playwright-stealth==1.0.6

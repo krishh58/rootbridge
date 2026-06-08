@@ -59,7 +59,14 @@ def _make_page(browser):
         locale='en-US',
     )
     context.add_init_script(_STEALTH_SCRIPT)
-    return context.new_page()
+    page = context.new_page()
+    # Apply playwright-stealth if available — masks headless indicators
+    try:
+        from playwright_stealth import stealth_sync
+        stealth_sync(page)
+    except ImportError:
+        pass
+    return page
 
 
 def _safe_text(page) -> str:
