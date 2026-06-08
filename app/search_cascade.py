@@ -220,9 +220,84 @@ def search_chronicling(first: str, last: str, birth_year: int = None) -> list:
 
 _OBIT_DOMAINS = {'legacy.com', 'findagrave.com', 'dignitymemorial.com', 'tributearchive.com',
                  'tributes.com', 'obits.com', 'obituaries.com', 'funeralhome', 'funeral',
-                 'nola.com', 'theadvocate.com', 'legacy', 'tribute', 'memorial'}
+                 'nola.com', 'theadvocate.com', 'legacy', 'tribute', 'memorial',
+                 'harrymckneely.com', 'tukioswebsites.com', 'obits.'}
 _OBIT_SIGNALS = {'obituary', 'obituaries', 'passed away', 'in loving memory', 'burial',
                  'interment', 'survived by', 'memorial', 'graveside', 'funeral home'}
+
+BING_API_KEY = os.environ.get('BING_API_KEY', '')
+BING_SEARCH_URL = 'https://api.bing.microsoft.com/v7.0/search'
+
+
+def search_bing_api_obits(first: str, last: str, birth_year: int = None,
+                          search_place: str = '') -> list:
+    """
+    Search Bing Web Search API v7 for obituaries.
+    Requires BING_API_KEY env var (free Azure tier: 1,000 searches/month).
+    Bing's index includes Legacy.com, FindAGrave, funeral home sites, and
+    local newspapers — all sources that block direct scraping.
+    """
+    if not BING_API_KEY:
+        return []
+    try:
+        import urllib.parse as _up
+        names_to_try = [(first, last)]
+        nick = _first_name_variants(first)
+        if nick:
+            names_to_try.append((nick[0], last))
+
+        results = []
+        seen_urls = set()
+
+        for fname, lname in names_to_try:
+            name_q = f'"{fname} {lname}"'
+            parts = [name_q, 'obituary']
+            if search_place:
+                parts.append(search_place)
+            query = ' '.join(parts)
+
+            resp = req_lib.get(
+                BING_SEARCH_URL,
+                params={'q': query, 'count': 10, 'mkt': 'en-US', 'safeSearch': 'Off'},
+                headers={'Ocp-Apim-Subscription-Key': BING_API_KEY},
+                timeout=10,
+            )
+            resp.raise_for_status()
+            web_pages = resp.json().get('webPages', {}).get('value', [])
+
+            last_lower = lname.lower()
+            for page in web_pages:
+                url   = page.get('url', '')
+                title = page.get('name', '')
+                snip  = page.get('snippet', '')
+                combined = (title + ' ' + snip + ' ' + url).lower()
+
+                if url in seen_urls:
+                    continue
+                if last_lower not in combined:
+                    continue
+                has_signal = any(s in combined for s in _OBIT_SIGNALS)
+                has_domain = any(d in url.lower() for d in _OBIT_DOMAINS)
+                if not (has_signal or has_domain):
+                    continue
+
+                seen_urls.add(url)
+                results.append({
+                    'source': 'bing_obituary',
+                    'record_type': 'obituary',
+                    'title': title,
+                    'snippet': snip[:300],
+                    'url': url,
+                    'name': f'{fname} {lname}',
+                })
+
+            if results:
+                break  # found results with primary name — skip nickname search
+
+        return results[:5]
+    except Exception as e:
+        logger.warning('Bing API obituary search failed: %s', e)
+        return []
 
 def search_duckduckgo_obits(first: str, last: str, birth_year: int = None,
                             search_place: str = '') -> list:
@@ -2074,16 +2149,17 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
 
     _obit_task = {}
     if _is_modern:
-        # Yahoo search — works from server IPs, uses Bing index
-        _obit_task['yahoo_obituary'] = lambda: search_yahoo_obits(first, last, birth_year, _search_place)
-        # Also try with nickname variant if one exists
-        if _first_alt:
-            _fa = _first_alt  # capture for lambda
-            _obit_task['yahoo_obituary_nick'] = lambda: search_yahoo_obits(_fa, last, birth_year, _search_place)
-        # DuckDuckGo HTML fallback
-        _obit_task['ddg_obituary'] = lambda: search_duckduckgo_obits(first, last, birth_year, _search_place)
-        # Bing Lite HTTP fallback
-        _obit_task['bing_lite_obituary'] = lambda: search_bing_lite_obits(first, last, birth_year, _search_place)
+        if BING_API_KEY:
+            # Bing API — best option: real index, includes Legacy.com, no Cloudflare
+            _obit_task['bing_obituary'] = lambda: search_bing_api_obits(first, last, birth_year, _search_place)
+        else:
+            # Fallbacks when no Bing key: Yahoo + DDG + Bing Lite
+            _obit_task['yahoo_obituary'] = lambda: search_yahoo_obits(first, last, birth_year, _search_place)
+            if _first_alt:
+                _fa = _first_alt
+                _obit_task['yahoo_obituary_nick'] = lambda: search_yahoo_obits(_fa, last, birth_year, _search_place)
+            _obit_task['ddg_obituary'] = lambda: search_duckduckgo_obits(first, last, birth_year, _search_place)
+            _obit_task['bing_lite_obituary'] = lambda: search_bing_lite_obits(first, last, birth_year, _search_place)
         _obit_task['legacy_obituary'] = lambda: search_legacy_obits(first, last, birth_year, _search_place)
         # Louisiana-specific: Harry McKneely & Son covers Hammond/Ponchatoula area
         _place_lower = _search_place.lower()
