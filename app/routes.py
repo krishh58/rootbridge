@@ -37,6 +37,25 @@ def set_tier():
     db.session.commit()
     return jsonify({'ok': True, 'email': user.email, 'tier': user.tier, 'tokens': user.token_balance})
 
+@routes_bp.post('/api/admin/reset-user')
+def reset_user():
+    secret = os.environ.get('ADMIN_SECRET', '')
+    if not secret or request.headers.get('X-Admin-Secret') != secret:
+        return jsonify({'error': 'Forbidden'}), 403
+    data = request.get_json() or {}
+    email = data.get('email', '').strip()
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({'error': f'User {email} not found'}), 404
+    from sqlalchemy import text as _text
+    deleted = db.session.execute(
+        _text('DELETE FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id = :uid)'),
+        {'uid': user.id}
+    ).rowcount
+    db.session.execute(_text('DELETE FROM trees WHERE user_id = :uid'), {'uid': user.id})
+    db.session.commit()
+    return jsonify({'ok': True, 'email': email, 'persons_deleted': deleted})
+
 @routes_bp.get('/api/me')
 @require_auth
 def me():
