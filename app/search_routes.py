@@ -363,7 +363,6 @@ def search_stream():
         if final_event:
             try:
                 cascade_results = final_event.get('results', [])
-                # Vault results were streamed but not included in final_event — add them
                 merged_results = vault_results + cascade_results
                 ids = _save_search_to_db(
                     user_id, tree_name, full_first, last, birth_year, birth_place,
@@ -373,13 +372,13 @@ def search_stream():
                     final_event.get('summary', ''),
                     death_year=death_year, death_place=death_place,
                 )
-                yield 'data: ' + _json.dumps({'saved': True, **ids}) + '\n\n'
+                yield 'data: ' + _json.dumps({'saved': True, 'vault_count': len(vault_results), 'cascade_count': len(cascade_results), **ids}) + '\n\n'
 
-                # Cache high-confidence finds back to vault so future searches are free
                 _cache_to_vault(full_first, last, birth_year, birth_place,
                                 death_year, final_event)
-            except Exception:
-                pass
+            except Exception as _save_err:
+                import traceback
+                yield 'data: ' + _json.dumps({'save_error': str(_save_err), 'trace': traceback.format_exc()[-500:]}) + '\n\n'
 
     return Response(
         stream_with_context(generate()),
