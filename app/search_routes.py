@@ -344,6 +344,7 @@ def search_stream():
             community_results=community,
             skip_vault=True,  # vault already searched above
             middle=middle,
+            death_year=death_year,
         ):
             yield event_str
             try:
