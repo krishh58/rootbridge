@@ -214,6 +214,74 @@ def search_chronicling(first: str, last: str, birth_year: int = None) -> list:
 
 
 # ---------------------------------------------------------------------------
+# Brave Search API — free tier 2,000/mo, real web results, no Playwright needed
+# Set BRAVE_API_KEY env var to enable
+# ---------------------------------------------------------------------------
+
+_BRAVE_KEY = os.environ.get('BRAVE_API_KEY', '')
+_OBIT_DOMAINS = {'legacy.com', 'findagrave.com', 'dignitymemorial.com', 'tributearchive.com',
+                 'tributes.com', 'obits.com', 'obituaries.com', 'funeralhome', 'funeral'}
+_OBIT_SIGNALS = {'obituary', 'obituaries', 'passed away', 'in loving memory', 'burial',
+                 'interment', 'survived by', 'memorial', 'graveside'}
+
+def search_brave_obits(first: str, last: str, birth_year: int = None,
+                       search_place: str = '') -> list:
+    """
+    Search Brave Search API for obituaries. Free tier: 2,000 queries/month.
+    Returns [] silently if BRAVE_API_KEY not set.
+    """
+    if not _BRAVE_KEY:
+        return []
+    try:
+        name_q = f'"{first} {last}"' if first else f'"{last}"'
+        parts = [name_q, 'obituary']
+        if search_place:
+            parts.append(search_place)
+        query = ' '.join(parts)
+
+        resp = req_lib.get(
+            'https://api.search.brave.com/res/v1/web/search',
+            params={'q': query, 'count': 10, 'search_lang': 'en', 'country': 'us'},
+            headers={
+                'Accept': 'application/json',
+                'Accept-Encoding': 'gzip',
+                'X-Subscription-Token': _BRAVE_KEY,
+            },
+            timeout=8,
+        )
+        resp.raise_for_status()
+        web_results = resp.json().get('web', {}).get('results', [])
+
+        results = []
+        for r in web_results:
+            url = r.get('url', '')
+            title = r.get('title', '')
+            desc = r.get('description', '')
+            combined = (title + ' ' + desc + ' ' + url).lower()
+
+            if last.lower() not in combined:
+                continue
+            has_signal = any(s in combined for s in _OBIT_SIGNALS)
+            has_domain = any(d in url.lower() for d in _OBIT_DOMAINS)
+            if not (has_signal or has_domain):
+                continue
+
+            results.append({
+                'source': 'obituary_web',
+                'record_type': 'obituary',
+                'title': title,
+                'snippet': desc[:200],
+                'url': url,
+                'name': f'{first} {last}',
+            })
+
+        return results[:4]
+    except Exception as e:
+        logger.debug('Brave obituary search failed: %s', e)
+        return []
+
+
+# ---------------------------------------------------------------------------
 # Legacy.com obituary search — HTTP-based, no Playwright needed
 # ---------------------------------------------------------------------------
 
@@ -1726,6 +1794,8 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
 
     _obit_task = {}
     if _is_modern:
+        # Brave Search API — best results, free 2k/mo, works from any server IP
+        _obit_task['brave_obituary'] = lambda: search_brave_obits(first, last, birth_year, _search_place)
         _obit_task['legacy_obituary'] = lambda: search_legacy_obits(first, last, birth_year, _search_place)
         if _playwright_available():
             from .playwright_scrapers import search_obituaries as _search_obits, search_findagrave as _search_fg
