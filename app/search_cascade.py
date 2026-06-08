@@ -231,77 +231,190 @@ BING_SEARCH_URL   = 'https://api.bing.microsoft.com/v7.0/search'
 SERPER_SEARCH_URL = 'https://google.serper.dev/search'
 
 
+def _serper_query(query: str, num: int = 10) -> dict:
+    """Fire one Serper search and return the full response dict."""
+    resp = req_lib.post(
+        SERPER_SEARCH_URL,
+        json={'q': query, 'num': num, 'gl': 'us', 'hl': 'en'},
+        headers={'X-API-KEY': SERPER_API_KEY, 'Content-Type': 'application/json'},
+        timeout=10,
+    )
+    resp.raise_for_status()
+    return resp.json()
+
+
+def _serper_extract_hits(data: dict, fname: str, lname: str,
+                          seen_urls: set, source_tag: str = 'google_obituary') -> list:
+    """
+    Pull obituary hits out of a Serper response dict.
+    Checks organic results, answerBox, and knowledgeGraph.
+    Name must appear in title or snippet — prevents generic index pages matching.
+    """
+    hits = []
+    last_lower  = lname.lower()
+    fname_lower = fname.lower()
+
+    # answerBox — sometimes Google surfaces the obituary directly
+    ab = data.get('answerBox', {})
+    if ab:
+        ab_text = (ab.get('title', '') + ' ' + ab.get('answer', '') +
+                   ' ' + ab.get('snippet', '')).lower()
+        if last_lower in ab_text and fname_lower in ab_text:
+            url = ab.get('link', '')
+            if url and url not in seen_urls:
+                seen_urls.add(url)
+                hits.append({
+                    'source': source_tag,
+                    'record_type': 'obituary',
+                    'title': ab.get('title', f'{fname} {lname}'),
+                    'snippet': (ab.get('answer') or ab.get('snippet', ''))[:300],
+                    'url': url,
+                    'name': f'{fname} {lname}',
+                    'confidence_boost': 15,  # direct answer = high confidence
+                })
+
+    for item in data.get('organic', []):
+        url   = item.get('link', '')
+        title = item.get('title', '')
+        snip  = item.get('snippet', '')
+        combined  = (title + ' ' + snip).lower()
+        url_lower = url.lower()
+
+        if url in seen_urls:
+            continue
+        if last_lower not in combined:
+            continue
+        if fname_lower not in combined:
+            continue
+        has_signal = any(s in combined for s in _OBIT_SIGNALS)
+        has_domain = any(d in url_lower for d in _OBIT_DOMAINS)
+        if not (has_signal or has_domain):
+            continue
+
+        seen_urls.add(url)
+        hits.append({
+            'source': source_tag,
+            'record_type': 'obituary',
+            'title': title,
+            'snippet': snip[:300],
+            'url': url,
+            'name': f'{fname} {lname}',
+        })
+
+    return hits
+
+
+def _serper_fetch_full_obit(url: str, first: str, last: str) -> str | None:
+    """
+    Fetch the actual obituary page and extract full text.
+    Skips Cloudflare-protected domains — returns None so we fall back to snippet.
+    """
+    _cf_domains = {'legacy.com', 'tributes.com', 'dignitymemorial.com',
+                   'obituaries.com', 'obittree.com'}
+    domain = url.lower().split('/')[2].replace('www.', '')
+    if any(d in domain for d in _cf_domains):
+        return None
+    try:
+        from bs4 import BeautifulSoup
+        r = req_lib.get(url, headers={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                          '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+            'Accept-Language': 'en-US,en;q=0.9',
+        }, timeout=8, allow_redirects=True)
+        if r.status_code != 200:
+            return None
+        soup = BeautifulSoup(r.text, 'html.parser')
+        last_lower = last.lower()
+        for sel in ['.obit-text', '.obituary-text', '.obit-bio', '.obituary-body',
+                    '.obit-content', '.obituary-content', '#obituary-text',
+                    '.tribute-text', '.memorial-text', 'article', 'main']:
+            el = soup.select_one(sel)
+            if el:
+                text = el.get_text(' ', strip=True)
+                if last_lower in text.lower() and len(text) > 100:
+                    return text[:3000]
+    except Exception:
+        pass
+    return None
+
+
 def search_serper_obits(first: str, last: str, birth_year: int = None,
                         search_place: str = '') -> list:
     """
-    Search Google via Serper.dev for obituaries.
-    Requires SERPER_API_KEY env var (free tier: 2,500 searches).
-    Google's index includes Legacy.com, FindAGrave, and local funeral home
-    sites that block direct scraping.
+    Search Google via Serper.dev for obituaries using multiple query strategies.
+
+    Strategies fired (each costs 1 of 2,500 free searches):
+      1. "<First Last>" obituary <place>           — primary name + place
+      2. "<Nick Last>" obituary <place>            — nickname variant (always, not fallback)
+      3. "<First Last>" obituary <year> <place>    — year-anchored (if birth_year known)
+      4. site:legacy.com "<First Last>" <place>    — site-targeted (reads Google cache)
+
+    Full obituary text fetched from accessible URLs (non-CF sites).
     """
     if not SERPER_API_KEY:
         return []
     try:
-        names_to_try = [(first, last)]
-        nick = _first_name_variants(first)
-        if nick:
-            names_to_try.append((nick[0], last))
+        nick_variants = _first_name_variants(first)
+        nick = nick_variants[0] if nick_variants else None
 
         results = []
-        seen_urls = set()
+        seen_urls: set = set()
 
-        for fname, lname in names_to_try:
-            name_q = f'"{fname} {lname}"'
-            parts = [name_q, 'obituary']
+        # ── Strategy 1: primary name + place ────────────────────────────────
+        q1 = f'"{first} {last}" obituary'
+        if search_place:
+            q1 += f' {search_place}'
+        data1 = _serper_query(q1)
+        results.extend(_serper_extract_hits(data1, first, last, seen_urls))
+
+        # ── Strategy 2: nickname variant (always run, not just fallback) ────
+        if nick:
+            q2 = f'"{nick} {last}" obituary'
             if search_place:
-                parts.append(search_place)
-            query = ' '.join(parts)
+                q2 += f' {search_place}'
+            data2 = _serper_query(q2)
+            results.extend(_serper_extract_hits(data2, nick, last, seen_urls))
 
-            resp = req_lib.post(
-                SERPER_SEARCH_URL,
-                json={'q': query, 'num': 10, 'gl': 'us', 'hl': 'en'},
-                headers={'X-API-KEY': SERPER_API_KEY, 'Content-Type': 'application/json'},
-                timeout=10,
-            )
-            resp.raise_for_status()
-            organic = resp.json().get('organic', [])
+        # ── Strategy 3: year-anchored (only if no hits yet) ─────────────────
+        if not results and birth_year:
+            q3 = f'"{first} {last}" obituary {birth_year}'
+            if search_place:
+                q3 += f' {search_place}'
+            data3 = _serper_query(q3)
+            results.extend(_serper_extract_hits(data3, first, last, seen_urls))
+            # Try nickname + year too
+            if nick and not results:
+                q3n = f'"{nick} {last}" obituary {birth_year}'
+                if search_place:
+                    q3n += f' {search_place}'
+                data3n = _serper_query(q3n)
+                results.extend(_serper_extract_hits(data3n, nick, last, seen_urls))
 
-            last_lower  = lname.lower()
-            fname_lower = fname.lower()
-            for item in organic:
-                url   = item.get('link', '')
-                title = item.get('title', '')
-                snip  = item.get('snippet', '')
-                combined = (title + ' ' + snip).lower()
-                url_lower = url.lower()
+        # ── Strategy 4: site-targeted Legacy.com (Google cache snippet) ─────
+        if not results:
+            q4 = f'site:legacy.com "{first} {last}"'
+            if search_place:
+                q4 += f' {search_place}'
+            data4 = _serper_query(q4)
+            results.extend(_serper_extract_hits(data4, first, last, seen_urls,
+                                                 source_tag='legacy_via_google'))
+            if nick and not results:
+                q4n = f'site:legacy.com "{nick} {last}"'
+                if search_place:
+                    q4n += f' {search_place}'
+                data4n = _serper_query(q4n)
+                results.extend(_serper_extract_hits(data4n, nick, last, seen_urls,
+                                                     source_tag='legacy_via_google'))
 
-                if url in seen_urls:
-                    continue
-                # Name must appear in title or snippet (not just URL)
-                # This prevents generic search index pages from matching
-                if last_lower not in combined:
-                    continue
-                if fname_lower not in combined:
-                    continue
-                has_signal = any(s in combined for s in _OBIT_SIGNALS)
-                has_domain = any(d in url_lower for d in _OBIT_DOMAINS)
-                if not (has_signal or has_domain):
-                    continue
+        # ── Enrich hits with full obit text where possible ───────────────────
+        for hit in results[:3]:
+            if not hit.get('full_text'):
+                full = _serper_fetch_full_obit(hit['url'], first, last)
+                if full:
+                    hit['full_text'] = full
 
-                seen_urls.add(url)
-                results.append({
-                    'source': 'google_obituary',
-                    'record_type': 'obituary',
-                    'title': title,
-                    'snippet': snip[:300],
-                    'url': url,
-                    'name': f'{fname} {lname}',
-                })
+        return results[:6]
 
-            if results:
-                break  # found specific match — skip nickname variant
-
-        return results[:5]
     except Exception as e:
         logger.warning('Serper obituary search failed: %s', e)
         return []
