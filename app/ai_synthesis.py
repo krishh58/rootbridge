@@ -118,6 +118,8 @@ def synthesize_gaps(person: dict, results: list, gaps: list, ctx=None) -> dict:
 
 # Available sources the agent can choose from in Phase 2
 AGENTIC_SOURCES = {
+    'ssdi':           'Social Security Death Index — 87M US death records, birth year, death year, state of issue',
+    'geni':           'Geni.com world family tree — millions of linked profiles with birth, death, and relationship data',
     'obituaries':     'US obituary databases — confirms death date, survivors, hometown',
     'va_gravesite':   'VA National Cemetery — confirms military service and burial',
     'chronicling':    'US newspapers 1770–1963 — birth announcements, marriage notices, obits',
@@ -128,6 +130,12 @@ AGENTIC_SOURCES = {
     'usgenweb':       'USGenWeb — volunteer-transcribed county census, vital and land records',
     'rootsweb':       'RootsWeb WorldConnect — user family trees with census citations',
     'open_library':   'OpenLibrary — digitised county histories and surname genealogy books',
+    'ship_manifest_db': 'Local indexed ship arrivals (Rupp 1727-1776, Strassburger 1727-1808, Hamburg 1850-1934) — instant search, no network. Best first stop for immigrant ancestors.',
+    'ship_manifest':  'Colonial/immigrant ship arrival records — Pennsylvania German lists 1727-1808, Hamburg emigrant lists 1850-1934. Best for pre-1850 ancestors with German/Irish/UK origin.',
+    'revwar_pension':   'Revolutionary War pension files (NARA M804, ~80K files) — sworn testimony with birth dates, birthplaces, marriage dates, children. Best for US veterans born 1730-1800.',
+    'castle_garden':   'Castle Garden NYC (1820-1892) — 11 million New York arrivals. German, Irish, British, Scandinavian immigrants pre-Ellis Island.',
+    'ellis_island':    'Ellis Island NYC (1892-1957) — 12 million arrivals. Southern/Eastern Europe: Italian, Polish, Russian, Greek, Jewish immigrants.',
+    'hamburg_emigrant':'German Emigration Database — Hamburg + Bremen departures 1820-1934. The DEPARTURE side: names, hometown, destination port. Best for tracing German ancestors back to their village.',
     'freebmd':        'FreeBMD — all UK births, marriages, deaths 1837–2006',
     'irish_birth':    'Irish civil registration births from 1864',
     'irish_death':    'Irish civil registration deaths from 1864',
@@ -147,6 +155,10 @@ def agentic_pick_sources(person: dict, phase1_results: list, ctx=None) -> list:
     name = f"{person.get('first_name', '')} {person.get('last_name', '')}".strip()
     birth_year = person.get('birth_year', 'unknown')
     birth_place = person.get('birth_place', 'unknown')
+    death_year = person.get('death_year', 'unknown')
+    death_place = person.get('death_place', 'unknown')
+    is_us = person.get('is_us', False)
+    is_modern = person.get('is_modern', False)
 
     found_sources = list({r.get('source') for r in phase1_results if r.get('source')})
     clues = []
@@ -157,15 +169,34 @@ def agentic_pick_sources(person: dict, phase1_results: list, ctx=None) -> list:
             clues.append(f"  - [{r.get('source')}] {line}")
 
     clue_text = '\n'.join(clues) if clues else '  (no records found in Phase 1)'
-
     context_block = ctx.to_prompt_block() if ctx else ''
-
     source_menu = '\n'.join(f'  {k}: {v}' for k, v in AGENTIC_SOURCES.items())
+
+    # Build location/era-aware rules
+    location_rules = []
+    if is_us:
+        location_rules.append('- This person is AMERICAN. Do NOT pick any European sources (freebmd, irish_birth, irish_death, antenati, geneteka, digitalarkivet, archion, matricula) unless Phase 1 found clear evidence of recent immigration.')
+    if is_modern:
+        location_rules.append('- This person died recently. Do NOT pick chronicling (ends 1963) — it will find nothing. Focus on obituaries, findagrave, va_gravesite.')
+    if death_place and death_place != 'unknown':
+        location_rules.append(f'- Death place is {death_place} — prioritize sources that cover this region.')
+    if not location_rules:
+        location_rules.append('- If birth place is clearly a US state, skip European sources unless Phase 1 shows immigration.')
+
+    location_block = '\n'.join(location_rules)
+
+    # Default fallback depends on era
+    if is_modern and is_us:
+        fallback = '["obituaries", "findagrave", "va_gravesite"]'
+    elif is_us:
+        fallback = '["obituaries", "nara", "wikitree"]'
+    else:
+        fallback = '["obituaries", "chronicling", "nara"]'
 
     prompt = f"""You are an agentic genealogy researcher. You just completed a Phase 1 search for:
   Name: {name}
-  Birth year: {birth_year}
-  Birth place: {birth_place}
+  Birth year: {birth_year}  |  Birth place: {birth_place}
+  Death year: {death_year}  |  Death place: {death_place}
 
 Phase 1 sources already searched: {', '.join(found_sources) or 'none'}"""
 
@@ -182,13 +213,12 @@ Available Phase 2 sources:
 
 Based on the clues above, pick the 2-4 most promising Phase 2 sources to search next.
 Rules:
-- Do NOT re-pick sources already searched in Phase 1 (wikitree, findagrave, dpla_census)
-- If birth place is clearly a US state, skip European sources unless Phase 1 shows immigration
+- Do NOT re-pick sources already searched in Phase 1
+{location_block}
 - If Phase 1 found military hints, pick va_gravesite and dpla_military
-- If surname or location suggests Irish/UK origin, pick freebmd and irish_birth/irish_death
-- If no clues at all, pick obituaries, chronicling, nara
+- If surname or location suggests Irish/UK origin AND person is not clearly American, pick freebmd
 
-Reply with ONLY a JSON array of source keys, e.g.: ["obituaries", "chronicling", "nara"]
+Reply with ONLY a JSON array of source keys, e.g.: {fallback}
 No explanation. Just the array."""
 
     try:
@@ -212,7 +242,10 @@ No explanation. Just the array."""
         # Validate — only return keys that actually exist
         return [p for p in picks if p in AGENTIC_SOURCES]
     except Exception:
-        # Fallback: safe default set
+        if is_modern and is_us:
+            return ['obituaries', 'findagrave', 'va_gravesite']
+        elif is_us:
+            return ['obituaries', 'nara', 'wikitree']
         return ['obituaries', 'chronicling', 'nara']
 
 
@@ -281,3 +314,196 @@ Return ONLY the JSON, no other text."""
     except Exception:
         return {'confidence': 'none', 'summary': 'Could not extract information from this obituary.',
                 'source_url': source_url}
+
+
+# ---------------------------------------------------------------------------
+# Research roadmap — generated when all searches fail to find a match
+# ---------------------------------------------------------------------------
+
+_STATE_ARCHIVE_URLS = {
+    'alabama': 'https://www.adah.alabama.gov/',
+    'alaska': 'https://archives.alaska.gov/',
+    'arizona': 'https://azlibrary.gov/az-state-library-archives-public-records',
+    'arkansas': 'https://www.ark.org/sos/archives/',
+    'california': 'https://www.sos.ca.gov/archives/',
+    'colorado': 'https://www.colorado.gov/archives',
+    'connecticut': 'https://ctstatelibrary.org/archives-special-collections/',
+    'delaware': 'https://archives.delaware.gov/',
+    'florida': 'https://dos.myflorida.com/state-library-and-archives/',
+    'georgia': 'https://www.georgiaarchives.org/',
+    'hawaii': 'https://ags.hawaii.gov/archives/',
+    'idaho': 'https://history.idaho.gov/archives/',
+    'illinois': 'https://www.illinois.gov/agencies/agency/illinois-state-archives',
+    'indiana': 'https://www.in.gov/iara/',
+    'iowa': 'https://iowaculture.gov/history/research/collections/state-archives',
+    'kansas': 'https://www.kshs.org/archives',
+    'kentucky': 'https://kdla.ky.gov/',
+    'louisiana': 'https://www.sos.la.gov/HistoricalResources/Pages/default.aspx',
+    'maine': 'https://www.maine.gov/sos/arc/',
+    'maryland': 'https://msa.maryland.gov/',
+    'massachusetts': 'https://www.sec.state.ma.us/ard/',
+    'michigan': 'https://www.michigan.gov/libraryofmichigan/',
+    'minnesota': 'https://www.mnhs.org/',
+    'mississippi': 'https://www.mdah.ms.gov/',
+    'missouri': 'https://www.sos.mo.gov/archives/',
+    'montana': 'https://mhs.mt.gov/',
+    'nebraska': 'https://www.nebraskahistory.org/',
+    'nevada': 'https://nsla.nv.gov/',
+    'new hampshire': 'https://www.sos.nh.gov/archives/',
+    'new jersey': 'https://www.nj.gov/state/archives/',
+    'new mexico': 'https://www.nmcpr.state.nm.us/',
+    'new york': 'https://www.archives.nysed.gov/',
+    'north carolina': 'https://www.dncr.nc.gov/about/state-agencies/archives',
+    'north dakota': 'https://www.nd.gov/itd/stategov/state-agency/state-historical-society-north-dakota',
+    'ohio': 'https://www.ohiohistory.org/',
+    'oklahoma': 'https://www.okhistory.org/',
+    'oregon': 'https://sos.oregon.gov/archives/',
+    'pennsylvania': 'https://www.phmc.pa.gov/Archives/',
+    'rhode island': 'https://www.sos.ri.gov/divisions/public-information/archives',
+    'south carolina': 'https://scdah.sc.gov/',
+    'south dakota': 'https://history.sd.gov/archives/',
+    'tennessee': 'https://sos.tn.gov/tsla/',
+    'texas': 'https://www.tsl.texas.gov/',
+    'utah': 'https://archives.utah.gov/',
+    'vermont': 'https://sos.vermont.gov/vsara/',
+    'virginia': 'https://www.lva.virginia.gov/',
+    'washington': 'https://www.sos.wa.gov/archives/',
+    'west virginia': 'https://www.wvculture.org/history/wvarchives.aspx',
+    'wisconsin': 'https://www.wisconsinhistory.org/',
+    'wyoming': 'https://wyoarchives.wyo.gov/',
+}
+
+
+def _state_archive_url(birth_place: str) -> str | None:
+    if not birth_place:
+        return None
+    bp = birth_place.lower().strip()
+    for state, url in _STATE_ARCHIVE_URLS.items():
+        if state in bp or bp in state:
+            return url
+    return None
+
+
+def generate_roadmap(first: str, last: str, middle: str,
+                     birth_year, birth_place: str,
+                     results: list, gaps: list) -> dict:
+    """
+    Generate a research roadmap when no match is found.
+    Returns: { steps: [str], links: [{label, url, prefilled}] }
+    """
+    import urllib.parse
+    import json as jsonlib
+
+    name = ' '.join(filter(None, [first, middle, last])).strip()
+    name_no_mid = f'{first} {last}'.strip()
+
+    # Build pre-filled archive links
+    links = []
+
+    # FamilySearch (always)
+    fs_q = urllib.parse.urlencode({'q.givenName': first, 'q.surname': last,
+                                   'q.birthLikeDate.from': str((birth_year or 1800) - 5),
+                                   'q.birthLikeDate.to': str((birth_year or 1900) + 5),
+                                   'q.birthLikePlace': birth_place or ''})
+    links.append({
+        'label': 'Search FamilySearch',
+        'url': f'https://www.familysearch.org/search/record/results?{fs_q}',
+        'note': 'World\'s largest free genealogy database — census, vital records, immigration',
+    })
+
+    # Find A Grave
+    fg_q = urllib.parse.urlencode({'firstname': first, 'lastname': last,
+                                   'birthyear': birth_year or '', 'birthyearfilter': 5,
+                                   'location': birth_place or ''})
+    links.append({
+        'label': 'Search Find A Grave',
+        'url': f'https://www.findagrave.com/memorial/search?{fg_q}',
+        'note': 'Over 260 million memorial records with photos',
+    })
+
+    # Fold3 (military)
+    fold3_q = urllib.parse.urlencode({'query': name_no_mid})
+    links.append({
+        'label': 'Search Fold3 Military Records',
+        'url': f'https://www.fold3.com/search#query={urllib.parse.quote(name_no_mid)}',
+        'note': 'US military records — draft cards, pension files, service records',
+    })
+
+    # Chronicling America
+    chron_q = urllib.parse.urlencode({'q': name_no_mid, 'dateFilterType': 'range',
+                                      'date1': str((birth_year or 1800) - 5),
+                                      'date2': str((birth_year or 1900) + 20)})
+    links.append({
+        'label': 'Search Chronicling America',
+        'url': f'https://chroniclingamerica.loc.gov/search/pages/results/?{chron_q}',
+        'note': 'Free US newspapers 1770–1963 — obituaries, birth notices, marriage announcements',
+    })
+
+    # State archive if birth place known
+    state_url = _state_archive_url(birth_place)
+    if state_url:
+        state_label = birth_place.title() if birth_place else 'State'
+        links.append({
+            'label': f'{state_label} State Archives',
+            'url': state_url,
+            'note': f'Official {state_label} vital records — birth/death certificates, county records',
+        })
+
+    # Middle name as surname hint
+    if middle:
+        links.append({
+            'label': f'Try searching "{first} {middle}" (middle as surname)',
+            'url': f'https://www.familysearch.org/search/record/results?q.givenName={urllib.parse.quote(first)}&q.surname={urllib.parse.quote(middle)}',
+            'note': 'Ancestors sometimes indexed under their middle name',
+        })
+
+    # Use AI for the narrative steps
+    found_count = len(results)
+    gap_labels = [g.get('label', g.get('gap_type', '')) for g in gaps[:5]]
+    gap_text = ', '.join(gap_labels) if gap_labels else 'birth year, birth place, death records'
+
+    prompt = f"""You are Alfred, a genealogy research assistant for RootBridge.
+
+We searched every source we have for {name} (born ~{birth_year or 'unknown'}, {birth_place or 'unknown place'}) and found {found_count} records — but none were a strong match.
+
+Known gaps in the record: {gap_text}
+
+Write exactly 3 concrete research steps a user should try next. Each step:
+- Starts with a bold action verb
+- Is 1–2 sentences max
+- References a specific record type, archive, or strategy
+- Does NOT say "try our platform again" or "search RootBridge"
+
+Format as a JSON array of strings. Example:
+["**Check county death certificates** — ...", "**Request a SSDI transcript** — ...", "**Search newspaper obituaries** — ..."]
+
+Reply with ONLY the JSON array."""
+
+    try:
+        resp = requests.post(
+            OPENROUTER_URL,
+            headers={
+                'Authorization': f"Bearer {current_app.config['OPENROUTER_API_KEY']}",
+                'Content-Type': 'application/json',
+            },
+            json={'model': MODEL, 'messages': [{'role': 'user', 'content': prompt}],
+                  'max_tokens': 300},
+            timeout=10,
+        )
+        resp.raise_for_status()
+        raw = resp.json()['choices'][0]['message']['content'].strip()
+        if raw.startswith('```'):
+            raw = raw.split('```')[1]
+            if raw.startswith('json'):
+                raw = raw[4:]
+        steps = jsonlib.loads(raw)
+        if not isinstance(steps, list):
+            steps = []
+    except Exception:
+        steps = [
+            f'**Check county vital records** — {birth_place or "the county"} may have birth or death certificates predating federal registration.',
+            f'**Search newspaper obituaries** — Chronicling America has digitized US newspapers 1770–1963 and often contains death notices for rural ancestors.',
+            f'**Try name spelling variants** — Common misspellings of "{last}" in census records include phonetic alternatives — search FamilySearch with a soundex option.',
+        ]
+
+    return {'steps': steps, 'links': links, 'name': name, 'birth_year': birth_year, 'birth_place': birth_place}

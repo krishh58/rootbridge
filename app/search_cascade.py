@@ -1692,21 +1692,40 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
         }) + '\n\n'
 
     # ── Phase 1: reliable external sources (no Playwright — gets blocked) ────────
-    # DPLA removed — returns museum/library artifacts, not genealogy records
     # SSDI Oracle chunk search — only included if Oracle Storage is configured
     from .oracle_storage import search_ssdi as _search_ssdi, chunk_is_available as _oracle_ok
     _ssdi_task = {'ssdi': lambda: _search_ssdi(first, last, birth_year, birth_place)} \
         if _oracle_ok() else {}
 
-    # For modern persons (born after 1920 or died after 2000), always search obituaries
-    # in phase 1 — SSDI won't have them and web obituaries are the best source
+    # Detect US location and era to skip irrelevant sources
+    import re as _re2
+    _all_places = f'{birth_place} {death_place}'.lower()
+    _place_tokens = set(_re2.split(r'[\s,]+', _all_places))
+    _us_state_set = {
+        'alabama','alaska','arizona','arkansas','california','colorado','connecticut',
+        'delaware','florida','georgia','hawaii','idaho','illinois','indiana','iowa',
+        'kansas','kentucky','louisiana','maine','maryland','massachusetts','michigan',
+        'minnesota','mississippi','missouri','montana','nebraska','nevada',
+        'new hampshire','new jersey','new mexico','new york','north carolina',
+        'north dakota','ohio','oklahoma','oregon','pennsylvania','rhode island',
+        'south carolina','south dakota','tennessee','texas','utah','vermont',
+        'virginia','washington','west virginia','wisconsin','wyoming',
+        'usa','united states',
+        'al','ak','az','ar','ca','co','ct','de','fl','ga','hi','id','il','in',
+        'ia','ks','ky','la','me','md','ma','mi','mn','ms','mo','mt','ne','nv',
+        'nh','nj','nm','ny','nc','nd','oh','ok','or','pa','ri','sc','sd','tn',
+        'tx','ut','vt','va','wa','wv','wi','wy',
+    }
+    _is_us = bool(_place_tokens & _us_state_set)
     _is_modern = (birth_year and birth_year > 1920) or (death_year and death_year > 2000)
-    # Use death_place as the location hint for obituary/burial searches — more accurate
-    # than birth_place for finding recent records
+    # Chronicling America only covers 1770-1963 — useless for modern persons
+    _chron_useful = not _is_modern
+
+    # Use death_place for obituary/burial searches — more accurate than birth_place
     _search_place = death_place or birth_place
+
     _obit_task = {}
     if _is_modern:
-        # Always include Legacy.com HTTP search (no Playwright needed)
         _obit_task['legacy_obituary'] = lambda: search_legacy_obits(first, last, birth_year, _search_place)
         if _playwright_available():
             from .playwright_scrapers import search_obituaries as _search_obits, search_findagrave as _search_fg
@@ -1714,12 +1733,17 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
             _obit_task['findagrave'] = lambda: _search_fg(_first_only, last, birth_year, death_year)
 
     phase1_tasks = {
-        'wikitree':    lambda: search_wikitree(_first_only, last, birth_year),
-        'chronicling': lambda: search_chronicling(first, last, birth_year),
-        'nara':        lambda: search_nara(_first_only, last, birth_year, birth_place),
         **_ssdi_task,
         **_obit_task,
     }
+    # WikiTree and Chronicling America only useful for older US records
+    if not _is_modern:
+        phase1_tasks['wikitree']    = lambda: search_wikitree(_first_only, last, birth_year)
+    if _chron_useful:
+        phase1_tasks['chronicling'] = lambda: search_chronicling(first, last, birth_year)
+    # NARA useful for all eras (military, immigration, naturalization)
+    if not _is_us or (birth_year and birth_year < 1960):
+        phase1_tasks['nara'] = lambda: search_nara(_first_only, last, birth_year, birth_place)
 
     yield 'data: ' + json.dumps({'agent_status': 'phase1', 'message': 'Searching external archives…'}) + '\n\n'
 
@@ -1730,7 +1754,9 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
 
     picks = agentic_pick_sources(
         person={'first_name': first, 'last_name': last,
-                'birth_year': birth_year, 'birth_place': birth_place},
+                'birth_year': birth_year, 'birth_place': birth_place,
+                'death_year': death_year, 'death_place': death_place,
+                'is_us': _is_us, 'is_modern': _is_modern},
         phase1_results=all_results,
         ctx=_ctx,
     )
