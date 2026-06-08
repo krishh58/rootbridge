@@ -1589,7 +1589,7 @@ def _run_fallback_layer(first: str, last: str, middle: str,
 def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = None,
                           birth_place: str = '', country_hint: str = '',
                           community_results: list = None, skip_vault: bool = False,
-                          middle: str = '', death_year: int = None):
+                          middle: str = '', death_year: int = None, death_place: str = ''):
     """
     Agentic two-phase search generator yielding SSE strings.
 
@@ -1701,14 +1701,17 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     # For modern persons (born after 1920 or died after 2000), always search obituaries
     # in phase 1 — SSDI won't have them and web obituaries are the best source
     _is_modern = (birth_year and birth_year > 1920) or (death_year and death_year > 2000)
+    # Use death_place as the location hint for obituary/burial searches — more accurate
+    # than birth_place for finding recent records
+    _search_place = death_place or birth_place
     _obit_task = {}
     if _is_modern:
         # Always include Legacy.com HTTP search (no Playwright needed)
-        _obit_task['legacy_obituary'] = lambda: search_legacy_obits(first, last, birth_year, birth_place)
+        _obit_task['legacy_obituary'] = lambda: search_legacy_obits(first, last, birth_year, _search_place)
         if _playwright_available():
             from .playwright_scrapers import search_obituaries as _search_obits, search_findagrave as _search_fg
-            _obit_task['obituaries'] = lambda: _search_obits(first, last, birth_year, birth_place)
-            _obit_task['findagrave'] = lambda: _search_fg(_first_only, last, birth_year)
+            _obit_task['obituaries'] = lambda: _search_obits(first, last, birth_year, _search_place)
+            _obit_task['findagrave'] = lambda: _search_fg(_first_only, last, birth_year, death_year)
 
     phase1_tasks = {
         'wikitree':    lambda: search_wikitree(_first_only, last, birth_year),

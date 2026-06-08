@@ -347,6 +347,7 @@ def search_stream():
             skip_vault=True,  # vault already searched above
             middle=middle,
             death_year=death_year,
+            death_place=death_place,
         ):
             yield event_str
             try:
