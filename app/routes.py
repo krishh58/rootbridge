@@ -47,14 +47,23 @@ def reset_user():
     user = User.query.filter_by(email=email).first()
     if not user:
         return jsonify({'error': f'User {email} not found'}), 404
-    from sqlalchemy import text as _text
-    deleted = db.session.execute(
-        _text('DELETE FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id = :uid)'),
-        {'uid': user.id}
-    ).rowcount
-    db.session.execute(_text('DELETE FROM trees WHERE user_id = :uid'), {'uid': user.id})
+    from sqlalchemy import text as _t
+    uid = user.id
+    # Delete in dependency order to avoid FK violations
+    for stmt in [
+        'DELETE FROM alfred_messages WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u)',
+        'DELETE FROM gaps WHERE person_id IN (SELECT id FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u))',
+        'DELETE FROM search_results WHERE person_id IN (SELECT id FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u))',
+        'DELETE FROM research_findings WHERE person_id IN (SELECT id FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u))',
+        'DELETE FROM persons WHERE tree_id IN (SELECT id FROM trees WHERE user_id=:u)',
+        'DELETE FROM trees WHERE user_id=:u',
+    ]:
+        try:
+            db.session.execute(_t(stmt), {'u': uid})
+        except Exception:
+            db.session.rollback()
     db.session.commit()
-    return jsonify({'ok': True, 'email': email, 'persons_deleted': deleted})
+    return jsonify({'ok': True, 'email': email})
 
 @routes_bp.get('/api/me')
 @require_auth
