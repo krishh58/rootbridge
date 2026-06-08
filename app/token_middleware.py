@@ -8,11 +8,16 @@ def require_tokens(cost: int):
         @wraps(f)
         def wrapper(*args, **kwargs):
             user = User.query.get(g.user_id)
-            if not user or user.total_tokens() < cost:
+            if not user:
+                return jsonify({'error': 'User not found'}), 401
+            # Admin tier bypasses all token costs
+            if user.tier == 'admin':
+                return f(*args, **kwargs)
+            if user.total_tokens() < cost:
                 return jsonify({
                     'error': f'Insufficient tokens. This action costs {cost} tokens.',
                     'tokens_required': cost,
-                    'tokens_available': user.total_tokens() if user else 0,
+                    'tokens_available': user.total_tokens(),
                 }), 402
             if not user.deduct_tokens(cost):
                 return jsonify({'error': 'Token deduction failed'}), 402

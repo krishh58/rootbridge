@@ -20,6 +20,23 @@ def trigger_rescan():
     run_monthly_rescan()
     return jsonify({'ok': True})
 
+@routes_bp.post('/api/admin/set-tier')
+def set_tier():
+    secret = os.environ.get('ADMIN_SECRET', '')
+    if not secret or request.headers.get('X-Admin-Secret') != secret:
+        return jsonify({'error': 'Forbidden'}), 403
+    data = request.get_json() or {}
+    email = data.get('email', '').strip()
+    tier = data.get('tier', 'admin').strip()
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({'error': f'User {email} not found'}), 404
+    user.tier = tier
+    if tier == 'admin':
+        user.token_balance = 999999
+    db.session.commit()
+    return jsonify({'ok': True, 'email': user.email, 'tier': user.tier, 'tokens': user.token_balance})
+
 @routes_bp.get('/api/me')
 @require_auth
 def me():
