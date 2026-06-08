@@ -45,19 +45,49 @@ _PARENT_PATTERNS = [
 
 def _extract_parents_shared_surname(text: str) -> list[tuple[str, str]]:
     """
-    Handle the common obituary pattern: "parents, Donald and Dorothy King (nee Hunter)"
-    where both parents share the last name. Returns [(first1,last),(first2,last)].
+    Handle patterns where two parents share one last name:
+      "parents, Donald and Dorothy King"
+      "daughter of Edward and Pauline Donavan"
+      "born to William and Helen Crawford"
+      "son of Charles and Mary Ellen Smith"
+    Returns [(first1,last),(first2,last)].
     """
     parents = []
-    # Pattern: "parents, FIRST1 and FIRST2 LAST" or "parents, FIRST1 and FIRST2 (nee X) LAST"
-    m = re.search(
-        r'parents?,\s+([A-Z][a-z]+)\s+and\s+([A-Z][a-z]+)(?:\s+\([^)]+\))?\s+([A-Z][a-z]+)',
-        text)
-    if m:
-        f1, f2, last = m.group(1), m.group(2), m.group(3)
-        if last.lower() not in _NAME_STOPWORDS:
-            parents.append((f1, last))
-            parents.append((f2, last))
+    seen = set()
+
+    # All trigger phrases that introduce two-parent shared-surname pattern
+    triggers = r'(?:parents?,|(?:son|daughter)\s+of|born\s+(?:\w+\s+)*?to)'
+    pattern = re.compile(
+        triggers +
+        r'\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)'   # first parent (may have middle name)
+        r'\s+and\s+'
+        r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)'        # second parent (may have middle name)
+        r'(?:\s+\([^)]+\))?'                        # optional (nee X)
+        r'\s+([A-Z][a-z]+)',                        # shared last name
+        re.IGNORECASE
+    )
+    for m in pattern.finditer(text):
+        raw1, raw2, last = m.group(1).strip(), m.group(2).strip(), m.group(3).strip()
+        if last.lower() in _NAME_STOPWORDS or len(last) < 2:
+            continue
+        # If either parent already has 2+ tokens they have their own last names
+        # e.g. "daughter of Ernest Anderson and Mary Johnson" — skip, let _PARENT_PATTERNS handle
+        if len(raw1.split()) >= 2 or len(raw2.split()) >= 2:
+            continue
+        # Reject common prepositions / stop words as "last name"
+        if last.lower() in {'of', 'in', 'at', 'the', 'and', 'or', 'home', 'city',
+                             'kansas', 'kentucky', 'louisiana', 'texas', 'ohio',
+                             'florida', 'georgia', 'california', 'virginia'}:
+            continue
+        # raw1/raw2 may be "Mary Ellen" — take just the first token as first name
+        f1 = raw1.split()[0]
+        f2 = raw2.split()[0]
+        for fn in (f1, f2):
+            key = f'{fn.lower()}_{last.lower()}'
+            if key not in seen and fn[0].isupper():
+                seen.add(key)
+                parents.append((fn, last))
+
     return parents
 
 _SPOUSE_PATTERNS = [
