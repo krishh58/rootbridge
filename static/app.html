@@ -91,9 +91,133 @@
           </div>
         </div>
       </aside>
-      <main class="tree-main">
-        <div id="treeContainer">
-          <p class="placeholder-text">👆 Click <strong>+ Add Person</strong> above to get started.<br><span style="font-size:.9em;opacity:.7">Think of a grandparent or great-grandparent — someone in your family whose story you'd love to know more about.</span></p>
+      <main class="tree-main" style="position:relative">
+        <div id="treeContainer"></div>
+        <!-- Alfred greeting overlay -->
+        <div id="alfred-overlay" style="display:none;position:fixed;inset:0;z-index:60;align-items:center;justify-content:center;background:rgba(10,15,28,0.88);backdrop-filter:blur(4px)">
+          <style>
+            @keyframes ag-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+            @keyframes ag-breathe{0%,100%{transform:scaleY(1) translateY(0)}50%{transform:scaleY(1.007) translateY(-1px)}}
+            @keyframes ag-bow{0%{transform:rotate(0deg)}30%{transform:rotate(-6deg)}65%{transform:rotate(-6deg)}100%{transform:rotate(0deg)}}
+            @keyframes ag-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+            @keyframes ag-blink{0%,82%,100%{transform:scaleY(0)}88%{transform:scaleY(1)}94%{transform:scaleY(0.05)}}
+            @keyframes ag-cursor{0%,100%{opacity:1}50%{opacity:0}}
+            #ag-svg{animation:ag-in 0.9s 0.2s ease-out both;overflow:visible}
+            #ag-body{animation:ag-breathe 4.5s ease-in-out infinite;transform-origin:80px 165px}
+            #ag-bow{transform-origin:80px 112px;animation:ag-bow 2.4s 0.8s ease-in-out 1 both}
+            #ag-float{animation:ag-float 5s ease-in-out infinite}
+            .ag-blink-l{transform-origin:64px 52px;transform:scaleY(0);animation:ag-blink 5s 0.8s ease-in-out infinite}
+            .ag-blink-r{transform-origin:96px 52px;transform:scaleY(0);animation:ag-blink 5s 0.95s ease-in-out infinite}
+            #ag-cursor{animation:ag-cursor 1s step-end infinite}
+          </style>
+          <div style="background:#111827;border:1px solid #1e3a2a;border-radius:16px;padding:40px 48px;display:flex;align-items:center;gap:48px;max-width:700px;width:90%;box-shadow:0 24px 60px rgba(0,0,0,.65);flex-wrap:wrap;justify-content:center">
+            <!-- Alfred SVG avatar -->
+            <svg id="ag-svg" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg" width="148" height="192" style="flex-shrink:0">
+              <defs>
+                <radialGradient id="ag-skin" cx="42%" cy="35%" r="65%">
+                  <stop offset="0%" stop-color="#e4b88c"/><stop offset="60%" stop-color="#c99068"/><stop offset="100%" stop-color="#a87050"/>
+                </radialGradient>
+                <radialGradient id="ag-skin2" cx="50%" cy="40%" r="70%">
+                  <stop offset="0%" stop-color="#c49070"/><stop offset="100%" stop-color="#a87050"/>
+                </radialGradient>
+                <linearGradient id="ag-suit" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#243040"/><stop offset="100%" stop-color="#141c28"/>
+                </linearGradient>
+                <radialGradient id="ag-hair" cx="50%" cy="15%" r="70%">
+                  <stop offset="0%" stop-color="#e0d8d0"/><stop offset="100%" stop-color="#b0a8a0"/>
+                </radialGradient>
+                <filter id="ag-drop" x="-30%" y="-30%" width="160%" height="160%">
+                  <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+                </filter>
+              </defs>
+              <!-- Suit -->
+              <g id="ag-body">
+                <path d="M 0,220 L 2,148 Q 35,122 80,117 Q 125,122 158,148 L 160,220 Z" fill="url(#ag-suit)"/>
+                <path d="M 72,123 L 88,123 L 94,220 L 66,220 Z" fill="#f0ece4"/>
+                <line x1="80" y1="130" x2="80" y2="220" stroke="#d8d0c4" stroke-width=".5" opacity=".5"/>
+                <path d="M 72,123 L 36,165 L 50,220 L 68,180 L 79,148 Z" fill="url(#ag-suit)"/>
+                <path d="M 88,123 L 124,165 L 110,220 L 92,180 L 81,148 Z" fill="url(#ag-suit)"/>
+                <path d="M 72,123 L 36,165" stroke="#3a4e64" stroke-width="1" fill="none"/>
+                <path d="M 88,123 L 124,165" stroke="#3a4e64" stroke-width="1" fill="none"/>
+                <path d="M 59,118 L 72,123 L 80,138 L 67,130 Z" fill="#f0ece4"/>
+                <path d="M 101,118 L 88,123 L 80,138 L 93,130 Z" fill="#f0ece4"/>
+                <path d="M 67,130 L 80,138" stroke="#d0ccc4" stroke-width=".8" fill="none"/>
+                <path d="M 93,130 L 80,138" stroke="#d0ccc4" stroke-width=".8" fill="none"/>
+                <path d="M 65,122 L 78,117 L 78,126 Z" fill="#2a1a30"/>
+                <path d="M 95,122 L 82,117 L 82,126 Z" fill="#2a1a30"/>
+                <ellipse cx="80" cy="121.5" rx="4" ry="4.5" fill="#341e3a"/>
+                <path d="M 77,118 Q 80,117 83,118" stroke="#5a3862" stroke-width=".8" fill="none" opacity=".6"/>
+                <path d="M 43,155 L 51,150 L 55,158 L 49,161 Z" fill="#f0ece4" opacity=".85"/>
+                <circle cx="80" cy="178" r="2.5" fill="#1a2535" stroke="#2a3545" stroke-width=".8"/>
+                <circle cx="80" cy="197" r="2.5" fill="#1a2535" stroke="#2a3545" stroke-width=".8"/>
+                <path d="M 8,166 Q 28,140 58,128" stroke="#3a5068" stroke-width="3" fill="none" opacity=".25"/>
+              </g>
+              <!-- Neck -->
+              <path d="M 68,92 Q 67,118 69,121 L 91,121 Q 93,118 92,92" fill="url(#ag-skin)" opacity=".95"/>
+              <path d="M 68,96 Q 66,110 68,119" stroke="#9a6848" stroke-width="1" fill="none" opacity=".18"/>
+              <path d="M 92,96 Q 94,110 92,119" stroke="#9a6848" stroke-width="1" fill="none" opacity=".18"/>
+              <!-- Head -->
+              <g id="ag-bow"><g id="ag-float">
+                <ellipse cx="49" cy="63" rx="7.5" ry="10" fill="url(#ag-skin2)"/>
+                <ellipse cx="111" cy="63" rx="7.5" ry="10" fill="url(#ag-skin2)"/>
+                <ellipse cx="49" cy="64" rx="4" ry="6.5" fill="#a06848" opacity=".35"/>
+                <ellipse cx="111" cy="64" rx="4" ry="6.5" fill="#a06848" opacity=".35"/>
+                <path d="M 52,68 Q 54,66 53,63" stroke="#906040" stroke-width="1" fill="none" opacity=".35"/>
+                <path d="M 108,68 Q 106,66 107,63" stroke="#906040" stroke-width="1" fill="none" opacity=".35"/>
+                <ellipse cx="80" cy="61" rx="31" ry="36" fill="url(#ag-skin)" filter="url(#ag-drop)"/>
+                <path d="M 49,58 Q 49,25 80,25 Q 111,25 111,58 Q 102,32 92,33 Q 86,27 80,29 Q 74,27 68,33 Q 58,32 49,58 Z" fill="url(#ag-hair)"/>
+                <path d="M 69,33 Q 74,27 80,29" stroke="#c8c0b8" stroke-width="1.2" fill="none" opacity=".45"/>
+                <path d="M 52,50 Q 56,36 68,33" stroke="#c0b8b0" stroke-width="1" fill="none" opacity=".25"/>
+                <path d="M 108,50 Q 104,36 92,33" stroke="#c0b8b0" stroke-width="1" fill="none" opacity=".25"/>
+                <path d="M 49,58 Q 51,66 52,73" stroke="#c0b8b0" stroke-width="2.5" fill="none" opacity=".45" stroke-linecap="round"/>
+                <path d="M 111,58 Q 109,66 108,73" stroke="#c0b8b0" stroke-width="2.5" fill="none" opacity=".45" stroke-linecap="round"/>
+                <path d="M 62,44 Q 71,42 80,43" stroke="#b08868" stroke-width=".9" fill="none" opacity=".3" stroke-linecap="round"/>
+                <path d="M 64,49 Q 72,47 78,48" stroke="#b08868" stroke-width=".7" fill="none" opacity=".2" stroke-linecap="round"/>
+                <path d="M 56,49 Q 64,44 73,48" stroke="#7a6a5a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                <path d="M 87,48 Q 96,44 104,49" stroke="#7a6a5a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                <ellipse cx="64" cy="57.5" rx="9" ry="6.5" fill="#9a6848" opacity=".1"/>
+                <ellipse cx="64" cy="57" rx="7.5" ry="5" fill="#f2ede8"/>
+                <circle cx="64" cy="57" r="3.8" fill="#3c2010"/>
+                <circle cx="64" cy="57" r="2.1" fill="#180e08"/>
+                <circle cx="65.4" cy="55.4" r="1.1" fill="#fff" opacity=".8"/>
+                <path d="M 56.5,55 Q 64,50.5 71.5,55" stroke="#8a6850" stroke-width="1.3" fill="none"/>
+                <path d="M 56.5,59.2 Q 64,62 71.5,59.2" stroke="#8a6850" stroke-width=".7" fill="none" opacity=".4"/>
+                <rect class="ag-blink-l" x="56.5" y="52" width="15" height="10" rx="5" fill="#cc9870"/>
+                <ellipse cx="96" cy="57.5" rx="9" ry="6.5" fill="#9a6848" opacity=".1"/>
+                <ellipse cx="96" cy="57" rx="7.5" ry="5" fill="#f2ede8"/>
+                <circle cx="96" cy="57" r="3.8" fill="#3c2010"/>
+                <circle cx="96" cy="57" r="2.1" fill="#180e08"/>
+                <circle cx="97.4" cy="55.4" r="1.1" fill="#fff" opacity=".8"/>
+                <path d="M 88.5,55 Q 96,50.5 103.5,55" stroke="#8a6850" stroke-width="1.3" fill="none"/>
+                <path d="M 88.5,59.2 Q 96,62 103.5,59.2" stroke="#8a6850" stroke-width=".7" fill="none" opacity=".4"/>
+                <rect class="ag-blink-r" x="88.5" y="52" width="15" height="10" rx="5" fill="#cc9870"/>
+                <path d="M 79,65 Q 77,73 77,76" stroke="#a87858" stroke-width="1.2" fill="none" opacity=".25"/>
+                <path d="M 81,65 Q 83,73 83,76" stroke="#a87858" stroke-width="1.2" fill="none" opacity=".25"/>
+                <ellipse cx="76" cy="77" rx="2.5" ry="1.8" fill="#9a6848" opacity=".35"/>
+                <ellipse cx="84" cy="77" rx="2.5" ry="1.8" fill="#9a6848" opacity=".35"/>
+                <path d="M 73,76 Q 71,81 72,85" stroke="#a87858" stroke-width=".8" fill="none" opacity=".2"/>
+                <path d="M 87,76 Q 89,81 88,85" stroke="#a87858" stroke-width=".8" fill="none" opacity=".2"/>
+                <path d="M 70,82 Q 75,79 80,81 Q 85,79 90,82 Q 85,86 80,85 Q 75,86 70,82 Z" fill="#c8c0b8"/>
+                <path d="M 72,81 Q 78,78 80,80" stroke="#ddd8d0" stroke-width=".9" fill="none" opacity=".65"/>
+                <path d="M 88,81 Q 82,78 80,80" stroke="#ddd8d0" stroke-width=".9" fill="none" opacity=".65"/>
+                <path d="M 73,90 Q 76,88 80,89 Q 84,88 87,90" stroke="#9a6850" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                <path d="M 73,90 Q 80,95 87,90" stroke="#9a6850" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                <path d="M 73,90 Q 80,95 87,90 Q 84,88 80,89 Q 76,88 73,90 Z" fill="#c08878" opacity=".25"/>
+                <path d="M 58,88 Q 80,100 102,88 Q 92,97 80,98 Q 68,97 58,88 Z" fill="#9a6848" opacity=".09"/>
+                <ellipse cx="53" cy="68" rx="10" ry="7" fill="#d06050" opacity=".06"/>
+                <ellipse cx="107" cy="68" rx="10" ry="7" fill="#d06050" opacity=".06"/>
+                <path d="M 57.5,60 Q 64,62.5 70.5,60" stroke="#9a7060" stroke-width=".8" fill="none" opacity=".25"/>
+                <path d="M 89.5,60 Q 96,62.5 102.5,60" stroke="#9a7060" stroke-width=".8" fill="none" opacity=".25"/>
+              </g></g>
+            </svg>
+            <!-- Text content -->
+            <div style="max-width:320px">
+              <p style="color:#4a7c59;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;margin:0 0 10px;font-weight:700">Your Genealogy Guide</p>
+              <h2 id="ag-salutation" style="color:#f8fafc;font-size:1.55rem;font-weight:700;margin:0 0 13px;font-family:Georgia,serif">Good evening.</h2>
+              <p style="color:#94a3b8;font-size:.96rem;line-height:1.7;margin:0 0 24px">I'm Alfred. <span id="ag-tw"></span><span id="ag-cursor" style="color:#4a7c59;font-weight:300">|</span></p>
+              <button onclick="dismissAlfred()" style="background:#4a7c59;color:#fff;border:none;border-radius:8px;padding:10px 22px;font-size:.88rem;cursor:pointer;font-weight:600" onmouseover="this.style.background='#3d6649'" onmouseout="this.style.background='#4a7c59'">Let's begin →</button>
+            </div>
+          </div>
         </div>
       </main>
     </div>
@@ -356,6 +480,11 @@
     <div id="spBadges" style="display:flex;flex-wrap:wrap;gap:7px;max-width:520px;justify-content:center;min-height:28px"></div>
     <!-- Running total -->
     <div id="spCount" style="color:#4a7c59;font-size:.92rem;font-weight:600;min-height:20px"></div>
+    <!-- AI thinking bar — visible only during synthesizing phase -->
+    <div id="spThinkBar" style="display:none;align-items:center;gap:10px;background:rgba(99,102,241,.12);border:1px solid #4f46e5;border-radius:10px;padding:10px 18px;animation:spGlow 1.8s ease-in-out infinite">
+      <span id="spThinkSpinner" style="color:#818cf8;font-family:monospace;font-size:1.1rem;width:18px">⠋</span>
+      <span style="color:#a5b4fc;font-size:.85rem">Alfred is reading the evidence and reasoning about your ancestors</span>
+    </div>
     <div style="display:flex;gap:6px;align-items:center">
       <span style="width:8px;height:8px;background:#4a7c59;border-radius:50%;animation:spPulse 1s ease-in-out infinite"></span>
       <span style="width:8px;height:8px;background:#4a7c59;border-radius:50%;animation:spPulse 1s ease-in-out .33s infinite"></span>
@@ -369,6 +498,9 @@
     @keyframes spPulse {
       0%,100%{opacity:.3;transform:scale(.8)}
       50%{opacity:1;transform:scale(1.2)}
+    }
+    @keyframes spGlow {
+      0%,100%{opacity:.65} 50%{opacity:1}
     }
   </style>
 
@@ -385,6 +517,15 @@
       const data = await r.json();
       document.getElementById('tokenBadge').textContent = `${data.tokens} tokens`;
       if (data.tokens < 100) showLowBalanceToast(data.tokens);
+      // Load live vault count then show Alfred
+      fetch('/api/vault/stats').then(r => r.ok ? r.json() : null).then(vs => {
+        if (vs && vs.total) {
+          window._vaultTotal = vs.total;
+          const el = document.getElementById('sp-vault-count');
+          if (el) el.textContent = vs.total.toLocaleString();
+        }
+      }).catch(() => {});
+      showAlfredGreeting(document.getElementById('treeContainer'), data.first_name);
       loadTrees();
       checkVerificationBanner();
     }
@@ -1263,6 +1404,9 @@
     ];
     let _spTimer = null;
     let _spStep = 0;
+    let _spThinkTimer = null;
+    const _SP_SPINNER = ['⠋','⠙','⠹','⠸','⠼','⠴','⠦','⠧','⠇','⠏'];
+    let _spThinkIdx = 0;
 
     function showSearchProgress() {
       const overlay = document.getElementById('searchProgressOverlay');
@@ -1283,9 +1427,10 @@
     }
 
     function hideSearchProgress() {
-      clearInterval(_spTimer);
-      _spTimer = null;
+      clearInterval(_spTimer); _spTimer = null;
+      clearInterval(_spThinkTimer); _spThinkTimer = null;
       document.getElementById('searchProgressOverlay').style.display = 'none';
+      document.getElementById('spThinkBar').style.display = 'none';
       document.getElementById('spVaultResult').innerHTML = '';
       document.getElementById('spBadges').innerHTML = '';
       document.getElementById('spCount').textContent = '';
@@ -1335,7 +1480,7 @@
         if (data.agent_status === 'vault') {
           document.getElementById('spIcon').textContent = '🏛️';
           document.getElementById('spHeading').textContent = 'Searching RootBridge Vault first…';
-          document.getElementById('spDetail').textContent = '776,000 genealogy records — checking our archive before any external searches.';
+          document.getElementById('spDetail').innerHTML = '<span id="sp-vault-count">' + (window._vaultTotal||3433721).toLocaleString() + '</span> genealogy records — checking our archive before any external searches.';
         }
         if (data.agent_status === 'phase1') {
           document.getElementById('spIcon').textContent = '🔍';
@@ -1353,12 +1498,24 @@
           document.getElementById('spHeading').textContent = 'Phase 2 — Targeted Search';
           document.getElementById('spDetail').textContent = 'Alfred chose: ' + labels;
         }
+        if (data.agent_status === 'synthesizing') {
+          clearInterval(_spTimer); _spTimer = null;
+          document.getElementById('spIcon').textContent = '🧠';
+          document.getElementById('spHeading').textContent = 'Synthesizing results…';
+          document.getElementById('spDetail').textContent = 'Alfred is weighing the evidence against the constraints.';
+          const bar = document.getElementById('spThinkBar');
+          bar.style.display = 'flex';
+          _spThinkTimer = setInterval(() => {
+            _spThinkIdx = (_spThinkIdx + 1) % _SP_SPINNER.length;
+            document.getElementById('spThinkSpinner').textContent = _SP_SPINNER[_spThinkIdx];
+          }, 80);
+        }
 
         if (data.source === 'rootbridge_vault' && data.vault_ms !== undefined) {
           const secs = (data.vault_ms / 1000).toFixed(2);
           const vr = document.getElementById('spVaultResult');
           if (data.count > 0) {
-            vr.innerHTML = `<span style="background:#14532d;color:#4ade80;padding:5px 14px;border-radius:20px;font-size:.82rem;font-weight:700">⚡ Searched 776,000 records in ${secs}s — ${data.count} vault match${data.count !== 1 ? 'es' : ''} found</span>`;
+            vr.innerHTML = `<span style="background:#14532d;color:#4ade80;padding:5px 14px;border-radius:20px;font-size:.82rem;font-weight:700">⚡ Searched ${(window._vaultTotal||3433721).toLocaleString()} records in ${secs}s — ${data.count} vault match${data.count !== 1 ? 'es' : ''} found</span>`;
           } else {
             vr.innerHTML = `<span style="color:#64748b;font-size:.8rem">🏛️ Vault searched in ${secs}s — no direct match, checking external archives…</span>`;
           }
@@ -1480,7 +1637,8 @@
         .then(d => {
           const badge = document.getElementById('rc-vault-badge');
           if (d.index_ready) {
-            badge.textContent = d.vault_size.toLocaleString() + ' ancestors indexed';
+            const total = window._vaultTotal || d.total_persons || d.vault_size;
+            badge.textContent = total.toLocaleString() + ' records indexed';
             badge.style.background = '#14532d';
             badge.style.color = '#86efac';
           } else {
@@ -1615,6 +1773,51 @@
     document.getElementById('rc-modal').addEventListener('click', function(e) {
       if (e.target === this) rcCloseModal();
     });
+
+    // ── Alfred greeting ────────────────────────────────────────────────────────
+    function dismissAlfred() {
+      const overlay = document.getElementById('alfred-overlay');
+      if (!overlay) return;
+      overlay.style.transition = 'opacity 0.5s ease';
+      overlay.style.opacity = '0';
+      setTimeout(() => { overlay.style.display = 'none'; overlay.style.opacity = ''; overlay.style.transition = ''; }, 520);
+    }
+
+    function showAlfredGreeting(container, firstName) {
+      const overlay = document.getElementById('alfred-overlay');
+      if (!overlay) return;
+
+      // Personalize salutation
+      const h = new Date().getHours();
+      const tod = h < 12 ? 'morning' : h < 17 ? 'afternoon' : 'evening';
+      const sal = document.getElementById('ag-salutation');
+      if (sal) sal.textContent = firstName ? `Good ${tod}, ${firstName}.` : `Good ${tod}.`;
+
+      // Reset typewriter
+      const tw = document.getElementById('ag-tw');
+      const cursor = document.getElementById('ag-cursor');
+      if (tw) tw.textContent = '';
+      if (cursor) { cursor.style.display = 'inline'; }
+
+      // Show overlay with fade-in
+      overlay.style.opacity = '0';
+      overlay.style.display = 'flex';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        overlay.style.transition = 'opacity 0.6s ease';
+        overlay.style.opacity = '1';
+      }));
+
+      // Typewriter after entrance settles
+      setTimeout(() => {
+        if (!tw) return;
+        const text = 'Let me guide the way to unlocking your family tree.';
+        let i = 0;
+        const t = setInterval(() => {
+          tw.textContent += text[i++];
+          if (i >= text.length) { clearInterval(t); if (cursor) cursor.style.display = 'none'; }
+        }, 40);
+      }, 1200);
+    }
   </script>
 </body>
 </html>

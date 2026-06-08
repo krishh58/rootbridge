@@ -16,6 +16,39 @@ def person_count():
     return jsonify(count=count)
 
 
+@rootcommons_bp.get('/api/vault/stats')
+def vault_total_stats():
+    """Public endpoint — returns total searchable record count across all vault sources."""
+    import sqlite3, os
+    vault_count = db.session.execute(text('SELECT COUNT(*) FROM persons')).scalar() or 0
+
+    # Static counts for sources that live in local SQLite (not replicated to Railway Postgres).
+    # Updated 2026-06-08 from ged_vault_index.db.
+    STATIC_GED        = 1_633_424
+    STATIC_EUROPEAN   =   172_799
+    STATIC_WERELATE   =    11_250
+    STATIC_SHIP       =   122_532
+
+    # Prefer live counts when the local DB is present (dev / local search server).
+    ged_count = STATIC_GED
+    extra = STATIC_EUROPEAN + STATIC_WERELATE + STATIC_SHIP
+    ged_db = os.path.join(os.path.dirname(__file__), '..', 'data', 'ged_vault_index.db')
+    if os.path.exists(ged_db):
+        try:
+            conn = sqlite3.connect(ged_db)
+            ged_count   = conn.execute('SELECT COUNT(*) FROM ged_persons').fetchone()[0]
+            eu = conn.execute('SELECT COUNT(*) FROM european_persons').fetchone()[0]
+            wr = conn.execute('SELECT COUNT(*) FROM werelate_persons').fetchone()[0]
+            sa = conn.execute('SELECT COUNT(*) FROM ship_arrivals').fetchone()[0]
+            extra = eu + wr + sa
+            conn.close()
+        except Exception:
+            pass
+
+    total = vault_count + ged_count + extra
+    return jsonify(vault=vault_count, ged=ged_count, extra=extra, total=total)
+
+
 @rootcommons_bp.get('/api/rootcommons/search')
 @require_auth
 def vault_search():
