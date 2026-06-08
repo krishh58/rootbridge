@@ -377,3 +377,131 @@ def index_stats() -> dict:
         buckets = len(_INDEX)
         total   = sum(len(v) for v in _INDEX.values())
     return {'built': _BUILT, 'buckets': buckets, 'persons': total}
+
+
+# ── GED Vault Index search (857K persons from local GEDCOM files) ─────────────
+
+import sqlite3 as _sqlite3
+import os as _os
+
+_GED_DB = _os.path.join(
+    _os.path.dirname(_os.path.dirname(__file__)),
+    'data', 'ged_vault_index.db'
+)
+
+def search_ged_vault(last_name: str, first_name: str = '',
+                     birth_year: int = None, birth_place: str = '',
+                     limit: int = 20) -> list[dict]:
+    """
+    Search the local GED vault index (857K persons from 7,278 GEDCOM files).
+    Uses Soundex for phonetic last-name matching + optional year/place filters.
+    Returns list of dicts sorted by relevance score descending.
+    """
+    if not _os.path.exists(_GED_DB):
+        return []
+
+    sdx = soundex(last_name)
+    if not sdx:
+        return []
+
+    ln_query = (last_name  or '').strip().lower()
+    fn_query = (first_name or '').strip().lower()
+    bp_query = (birth_place or '').strip().lower()
+
+    try:
+        con = _sqlite3.connect(_GED_DB, timeout=5)
+        con.row_factory = _sqlite3.Row
+
+        # Pull Soundex bucket with optional loose year pre-filter
+        if birth_year:
+            rows = con.execute('''
+                SELECT last_name, first_name, middle_name,
+                       birth_year, birth_place, death_year, death_place,
+                       gender, notes, source_file
+                FROM ged_persons
+                WHERE last_name_sdx = ?
+                  AND (birth_year IS NULL OR ABS(birth_year - ?) <= 25)
+                LIMIT 500
+            ''', (sdx, birth_year)).fetchall()
+        else:
+            rows = con.execute('''
+                SELECT last_name, first_name, middle_name,
+                       birth_year, birth_place, death_year, death_place,
+                       gender, notes, source_file
+                FROM ged_persons
+                WHERE last_name_sdx = ?
+                LIMIT 500
+            ''', (sdx,)).fetchall()
+        con.close()
+    except Exception as exc:
+        logger.error('GED vault search failed: %s', exc)
+        return []
+
+    scored = []
+    for row in rows:
+        ln_row = (row['last_name'] or '').lower()
+        fn_row = (row['first_name'] or '').lower()
+        bp_row = (row['birth_place'] or '').lower()
+        by_row = row['birth_year']
+
+        score = 0
+
+        # Last-name scoring (must at least Soundex-match, already filtered)
+        if ln_row == ln_query:
+            score += 30
+        elif ln_query and _levenshtein(ln_row, ln_query) <= 2:
+            score += 18
+        else:
+            continue  # too different even with Soundex match
+
+        # First-name scoring
+        if fn_query and fn_row:
+            dist = _levenshtein(fn_row, fn_query)
+            if dist == 0:
+                score += 30
+            elif dist == 1:
+                score += 22
+            elif dist <= 3:
+                score += 12
+
+        # Birth-year scoring
+        if birth_year and by_row:
+            diff = abs(int(by_row) - int(birth_year))
+            if diff == 0:
+                score += 20
+            elif diff <= 3:
+                score += 15
+            elif diff <= 8:
+                score += 8
+            elif diff <= 15:
+                score += 3
+
+        # Birth-place scoring (token overlap)
+        if bp_query and bp_row:
+            q_toks = set(bp_query.replace(',', ' ').split())
+            r_toks = set(bp_row.replace(',', ' ').split())
+            overlap = len(q_toks & r_toks)
+            if overlap:
+                score += min(overlap * 6, 15)
+
+        scored.append({
+            'source':       'ged_vault',
+            'record_type':  'ged_file',
+            'last_name':    row['last_name'],
+            'first_name':   row['first_name'],
+            'middle_name':  row['middle_name'],
+            'birth_year':   by_row,
+            'birth_place':  row['birth_place'],
+            'death_year':   row['death_year'],
+            'death_place':  row['death_place'],
+            'gender':       row['gender'],
+            'notes':        row['notes'],
+            'title':        f"{row['first_name'] or ''} {row['last_name'] or ''}".strip(),
+            'date':         str(by_row) if by_row else '',
+            'url':          '',
+            'source_file':  row['source_file'],
+            'score':        score,
+        })
+
+    scored.sort(key=lambda x: -x['score'])
+    return scored[:limit]
