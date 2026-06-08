@@ -314,30 +314,36 @@ def search_stream():
 
         # ── External sources needed — charge tokens now ───────────────────────
         current_user = User.query.get(user_id)
-        if not current_user or current_user.total_tokens() < 20:
-            yield 'data: ' + _json.dumps({
-                'done': True,
-                'results': vault_results,
-                'gaps': [],
-                'summary': 'Vault search complete. Subscribe or top up tokens to search external records.',
-                'confidence': top_score,
-                'vault_only': True,
-                'tokens_charged': 0,
-                'token_gate': True,
-            }) + '\n\n'
+        if not current_user:
+            yield 'data: ' + _json.dumps({'error': 'User not found'}), + '\n\n'
             return
 
-        if not current_user.deduct_tokens(20):
-            yield 'data: ' + _json.dumps({'error': 'Token deduction failed'}), + '\n\n'
-            return
-        db.session.commit()
+        if current_user.tier != 'admin':
+            if current_user.total_tokens() < 20:
+                yield 'data: ' + _json.dumps({
+                    'done': True,
+                    'results': vault_results,
+                    'gaps': [],
+                    'summary': 'Vault search complete. Subscribe or top up tokens to search external records.',
+                    'confidence': top_score,
+                    'vault_only': True,
+                    'tokens_charged': 0,
+                    'token_gate': True,
+                }) + '\n\n'
+                return
 
-        yield 'data: ' + _json.dumps({'tokens_charged': 20}) + '\n\n'
+            if not current_user.deduct_tokens(20):
+                yield 'data: ' + _json.dumps({'error': 'Token deduction failed'}), + '\n\n'
+                return
+            db.session.commit()
+
+        yield 'data: ' + _json.dumps({'tokens_charged': 0 if current_user.tier == 'admin' else 20}) + '\n\n'
 
         for event_str in run_us_cascade_stream(
             full_first, last, birth_year, birth_place,
             community_results=community,
             skip_vault=True,  # vault already searched above
+            middle=middle,
         ):
             yield event_str
             try:
@@ -404,7 +410,8 @@ def research_person(person_id):
 
         for event_str in run_us_cascade_stream(
             first, last, birth_year, birth_place,
-            community_results=community
+            community_results=community,
+            middle=person.middle_name or '',
         ):
             yield event_str
             try:
@@ -734,6 +741,7 @@ def dev_search_stream():
         for event_str in run_us_cascade_stream(
             first, last, birth_year, birth_place,
             skip_vault=False,
+            middle=data.get('middle', ''),
         ):
             yield event_str
 
