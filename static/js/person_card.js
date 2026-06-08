@@ -184,11 +184,20 @@ function buildCardHTML(person, hometown, messages, documents) {
   if ((person.spouse_ids || []).length > 0) confirmedFields.push('Spouse');
   else missingFields.push('Spouse');
 
-  const sourcesHTML = (person.search_results || []).map(r => {
+  // Group sources: unique sources get individual chips; repeated sources get a grouped chip
+  const _results = person.search_results || [];
+  const _grouped = {};
+  _results.forEach(r => {
+    const key = `${r.source}|${r.record_type || ''}`;
+    if (!_grouped[key]) _grouped[key] = { r, count: 0 };
+    _grouped[key].count++;
+  });
+  const sourcesHTML = Object.values(_grouped).map(({ r, count }) => {
     const recJson = JSON.stringify(r.raw_data || r).replace(/</g,'\\u003c').replace(/"/g,'&quot;');
-    const label = r.record_type
+    const baseLabel = r.record_type
       ? `${escapeHtml(r.source)} — ${escapeHtml(r.record_type)}`
       : escapeHtml(r.source);
+    const label = count > 1 ? `${baseLabel} (${count})` : baseLabel;
     const link = r.url
       ? `<a href="${escapeAttr(r.url)}" target="_blank" class="source-chip-link" title="View source">${label}</a>`
       : `<span class="source-chip-label">${label}</span>`;
