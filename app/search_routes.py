@@ -301,8 +301,11 @@ def search_stream():
             }) + '\n\n'
 
         # Strong vault hit → return immediately, no token charge, no external calls
+        # Exception: modern persons (born after 1920 or death year provided) always need
+        # external search to find obituaries, FindAGrave, etc.
         top_score = max((h.get('score', 0) for h in vault_hits), default=0)
-        if len(vault_hits) >= 3 and top_score >= 60:
+        _is_modern_person = (birth_year and birth_year > 1920) or death_year
+        if len(vault_hits) >= 3 and top_score >= 60 and not _is_modern_person:
             yield 'data: ' + _json.dumps({
                 'done': True,
                 'results': vault_results,
