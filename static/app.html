@@ -1473,7 +1473,10 @@
           const parts = [];
           if (c.birth_year_min) parts.push(`born ${c.birth_year_min}–${c.birth_year_max}`);
           if (c.birth_place)    parts.push(c.birth_place);
-          const detail = parts.length ? `Constraints locked: ${parts.join(' · ')}` : 'Search context established.';
+          let detail = parts.length ? `Constraints locked: ${parts.join(' · ')}` : 'Search context established.';
+          if (data.name_corrected) {
+            detail = `⚠️ Name corrected: "${data.original_name}" → "${data.corrected_name}" — searching with corrected spelling.`;
+          }
           document.getElementById('spIcon').textContent = '🎯';
           document.getElementById('spHeading').textContent = `Searching for ${data.target} (${data.generation_label})`;
           document.getElementById('spDetail').textContent = detail;

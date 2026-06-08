@@ -266,19 +266,25 @@ def search_serper_obits(first: str, last: str, birth_year: int = None,
             resp.raise_for_status()
             organic = resp.json().get('organic', [])
 
-            last_lower = lname.lower()
+            last_lower  = lname.lower()
+            fname_lower = fname.lower()
             for item in organic:
                 url   = item.get('link', '')
                 title = item.get('title', '')
                 snip  = item.get('snippet', '')
-                combined = (title + ' ' + snip + ' ' + url).lower()
+                combined = (title + ' ' + snip).lower()
+                url_lower = url.lower()
 
                 if url in seen_urls:
                     continue
+                # Name must appear in title or snippet (not just URL)
+                # This prevents generic search index pages from matching
                 if last_lower not in combined:
                     continue
+                if fname_lower not in combined:
+                    continue
                 has_signal = any(s in combined for s in _OBIT_SIGNALS)
-                has_domain = any(d in url.lower() for d in _OBIT_DOMAINS)
+                has_domain = any(d in url_lower for d in _OBIT_DOMAINS)
                 if not (has_signal or has_domain):
                     continue
 
@@ -293,7 +299,7 @@ def search_serper_obits(first: str, last: str, birth_year: int = None,
                 })
 
             if results:
-                break  # found with primary name — skip nickname variant
+                break  # found specific match — skip nickname variant
 
         return results[:5]
     except Exception as e:
@@ -492,6 +498,55 @@ _NICKNAME_MAP = {
 def _first_name_variants(first: str) -> list:
     """Return nickname/formal variants for a given first name."""
     return _NICKNAME_MAP.get(first.lower().strip(), [])
+
+
+# Common first names for fuzzy typo correction
+_COMMON_FIRST_NAMES = [
+    'ernest','ernie','robert','bob','william','bill','james','jim','john',
+    'richard','charles','thomas','george','michael','joseph','edward','henry',
+    'donald','harold','frank','fred','alfred','albert','eugene','raymond',
+    'leonard','lawrence','kenneth','walter','clarence','gerald','patrick',
+    'anthony','arthur','carl','clarence','clifford','curtis','david','dennis',
+    'douglas','earl','edgar','elmer','floyd','frank','gary','gene','glen',
+    'gordon','harold','harvey','howard','hugh','ivan','jack','jason','jeffrey',
+    'jerome','keith','kevin','lee','lester','lloyd','louis','mark','martin',
+    'matthew','melvin','merle','nathan','neil','nicholas','paul','peter',
+    'philip','ralph','randy','raymond','roger','ronald','russell','ryan',
+    'samuel','scott','stanley','steven','timothy','troy','victor','vincent',
+    'wayne','wendell','wesley','willie',
+    # Female
+    'alice','barbara','betty','beverly','brenda','carol','carolyn','catherine',
+    'charlotte','cheryl','christine','cynthia','deborah','diana','donna','dorothy',
+    'edna','elaine','eleanor','elizabeth','emily','emma','ethel','evelyn','frances',
+    'gloria','grace','helen','irene','janet','janice','jean','jessica','joan',
+    'joyce','judith','julia','karen','katherine','kathleen','kathy','kathryn',
+    'laura','lauranie','laurane','linda','lisa','lois','margaret','marie','marilyn',
+    'martha','mary','mildred','nancy','norma','pamela','patricia','paula','phyllis',
+    'rebecca','rita','rose','ruth','sandra','sarah','sharon','shirley','stephanie',
+    'susan','teresa','theresa','virginia','wanda',
+]
+
+def _fuzzy_correct_name(name: str, threshold: float = 0.80) -> str:
+    """
+    Correct obvious typos in a first name using SequenceMatcher.
+    Returns the corrected name if a close match is found, else returns original.
+    Only corrects if the input looks like a typo (not a valid name itself).
+    """
+    if not name or len(name) < 3:
+        return name
+    n = name.lower().strip()
+    # Skip if it's already a known name
+    if n in _COMMON_FIRST_NAMES or n in _NICKNAME_MAP:
+        return name
+    from difflib import SequenceMatcher, get_close_matches
+    matches = get_close_matches(n, _COMMON_FIRST_NAMES, n=1, cutoff=threshold)
+    if matches:
+        corrected = matches[0]
+        # Preserve original capitalization style
+        if name[0].isupper():
+            corrected = corrected.capitalize()
+        return corrected
+    return name
 
 
 def search_yahoo_obits(first: str, last: str, birth_year: int = None,
@@ -2099,8 +2154,18 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     """
     from .ai_synthesis import synthesize_gaps, agentic_pick_sources
 
+    # Auto-correct obvious typos in the first name before searching
+    _first_only_raw = first.split()[0] if first else first
+    _corrected_first = _fuzzy_correct_name(_first_only_raw)
+    if _corrected_first.lower() != _first_only_raw.lower():
+        logger.info('Typo correction: "%s" → "%s"', _first_only_raw, _corrected_first)
+        # Rebuild full first (handles "First Middle" input)
+        _rest = first[len(_first_only_raw):] if first else ''
+        first = (_corrected_first + _rest).strip()
+
     all_results = []
     _first_only = first.split()[0] if first else first
+    _name_corrected = _corrected_first.lower() != _first_only_raw.lower()
 
     _ctx = ResearchContext(
         first=first, last=last,
@@ -2116,6 +2181,12 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
         'generation_label': _ctx.generation_label,
         'target': f'{first} {last}'.strip(),
         'constraints': _ctx.constraints,
+        **(
+            {'name_corrected': True,
+             'original_name': _first_only_raw,
+             'corrected_name': _corrected_first}
+            if _name_corrected else {}
+        ),
     }) + '\n\n'
 
     # ── Phase 0: vault search (internal, instant) ────────────────────────────
@@ -2466,6 +2537,11 @@ def extend_lineage(person: dict, max_generations: int = 3) -> dict:
 def run_us_cascade(first: str = '', last: str = '', birth_year: int = None,
                    birth_place: str = '', country_hint: str = '',
                    community_results: list = None) -> dict:
+    # Auto-correct typos in first name
+    _f0 = first.split()[0] if first else first
+    _fc = _fuzzy_correct_name(_f0)
+    if _fc.lower() != _f0.lower():
+        first = (_fc + first[len(_f0):]).strip()
     key = _cache_key(first, last, birth_year, birth_place)
     try:
         r = get_redis()
