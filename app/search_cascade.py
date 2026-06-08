@@ -224,6 +224,273 @@ _OBIT_DOMAINS = {'legacy.com', 'findagrave.com', 'dignitymemorial.com', 'tribute
 _OBIT_SIGNALS = {'obituary', 'obituaries', 'passed away', 'in loving memory', 'burial',
                  'interment', 'survived by', 'memorial', 'graveside', 'funeral home'}
 
+def search_duckduckgo_obits(first: str, last: str, birth_year: int = None,
+                            search_place: str = '') -> list:
+    """
+    Search DuckDuckGo HTML endpoint for obituaries — no Playwright, no API key.
+    html.duckduckgo.com/html/ returns clean parseable HTML even from server IPs.
+    """
+    try:
+        import urllib.parse, re as _re
+        name_q = f'"{first} {last}"' if first else f'"{last}"'
+        parts = [name_q, 'obituary']
+        if search_place:
+            parts.append(search_place)
+        query = ' '.join(parts)
+
+        resp = req_lib.post(
+            'https://html.duckduckgo.com/html/',
+            data={'q': query, 'b': '', 'kl': 'us-en'},
+            headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Referer': 'https://duckduckgo.com/',
+            },
+            timeout=12,
+            allow_redirects=True,
+        )
+        if resp.status_code not in (200, 302):
+            return []
+
+        html = resp.text
+        # DDG HTML results: <div class="result"> with <a class="result__a"> and <a class="result__snippet">
+        result_divs = _re.findall(
+            r'<div[^>]*class="[^"]*result(?:__body)?[^"]*"[^>]*>(.*?)</div>\s*</div>',
+            html, _re.DOTALL
+        )
+        if not result_divs:
+            # Fallback: scan all links in the page
+            result_divs = _re.findall(r'<a[^>]+href="//duckduckgo\.com/l/\?uddg=(https?[^"]+)"[^>]*>([^<]+)</a>', html)
+
+        results = []
+        last_lower = last.lower()
+
+        for block in result_divs[:15]:
+            # Extract redirect URL from DDG's tracker link
+            url_match = _re.search(r'uddg=(https?[^"&]+)', block)
+            if not url_match:
+                # Direct href
+                url_match = _re.search(r'href="(https?://[^"]+)"', block)
+            url = urllib.parse.unquote(url_match.group(1)) if url_match else ''
+
+            title_match = _re.search(r'<a[^>]*class="[^"]*result__a[^"]*"[^>]*>([^<]+)</a>', block)
+            title = title_match.group(1).strip() if title_match else ''
+            if not title:
+                title_match = _re.search(r'>([^<]{10,80})</a>', block)
+                title = title_match.group(1).strip() if title_match else ''
+
+            snip_match = _re.search(r'class="[^"]*result__snippet[^"]*"[^>]*>([^<]+)', block)
+            snippet = snip_match.group(1).strip() if snip_match else ''
+
+            combined = (title + ' ' + snippet + ' ' + url).lower()
+            if last_lower not in combined:
+                continue
+            has_signal = any(s in combined for s in _OBIT_SIGNALS)
+            has_domain = any(d in url.lower() for d in _OBIT_DOMAINS)
+            if not (has_signal or has_domain):
+                continue
+
+            results.append({
+                'source': 'obituary_web',
+                'record_type': 'obituary',
+                'title': title or f'{first} {last} obituary',
+                'snippet': snippet[:200],
+                'url': url,
+                'name': f'{first} {last}',
+            })
+
+        return results[:4]
+    except Exception as e:
+        logger.debug('DDG obituary search failed: %s', e)
+        return []
+
+
+# Common nickname expansions — many obituaries use the informal name, not the given name
+_NICKNAME_MAP = {
+    'ernest': ['ernie'],  'ernie': ['ernest'],
+    'robert': ['bob', 'rob', 'bobby'],  'bob': ['robert'],  'rob': ['robert'],
+    'william': ['bill', 'will', 'billy'],  'bill': ['william'],
+    'james': ['jim', 'jimmy'],  'jim': ['james'],
+    'john': ['johnny', 'jack'],  'johnny': ['john'],
+    'richard': ['rick', 'dick'],  'rick': ['richard'],
+    'charles': ['charlie', 'chuck'],  'charlie': ['charles'],
+    'thomas': ['tom', 'tommy'],  'tom': ['thomas'],
+    'george': ['georgie'],  'michael': ['mike', 'micky'],  'mike': ['michael'],
+    'joseph': ['joe', 'joey'],  'joe': ['joseph'],  'joey': ['joseph'],
+    'edward': ['ed', 'eddie', 'ned'],  'eddie': ['edward'],
+    'henry': ['hank'],  'hank': ['henry'],
+    'donald': ['don', 'donnie'],  'don': ['donald'],
+    'harold': ['hal', 'harry'],  'harry': ['harold', 'henry'],
+    'frank': ['francis', 'franklin'],  'fred': ['frederick', 'alfred'],
+    'alfred': ['al', 'fred'],  'al': ['alfred', 'albert'],
+    'albert': ['al', 'bert'],  'bert': ['albert', 'robert'],
+    'eugene': ['gene'],  'gene': ['eugene'],
+    'raymond': ['ray'],  'ray': ['raymond'],
+    'leonard': ['len', 'lenny'],  'lawrence': ['larry'],  'larry': ['lawrence'],
+    'kenneth': ['ken', 'kenny'],  'ken': ['kenneth'],
+    'walter': ['walt'],  'walt': ['walter'],
+    'clarence': ['clar'],  'gerald': ['jerry'],  'jerry': ['gerald'],
+    'patricia': ['pat', 'patty', 'tricia'],  'pat': ['patricia'],
+    'barbara': ['barb', 'babs'],  'margaret': ['peg', 'peggy', 'marge'],
+    'katherine': ['kate', 'kathy', 'kay'],  'elizabeth': ['liz', 'beth', 'betty'],
+    'dorothy': ['dot', 'dottie'],  'virginia': ['ginny'],
+    'carolyn': ['carol'],  'carol': ['carolyn'],
+    'linda': ['lin'],  'shirley': ['shirl'],
+    'beverly': ['bev'],  'judith': ['judy'],  'judy': ['judith'],
+    'sandra': ['sandy'],  'sandy': ['sandra'],
+    'kimberly': ['kim'],  'kim': ['kimberly'],
+    'lauranie': ['laurane', 'laura'],
+}
+
+
+def _first_name_variants(first: str) -> list:
+    """Return nickname/formal variants for a given first name."""
+    return _NICKNAME_MAP.get(first.lower().strip(), [])
+
+
+def search_yahoo_obits(first: str, last: str, birth_year: int = None,
+                       search_place: str = '') -> list:
+    """
+    Search Yahoo for obituaries — works well from server IPs, returns real web results.
+    Yahoo uses Bing's index but has less aggressive IP blocking.
+    """
+    try:
+        import urllib.parse, re as _re
+        name_q = f'"{first} {last}"' if first else f'"{last}"'
+        parts = [name_q, 'obituary']
+        if search_place:
+            parts.append(search_place)
+        query = ' '.join(parts)
+
+        resp = req_lib.get(
+            'https://search.yahoo.com/search',
+            params={'p': query, 'n': 10},
+            headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.5',
+            },
+            timeout=12,
+            allow_redirects=True,
+        )
+        if resp.status_code not in (200,):
+            return []
+
+        html = resp.text
+        results = []
+        last_lower = last.lower()
+
+        # Yahoo result blocks contain <h3 class="title"> and <p class="lh-16">
+        blocks = _re.findall(r'<div[^>]*class="[^"]*algo[^"]*"[^>]*>(.*?)</li>', html, _re.DOTALL)
+        if not blocks:
+            blocks = _re.findall(r'<li[^>]*class="[^"]*first[^"]*"[^>]*>(.*?)</li>', html, _re.DOTALL)
+
+        for block in blocks[:12]:
+            links = _re.findall(r'href="(https?://(?!search\.yahoo)[^"]+)"', block)
+            titles = _re.findall(r'<h3[^>]*>.*?<a[^>]*>([^<]+)</a>', block, _re.DOTALL)
+            if not titles:
+                titles = _re.findall(r'<a[^>]*><b>([^<]+)</b>', block)
+            descs = _re.findall(r'<p[^>]*>([^<]{15,})</p>', block)
+
+            url = links[0] if links else ''
+            title = titles[0].strip() if titles else ''
+            desc = descs[0].strip() if descs else ''
+            combined = (title + ' ' + desc + ' ' + url).lower()
+
+            if not url or last_lower not in combined:
+                continue
+            has_signal = any(s in combined for s in _OBIT_SIGNALS)
+            has_domain = any(d in url.lower() for d in _OBIT_DOMAINS)
+            if not (has_signal or has_domain):
+                continue
+
+            results.append({
+                'source': 'obituary_web',
+                'record_type': 'obituary',
+                'title': title or f'{first} {last} obituary',
+                'snippet': desc[:200],
+                'url': url,
+                'name': f'{first} {last}',
+            })
+
+        return results[:4]
+    except Exception as e:
+        logger.debug('Yahoo obituary search failed: %s', e)
+        return []
+
+
+def search_harrymckneely(first: str, last: str, birth_year: int = None) -> list:
+    """
+    Direct search of Harry McKneely & Son Funeral Homes (Hammond/Ponchatoula, LA).
+    Covers Tangipahoa and Livingston Parish deaths.
+    Also tries nickname variants (Ernest → Ernie etc.).
+    """
+    import re as _re
+    results = []
+    names_to_try = [first] + _first_name_variants(first)
+    last_lower = last.lower()
+
+    for name in names_to_try[:3]:
+        try:
+            url = f'https://obits.harrymckneely.com/{name.lower()}-{last_lower}'
+            resp = req_lib.get(
+                url,
+                headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'},
+                timeout=10,
+                allow_redirects=True,
+            )
+            if resp.status_code != 200:
+                continue
+
+            html = resp.text
+
+            # Use meta description — contains the obituary summary without JS noise
+            meta_m = _re.search(r'<meta[^>]+name="description"[^>]+content="([^"]+)"', html)
+            snippet = meta_m.group(1).strip() if meta_m else ''
+
+            # Verify the page is actually about this person (not a generic page)
+            og_title_m = _re.search(r'<meta[^>]+property="og:title"[^>]+content="([^"]+)"', html)
+            og_title = og_title_m.group(1).strip() if og_title_m else ''
+
+            # Confirm the obituary is about someone with this last name
+            if last_lower not in og_title.lower() and last_lower not in snippet.lower():
+                continue
+
+            # Confirm it's actually an obituary page, not a site listing
+            if 'passed away' not in snippet.lower() and 'passed away' not in html.lower()[:5000]:
+                continue
+
+            # Verify birth year if provided (allow ±3 year slop for age estimates)
+            if birth_year and snippet:
+                yr_m = _re.search(r'born on [^,]+,\s*(\d{4})', snippet)
+                if yr_m:
+                    page_year = int(yr_m.group(1))
+                    if abs(page_year - birth_year) > 5:
+                        continue
+
+            full_name = og_title.replace(' Obituary - Harry McKneely & Son', '').replace(' Obituary', '').strip()
+            if not full_name:
+                full_name = f'{name} {last}'.title()
+
+            results.append({
+                'source': 'harrymckneely',
+                'record_type': 'obituary',
+                'title': f'{full_name} — Harry McKneely & Son Funeral Home',
+                'snippet': snippet[:300],
+                'url': url,
+                'name': full_name,
+                'birth_place': 'Louisiana',
+                'score': 90,
+            })
+            break
+        except Exception:
+            continue
+
+    return results
+
+
 def search_bing_lite_obits(first: str, last: str, birth_year: int = None,
                            search_place: str = '') -> list:
     """
@@ -1801,12 +2068,30 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     # Use death_place for obituary/burial searches — more accurate than birth_place
     _search_place = death_place or birth_place
 
+    # Nickname variants — many people go by informal names in obituaries
+    _nick_variants = _first_name_variants(first)
+    _first_alt = _nick_variants[0] if _nick_variants else None
+
     _obit_task = {}
     if _is_modern:
-        # Bing Lite HTTP fallback (no API key needed)
-        if not os.environ.get('BRAVE_API_KEY'):
-            _obit_task['bing_lite_obituary'] = lambda: search_bing_lite_obits(first, last, birth_year, _search_place)
+        # Yahoo search — works from server IPs, uses Bing index
+        _obit_task['yahoo_obituary'] = lambda: search_yahoo_obits(first, last, birth_year, _search_place)
+        # Also try with nickname variant if one exists
+        if _first_alt:
+            _fa = _first_alt  # capture for lambda
+            _obit_task['yahoo_obituary_nick'] = lambda: search_yahoo_obits(_fa, last, birth_year, _search_place)
+        # DuckDuckGo HTML fallback
+        _obit_task['ddg_obituary'] = lambda: search_duckduckgo_obits(first, last, birth_year, _search_place)
+        # Bing Lite HTTP fallback
+        _obit_task['bing_lite_obituary'] = lambda: search_bing_lite_obits(first, last, birth_year, _search_place)
         _obit_task['legacy_obituary'] = lambda: search_legacy_obits(first, last, birth_year, _search_place)
+        # Louisiana-specific: Harry McKneely & Son covers Hammond/Ponchatoula area
+        _place_lower = _search_place.lower()
+        if any(p in _place_lower for p in ('louisiana', ' la', 'hammond', 'ponchatoula', 'tangipahoa', 'livingston')):
+            _obit_task['harrymckneely'] = lambda: search_harrymckneely(first, last, birth_year)
+            if _first_alt:
+                _fa2 = _first_alt
+                _obit_task['harrymckneely_nick'] = lambda: search_harrymckneely(_fa2, last, birth_year)
         if _playwright_available():
             from .playwright_scrapers import search_obituaries as _search_obits, search_findagrave as _search_fg
             _obit_task['obituaries'] = lambda: _search_obits(first, last, birth_year, _search_place)
