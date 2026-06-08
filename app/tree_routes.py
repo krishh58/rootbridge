@@ -2,10 +2,10 @@ import secrets
 import json as _json
 from markupsafe import escape as html_escape
 import threading
-from flask import Blueprint, request, jsonify, g, make_response, render_template_string, current_app
+from flask import Blueprint, request, jsonify, g, make_response, render_template_string, current_app, Response, stream_with_context
 from .auth import require_auth
 from .db import db
-from .models import Tree, Person, SearchResult, Gap, AlfredMessage, TreeCollaborator
+from .models import Tree, Person, SearchResult, Gap, AlfredMessage, TreeCollaborator, PersonEdge
 from .hometown import get_hometown_photo, get_historical_map, get_life_context
 
 def _can_access_tree(tree_id: int, user_id: int, require_editor: bool = False) -> bool:
@@ -472,3 +472,77 @@ def import_gedcom():
 
     db.session.commit()
     return jsonify({'imported': count, 'tree_id': tree.id}), 201
+
+
+@tree_bp.get('/api/persons/<int:person_id>/auto-build')
+@require_auth
+def auto_build_ancestry(person_id: int):
+    """
+    SSE endpoint — streams ancestry chain building in real time.
+    Alfred searches each ancestor generation, extracts parent names,
+    creates Person nodes, and queues the next generation automatically.
+    """
+    person = Person.query.get(person_id)
+    if not person:
+        return jsonify({'error': 'Person not found'}), 404
+    if not _can_access_tree(person.tree_id, g.user_id):
+        return jsonify({'error': 'Access denied'}), 403
+
+    from .ancestry_chain import auto_build_tree_stream
+    from .models import User, Tree
+
+    app = current_app._get_current_object()
+    user_id = g.user_id
+    tree_id = person.tree_id
+
+    def generate():
+        yield from auto_build_tree_stream(
+            start_person_id = person_id,
+            tree_id         = tree_id,
+            user_id         = user_id,
+            app             = app,
+            db              = db,
+            Person          = Person,
+            PersonEdge      = PersonEdge,
+            Tree            = Tree,
+        )
+
+    return Response(
+        stream_with_context(generate()),
+        mimetype='text/event-stream',
+        headers={
+            'Cache-Control': 'no-cache',
+            'X-Accel-Buffering': 'no',
+        }
+    )
+
+
+@tree_bp.post('/api/persons/<int:person_id>/extract-family')
+@require_auth
+def extract_family_names(person_id: int):
+    """
+    One-shot endpoint — scans existing search results for this person
+    and returns extracted family member names without running new searches.
+    Useful for previewing what auto-build would find.
+    """
+    person = Person.query.get(person_id)
+    if not person:
+        return jsonify({'error': 'Person not found'}), 404
+    if not _can_access_tree(person.tree_id, g.user_id):
+        return jsonify({'error': 'Access denied'}), 403
+
+    from .ancestry_chain import extract_family_from_results
+
+    results = [
+        {'source': r.source, 'snippet': r.raw_data and _json.loads(r.raw_data).get('snippet', ''),
+         'full_text': r.raw_data and _json.loads(r.raw_data).get('full_text', ''),
+         'title': r.title}
+        for r in person.search_results
+    ]
+    family = extract_family_from_results(results)
+    return jsonify({
+        'person': f'{person.first_name} {person.last_name}',
+        'parents_extracted': [{'first': f, 'last': l} for f, l in family['parents']],
+        'spouses_extracted': [{'first': f, 'last': l} for f, l in family['spouses']],
+        'result_count': len(results),
+    })
