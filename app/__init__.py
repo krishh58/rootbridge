@@ -5,11 +5,10 @@ from flask_limiter.util import get_remote_address
 from .config import Config
 from .db import db
 
-_redis_url = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
 limiter = Limiter(
     key_func=get_remote_address,
     default_limits=[],
-    storage_uri=_redis_url,
+    storage_uri=os.environ.get('REDIS_URL', 'memory://'),
 )
 
 def create_app(config=None):
@@ -56,6 +55,8 @@ def create_app(config=None):
     app.register_blueprint(vault_import_bp)
     from .ged_export_routes import ged_export_bp
     app.register_blueprint(ged_export_bp)
+    from .print_routes import print_bp
+    app.register_blueprint(print_bp)
 
     with app.app_context():
         from . import models  # noqa: register models with SQLAlchemy
@@ -69,7 +70,7 @@ def create_app(config=None):
     #         build_hot_index(app)
     #     threading.Thread(target=_build_index, daemon=True, name='index-builder').start()
 
-    if not app.config.get('TESTING'):
+    if not app.config.get('TESTING') and not os.environ.get('SKIP_VAULT_SEED'):
         import threading
         def _seed_vault():
             import time, gzip, json, urllib.request
