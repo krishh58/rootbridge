@@ -931,6 +931,7 @@
         </div>`;
       document.body.appendChild(overlay);
       document.getElementById('authEmail').focus();
+      if (new URLSearchParams(window.location.search).get('register')) showRegisterForm();
     }
 
     function showRegisterForm() {
