@@ -2153,6 +2153,14 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     skip_vault: set True when the caller already ran vault search (avoids double-hit)
     """
     from .ai_synthesis import synthesize_gaps, agentic_pick_sources
+    from .funeral_home_index import search_regional_funeral_homes as _rfh_search
+
+    def _run_regional_funeral_homes(fn, ln, dp, by):
+        try:
+            return _rfh_search(fn, ln, dp, by)
+        except Exception as e:
+            logger.warning('Regional funeral home search error: %s', e)
+            return []
 
     # Auto-correct obvious typos in the first name before searching
     _first_only_raw = first.split()[0] if first else first
@@ -2324,6 +2332,18 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
             from .playwright_scrapers import search_obituaries as _search_obits, search_findagrave as _search_fg
             _obit_task['obituaries'] = lambda: _search_obits(first, last, birth_year, _search_place)
             _obit_task['findagrave'] = lambda: _search_fg(_first_only, last, birth_year, death_year)
+
+        # Regional funeral home index — checks county-specific homes directly
+        # Fires when we have a death_place; discovers + caches homes by county
+        if death_place:
+            _dp = death_place
+            _obit_task['regional_funeral_homes'] = lambda: _run_regional_funeral_homes(
+                first, last, _dp, birth_year)
+            # Also try nickname variant against regional homes
+            if _first_alt:
+                _fa3 = _first_alt
+                _obit_task['regional_funeral_homes_nick'] = lambda: _run_regional_funeral_homes(
+                    _fa3, last, _dp, birth_year)
 
     phase1_tasks = {
         **_ssdi_task,

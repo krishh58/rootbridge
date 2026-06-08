@@ -146,3 +146,38 @@ def rebuild_index():
     count = build_hot_index(current_app._get_current_object())
     from .match_index import index_stats
     return jsonify({'rebuilt': True, 'indexed': count, 'stats': index_stats()})
+
+
+@routes_bp.get('/api/admin/funeral-home-index')
+@require_auth
+def funeral_home_index_stats():
+    if g.user_id != 1:
+        return jsonify({'error': 'Admin only'}), 403
+    from .funeral_home_index import get_county_stats, _get_conn
+    stats = get_county_stats()
+    conn = _get_conn()
+    counties = conn.execute(
+        'SELECT county_key, county_name, state_abbr, discovered FROM county_cache ORDER BY discovered DESC LIMIT 50'
+    ).fetchall()
+    conn.close()
+    return jsonify({**stats, 'recent_counties': [dict(r) for r in counties]})
+
+
+@routes_bp.post('/api/admin/funeral-home-seed')
+@require_auth
+def funeral_home_seed():
+    """Manually seed funeral homes for a city/county."""
+    if g.user_id != 1:
+        return jsonify({'error': 'Admin only'}), 403
+    data = request.get_json() or {}
+    death_place = data.get('death_place', '')
+    if not death_place:
+        return jsonify({'error': 'death_place required'}), 400
+    from .funeral_home_index import resolve_death_place_to_county, get_or_discover_funeral_homes
+    resolved = resolve_death_place_to_county(death_place)
+    if not resolved:
+        return jsonify({'error': f'Could not resolve county from: {death_place}'}), 400
+    county_key, county_name, state_abbr = resolved
+    homes = get_or_discover_funeral_homes(county_key, county_name, state_abbr)
+    return jsonify({'county_key': county_key, 'county_name': county_name,
+                    'state_abbr': state_abbr, 'homes_found': len(homes), 'homes': homes})
