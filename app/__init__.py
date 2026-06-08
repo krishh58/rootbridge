@@ -57,6 +57,8 @@ def create_app(config=None):
     app.register_blueprint(ged_export_bp)
     from .print_routes import print_bp
     app.register_blueprint(print_bp)
+    from .citation_routes import citation_bp
+    app.register_blueprint(citation_bp)
 
     with app.app_context():
         from . import models  # noqa: register models with SQLAlchemy

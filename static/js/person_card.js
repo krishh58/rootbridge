@@ -43,6 +43,7 @@ async function openPersonCard(personId) {
   initVoiceInput(personId);
   scrollAlfredHistory();
   loadPersonMatches(personId);
+  loadPortrait(personId);
 }
 
 function closePersonCard() {
@@ -183,9 +184,20 @@ function buildCardHTML(person, hometown, messages, documents) {
   if ((person.spouse_ids || []).length > 0) confirmedFields.push('Spouse');
   else missingFields.push('Spouse');
 
-  const sourcesHTML = (person.search_results || []).map(r =>
-    `<a href="${escapeAttr(r.url)}" target="_blank" class="source-chip">${escapeHtml(r.source)}</a>`
-  ).join('') || '<span class="no-data">No sources yet</span>';
+  const sourcesHTML = (person.search_results || []).map(r => {
+    const recJson = JSON.stringify(r.raw_data || r).replace(/</g,'\\u003c').replace(/"/g,'&quot;');
+    const label = r.record_type
+      ? `${escapeHtml(r.source)} — ${escapeHtml(r.record_type)}`
+      : escapeHtml(r.source);
+    const link = r.url
+      ? `<a href="${escapeAttr(r.url)}" target="_blank" class="source-chip-link" title="View source">${label}</a>`
+      : `<span class="source-chip-label">${label}</span>`;
+    return `<span class="source-chip">
+      ${link}
+      <button class="cite-btn" title="Download research citation PDF"
+        onclick="downloadCitation(${recJson})">📄 Cite</button>
+    </span>`;
+  }).join('') || '<span class="no-data">No sources yet</span>';
 
   const gapsHTML = (person.gaps || []).filter(g => !g.resolved).map(g =>
     `<div class="gap-item">✗ ${escapeHtml(g.gap_type.replace(/_/g,' '))} — <em>${escapeHtml(g.suggested_source)}</em></div>`
@@ -206,6 +218,22 @@ function buildCardHTML(person, hometown, messages, documents) {
     </div>`
   ).join('');
 
+  const notesHTML = person.notes ? `
+    <div class="personal-notes-panel">
+      <div class="notes-header">
+        <span class="notes-quill">✦</span>
+        <span class="notes-label">Personal Notes</span>
+      </div>
+      <div class="notes-body">${escapeHtml(person.notes).replace(/\n/g, '<br>')}</div>
+      <button class="notes-edit-link" onclick="showEditPerson(${person.id}, ${JSON.stringify(person).replace(/</g,'\\u003c').replace(/"/g,'&quot;')})">Edit notes ✏️</button>
+    </div>` : `
+    <div class="personal-notes-panel personal-notes-empty">
+      <span class="notes-quill" style="opacity:.4">✦</span>
+      <span style="color:#64748b;font-size:.85rem;margin-left:.5rem">No personal notes yet —
+        <button class="notes-edit-link" onclick="showEditPerson(${person.id}, ${JSON.stringify(person).replace(/</g,'\\u003c').replace(/"/g,'&quot;')})">add a story about ${escapeHtml(person.first_name || 'this person')}</button>
+      </span>
+    </div>`;
+
   return `
     <div class="person-card">
       <button class="card-close" onclick="closePersonCard()">✕</button>
@@ -213,13 +241,27 @@ function buildCardHTML(person, hometown, messages, documents) {
       <button class="card-edit-btn" style="right:7rem" onclick="reSearchPerson(${person.id})" title="Re-search archives">🔍 Re-search</button>
       <button class="card-edit-btn" style="right:12rem;border-color:#4a7c59;color:#4ade80" onclick="deepResearch(${person.id})" title="AI agent browses the web to find this person (50 tokens)">🧠 Deep Research</button>
       <div class="card-header">
-        <h2>${escapeHtml(name)}</h2>
-        <span class="card-dates">${escapeHtml(dates)}</span>
-        <div class="confidence-bar">
-          <div class="confidence-fill" style="width:${person.confidence}%;background:${confidenceColor}"></div>
-          <span class="confidence-label">${person.confidence}% confidence</span>
+        <div class="portrait-col">
+          <div class="portrait-ring" id="portraitRing-${person.id}">
+            <div class="portrait-silhouette">👤</div>
+          </div>
+          <label class="portrait-upload-label" title="Upload a photo (stored on this device only)">
+            📷
+            <input type="file" style="display:none" accept="image/*"
+                   onchange="handlePortraitUpload(${person.id}, this)">
+          </label>
+        </div>
+        <div class="card-header-text">
+          <h2>${escapeHtml(name)}</h2>
+          <span class="card-dates">${escapeHtml(dates)}</span>
+          <div class="confidence-bar">
+            <div class="confidence-fill" style="width:${person.confidence}%;background:${confidenceColor}"></div>
+            <span class="confidence-label">${person.confidence}% confidence</span>
+          </div>
+          <div class="portrait-device-note">📱 Photos stored on this device only — <button class="notes-edit-link" onclick="exportAllPhotos()">backup all ↓</button></div>
         </div>
       </div>
+      ${notesHTML}
       <div class="card-panels">
         <div class="card-left">
           <h4>Confirmed</h4>
@@ -271,11 +313,30 @@ function buildCardHTML(person, hometown, messages, documents) {
       .card-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:#94a3b8;font-size:1.2rem;cursor:pointer}
       .card-edit-btn{position:absolute;top:1rem;right:3.5rem;background:none;border:1px solid #334155;color:#94a3b8;font-size:.78rem;padding:.25rem .6rem;border-radius:6px;cursor:pointer}
       .card-edit-btn:hover{border-color:#60a5fa;color:#60a5fa}
+      .card-header{display:flex;gap:1.25rem;align-items:flex-start}
+      .card-header-text{flex:1}
       .card-header h2{margin:0;font-size:1.4rem}
       .card-dates{color:#94a3b8;font-size:.9rem}
       .confidence-bar{background:#334155;border-radius:4px;height:6px;margin-top:.5rem;position:relative}
       .confidence-fill{height:6px;border-radius:4px;transition:width .3s}
       .confidence-label{font-size:.75rem;color:#94a3b8;position:absolute;right:0;top:8px}
+      .portrait-col{display:flex;flex-direction:column;align-items:center;gap:.4rem;flex-shrink:0}
+      .portrait-ring{width:72px;height:72px;border-radius:50%;border:2px solid #334155;overflow:hidden;background:#1e293b;display:flex;align-items:center;justify-content:center;position:relative}
+      .portrait-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+      .portrait-silhouette{font-size:2.2rem;color:#475569}
+      .portrait-upload-label{cursor:pointer;font-size:.85rem;color:#64748b;padding:.15rem .4rem;border-radius:4px;border:1px solid #334155;line-height:1}
+      .portrait-upload-label:hover{border-color:#60a5fa;color:#60a5fa}
+      .portrait-device-note{font-size:.72rem;color:#475569;margin-top:.5rem}
+      .portrait-remove-btn{background:none;border:none;color:#64748b;font-size:.7rem;cursor:pointer;padding:0}
+      .portrait-remove-btn:hover{color:#f87171}
+      .personal-notes-panel{background:linear-gradient(135deg,#1c1408 0%,#1a1a0a 100%);border:1px solid #5c3d11;border-left:4px solid #b5681e;border-radius:8px;padding:1.1rem 1.25rem;font-family:Georgia,serif}
+      .personal-notes-panel.personal-notes-empty{background:transparent;border:1px dashed #334155;border-left:4px solid #334155;display:flex;align-items:center;padding:.75rem 1rem}
+      .notes-header{display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem}
+      .notes-quill{color:#b5681e;font-size:1rem}
+      .notes-label{color:#b5681e;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-family:'Segoe UI',sans-serif}
+      .notes-body{color:#e8dcc8;font-size:.92rem;line-height:1.75;white-space:pre-wrap}
+      .notes-edit-link{background:none;border:none;color:#64748b;font-size:.78rem;cursor:pointer;padding:0;margin-top:.6rem;display:block;font-family:'Segoe UI',sans-serif}
+      .notes-edit-link:hover{color:#b5681e}
       .card-panels{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
       .card-left,.card-right{display:flex;flex-direction:column;gap:.5rem}
       .card-left h4,.card-right h4{color:#94a3b8;font-size:.8rem;text-transform:uppercase;margin:.75rem 0 .25rem}
@@ -284,8 +345,12 @@ function buildCardHTML(person, hometown, messages, documents) {
       .check-item.missing{color:#f87171}
       .gap-item{font-size:.85rem;color:#fbbf24;padding:.2rem 0}
       .sources-row{display:flex;flex-wrap:wrap;gap:.5rem}
-      .source-chip{background:#1e40af;color:#93c5fd;padding:.2rem .6rem;border-radius:20px;font-size:.8rem;text-decoration:none}
-      .source-chip:hover{background:#2563eb}
+      .source-chip{background:#1e293b;border:1px solid #334155;padding:.25rem .5rem .25rem .7rem;border-radius:20px;font-size:.8rem;display:inline-flex;align-items:center;gap:.4rem}
+      .source-chip-link{color:#93c5fd;text-decoration:none}
+      .source-chip-link:hover{color:#bfdbfe}
+      .source-chip-label{color:#93c5fd}
+      .cite-btn{background:#1a3320;border:1px solid #166534;color:#4ade80;border-radius:12px;padding:.1rem .5rem;font-size:.72rem;cursor:pointer;white-space:nowrap}
+      .cite-btn:hover{background:#14532d}
       .no-data{color:#64748b;font-size:.85rem}
       .search-btn{margin-top:.75rem;align-self:flex-start}
       .hometown-photo{width:100%;border-radius:8px;object-fit:cover;max-height:180px}
@@ -826,6 +891,45 @@ async function openPersonCardWithGrowPanel(personId, ancestorFindings) {
   personCard.appendChild(panel);
 }
 
+// ── Portrait (IndexedDB local photo storage) ────────────────────────────────
+
+async function loadPortrait(personId) {
+  const ring = document.getElementById(`portraitRing-${personId}`);
+  if (!ring) return;
+  try {
+    const url = await getPortraitUrl(personId);
+    if (!url) return;
+    ring.innerHTML = `<img src="${url}" alt="Portrait" onload="URL.revokeObjectURL(this.src)">
+      <button class="portrait-remove-btn" title="Remove photo"
+              onclick="removePortrait(${personId})" style="position:absolute;bottom:2px;right:2px;background:rgba(0,0,0,.6);border-radius:50%;width:18px;height:18px;font-size:.65rem;display:flex;align-items:center;justify-content:center">✕</button>`;
+  } catch (e) { /* IndexedDB unavailable — ignore */ }
+}
+
+async function handlePortraitUpload(personId, input) {
+  const file = input.files[0];
+  if (!file) return;
+  try {
+    await savePhoto(personId, file);
+    notifyPhotoChange(personId);
+    await loadPortrait(personId);
+  } catch (e) {
+    alert('Could not save photo: ' + e.message);
+  }
+  input.value = '';
+}
+
+async function removePortrait(personId) {
+  if (!confirm('Remove this photo from your device?')) return;
+  try {
+    await deletePhoto(personId);
+    notifyPhotoChange(personId);
+    const ring = document.getElementById(`portraitRing-${personId}`);
+    if (ring) ring.innerHTML = '<div class="portrait-silhouette">👤</div>';
+  } catch (e) {}
+}
+
+// ── End portrait ─────────────────────────────────────────────────────────────
+
 async function addAncestorsToTree(personId) {
   const panel = document.querySelector('.grow-tree-panel');
   if (!panel) return;
@@ -880,5 +984,34 @@ async function addAncestorsToTree(personId) {
   } catch(e) {
     if (status) status.textContent = e.message;
     if (btn) { btn.disabled = false; btn.textContent = 'Add Selected to Tree'; }
+  }
+}
+
+async function downloadCitation(record) {
+  const btn = event && event.target;
+  const orig = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+  try {
+    const token = typeof getToken === 'function' ? getToken() : (localStorage.getItem('rb_token') || '');
+    const resp = await fetch('/api/citation/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ record }),
+    });
+    if (!resp.ok) { alert('Could not generate citation. Please try again.'); return; }
+    const blob = await resp.blob();
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = resp.headers.get('Content-Disposition')?.match(/filename="([^"]+)"/)?.[1]
+                 || 'rootbridge_citation.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch(e) {
+    alert('Citation download failed: ' + e.message);
+  } finally {
+    if (btn) { btn.textContent = orig; btn.disabled = false; }
   }
 }
