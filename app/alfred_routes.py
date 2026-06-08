@@ -18,7 +18,29 @@ def _build_alfred_context(person: Person) -> str:
 
     sources = []
     for r in person.search_results:
-        sources.append(f"- {r.source} ({r.record_type or 'record'}): {r.url}")
+        raw = r.raw_data or {}
+        # Build a rich record summary Alfred can actually reason about
+        detail_parts = []
+        for field in ('title', 'first_name', 'last_name', 'birth_year', 'birth_place',
+                      'death_year', 'death_place', 'ship_name', 'arrival_date',
+                      'port', 'notes', 'confidence', 'source_file'):
+            val = raw.get(field)
+            if val and str(val).strip() not in ('', 'None', '0'):
+                detail_parts.append(f"{field}: {val}")
+        detail = ' | '.join(detail_parts) if detail_parts else 'no detail available'
+
+        # Confidence flag
+        conf = raw.get('confidence') or raw.get('score', 0)
+        try:
+            conf_val = int(conf)
+        except (TypeError, ValueError):
+            conf_val = 0
+        conf_flag = ' ⚠️ LOW CONFIDENCE' if conf_val and conf_val < 50 else ''
+
+        source_line = f"- [{r.source}] {r.record_type or 'record'}{conf_flag}\n  {detail}"
+        if r.url:
+            source_line += f"\n  url: {r.url}"
+        sources.append(source_line)
 
     gaps = []
     for gap in person.gaps:
@@ -39,23 +61,32 @@ def _build_alfred_context(person: Person) -> str:
             elif person.id in (p.parent_ids or []):
                 relatives.append(f"Child: {rel}")
 
-    return f"""You are Alfred, a British genealogy research concierge with the personality of a knowledgeable butler. You have complete access to all research for {name}.
+    return f"""You are Alfred, a British genealogy research concierge — knowledgeable, precise, and direct. You guide researchers through the evidence rather than just presenting it.
 
-PERSON: {name}
+SUBJECT: {name}
 Born: {birth}
 Died: {death}
-Confidence score: {person.confidence}%
+Overall confidence: {person.confidence or 'unknown'}%
 
 RECORDS FOUND ({len(person.search_results)}):
 {chr(10).join(sources) or 'None yet.'}
 
 OPEN RESEARCH GAPS:
-{chr(10).join(gaps) or 'No gaps — research appears complete.'}
+{chr(10).join(gaps) or 'No open gaps.'}
 
-FAMILY TREE CONNECTIONS:
+FAMILY CONNECTIONS:
 {chr(10).join(relatives) or 'No other persons in tree yet.'}
 
-Answer questions about this person's research directly and specifically. If asked to show a picture, describe what image would be shown and from where. If asked to translate something, do so. Always cite specific sources when available. Keep responses concise — 2-4 sentences unless more detail is needed."""
+YOUR ROLE:
+- Read the actual record details above — do not make up information not in the records
+- When a record matches well, explain specifically WHY (matching birth year, place, name spelling)
+- When a match has ⚠️ LOW CONFIDENCE or details that contradict the subject, say so clearly before the researcher acts on it
+- If a GED source_file is listed, you have access to that file and can read it for deeper context
+- Steer the researcher toward what the evidence supports; push back politely if they stray from the facts
+- For ship manifest records, explain the historical context (what that ship/port/year means)
+- For SSDI records, note what the state field tells us about where the person lived at end of life
+- Suggest the logical next step based on what gaps remain
+- Keep responses to 3-5 sentences unless a longer explanation is genuinely needed"""
 
 @alfred_bp.get('/api/alfred/<int:person_id>/history')
 @require_auth
@@ -120,6 +151,59 @@ def chat(person_id):
     ))
     db.session.commit()
     return jsonify({'response': assistant_reply})
+
+
+@alfred_bp.post('/api/alfred/<int:person_id>/extend')
+@require_auth
+@require_tokens(25)
+def extend_lineage(person_id):
+    """
+    Starting from a confirmed person, search backward generation by generation
+    as far as records allow. Returns parent/grandparent candidates.
+
+    Body (optional):
+      { "max_generations": 3, "country_hint": "germany" }
+    """
+    person = Person.query.join(Tree).filter(
+        Person.id == person_id, Tree.user_id == g.user_id
+    ).first_or_404()
+
+    data = request.get_json() or {}
+    max_gen = min(int(data.get('max_generations', 3)), 5)
+    country_hint = data.get('country_hint', '')
+
+    person_dict = {
+        'first_name':  person.first_name or '',
+        'last_name':   person.last_name or '',
+        'birth_year':  person.birth_year,
+        'birth_state': person.birth_state or person.birth_country or '',
+        'birth_place': person.birth_state or person.birth_country or '',
+        'country_hint': country_hint,
+    }
+
+    try:
+        from .search_cascade import extend_lineage as _extend
+        tree = _extend(person_dict, max_generations=max_gen)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+    # Flatten for the response
+    generations = []
+    for gen_num in sorted(tree.keys()):
+        for entry in tree[gen_num]:
+            generations.append(entry)
+
+    return jsonify({
+        'person': f"{person.first_name or ''} {person.last_name or ''}".strip(),
+        'person_id': person_id,
+        'generations_searched': max_gen,
+        'results': generations,
+        'total_found': sum(
+            (1 if e.get('father') else 0) + (1 if e.get('mother') else 0)
+            for g_entries in tree.values()
+            for e in g_entries
+        ),
+    })
 
 
 @alfred_bp.post('/api/alfred/curate-gedcom')
