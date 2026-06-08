@@ -356,12 +356,15 @@ def search_stream():
             except Exception:
                 pass
 
-        # Save to DB after stream completes
+        # Save to DB after stream completes — merge vault results in so they persist
         if final_event:
             try:
+                cascade_results = final_event.get('results', [])
+                # Vault results were streamed but not included in final_event — add them
+                merged_results = vault_results + cascade_results
                 ids = _save_search_to_db(
                     user_id, tree_name, full_first, last, birth_year, birth_place,
-                    {'results': final_event.get('results', []),
+                    {'results': merged_results,
                      'gaps':    final_event.get('gaps', []),
                      'confidence': final_event.get('confidence', 0)},
                     final_event.get('summary', ''),

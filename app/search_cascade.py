@@ -214,6 +214,86 @@ def search_chronicling(first: str, last: str, birth_year: int = None) -> list:
 
 
 # ---------------------------------------------------------------------------
+# Legacy.com obituary search — HTTP-based, no Playwright needed
+# ---------------------------------------------------------------------------
+
+_LEGACY_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
+    'Accept': 'application/json, text/javascript, */*',
+}
+
+_US_STATE_ABBR = {
+    'alabama':'al','alaska':'ak','arizona':'az','arkansas':'ar','california':'ca',
+    'colorado':'co','connecticut':'ct','delaware':'de','florida':'fl','georgia':'ga',
+    'hawaii':'hi','idaho':'id','illinois':'il','indiana':'in','iowa':'ia',
+    'kansas':'ks','kentucky':'ky','louisiana':'la','maine':'me','maryland':'md',
+    'massachusetts':'ma','michigan':'mi','minnesota':'mn','mississippi':'ms',
+    'missouri':'mo','montana':'mt','nebraska':'ne','nevada':'nv',
+    'new hampshire':'nh','new jersey':'nj','new mexico':'nm','new york':'ny',
+    'north carolina':'nc','north dakota':'nd','ohio':'oh','oklahoma':'ok',
+    'oregon':'or','pennsylvania':'pa','rhode island':'ri','south carolina':'sc',
+    'south dakota':'sd','tennessee':'tn','texas':'tx','utah':'ut','vermont':'vt',
+    'virginia':'va','washington':'wa','west virginia':'wv','wisconsin':'wi','wyoming':'wy',
+}
+
+def search_legacy_obits(first: str, last: str, birth_year: int = None,
+                         birth_place: str = '') -> list:
+    """
+    Search Legacy.com obituaries via their JSON API.
+    Effective for deaths from the 1990s onward.
+    """
+    try:
+        import urllib.parse
+        name_slug = urllib.parse.quote(f'{first}-{last}'.lower().replace(' ', '-'))
+        url = f'https://www.legacy.com/obituaries/name/search?name={urllib.parse.quote(f"{first} {last}")}'
+
+        # Extract state abbreviation from birth_place for filtering
+        state_hint = ''
+        bp_lower = birth_place.lower()
+        for state_name, abbr in _US_STATE_ABBR.items():
+            if state_name in bp_lower or abbr == bp_lower.strip():
+                state_hint = abbr
+                break
+
+        # Use Legacy.com's public search JSON endpoint
+        search_url = 'https://www.legacy.com/obituaries/search'
+        params = {'keyword': f'{first} {last}', 'countryid': 1}
+        if state_hint:
+            # Legacy uses numeric state IDs; use city/keyword search instead
+            params['keyword'] = f'{first} {last} {birth_place}'.strip()
+
+        resp = req_lib.get(search_url, params=params, headers=_LEGACY_HEADERS, timeout=10)
+        if resp.status_code != 200:
+            return []
+
+        # Parse HTML response for obituary cards
+        html = resp.text
+        results = []
+        import re as _re
+        # Extract names and dates from legacy.com result cards
+        cards = _re.findall(
+            r'href="([^"]+/obituaries/[^"]+)"[^>]*>.*?<h\d[^>]*>([^<]+)</h\d>',
+            html, _re.DOTALL
+        )
+        for href, title in cards[:6]:
+            title = title.strip()
+            if last.lower() not in title.lower():
+                continue
+            full_url = href if href.startswith('http') else f'https://www.legacy.com{href}'
+            results.append({
+                'source': 'legacy_obituary',
+                'record_type': 'obituary',
+                'title': title,
+                'url': full_url,
+                'birth_place': birth_place,
+            })
+
+        return results[:4]
+    except Exception:
+        return []
+
+
+# ---------------------------------------------------------------------------
 # NARA
 # ---------------------------------------------------------------------------
 
@@ -1622,12 +1702,13 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
     # in phase 1 — SSDI won't have them and web obituaries are the best source
     _is_modern = (birth_year and birth_year > 1920) or (death_year and death_year > 2000)
     _obit_task = {}
-    if _is_modern and _playwright_available():
-        from .playwright_scrapers import search_obituaries as _search_obits, search_findagrave as _search_fg
-        _obit_task = {
-            'obituaries': lambda: _search_obits(first, last, birth_year, birth_place),
-            'findagrave':  lambda: _search_fg(_first_only, last, birth_year),
-        }
+    if _is_modern:
+        # Always include Legacy.com HTTP search (no Playwright needed)
+        _obit_task['legacy_obituary'] = lambda: search_legacy_obits(first, last, birth_year, birth_place)
+        if _playwright_available():
+            from .playwright_scrapers import search_obituaries as _search_obits, search_findagrave as _search_fg
+            _obit_task['obituaries'] = lambda: _search_obits(first, last, birth_year, birth_place)
+            _obit_task['findagrave'] = lambda: _search_fg(_first_only, last, birth_year)
 
     phase1_tasks = {
         'wikitree':    lambda: search_wikitree(_first_only, last, birth_year),
