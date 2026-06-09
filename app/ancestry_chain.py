@@ -396,9 +396,8 @@ def auto_build_tree_stream(start_person_id: int, tree_id: int, user_id: int,
                     person_id   = person_id,
                     source      = r.get('source', ''),
                     record_type = r.get('record_type', ''),
-                    title       = (r.get('title') or '')[:255],
                     url         = (r.get('url') or '')[:500],
-                    raw_data    = json.dumps(r),
+                    raw_data    = r,
                 ))
 
             # ── Extract family from results ───────────────────────────────

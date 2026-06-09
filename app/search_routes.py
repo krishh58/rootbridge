@@ -201,6 +201,8 @@ def vault_quick_search():
     if not last:
         return jsonify({'results': [], 'vault_count': 0})
     birth_year = int(year) if year.isdigit() else None
+    if birth_year and birth_year > 1930:
+        return jsonify({'results': [], 'vault_count': 0, 'source': 'vault'})
     from .match_index import search_vault
     hits = search_vault(last, first_name=first, birth_year=birth_year, limit=10)
     return jsonify({
@@ -213,13 +215,14 @@ def vault_quick_search():
 @search_bp.post('/api/search')
 @limiter.limit('60 per hour')
 @require_auth
-@require_tokens(20)
 def authenticated_search():
     data = request.get_json() or {}
     if not data.get('last'):
         return jsonify({'error': 'Last name is required'}), 400
     user = User.query.get(g.user_id)
-    if user and user.tier == 'free':
+    if not user:
+        return jsonify({'error': 'User not found'}), 401
+    if user.tier == 'free':
         if not _check_search_limit(f'free_user_searches:{g.user_id}'):
             return jsonify({'error': 'Free search limit reached. Subscribe to continue researching.'}), 429
     first = data.get('first', '')
@@ -229,6 +232,41 @@ def authenticated_search():
     birth_year = int(data['birth_year']) if data.get('birth_year') else None
     birth_place = data.get('birth_place', '')
     tree_name = data.get('tree_name', '')
+
+    # Vault search is always free — skip for modern persons (vault = historical records only)
+    from .match_index import search_vault
+    _skip_vault = bool(birth_year and birth_year > 1930)
+    vault_hits = [] if _skip_vault else search_vault(last, first_name=full_first, birth_year=birth_year, limit=20)
+    top_score = max((h.get('score', 0) for h in vault_hits), default=0)
+    _is_modern = (birth_year and birth_year > 1920)
+
+    # Strong vault hit on historical person → skip external sources entirely, charge nothing
+    if len(vault_hits) >= 3 and top_score >= 60 and not _is_modern:
+        vault_results = [{
+            'source': 'rootbridge_vault', 'record_type': 'vault',
+            'title': f"{h.get('first_name','')} {h.get('last_name','')}".strip(),
+            'date': str(h.get('birth_year','')) if h.get('birth_year') else '',
+            'location': f"{h.get('birth_state','')} {h.get('birth_country','')}".strip(),
+            'url': '', 'vault_score': h.get('score', 0),
+        } for h in vault_hits]
+        ids = _save_search_to_db(g.user_id, tree_name, full_first, last, birth_year, birth_place,
+                                  {'results': vault_results, 'gaps': [], 'confidence': min(top_score, 95)},
+                                  f'Found {len(vault_hits)} matching records in the RootBridge vault.')
+        return jsonify({'results': vault_results, 'gaps': [], 'summary': f'Found {len(vault_hits)} records.',
+                        'confidence': min(top_score, 95), 'tokens_charged': 0, 'vault_only': True, **ids})
+
+    # External sources needed — charge 20 tokens now
+    if user.tier != 'admin':
+        if user.total_tokens() < 20:
+            return jsonify({
+                'error': 'Insufficient tokens. This search costs 20 tokens.',
+                'tokens_required': 20,
+                'tokens_available': user.total_tokens(),
+            }), 402
+        if not user.deduct_tokens(20):
+            return jsonify({'error': 'Token deduction failed'}), 402
+        db.session.commit()
+
     community = _fetch_community_results(full_first, last, birth_year)
     cascade = run_us_cascade(first=full_first, last=last, birth_year=birth_year,
                              birth_place=birth_place, community_results=community)
@@ -237,7 +275,7 @@ def authenticated_search():
         results=cascade['results'], gaps=cascade['gaps']
     )
     ids = _save_search_to_db(g.user_id, tree_name, full_first, last, birth_year, birth_place, cascade, synthesis['summary'])
-    return jsonify({**cascade, 'summary': synthesis['summary'], **ids})
+    return jsonify({**cascade, 'summary': synthesis['summary'], 'tokens_charged': 20, **ids})
 
 
 @search_bp.get('/api/search/stream')
@@ -278,9 +316,10 @@ def search_stream():
         all_results = []
         final_event = None
 
-        # ── Phase 0: vault search — always free ──────────────────────────────
+        # ── Phase 0: vault search — always free; skip for modern persons ────────
         from .match_index import search_vault
-        vault_hits = search_vault(last, first_name=full_first, birth_year=birth_year, limit=20)
+        _skip_vault = bool((birth_year and birth_year > 1930) or (death_year and death_year > 1980))
+        vault_hits = [] if _skip_vault else search_vault(last, first_name=full_first, birth_year=birth_year, limit=20)
         vault_results = [{
             'source': 'rootbridge_vault',
             'record_type': 'vault',
@@ -397,7 +436,6 @@ def search_stream():
 @search_bp.get('/api/persons/<int:person_id>/research')
 @limiter.limit('30 per hour')
 @require_auth
-@require_tokens(20)
 def research_person(person_id):
     """Re-run the search cascade for an existing person, merging new results in."""
     from .models import Person as PersonModel
@@ -411,16 +449,68 @@ def research_person(person_id):
     birth_place = person.birth_state or person.birth_country or ''
     tree_id     = person.tree_id
     user_id     = g.user_id
-    community   = _fetch_community_results(first, last, birth_year)
 
     def generate():
         import json as _json
         final_event = None
 
+        # ── Phase 0: vault search — always free; skip for modern persons ────────
+        from .match_index import search_vault
+        _skip_vault = bool((birth_year and birth_year > 1930) or (person.death_year and person.death_year > 1980))
+        vault_hits = [] if _skip_vault else search_vault(last, first_name=first, birth_year=birth_year, limit=20)
+        vault_results = [{
+            'source': 'rootbridge_vault', 'record_type': 'vault',
+            'title': f"{h.get('first_name','')} {h.get('last_name','')}".strip(),
+            'date': str(h.get('birth_year','')) if h.get('birth_year') else '',
+            'location': f"{h.get('birth_state','')} {h.get('birth_country','')}".strip(),
+            'url': '', 'vault_score': h.get('score', 0),
+        } for h in vault_hits]
+
+        if vault_results:
+            yield 'data: ' + _json.dumps({
+                'source': 'rootbridge_vault', 'results': vault_results,
+                'count': len(vault_results), 'total': len(vault_results),
+            }) + '\n\n'
+
+        top_score = max((h.get('score', 0) for h in vault_hits), default=0)
+        _is_modern = (birth_year and birth_year > 1920)
+
+        # Strong vault hit on historical person → no external sources needed
+        if len(vault_hits) >= 3 and top_score >= 60 and not _is_modern:
+            yield 'data: ' + _json.dumps({
+                'done': True, 'results': vault_results, 'gaps': [],
+                'summary': f'Found {len(vault_hits)} matching records in the RootBridge vault.',
+                'confidence': min(top_score, 95), 'vault_only': True, 'tokens_charged': 0,
+            }) + '\n\n'
+            return
+
+        # External sources needed — charge 20 tokens now
+        current_user = User.query.get(user_id)
+        if not current_user:
+            yield 'data: ' + _json.dumps({'error': 'User not found'}) + '\n\n'
+            return
+
+        if current_user.tier != 'admin':
+            if current_user.total_tokens() < 20:
+                yield 'data: ' + _json.dumps({
+                    'done': True, 'results': vault_results, 'gaps': [],
+                    'summary': 'Vault search complete. Top up tokens to search external records.',
+                    'confidence': top_score, 'vault_only': True, 'tokens_charged': 0, 'token_gate': True,
+                }) + '\n\n'
+                return
+            if not current_user.deduct_tokens(20):
+                yield 'data: ' + _json.dumps({'error': 'Token deduction failed'}) + '\n\n'
+                return
+            db.session.commit()
+
+        yield 'data: ' + _json.dumps({'tokens_charged': 0 if current_user.tier == 'admin' else 20}) + '\n\n'
+
+        community = _fetch_community_results(first, last, birth_year)
         for event_str in run_us_cascade_stream(
             first, last, birth_year, birth_place,
             community_results=community,
             middle=person.middle_name or '',
+            skip_vault=True,
         ):
             yield event_str
             try:
@@ -432,10 +522,10 @@ def research_person(person_id):
 
         if final_event:
             try:
-                # Merge new results into existing person rather than creating a new one
                 existing_urls = {sr.url for sr in person.search_results}
                 new_count = 0
-                for r in final_event.get('results', []):
+                cascade_results = final_event.get('results', [])
+                for r in cascade_results:
                     if r.get('url') not in existing_urls:
                         db.session.add(SearchResult(
                             person_id=person_id,
@@ -445,8 +535,7 @@ def research_person(person_id):
                             raw_data=r,
                         ))
                         new_count += 1
-                # Backfill any fields that were missing
-                _enrich_person_from_results(person, final_event.get('results', []))
+                _enrich_person_from_results(person, cascade_results)
                 if final_event.get('confidence', 0) > (person.confidence or 0):
                     person.confidence = final_event['confidence']
                 db.session.commit()

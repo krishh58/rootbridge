@@ -1640,8 +1640,8 @@
         .then(r => r.json())
         .then(d => {
           const badge = document.getElementById('rc-vault-badge');
-          if (d.index_ready) {
-            const total = window._vaultTotal || d.total_persons || d.vault_size;
+          const total = window._vaultTotal || d.total_persons || d.vault_size || 0;
+          if (total > 0) {
             badge.textContent = total.toLocaleString() + ' records indexed';
             badge.style.background = '#14532d';
             badge.style.color = '#86efac';
@@ -1686,7 +1686,8 @@
       const status = document.getElementById('rc-status');
       const results = document.getElementById('rc-results');
 
-      if (!data.index_ready) {
+      // Only block if index isn't ready AND we got no results at all
+      if (!data.index_ready && (!data.results || data.results.length === 0)) {
         status.innerHTML = '⏳ Vault index is still building. Try again in a moment.';
         return;
       }

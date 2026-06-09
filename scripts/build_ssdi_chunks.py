@@ -16,11 +16,20 @@ Free SSDI sources:
 
 import argparse
 import csv
+import gc
 import gzip
 import io
 import json
 import os
 import sys
+import time
+from pathlib import Path
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent.parent / '.env')
+except ImportError:
+    pass
 from collections import defaultdict
 from pathlib import Path
 
@@ -131,47 +140,31 @@ def parse_record_fixed(line: str) -> dict | None:
         return None
 
 
-def build_chunks(input_path: str) -> dict:
-    """Read SSDI fixed-width file, return {chunk_key: [records]}."""
-    chunks: dict[str, list] = defaultdict(list)
-    total = 0
-    skipped = 0
-
-    with open(input_path, 'r', encoding='utf-8', errors='replace') as f:
-        for line in f:
-            rec = parse_record_fixed(line)
-            if rec is None:
-                skipped += 1
-                continue
-            key = f"ssdi/{_prefix(rec['last'])}_{_decade_key(str(rec['birth_year']))}.jsonl.gz"
-            chunks[key].append(rec)
-            total += 1
-            if total % 1_000_000 == 0:
-                print(f'  {total:,} records parsed, {len(chunks):,} chunks…', flush=True)
-
-    print(f'Done: {total:,} records → {len(chunks):,} chunks ({skipped:,} skipped)')
-    return chunks
+RAM_LIMIT_GB = 8.0  # pause if system available RAM drops below this
 
 
-def save_local(chunks: dict, out_dir: str):
-    out = Path(out_dir)
-    out.mkdir(parents=True, exist_ok=True)
-    for key, records in chunks.items():
-        path = out / key.replace('/', '_')
-        buf = io.BytesIO()
-        with gzip.open(buf, 'wt', encoding='utf-8') as gz:
-            for r in records:
-                gz.write(json.dumps(r) + '\n')
-        path.write_bytes(buf.getvalue())
-    print(f'Saved {len(chunks)} chunk files to {out_dir}')
+def _available_ram_gb() -> float:
+    try:
+        with open('/proc/meminfo') as f:
+            for line in f:
+                if line.startswith('MemAvailable:'):
+                    return int(line.split()[1]) / (1024 ** 2)
+    except Exception:
+        pass
+    return 99.0
 
 
-def upload_oracle(chunks: dict):
-    if not NAMESPACE or not ACCESS:
-        print('ERROR: Set ORACLE_NAMESPACE, ORACLE_ACCESS_KEY, ORACLE_SECRET_KEY env vars')
-        sys.exit(1)
+def _wait_for_ram(threshold_gb: float = RAM_LIMIT_GB):
+    while True:
+        avail = _available_ram_gb()
+        if avail >= threshold_gb:
+            break
+        print(f'  [RAM] only {avail:.1f} GB available — waiting 30s…', flush=True)
+        time.sleep(30)
 
-    client = boto3.client(
+
+def _make_client():
+    return boto3.client(
         's3',
         endpoint_url=ENDPOINT,
         aws_access_key_id=ACCESS,
@@ -180,16 +173,32 @@ def upload_oracle(chunks: dict):
         region_name=REGION,
     )
 
+
+def _existing_keys(client) -> set:
+    """Return set of chunk keys already in Oracle ssdi/ prefix."""
+    existing = set()
+    paginator = client.get_paginator('list_objects_v2')
+    for page in paginator.paginate(Bucket=BUCKET, Prefix='ssdi/'):
+        for obj in page.get('Contents', []):
+            existing.add(obj['Key'])
+    print(f'  {len(existing):,} chunks already in Oracle — will skip those', flush=True)
+    return existing
+
+
+def _upload_chunks(client, chunks: dict, existing: set) -> tuple[int, int]:
+    """Upload a dict of {key: [records]} to Oracle. Returns (uploaded, failed)."""
     uploaded = 0
-    failed   = 0
+    failed = 0
+    skipped = 0
     for key, records in chunks.items():
+        if key in existing:
+            skipped += 1
+            continue
         buf = io.BytesIO()
         with gzip.open(buf, 'wt', encoding='utf-8') as gz:
             for r in records:
                 gz.write(json.dumps(r) + '\n')
         body = encrypt(buf.getvalue())
-
-        # Oracle S3-compat requires explicit ContentLength — use put_object, not upload_fileobj
         for attempt in range(3):
             try:
                 client.put_object(
@@ -203,15 +212,95 @@ def upload_oracle(chunks: dict):
                 break
             except Exception as e:
                 if attempt == 2:
-                    print(f'  WARN: failed to upload {key} after 3 attempts: {e}')
+                    print(f'  WARN: failed {key} after 3 attempts: {e}')
                     failed += 1
                 else:
                     import time as _time; _time.sleep(2 ** attempt)
+    return uploaded, failed
 
-        if (uploaded + failed) % 100 == 0:
-            print(f'  Uploaded {uploaded}/{len(chunks)} chunks ({failed} failed)…', flush=True)
 
-    print(f'Upload complete: {uploaded} chunks in Oracle bucket "{BUCKET}"')
+def upload_oracle_streaming(input_path: str):
+    """Stream SSDI file one first-letter prefix at a time to cap RAM at ~400MB."""
+    if not NAMESPACE or not ACCESS:
+        print('ERROR: Set ORACLE_NAMESPACE, ORACLE_ACCESS_KEY, ORACLE_SECRET_KEY env vars')
+        sys.exit(1)
+
+    client = _make_client()
+    existing = _existing_keys(client)
+
+    # 26 letters + fallback bucket for non-alpha (numbers, punctuation)
+    letter_buckets = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ') + ['_OTHER']
+    total_uploaded = 0
+    total_failed = 0
+    total_records = 0
+
+    for letter in letter_buckets:
+        chunks: dict[str, list] = defaultdict(list)
+        count = 0
+
+        with open(input_path, 'r', encoding='utf-8', errors='replace') as f:
+            for line in f:
+                rec = parse_record_fixed(line)
+                if rec is None:
+                    continue
+                first_char = rec['last'][0] if rec['last'] else '_'
+                if letter == '_OTHER':
+                    if first_char.isalpha():
+                        continue
+                else:
+                    if first_char != letter:
+                        continue
+                key = f"ssdi/{_prefix(rec['last'])}_{_decade_key(str(rec['birth_year']))}.jsonl.gz"
+                chunks[key].append(rec)
+                count += 1
+
+        if not chunks:
+            continue
+
+        total_records += count
+        _wait_for_ram()  # pause if system RAM is low before uploading
+        print(f'[{letter}] {count:,} records → {len(chunks):,} chunks — uploading…', flush=True)
+        up, fail = _upload_chunks(client, chunks, existing)
+        total_uploaded += up
+        total_failed += fail
+        existing.update(chunks.keys())
+        print(f'[{letter}] done: +{up} uploaded, {fail} failed. Total so far: {total_uploaded:,}', flush=True)
+        del chunks
+        gc.collect()
+        time.sleep(1)  # brief pause between letters to let OS reclaim pages
+
+    print(f'\nAll done: {total_records:,} records, {total_uploaded:,} chunks uploaded, {total_failed} failed')
+
+
+def save_local_streaming(input_path: str, out_dir: str):
+    """Write chunks to local files without holding everything in RAM."""
+    out = Path(out_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    total = 0
+    skipped = 0
+    handles: dict[str, io.BytesIO] = {}
+    gz_handles: dict[str, gzip.GzipFile] = {}
+
+    with open(input_path, 'r', encoding='utf-8', errors='replace') as f:
+        for line in f:
+            rec = parse_record_fixed(line)
+            if rec is None:
+                skipped += 1
+                continue
+            key = f"ssdi/{_prefix(rec['last'])}_{_decade_key(str(rec['birth_year']))}.jsonl.gz"
+            if key not in handles:
+                handles[key] = open(out / key.replace('/', '_'), 'wb')
+                gz_handles[key] = gzip.open(handles[key], 'wt', encoding='utf-8')
+            gz_handles[key].write(json.dumps(rec) + '\n')
+            total += 1
+            if total % 1_000_000 == 0:
+                print(f'  {total:,} records written…', flush=True)
+
+    for gz in gz_handles.values():
+        gz.close()
+    for fh in handles.values():
+        fh.close()
+    print(f'Saved {len(handles)} chunk files to {out_dir} ({total:,} records, {skipped:,} skipped)')
 
 
 def main():
@@ -226,13 +315,10 @@ def main():
         sys.exit(1)
 
     print(f'Parsing {args.input}…')
-    chunks = build_chunks(args.input)
-
     if args.upload:
-        print(f'Uploading {len(chunks)} chunks to Oracle…')
-        upload_oracle(chunks)
+        upload_oracle_streaming(args.input)
     else:
-        save_local(chunks, args.out_dir)
+        save_local_streaming(args.input, args.out_dir)
 
 
 if __name__ == '__main__':

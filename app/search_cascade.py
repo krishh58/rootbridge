@@ -1822,6 +1822,9 @@ def _build_tasks(first: str, last: str, birth_year: int,
         # birth_year=None is treated as modern, so no override.
         _deep_ancestry = _is_us and birth_year is not None and birth_year < 1830
 
+        # origins must be defined before the _deep_ancestry block so _is_german can use it
+        origins = [] if (_is_us and not _deep_ancestry) else ([country_hint.lower()] if country_hint else _guess_origins(last))
+
         if _deep_ancestry:
             # Local DB search first (instant, no network) then internet fallback
             tasks['ship_manifest_db'] = lambda: _search_ship_arrivals_db_safe(
@@ -1857,8 +1860,6 @@ def _build_tasks(first: str, last: str, birth_year: int,
                         _first_only, last, birth_year, country_hint
                     )
 
-        origins = [] if (_is_us and not _deep_ancestry) else ([country_hint.lower()] if country_hint else _guess_origins(last))
-
         if 'ireland' in origins or 'irish' in origins:
             tasks['irish_birth']  = lambda: search_irish_genealogy(first, last, birth_year, 'B')
             tasks['irish_death']  = lambda: search_irish_genealogy(first, last, birth_year, 'D')
@@ -1886,10 +1887,26 @@ def _build_tasks(first: str, last: str, birth_year: int,
 # Parallel runner (non-streaming)
 # ---------------------------------------------------------------------------
 
+def _with_retry(fn, retries: int = 1, backoff: float = 1.5):
+    """Wrap a task callable with one retry and exponential backoff."""
+    def wrapper():
+        last_exc = None
+        for attempt in range(retries + 1):
+            try:
+                return fn()
+            except Exception as exc:
+                last_exc = exc
+                if attempt < retries:
+                    time.sleep(backoff * (attempt + 1))
+        raise last_exc  # re-raise after all attempts exhausted
+    return wrapper
+
+
 def _run_parallel(tasks: dict) -> list:
     all_results = []
-    with ThreadPoolExecutor(max_workers=min(len(tasks), 16)) as executor:
-        futures = {executor.submit(fn): name for name, fn in tasks.items()}
+    executor = ThreadPoolExecutor(max_workers=min(len(tasks), 16))
+    try:
+        futures = {executor.submit(_with_retry(fn)): name for name, fn in tasks.items()}
         try:
             for future in as_completed(futures, timeout=SEARCH_TIMEOUT):
                 try:
@@ -1898,6 +1915,9 @@ def _run_parallel(tasks: dict) -> list:
                     logger.debug('Source %s failed: %s', futures[future], e)
         except FuturesTimeout:
             logger.info('Search timeout after %ds — returning partial results', SEARCH_TIMEOUT)
+    finally:
+        # wait=False: don't block on threads still running past timeout
+        executor.shutdown(wait=False, cancel_futures=True)
     return all_results
 
 
@@ -1907,8 +1927,9 @@ def _run_parallel(tasks: dict) -> list:
 
 def _run_phase(tasks: dict, all_results: list, timeout: float):
     """Run a set of tasks in parallel, extend all_results, yield SSE strings."""
-    with ThreadPoolExecutor(max_workers=min(len(tasks), 12)) as executor:
-        futures = {executor.submit(fn): name for name, fn in tasks.items()}
+    executor = ThreadPoolExecutor(max_workers=min(len(tasks), 12))
+    try:
+        futures = {executor.submit(_with_retry(fn)): name for name, fn in tasks.items()}
         try:
             for future in as_completed(futures, timeout=timeout):
                 name = futures[future]
@@ -1929,6 +1950,8 @@ def _run_phase(tasks: dict, all_results: list, timeout: float):
                     yield 'data: ' + json.dumps({'source': name, 'count': 0}) + '\n\n'
         except FuturesTimeout:
             pass
+    finally:
+        executor.shutdown(wait=False, cancel_futures=True)
 
 
 def _build_phase2_tasks(picks: list, first: str, last: str,
@@ -2381,8 +2404,8 @@ def run_us_cascade_stream(first: str = '', last: str = '', birth_year: int = Non
         }) + '\n\n'
 
     # ── Phase 1: reliable external sources (no Playwright — gets blocked) ────────
-    # SSDI Oracle chunk search — only included if Oracle Storage is configured
-    from .oracle_storage import search_ssdi as _search_ssdi, chunk_is_available as _oracle_ok
+    # SSDI Oracle chunk search
+    from .ssdi_oracle import search_ssdi as _search_ssdi, ssdi_available as _oracle_ok
     _ssdi_task = {'ssdi': lambda: _search_ssdi(first, last, birth_year, birth_place)} \
         if _oracle_ok() else {}
 

@@ -66,6 +66,11 @@ def vault_search():
     if not q:
         return jsonify({'error': 'q is required'}), 400
 
+    # Vault is historical-only — don't search it for modern persons
+    if year and year > 1930:
+        total_persons = db.session.execute(text('SELECT COUNT(*) FROM persons')).scalar() or 0
+        return jsonify({'results': [], 'total': 0, 'index_ready': total_persons > 0, 'vault_size': total_persons})
+
     # Split "John Smith" → first_name="John", last_name="Smith"
     parts = q.split()
     if len(parts) >= 2:
@@ -76,13 +81,15 @@ def vault_search():
         last_name  = parts[0]
 
     results = search_vault(last_name, first_name=first_name, birth_year=year, limit=limit)
-    stats   = index_stats()
+
+    # index_ready = True if the DB has persons (hot index or cold DB fallback both work)
+    total_persons = db.session.execute(text('SELECT COUNT(*) FROM persons')).scalar() or 0
 
     return jsonify({
         'results':     results,
         'total':       len(results),
-        'index_ready': stats['built'],
-        'vault_size':  stats['persons'],
+        'index_ready': total_persons > 0,
+        'vault_size':  total_persons,
     })
 
 
@@ -140,10 +147,10 @@ def vault_person(person_id):
 @require_auth
 def vault_stats():
     stats = index_stats()
-    total_persons = db.session.execute(text('SELECT COUNT(*) FROM persons')).scalar()
+    total_persons = db.session.execute(text('SELECT COUNT(*) FROM persons')).scalar() or 0
     return jsonify({
-        'vault_size':   stats['persons'],
+        'vault_size':    stats['persons'],
         'total_persons': total_persons,
-        'index_ready':  stats['built'],
-        'buckets':      stats['buckets'],
+        'index_ready':   total_persons > 0,   # ready = DB has data; hot index is a speed bonus only
+        'buckets':       stats['buckets'],
     })

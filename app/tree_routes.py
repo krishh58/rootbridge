@@ -534,9 +534,12 @@ def extract_family_names(person_id: int):
     from .ancestry_chain import extract_family_from_results
 
     results = [
-        {'source': r.source, 'snippet': r.raw_data and _json.loads(r.raw_data).get('snippet', ''),
-         'full_text': r.raw_data and _json.loads(r.raw_data).get('full_text', ''),
-         'title': r.title}
+        {
+            'source':    r.source,
+            'snippet':   (r.raw_data if isinstance(r.raw_data, dict) else {}).get('snippet', ''),
+            'full_text': (r.raw_data if isinstance(r.raw_data, dict) else {}).get('full_text', ''),
+            'title':     (r.raw_data if isinstance(r.raw_data, dict) else {}).get('title', ''),
+        }
         for r in person.search_results
     ]
     family = extract_family_from_results(results)

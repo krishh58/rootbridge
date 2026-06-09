@@ -51,6 +51,60 @@ def send_invite_email(to_email: str, inviter_name: str, tree_name: str,
         return False
 
 
+def send_new_match_notification(to_email: str, other_display: str, ancestor_name: str) -> bool:
+    """Notify a user that another researcher has the same ancestor in their tree."""
+    gmail_user = os.environ.get('GMAIL_USER', '')
+    gmail_password = os.environ.get('GMAIL_APP_PASSWORD', '')
+    if not gmail_user or not gmail_password:
+        logger.warning('GMAIL credentials not set — skipping match notification')
+        return False
+
+    safe_other    = html_escape(other_display.replace('\r', '').replace('\n', ''))
+    safe_ancestor = html_escape(ancestor_name)
+    subject = f'RootBridge found a research match — {safe_ancestor}'
+    body_html = f"""
+<div style="font-family:Arial,sans-serif;max-width:480px;margin:0 auto;color:#1e293b">
+  <div style="background:#1e293b;padding:16px 24px;border-radius:8px 8px 0 0">
+    <span style="color:#e2d9c4;font-size:1.1rem;font-weight:700">🌿 RootBridge</span>
+  </div>
+  <div style="background:#faf7f2;padding:24px;border:1px solid #e2d8cc;border-top:none;border-radius:0 0 8px 8px">
+    <h2 style="margin:0 0 12px;font-size:1.15rem;color:#1a3d2b">You have a research match!</h2>
+    <p style="margin:0 0 16px;font-size:.9rem;color:#334155">
+      Another researcher, <strong>{safe_other}</strong>, has
+      <strong>{safe_ancestor}</strong> in their family tree — the same ancestor you're researching.
+    </p>
+    <p style="margin:0 0 20px;font-size:.9rem;color:#334155">
+      They may have records, documents, or stories you haven't found yet.
+      Connect to share your research.
+    </p>
+    <a href="https://rootbridge.app/app"
+       style="display:inline-block;padding:.7rem 2rem;background:#4a7c59;color:#fff;
+              border-radius:6px;text-decoration:none;font-weight:600;font-size:.9rem">
+      View Match &amp; Connect →
+    </a>
+    <p style="color:#94a3b8;font-size:.78rem;margin-top:20px">
+      You can disable match notifications in your
+      <a href="https://rootbridge.app/account" style="color:#4a7c59">account settings</a>.
+    </p>
+  </div>
+</div>"""
+
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = subject
+    msg['From']    = gmail_user
+    msg['To']      = to_email
+    msg.attach(MIMEText(body_html, 'html'))
+
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+            server.login(gmail_user, gmail_password)
+            server.sendmail(gmail_user, to_email, msg.as_string())
+        return True
+    except Exception as exc:
+        logger.error('Failed to send match notification to %s: %s', to_email, exc)
+        return False
+
+
 def send_match_email(to_email: str, sender_display: str, ancestor_name: str) -> bool:
     gmail_user = os.environ.get('GMAIL_USER', '')
     gmail_password = os.environ.get('GMAIL_APP_PASSWORD', '')

@@ -1,61 +1,38 @@
 import os
+import hashlib
+import json
+import logging
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests as req_lib
 from .gap_classifier import classify_gaps, confidence_score
 from .db import get_redis
 from .search_cascade import search_dpla
-import hashlib, json
 
-DPLA_KEY = os.environ.get('DPLA_API_KEY', '')
-DPLA_URL = 'https://api.dp.la/v2/items'
+logger = logging.getLogger(__name__)
 
 CACHE_TTL = 86400
+
+_KNOWN_COUNTRIES = ('germany', 'ireland', 'italy', 'poland', 'sweden',
+                    'england', 'scotland', 'france', 'austria', 'norway',
+                    'netherlands', 'denmark', 'hungary', 'russia', 'ukraine')
+
 
 def _cache_key(prefix, first, last, birth_year):
     raw = f'{prefix}|{first}|{last}|{birth_year}'.lower()
     return f'heritage:{hashlib.md5(raw.encode()).hexdigest()}'
 
-# --- ELLIS ISLAND / NARA ---
 
-def search_ellis_island(first: str, last: str, birth_year: int = None) -> list:
-    """Search DPLA for immigration/passenger records as Ellis Island replacement."""
-    results = search_dpla(first, last, birth_year, subject='passenger lists', page_size=6)
+def _detect_country(results: list, origin_country: str) -> str:
+    """Try to detect origin country from result birth_place / origin fields."""
+    if origin_country:
+        return origin_country
     for r in results:
-        r['source'] = 'ellis_island'
-        r['record_type'] = 'immigration'
-    # Also try direct Statue of Liberty Foundation search
-    try:
-        params = {
-            'q': f'{last},{first}',
-            'type': 'person',
-            'fmt': 'json',
-        }
-        resp = req_lib.get(
-            'https://heritage.statueofliberty.org/passenger-details/',
-            params=params, timeout=5
-        )
-        if resp.ok:
-            for item in resp.json().get('results', [])[:3]:
-                results.append({
-                    'source': 'ellis_island',
-                    'record_type': 'immigration',
-                    'name': item.get('name', ''),
-                    'birth_year': item.get('birth_year'),
-                    'origin': item.get('origin', ''),
-                    'url': item.get('url', 'https://heritage.statueofliberty.org/'),
-                })
-    except Exception:
-        pass
-    return results
-
-def extract_origin_village(manifest_raw: dict) -> str:
-    for person in manifest_raw.get('persons', []):
-        for fact in person.get('facts', []):
-            fact_type = fact.get('type', '')
-            if 'Birth' in fact_type or 'Birthplace' in fact_type or 'NativePlace' in fact_type:
-                place = fact.get('place', {}).get('original', '')
-                if place:
-                    return place
+        origin = (r.get('birth_place') or r.get('origin') or '').lower()
+        for country in _KNOWN_COUNTRIES:
+            if country in origin:
+                return country.capitalize()
     return ''
+
 
 # --- EUROPEAN CHURCH RECORDS ---
 
@@ -108,37 +85,83 @@ def search_dpla_eu(first: str, last: str, birth_year: int = None,
 def run_european_cascade(first: str = '', last: str = '', birth_year: int = None,
                           birth_place: str = '', origin_country: str = '') -> dict:
     try:
-        r = get_redis()
+        redis = get_redis()
         key = _cache_key('eu', first, last, birth_year)
-        cached = r.get(key)
+        cached = redis.get(key)
         if cached:
             return json.loads(cached)
     except Exception:
-        r = None
+        redis = None
 
-    results = []
+    # Import the production search functions built in search_cascade.py
+    from .search_cascade import (
+        _search_ship_arrivals_db_safe,
+        search_ship_manifests,
+        search_castle_garden,
+        search_ellis_island   as _sc_ellis_island,
+        search_hamburg_emigrant,
+        search_revwar_pensions,
+    )
 
-    manifests = search_ellis_island(first, last, birth_year)
-    results.extend(manifests)
-    detected_country = origin_country
-    if manifests and not detected_country:
-        for m in manifests:
-            village = extract_origin_village(m.get('raw', {}))
-            if village:
-                for country in ('Germany', 'Ireland', 'Italy', 'Poland', 'Sweden',
-                                'England', 'Scotland', 'France', 'Austria'):
-                    if country.lower() in village.lower():
-                        detected_country = country
-                        break
-                if detected_country:
-                    break
+    _first = first.split()[0] if first else first
+    _country = (origin_country or '').lower()
+    _is_german  = 'german' in _country or 'germany' in _country
+    _is_swedish = 'sweden' in _country or 'sweden' in birth_place.lower()
+    _is_irish   = 'ireland' in _country or 'irish' in _country
 
-    eu_records = search_dpla_eu(first, last, birth_year, detected_country)
-    results.extend(eu_records)
+    tasks: dict = {}
 
-    if detected_country in ('Sweden', '') or 'sweden' in birth_place.lower():
-        riksarkivet_records = search_riksarkivet(first, last, birth_year)
-        results.extend(riksarkivet_records)
+    # ── Local ship arrivals DB — instant, no network ──────────────────────
+    tasks['ship_arrivals_db'] = lambda: _search_ship_arrivals_db_safe(
+        last, _first, birth_year
+    )
+
+    # ── Internet Archive ship manifests — colonial + Hamburg ──────────────
+    tasks['ship_manifests'] = lambda: search_ship_manifests(
+        _first, last, birth_year, origin_country
+    )
+
+    # ── Port-specific: Castle Garden 1820–1892 (NY arrivals) ─────────────
+    if birth_year is None or 1820 <= birth_year <= 1950:
+        tasks['castle_garden'] = lambda: search_castle_garden(_first, last, birth_year)
+
+    # ── Port-specific: Ellis Island 1892–1957 ────────────────────────────
+    if birth_year is None or 1850 <= birth_year <= 1970:
+        tasks['ellis_island'] = lambda: _sc_ellis_island(_first, last, birth_year)
+
+    # ── Hamburg / German departure records ───────────────────────────────
+    if _is_german or not origin_country:
+        if birth_year is None or 1800 <= birth_year <= 1950:
+            tasks['hamburg_emigrant'] = lambda: search_hamburg_emigrant(
+                _first, last, birth_year, origin_country
+            )
+
+    # ── Rev War pension files (US veterans with European origins, 1775-1840)
+    if birth_year and 1730 <= birth_year <= 1800:
+        tasks['revwar_pension'] = lambda: search_revwar_pensions(
+            _first, last, birth_year, birth_place
+        )
+
+    # ── Swedish church records ────────────────────────────────────────────
+    if _is_swedish:
+        tasks['riksarkivet'] = lambda: search_riksarkivet(first, last, birth_year)
+
+    # ── DPLA European immigration (catch-all) ─────────────────────────────
+    tasks['dpla_eu'] = lambda: search_dpla_eu(first, last, birth_year, origin_country)
+
+    # ── Run all sources in parallel ───────────────────────────────────────
+    results: list = []
+    with ThreadPoolExecutor(max_workers=min(len(tasks), 8)) as executor:
+        futures = {executor.submit(fn): name for name, fn in tasks.items()}
+        for future in as_completed(futures, timeout=25):
+            name = futures[future]
+            try:
+                batch = future.result(timeout=3) or []
+                results.extend(batch)
+            except Exception as exc:
+                logger.debug('European source %s failed: %s', name, exc)
+
+    detected_country = _detect_country(results, origin_country)
 
     person_snapshot = {
         'first_name': first, 'last_name': last,
@@ -147,17 +170,19 @@ def run_european_cascade(first: str = '', last: str = '', birth_year: int = None
         'death_year': None, 'death_place': None,
         'parent_ids': [], 'spouse_ids': [],
     }
-    gaps = classify_gaps(person_snapshot, results)
+    gaps  = classify_gaps(person_snapshot, results)
     score = confidence_score(person_snapshot)
 
     output = {
-        'results': results, 'gaps': gaps, 'confidence': score,
+        'results':          results,
+        'gaps':             gaps,
+        'confidence':       score,
         'detected_country': detected_country,
-        'cascade_type': 'european',
+        'cascade_type':     'european',
     }
-    if r is not None:
+    if redis is not None:
         try:
-            r.setex(key, CACHE_TTL, json.dumps(output))
+            redis.setex(key, CACHE_TTL, json.dumps(output))
         except Exception:
             pass
     return output

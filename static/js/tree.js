@@ -14,7 +14,11 @@ function renderTree(persons, treeId) {
   const container = document.getElementById('treeContainer');
   container.innerHTML = '';
   if (!persons || persons.length === 0) {
-    container.innerHTML = '<p class="placeholder-text">No persons in tree yet.</p>';
+    if (typeof showAlfredGreeting === 'function') {
+      showAlfredGreeting(container);
+    } else {
+      container.innerHTML = '<p class="placeholder-text">Add someone to get started.</p>';
+    }
     return;
   }
 
@@ -78,6 +82,16 @@ function renderTree(persons, treeId) {
   node.append('text').attr('dy', 13).attr('text-anchor', 'middle')
     .style('font-size', '9px').style('fill', '#94a3b8')
     .text(d => d.data.data.birth_year || '?');
+  // ✦ note indicator — amber dot when person has notes
+  node.filter(d => d.data.data.notes)
+    .append('text')
+    .attr('dy', -NODE_H / 2 + 7)
+    .attr('dx', 0)
+    .attr('text-anchor', 'middle')
+    .style('font-size', '8px')
+    .style('fill', '#b5681e')
+    .style('pointer-events', 'none')
+    .text('✦');
   node.each(function() {
     const bbox = d3.select(this).select('.node-label').node().getBBox();
     const w = Math.max(bbox.width + NODE_PAD * 2, 80);
@@ -108,7 +122,53 @@ function renderTree(persons, treeId) {
   });
 
   svg.call(d3.zoom().scaleExtent([0.3, 2]).on('zoom', e => g.attr('transform', e.transform)));
+
+  // Camera badges — async, non-blocking. Adds 📷 to nodes where user has a local portrait.
+  paintCameraBadges(persons, g);
 }
+
+async function paintCameraBadges(persons, g) {
+  if (typeof getAllPhotos !== 'function') return;
+  try {
+    const photos = await getAllPhotos();
+    if (!photos.length) return;
+    const photoIds = new Set(photos.map(p => p.personId));
+    g.selectAll('.node').each(function(d) {
+      const id = d ? d.data.data.id : null;
+      if (id && photoIds.has(id)) addCameraBadge(d3.select(this), id);
+    });
+  } catch (e) {}
+}
+
+function addCameraBadge(nodeG, personId) {
+  if (nodeG.select('.camera-badge').size()) return;
+  nodeG.append('text')
+    .attr('class', 'camera-badge')
+    .attr('dy', -NODE_H / 2 + 7)
+    .attr('dx', 18)
+    .attr('text-anchor', 'middle')
+    .style('font-size', '8px')
+    .style('pointer-events', 'none')
+    .text('📷');
+}
+
+// Re-paint badge when a photo is saved or removed
+document.addEventListener('photochange', async ({ detail }) => {
+  const { personId } = detail;
+  if (typeof getPhoto !== 'function') return;
+  try {
+    const blob = await getPhoto(personId);
+    const g = d3.select('#treeContainer svg g');
+    if (!g.size()) return;
+    g.selectAll('.node').each(function(d) {
+      if (d && d.data.data.id === personId) {
+        const sel = d3.select(this);
+        sel.select('.camera-badge').remove();
+        if (blob) addCameraBadge(sel, personId);
+      }
+    });
+  } catch (e) {}
+});
 
 function nodeClass(confidence) {
   if (confidence >= 80) return 'node-confirmed';

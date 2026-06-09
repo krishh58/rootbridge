@@ -167,12 +167,13 @@ def create_app(config=None):
 
     if not app.config.get('TESTING'):
         from apscheduler.schedulers.background import BackgroundScheduler
-        from .matcher import run_matcher
+        from .matcher import run_matcher, notify_pending_matches
         from .rescan import run_monthly_rescan
         scheduler = BackgroundScheduler(daemon=True)
         def _nightly_match():
             with app.app_context():
                 run_matcher()
+                notify_pending_matches()
         def _monthly_rescan():
             with app.app_context():
                 run_monthly_rescan()

@@ -2,6 +2,7 @@ import logging
 from .db import db
 from .models import Person, Tree, User, PersonMatch
 from .match_index import lookup_candidates, soundex, _decade
+from .mailer import send_new_match_notification
 
 logger = logging.getLogger(__name__)
 
@@ -81,7 +82,45 @@ def _existing_pairs():
     return pairs
 
 
-def _try_commit_match(pa_id, pb_id, ua_id, ub_id, score, existing_pairs):
+def _display(user: User) -> str:
+    return getattr(user, 'name', None) or getattr(user, 'username', None) or user.email.split('@')[0]
+
+
+def _notify_match(match: PersonMatch, user_map: dict):
+    """Send new-match emails to both users and stamp notified flags."""
+    ua = user_map.get(match.user_a_id)
+    ub = user_map.get(match.user_b_id)
+
+    pa = db.session.get(Person, match.person_a_id)
+    name_parts = [
+        (pa.first_name or '').strip(),
+        (pa.last_name  or '').strip(),
+    ] if pa else []
+    ancestor_name = ' '.join(p for p in name_parts if p) or 'an ancestor'
+
+    changed = False
+    if ua and ua.email and not match.notified_a:
+        other = _display(ub) if ub else 'Another researcher'
+        if send_new_match_notification(ua.email, other, ancestor_name):
+            match.notified_a = True
+            changed = True
+
+    if ub and ub.email and not match.notified_b:
+        other = _display(ua) if ua else 'Another researcher'
+        if send_new_match_notification(ub.email, other, ancestor_name):
+            match.notified_b = True
+            changed = True
+
+    if changed:
+        try:
+            db.session.commit()
+        except Exception as exc:
+            logger.error('Failed to save notification flags for match (%s, %s): %s',
+                         match.person_a_id, match.person_b_id, exc)
+            db.session.rollback()
+
+
+def _try_commit_match(pa_id, pb_id, ua_id, ub_id, score, existing_pairs, user_map=None):
     match = PersonMatch(
         person_a_id=pa_id, person_b_id=pb_id,
         user_a_id=ua_id,   user_b_id=ub_id,
@@ -94,6 +133,21 @@ def _try_commit_match(pa_id, pb_id, ua_id, ub_id, score, existing_pairs):
     except Exception as exc:
         logger.error('Failed to commit match (%s, %s): %s', pa_id, pb_id, exc)
         db.session.rollback()
+        return
+
+    if user_map is not None:
+        _notify_match(match, user_map)
+
+
+def notify_pending_matches():
+    """Backfill notifications for any PersonMatch rows created before email was wired up."""
+    user_map = _load_user_map()
+    pending = PersonMatch.query.filter(
+        (PersonMatch.notified_a == False) | (PersonMatch.notified_b == False)  # noqa: E712
+    ).all()
+    for match in pending:
+        _notify_match(match, user_map)
+    logger.info('notify_pending_matches: processed %d rows', len(pending))
 
 
 def run_matcher(person_id: int = None):
@@ -136,7 +190,7 @@ def run_matcher(person_id: int = None):
             return
         ua = pa_uid if pa_id < pb_id else pb_uid
         ub = pb_uid if pa_id < pb_id else pa_uid
-        _try_commit_match(lo, hi, ua, ub, s, existing_pairs)
+        _try_commit_match(lo, hi, ua, ub, s, existing_pairs, user_map)
 
     # ── Single-person mode ────────────────────────────────────────────────────
     if person_id is not None:

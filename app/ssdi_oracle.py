@@ -151,9 +151,15 @@ def _name_match(rec_first: str, rec_last: str,
         return True
     if rf.startswith(qf) or qf.startswith(rf):
         return True
-    # Same initial
-    if rf and qf and rf[0] == qf[0]:
-        return True
+    # Require at least 2-char prefix match (single-char too loose for full names)
+    # But allow single-char if the record has an initial only (1-2 char field)
+    if rf and qf:
+        if len(rf) <= 2:
+            if rf[0] == qf[0]:
+                return True
+        else:
+            if rf[:3] == qf[:3]:
+                return True
     return False
 
 

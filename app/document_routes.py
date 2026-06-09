@@ -172,12 +172,11 @@ def upload_document(person_id):
     safe_name = re.sub(r'[^\w.\-]', '_', f.filename)[:200]
     person_name = f'{person.first_name or ""} {person.last_name or ""}'.strip() or 'this person'
 
-    # Deduct tokens before the AI call
+    # AI reads the document first — only deduct tokens if the call succeeds
+    extraction = _ai_read_document(mime, data, safe_name, person_name)
+
     user.deduct_tokens(5)
     db.session.commit()
-
-    # AI reads the document
-    extraction = _ai_read_document(mime, data, safe_name, person_name)
 
     doc = Document(
         person_id=person_id,
